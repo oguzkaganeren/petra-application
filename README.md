@@ -8,6 +8,6 @@
 
 ### For Postgres
 
-* `docker tag postgres:latest oguzkaganeren/petra-postgres:lastest`
+* `docker tag oguzkaganeren/petra-postgres:latest oguzkaganeren/petra-postgres:latest`
 
 * `docker push oguzkaganeren/petra-postgres`
