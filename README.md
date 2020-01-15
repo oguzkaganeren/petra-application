@@ -11,3 +11,12 @@
 * `docker tag oguzkaganeren/petra-postgres:latest oguzkaganeren/petra-postgres:latest`
 
 * `docker push oguzkaganeren/petra-postgres`
+
+### Clear All IMAGE on docker
+
+> Don't forget push your image before clear images
+
+`docker container stop $(docker container ls -aq)`
+`docker container rm $(docker container ls -aq)`
+`docker image prune -a`
+`docker image prune`
