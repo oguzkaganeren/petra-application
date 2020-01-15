@@ -5,3 +5,9 @@
 * To save changes and push it: `docker tag oguzkaganeren/petra oguzkaganeren/petra:V.0.0.X` change the `X` with your version. Then to push: `docker push oguzkaganeren/petra:V.0.0.X` change the `X` with your version.
 * Do not forget to get last changes from repo using `docker pull oguzkaganeren/petra:latest` 
 * To open Hasura Web Page: `http://localhost:8080/console`
+
+### For Postgres
+
+* `docker tag postgres:latest oguzkaganeren/petra-postgres:lastest`
+
+* `docker push oguzkaganeren/petra-postgres`
