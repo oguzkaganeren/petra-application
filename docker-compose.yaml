@@ -1,14 +1,14 @@
 version: '3.6'
 services:
   postgres:
-    image: oguzkaganeren/petra-postgres:latest
+    image: oguzkaganeren/petra-postgres:V.0.0.1
     restart: always
     volumes:
-    - db_data:/var/lib/postgresql/data
+    - PGDATA:/var/lib/postgresql/data
   graphql-engine:
     image: oguzkaganeren/petra:latest
     ports:
-    - "8080:8080"
+    - "8081:8081"
     depends_on:
     - "postgres"
     restart: always
