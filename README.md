@@ -12,11 +12,29 @@
 
 * `docker push oguzkaganeren/petra-postgres`
 
+### Backup SQL
+
+* `docker exec -t petra-application_postgres_1 pg_dumpall -c -U postgres > backup/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql`
+
+### Restore SQL
+
+* `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_20-01-2020_14_28_40.sql`
+
 ### Clear All IMAGE on docker
 
 > Don't forget push your image before clear images
 
-`docker container stop $(docker container ls -aq)`
-`docker container rm $(docker container ls -aq)`
-`docker image prune -a`
-`docker image prune`
+#### Stop all containers
+docker stop `docker ps -qa`
+
+#### Remove all containers
+docker rm `docker ps -qa`
+
+#### Remove all images
+docker rmi -f `docker images -qa `
+
+#### Remove all volumes
+docker volume rm $(docker volume ls -qf dangling="true")
+
+#### Remove all networks
+docker network rm `docker network ls -q`
