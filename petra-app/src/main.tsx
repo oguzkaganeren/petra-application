@@ -6,6 +6,7 @@ import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/HeaderComponent';
+import { LoginScreen } from './app/pages/screens/LoginScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -23,9 +24,10 @@ const MyHeader = navigation => {
 const RootStack = createStackNavigator(
 	{
 		HomeScreen: { screen: HomeScreen },
+		LoginScreen: { screen: LoginScreen }
 	},
 	{
-		initialRouteName: 'HomeScreen',
+		initialRouteName: 'LoginScreen',
 		defaultNavigationOptions: ({ navigation }) => {
 			return MyHeader(navigation);
 		}
@@ -41,6 +43,5 @@ export default () => (
 				<App />
 			</ApplicationProvider>
 		</ApolloProvider>
-
 	</React.Fragment>
 );

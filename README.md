@@ -14,11 +14,11 @@
 
 ### Backup SQL
 
-* `docker exec -t petra-application_postgres_1 pg_dumpall -c -U postgres > backup/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql`
+* ```docker exec -t petra-application_postgres_1 pg_dumpall -c -U postgres > backup/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql```
 
 ### Restore SQL
 
-* `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_20-01-2020_14_28_40.sql`
+* `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_21-01-2020_13_35_37.sql`
 
 ### Clear All IMAGE on docker
 
