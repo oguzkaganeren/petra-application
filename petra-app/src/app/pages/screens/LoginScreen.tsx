@@ -1,19 +1,45 @@
 import * as React from 'react';
 import { Button, Text, Layout } from '@ui-kitten/components';
 import { StyleSheet, Image } from 'react-native';
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import * as Google from 'expo-google-app-auth';
 
 const IOS_CLIENT_ID = '29671483454-ca7ar2q60s28c3eab6m83n5rh0hd19b0.apps.googleusercontent.com';
 const ANDROID_CLIENT_ID = '29671483454-nqtdad5lh9qibq6q1gjgii5m4dk9sfme.apps.googleusercontent.com';
 
+const ADD_TODO = gql`
+	mutation MyMutation(
+		$loginDate: timestamptz
+		$loginIP: inet
+		$loginTypeID: Int
+		$mail: String
+		$name: String
+		$registerDate: timestamptz
+		$userTypeID: Int
+	) {
+		__typename
+		insert_User(
+			objects: {
+				loginDate: $loginDate
+				loginIP: $loginIP
+				loginTypeID: $loginTypeID
+				mail: $mail
+				name: $name
+				registerDate: $registerDate
+				userTypeID: $userTypeID
+			}
+			on_conflict: { constraint: User_mail_key, update_columns: loginDate, where: {} }
+		) {
+			returning {
+				userID
+			}
+		}
+	}
+`;
+
 /**
  * Login props
- * onLogin fonksiyonu firebase auth işlemlerini yapar (LoginContainer içerisinde)
- * onLogin çalıştığında firebaseUser props değeri değişir
- * onRedirect işlemler tamamlandığında Home ekranına yönlendirmek için kullanılır
- * onRedirect userId(veitanınında tutulan userId) değerini gönderir
  */
 export interface LoginProps {}
 
