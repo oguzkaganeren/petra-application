@@ -17,6 +17,10 @@ This readme is a work in progress if anything is missing let us know.
 - Test run `npm start`
 - Preview at your android-ios device or emulator
 
+### Generate component
+
+- `yarn generate`
+
 ### Testing in a diferent language
 
 - (TODO)
