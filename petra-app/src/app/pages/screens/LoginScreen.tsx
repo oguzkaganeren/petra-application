@@ -15,7 +15,9 @@ const ANDROID_CLIENT_ID = '29671483454-nqtdad5lh9qibq6q1gjgii5m4dk9sfme.apps.goo
 /**
  * Login props
  */
-export interface LoginProps {}
+export interface LoginProps {
+	navigation: any;
+}
 
 /**
  * Login state
@@ -43,7 +45,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 				/* this.props.navigation.navigate('Profile', {
 					username: result.user.givenName
 				}); //after Google login redirect to Profile */
-				//return result.accessToken;
+				return result;
 			} else {
 				return { cancelled: true };
 			}
@@ -58,23 +60,37 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 				{ControlUserMutation => (
 					<Formik
 						initialValues={{}}
-						onSubmit={(values, formikActions) => {
+						onSubmit={async (values, formikActions) => {
 							// this.props.requestSentHandler();
+							const result = await this.signInWithGoogle();
+							const IP = await Network.getIpAddressAsync();
 							setTimeout(() => {
-								ControlUserMutation({
-									variables: {
-										loginDate: '1999-01-08 04:05:06',
-										loginIP: '127.0.0.1',
-										loginTypeID: 1,
-										mail: 'test@test.com',
-										name: 'test',
-										registerDate: '1999-01-08 04:05:06'
-									}
-								})
-									.then(res => {
-										console.log('done');
+								if (result.type === 'success') {
+									console.log(result.accessToken);
+									ControlUserMutation({
+										variables: {
+											loginDate: new Date(),
+											loginIP: IP,
+											loginTypeID: 1,
+											mail: result.user.email,
+											name: result.user.givenName,
+											registerDate: new Date(),
+											accessToken: result.accessToken
+										}
 									})
-									.catch(err => alert(err));
+										.then(res => {
+											const userID = res.data.insert_User.returning[0].userID;
+											this.props.navigation.navigate('HomeScreen', {
+												userID: userID,
+												name: result.user.givenName,
+												mail: result.user.email
+											});
+										})
+										.catch(err => alert(err));
+								} else {
+									console.log('Login error');
+								}
+
 								formikActions.setSubmitting(false);
 							}, 500);
 						}}

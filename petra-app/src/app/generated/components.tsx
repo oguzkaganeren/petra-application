@@ -18070,6 +18070,7 @@ export type TravelGuideRestaurant_Variance_Order_By = {
 
 export type User = {
    __typename?: 'User',
+  accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked: Scalars['Boolean'],
   loginDate: Scalars['timestamptz'],
@@ -18150,6 +18151,7 @@ export type User_Bool_Exp = {
   _and?: Maybe<Array<Maybe<User_Bool_Exp>>>,
   _not?: Maybe<User_Bool_Exp>,
   _or?: Maybe<Array<Maybe<User_Bool_Exp>>>,
+  accessToken?: Maybe<String_Comparison_Exp>,
   birthDate?: Maybe<Date_Comparison_Exp>,
   isBlocked?: Maybe<Boolean_Comparison_Exp>,
   loginDate?: Maybe<Timestamptz_Comparison_Exp>,
@@ -18178,6 +18180,7 @@ export type User_Inc_Input = {
 };
 
 export type User_Insert_Input = {
+  accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked?: Maybe<Scalars['Boolean']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
@@ -18195,6 +18198,7 @@ export type User_Insert_Input = {
 
 export type User_Max_Fields = {
    __typename?: 'User_max_fields',
+  accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
   loginTypeID?: Maybe<Scalars['Int']>,
@@ -18209,6 +18213,7 @@ export type User_Max_Fields = {
 };
 
 export type User_Max_Order_By = {
+  accessToken?: Maybe<Order_By>,
   birthDate?: Maybe<Order_By>,
   loginDate?: Maybe<Order_By>,
   loginTypeID?: Maybe<Order_By>,
@@ -18224,6 +18229,7 @@ export type User_Max_Order_By = {
 
 export type User_Min_Fields = {
    __typename?: 'User_min_fields',
+  accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
   loginTypeID?: Maybe<Scalars['Int']>,
@@ -18238,6 +18244,7 @@ export type User_Min_Fields = {
 };
 
 export type User_Min_Order_By = {
+  accessToken?: Maybe<Order_By>,
   birthDate?: Maybe<Order_By>,
   loginDate?: Maybe<Order_By>,
   loginTypeID?: Maybe<Order_By>,
@@ -18269,6 +18276,7 @@ export type User_On_Conflict = {
 };
 
 export type User_Order_By = {
+  accessToken?: Maybe<Order_By>,
   birthDate?: Maybe<Order_By>,
   isBlocked?: Maybe<Order_By>,
   loginDate?: Maybe<Order_By>,
@@ -18285,6 +18293,7 @@ export type User_Order_By = {
 };
 
 export enum User_Select_Column {
+  AccessToken = 'accessToken',
   BirthDate = 'birthDate',
   IsBlocked = 'isBlocked',
   LoginDate = 'loginDate',
@@ -18301,6 +18310,7 @@ export enum User_Select_Column {
 }
 
 export type User_Set_Input = {
+  accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked?: Maybe<Scalars['Boolean']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
@@ -18377,6 +18387,7 @@ export type User_Sum_Order_By = {
 };
 
 export enum User_Update_Column {
+  AccessToken = 'accessToken',
   BirthDate = 'birthDate',
   IsBlocked = 'isBlocked',
   LoginDate = 'loginDate',
@@ -18648,7 +18659,7 @@ export type ControlUserMutationVariables = {
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
-  userTypeID?: Maybe<Scalars['Int']>
+  accessToken?: Maybe<Scalars['String']>
 };
 
 
@@ -18665,9 +18676,9 @@ export type ControlUserMutation = (
 
 
 export const ControlUserDocument = gql`
-    mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $userTypeID: Int) {
+    mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
   __typename
-  insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
+  insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate, accessToken: $accessToken}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
     returning {
       userID
     }

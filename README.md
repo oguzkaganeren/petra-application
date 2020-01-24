@@ -18,7 +18,7 @@
 
 ### Restore SQL
 
-* `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_21-01-2020_13_35_37.sql`
+* `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_24-01-2020_21_01_42.sql`
 
 ### Clear All IMAGE on docker
 
