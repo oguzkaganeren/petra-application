@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
+import { BottomComponent } from '../../components/BottomComponent';
+import { SearchComponent } from '../../components/SearchComponent';
 /**
  * Home props
  */
@@ -10,7 +12,7 @@ export interface HomeProps {
 /**
  * Home state
  */
-export interface HomeState { }
+export interface HomeState {}
 
 /**
  * Home
@@ -33,21 +35,14 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	render() {
 		const { selectedTab } = this.state;
 		return (
-			<Layout>
-				<Text>Test</Text>
+			<Layout style={{ flex: 1 }}>
+				<SearchComponent></SearchComponent>
+				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+					<BottomComponent></BottomComponent>
+				</Layout>
 			</Layout>
 		);
 	}
 }
 
-const styles: any = StyleSheet.create({
-	container: {
-		backgroundColor: '#FBFAFA'
-	},
-	selectedButton: {
-		backgroundColor: '#8BC34A'
-	},
-	selectedTextStyle: {
-		color: '#FBFAFA'
-	}
-});
+const styles: any = StyleSheet.create({});

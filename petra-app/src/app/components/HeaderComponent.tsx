@@ -15,7 +15,7 @@ export interface HeaderProps {
 /**
  * Header state
  */
-export interface HeaderState { }
+export interface HeaderState {}
 
 /**
  * Header component
@@ -65,7 +65,7 @@ export class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
 	 * @returns
 	 */
 	render() {
-		const onBackPress = () => { };
+		const onBackPress = () => {};
 
 		const renderLeftControl = () => <this.MenuAction onPress={onBackPress} />;
 		return <TopNavigation style={styles.container} title={this.props.headerTitle} leftControl={renderLeftControl()} />;
