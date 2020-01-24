@@ -1,42 +1,16 @@
 import * as React from 'react';
 import { Button, Text, Layout } from '@ui-kitten/components';
 import { StyleSheet, Image } from 'react-native';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Mutation } from 'react-apollo';
 import * as Google from 'expo-google-app-auth';
-
+import { ControlUserComponent } from '../../generated/components';
+import * as Network from 'expo-network';
 const IOS_CLIENT_ID = '29671483454-ca7ar2q60s28c3eab6m83n5rh0hd19b0.apps.googleusercontent.com';
 const ANDROID_CLIENT_ID = '29671483454-nqtdad5lh9qibq6q1gjgii5m4dk9sfme.apps.googleusercontent.com';
 
-const ADD_TODO = gql`
-	mutation MyMutation(
-		$loginDate: timestamptz
-		$loginIP: inet
-		$loginTypeID: Int
-		$mail: String
-		$name: String
-		$registerDate: timestamptz
-		$userTypeID: Int
-	) {
-		__typename
-		insert_User(
-			objects: {
-				loginDate: $loginDate
-				loginIP: $loginIP
-				loginTypeID: $loginTypeID
-				mail: $mail
-				name: $name
-				registerDate: $registerDate
-				userTypeID: $userTypeID
-			}
-			on_conflict: { constraint: User_mail_key, update_columns: loginDate, where: {} }
-		) {
-			returning {
-				userID
-			}
-		}
-	}
-`;
+//const [controlUser, { data }] = useMutation(CONTROL_USER);
 
 /**
  * Login props
@@ -55,6 +29,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 	constructor(props: LoginProps) {
 		super(props);
 	}
+
 	signInWithGoogle = async () => {
 		try {
 			const result = await Google.logInAsync({
@@ -64,11 +39,11 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			});
 
 			if (result.type === 'success') {
-				console.log('LoginScreen.js.js 21 | ', result.user.email);
+				//console.log('LoginScreen.js.js 21 | ', result.user.email);
 				/* this.props.navigation.navigate('Profile', {
 					username: result.user.givenName
 				}); //after Google login redirect to Profile */
-				return result.accessToken;
+				//return result.accessToken;
 			} else {
 				return { cancelled: true };
 			}
@@ -79,14 +54,52 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 	};
 	renderSetUserComponent = (
 		<Layout>
-			<Button
+			<ControlUserComponent>
+				{ControlUserMutation => (
+					<Formik
+						initialValues={{}}
+						onSubmit={(values, formikActions) => {
+							// this.props.requestSentHandler();
+							setTimeout(() => {
+								ControlUserMutation({
+									variables: {
+										loginDate: '1999-01-08 04:05:06',
+										loginIP: '127.0.0.1',
+										loginTypeID: 1,
+										mail: 'test@test.com',
+										name: 'test',
+										registerDate: '1999-01-08 04:05:06'
+									}
+								})
+									.then(res => {
+										console.log('done');
+									})
+									.catch(err => alert(err));
+								formikActions.setSubmitting(false);
+							}, 500);
+						}}
+					>
+						{props => (
+							<Button
+								onPress={() => {
+									props.handleSubmit();
+								}}
+							>
+								Google Login
+							</Button>
+						)}
+					</Formik>
+				)}
+			</ControlUserComponent>
+			{/* <Button
 				onPress={() => {
 					this.signInWithGoogle();
-					//setTimeout(props.handleSubmit, 0); //The code is important. I love this code.
+
+					//setTimeout(saveRocket(), 0); //The code is important. I love this code.
 				}}
 			>
 				Google sign in
-			</Button>
+			</Button> */}
 		</Layout>
 	);
 	/**

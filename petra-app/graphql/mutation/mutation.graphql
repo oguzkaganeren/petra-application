@@ -1,0 +1,26 @@
+mutation controlUser(
+	$loginDate: timestamptz
+	$loginIP: inet
+	$loginTypeID: Int
+	$mail: String
+	$name: String
+	$registerDate: timestamptz
+	$userTypeID: Int
+) {
+	__typename
+	insert_User(
+		objects: {
+			loginDate: $loginDate
+			loginIP: $loginIP
+			loginTypeID: $loginTypeID
+			mail: $mail
+			name: $name
+			registerDate: $registerDate
+		}
+		on_conflict: { constraint: User_mail_key, update_columns: loginDate, where: {} }
+	) {
+		returning {
+			userID
+		}
+	}
+}
