@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/BottomComponent';
 import { SearchComponent } from '../../components/SearchComponent';
+import MapView from 'react-native-maps';
 /**
  * Home props
  */
@@ -37,6 +38,7 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 		return (
 			<Layout style={{ flex: 1 }}>
 				<SearchComponent></SearchComponent>
+				<MapView style={styles.mapStyle} />
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>
@@ -45,4 +47,9 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	}
 }
 
-const styles: any = StyleSheet.create({});
+const styles: any = StyleSheet.create({
+	mapStyle: {
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height / 2
+	}
+});
