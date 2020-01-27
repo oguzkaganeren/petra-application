@@ -14,6 +14,7 @@ This readme is a work in progress if anything is missing let us know.
 - clonning repo on local machine `git clone https://github.com/oguzkaganeren/petra-application`
 - `cd /petra-app`
 - `npm install`
+- Change the IP with yours at the `src/main.tsx`
 - Test run `npm start`
 - Preview at your android-ios device or emulator
 

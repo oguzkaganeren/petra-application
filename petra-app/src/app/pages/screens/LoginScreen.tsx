@@ -80,6 +80,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 									})
 										.then(res => {
 											const userID = res.data.insert_User.returning[0].userID;
+											console.log('here');
 											this.props.navigation.navigate('HomeScreen', {
 												userID: userID,
 												name: result.user.givenName,
