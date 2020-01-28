@@ -7,6 +7,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
+import { AddLocationScreen } from './app/pages/screens/AddLocationScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -24,7 +25,8 @@ const MyHeader = navigation => {
 const RootStack = createStackNavigator(
 	{
 		HomeScreen: { screen: HomeScreen },
-		LoginScreen: { screen: LoginScreen }
+		LoginScreen: { screen: LoginScreen },
+		AddLocationScreen: { screen: AddLocationScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
