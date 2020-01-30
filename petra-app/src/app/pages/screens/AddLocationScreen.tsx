@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
+import MapViewDirections from 'react-native-maps-directions';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+const GOOGLE_MAPS_APIKEY = 'AIzaSyAgKSmJ7NF2Q9ixPLv-J_Z4gDIYavm31Vw';
 /**
  * Location props
  */
