@@ -18674,6 +18674,26 @@ export type ControlUserMutation = (
   )> }
 );
 
+export type AddCompanyMutationVariables = {
+  name?: Maybe<Scalars['String']>,
+  taxNumber?: Maybe<Scalars['String']>,
+  registerDate?: Maybe<Scalars['timestamptz']>,
+  mail?: Maybe<Scalars['String']>,
+  locationID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddCompanyMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Company: Maybe<(
+    { __typename?: 'Company_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Company' }
+      & Pick<Company, 'companyID'>
+    )> }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -18705,3 +18725,33 @@ export function withControlUser<TProps, TChildProps = {}>(operationOptions?: Apo
 };
 export type ControlUserMutationResult = ApolloReactCommon.MutationResult<ControlUserMutation>;
 export type ControlUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlUserMutation, ControlUserMutationVariables>;
+export const AddCompanyDocument = gql`
+    mutation addCompany($name: String, $taxNumber: String, $registerDate: timestamptz, $mail: String, $locationID: Int) {
+  __typename
+  insert_Company(objects: {name: $name, taxNumber: $taxNumber, registerDate: $registerDate, mail: $mail, locationID: $locationID}) {
+    returning {
+      companyID
+    }
+  }
+}
+    `;
+export type AddCompanyMutationFn = ApolloReactCommon.MutationFunction<AddCompanyMutation, AddCompanyMutationVariables>;
+export type AddCompanyComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddCompanyMutation, AddCompanyMutationVariables>, 'mutation'>;
+
+    export const AddCompanyComponent = (props: AddCompanyComponentProps) => (
+      <ApolloReactComponents.Mutation<AddCompanyMutation, AddCompanyMutationVariables> mutation={AddCompanyDocument} {...props} />
+    );
+    
+export type AddCompanyProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddCompanyMutation, AddCompanyMutationVariables> & TChildProps;
+export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddCompanyMutation,
+  AddCompanyMutationVariables,
+  AddCompanyProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddCompanyMutation, AddCompanyMutationVariables, AddCompanyProps<TChildProps>>(AddCompanyDocument, {
+      alias: 'addCompany',
+      ...operationOptions
+    });
+};
+export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
+export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
