@@ -25,3 +25,13 @@ mutation controlUser(
 		}
 	}
 }
+mutation addCompany($name: String, $taxNumber: String, $registerDate: timestamptz, $mail: String, $locationID: Int) {
+	__typename
+	insert_Company(
+		objects: { name: $name, taxNumber: $taxNumber, registerDate: $registerDate, mail: $mail, locationID: $locationID }
+	) {
+		returning {
+			companyID
+		}
+	}
+}
