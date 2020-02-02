@@ -45,6 +45,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 	 * @returns
 	 */
 	render() {
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddCompanyComponent>
@@ -90,11 +91,12 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 											mail: values.mail.toString(),
 											longtitude: values.longtitude,
 											latitude: values.latitude,
-											address: values.address.toString()
+											address: values.address.toString(),
+											userID: userID
 										}
 									})
 										.then(res => {
-											//alert(JSON.stringify(res));
+											alert(JSON.stringify(res));
 											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
@@ -156,8 +158,12 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 										value={props.values.address}
 									/>
 									<LocationComponent
-										latitude={props.handleChange('latitude')}
-										longitude={props.handleChange('longitude')}
+										latitude={value => {
+											props.values.latitude = value;
+										}}
+										longitude={value => {
+											props.values.longtitude = value;
+										}}
 									/>
 									{props.touched.longtitude && props.errors.longtitude ? (
 										<Text status="danger">{props.errors.longtitude}</Text>

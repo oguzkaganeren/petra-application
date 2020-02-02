@@ -14,7 +14,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://192.168.43.239:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://10.39.156.18:8080/v1/graphql' });
 const MyHeader = navigation => {
 	return {
 		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
@@ -31,7 +31,7 @@ const RootStack = createStackNavigator(
 		AddCompanyScreen: { screen: AddCompanyScreen }
 	},
 	{
-		initialRouteName: 'AddCompanyScreen',
+		initialRouteName: 'LoginScreen',
 		defaultNavigationOptions: ({ navigation }) => {
 			return MyHeader(navigation);
 		}

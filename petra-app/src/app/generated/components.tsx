@@ -20491,7 +20491,8 @@ export type AddCompanyMutationVariables = {
   mail: Scalars['String'],
   longtitude: Scalars['Float'],
   latitude: Scalars['Float'],
-  address?: Maybe<Scalars['String']>
+  address?: Maybe<Scalars['String']>,
+  userID: Scalars['Int']
 };
 
 
@@ -20538,9 +20539,9 @@ export function withControlUser<TProps, TChildProps = {}>(operationOptions?: Apo
 export type ControlUserMutationResult = ApolloReactCommon.MutationResult<ControlUserMutation>;
 export type ControlUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlUserMutation, ControlUserMutationVariables>;
 export const AddCompanyDocument = gql`
-    mutation addCompany($name: String!, $taxNumber: String!, $faxNumber: String, $registerDate: timestamptz!, $mail: String!, $longtitude: Float!, $latitude: Float!, $address: String) {
+    mutation addCompany($name: String!, $taxNumber: String!, $faxNumber: String, $registerDate: timestamptz!, $mail: String!, $longtitude: Float!, $latitude: Float!, $address: String, $userID: Int!) {
   __typename
-  insert_Company(objects: {name: $name, taxNumber: $taxNumber, faxNumber: $faxNumber, registerDate: $registerDate, mail: $mail, Location: {data: {longtitude: $longtitude, latitude: $latitude, address: $address}}}) {
+  insert_Company(objects: {name: $name, taxNumber: $taxNumber, faxNumber: $faxNumber, registerDate: $registerDate, mail: $mail, CompanyUsers: {data: {userID: $userID}}, Location: {data: {longtitude: $longtitude, latitude: $latitude, address: $address}}}) {
     returning {
       companyID
       locationID

@@ -34,6 +34,7 @@ mutation addCompany(
 	$longtitude: Float!
 	$latitude: Float!
 	$address: String
+	$userID: Int!
 ) {
 	__typename
 	insert_Company(
@@ -43,6 +44,7 @@ mutation addCompany(
 			faxNumber: $faxNumber
 			registerDate: $registerDate
 			mail: $mail
+			CompanyUsers: { data: { userID: $userID } }
 			Location: { data: { longtitude: $longtitude, latitude: $latitude, address: $address } }
 		}
 	) {
