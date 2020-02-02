@@ -7,7 +7,7 @@ import { Marker } from 'react-native-maps';
  * Location props
  */
 export interface LocationComponentProps {
-	latitude: number;
+	latitude: any;
 	longitude: any;
 }
 
@@ -44,10 +44,10 @@ export class LocationComponent extends React.Component<LocationComponentProps, L
 		this.setState({ region });
 	}
 	onMarkerChange = coordinate => {
-		this.props.latitude(42);
-		//this.setState({ marker: coordinate });
-
-		//this.props.longitude(this.state.marker.longitude);
+		const { longitude, latitude } = coordinate;
+		this.setState({ marker: coordinate });
+		this.props.latitude(latitude);
+		this.props.longitude(longitude);
 	};
 	/**
 	 * Renders Location component

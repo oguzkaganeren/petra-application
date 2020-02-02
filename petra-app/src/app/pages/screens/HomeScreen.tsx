@@ -34,12 +34,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	 */
 	render() {
 		const { selectedTab } = this.state;
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<SearchComponent></SearchComponent>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddCompanyScreen', {});
+						this.props.navigation.navigate('AddCompanyScreen', {
+							userID: userID
+						});
 					}}
 				>
 					Add Company
