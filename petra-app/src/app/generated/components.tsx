@@ -20,6 +20,18 @@ export type Scalars = {
 
 export type ArchSite = {
    __typename?: 'ArchSite',
+  ArchSiteComments: Array<ArchSiteComment>,
+  ArchSiteComments_aggregate: ArchSiteComment_Aggregate,
+  ArchSitePrices: Array<ArchSitePrice>,
+  ArchSitePrices_aggregate: ArchSitePrice_Aggregate,
+  ArchSiteTypeArchSites: Array<ArchSiteTypeArchSite>,
+  ArchSiteTypeArchSites_aggregate: ArchSiteTypeArchSite_Aggregate,
+  ArchSiteWorkingSchedules: Array<ArchSiteWorkingSchedule>,
+  ArchSiteWorkingSchedules_aggregate: ArchSiteWorkingSchedule_Aggregate,
+  Company: Company,
+  Location: Location,
+  TravelGuideArchSites: Array<TravelGuideArchSite>,
+  TravelGuideArchSites_aggregate: TravelGuideArchSite_Aggregate,
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID: Scalars['Int'],
@@ -30,6 +42,96 @@ export type ArchSite = {
   locationID: Scalars['Int'],
   name: Scalars['String'],
   period?: Maybe<Scalars['String']>,
+};
+
+
+export type ArchSiteArchSiteCommentsArgs = {
+  distinct_on?: Maybe<Array<ArchSiteComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteComment_Order_By>>,
+  where?: Maybe<ArchSiteComment_Bool_Exp>
+};
+
+
+export type ArchSiteArchSiteComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteComment_Order_By>>,
+  where?: Maybe<ArchSiteComment_Bool_Exp>
+};
+
+
+export type ArchSiteArchSitePricesArgs = {
+  distinct_on?: Maybe<Array<ArchSitePrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSitePrice_Order_By>>,
+  where?: Maybe<ArchSitePrice_Bool_Exp>
+};
+
+
+export type ArchSiteArchSitePrices_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSitePrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSitePrice_Order_By>>,
+  where?: Maybe<ArchSitePrice_Bool_Exp>
+};
+
+
+export type ArchSiteArchSiteTypeArchSitesArgs = {
+  distinct_on?: Maybe<Array<ArchSiteTypeArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteTypeArchSite_Order_By>>,
+  where?: Maybe<ArchSiteTypeArchSite_Bool_Exp>
+};
+
+
+export type ArchSiteArchSiteTypeArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteTypeArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteTypeArchSite_Order_By>>,
+  where?: Maybe<ArchSiteTypeArchSite_Bool_Exp>
+};
+
+
+export type ArchSiteArchSiteWorkingSchedulesArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingSchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingSchedule_Bool_Exp>
+};
+
+
+export type ArchSiteArchSiteWorkingSchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingSchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingSchedule_Bool_Exp>
+};
+
+
+export type ArchSiteTravelGuideArchSitesArgs = {
+  distinct_on?: Maybe<Array<TravelGuideArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideArchSite_Order_By>>,
+  where?: Maybe<TravelGuideArchSite_Bool_Exp>
+};
+
+
+export type ArchSiteTravelGuideArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideArchSite_Order_By>>,
+  where?: Maybe<TravelGuideArchSite_Bool_Exp>
 };
 
 export type ArchSite_Aggregate = {
@@ -98,6 +200,13 @@ export type ArchSite_Avg_Order_By = {
 };
 
 export type ArchSite_Bool_Exp = {
+  ArchSiteComments?: Maybe<ArchSiteComment_Bool_Exp>,
+  ArchSitePrices?: Maybe<ArchSitePrice_Bool_Exp>,
+  ArchSiteTypeArchSites?: Maybe<ArchSiteTypeArchSite_Bool_Exp>,
+  ArchSiteWorkingSchedules?: Maybe<ArchSiteWorkingSchedule_Bool_Exp>,
+  Company?: Maybe<Company_Bool_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
+  TravelGuideArchSites?: Maybe<TravelGuideArchSite_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSite_Bool_Exp>>>,
   _not?: Maybe<ArchSite_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSite_Bool_Exp>>>,
@@ -125,6 +234,13 @@ export type ArchSite_Inc_Input = {
 };
 
 export type ArchSite_Insert_Input = {
+  ArchSiteComments?: Maybe<ArchSiteComment_Arr_Rel_Insert_Input>,
+  ArchSitePrices?: Maybe<ArchSitePrice_Arr_Rel_Insert_Input>,
+  ArchSiteTypeArchSites?: Maybe<ArchSiteTypeArchSite_Arr_Rel_Insert_Input>,
+  ArchSiteWorkingSchedules?: Maybe<ArchSiteWorkingSchedule_Arr_Rel_Insert_Input>,
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  TravelGuideArchSites?: Maybe<TravelGuideArchSite_Arr_Rel_Insert_Input>,
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
@@ -209,6 +325,13 @@ export type ArchSite_On_Conflict = {
 };
 
 export type ArchSite_Order_By = {
+  ArchSiteComments_aggregate?: Maybe<ArchSiteComment_Aggregate_Order_By>,
+  ArchSitePrices_aggregate?: Maybe<ArchSitePrice_Aggregate_Order_By>,
+  ArchSiteTypeArchSites_aggregate?: Maybe<ArchSiteTypeArchSite_Aggregate_Order_By>,
+  ArchSiteWorkingSchedules_aggregate?: Maybe<ArchSiteWorkingSchedule_Aggregate_Order_By>,
+  Company?: Maybe<Company_Order_By>,
+  Location?: Maybe<Location_Order_By>,
+  TravelGuideArchSites_aggregate?: Maybe<TravelGuideArchSite_Aggregate_Order_By>,
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
@@ -395,6 +518,8 @@ export type ArchSite_Variance_Order_By = {
 
 export type ArchSiteComment = {
    __typename?: 'ArchSiteComment',
+  ArchSite: ArchSite,
+  User: User,
   archSiteCommentID: Scalars['Int'],
   archSiteID: Scalars['Int'],
   content: Scalars['String'],
@@ -465,6 +590,8 @@ export type ArchSiteComment_Avg_Order_By = {
 };
 
 export type ArchSiteComment_Bool_Exp = {
+  ArchSite?: Maybe<ArchSite_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteComment_Bool_Exp>>>,
   _not?: Maybe<ArchSiteComment_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteComment_Bool_Exp>>>,
@@ -487,6 +614,8 @@ export type ArchSiteComment_Inc_Input = {
 };
 
 export type ArchSiteComment_Insert_Input = {
+  ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   archSiteCommentID?: Maybe<Scalars['Int']>,
   archSiteID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
@@ -551,6 +680,8 @@ export type ArchSiteComment_On_Conflict = {
 };
 
 export type ArchSiteComment_Order_By = {
+  ArchSite?: Maybe<ArchSite_Order_By>,
+  User?: Maybe<User_Order_By>,
   archSiteCommentID?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
@@ -693,8 +824,28 @@ export type ArchSiteComment_Variance_Order_By = {
 
 export type ArchSiteEntranceType = {
    __typename?: 'ArchSiteEntranceType',
+  ArchSitePrices: Array<ArchSitePrice>,
+  ArchSitePrices_aggregate: ArchSitePrice_Aggregate,
   archSiteEntranceTypeID: Scalars['Int'],
   content: Scalars['String'],
+};
+
+
+export type ArchSiteEntranceTypeArchSitePricesArgs = {
+  distinct_on?: Maybe<Array<ArchSitePrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSitePrice_Order_By>>,
+  where?: Maybe<ArchSitePrice_Bool_Exp>
+};
+
+
+export type ArchSiteEntranceTypeArchSitePrices_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSitePrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSitePrice_Order_By>>,
+  where?: Maybe<ArchSitePrice_Bool_Exp>
 };
 
 export type ArchSiteEntranceType_Aggregate = {
@@ -753,6 +904,7 @@ export type ArchSiteEntranceType_Avg_Order_By = {
 };
 
 export type ArchSiteEntranceType_Bool_Exp = {
+  ArchSitePrices?: Maybe<ArchSitePrice_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteEntranceType_Bool_Exp>>>,
   _not?: Maybe<ArchSiteEntranceType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteEntranceType_Bool_Exp>>>,
@@ -769,6 +921,7 @@ export type ArchSiteEntranceType_Inc_Input = {
 };
 
 export type ArchSiteEntranceType_Insert_Input = {
+  ArchSitePrices?: Maybe<ArchSitePrice_Arr_Rel_Insert_Input>,
   archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
 };
@@ -813,6 +966,7 @@ export type ArchSiteEntranceType_On_Conflict = {
 };
 
 export type ArchSiteEntranceType_Order_By = {
+  ArchSitePrices_aggregate?: Maybe<ArchSitePrice_Aggregate_Order_By>,
   archSiteEntranceTypeID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
 };
@@ -897,6 +1051,8 @@ export type ArchSiteEntranceType_Variance_Order_By = {
 
 export type ArchSitePrice = {
    __typename?: 'ArchSitePrice',
+  ArchSite: ArchSite,
+  ArchSiteEntranceType: ArchSiteEntranceType,
   archSiteEntranceTypeID: Scalars['Int'],
   archSiteID: Scalars['Int'],
   archSitePriceID: Scalars['Int'],
@@ -967,6 +1123,8 @@ export type ArchSitePrice_Avg_Order_By = {
 };
 
 export type ArchSitePrice_Bool_Exp = {
+  ArchSite?: Maybe<ArchSite_Bool_Exp>,
+  ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSitePrice_Bool_Exp>>>,
   _not?: Maybe<ArchSitePrice_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSitePrice_Bool_Exp>>>,
@@ -989,6 +1147,8 @@ export type ArchSitePrice_Inc_Input = {
 };
 
 export type ArchSitePrice_Insert_Input = {
+  ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
+  ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Obj_Rel_Insert_Input>,
   archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
   archSiteID?: Maybe<Scalars['Int']>,
   archSitePriceID?: Maybe<Scalars['Int']>,
@@ -1053,6 +1213,8 @@ export type ArchSitePrice_On_Conflict = {
 };
 
 export type ArchSitePrice_Order_By = {
+  ArchSite?: Maybe<ArchSite_Order_By>,
+  ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Order_By>,
   archSiteEntranceTypeID?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
   archSitePriceID?: Maybe<Order_By>,
@@ -1195,8 +1357,28 @@ export type ArchSitePrice_Variance_Order_By = {
 
 export type ArchSiteType = {
    __typename?: 'ArchSiteType',
+  ArchSiteTypeArchSites: Array<ArchSiteTypeArchSite>,
+  ArchSiteTypeArchSites_aggregate: ArchSiteTypeArchSite_Aggregate,
   archSiteTypeID: Scalars['Int'],
   name: Scalars['String'],
+};
+
+
+export type ArchSiteTypeArchSiteTypeArchSitesArgs = {
+  distinct_on?: Maybe<Array<ArchSiteTypeArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteTypeArchSite_Order_By>>,
+  where?: Maybe<ArchSiteTypeArchSite_Bool_Exp>
+};
+
+
+export type ArchSiteTypeArchSiteTypeArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteTypeArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteTypeArchSite_Order_By>>,
+  where?: Maybe<ArchSiteTypeArchSite_Bool_Exp>
 };
 
 export type ArchSiteType_Aggregate = {
@@ -1255,6 +1437,7 @@ export type ArchSiteType_Avg_Order_By = {
 };
 
 export type ArchSiteType_Bool_Exp = {
+  ArchSiteTypeArchSites?: Maybe<ArchSiteTypeArchSite_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteType_Bool_Exp>>>,
   _not?: Maybe<ArchSiteType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteType_Bool_Exp>>>,
@@ -1271,6 +1454,7 @@ export type ArchSiteType_Inc_Input = {
 };
 
 export type ArchSiteType_Insert_Input = {
+  ArchSiteTypeArchSites?: Maybe<ArchSiteTypeArchSite_Arr_Rel_Insert_Input>,
   archSiteTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
@@ -1315,6 +1499,7 @@ export type ArchSiteType_On_Conflict = {
 };
 
 export type ArchSiteType_Order_By = {
+  ArchSiteTypeArchSites_aggregate?: Maybe<ArchSiteTypeArchSite_Aggregate_Order_By>,
   archSiteTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
@@ -1399,6 +1584,8 @@ export type ArchSiteType_Variance_Order_By = {
 
 export type ArchSiteTypeArchSite = {
    __typename?: 'ArchSiteTypeArchSite',
+  ArchSite: ArchSite,
+  ArchSiteType: ArchSiteType,
   archSiteID: Scalars['Int'],
   archSiteTypeArchSiteID: Scalars['Int'],
   archSiteTypeID: Scalars['Int'],
@@ -1464,6 +1651,8 @@ export type ArchSiteTypeArchSite_Avg_Order_By = {
 };
 
 export type ArchSiteTypeArchSite_Bool_Exp = {
+  ArchSite?: Maybe<ArchSite_Bool_Exp>,
+  ArchSiteType?: Maybe<ArchSiteType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteTypeArchSite_Bool_Exp>>>,
   _not?: Maybe<ArchSiteTypeArchSite_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteTypeArchSite_Bool_Exp>>>,
@@ -1483,6 +1672,8 @@ export type ArchSiteTypeArchSite_Inc_Input = {
 };
 
 export type ArchSiteTypeArchSite_Insert_Input = {
+  ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
+  ArchSiteType?: Maybe<ArchSiteType_Obj_Rel_Insert_Input>,
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeArchSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeID?: Maybe<Scalars['Int']>,
@@ -1532,6 +1723,8 @@ export type ArchSiteTypeArchSite_On_Conflict = {
 };
 
 export type ArchSiteTypeArchSite_Order_By = {
+  ArchSite?: Maybe<ArchSite_Order_By>,
+  ArchSiteType?: Maybe<ArchSiteType_Order_By>,
   archSiteID?: Maybe<Order_By>,
   archSiteTypeArchSiteID?: Maybe<Order_By>,
   archSiteTypeID?: Maybe<Order_By>,
@@ -1648,10 +1841,31 @@ export type ArchSiteTypeArchSite_Variance_Order_By = {
 
 export type ArchSiteWorkingDay = {
    __typename?: 'ArchSiteWorkingDay',
+  ArchSiteWorkingDaySchedules: Array<ArchSiteWorkingDaySchedule>,
+  ArchSiteWorkingDaySchedules_aggregate: ArchSiteWorkingDaySchedule_Aggregate,
+  Day: Day,
   archSiteWorkingDayID: Scalars['Int'],
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
   openHour: Scalars['timetz'],
+};
+
+
+export type ArchSiteWorkingDayArchSiteWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDaySchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type ArchSiteWorkingDayArchSiteWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDaySchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>
 };
 
 export type ArchSiteWorkingDay_Aggregate = {
@@ -1712,6 +1926,8 @@ export type ArchSiteWorkingDay_Avg_Order_By = {
 };
 
 export type ArchSiteWorkingDay_Bool_Exp = {
+  ArchSiteWorkingDaySchedules?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>,
+  Day?: Maybe<Day_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteWorkingDay_Bool_Exp>>>,
   _not?: Maybe<ArchSiteWorkingDay_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteWorkingDay_Bool_Exp>>>,
@@ -1731,6 +1947,8 @@ export type ArchSiteWorkingDay_Inc_Input = {
 };
 
 export type ArchSiteWorkingDay_Insert_Input = {
+  ArchSiteWorkingDaySchedules?: Maybe<ArchSiteWorkingDaySchedule_Arr_Rel_Insert_Input>,
+  Day?: Maybe<Day_Obj_Rel_Insert_Input>,
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
@@ -1785,6 +2003,8 @@ export type ArchSiteWorkingDay_On_Conflict = {
 };
 
 export type ArchSiteWorkingDay_Order_By = {
+  ArchSiteWorkingDaySchedules_aggregate?: Maybe<ArchSiteWorkingDaySchedule_Aggregate_Order_By>,
+  Day?: Maybe<Day_Order_By>,
   archSiteWorkingDayID?: Maybe<Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
@@ -1891,6 +2111,8 @@ export type ArchSiteWorkingDay_Variance_Order_By = {
 
 export type ArchSiteWorkingDaySchedule = {
    __typename?: 'ArchSiteWorkingDaySchedule',
+  ArchSiteWorkingDay: ArchSiteWorkingDay,
+  ArchSiteWorkingSchedule: ArchSiteWorkingSchedule,
   archSiteWorkingDayID: Scalars['Int'],
   archSiteWorkingDayScheduleID: Scalars['Int'],
   archSiteWorkingScheduleID: Scalars['Int'],
@@ -1956,6 +2178,8 @@ export type ArchSiteWorkingDaySchedule_Avg_Order_By = {
 };
 
 export type ArchSiteWorkingDaySchedule_Bool_Exp = {
+  ArchSiteWorkingDay?: Maybe<ArchSiteWorkingDay_Bool_Exp>,
+  ArchSiteWorkingSchedule?: Maybe<ArchSiteWorkingSchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>>>,
   _not?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>>>,
@@ -1975,6 +2199,8 @@ export type ArchSiteWorkingDaySchedule_Inc_Input = {
 };
 
 export type ArchSiteWorkingDaySchedule_Insert_Input = {
+  ArchSiteWorkingDay?: Maybe<ArchSiteWorkingDay_Obj_Rel_Insert_Input>,
+  ArchSiteWorkingSchedule?: Maybe<ArchSiteWorkingSchedule_Obj_Rel_Insert_Input>,
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   archSiteWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -2024,6 +2250,8 @@ export type ArchSiteWorkingDaySchedule_On_Conflict = {
 };
 
 export type ArchSiteWorkingDaySchedule_Order_By = {
+  ArchSiteWorkingDay?: Maybe<ArchSiteWorkingDay_Order_By>,
+  ArchSiteWorkingSchedule?: Maybe<ArchSiteWorkingSchedule_Order_By>,
   archSiteWorkingDayID?: Maybe<Order_By>,
   archSiteWorkingDayScheduleID?: Maybe<Order_By>,
   archSiteWorkingScheduleID?: Maybe<Order_By>,
@@ -2140,10 +2368,31 @@ export type ArchSiteWorkingDaySchedule_Variance_Order_By = {
 
 export type ArchSiteWorkingSchedule = {
    __typename?: 'ArchSiteWorkingSchedule',
+  ArchSite: ArchSite,
+  ArchSiteWorkingDaySchedules: Array<ArchSiteWorkingDaySchedule>,
+  ArchSiteWorkingDaySchedules_aggregate: ArchSiteWorkingDaySchedule_Aggregate,
   archSiteID: Scalars['Int'],
   archSiteWorkingScheduleID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
   startDate: Scalars['timestamptz'],
+};
+
+
+export type ArchSiteWorkingScheduleArchSiteWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDaySchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type ArchSiteWorkingScheduleArchSiteWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDaySchedule_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>
 };
 
 export type ArchSiteWorkingSchedule_Aggregate = {
@@ -2204,6 +2453,8 @@ export type ArchSiteWorkingSchedule_Avg_Order_By = {
 };
 
 export type ArchSiteWorkingSchedule_Bool_Exp = {
+  ArchSite?: Maybe<ArchSite_Bool_Exp>,
+  ArchSiteWorkingDaySchedules?: Maybe<ArchSiteWorkingDaySchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArchSiteWorkingSchedule_Bool_Exp>>>,
   _not?: Maybe<ArchSiteWorkingSchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteWorkingSchedule_Bool_Exp>>>,
@@ -2223,6 +2474,8 @@ export type ArchSiteWorkingSchedule_Inc_Input = {
 };
 
 export type ArchSiteWorkingSchedule_Insert_Input = {
+  ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
+  ArchSiteWorkingDaySchedules?: Maybe<ArchSiteWorkingDaySchedule_Arr_Rel_Insert_Input>,
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
@@ -2277,6 +2530,8 @@ export type ArchSiteWorkingSchedule_On_Conflict = {
 };
 
 export type ArchSiteWorkingSchedule_Order_By = {
+  ArchSite?: Maybe<ArchSite_Order_By>,
+  ArchSiteWorkingDaySchedules_aggregate?: Maybe<ArchSiteWorkingDaySchedule_Aggregate_Order_By>,
   archSiteID?: Maybe<Order_By>,
   archSiteWorkingScheduleID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
@@ -2383,11 +2638,51 @@ export type ArchSiteWorkingSchedule_Variance_Order_By = {
 
 export type Article = {
    __typename?: 'Article',
+  ArticleTags: Array<ArticleTag>,
+  ArticleTags_aggregate: ArticleTag_Aggregate,
+  ArticleUsers: Array<ArticleUser>,
+  ArticleUsers_aggregate: ArticleUser_Aggregate,
   articleID: Scalars['Int'],
   content: Scalars['String'],
   editDate: Scalars['timestamptz'],
   publishDate: Scalars['timestamptz'],
   title: Scalars['String'],
+};
+
+
+export type ArticleArticleTagsArgs = {
+  distinct_on?: Maybe<Array<ArticleTag_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleTag_Order_By>>,
+  where?: Maybe<ArticleTag_Bool_Exp>
+};
+
+
+export type ArticleArticleTags_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArticleTag_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleTag_Order_By>>,
+  where?: Maybe<ArticleTag_Bool_Exp>
+};
+
+
+export type ArticleArticleUsersArgs = {
+  distinct_on?: Maybe<Array<ArticleUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleUser_Order_By>>,
+  where?: Maybe<ArticleUser_Bool_Exp>
+};
+
+
+export type ArticleArticleUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArticleUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleUser_Order_By>>,
+  where?: Maybe<ArticleUser_Bool_Exp>
 };
 
 export type Article_Aggregate = {
@@ -2446,6 +2741,8 @@ export type Article_Avg_Order_By = {
 };
 
 export type Article_Bool_Exp = {
+  ArticleTags?: Maybe<ArticleTag_Bool_Exp>,
+  ArticleUsers?: Maybe<ArticleUser_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Article_Bool_Exp>>>,
   _not?: Maybe<Article_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Article_Bool_Exp>>>,
@@ -2465,6 +2762,8 @@ export type Article_Inc_Input = {
 };
 
 export type Article_Insert_Input = {
+  ArticleTags?: Maybe<ArticleTag_Arr_Rel_Insert_Input>,
+  ArticleUsers?: Maybe<ArticleUser_Arr_Rel_Insert_Input>,
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
@@ -2524,6 +2823,8 @@ export type Article_On_Conflict = {
 };
 
 export type Article_Order_By = {
+  ArticleTags_aggregate?: Maybe<ArticleTag_Aggregate_Order_By>,
+  ArticleUsers_aggregate?: Maybe<ArticleUser_Aggregate_Order_By>,
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
@@ -2620,6 +2921,8 @@ export type Article_Variance_Order_By = {
 
 export type ArticleTag = {
    __typename?: 'ArticleTag',
+  Article: Article,
+  Tag: Tag,
   articleID: Scalars['Int'],
   articleTagID: Scalars['Int'],
   tagID: Scalars['Int'],
@@ -2685,6 +2988,8 @@ export type ArticleTag_Avg_Order_By = {
 };
 
 export type ArticleTag_Bool_Exp = {
+  Article?: Maybe<Article_Bool_Exp>,
+  Tag?: Maybe<Tag_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArticleTag_Bool_Exp>>>,
   _not?: Maybe<ArticleTag_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArticleTag_Bool_Exp>>>,
@@ -2704,6 +3009,8 @@ export type ArticleTag_Inc_Input = {
 };
 
 export type ArticleTag_Insert_Input = {
+  Article?: Maybe<Article_Obj_Rel_Insert_Input>,
+  Tag?: Maybe<Tag_Obj_Rel_Insert_Input>,
   articleID?: Maybe<Scalars['Int']>,
   articleTagID?: Maybe<Scalars['Int']>,
   tagID?: Maybe<Scalars['Int']>,
@@ -2753,6 +3060,8 @@ export type ArticleTag_On_Conflict = {
 };
 
 export type ArticleTag_Order_By = {
+  Article?: Maybe<Article_Order_By>,
+  Tag?: Maybe<Tag_Order_By>,
   articleID?: Maybe<Order_By>,
   articleTagID?: Maybe<Order_By>,
   tagID?: Maybe<Order_By>,
@@ -2869,6 +3178,8 @@ export type ArticleTag_Variance_Order_By = {
 
 export type ArticleUser = {
    __typename?: 'ArticleUser',
+  Article: Article,
+  User: User,
   articleID: Scalars['Int'],
   articleUserID: Scalars['Int'],
   userID: Scalars['Int'],
@@ -2934,6 +3245,8 @@ export type ArticleUser_Avg_Order_By = {
 };
 
 export type ArticleUser_Bool_Exp = {
+  Article?: Maybe<Article_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<ArticleUser_Bool_Exp>>>,
   _not?: Maybe<ArticleUser_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArticleUser_Bool_Exp>>>,
@@ -2953,6 +3266,8 @@ export type ArticleUser_Inc_Input = {
 };
 
 export type ArticleUser_Insert_Input = {
+  Article?: Maybe<Article_Obj_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   articleID?: Maybe<Scalars['Int']>,
   articleUserID?: Maybe<Scalars['Int']>,
   userID?: Maybe<Scalars['Int']>,
@@ -3002,6 +3317,8 @@ export type ArticleUser_On_Conflict = {
 };
 
 export type ArticleUser_Order_By = {
+  Article?: Maybe<Article_Order_By>,
+  User?: Maybe<User_Order_By>,
   articleID?: Maybe<Order_By>,
   articleUserID?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
@@ -3130,6 +3447,17 @@ export type Boolean_Comparison_Exp = {
 
 export type Company = {
    __typename?: 'Company',
+  ArchSites: Array<ArchSite>,
+  ArchSites_aggregate: ArchSite_Aggregate,
+  CompanyPhones: Array<CompanyPhone>,
+  CompanyPhones_aggregate: CompanyPhone_Aggregate,
+  CompanyUsers: Array<CompanyUser>,
+  CompanyUsers_aggregate: CompanyUser_Aggregate,
+  Hotels: Array<Hotel>,
+  Hotels_aggregate: Hotel_Aggregate,
+  Location: Location,
+  Museums: Array<Museum>,
+  Museums_aggregate: Museum_Aggregate,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3139,6 +3467,96 @@ export type Company = {
   name: Scalars['String'],
   registerDate: Scalars['timestamptz'],
   taxNumber: Scalars['String'],
+};
+
+
+export type CompanyArchSitesArgs = {
+  distinct_on?: Maybe<Array<ArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSite_Order_By>>,
+  where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type CompanyArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSite_Order_By>>,
+  where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type CompanyCompanyPhonesArgs = {
+  distinct_on?: Maybe<Array<CompanyPhone_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyPhone_Order_By>>,
+  where?: Maybe<CompanyPhone_Bool_Exp>
+};
+
+
+export type CompanyCompanyPhones_AggregateArgs = {
+  distinct_on?: Maybe<Array<CompanyPhone_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyPhone_Order_By>>,
+  where?: Maybe<CompanyPhone_Bool_Exp>
+};
+
+
+export type CompanyCompanyUsersArgs = {
+  distinct_on?: Maybe<Array<CompanyUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyUser_Order_By>>,
+  where?: Maybe<CompanyUser_Bool_Exp>
+};
+
+
+export type CompanyCompanyUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<CompanyUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyUser_Order_By>>,
+  where?: Maybe<CompanyUser_Bool_Exp>
+};
+
+
+export type CompanyHotelsArgs = {
+  distinct_on?: Maybe<Array<Hotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Hotel_Order_By>>,
+  where?: Maybe<Hotel_Bool_Exp>
+};
+
+
+export type CompanyHotels_AggregateArgs = {
+  distinct_on?: Maybe<Array<Hotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Hotel_Order_By>>,
+  where?: Maybe<Hotel_Bool_Exp>
+};
+
+
+export type CompanyMuseumsArgs = {
+  distinct_on?: Maybe<Array<Museum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Museum_Order_By>>,
+  where?: Maybe<Museum_Bool_Exp>
+};
+
+
+export type CompanyMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<Museum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Museum_Order_By>>,
+  where?: Maybe<Museum_Bool_Exp>
 };
 
 export type Company_Aggregate = {
@@ -3199,6 +3617,12 @@ export type Company_Avg_Order_By = {
 };
 
 export type Company_Bool_Exp = {
+  ArchSites?: Maybe<ArchSite_Bool_Exp>,
+  CompanyPhones?: Maybe<CompanyPhone_Bool_Exp>,
+  CompanyUsers?: Maybe<CompanyUser_Bool_Exp>,
+  Hotels?: Maybe<Hotel_Bool_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
+  Museums?: Maybe<Museum_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
   _not?: Maybe<Company_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
@@ -3224,6 +3648,12 @@ export type Company_Inc_Input = {
 };
 
 export type Company_Insert_Input = {
+  ArchSites?: Maybe<ArchSite_Arr_Rel_Insert_Input>,
+  CompanyPhones?: Maybe<CompanyPhone_Arr_Rel_Insert_Input>,
+  CompanyUsers?: Maybe<CompanyUser_Arr_Rel_Insert_Input>,
+  Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3303,6 +3733,12 @@ export type Company_On_Conflict = {
 };
 
 export type Company_Order_By = {
+  ArchSites_aggregate?: Maybe<ArchSite_Aggregate_Order_By>,
+  CompanyPhones_aggregate?: Maybe<CompanyPhone_Aggregate_Order_By>,
+  CompanyUsers_aggregate?: Maybe<CompanyUser_Aggregate_Order_By>,
+  Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
+  Location?: Maybe<Location_Order_By>,
+  Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   faxNumber?: Maybe<Order_By>,
@@ -3429,6 +3865,7 @@ export type Company_Variance_Order_By = {
 
 export type CompanyContact = {
    __typename?: 'CompanyContact',
+  CompanyUser: CompanyUser,
   authority: Scalars['String'],
   compantUserID: Scalars['Int'],
   companyContactID: Scalars['Int'],
@@ -3492,6 +3929,7 @@ export type CompanyContact_Avg_Order_By = {
 };
 
 export type CompanyContact_Bool_Exp = {
+  CompanyUser?: Maybe<CompanyUser_Bool_Exp>,
   _and?: Maybe<Array<Maybe<CompanyContact_Bool_Exp>>>,
   _not?: Maybe<CompanyContact_Bool_Exp>,
   _or?: Maybe<Array<Maybe<CompanyContact_Bool_Exp>>>,
@@ -3510,6 +3948,7 @@ export type CompanyContact_Inc_Input = {
 };
 
 export type CompanyContact_Insert_Input = {
+  CompanyUser?: Maybe<CompanyUser_Obj_Rel_Insert_Input>,
   authority?: Maybe<Scalars['String']>,
   compantUserID?: Maybe<Scalars['Int']>,
   companyContactID?: Maybe<Scalars['Int']>,
@@ -3559,6 +3998,7 @@ export type CompanyContact_On_Conflict = {
 };
 
 export type CompanyContact_Order_By = {
+  CompanyUser?: Maybe<CompanyUser_Order_By>,
   authority?: Maybe<Order_By>,
   compantUserID?: Maybe<Order_By>,
   companyContactID?: Maybe<Order_By>,
@@ -3661,6 +4101,8 @@ export type CompanyContact_Variance_Order_By = {
 
 export type CompanyPhone = {
    __typename?: 'CompanyPhone',
+  Company: Company,
+  Phone: Phone,
   companyID: Scalars['Int'],
   companyPhoneID: Scalars['Int'],
   phoneID: Scalars['Int'],
@@ -3726,6 +4168,8 @@ export type CompanyPhone_Avg_Order_By = {
 };
 
 export type CompanyPhone_Bool_Exp = {
+  Company?: Maybe<Company_Bool_Exp>,
+  Phone?: Maybe<Phone_Bool_Exp>,
   _and?: Maybe<Array<Maybe<CompanyPhone_Bool_Exp>>>,
   _not?: Maybe<CompanyPhone_Bool_Exp>,
   _or?: Maybe<Array<Maybe<CompanyPhone_Bool_Exp>>>,
@@ -3745,6 +4189,8 @@ export type CompanyPhone_Inc_Input = {
 };
 
 export type CompanyPhone_Insert_Input = {
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
+  Phone?: Maybe<Phone_Obj_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   companyPhoneID?: Maybe<Scalars['Int']>,
   phoneID?: Maybe<Scalars['Int']>,
@@ -3794,6 +4240,8 @@ export type CompanyPhone_On_Conflict = {
 };
 
 export type CompanyPhone_Order_By = {
+  Company?: Maybe<Company_Order_By>,
+  Phone?: Maybe<Phone_Order_By>,
   companyID?: Maybe<Order_By>,
   companyPhoneID?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
@@ -3910,9 +4358,31 @@ export type CompanyPhone_Variance_Order_By = {
 
 export type CompanyUser = {
    __typename?: 'CompanyUser',
+  Company: Company,
+  CompanyContacts: Array<CompanyContact>,
+  CompanyContacts_aggregate: CompanyContact_Aggregate,
+  User: User,
   companyID: Scalars['Int'],
   companyUserID: Scalars['Int'],
   userID: Scalars['Int'],
+};
+
+
+export type CompanyUserCompanyContactsArgs = {
+  distinct_on?: Maybe<Array<CompanyContact_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyContact_Order_By>>,
+  where?: Maybe<CompanyContact_Bool_Exp>
+};
+
+
+export type CompanyUserCompanyContacts_AggregateArgs = {
+  distinct_on?: Maybe<Array<CompanyContact_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyContact_Order_By>>,
+  where?: Maybe<CompanyContact_Bool_Exp>
 };
 
 export type CompanyUser_Aggregate = {
@@ -3975,6 +4445,9 @@ export type CompanyUser_Avg_Order_By = {
 };
 
 export type CompanyUser_Bool_Exp = {
+  Company?: Maybe<Company_Bool_Exp>,
+  CompanyContacts?: Maybe<CompanyContact_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<CompanyUser_Bool_Exp>>>,
   _not?: Maybe<CompanyUser_Bool_Exp>,
   _or?: Maybe<Array<Maybe<CompanyUser_Bool_Exp>>>,
@@ -3994,6 +4467,9 @@ export type CompanyUser_Inc_Input = {
 };
 
 export type CompanyUser_Insert_Input = {
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
+  CompanyContacts?: Maybe<CompanyContact_Arr_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   companyUserID?: Maybe<Scalars['Int']>,
   userID?: Maybe<Scalars['Int']>,
@@ -4043,6 +4519,9 @@ export type CompanyUser_On_Conflict = {
 };
 
 export type CompanyUser_Order_By = {
+  Company?: Maybe<Company_Order_By>,
+  CompanyContacts_aggregate?: Maybe<CompanyContact_Aggregate_Order_By>,
+  User?: Maybe<User_Order_By>,
   companyID?: Maybe<Order_By>,
   companyUserID?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
@@ -4172,8 +4651,68 @@ export type Date_Comparison_Exp = {
 
 export type Day = {
    __typename?: 'Day',
+  ArchSiteWorkingDays: Array<ArchSiteWorkingDay>,
+  ArchSiteWorkingDays_aggregate: ArchSiteWorkingDay_Aggregate,
+  MuseumWorkingDays: Array<MuseumWorkingDay>,
+  MuseumWorkingDays_aggregate: MuseumWorkingDay_Aggregate,
+  RestaurantWorkingDays: Array<RestaurantWorkingDay>,
+  RestaurantWorkingDays_aggregate: RestaurantWorkingDay_Aggregate,
   dayID: Scalars['Int'],
   name: Scalars['String'],
+};
+
+
+export type DayArchSiteWorkingDaysArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDay_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDay_Bool_Exp>
+};
+
+
+export type DayArchSiteWorkingDays_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteWorkingDay_Order_By>>,
+  where?: Maybe<ArchSiteWorkingDay_Bool_Exp>
+};
+
+
+export type DayMuseumWorkingDaysArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDay_Order_By>>,
+  where?: Maybe<MuseumWorkingDay_Bool_Exp>
+};
+
+
+export type DayMuseumWorkingDays_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDay_Order_By>>,
+  where?: Maybe<MuseumWorkingDay_Bool_Exp>
+};
+
+
+export type DayRestaurantWorkingDaysArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDay_Order_By>>,
+  where?: Maybe<RestaurantWorkingDay_Bool_Exp>
+};
+
+
+export type DayRestaurantWorkingDays_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDay_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDay_Order_By>>,
+  where?: Maybe<RestaurantWorkingDay_Bool_Exp>
 };
 
 export type Day_Aggregate = {
@@ -4232,6 +4771,9 @@ export type Day_Avg_Order_By = {
 };
 
 export type Day_Bool_Exp = {
+  ArchSiteWorkingDays?: Maybe<ArchSiteWorkingDay_Bool_Exp>,
+  MuseumWorkingDays?: Maybe<MuseumWorkingDay_Bool_Exp>,
+  RestaurantWorkingDays?: Maybe<RestaurantWorkingDay_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Day_Bool_Exp>>>,
   _not?: Maybe<Day_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Day_Bool_Exp>>>,
@@ -4248,6 +4790,9 @@ export type Day_Inc_Input = {
 };
 
 export type Day_Insert_Input = {
+  ArchSiteWorkingDays?: Maybe<ArchSiteWorkingDay_Arr_Rel_Insert_Input>,
+  MuseumWorkingDays?: Maybe<MuseumWorkingDay_Arr_Rel_Insert_Input>,
+  RestaurantWorkingDays?: Maybe<RestaurantWorkingDay_Arr_Rel_Insert_Input>,
   dayID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
@@ -4292,6 +4837,9 @@ export type Day_On_Conflict = {
 };
 
 export type Day_Order_By = {
+  ArchSiteWorkingDays_aggregate?: Maybe<ArchSiteWorkingDay_Aggregate_Order_By>,
+  MuseumWorkingDays_aggregate?: Maybe<MuseumWorkingDay_Aggregate_Order_By>,
+  RestaurantWorkingDays_aggregate?: Maybe<RestaurantWorkingDay_Aggregate_Order_By>,
   dayID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
@@ -4388,9 +4936,91 @@ export type Float_Comparison_Exp = {
 
 export type Hotel = {
    __typename?: 'Hotel',
+  Company: Company,
+  HotelComments: Array<HotelComment>,
+  HotelComments_aggregate: HotelComment_Aggregate,
+  HotelRooms: Array<HotelRoom>,
+  HotelRooms_aggregate: HotelRoom_Aggregate,
+  HotelServices: Array<HotelService>,
+  HotelServices_aggregate: HotelService_Aggregate,
+  Location: Location,
+  TravelGuideHotels: Array<TravelGuideHotel>,
+  TravelGuideHotels_aggregate: TravelGuideHotel_Aggregate,
   companyID: Scalars['Int'],
   hotelID: Scalars['Int'],
   locationID: Scalars['Int'],
+};
+
+
+export type HotelHotelCommentsArgs = {
+  distinct_on?: Maybe<Array<HotelComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelComment_Order_By>>,
+  where?: Maybe<HotelComment_Bool_Exp>
+};
+
+
+export type HotelHotelComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelComment_Order_By>>,
+  where?: Maybe<HotelComment_Bool_Exp>
+};
+
+
+export type HotelHotelRoomsArgs = {
+  distinct_on?: Maybe<Array<HotelRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelRoom_Order_By>>,
+  where?: Maybe<HotelRoom_Bool_Exp>
+};
+
+
+export type HotelHotelRooms_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelRoom_Order_By>>,
+  where?: Maybe<HotelRoom_Bool_Exp>
+};
+
+
+export type HotelHotelServicesArgs = {
+  distinct_on?: Maybe<Array<HotelService_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelService_Order_By>>,
+  where?: Maybe<HotelService_Bool_Exp>
+};
+
+
+export type HotelHotelServices_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelService_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelService_Order_By>>,
+  where?: Maybe<HotelService_Bool_Exp>
+};
+
+
+export type HotelTravelGuideHotelsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideHotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideHotel_Order_By>>,
+  where?: Maybe<TravelGuideHotel_Bool_Exp>
+};
+
+
+export type HotelTravelGuideHotels_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideHotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideHotel_Order_By>>,
+  where?: Maybe<TravelGuideHotel_Bool_Exp>
 };
 
 export type Hotel_Aggregate = {
@@ -4453,6 +5083,12 @@ export type Hotel_Avg_Order_By = {
 };
 
 export type Hotel_Bool_Exp = {
+  Company?: Maybe<Company_Bool_Exp>,
+  HotelComments?: Maybe<HotelComment_Bool_Exp>,
+  HotelRooms?: Maybe<HotelRoom_Bool_Exp>,
+  HotelServices?: Maybe<HotelService_Bool_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
+  TravelGuideHotels?: Maybe<TravelGuideHotel_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Hotel_Bool_Exp>>>,
   _not?: Maybe<Hotel_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Hotel_Bool_Exp>>>,
@@ -4472,6 +5108,12 @@ export type Hotel_Inc_Input = {
 };
 
 export type Hotel_Insert_Input = {
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
+  HotelComments?: Maybe<HotelComment_Arr_Rel_Insert_Input>,
+  HotelRooms?: Maybe<HotelRoom_Arr_Rel_Insert_Input>,
+  HotelServices?: Maybe<HotelService_Arr_Rel_Insert_Input>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  TravelGuideHotels?: Maybe<TravelGuideHotel_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -4521,6 +5163,12 @@ export type Hotel_On_Conflict = {
 };
 
 export type Hotel_Order_By = {
+  Company?: Maybe<Company_Order_By>,
+  HotelComments_aggregate?: Maybe<HotelComment_Aggregate_Order_By>,
+  HotelRooms_aggregate?: Maybe<HotelRoom_Aggregate_Order_By>,
+  HotelServices_aggregate?: Maybe<HotelService_Aggregate_Order_By>,
+  Location?: Maybe<Location_Order_By>,
+  TravelGuideHotels_aggregate?: Maybe<TravelGuideHotel_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -4637,6 +5285,8 @@ export type Hotel_Variance_Order_By = {
 
 export type HotelComment = {
    __typename?: 'HotelComment',
+  Hotel: Hotel,
+  User: User,
   content: Scalars['String'],
   date: Scalars['timestamptz'],
   hotelCommentID: Scalars['Int'],
@@ -4707,6 +5357,8 @@ export type HotelComment_Avg_Order_By = {
 };
 
 export type HotelComment_Bool_Exp = {
+  Hotel?: Maybe<Hotel_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<HotelComment_Bool_Exp>>>,
   _not?: Maybe<HotelComment_Bool_Exp>,
   _or?: Maybe<Array<Maybe<HotelComment_Bool_Exp>>>,
@@ -4729,6 +5381,8 @@ export type HotelComment_Inc_Input = {
 };
 
 export type HotelComment_Insert_Input = {
+  Hotel?: Maybe<Hotel_Obj_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
   hotelCommentID?: Maybe<Scalars['Int']>,
@@ -4793,6 +5447,8 @@ export type HotelComment_On_Conflict = {
 };
 
 export type HotelComment_Order_By = {
+  Hotel?: Maybe<Hotel_Order_By>,
+  User?: Maybe<User_Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
   hotelCommentID?: Maybe<Order_By>,
@@ -4935,6 +5591,8 @@ export type HotelComment_Variance_Order_By = {
 
 export type HotelRoom = {
    __typename?: 'HotelRoom',
+  Hotel: Hotel,
+  Room: Room,
   hotelID: Scalars['Int'],
   hotelRoomID: Scalars['Int'],
   roomID: Scalars['Int'],
@@ -5000,6 +5658,8 @@ export type HotelRoom_Avg_Order_By = {
 };
 
 export type HotelRoom_Bool_Exp = {
+  Hotel?: Maybe<Hotel_Bool_Exp>,
+  Room?: Maybe<Room_Bool_Exp>,
   _and?: Maybe<Array<Maybe<HotelRoom_Bool_Exp>>>,
   _not?: Maybe<HotelRoom_Bool_Exp>,
   _or?: Maybe<Array<Maybe<HotelRoom_Bool_Exp>>>,
@@ -5019,6 +5679,8 @@ export type HotelRoom_Inc_Input = {
 };
 
 export type HotelRoom_Insert_Input = {
+  Hotel?: Maybe<Hotel_Obj_Rel_Insert_Input>,
+  Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   hotelID?: Maybe<Scalars['Int']>,
   hotelRoomID?: Maybe<Scalars['Int']>,
   roomID?: Maybe<Scalars['Int']>,
@@ -5068,6 +5730,8 @@ export type HotelRoom_On_Conflict = {
 };
 
 export type HotelRoom_Order_By = {
+  Hotel?: Maybe<Hotel_Order_By>,
+  Room?: Maybe<Room_Order_By>,
   hotelID?: Maybe<Order_By>,
   hotelRoomID?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
@@ -5184,6 +5848,8 @@ export type HotelRoom_Variance_Order_By = {
 
 export type HotelService = {
    __typename?: 'HotelService',
+  Hotel: Hotel,
+  HotelServiceProperty: HotelServiceProperty,
   hotelID: Scalars['Int'],
   hotelServiceHotelID: Scalars['Int'],
   hotelServicePropertyID: Scalars['Int'],
@@ -5249,6 +5915,8 @@ export type HotelService_Avg_Order_By = {
 };
 
 export type HotelService_Bool_Exp = {
+  Hotel?: Maybe<Hotel_Bool_Exp>,
+  HotelServiceProperty?: Maybe<HotelServiceProperty_Bool_Exp>,
   _and?: Maybe<Array<Maybe<HotelService_Bool_Exp>>>,
   _not?: Maybe<HotelService_Bool_Exp>,
   _or?: Maybe<Array<Maybe<HotelService_Bool_Exp>>>,
@@ -5268,6 +5936,8 @@ export type HotelService_Inc_Input = {
 };
 
 export type HotelService_Insert_Input = {
+  Hotel?: Maybe<Hotel_Obj_Rel_Insert_Input>,
+  HotelServiceProperty?: Maybe<HotelServiceProperty_Obj_Rel_Insert_Input>,
   hotelID?: Maybe<Scalars['Int']>,
   hotelServiceHotelID?: Maybe<Scalars['Int']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
@@ -5317,6 +5987,8 @@ export type HotelService_On_Conflict = {
 };
 
 export type HotelService_Order_By = {
+  Hotel?: Maybe<Hotel_Order_By>,
+  HotelServiceProperty?: Maybe<HotelServiceProperty_Order_By>,
   hotelID?: Maybe<Order_By>,
   hotelServiceHotelID?: Maybe<Order_By>,
   hotelServicePropertyID?: Maybe<Order_By>,
@@ -5433,8 +6105,28 @@ export type HotelService_Variance_Order_By = {
 
 export type HotelServiceProperty = {
    __typename?: 'HotelServiceProperty',
+  HotelServices: Array<HotelService>,
+  HotelServices_aggregate: HotelService_Aggregate,
   content: Scalars['String'],
   hotelServicePropertyID: Scalars['Int'],
+};
+
+
+export type HotelServicePropertyHotelServicesArgs = {
+  distinct_on?: Maybe<Array<HotelService_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelService_Order_By>>,
+  where?: Maybe<HotelService_Bool_Exp>
+};
+
+
+export type HotelServicePropertyHotelServices_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelService_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelService_Order_By>>,
+  where?: Maybe<HotelService_Bool_Exp>
 };
 
 export type HotelServiceProperty_Aggregate = {
@@ -5493,6 +6185,7 @@ export type HotelServiceProperty_Avg_Order_By = {
 };
 
 export type HotelServiceProperty_Bool_Exp = {
+  HotelServices?: Maybe<HotelService_Bool_Exp>,
   _and?: Maybe<Array<Maybe<HotelServiceProperty_Bool_Exp>>>,
   _not?: Maybe<HotelServiceProperty_Bool_Exp>,
   _or?: Maybe<Array<Maybe<HotelServiceProperty_Bool_Exp>>>,
@@ -5509,6 +6202,7 @@ export type HotelServiceProperty_Inc_Input = {
 };
 
 export type HotelServiceProperty_Insert_Input = {
+  HotelServices?: Maybe<HotelService_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
 };
@@ -5553,6 +6247,7 @@ export type HotelServiceProperty_On_Conflict = {
 };
 
 export type HotelServiceProperty_Order_By = {
+  HotelServices_aggregate?: Maybe<HotelService_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
   hotelServicePropertyID?: Maybe<Order_By>,
 };
@@ -5662,12 +6357,130 @@ export type Int_Comparison_Exp = {
 
 export type Location = {
    __typename?: 'Location',
+  ArchSites: Array<ArchSite>,
+  ArchSites_aggregate: ArchSite_Aggregate,
+  Companies: Array<Company>,
+  Companies_aggregate: Company_Aggregate,
+  Hotels: Array<Hotel>,
+  Hotels_aggregate: Hotel_Aggregate,
+  Museums: Array<Museum>,
+  Museums_aggregate: Museum_Aggregate,
+  Restaurants: Array<Restaurant>,
+  Restaurants_aggregate: Restaurant_Aggregate,
+  TravelGuideLocations: Array<TravelGuideLocation>,
+  TravelGuideLocations_aggregate: TravelGuideLocation_Aggregate,
   address?: Maybe<Scalars['String']>,
   latitude: Scalars['Float'],
-  latitudeDelta: Scalars['Float'],
   locationID: Scalars['Int'],
   longtitude: Scalars['Float'],
-  longtitudeDelta: Scalars['Float'],
+};
+
+
+export type LocationArchSitesArgs = {
+  distinct_on?: Maybe<Array<ArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSite_Order_By>>,
+  where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type LocationArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSite_Order_By>>,
+  where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type LocationCompaniesArgs = {
+  distinct_on?: Maybe<Array<Company_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Company_Order_By>>,
+  where?: Maybe<Company_Bool_Exp>
+};
+
+
+export type LocationCompanies_AggregateArgs = {
+  distinct_on?: Maybe<Array<Company_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Company_Order_By>>,
+  where?: Maybe<Company_Bool_Exp>
+};
+
+
+export type LocationHotelsArgs = {
+  distinct_on?: Maybe<Array<Hotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Hotel_Order_By>>,
+  where?: Maybe<Hotel_Bool_Exp>
+};
+
+
+export type LocationHotels_AggregateArgs = {
+  distinct_on?: Maybe<Array<Hotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Hotel_Order_By>>,
+  where?: Maybe<Hotel_Bool_Exp>
+};
+
+
+export type LocationMuseumsArgs = {
+  distinct_on?: Maybe<Array<Museum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Museum_Order_By>>,
+  where?: Maybe<Museum_Bool_Exp>
+};
+
+
+export type LocationMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<Museum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Museum_Order_By>>,
+  where?: Maybe<Museum_Bool_Exp>
+};
+
+
+export type LocationRestaurantsArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
+
+export type LocationRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
+
+export type LocationTravelGuideLocationsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideLocation_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideLocation_Order_By>>,
+  where?: Maybe<TravelGuideLocation_Bool_Exp>
+};
+
+
+export type LocationTravelGuideLocations_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideLocation_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideLocation_Order_By>>,
+  where?: Maybe<TravelGuideLocation_Bool_Exp>
 };
 
 export type Location_Aggregate = {
@@ -5719,30 +6532,30 @@ export type Location_Arr_Rel_Insert_Input = {
 export type Location_Avg_Fields = {
    __typename?: 'Location_avg_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Avg_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Bool_Exp = {
+  ArchSites?: Maybe<ArchSite_Bool_Exp>,
+  Companies?: Maybe<Company_Bool_Exp>,
+  Hotels?: Maybe<Hotel_Bool_Exp>,
+  Museums?: Maybe<Museum_Bool_Exp>,
+  Restaurants?: Maybe<Restaurant_Bool_Exp>,
+  TravelGuideLocations?: Maybe<TravelGuideLocation_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Location_Bool_Exp>>>,
   _not?: Maybe<Location_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Location_Bool_Exp>>>,
   address?: Maybe<String_Comparison_Exp>,
   latitude?: Maybe<Float_Comparison_Exp>,
-  latitudeDelta?: Maybe<Float_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   longtitude?: Maybe<Float_Comparison_Exp>,
-  longtitudeDelta?: Maybe<Float_Comparison_Exp>,
 };
 
 export enum Location_Constraint {
@@ -5754,50 +6567,46 @@ export type Location_Inc_Input = {
 };
 
 export type Location_Insert_Input = {
+  ArchSites?: Maybe<ArchSite_Arr_Rel_Insert_Input>,
+  Companies?: Maybe<Company_Arr_Rel_Insert_Input>,
+  Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
+  Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
+  Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
+  TravelGuideLocations?: Maybe<TravelGuideLocation_Arr_Rel_Insert_Input>,
   address?: Maybe<Scalars['String']>,
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Max_Fields = {
    __typename?: 'Location_max_fields',
   address?: Maybe<Scalars['String']>,
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Max_Order_By = {
   address?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Min_Fields = {
    __typename?: 'Location_min_fields',
   address?: Maybe<Scalars['String']>,
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Min_Order_By = {
   address?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Mutation_Response = {
@@ -5818,164 +6627,154 @@ export type Location_On_Conflict = {
 };
 
 export type Location_Order_By = {
+  ArchSites_aggregate?: Maybe<ArchSite_Aggregate_Order_By>,
+  Companies_aggregate?: Maybe<Company_Aggregate_Order_By>,
+  Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
+  Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
+  Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
+  TravelGuideLocations_aggregate?: Maybe<TravelGuideLocation_Aggregate_Order_By>,
   address?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export enum Location_Select_Column {
   Address = 'address',
   Latitude = 'latitude',
-  LatitudeDelta = 'latitudeDelta',
   LocationId = 'locationID',
-  Longtitude = 'longtitude',
-  LongtitudeDelta = 'longtitudeDelta'
+  Longtitude = 'longtitude'
 }
 
 export type Location_Set_Input = {
   address?: Maybe<Scalars['String']>,
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Fields = {
    __typename?: 'Location_stddev_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Stddev_Pop_Fields = {
    __typename?: 'Location_stddev_pop_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Pop_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Stddev_Samp_Fields = {
    __typename?: 'Location_stddev_samp_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Samp_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Sum_Fields = {
    __typename?: 'Location_sum_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Sum_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export enum Location_Update_Column {
   Address = 'address',
   Latitude = 'latitude',
-  LatitudeDelta = 'latitudeDelta',
   LocationId = 'locationID',
-  Longtitude = 'longtitude',
-  LongtitudeDelta = 'longtitudeDelta'
+  Longtitude = 'longtitude'
 }
 
 export type Location_Var_Pop_Fields = {
    __typename?: 'Location_var_pop_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Var_Pop_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Var_Samp_Fields = {
    __typename?: 'Location_var_samp_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Var_Samp_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type Location_Variance_Fields = {
    __typename?: 'Location_variance_fields',
   latitude?: Maybe<Scalars['Float']>,
-  latitudeDelta?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  longtitudeDelta?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Variance_Order_By = {
   latitude?: Maybe<Order_By>,
-  latitudeDelta?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
-  longtitudeDelta?: Maybe<Order_By>,
 };
 
 export type LoginType = {
    __typename?: 'LoginType',
+  Users: Array<User>,
+  Users_aggregate: User_Aggregate,
   loginTypeID: Scalars['Int'],
   type: Scalars['String'],
+};
+
+
+export type LoginTypeUsersArgs = {
+  distinct_on?: Maybe<Array<User_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<User_Order_By>>,
+  where?: Maybe<User_Bool_Exp>
+};
+
+
+export type LoginTypeUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<User_Order_By>>,
+  where?: Maybe<User_Bool_Exp>
 };
 
 export type LoginType_Aggregate = {
@@ -6034,6 +6833,7 @@ export type LoginType_Avg_Order_By = {
 };
 
 export type LoginType_Bool_Exp = {
+  Users?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<LoginType_Bool_Exp>>>,
   _not?: Maybe<LoginType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<LoginType_Bool_Exp>>>,
@@ -6050,6 +6850,7 @@ export type LoginType_Inc_Input = {
 };
 
 export type LoginType_Insert_Input = {
+  Users?: Maybe<User_Arr_Rel_Insert_Input>,
   loginTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -6094,6 +6895,7 @@ export type LoginType_On_Conflict = {
 };
 
 export type LoginType_Order_By = {
+  Users_aggregate?: Maybe<User_Aggregate_Order_By>,
   loginTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
@@ -6178,11 +6980,73 @@ export type LoginType_Variance_Order_By = {
 
 export type Museum = {
    __typename?: 'Museum',
+  Company: Company,
+  Location: Location,
+  MuseumComments: Array<MuseumComment>,
+  MuseumComments_aggregate: MuseumComment_Aggregate,
+  MuseumWorkingSchedules: Array<MuseumWorkingSchedule>,
+  MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
+  TravelGuideMuseums: Array<TravelGuideMuseum>,
+  TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
   companyID: Scalars['Int'],
   description: Scalars['String'],
   locationID: Scalars['Int'],
   museumID: Scalars['Int'],
   name: Scalars['String'],
+};
+
+
+export type MuseumMuseumCommentsArgs = {
+  distinct_on?: Maybe<Array<MuseumComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumComment_Order_By>>,
+  where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type MuseumMuseumComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumComment_Order_By>>,
+  where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type MuseumMuseumWorkingSchedulesArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingSchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingSchedule_Bool_Exp>
+};
+
+
+export type MuseumMuseumWorkingSchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingSchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingSchedule_Bool_Exp>
+};
+
+
+export type MuseumTravelGuideMuseumsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideMuseum_Order_By>>,
+  where?: Maybe<TravelGuideMuseum_Bool_Exp>
+};
+
+
+export type MuseumTravelGuideMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideMuseum_Order_By>>,
+  where?: Maybe<TravelGuideMuseum_Bool_Exp>
 };
 
 export type Museum_Aggregate = {
@@ -6245,6 +7109,11 @@ export type Museum_Avg_Order_By = {
 };
 
 export type Museum_Bool_Exp = {
+  Company?: Maybe<Company_Bool_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
+  MuseumComments?: Maybe<MuseumComment_Bool_Exp>,
+  MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
+  TravelGuideMuseums?: Maybe<TravelGuideMuseum_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
   _not?: Maybe<Museum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
@@ -6266,6 +7135,11 @@ export type Museum_Inc_Input = {
 };
 
 export type Museum_Insert_Input = {
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  MuseumComments?: Maybe<MuseumComment_Arr_Rel_Insert_Input>,
+  MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
+  TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -6325,6 +7199,11 @@ export type Museum_On_Conflict = {
 };
 
 export type Museum_Order_By = {
+  Company?: Maybe<Company_Order_By>,
+  Location?: Maybe<Location_Order_By>,
+  MuseumComments_aggregate?: Maybe<MuseumComment_Aggregate_Order_By>,
+  MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
+  TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -6449,6 +7328,8 @@ export type Museum_Variance_Order_By = {
 
 export type MuseumComment = {
    __typename?: 'MuseumComment',
+  Museum: Museum,
+  User: User,
   content: Scalars['String'],
   date: Scalars['timestamptz'],
   museumCommentID: Scalars['Int'],
@@ -6519,6 +7400,8 @@ export type MuseumComment_Avg_Order_By = {
 };
 
 export type MuseumComment_Bool_Exp = {
+  Museum?: Maybe<Museum_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumComment_Bool_Exp>>>,
   _not?: Maybe<MuseumComment_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumComment_Bool_Exp>>>,
@@ -6541,6 +7424,8 @@ export type MuseumComment_Inc_Input = {
 };
 
 export type MuseumComment_Insert_Input = {
+  Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
   museumCommentID?: Maybe<Scalars['Int']>,
@@ -6605,6 +7490,8 @@ export type MuseumComment_On_Conflict = {
 };
 
 export type MuseumComment_Order_By = {
+  Museum?: Maybe<Museum_Order_By>,
+  User?: Maybe<User_Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
   museumCommentID?: Maybe<Order_By>,
@@ -6747,8 +7634,28 @@ export type MuseumComment_Variance_Order_By = {
 
 export type MuseumEntranceType = {
    __typename?: 'MuseumEntranceType',
+  MuseumPrices: Array<MuseumPrice>,
+  MuseumPrices_aggregate: MuseumPrice_Aggregate,
   content: Scalars['String'],
   museumEntranceTypeID: Scalars['Int'],
+};
+
+
+export type MuseumEntranceTypeMuseumPricesArgs = {
+  distinct_on?: Maybe<Array<MuseumPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumPrice_Order_By>>,
+  where?: Maybe<MuseumPrice_Bool_Exp>
+};
+
+
+export type MuseumEntranceTypeMuseumPrices_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumPrice_Order_By>>,
+  where?: Maybe<MuseumPrice_Bool_Exp>
 };
 
 export type MuseumEntranceType_Aggregate = {
@@ -6807,6 +7714,7 @@ export type MuseumEntranceType_Avg_Order_By = {
 };
 
 export type MuseumEntranceType_Bool_Exp = {
+  MuseumPrices?: Maybe<MuseumPrice_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumEntranceType_Bool_Exp>>>,
   _not?: Maybe<MuseumEntranceType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumEntranceType_Bool_Exp>>>,
@@ -6823,6 +7731,7 @@ export type MuseumEntranceType_Inc_Input = {
 };
 
 export type MuseumEntranceType_Insert_Input = {
+  MuseumPrices?: Maybe<MuseumPrice_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   museumEntranceTypeID?: Maybe<Scalars['Int']>,
 };
@@ -6867,6 +7776,7 @@ export type MuseumEntranceType_On_Conflict = {
 };
 
 export type MuseumEntranceType_Order_By = {
+  MuseumPrices_aggregate?: Maybe<MuseumPrice_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
   museumEntranceTypeID?: Maybe<Order_By>,
 };
@@ -6951,6 +7861,7 @@ export type MuseumEntranceType_Variance_Order_By = {
 
 export type MuseumPrice = {
    __typename?: 'MuseumPrice',
+  MuseumEntranceType: MuseumEntranceType,
   entranceTypeID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
   museumID: Scalars['Int'],
@@ -7021,6 +7932,7 @@ export type MuseumPrice_Avg_Order_By = {
 };
 
 export type MuseumPrice_Bool_Exp = {
+  MuseumEntranceType?: Maybe<MuseumEntranceType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumPrice_Bool_Exp>>>,
   _not?: Maybe<MuseumPrice_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumPrice_Bool_Exp>>>,
@@ -7043,6 +7955,7 @@ export type MuseumPrice_Inc_Input = {
 };
 
 export type MuseumPrice_Insert_Input = {
+  MuseumEntranceType?: Maybe<MuseumEntranceType_Obj_Rel_Insert_Input>,
   entranceTypeID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
   museumID?: Maybe<Scalars['Int']>,
@@ -7107,6 +8020,7 @@ export type MuseumPrice_On_Conflict = {
 };
 
 export type MuseumPrice_Order_By = {
+  MuseumEntranceType?: Maybe<MuseumEntranceType_Order_By>,
   entranceTypeID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -7249,10 +8163,31 @@ export type MuseumPrice_Variance_Order_By = {
 
 export type MuseumWorkingDay = {
    __typename?: 'MuseumWorkingDay',
+  Day: Day,
+  MuseumWorkingDaySchedules: Array<MuseumWorkingDaySchedule>,
+  MuseumWorkingDaySchedules_aggregate: MuseumWorkingDaySchedule_Aggregate,
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
   museumWorkingDayID: Scalars['Int'],
   openHour: Scalars['timetz'],
+};
+
+
+export type MuseumWorkingDayMuseumWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDaySchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type MuseumWorkingDayMuseumWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDaySchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>
 };
 
 export type MuseumWorkingDay_Aggregate = {
@@ -7313,6 +8248,8 @@ export type MuseumWorkingDay_Avg_Order_By = {
 };
 
 export type MuseumWorkingDay_Bool_Exp = {
+  Day?: Maybe<Day_Bool_Exp>,
+  MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumWorkingDay_Bool_Exp>>>,
   _not?: Maybe<MuseumWorkingDay_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumWorkingDay_Bool_Exp>>>,
@@ -7332,6 +8269,8 @@ export type MuseumWorkingDay_Inc_Input = {
 };
 
 export type MuseumWorkingDay_Insert_Input = {
+  Day?: Maybe<Day_Obj_Rel_Insert_Input>,
+  MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Arr_Rel_Insert_Input>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
@@ -7386,6 +8325,8 @@ export type MuseumWorkingDay_On_Conflict = {
 };
 
 export type MuseumWorkingDay_Order_By = {
+  Day?: Maybe<Day_Order_By>,
+  MuseumWorkingDaySchedules_aggregate?: Maybe<MuseumWorkingDaySchedule_Aggregate_Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
   museumWorkingDayID?: Maybe<Order_By>,
@@ -7492,6 +8433,8 @@ export type MuseumWorkingDay_Variance_Order_By = {
 
 export type MuseumWorkingDaySchedule = {
    __typename?: 'MuseumWorkingDaySchedule',
+  MuseumWorkingDay: MuseumWorkingDay,
+  MuseumWorkingSchedule: MuseumWorkingSchedule,
   museumWorkingDayID: Scalars['Int'],
   museumWorkingDayScheduleID: Scalars['Int'],
   museumWorkingScheduleID: Scalars['Int'],
@@ -7557,6 +8500,8 @@ export type MuseumWorkingDaySchedule_Avg_Order_By = {
 };
 
 export type MuseumWorkingDaySchedule_Bool_Exp = {
+  MuseumWorkingDay?: Maybe<MuseumWorkingDay_Bool_Exp>,
+  MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumWorkingDaySchedule_Bool_Exp>>>,
   _not?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumWorkingDaySchedule_Bool_Exp>>>,
@@ -7576,6 +8521,8 @@ export type MuseumWorkingDaySchedule_Inc_Input = {
 };
 
 export type MuseumWorkingDaySchedule_Insert_Input = {
+  MuseumWorkingDay?: Maybe<MuseumWorkingDay_Obj_Rel_Insert_Input>,
+  MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Obj_Rel_Insert_Input>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
   museumWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -7625,6 +8572,8 @@ export type MuseumWorkingDaySchedule_On_Conflict = {
 };
 
 export type MuseumWorkingDaySchedule_Order_By = {
+  MuseumWorkingDay?: Maybe<MuseumWorkingDay_Order_By>,
+  MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Order_By>,
   museumWorkingDayID?: Maybe<Order_By>,
   museumWorkingDayScheduleID?: Maybe<Order_By>,
   museumWorkingScheduleID?: Maybe<Order_By>,
@@ -7741,10 +8690,31 @@ export type MuseumWorkingDaySchedule_Variance_Order_By = {
 
 export type MuseumWorkingSchedule = {
    __typename?: 'MuseumWorkingSchedule',
+  Museum: Museum,
+  MuseumWorkingDaySchedules: Array<MuseumWorkingDaySchedule>,
+  MuseumWorkingDaySchedules_aggregate: MuseumWorkingDaySchedule_Aggregate,
   finishDate: Scalars['timestamptz'],
   museumID: Scalars['Int'],
   museumWorkingScheduleID: Scalars['Int'],
   startDate: Scalars['timestamptz'],
+};
+
+
+export type MuseumWorkingScheduleMuseumWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDaySchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type MuseumWorkingScheduleMuseumWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumWorkingDaySchedule_Order_By>>,
+  where?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>
 };
 
 export type MuseumWorkingSchedule_Aggregate = {
@@ -7805,6 +8775,8 @@ export type MuseumWorkingSchedule_Avg_Order_By = {
 };
 
 export type MuseumWorkingSchedule_Bool_Exp = {
+  Museum?: Maybe<Museum_Bool_Exp>,
+  MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumWorkingSchedule_Bool_Exp>>>,
   _not?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumWorkingSchedule_Bool_Exp>>>,
@@ -7824,6 +8796,8 @@ export type MuseumWorkingSchedule_Inc_Input = {
 };
 
 export type MuseumWorkingSchedule_Insert_Input = {
+  Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
+  MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Arr_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
   museumID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -7878,6 +8852,8 @@ export type MuseumWorkingSchedule_On_Conflict = {
 };
 
 export type MuseumWorkingSchedule_Order_By = {
+  Museum?: Maybe<Museum_Order_By>,
+  MuseumWorkingDaySchedules_aggregate?: Maybe<MuseumWorkingDaySchedule_Aggregate_Order_By>,
   finishDate?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   museumWorkingScheduleID?: Maybe<Order_By>,
@@ -9194,8 +10170,48 @@ export enum Order_By {
 
 export type Phone = {
    __typename?: 'Phone',
+  CompanyPhones: Array<CompanyPhone>,
+  CompanyPhones_aggregate: CompanyPhone_Aggregate,
+  Users: Array<User>,
+  Users_aggregate: User_Aggregate,
   phone: Scalars['String'],
   phoneID: Scalars['Int'],
+};
+
+
+export type PhoneCompanyPhonesArgs = {
+  distinct_on?: Maybe<Array<CompanyPhone_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyPhone_Order_By>>,
+  where?: Maybe<CompanyPhone_Bool_Exp>
+};
+
+
+export type PhoneCompanyPhones_AggregateArgs = {
+  distinct_on?: Maybe<Array<CompanyPhone_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyPhone_Order_By>>,
+  where?: Maybe<CompanyPhone_Bool_Exp>
+};
+
+
+export type PhoneUsersArgs = {
+  distinct_on?: Maybe<Array<User_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<User_Order_By>>,
+  where?: Maybe<User_Bool_Exp>
+};
+
+
+export type PhoneUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<User_Order_By>>,
+  where?: Maybe<User_Bool_Exp>
 };
 
 export type Phone_Aggregate = {
@@ -9254,6 +10270,8 @@ export type Phone_Avg_Order_By = {
 };
 
 export type Phone_Bool_Exp = {
+  CompanyPhones?: Maybe<CompanyPhone_Bool_Exp>,
+  Users?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Phone_Bool_Exp>>>,
   _not?: Maybe<Phone_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Phone_Bool_Exp>>>,
@@ -9270,6 +10288,8 @@ export type Phone_Inc_Input = {
 };
 
 export type Phone_Insert_Input = {
+  CompanyPhones?: Maybe<CompanyPhone_Arr_Rel_Insert_Input>,
+  Users?: Maybe<User_Arr_Rel_Insert_Input>,
   phone?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
 };
@@ -9314,6 +10334,8 @@ export type Phone_On_Conflict = {
 };
 
 export type Phone_Order_By = {
+  CompanyPhones_aggregate?: Maybe<CompanyPhone_Aggregate_Order_By>,
+  Users_aggregate?: Maybe<User_Aggregate_Order_By>,
   phone?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
 };
@@ -10885,12 +11907,114 @@ export type Query_RootUser_By_PkArgs = {
 export type Restaurant = {
    __typename?: 'Restaurant',
   ISO?: Maybe<Scalars['String']>,
+  Location: Location,
+  RestaurantAndCuisineTypes: Array<RestaurantAndCuisineType>,
+  RestaurantAndCuisineTypes_aggregate: RestaurantAndCuisineType_Aggregate,
+  RestaurantComments: Array<RestaurantComment>,
+  RestaurantComments_aggregate: RestaurantComment_Aggregate,
+  RestaurantMenus: Array<RestaurantMenu>,
+  RestaurantMenus_aggregate: RestaurantMenu_Aggregate,
+  RestaurantType: RestaurantType,
+  RestaurantWorkingSchedules: Array<RestaurantWorkingSchedule>,
+  RestaurantWorkingSchedules_aggregate: RestaurantWorkingSchedule_Aggregate,
+  TravelGuideRestaurants: Array<TravelGuideRestaurant>,
+  TravelGuideRestaurants_aggregate: TravelGuideRestaurant_Aggregate,
   locationID: Scalars['Int'],
   name: Scalars['String'],
   restaurantID: Scalars['Int'],
   restaurantTypeID: Scalars['Int'],
   since: Scalars['date'],
   star?: Maybe<Scalars['Float']>,
+};
+
+
+export type RestaurantRestaurantAndCuisineTypesArgs = {
+  distinct_on?: Maybe<Array<RestaurantAndCuisineType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantAndCuisineType_Order_By>>,
+  where?: Maybe<RestaurantAndCuisineType_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantAndCuisineTypes_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantAndCuisineType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantAndCuisineType_Order_By>>,
+  where?: Maybe<RestaurantAndCuisineType_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantCommentsArgs = {
+  distinct_on?: Maybe<Array<RestaurantComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantComment_Order_By>>,
+  where?: Maybe<RestaurantComment_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantComment_Order_By>>,
+  where?: Maybe<RestaurantComment_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantMenusArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenu_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenu_Order_By>>,
+  where?: Maybe<RestaurantMenu_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantMenus_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenu_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenu_Order_By>>,
+  where?: Maybe<RestaurantMenu_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantWorkingSchedulesArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingSchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingSchedule_Bool_Exp>
+};
+
+
+export type RestaurantRestaurantWorkingSchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingSchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingSchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingSchedule_Bool_Exp>
+};
+
+
+export type RestaurantTravelGuideRestaurantsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideRestaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideRestaurant_Order_By>>,
+  where?: Maybe<TravelGuideRestaurant_Bool_Exp>
+};
+
+
+export type RestaurantTravelGuideRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideRestaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideRestaurant_Order_By>>,
+  where?: Maybe<TravelGuideRestaurant_Bool_Exp>
 };
 
 export type Restaurant_Aggregate = {
@@ -10956,6 +12080,13 @@ export type Restaurant_Avg_Order_By = {
 
 export type Restaurant_Bool_Exp = {
   ISO?: Maybe<String_Comparison_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
+  RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Bool_Exp>,
+  RestaurantComments?: Maybe<RestaurantComment_Bool_Exp>,
+  RestaurantMenus?: Maybe<RestaurantMenu_Bool_Exp>,
+  RestaurantType?: Maybe<RestaurantType_Bool_Exp>,
+  RestaurantWorkingSchedules?: Maybe<RestaurantWorkingSchedule_Bool_Exp>,
+  TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Restaurant_Bool_Exp>>>,
   _not?: Maybe<Restaurant_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Restaurant_Bool_Exp>>>,
@@ -10979,6 +12110,13 @@ export type Restaurant_Inc_Input = {
 
 export type Restaurant_Insert_Input = {
   ISO?: Maybe<Scalars['String']>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Arr_Rel_Insert_Input>,
+  RestaurantComments?: Maybe<RestaurantComment_Arr_Rel_Insert_Input>,
+  RestaurantMenus?: Maybe<RestaurantMenu_Arr_Rel_Insert_Input>,
+  RestaurantType?: Maybe<RestaurantType_Obj_Rel_Insert_Input>,
+  RestaurantWorkingSchedules?: Maybe<RestaurantWorkingSchedule_Arr_Rel_Insert_Input>,
+  TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Arr_Rel_Insert_Input>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -11048,6 +12186,13 @@ export type Restaurant_On_Conflict = {
 
 export type Restaurant_Order_By = {
   ISO?: Maybe<Order_By>,
+  Location?: Maybe<Location_Order_By>,
+  RestaurantAndCuisineTypes_aggregate?: Maybe<RestaurantAndCuisineType_Aggregate_Order_By>,
+  RestaurantComments_aggregate?: Maybe<RestaurantComment_Aggregate_Order_By>,
+  RestaurantMenus_aggregate?: Maybe<RestaurantMenu_Aggregate_Order_By>,
+  RestaurantType?: Maybe<RestaurantType_Order_By>,
+  RestaurantWorkingSchedules_aggregate?: Maybe<RestaurantWorkingSchedule_Aggregate_Order_By>,
+  TravelGuideRestaurants_aggregate?: Maybe<TravelGuideRestaurant_Aggregate_Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -11193,6 +12338,8 @@ export type Restaurant_Variance_Order_By = {
 
 export type RestaurantAndCuisineType = {
    __typename?: 'RestaurantAndCuisineType',
+  Restaurant: Restaurant,
+  RestaurantCuisineType: RestaurantCuisineType,
   restaurantAndCuisineTypeID: Scalars['Int'],
   restaurantCuisineTypeID: Scalars['Int'],
   restaurantID: Scalars['Int'],
@@ -11258,6 +12405,8 @@ export type RestaurantAndCuisineType_Avg_Order_By = {
 };
 
 export type RestaurantAndCuisineType_Bool_Exp = {
+  Restaurant?: Maybe<Restaurant_Bool_Exp>,
+  RestaurantCuisineType?: Maybe<RestaurantCuisineType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantAndCuisineType_Bool_Exp>>>,
   _not?: Maybe<RestaurantAndCuisineType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantAndCuisineType_Bool_Exp>>>,
@@ -11277,6 +12426,8 @@ export type RestaurantAndCuisineType_Inc_Input = {
 };
 
 export type RestaurantAndCuisineType_Insert_Input = {
+  Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
+  RestaurantCuisineType?: Maybe<RestaurantCuisineType_Obj_Rel_Insert_Input>,
   restaurantAndCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -11326,6 +12477,8 @@ export type RestaurantAndCuisineType_On_Conflict = {
 };
 
 export type RestaurantAndCuisineType_Order_By = {
+  Restaurant?: Maybe<Restaurant_Order_By>,
+  RestaurantCuisineType?: Maybe<RestaurantCuisineType_Order_By>,
   restaurantAndCuisineTypeID?: Maybe<Order_By>,
   restaurantCuisineTypeID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -11442,6 +12595,8 @@ export type RestaurantAndCuisineType_Variance_Order_By = {
 
 export type RestaurantComment = {
    __typename?: 'RestaurantComment',
+  Restaurant: Restaurant,
+  User: User,
   content: Scalars['String'],
   date: Scalars['timestamptz'],
   restaurantCommentID: Scalars['Int'],
@@ -11512,6 +12667,8 @@ export type RestaurantComment_Avg_Order_By = {
 };
 
 export type RestaurantComment_Bool_Exp = {
+  Restaurant?: Maybe<Restaurant_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantComment_Bool_Exp>>>,
   _not?: Maybe<RestaurantComment_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantComment_Bool_Exp>>>,
@@ -11534,6 +12691,8 @@ export type RestaurantComment_Inc_Input = {
 };
 
 export type RestaurantComment_Insert_Input = {
+  Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
   restaurantCommentID?: Maybe<Scalars['Int']>,
@@ -11598,6 +12757,8 @@ export type RestaurantComment_On_Conflict = {
 };
 
 export type RestaurantComment_Order_By = {
+  Restaurant?: Maybe<Restaurant_Order_By>,
+  User?: Maybe<User_Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
   restaurantCommentID?: Maybe<Order_By>,
@@ -11740,8 +12901,28 @@ export type RestaurantComment_Variance_Order_By = {
 
 export type RestaurantCuisineType = {
    __typename?: 'RestaurantCuisineType',
+  RestaurantAndCuisineTypes: Array<RestaurantAndCuisineType>,
+  RestaurantAndCuisineTypes_aggregate: RestaurantAndCuisineType_Aggregate,
   name: Scalars['String'],
   restaurantCuisineTypeID: Scalars['Int'],
+};
+
+
+export type RestaurantCuisineTypeRestaurantAndCuisineTypesArgs = {
+  distinct_on?: Maybe<Array<RestaurantAndCuisineType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantAndCuisineType_Order_By>>,
+  where?: Maybe<RestaurantAndCuisineType_Bool_Exp>
+};
+
+
+export type RestaurantCuisineTypeRestaurantAndCuisineTypes_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantAndCuisineType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantAndCuisineType_Order_By>>,
+  where?: Maybe<RestaurantAndCuisineType_Bool_Exp>
 };
 
 export type RestaurantCuisineType_Aggregate = {
@@ -11800,6 +12981,7 @@ export type RestaurantCuisineType_Avg_Order_By = {
 };
 
 export type RestaurantCuisineType_Bool_Exp = {
+  RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantCuisineType_Bool_Exp>>>,
   _not?: Maybe<RestaurantCuisineType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantCuisineType_Bool_Exp>>>,
@@ -11816,6 +12998,7 @@ export type RestaurantCuisineType_Inc_Input = {
 };
 
 export type RestaurantCuisineType_Insert_Input = {
+  RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
 };
@@ -11860,6 +13043,7 @@ export type RestaurantCuisineType_On_Conflict = {
 };
 
 export type RestaurantCuisineType_Order_By = {
+  RestaurantAndCuisineTypes_aggregate?: Maybe<RestaurantAndCuisineType_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
   restaurantCuisineTypeID?: Maybe<Order_By>,
 };
@@ -11944,10 +13128,31 @@ export type RestaurantCuisineType_Variance_Order_By = {
 
 export type RestaurantFood = {
    __typename?: 'RestaurantFood',
+  RestaurantFoodType: RestaurantFoodType,
+  RestaurantMenuFoods: Array<RestaurantMenuFood>,
+  RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
   name: Scalars['String'],
   price?: Maybe<Scalars['Float']>,
   restaurantFoodID: Scalars['Int'],
   restaurantFoodTypeID: Scalars['Int'],
+};
+
+
+export type RestaurantFoodRestaurantMenuFoodsArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenuFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenuFood_Order_By>>,
+  where?: Maybe<RestaurantMenuFood_Bool_Exp>
+};
+
+
+export type RestaurantFoodRestaurantMenuFoods_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenuFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenuFood_Order_By>>,
+  where?: Maybe<RestaurantMenuFood_Bool_Exp>
 };
 
 export type RestaurantFood_Aggregate = {
@@ -12010,6 +13215,8 @@ export type RestaurantFood_Avg_Order_By = {
 };
 
 export type RestaurantFood_Bool_Exp = {
+  RestaurantFoodType?: Maybe<RestaurantFoodType_Bool_Exp>,
+  RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantFood_Bool_Exp>>>,
   _not?: Maybe<RestaurantFood_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantFood_Bool_Exp>>>,
@@ -12029,6 +13236,8 @@ export type RestaurantFood_Inc_Input = {
 };
 
 export type RestaurantFood_Insert_Input = {
+  RestaurantFoodType?: Maybe<RestaurantFoodType_Obj_Rel_Insert_Input>,
+  RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
@@ -12083,6 +13292,8 @@ export type RestaurantFood_On_Conflict = {
 };
 
 export type RestaurantFood_Order_By = {
+  RestaurantFoodType?: Maybe<RestaurantFoodType_Order_By>,
+  RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   restaurantFoodID?: Maybe<Order_By>,
@@ -12203,8 +13414,28 @@ export type RestaurantFood_Variance_Order_By = {
 
 export type RestaurantFoodType = {
    __typename?: 'RestaurantFoodType',
+  RestaurantFoods: Array<RestaurantFood>,
+  RestaurantFoods_aggregate: RestaurantFood_Aggregate,
   restaurantFoodTypeID: Scalars['Int'],
   type: Scalars['String'],
+};
+
+
+export type RestaurantFoodTypeRestaurantFoodsArgs = {
+  distinct_on?: Maybe<Array<RestaurantFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantFood_Order_By>>,
+  where?: Maybe<RestaurantFood_Bool_Exp>
+};
+
+
+export type RestaurantFoodTypeRestaurantFoods_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantFood_Order_By>>,
+  where?: Maybe<RestaurantFood_Bool_Exp>
 };
 
 export type RestaurantFoodType_Aggregate = {
@@ -12263,6 +13494,7 @@ export type RestaurantFoodType_Avg_Order_By = {
 };
 
 export type RestaurantFoodType_Bool_Exp = {
+  RestaurantFoods?: Maybe<RestaurantFood_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantFoodType_Bool_Exp>>>,
   _not?: Maybe<RestaurantFoodType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantFoodType_Bool_Exp>>>,
@@ -12279,6 +13511,7 @@ export type RestaurantFoodType_Inc_Input = {
 };
 
 export type RestaurantFoodType_Insert_Input = {
+  RestaurantFoods?: Maybe<RestaurantFood_Arr_Rel_Insert_Input>,
   restaurantFoodTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -12323,6 +13556,7 @@ export type RestaurantFoodType_On_Conflict = {
 };
 
 export type RestaurantFoodType_Order_By = {
+  RestaurantFoods_aggregate?: Maybe<RestaurantFood_Aggregate_Order_By>,
   restaurantFoodTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
@@ -12407,9 +13641,30 @@ export type RestaurantFoodType_Variance_Order_By = {
 
 export type RestaurantMenu = {
    __typename?: 'RestaurantMenu',
+  Restaurant: Restaurant,
+  RestaurantMenuFoods: Array<RestaurantMenuFood>,
+  RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
   name: Scalars['String'],
   restaurantID: Scalars['Int'],
   restaurantMenuID: Scalars['Int'],
+};
+
+
+export type RestaurantMenuRestaurantMenuFoodsArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenuFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenuFood_Order_By>>,
+  where?: Maybe<RestaurantMenuFood_Bool_Exp>
+};
+
+
+export type RestaurantMenuRestaurantMenuFoods_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantMenuFood_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantMenuFood_Order_By>>,
+  where?: Maybe<RestaurantMenuFood_Bool_Exp>
 };
 
 export type RestaurantMenu_Aggregate = {
@@ -12470,6 +13725,8 @@ export type RestaurantMenu_Avg_Order_By = {
 };
 
 export type RestaurantMenu_Bool_Exp = {
+  Restaurant?: Maybe<Restaurant_Bool_Exp>,
+  RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
   _not?: Maybe<RestaurantMenu_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
@@ -12488,6 +13745,8 @@ export type RestaurantMenu_Inc_Input = {
 };
 
 export type RestaurantMenu_Insert_Input = {
+  Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
+  RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
@@ -12537,6 +13796,8 @@ export type RestaurantMenu_On_Conflict = {
 };
 
 export type RestaurantMenu_Order_By = {
+  Restaurant?: Maybe<Restaurant_Order_By>,
+  RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
@@ -12639,6 +13900,8 @@ export type RestaurantMenu_Variance_Order_By = {
 
 export type RestaurantMenuFood = {
    __typename?: 'RestaurantMenuFood',
+  RestaurantFood: RestaurantFood,
+  RestaurantMenu: RestaurantMenu,
   restaurantFoodID: Scalars['Int'],
   restaurantMenuFoodID: Scalars['Int'],
   restaurantMenuID: Scalars['Int'],
@@ -12704,6 +13967,8 @@ export type RestaurantMenuFood_Avg_Order_By = {
 };
 
 export type RestaurantMenuFood_Bool_Exp = {
+  RestaurantFood?: Maybe<RestaurantFood_Bool_Exp>,
+  RestaurantMenu?: Maybe<RestaurantMenu_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantMenuFood_Bool_Exp>>>,
   _not?: Maybe<RestaurantMenuFood_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenuFood_Bool_Exp>>>,
@@ -12723,6 +13988,8 @@ export type RestaurantMenuFood_Inc_Input = {
 };
 
 export type RestaurantMenuFood_Insert_Input = {
+  RestaurantFood?: Maybe<RestaurantFood_Obj_Rel_Insert_Input>,
+  RestaurantMenu?: Maybe<RestaurantMenu_Obj_Rel_Insert_Input>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
@@ -12772,6 +14039,8 @@ export type RestaurantMenuFood_On_Conflict = {
 };
 
 export type RestaurantMenuFood_Order_By = {
+  RestaurantFood?: Maybe<RestaurantFood_Order_By>,
+  RestaurantMenu?: Maybe<RestaurantMenu_Order_By>,
   restaurantFoodID?: Maybe<Order_By>,
   restaurantMenuFoodID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
@@ -12888,8 +14157,28 @@ export type RestaurantMenuFood_Variance_Order_By = {
 
 export type RestaurantType = {
    __typename?: 'RestaurantType',
+  Restaurants: Array<Restaurant>,
+  Restaurants_aggregate: Restaurant_Aggregate,
   restaurantTypeID: Scalars['Int'],
   type: Scalars['String'],
+};
+
+
+export type RestaurantTypeRestaurantsArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
+
+export type RestaurantTypeRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
 };
 
 export type RestaurantType_Aggregate = {
@@ -12948,6 +14237,7 @@ export type RestaurantType_Avg_Order_By = {
 };
 
 export type RestaurantType_Bool_Exp = {
+  Restaurants?: Maybe<Restaurant_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantType_Bool_Exp>>>,
   _not?: Maybe<RestaurantType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantType_Bool_Exp>>>,
@@ -12964,6 +14254,7 @@ export type RestaurantType_Inc_Input = {
 };
 
 export type RestaurantType_Insert_Input = {
+  Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
   restaurantTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -13008,6 +14299,7 @@ export type RestaurantType_On_Conflict = {
 };
 
 export type RestaurantType_Order_By = {
+  Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
@@ -13092,10 +14384,31 @@ export type RestaurantType_Variance_Order_By = {
 
 export type RestaurantWorkingDay = {
    __typename?: 'RestaurantWorkingDay',
+  Day: Day,
+  RestaurantWorkingDaySchedules: Array<RestaurantWorkingDaySchedule>,
+  RestaurantWorkingDaySchedules_aggregate: RestaurantWorkingDaySchedule_Aggregate,
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
   openHour: Scalars['timetz'],
   restaurantWorkingDayID: Scalars['Int'],
+};
+
+
+export type RestaurantWorkingDayRestaurantWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDaySchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type RestaurantWorkingDayRestaurantWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDaySchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>
 };
 
 export type RestaurantWorkingDay_Aggregate = {
@@ -13156,6 +14469,8 @@ export type RestaurantWorkingDay_Avg_Order_By = {
 };
 
 export type RestaurantWorkingDay_Bool_Exp = {
+  Day?: Maybe<Day_Bool_Exp>,
+  RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantWorkingDay_Bool_Exp>>>,
   _not?: Maybe<RestaurantWorkingDay_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantWorkingDay_Bool_Exp>>>,
@@ -13175,6 +14490,8 @@ export type RestaurantWorkingDay_Inc_Input = {
 };
 
 export type RestaurantWorkingDay_Insert_Input = {
+  Day?: Maybe<Day_Obj_Rel_Insert_Input>,
+  RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Arr_Rel_Insert_Input>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
   openHour?: Maybe<Scalars['timetz']>,
@@ -13229,6 +14546,8 @@ export type RestaurantWorkingDay_On_Conflict = {
 };
 
 export type RestaurantWorkingDay_Order_By = {
+  Day?: Maybe<Day_Order_By>,
+  RestaurantWorkingDaySchedules_aggregate?: Maybe<RestaurantWorkingDaySchedule_Aggregate_Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
   openHour?: Maybe<Order_By>,
@@ -13335,6 +14654,8 @@ export type RestaurantWorkingDay_Variance_Order_By = {
 
 export type RestaurantWorkingDaySchedule = {
    __typename?: 'RestaurantWorkingDaySchedule',
+  RestaurantWorkingDay: RestaurantWorkingDay,
+  RestaurantWorkingSchedule: RestaurantWorkingSchedule,
   restaurantWorkingDayID: Scalars['Int'],
   restaurantWorkingDaySchedule: Scalars['Int'],
   restaurantWorkingScheduleID: Scalars['Int'],
@@ -13400,6 +14721,8 @@ export type RestaurantWorkingDaySchedule_Avg_Order_By = {
 };
 
 export type RestaurantWorkingDaySchedule_Bool_Exp = {
+  RestaurantWorkingDay?: Maybe<RestaurantWorkingDay_Bool_Exp>,
+  RestaurantWorkingSchedule?: Maybe<RestaurantWorkingSchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantWorkingDaySchedule_Bool_Exp>>>,
   _not?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantWorkingDaySchedule_Bool_Exp>>>,
@@ -13419,6 +14742,8 @@ export type RestaurantWorkingDaySchedule_Inc_Input = {
 };
 
 export type RestaurantWorkingDaySchedule_Insert_Input = {
+  RestaurantWorkingDay?: Maybe<RestaurantWorkingDay_Obj_Rel_Insert_Input>,
+  RestaurantWorkingSchedule?: Maybe<RestaurantWorkingSchedule_Obj_Rel_Insert_Input>,
   restaurantWorkingDayID?: Maybe<Scalars['Int']>,
   restaurantWorkingDaySchedule?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -13468,6 +14793,8 @@ export type RestaurantWorkingDaySchedule_On_Conflict = {
 };
 
 export type RestaurantWorkingDaySchedule_Order_By = {
+  RestaurantWorkingDay?: Maybe<RestaurantWorkingDay_Order_By>,
+  RestaurantWorkingSchedule?: Maybe<RestaurantWorkingSchedule_Order_By>,
   restaurantWorkingDayID?: Maybe<Order_By>,
   restaurantWorkingDaySchedule?: Maybe<Order_By>,
   restaurantWorkingScheduleID?: Maybe<Order_By>,
@@ -13584,10 +14911,31 @@ export type RestaurantWorkingDaySchedule_Variance_Order_By = {
 
 export type RestaurantWorkingSchedule = {
    __typename?: 'RestaurantWorkingSchedule',
+  Restaurant: Restaurant,
+  RestaurantWorkingDaySchedules: Array<RestaurantWorkingDaySchedule>,
+  RestaurantWorkingDaySchedules_aggregate: RestaurantWorkingDaySchedule_Aggregate,
   finishDate: Scalars['timestamptz'],
   restaurantID: Scalars['Int'],
   restaurantWorkingScheduleID: Scalars['Int'],
   startDate: Scalars['timestamptz'],
+};
+
+
+export type RestaurantWorkingScheduleRestaurantWorkingDaySchedulesArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDaySchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>
+};
+
+
+export type RestaurantWorkingScheduleRestaurantWorkingDaySchedules_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantWorkingDaySchedule_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantWorkingDaySchedule_Order_By>>,
+  where?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>
 };
 
 export type RestaurantWorkingSchedule_Aggregate = {
@@ -13648,6 +14996,8 @@ export type RestaurantWorkingSchedule_Avg_Order_By = {
 };
 
 export type RestaurantWorkingSchedule_Bool_Exp = {
+  Restaurant?: Maybe<Restaurant_Bool_Exp>,
+  RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RestaurantWorkingSchedule_Bool_Exp>>>,
   _not?: Maybe<RestaurantWorkingSchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantWorkingSchedule_Bool_Exp>>>,
@@ -13667,6 +15017,8 @@ export type RestaurantWorkingSchedule_Inc_Input = {
 };
 
 export type RestaurantWorkingSchedule_Insert_Input = {
+  Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
+  RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Arr_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -13721,6 +15073,8 @@ export type RestaurantWorkingSchedule_On_Conflict = {
 };
 
 export type RestaurantWorkingSchedule_Order_By = {
+  Restaurant?: Maybe<Restaurant_Order_By>,
+  RestaurantWorkingDaySchedules_aggregate?: Maybe<RestaurantWorkingDaySchedule_Aggregate_Order_By>,
   finishDate?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantWorkingScheduleID?: Maybe<Order_By>,
@@ -13827,9 +15181,70 @@ export type RestaurantWorkingSchedule_Variance_Order_By = {
 
 export type Room = {
    __typename?: 'Room',
+  HotelRooms: Array<HotelRoom>,
+  HotelRooms_aggregate: HotelRoom_Aggregate,
+  RoomPictures: Array<RoomPicture>,
+  RoomPictures_aggregate: RoomPicture_Aggregate,
+  RoomPrices: Array<RoomPrice>,
+  RoomPrices_aggregate: RoomPrice_Aggregate,
+  RoomProperty: RoomProperty,
   roomID: Scalars['Int'],
   roomNo: Scalars['String'],
   roomPropertyID: Scalars['Int'],
+};
+
+
+export type RoomHotelRoomsArgs = {
+  distinct_on?: Maybe<Array<HotelRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelRoom_Order_By>>,
+  where?: Maybe<HotelRoom_Bool_Exp>
+};
+
+
+export type RoomHotelRooms_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelRoom_Order_By>>,
+  where?: Maybe<HotelRoom_Bool_Exp>
+};
+
+
+export type RoomRoomPicturesArgs = {
+  distinct_on?: Maybe<Array<RoomPicture_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPicture_Order_By>>,
+  where?: Maybe<RoomPicture_Bool_Exp>
+};
+
+
+export type RoomRoomPictures_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPicture_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPicture_Order_By>>,
+  where?: Maybe<RoomPicture_Bool_Exp>
+};
+
+
+export type RoomRoomPricesArgs = {
+  distinct_on?: Maybe<Array<RoomPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPrice_Order_By>>,
+  where?: Maybe<RoomPrice_Bool_Exp>
+};
+
+
+export type RoomRoomPrices_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPrice_Order_By>>,
+  where?: Maybe<RoomPrice_Bool_Exp>
 };
 
 export type Room_Aggregate = {
@@ -13890,6 +15305,10 @@ export type Room_Avg_Order_By = {
 };
 
 export type Room_Bool_Exp = {
+  HotelRooms?: Maybe<HotelRoom_Bool_Exp>,
+  RoomPictures?: Maybe<RoomPicture_Bool_Exp>,
+  RoomPrices?: Maybe<RoomPrice_Bool_Exp>,
+  RoomProperty?: Maybe<RoomProperty_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
   _not?: Maybe<Room_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
@@ -13908,6 +15327,10 @@ export type Room_Inc_Input = {
 };
 
 export type Room_Insert_Input = {
+  HotelRooms?: Maybe<HotelRoom_Arr_Rel_Insert_Input>,
+  RoomPictures?: Maybe<RoomPicture_Arr_Rel_Insert_Input>,
+  RoomPrices?: Maybe<RoomPrice_Arr_Rel_Insert_Input>,
+  RoomProperty?: Maybe<RoomProperty_Obj_Rel_Insert_Input>,
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
@@ -13957,6 +15380,10 @@ export type Room_On_Conflict = {
 };
 
 export type Room_Order_By = {
+  HotelRooms_aggregate?: Maybe<HotelRoom_Aggregate_Order_By>,
+  RoomPictures_aggregate?: Maybe<RoomPicture_Aggregate_Order_By>,
+  RoomPrices_aggregate?: Maybe<RoomPrice_Aggregate_Order_By>,
+  RoomProperty?: Maybe<RoomProperty_Order_By>,
   roomID?: Maybe<Order_By>,
   roomNo?: Maybe<Order_By>,
   roomPropertyID?: Maybe<Order_By>,
@@ -14059,6 +15486,7 @@ export type Room_Variance_Order_By = {
 
 export type RoomPicture = {
    __typename?: 'RoomPicture',
+  Room: Room,
   addDate: Scalars['timestamptz'],
   roomID: Scalars['Int'],
   roomPictureID: Scalars['Int'],
@@ -14123,6 +15551,7 @@ export type RoomPicture_Avg_Order_By = {
 };
 
 export type RoomPicture_Bool_Exp = {
+  Room?: Maybe<Room_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RoomPicture_Bool_Exp>>>,
   _not?: Maybe<RoomPicture_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomPicture_Bool_Exp>>>,
@@ -14142,6 +15571,7 @@ export type RoomPicture_Inc_Input = {
 };
 
 export type RoomPicture_Insert_Input = {
+  Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   addDate?: Maybe<Scalars['timestamptz']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPictureID?: Maybe<Scalars['Int']>,
@@ -14196,6 +15626,7 @@ export type RoomPicture_On_Conflict = {
 };
 
 export type RoomPicture_Order_By = {
+  Room?: Maybe<Room_Order_By>,
   addDate?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
   roomPictureID?: Maybe<Order_By>,
@@ -14302,6 +15733,7 @@ export type RoomPicture_Variance_Order_By = {
 
 export type RoomPrice = {
    __typename?: 'RoomPrice',
+  Room: Room,
   finishDate: Scalars['timestamptz'],
   price: Scalars['Float'],
   roomID: Scalars['Int'],
@@ -14369,6 +15801,7 @@ export type RoomPrice_Avg_Order_By = {
 };
 
 export type RoomPrice_Bool_Exp = {
+  Room?: Maybe<Room_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RoomPrice_Bool_Exp>>>,
   _not?: Maybe<RoomPrice_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomPrice_Bool_Exp>>>,
@@ -14389,6 +15822,7 @@ export type RoomPrice_Inc_Input = {
 };
 
 export type RoomPrice_Insert_Input = {
+  Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
   price?: Maybe<Scalars['Float']>,
   roomID?: Maybe<Scalars['Int']>,
@@ -14448,6 +15882,7 @@ export type RoomPrice_On_Conflict = {
 };
 
 export type RoomPrice_Order_By = {
+  Room?: Maybe<Room_Order_By>,
   finishDate?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
@@ -14572,8 +16007,28 @@ export type RoomPrice_Variance_Order_By = {
 
 export type RoomProperty = {
    __typename?: 'RoomProperty',
+  Rooms: Array<Room>,
+  Rooms_aggregate: Room_Aggregate,
   content: Scalars['String'],
   roomPropertyID: Scalars['Int'],
+};
+
+
+export type RoomPropertyRoomsArgs = {
+  distinct_on?: Maybe<Array<Room_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Room_Order_By>>,
+  where?: Maybe<Room_Bool_Exp>
+};
+
+
+export type RoomPropertyRooms_AggregateArgs = {
+  distinct_on?: Maybe<Array<Room_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Room_Order_By>>,
+  where?: Maybe<Room_Bool_Exp>
 };
 
 export type RoomProperty_Aggregate = {
@@ -14632,6 +16087,7 @@ export type RoomProperty_Avg_Order_By = {
 };
 
 export type RoomProperty_Bool_Exp = {
+  Rooms?: Maybe<Room_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RoomProperty_Bool_Exp>>>,
   _not?: Maybe<RoomProperty_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomProperty_Bool_Exp>>>,
@@ -14648,6 +16104,7 @@ export type RoomProperty_Inc_Input = {
 };
 
 export type RoomProperty_Insert_Input = {
+  Rooms?: Maybe<Room_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
 };
@@ -14692,6 +16149,7 @@ export type RoomProperty_On_Conflict = {
 };
 
 export type RoomProperty_Order_By = {
+  Rooms_aggregate?: Maybe<Room_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
   roomPropertyID?: Maybe<Order_By>,
 };
@@ -16280,8 +17738,28 @@ export type Subscription_RootUser_By_PkArgs = {
 
 export type Tag = {
    __typename?: 'Tag',
+  ArticleTags: Array<ArticleTag>,
+  ArticleTags_aggregate: ArticleTag_Aggregate,
   name: Scalars['String'],
   tagID: Scalars['Int'],
+};
+
+
+export type TagArticleTagsArgs = {
+  distinct_on?: Maybe<Array<ArticleTag_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleTag_Order_By>>,
+  where?: Maybe<ArticleTag_Bool_Exp>
+};
+
+
+export type TagArticleTags_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArticleTag_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleTag_Order_By>>,
+  where?: Maybe<ArticleTag_Bool_Exp>
 };
 
 export type Tag_Aggregate = {
@@ -16340,6 +17818,7 @@ export type Tag_Avg_Order_By = {
 };
 
 export type Tag_Bool_Exp = {
+  ArticleTags?: Maybe<ArticleTag_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Tag_Bool_Exp>>>,
   _not?: Maybe<Tag_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Tag_Bool_Exp>>>,
@@ -16356,6 +17835,7 @@ export type Tag_Inc_Input = {
 };
 
 export type Tag_Insert_Input = {
+  ArticleTags?: Maybe<ArticleTag_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
   tagID?: Maybe<Scalars['Int']>,
 };
@@ -16400,6 +17880,7 @@ export type Tag_On_Conflict = {
 };
 
 export type Tag_Order_By = {
+  ArticleTags_aggregate?: Maybe<ArticleTag_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
   tagID?: Maybe<Order_By>,
 };
@@ -16510,11 +17991,112 @@ export type Timetz_Comparison_Exp = {
 
 export type TravelGuide = {
    __typename?: 'TravelGuide',
+  TravelGuideArchSites: Array<TravelGuideArchSite>,
+  TravelGuideArchSites_aggregate: TravelGuideArchSite_Aggregate,
+  TravelGuideHotels: Array<TravelGuideHotel>,
+  TravelGuideHotels_aggregate: TravelGuideHotel_Aggregate,
+  TravelGuideLocations: Array<TravelGuideLocation>,
+  TravelGuideLocations_aggregate: TravelGuideLocation_Aggregate,
+  TravelGuideMuseums: Array<TravelGuideMuseum>,
+  TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
+  TravelGuideRestaurants: Array<TravelGuideRestaurant>,
+  TravelGuideRestaurants_aggregate: TravelGuideRestaurant_Aggregate,
+  User: User,
   cost?: Maybe<Scalars['Float']>,
   creationDate: Scalars['timestamptz'],
   title: Scalars['String'],
   travelGuideID: Scalars['Int'],
   userID: Scalars['Int'],
+};
+
+
+export type TravelGuideTravelGuideArchSitesArgs = {
+  distinct_on?: Maybe<Array<TravelGuideArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideArchSite_Order_By>>,
+  where?: Maybe<TravelGuideArchSite_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideArchSites_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideArchSite_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideArchSite_Order_By>>,
+  where?: Maybe<TravelGuideArchSite_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideHotelsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideHotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideHotel_Order_By>>,
+  where?: Maybe<TravelGuideHotel_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideHotels_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideHotel_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideHotel_Order_By>>,
+  where?: Maybe<TravelGuideHotel_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideLocationsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideLocation_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideLocation_Order_By>>,
+  where?: Maybe<TravelGuideLocation_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideLocations_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideLocation_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideLocation_Order_By>>,
+  where?: Maybe<TravelGuideLocation_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideMuseumsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideMuseum_Order_By>>,
+  where?: Maybe<TravelGuideMuseum_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideMuseum_Order_By>>,
+  where?: Maybe<TravelGuideMuseum_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideRestaurantsArgs = {
+  distinct_on?: Maybe<Array<TravelGuideRestaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideRestaurant_Order_By>>,
+  where?: Maybe<TravelGuideRestaurant_Bool_Exp>
+};
+
+
+export type TravelGuideTravelGuideRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuideRestaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuideRestaurant_Order_By>>,
+  where?: Maybe<TravelGuideRestaurant_Bool_Exp>
 };
 
 export type TravelGuide_Aggregate = {
@@ -16577,6 +18159,12 @@ export type TravelGuide_Avg_Order_By = {
 };
 
 export type TravelGuide_Bool_Exp = {
+  TravelGuideArchSites?: Maybe<TravelGuideArchSite_Bool_Exp>,
+  TravelGuideHotels?: Maybe<TravelGuideHotel_Bool_Exp>,
+  TravelGuideLocations?: Maybe<TravelGuideLocation_Bool_Exp>,
+  TravelGuideMuseums?: Maybe<TravelGuideMuseum_Bool_Exp>,
+  TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Bool_Exp>,
+  User?: Maybe<User_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuide_Bool_Exp>>>,
   _not?: Maybe<TravelGuide_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuide_Bool_Exp>>>,
@@ -16598,6 +18186,12 @@ export type TravelGuide_Inc_Input = {
 };
 
 export type TravelGuide_Insert_Input = {
+  TravelGuideArchSites?: Maybe<TravelGuideArchSite_Arr_Rel_Insert_Input>,
+  TravelGuideHotels?: Maybe<TravelGuideHotel_Arr_Rel_Insert_Input>,
+  TravelGuideLocations?: Maybe<TravelGuideLocation_Arr_Rel_Insert_Input>,
+  TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
+  TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Arr_Rel_Insert_Input>,
+  User?: Maybe<User_Obj_Rel_Insert_Input>,
   cost?: Maybe<Scalars['Float']>,
   creationDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
@@ -16657,6 +18251,12 @@ export type TravelGuide_On_Conflict = {
 };
 
 export type TravelGuide_Order_By = {
+  TravelGuideArchSites_aggregate?: Maybe<TravelGuideArchSite_Aggregate_Order_By>,
+  TravelGuideHotels_aggregate?: Maybe<TravelGuideHotel_Aggregate_Order_By>,
+  TravelGuideLocations_aggregate?: Maybe<TravelGuideLocation_Aggregate_Order_By>,
+  TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
+  TravelGuideRestaurants_aggregate?: Maybe<TravelGuideRestaurant_Aggregate_Order_By>,
+  User?: Maybe<User_Order_By>,
   cost?: Maybe<Order_By>,
   creationDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
@@ -16781,6 +18381,8 @@ export type TravelGuide_Variance_Order_By = {
 
 export type TravelGuideArchSite = {
    __typename?: 'TravelGuideArchSite',
+  ArchSite: ArchSite,
+  TravelGuide: TravelGuide,
   archSiteID: Scalars['Int'],
   note?: Maybe<Scalars['String']>,
   travelGuideArchSiteID: Scalars['Int'],
@@ -16847,6 +18449,8 @@ export type TravelGuideArchSite_Avg_Order_By = {
 };
 
 export type TravelGuideArchSite_Bool_Exp = {
+  ArchSite?: Maybe<ArchSite_Bool_Exp>,
+  TravelGuide?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuideArchSite_Bool_Exp>>>,
   _not?: Maybe<TravelGuideArchSite_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideArchSite_Bool_Exp>>>,
@@ -16867,6 +18471,8 @@ export type TravelGuideArchSite_Inc_Input = {
 };
 
 export type TravelGuideArchSite_Insert_Input = {
+  ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
+  TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   archSiteID?: Maybe<Scalars['Int']>,
   note?: Maybe<Scalars['String']>,
   travelGuideArchSiteID?: Maybe<Scalars['Int']>,
@@ -16921,6 +18527,8 @@ export type TravelGuideArchSite_On_Conflict = {
 };
 
 export type TravelGuideArchSite_Order_By = {
+  ArchSite?: Maybe<ArchSite_Order_By>,
+  TravelGuide?: Maybe<TravelGuide_Order_By>,
   archSiteID?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideArchSiteID?: Maybe<Order_By>,
@@ -17041,6 +18649,8 @@ export type TravelGuideArchSite_Variance_Order_By = {
 
 export type TravelGuideHotel = {
    __typename?: 'TravelGuideHotel',
+  Hotel: Hotel,
+  TravelGuide: TravelGuide,
   hotelID: Scalars['Int'],
   note?: Maybe<Scalars['String']>,
   travelGuideHotel: Scalars['Int'],
@@ -17107,6 +18717,8 @@ export type TravelGuideHotel_Avg_Order_By = {
 };
 
 export type TravelGuideHotel_Bool_Exp = {
+  Hotel?: Maybe<Hotel_Bool_Exp>,
+  TravelGuide?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuideHotel_Bool_Exp>>>,
   _not?: Maybe<TravelGuideHotel_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideHotel_Bool_Exp>>>,
@@ -17127,6 +18739,8 @@ export type TravelGuideHotel_Inc_Input = {
 };
 
 export type TravelGuideHotel_Insert_Input = {
+  Hotel?: Maybe<Hotel_Obj_Rel_Insert_Input>,
+  TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   hotelID?: Maybe<Scalars['Int']>,
   note?: Maybe<Scalars['String']>,
   travelGuideHotel?: Maybe<Scalars['Int']>,
@@ -17181,6 +18795,8 @@ export type TravelGuideHotel_On_Conflict = {
 };
 
 export type TravelGuideHotel_Order_By = {
+  Hotel?: Maybe<Hotel_Order_By>,
+  TravelGuide?: Maybe<TravelGuide_Order_By>,
   hotelID?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideHotel?: Maybe<Order_By>,
@@ -17301,6 +18917,8 @@ export type TravelGuideHotel_Variance_Order_By = {
 
 export type TravelGuideLocation = {
    __typename?: 'TravelGuideLocation',
+  Location: Location,
+  TravelGuide: TravelGuide,
   locationID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
   travelGuideLocationID: Scalars['Int'],
@@ -17366,6 +18984,8 @@ export type TravelGuideLocation_Avg_Order_By = {
 };
 
 export type TravelGuideLocation_Bool_Exp = {
+  Location?: Maybe<Location_Bool_Exp>,
+  TravelGuide?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
   _not?: Maybe<TravelGuideLocation_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
@@ -17385,6 +19005,8 @@ export type TravelGuideLocation_Inc_Input = {
 };
 
 export type TravelGuideLocation_Insert_Input = {
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -17434,6 +19056,8 @@ export type TravelGuideLocation_On_Conflict = {
 };
 
 export type TravelGuideLocation_Order_By = {
+  Location?: Maybe<Location_Order_By>,
+  TravelGuide?: Maybe<TravelGuide_Order_By>,
   locationID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
   travelGuideLocationID?: Maybe<Order_By>,
@@ -17550,6 +19174,8 @@ export type TravelGuideLocation_Variance_Order_By = {
 
 export type TravelGuideMuseum = {
    __typename?: 'TravelGuideMuseum',
+  Museum: Museum,
+  TravelGuide: TravelGuide,
   museumID: Scalars['Int'],
   note?: Maybe<Scalars['String']>,
   travelGuideID: Scalars['Int'],
@@ -17616,6 +19242,8 @@ export type TravelGuideMuseum_Avg_Order_By = {
 };
 
 export type TravelGuideMuseum_Bool_Exp = {
+  Museum?: Maybe<Museum_Bool_Exp>,
+  TravelGuide?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuideMuseum_Bool_Exp>>>,
   _not?: Maybe<TravelGuideMuseum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideMuseum_Bool_Exp>>>,
@@ -17636,6 +19264,8 @@ export type TravelGuideMuseum_Inc_Input = {
 };
 
 export type TravelGuideMuseum_Insert_Input = {
+  Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
+  TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   museumID?: Maybe<Scalars['Int']>,
   note?: Maybe<Scalars['String']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -17690,6 +19320,8 @@ export type TravelGuideMuseum_On_Conflict = {
 };
 
 export type TravelGuideMuseum_Order_By = {
+  Museum?: Maybe<Museum_Order_By>,
+  TravelGuide?: Maybe<TravelGuide_Order_By>,
   museumID?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -17810,6 +19442,8 @@ export type TravelGuideMuseum_Variance_Order_By = {
 
 export type TravelGuideRestaurant = {
    __typename?: 'TravelGuideRestaurant',
+  Restaurant: Restaurant,
+  TravelGuide: TravelGuide,
   note?: Maybe<Scalars['String']>,
   restaurantID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
@@ -17876,6 +19510,8 @@ export type TravelGuideRestaurant_Avg_Order_By = {
 };
 
 export type TravelGuideRestaurant_Bool_Exp = {
+  Restaurant?: Maybe<Restaurant_Bool_Exp>,
+  TravelGuide?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<TravelGuideRestaurant_Bool_Exp>>>,
   _not?: Maybe<TravelGuideRestaurant_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideRestaurant_Bool_Exp>>>,
@@ -17896,6 +19532,8 @@ export type TravelGuideRestaurant_Inc_Input = {
 };
 
 export type TravelGuideRestaurant_Insert_Input = {
+  Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
+  TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   note?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -17950,6 +19588,8 @@ export type TravelGuideRestaurant_On_Conflict = {
 };
 
 export type TravelGuideRestaurant_Order_By = {
+  Restaurant?: Maybe<Restaurant_Order_By>,
+  TravelGuide?: Maybe<TravelGuide_Order_By>,
   note?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -18070,6 +19710,22 @@ export type TravelGuideRestaurant_Variance_Order_By = {
 
 export type User = {
    __typename?: 'User',
+  ArchSiteComments: Array<ArchSiteComment>,
+  ArchSiteComments_aggregate: ArchSiteComment_Aggregate,
+  ArticleUsers: Array<ArticleUser>,
+  ArticleUsers_aggregate: ArticleUser_Aggregate,
+  CompanyUsers: Array<CompanyUser>,
+  CompanyUsers_aggregate: CompanyUser_Aggregate,
+  HotelComments: Array<HotelComment>,
+  HotelComments_aggregate: HotelComment_Aggregate,
+  LoginType: LoginType,
+  MuseumComments: Array<MuseumComment>,
+  MuseumComments_aggregate: MuseumComment_Aggregate,
+  Phone?: Maybe<Phone>,
+  RestaurantComments: Array<RestaurantComment>,
+  RestaurantComments_aggregate: RestaurantComment_Aggregate,
+  TravelGuides: Array<TravelGuide>,
+  TravelGuides_aggregate: TravelGuide_Aggregate,
   accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked: Scalars['Boolean'],
@@ -18084,6 +19740,132 @@ export type User = {
   surname?: Maybe<Scalars['String']>,
   userID: Scalars['Int'],
   userTypeID: Scalars['Int'],
+};
+
+
+export type UserArchSiteCommentsArgs = {
+  distinct_on?: Maybe<Array<ArchSiteComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteComment_Order_By>>,
+  where?: Maybe<ArchSiteComment_Bool_Exp>
+};
+
+
+export type UserArchSiteComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArchSiteComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArchSiteComment_Order_By>>,
+  where?: Maybe<ArchSiteComment_Bool_Exp>
+};
+
+
+export type UserArticleUsersArgs = {
+  distinct_on?: Maybe<Array<ArticleUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleUser_Order_By>>,
+  where?: Maybe<ArticleUser_Bool_Exp>
+};
+
+
+export type UserArticleUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<ArticleUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<ArticleUser_Order_By>>,
+  where?: Maybe<ArticleUser_Bool_Exp>
+};
+
+
+export type UserCompanyUsersArgs = {
+  distinct_on?: Maybe<Array<CompanyUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyUser_Order_By>>,
+  where?: Maybe<CompanyUser_Bool_Exp>
+};
+
+
+export type UserCompanyUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<CompanyUser_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<CompanyUser_Order_By>>,
+  where?: Maybe<CompanyUser_Bool_Exp>
+};
+
+
+export type UserHotelCommentsArgs = {
+  distinct_on?: Maybe<Array<HotelComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelComment_Order_By>>,
+  where?: Maybe<HotelComment_Bool_Exp>
+};
+
+
+export type UserHotelComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<HotelComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<HotelComment_Order_By>>,
+  where?: Maybe<HotelComment_Bool_Exp>
+};
+
+
+export type UserMuseumCommentsArgs = {
+  distinct_on?: Maybe<Array<MuseumComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumComment_Order_By>>,
+  where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type UserMuseumComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumComment_Order_By>>,
+  where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type UserRestaurantCommentsArgs = {
+  distinct_on?: Maybe<Array<RestaurantComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantComment_Order_By>>,
+  where?: Maybe<RestaurantComment_Bool_Exp>
+};
+
+
+export type UserRestaurantComments_AggregateArgs = {
+  distinct_on?: Maybe<Array<RestaurantComment_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RestaurantComment_Order_By>>,
+  where?: Maybe<RestaurantComment_Bool_Exp>
+};
+
+
+export type UserTravelGuidesArgs = {
+  distinct_on?: Maybe<Array<TravelGuide_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuide_Order_By>>,
+  where?: Maybe<TravelGuide_Bool_Exp>
+};
+
+
+export type UserTravelGuides_AggregateArgs = {
+  distinct_on?: Maybe<Array<TravelGuide_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<TravelGuide_Order_By>>,
+  where?: Maybe<TravelGuide_Bool_Exp>
 };
 
 export type User_Aggregate = {
@@ -18148,6 +19930,15 @@ export type User_Avg_Order_By = {
 };
 
 export type User_Bool_Exp = {
+  ArchSiteComments?: Maybe<ArchSiteComment_Bool_Exp>,
+  ArticleUsers?: Maybe<ArticleUser_Bool_Exp>,
+  CompanyUsers?: Maybe<CompanyUser_Bool_Exp>,
+  HotelComments?: Maybe<HotelComment_Bool_Exp>,
+  LoginType?: Maybe<LoginType_Bool_Exp>,
+  MuseumComments?: Maybe<MuseumComment_Bool_Exp>,
+  Phone?: Maybe<Phone_Bool_Exp>,
+  RestaurantComments?: Maybe<RestaurantComment_Bool_Exp>,
+  TravelGuides?: Maybe<TravelGuide_Bool_Exp>,
   _and?: Maybe<Array<Maybe<User_Bool_Exp>>>,
   _not?: Maybe<User_Bool_Exp>,
   _or?: Maybe<Array<Maybe<User_Bool_Exp>>>,
@@ -18180,6 +19971,15 @@ export type User_Inc_Input = {
 };
 
 export type User_Insert_Input = {
+  ArchSiteComments?: Maybe<ArchSiteComment_Arr_Rel_Insert_Input>,
+  ArticleUsers?: Maybe<ArticleUser_Arr_Rel_Insert_Input>,
+  CompanyUsers?: Maybe<CompanyUser_Arr_Rel_Insert_Input>,
+  HotelComments?: Maybe<HotelComment_Arr_Rel_Insert_Input>,
+  LoginType?: Maybe<LoginType_Obj_Rel_Insert_Input>,
+  MuseumComments?: Maybe<MuseumComment_Arr_Rel_Insert_Input>,
+  Phone?: Maybe<Phone_Obj_Rel_Insert_Input>,
+  RestaurantComments?: Maybe<RestaurantComment_Arr_Rel_Insert_Input>,
+  TravelGuides?: Maybe<TravelGuide_Arr_Rel_Insert_Input>,
   accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked?: Maybe<Scalars['Boolean']>,
@@ -18276,6 +20076,15 @@ export type User_On_Conflict = {
 };
 
 export type User_Order_By = {
+  ArchSiteComments_aggregate?: Maybe<ArchSiteComment_Aggregate_Order_By>,
+  ArticleUsers_aggregate?: Maybe<ArticleUser_Aggregate_Order_By>,
+  CompanyUsers_aggregate?: Maybe<CompanyUser_Aggregate_Order_By>,
+  HotelComments_aggregate?: Maybe<HotelComment_Aggregate_Order_By>,
+  LoginType?: Maybe<LoginType_Order_By>,
+  MuseumComments_aggregate?: Maybe<MuseumComment_Aggregate_Order_By>,
+  Phone?: Maybe<Phone_Order_By>,
+  RestaurantComments_aggregate?: Maybe<RestaurantComment_Aggregate_Order_By>,
+  TravelGuides_aggregate?: Maybe<TravelGuide_Aggregate_Order_By>,
   accessToken?: Maybe<Order_By>,
   birthDate?: Maybe<Order_By>,
   isBlocked?: Maybe<Order_By>,
@@ -18675,11 +20484,14 @@ export type ControlUserMutation = (
 );
 
 export type AddCompanyMutationVariables = {
-  name?: Maybe<Scalars['String']>,
-  taxNumber?: Maybe<Scalars['String']>,
-  registerDate?: Maybe<Scalars['timestamptz']>,
-  mail?: Maybe<Scalars['String']>,
-  locationID?: Maybe<Scalars['Int']>
+  name: Scalars['String'],
+  taxNumber: Scalars['String'],
+  faxNumber?: Maybe<Scalars['String']>,
+  registerDate: Scalars['timestamptz'],
+  mail: Scalars['String'],
+  longtitude: Scalars['Float'],
+  latitude: Scalars['Float'],
+  address?: Maybe<Scalars['String']>
 };
 
 
@@ -18689,7 +20501,7 @@ export type AddCompanyMutation = (
     { __typename?: 'Company_mutation_response' }
     & { returning: Array<(
       { __typename?: 'Company' }
-      & Pick<Company, 'companyID'>
+      & Pick<Company, 'companyID' | 'locationID'>
     )> }
   )> }
 );
@@ -18726,11 +20538,12 @@ export function withControlUser<TProps, TChildProps = {}>(operationOptions?: Apo
 export type ControlUserMutationResult = ApolloReactCommon.MutationResult<ControlUserMutation>;
 export type ControlUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlUserMutation, ControlUserMutationVariables>;
 export const AddCompanyDocument = gql`
-    mutation addCompany($name: String, $taxNumber: String, $registerDate: timestamptz, $mail: String, $locationID: Int) {
+    mutation addCompany($name: String!, $taxNumber: String!, $faxNumber: String, $registerDate: timestamptz!, $mail: String!, $longtitude: Float!, $latitude: Float!, $address: String) {
   __typename
-  insert_Company(objects: {name: $name, taxNumber: $taxNumber, registerDate: $registerDate, mail: $mail, locationID: $locationID}) {
+  insert_Company(objects: {name: $name, taxNumber: $taxNumber, faxNumber: $faxNumber, registerDate: $registerDate, mail: $mail, Location: {data: {longtitude: $longtitude, latitude: $latitude, address: $address}}}) {
     returning {
       companyID
+      locationID
     }
   }
 }

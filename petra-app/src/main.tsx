@@ -8,6 +8,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
 import { AddLocationScreen } from './app/pages/screens/AddLocationScreen';
+import { AddCompanyScreen } from './app/pages/screens/AddCompanyScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -26,10 +27,11 @@ const RootStack = createStackNavigator(
 	{
 		HomeScreen: { screen: HomeScreen },
 		LoginScreen: { screen: LoginScreen },
-		AddLocationScreen: { screen: AddLocationScreen }
+		AddLocationScreen: { screen: AddLocationScreen },
+		AddCompanyScreen: { screen: AddCompanyScreen }
 	},
 	{
-		initialRouteName: 'LoginScreen',
+		initialRouteName: 'AddCompanyScreen',
 		defaultNavigationOptions: ({ navigation }) => {
 			return MyHeader(navigation);
 		}

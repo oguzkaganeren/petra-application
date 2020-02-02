@@ -39,10 +39,10 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 				<SearchComponent></SearchComponent>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddLocationScreen', {});
+						this.props.navigation.navigate('AddCompanyScreen', {});
 					}}
 				>
-					Add Location
+					Add Company
 				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
