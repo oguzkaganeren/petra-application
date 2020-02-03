@@ -9,12 +9,13 @@ import { HeaderComponent } from '../src/app/components/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
 import { AddLocationScreen } from './app/pages/screens/AddLocationScreen';
 import { AddCompanyScreen } from './app/pages/screens/AddCompanyScreen';
+import { AddRestaurantScreen } from './app/pages/screens/AddRestaurantScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://10.39.156.18:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.99.100:8080/v1/graphql' });
 const MyHeader = navigation => {
 	return {
 		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
@@ -28,7 +29,8 @@ const RootStack = createStackNavigator(
 		HomeScreen: { screen: HomeScreen },
 		LoginScreen: { screen: LoginScreen },
 		AddLocationScreen: { screen: AddLocationScreen },
-		AddCompanyScreen: { screen: AddCompanyScreen }
+		AddCompanyScreen: { screen: AddCompanyScreen },
+		AddRestaurantScreen: { screen: AddRestaurantScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
