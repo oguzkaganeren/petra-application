@@ -80,3 +80,17 @@ mutation addRestaurant(
 		}
 	}
 }
+mutation addHotel($name: String, $companyID: Int, $latitude: Float, $longtitude: Float, $address: String) {
+	__typename
+	insert_Hotel(
+		objects: {
+			name: $name
+			companyID: $companyID
+			Location: { data: { latitude: $latitude, longtitude: $longtitude, address: $address } }
+		}
+	) {
+		returning {
+			hotelID
+		}
+	}
+}

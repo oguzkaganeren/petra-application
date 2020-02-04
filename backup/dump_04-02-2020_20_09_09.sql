@@ -1450,7 +1450,8 @@ CREATE TABLE public."Hotel" (
     "locationID" integer NOT NULL,
     name text NOT NULL,
     description text,
-    star real DEFAULT 0
+    star real DEFAULT 0,
+    "taxNumber" text NOT NULL
 );
 
 
@@ -1990,7 +1991,8 @@ CREATE TABLE public."Restaurant" (
     since date NOT NULL,
     star real DEFAULT 0,
     "locationID" integer NOT NULL,
-    "companyID" integer NOT NULL
+    "companyID" integer NOT NULL,
+    "taxNumber" text NOT NULL
 );
 
 
@@ -3513,7 +3515,7 @@ public	Restaurant	Company	object	{"foreign_key_constraint_on": "companyID"}	\N	f
 --
 
 COPY hdb_catalog.hdb_schema_update_event (instance_id, occurred_at) FROM stdin;
-eaa82a4b-951c-4375-9c1a-523e0c02b11c	2020-02-04 16:46:17.689321+00
+eaa82a4b-951c-4375-9c1a-523e0c02b11c	2020-02-04 17:08:03.790201+00
 \.
 
 
@@ -3766,7 +3768,7 @@ COPY public."Day" ("dayID", name) FROM stdin;
 -- Data for Name: Hotel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Hotel" ("hotelID", "companyID", "locationID", name, description, star) FROM stdin;
+COPY public."Hotel" ("hotelID", "companyID", "locationID", name, description, star, "taxNumber") FROM stdin;
 \.
 
 
@@ -3812,6 +3814,7 @@ COPY public."Location" ("locationID", latitude, longtitude, address) FROM stdin;
 3	38.435444	27.141022	izmir
 5	25.02	42.25	test mah
 6	38.42727	27.145744	usak maj
+7	42.4	23.33	
 \.
 
 
@@ -3893,7 +3896,7 @@ COPY public."Phone" ("phoneID", phone) FROM stdin;
 -- Data for Name: Restaurant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Restaurant" ("restaurantID", name, "restaurantTypeID", "ISO", since, star, "locationID", "companyID") FROM stdin;
+COPY public."Restaurant" ("restaurantID", name, "restaurantTypeID", "ISO", since, star, "locationID", "companyID", "taxNumber") FROM stdin;
 \.
 
 
@@ -4249,14 +4252,14 @@ SELECT pg_catalog.setval('public."HotelService_hotelServiceHotelID_seq"', 1, fal
 -- Name: Hotel_hotelID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Hotel_hotelID_seq"', 1, false);
+SELECT pg_catalog.setval('public."Hotel_hotelID_seq"', 1, true);
 
 
 --
 -- Name: Location_locationID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Location_locationID_seq"', 6, true);
+SELECT pg_catalog.setval('public."Location_locationID_seq"', 7, true);
 
 
 --
