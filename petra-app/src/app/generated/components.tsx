@@ -11906,6 +11906,7 @@ export type Query_RootUser_By_PkArgs = {
 
 export type Restaurant = {
    __typename?: 'Restaurant',
+  Company: Company,
   ISO?: Maybe<Scalars['String']>,
   Location: Location,
   RestaurantAndCuisineTypes: Array<RestaurantAndCuisineType>,
@@ -11919,6 +11920,7 @@ export type Restaurant = {
   RestaurantWorkingSchedules_aggregate: RestaurantWorkingSchedule_Aggregate,
   TravelGuideRestaurants: Array<TravelGuideRestaurant>,
   TravelGuideRestaurants_aggregate: TravelGuideRestaurant_Aggregate,
+  companyID: Scalars['Int'],
   locationID: Scalars['Int'],
   name: Scalars['String'],
   restaurantID: Scalars['Int'],
@@ -12065,6 +12067,7 @@ export type Restaurant_Arr_Rel_Insert_Input = {
 
 export type Restaurant_Avg_Fields = {
    __typename?: 'Restaurant_avg_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12072,6 +12075,7 @@ export type Restaurant_Avg_Fields = {
 };
 
 export type Restaurant_Avg_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12079,6 +12083,7 @@ export type Restaurant_Avg_Order_By = {
 };
 
 export type Restaurant_Bool_Exp = {
+  Company?: Maybe<Company_Bool_Exp>,
   ISO?: Maybe<String_Comparison_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Bool_Exp>,
@@ -12090,6 +12095,7 @@ export type Restaurant_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Restaurant_Bool_Exp>>>,
   _not?: Maybe<Restaurant_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Restaurant_Bool_Exp>>>,
+  companyID?: Maybe<Int_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
@@ -12103,12 +12109,14 @@ export enum Restaurant_Constraint {
 }
 
 export type Restaurant_Inc_Input = {
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantTypeID?: Maybe<Scalars['Int']>,
 };
 
 export type Restaurant_Insert_Input = {
+  Company?: Maybe<Company_Obj_Rel_Insert_Input>,
   ISO?: Maybe<Scalars['String']>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Arr_Rel_Insert_Input>,
@@ -12117,6 +12125,7 @@ export type Restaurant_Insert_Input = {
   RestaurantType?: Maybe<RestaurantType_Obj_Rel_Insert_Input>,
   RestaurantWorkingSchedules?: Maybe<RestaurantWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Arr_Rel_Insert_Input>,
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -12128,6 +12137,7 @@ export type Restaurant_Insert_Input = {
 export type Restaurant_Max_Fields = {
    __typename?: 'Restaurant_max_fields',
   ISO?: Maybe<Scalars['String']>,
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -12138,6 +12148,7 @@ export type Restaurant_Max_Fields = {
 
 export type Restaurant_Max_Order_By = {
   ISO?: Maybe<Order_By>,
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -12149,6 +12160,7 @@ export type Restaurant_Max_Order_By = {
 export type Restaurant_Min_Fields = {
    __typename?: 'Restaurant_min_fields',
   ISO?: Maybe<Scalars['String']>,
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -12159,6 +12171,7 @@ export type Restaurant_Min_Fields = {
 
 export type Restaurant_Min_Order_By = {
   ISO?: Maybe<Order_By>,
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -12185,6 +12198,7 @@ export type Restaurant_On_Conflict = {
 };
 
 export type Restaurant_Order_By = {
+  Company?: Maybe<Company_Order_By>,
   ISO?: Maybe<Order_By>,
   Location?: Maybe<Location_Order_By>,
   RestaurantAndCuisineTypes_aggregate?: Maybe<RestaurantAndCuisineType_Aggregate_Order_By>,
@@ -12193,6 +12207,7 @@ export type Restaurant_Order_By = {
   RestaurantType?: Maybe<RestaurantType_Order_By>,
   RestaurantWorkingSchedules_aggregate?: Maybe<RestaurantWorkingSchedule_Aggregate_Order_By>,
   TravelGuideRestaurants_aggregate?: Maybe<TravelGuideRestaurant_Aggregate_Order_By>,
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -12203,6 +12218,7 @@ export type Restaurant_Order_By = {
 
 export enum Restaurant_Select_Column {
   Iso = 'ISO',
+  CompanyId = 'companyID',
   LocationId = 'locationID',
   Name = 'name',
   RestaurantId = 'restaurantID',
@@ -12213,6 +12229,7 @@ export enum Restaurant_Select_Column {
 
 export type Restaurant_Set_Input = {
   ISO?: Maybe<Scalars['String']>,
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -12223,6 +12240,7 @@ export type Restaurant_Set_Input = {
 
 export type Restaurant_Stddev_Fields = {
    __typename?: 'Restaurant_stddev_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12230,6 +12248,7 @@ export type Restaurant_Stddev_Fields = {
 };
 
 export type Restaurant_Stddev_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12238,6 +12257,7 @@ export type Restaurant_Stddev_Order_By = {
 
 export type Restaurant_Stddev_Pop_Fields = {
    __typename?: 'Restaurant_stddev_pop_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12245,6 +12265,7 @@ export type Restaurant_Stddev_Pop_Fields = {
 };
 
 export type Restaurant_Stddev_Pop_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12253,6 +12274,7 @@ export type Restaurant_Stddev_Pop_Order_By = {
 
 export type Restaurant_Stddev_Samp_Fields = {
    __typename?: 'Restaurant_stddev_samp_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12260,6 +12282,7 @@ export type Restaurant_Stddev_Samp_Fields = {
 };
 
 export type Restaurant_Stddev_Samp_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12268,6 +12291,7 @@ export type Restaurant_Stddev_Samp_Order_By = {
 
 export type Restaurant_Sum_Fields = {
    __typename?: 'Restaurant_sum_fields',
+  companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantTypeID?: Maybe<Scalars['Int']>,
@@ -12275,6 +12299,7 @@ export type Restaurant_Sum_Fields = {
 };
 
 export type Restaurant_Sum_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12283,6 +12308,7 @@ export type Restaurant_Sum_Order_By = {
 
 export enum Restaurant_Update_Column {
   Iso = 'ISO',
+  CompanyId = 'companyID',
   LocationId = 'locationID',
   Name = 'name',
   RestaurantId = 'restaurantID',
@@ -12293,6 +12319,7 @@ export enum Restaurant_Update_Column {
 
 export type Restaurant_Var_Pop_Fields = {
    __typename?: 'Restaurant_var_pop_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12300,6 +12327,7 @@ export type Restaurant_Var_Pop_Fields = {
 };
 
 export type Restaurant_Var_Pop_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12308,6 +12336,7 @@ export type Restaurant_Var_Pop_Order_By = {
 
 export type Restaurant_Var_Samp_Fields = {
    __typename?: 'Restaurant_var_samp_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12315,6 +12344,7 @@ export type Restaurant_Var_Samp_Fields = {
 };
 
 export type Restaurant_Var_Samp_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -12323,6 +12353,7 @@ export type Restaurant_Var_Samp_Order_By = {
 
 export type Restaurant_Variance_Fields = {
    __typename?: 'Restaurant_variance_fields',
+  companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantTypeID?: Maybe<Scalars['Float']>,
@@ -12330,6 +12361,7 @@ export type Restaurant_Variance_Fields = {
 };
 
 export type Restaurant_Variance_Order_By = {
+  companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
@@ -20507,6 +20539,28 @@ export type AddCompanyMutation = (
   )> }
 );
 
+export type AddRestaurantMutationVariables = {
+  ISO?: Maybe<Scalars['String']>,
+  latitude?: Maybe<Scalars['Float']>,
+  longtitude?: Maybe<Scalars['Float']>,
+  address?: Maybe<Scalars['String']>,
+  RestaurantType?: Maybe<Scalars['String']>,
+  name?: Maybe<Scalars['String']>,
+  since?: Maybe<Scalars['date']>
+};
+
+
+export type AddRestaurantMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Restaurant: Maybe<(
+    { __typename?: 'Restaurant_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Restaurant' }
+      & Pick<Restaurant, 'restaurantID'>
+    )> }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20569,3 +20623,33 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 };
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
+export const AddRestaurantDocument = gql`
+    mutation addRestaurant($ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date) {
+  __typename
+  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since}) {
+    returning {
+      restaurantID
+    }
+  }
+}
+    `;
+export type AddRestaurantMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantMutation, AddRestaurantMutationVariables>;
+export type AddRestaurantComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantMutation, AddRestaurantMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantComponent = (props: AddRestaurantComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantMutation, AddRestaurantMutationVariables> mutation={AddRestaurantDocument} {...props} />
+    );
+    
+export type AddRestaurantProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantMutation, AddRestaurantMutationVariables> & TChildProps;
+export function withAddRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantMutation,
+  AddRestaurantMutationVariables,
+  AddRestaurantProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantMutation, AddRestaurantMutationVariables, AddRestaurantProps<TChildProps>>(AddRestaurantDocument, {
+      alias: 'addRestaurant',
+      ...operationOptions
+    });
+};
+export type AddRestaurantMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMutation>;
+export type AddRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMutation, AddRestaurantMutationVariables>;
