@@ -14,7 +14,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://10.39.156.18:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://95.183.153.194:8080/v1/graphql' });
 const MyHeader = navigation => {
 	return {
 		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
