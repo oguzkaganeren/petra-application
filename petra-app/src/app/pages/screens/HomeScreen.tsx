@@ -20,20 +20,13 @@ export interface HomeState {}
 export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	constructor(props: HomeProps) {
 		super(props);
-		this.state = {
-			selectedTab: 0
-		};
-		this.updateIndex = this.updateIndex.bind(this);
-	}
-	updateIndex(selectedIndex) {
-		this.setState({ selectedTab: selectedIndex });
+		this.state = {};
 	}
 	/**
 	 * Renders home
 	 * @returns
 	 */
 	render() {
-		const { selectedTab } = this.state;
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
