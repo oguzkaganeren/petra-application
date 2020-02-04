@@ -82,34 +82,34 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											this.convertDateFormatForQuery(values.since) +
 											' '
 									);
-									// AddRestaurantMutation({
-									// 	variables: {
-									// 		name: values.name.toString(),
-									// 		taxNumber: values.taxNumber.toString(),
-									// 		registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
-									// 		mail: values.mail.toString(),
-									// 		longtitude: values.longtitude,
-									// 		latitude: values.latitude,
-									// 		address: values.address.toString(),
-									// 		userID: userID
-									// 	}
-									// })
-									// 	.then(res => {
-									// 		alert(JSON.stringify(res));
-									// 		ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
+									AddRestaurantMutation({
+										variables: {
+											name: values.name.toString(),
+											ISO: values.ISO.toString(),
+											since: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
+											longtitude: parseFloat(values.longtitude),
+											latitude: parseFloat(values.latitude),
+											address: values.address.toString(),
+											RestaurantType: values.RestaurantType,
+											CompanyID: 2
+										}
+									})
+										.then(res => {
+											alert(JSON.stringify(res));
+											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
-									// 		//this.props.navigation.navigate('Home');
-									// 	})
-									// 	.catch(err => {
-									// 		alert(err);
-									// 		console.log('name:' + values.name);
-									// 		console.log('tax:' + values.taxNumber);
-									// 		console.log('registerDate:' + values.registerDate);
-									// 		console.log('mail:' + values.mail);
-									// 		console.log('long:' + values.longtitude);
-									// 		console.log('lat:' + values.latitude);
-									// 		console.log('address:' + values.address);
-									// 	});
+											//this.props.navigation.navigate('Home');
+										})
+										.catch(err => {
+											alert(err);
+											console.log('name:' + values.name);
+											console.log('ISO:' + values.ISO);
+											console.log('since:' + values.since);
+											console.log('RestaurantType:' + values.RestaurantType);
+											console.log('long:' + values.longtitude);
+											console.log('lat:' + values.latitude);
+											console.log('address:' + values.address);
+										});
 									formikActions.setSubmitting(false);
 								}, 500);
 							}}
@@ -141,7 +141,9 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									<Input
 										label="Restaurant Type"
 										status={props.touched.RestaurantType && props.errors.RestaurantType ? 'danger' : 'success'}
-										caption={props.touched.mail && props.errors.RestaurantType ? props.errors.RestaurantType : ''}
+										caption={
+											props.touched.RestaurantType && props.errors.RestaurantType ? props.errors.RestaurantType : ''
+										}
 										placeholder="Enter Your Restaurant Type"
 										onChangeText={props.handleChange('RestaurantType')}
 										onBlur={props.handleBlur('RestaurantType')}

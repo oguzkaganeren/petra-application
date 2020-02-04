@@ -55,6 +55,7 @@ mutation addCompany(
 	}
 }
 mutation addRestaurant(
+	$CompanyID: Int
 	$ISO: String
 	$latitude: Float
 	$longtitude: Float
@@ -71,6 +72,7 @@ mutation addRestaurant(
 			RestaurantType: { data: { type: $RestaurantType } }
 			name: $name
 			since: $since
+			companyID: $CompanyID
 		}
 	) {
 		returning {
