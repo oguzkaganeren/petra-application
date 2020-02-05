@@ -1447,7 +1447,11 @@ ALTER SEQUENCE public."Day_dayID_seq" OWNED BY public."Day"."dayID";
 CREATE TABLE public."Hotel" (
     "hotelID" integer NOT NULL,
     "companyID" integer NOT NULL,
-    "locationID" integer NOT NULL
+    "locationID" integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    star real DEFAULT 0,
+    "taxNumber" text NOT NULL
 );
 
 
@@ -1987,7 +1991,8 @@ CREATE TABLE public."Restaurant" (
     since date NOT NULL,
     star real DEFAULT 0,
     "locationID" integer NOT NULL,
-    "companyID" integer NOT NULL
+    "companyID" integer NOT NULL,
+    "taxNumber" text NOT NULL
 );
 
 
@@ -3510,7 +3515,7 @@ public	Restaurant	Company	object	{"foreign_key_constraint_on": "companyID"}	\N	f
 --
 
 COPY hdb_catalog.hdb_schema_update_event (instance_id, occurred_at) FROM stdin;
-eaa82a4b-951c-4375-9c1a-523e0c02b11c	2020-02-04 15:15:16.747791+00
+eaa82a4b-951c-4375-9c1a-523e0c02b11c	2020-02-04 17:08:03.790201+00
 \.
 
 
@@ -3763,7 +3768,7 @@ COPY public."Day" ("dayID", name) FROM stdin;
 -- Data for Name: Hotel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Hotel" ("hotelID", "companyID", "locationID") FROM stdin;
+COPY public."Hotel" ("hotelID", "companyID", "locationID", name, description, star, "taxNumber") FROM stdin;
 \.
 
 
@@ -3809,6 +3814,7 @@ COPY public."Location" ("locationID", latitude, longtitude, address) FROM stdin;
 3	38.435444	27.141022	izmir
 5	25.02	42.25	test mah
 6	38.42727	27.145744	usak maj
+7	42.4	23.33	
 \.
 
 
@@ -3882,6 +3888,7 @@ COPY public."MuseumWorkingSchedule" ("museumWorkingScheduleID", "startDate", "fi
 --
 
 COPY public."Phone" ("phoneID", phone) FROM stdin;
+1	231241
 \.
 
 
@@ -3889,7 +3896,7 @@ COPY public."Phone" ("phoneID", phone) FROM stdin;
 -- Data for Name: Restaurant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Restaurant" ("restaurantID", name, "restaurantTypeID", "ISO", since, star, "locationID", "companyID") FROM stdin;
+COPY public."Restaurant" ("restaurantID", name, "restaurantTypeID", "ISO", since, star, "locationID", "companyID", "taxNumber") FROM stdin;
 \.
 
 
@@ -4074,7 +4081,7 @@ COPY public."TravelGuideRestaurant" ("travelGuideRestaurantID", "travelGuideID",
 --
 
 COPY public."User" ("userID", name, surname, mail, "birthDate", "registerDate", "loginDate", "loginIP", "loginTypeID", "profileImageUrl", "userTypeID", "isBlocked", "phoneID", "accessToken") FROM stdin;
-4	OĞUZ	\N	oguz.eren@ceng.deu.edu.tr	\N	2020-01-24 17:48:59.328+00	2020-02-03 16:00:31.312+00	192.168.232.2	1	\N	1	f	\N	ya29.Il-7B4QOklpVuY-vVSM8G9FA7PGy5J5IaUixP3rcVGOzK7fO4GhDuZ6Rc4dTCi9Wb5h3Sdy3hKH4Y2r5hUioE6_Ibv1ZoGcP_bLqadC3WSA3isBeDF-Rrh-fly0yQEv51w
+4	OĞUZ	\N	oguz.eren@ceng.deu.edu.tr	\N	2020-01-24 17:48:59.328+00	2020-02-04 16:26:34.438+00	192.168.232.2	1	\N	1	f	\N	ya29.Il-7B4QOklpVuY-vVSM8G9FA7PGy5J5IaUixP3rcVGOzK7fO4GhDuZ6Rc4dTCi9Wb5h3Sdy3hKH4Y2r5hUioE6_Ibv1ZoGcP_bLqadC3WSA3isBeDF-Rrh-fly0yQEv51w
 \.
 
 
@@ -4245,14 +4252,14 @@ SELECT pg_catalog.setval('public."HotelService_hotelServiceHotelID_seq"', 1, fal
 -- Name: Hotel_hotelID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Hotel_hotelID_seq"', 1, false);
+SELECT pg_catalog.setval('public."Hotel_hotelID_seq"', 1, true);
 
 
 --
 -- Name: Location_locationID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Location_locationID_seq"', 6, true);
+SELECT pg_catalog.setval('public."Location_locationID_seq"', 7, true);
 
 
 --
@@ -4315,7 +4322,7 @@ SELECT pg_catalog.setval('public."Museum_museumID_seq"', 1, false);
 -- Name: Phone_phoneID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Phone_phoneID_seq"', 1, false);
+SELECT pg_catalog.setval('public."Phone_phoneID_seq"', 1, true);
 
 
 --
@@ -4490,7 +4497,7 @@ SELECT pg_catalog.setval('public."UserType_userTypeID_seq"', 1, true);
 -- Name: User_userID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."User_userID_seq"', 25, true);
+SELECT pg_catalog.setval('public."User_userID_seq"', 26, true);
 
 
 --

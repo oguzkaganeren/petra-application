@@ -3458,6 +3458,8 @@ export type Company = {
   Location: Location,
   Museums: Array<Museum>,
   Museums_aggregate: Museum_Aggregate,
+  Restaurants: Array<Restaurant>,
+  Restaurants_aggregate: Restaurant_Aggregate,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3559,6 +3561,24 @@ export type CompanyMuseums_AggregateArgs = {
   where?: Maybe<Museum_Bool_Exp>
 };
 
+
+export type CompanyRestaurantsArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
+
+export type CompanyRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
 export type Company_Aggregate = {
    __typename?: 'Company_aggregate',
   aggregate?: Maybe<Company_Aggregate_Fields>,
@@ -3623,6 +3643,7 @@ export type Company_Bool_Exp = {
   Hotels?: Maybe<Hotel_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   Museums?: Maybe<Museum_Bool_Exp>,
+  Restaurants?: Maybe<Restaurant_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
   _not?: Maybe<Company_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
@@ -3654,6 +3675,7 @@ export type Company_Insert_Input = {
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
+  Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3739,6 +3761,7 @@ export type Company_Order_By = {
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Location?: Maybe<Location_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
+  Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   faxNumber?: Maybe<Order_By>,
@@ -4947,8 +4970,12 @@ export type Hotel = {
   TravelGuideHotels: Array<TravelGuideHotel>,
   TravelGuideHotels_aggregate: TravelGuideHotel_Aggregate,
   companyID: Scalars['Int'],
+  description?: Maybe<Scalars['String']>,
   hotelID: Scalars['Int'],
   locationID: Scalars['Int'],
+  name: Scalars['String'],
+  star?: Maybe<Scalars['Float']>,
+  taxNumber: Scalars['String'],
 };
 
 
@@ -5074,12 +5101,14 @@ export type Hotel_Avg_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Avg_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Bool_Exp = {
@@ -5093,8 +5122,12 @@ export type Hotel_Bool_Exp = {
   _not?: Maybe<Hotel_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Hotel_Bool_Exp>>>,
   companyID?: Maybe<Int_Comparison_Exp>,
+  description?: Maybe<String_Comparison_Exp>,
   hotelID?: Maybe<Int_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
+  name?: Maybe<String_Comparison_Exp>,
+  star?: Maybe<Float_Comparison_Exp>,
+  taxNumber?: Maybe<String_Comparison_Exp>,
 };
 
 export enum Hotel_Constraint {
@@ -5115,34 +5148,54 @@ export type Hotel_Insert_Input = {
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   TravelGuideHotels?: Maybe<TravelGuideHotel_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
+  name?: Maybe<Scalars['String']>,
+  star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Max_Fields = {
    __typename?: 'Hotel_max_fields',
   companyID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
+  name?: Maybe<Scalars['String']>,
+  star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Max_Order_By = {
   companyID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  name?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Hotel_Min_Fields = {
    __typename?: 'Hotel_min_fields',
   companyID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
+  name?: Maybe<Scalars['String']>,
+  star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Min_Order_By = {
   companyID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  name?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Hotel_Mutation_Response = {
@@ -5170,20 +5223,32 @@ export type Hotel_Order_By = {
   Location?: Maybe<Location_Order_By>,
   TravelGuideHotels_aggregate?: Maybe<TravelGuideHotel_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  name?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export enum Hotel_Select_Column {
   CompanyId = 'companyID',
+  Description = 'description',
   HotelId = 'hotelID',
-  LocationId = 'locationID'
+  LocationId = 'locationID',
+  Name = 'name',
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Hotel_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
+  name?: Maybe<Scalars['String']>,
+  star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Stddev_Fields = {
@@ -5191,12 +5256,14 @@ export type Hotel_Stddev_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Stddev_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Stddev_Pop_Fields = {
@@ -5204,12 +5271,14 @@ export type Hotel_Stddev_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Stddev_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Stddev_Samp_Fields = {
@@ -5217,12 +5286,14 @@ export type Hotel_Stddev_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Stddev_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Sum_Fields = {
@@ -5230,18 +5301,24 @@ export type Hotel_Sum_Fields = {
   companyID?: Maybe<Scalars['Int']>,
   hotelID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Sum_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export enum Hotel_Update_Column {
   CompanyId = 'companyID',
+  Description = 'description',
   HotelId = 'hotelID',
-  LocationId = 'locationID'
+  LocationId = 'locationID',
+  Name = 'name',
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Hotel_Var_Pop_Fields = {
@@ -5249,12 +5326,14 @@ export type Hotel_Var_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Var_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Var_Samp_Fields = {
@@ -5262,12 +5341,14 @@ export type Hotel_Var_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Var_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type Hotel_Variance_Fields = {
@@ -5275,12 +5356,14 @@ export type Hotel_Variance_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   hotelID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
+  star?: Maybe<Scalars['Float']>,
 };
 
 export type Hotel_Variance_Order_By = {
   companyID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
+  star?: Maybe<Order_By>,
 };
 
 export type HotelComment = {
@@ -11927,6 +12010,7 @@ export type Restaurant = {
   restaurantTypeID: Scalars['Int'],
   since: Scalars['date'],
   star?: Maybe<Scalars['Float']>,
+  taxNumber: Scalars['String'],
 };
 
 
@@ -12102,6 +12186,7 @@ export type Restaurant_Bool_Exp = {
   restaurantTypeID?: Maybe<Int_Comparison_Exp>,
   since?: Maybe<Date_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
+  taxNumber?: Maybe<String_Comparison_Exp>,
 };
 
 export enum Restaurant_Constraint {
@@ -12132,6 +12217,7 @@ export type Restaurant_Insert_Input = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Max_Fields = {
@@ -12144,6 +12230,7 @@ export type Restaurant_Max_Fields = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Max_Order_By = {
@@ -12155,6 +12242,7 @@ export type Restaurant_Max_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Restaurant_Min_Fields = {
@@ -12167,6 +12255,7 @@ export type Restaurant_Min_Fields = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Min_Order_By = {
@@ -12178,6 +12267,7 @@ export type Restaurant_Min_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Restaurant_Mutation_Response = {
@@ -12214,6 +12304,7 @@ export type Restaurant_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export enum Restaurant_Select_Column {
@@ -12224,7 +12315,8 @@ export enum Restaurant_Select_Column {
   RestaurantId = 'restaurantID',
   RestaurantTypeId = 'restaurantTypeID',
   Since = 'since',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Restaurant_Set_Input = {
@@ -12236,6 +12328,7 @@ export type Restaurant_Set_Input = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Stddev_Fields = {
@@ -12314,7 +12407,8 @@ export enum Restaurant_Update_Column {
   RestaurantId = 'restaurantID',
   RestaurantTypeId = 'restaurantTypeID',
   Since = 'since',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Restaurant_Var_Pop_Fields = {
@@ -20547,7 +20641,8 @@ export type AddRestaurantMutationVariables = {
   address?: Maybe<Scalars['String']>,
   RestaurantType?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
-  since?: Maybe<Scalars['date']>
+  since?: Maybe<Scalars['date']>,
+  taxNumber?: Maybe<Scalars['String']>
 };
 
 
@@ -20592,6 +20687,27 @@ export type AddFoodMutation = (
     & { returning: Array<(
       { __typename?: 'RestaurantFood' }
       & Pick<RestaurantFood, 'restaurantFoodID'>
+    )> }
+  )> }
+);
+
+export type AddHotelMutationVariables = {
+  name?: Maybe<Scalars['String']>,
+  companyID?: Maybe<Scalars['Int']>,
+  latitude?: Maybe<Scalars['Float']>,
+  longtitude?: Maybe<Scalars['Float']>,
+  address?: Maybe<Scalars['String']>,
+  taxNumber?: Maybe<Scalars['String']>
+};
+
+
+export type AddHotelMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Hotel: Maybe<(
+    { __typename?: 'Hotel_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Hotel' }
+      & Pick<Hotel, 'hotelID'>
     )> }
   )> }
 );
@@ -20659,9 +20775,9 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
 export const AddRestaurantDocument = gql`
-    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date) {
+    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date, $taxNumber: String) {
   __typename
-  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID}) {
+  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
     returning {
       restaurantID
     }
@@ -20748,3 +20864,33 @@ export function withAddFood<TProps, TChildProps = {}>(operationOptions?: ApolloR
 };
 export type AddFoodMutationResult = ApolloReactCommon.MutationResult<AddFoodMutation>;
 export type AddFoodMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodMutation, AddFoodMutationVariables>;
+export const AddHotelDocument = gql`
+    mutation addHotel($name: String, $companyID: Int, $latitude: Float, $longtitude: Float, $address: String, $taxNumber: String) {
+  __typename
+  insert_Hotel(objects: {name: $name, companyID: $companyID, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, taxNumber: $taxNumber}) {
+    returning {
+      hotelID
+    }
+  }
+}
+    `;
+export type AddHotelMutationFn = ApolloReactCommon.MutationFunction<AddHotelMutation, AddHotelMutationVariables>;
+export type AddHotelComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddHotelMutation, AddHotelMutationVariables>, 'mutation'>;
+
+    export const AddHotelComponent = (props: AddHotelComponentProps) => (
+      <ApolloReactComponents.Mutation<AddHotelMutation, AddHotelMutationVariables> mutation={AddHotelDocument} {...props} />
+    );
+    
+export type AddHotelProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddHotelMutation, AddHotelMutationVariables> & TChildProps;
+export function withAddHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddHotelMutation,
+  AddHotelMutationVariables,
+  AddHotelProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddHotelMutation, AddHotelMutationVariables, AddHotelProps<TChildProps>>(AddHotelDocument, {
+      alias: 'addHotel',
+      ...operationOptions
+    });
+};
+export type AddHotelMutationResult = ApolloReactCommon.MutationResult<AddHotelMutation>;
+export type AddHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelMutation, AddHotelMutationVariables>;
