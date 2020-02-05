@@ -80,3 +80,19 @@ mutation addRestaurant(
 		}
 	}
 }
+mutation addFoodType($foodType: String) {
+	__typename
+	insert_RestaurantFoodType(objects: { type: $foodType }) {
+		returning {
+			restaurantFoodTypeID
+		}
+	}
+}
+mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
+	__typename
+	insert_RestaurantFood(objects: { name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID }) {
+		returning {
+			restaurantFoodID
+		}
+	}
+}
