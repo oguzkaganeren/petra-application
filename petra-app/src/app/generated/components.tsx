@@ -20712,6 +20712,22 @@ export type AddHotelMutation = (
   )> }
 );
 
+export type AddArchSiteTypeMutationVariables = {
+  name?: Maybe<Scalars['String']>
+};
+
+
+export type AddArchSiteTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSiteType: Maybe<(
+    { __typename?: 'ArchSiteType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSiteType' }
+      & Pick<ArchSiteType, 'archSiteTypeID'>
+    )> }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20894,3 +20910,33 @@ export function withAddHotel<TProps, TChildProps = {}>(operationOptions?: Apollo
 };
 export type AddHotelMutationResult = ApolloReactCommon.MutationResult<AddHotelMutation>;
 export type AddHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelMutation, AddHotelMutationVariables>;
+export const AddArchSiteTypeDocument = gql`
+    mutation addArchSiteType($name: String) {
+  __typename
+  insert_ArchSiteType(objects: {name: $name}) {
+    returning {
+      archSiteTypeID
+    }
+  }
+}
+    `;
+export type AddArchSiteTypeMutationFn = ApolloReactCommon.MutationFunction<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;
+export type AddArchSiteTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>, 'mutation'>;
+
+    export const AddArchSiteTypeComponent = (props: AddArchSiteTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables> mutation={AddArchSiteTypeDocument} {...props} />
+    );
+    
+export type AddArchSiteTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables> & TChildProps;
+export function withAddArchSiteType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSiteTypeMutation,
+  AddArchSiteTypeMutationVariables,
+  AddArchSiteTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables, AddArchSiteTypeProps<TChildProps>>(AddArchSiteTypeDocument, {
+      alias: 'addArchSiteType',
+      ...operationOptions
+    });
+};
+export type AddArchSiteTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteTypeMutation>;
+export type AddArchSiteTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;

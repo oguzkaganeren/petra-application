@@ -120,3 +120,11 @@ mutation addHotel(
 		}
 	}
 }
+mutation addArchSiteType($name: String) {
+	__typename
+	insert_ArchSiteType(objects: { name: $name }) {
+		returning {
+			archSiteTypeID
+		}
+	}
+}
