@@ -58,6 +58,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 				>
 					Restaurant Details
 				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('ArchSiteDetailScreen', {
+							userID: userID
+						});
+					}}
+				>
+					ArchSite Details
+				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>
