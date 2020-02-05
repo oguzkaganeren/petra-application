@@ -20562,6 +20562,40 @@ export type AddRestaurantMutation = (
   )> }
 );
 
+export type AddFoodTypeMutationVariables = {
+  foodType?: Maybe<Scalars['String']>
+};
+
+
+export type AddFoodTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantFoodType: Maybe<(
+    { __typename?: 'RestaurantFoodType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantFoodType' }
+      & Pick<RestaurantFoodType, 'restaurantFoodTypeID'>
+    )> }
+  )> }
+);
+
+export type AddFoodMutationVariables = {
+  name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  restaurantFoodTypeID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddFoodMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantFood: Maybe<(
+    { __typename?: 'RestaurantFood_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantFood' }
+      & Pick<RestaurantFood, 'restaurantFoodID'>
+    )> }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20654,3 +20688,63 @@ export function withAddRestaurant<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type AddRestaurantMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMutation>;
 export type AddRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMutation, AddRestaurantMutationVariables>;
+export const AddFoodTypeDocument = gql`
+    mutation addFoodType($foodType: String) {
+  __typename
+  insert_RestaurantFoodType(objects: {type: $foodType}) {
+    returning {
+      restaurantFoodTypeID
+    }
+  }
+}
+    `;
+export type AddFoodTypeMutationFn = ApolloReactCommon.MutationFunction<AddFoodTypeMutation, AddFoodTypeMutationVariables>;
+export type AddFoodTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddFoodTypeMutation, AddFoodTypeMutationVariables>, 'mutation'>;
+
+    export const AddFoodTypeComponent = (props: AddFoodTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddFoodTypeMutation, AddFoodTypeMutationVariables> mutation={AddFoodTypeDocument} {...props} />
+    );
+    
+export type AddFoodTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddFoodTypeMutation, AddFoodTypeMutationVariables> & TChildProps;
+export function withAddFoodType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddFoodTypeMutation,
+  AddFoodTypeMutationVariables,
+  AddFoodTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddFoodTypeMutation, AddFoodTypeMutationVariables, AddFoodTypeProps<TChildProps>>(AddFoodTypeDocument, {
+      alias: 'addFoodType',
+      ...operationOptions
+    });
+};
+export type AddFoodTypeMutationResult = ApolloReactCommon.MutationResult<AddFoodTypeMutation>;
+export type AddFoodTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodTypeMutation, AddFoodTypeMutationVariables>;
+export const AddFoodDocument = gql`
+    mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
+  __typename
+  insert_RestaurantFood(objects: {name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID}) {
+    returning {
+      restaurantFoodID
+    }
+  }
+}
+    `;
+export type AddFoodMutationFn = ApolloReactCommon.MutationFunction<AddFoodMutation, AddFoodMutationVariables>;
+export type AddFoodComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddFoodMutation, AddFoodMutationVariables>, 'mutation'>;
+
+    export const AddFoodComponent = (props: AddFoodComponentProps) => (
+      <ApolloReactComponents.Mutation<AddFoodMutation, AddFoodMutationVariables> mutation={AddFoodDocument} {...props} />
+    );
+    
+export type AddFoodProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddFoodMutation, AddFoodMutationVariables> & TChildProps;
+export function withAddFood<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddFoodMutation,
+  AddFoodMutationVariables,
+  AddFoodProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddFoodMutation, AddFoodMutationVariables, AddFoodProps<TChildProps>>(AddFoodDocument, {
+      alias: 'addFood',
+      ...operationOptions
+    });
+};
+export type AddFoodMutationResult = ApolloReactCommon.MutationResult<AddFoodMutation>;
+export type AddFoodMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodMutation, AddFoodMutationVariables>;
