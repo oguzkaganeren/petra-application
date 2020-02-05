@@ -63,6 +63,7 @@ mutation addRestaurant(
 	$RestaurantType: String
 	$name: String
 	$since: date
+	$taxNumber: String
 ) {
 	__typename
 	insert_Restaurant(
@@ -73,6 +74,7 @@ mutation addRestaurant(
 			name: $name
 			since: $since
 			companyID: $CompanyID
+			taxNumber: $taxNumber
 		}
 	) {
 		returning {
@@ -93,6 +95,28 @@ mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
 	insert_RestaurantFood(objects: { name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID }) {
 		returning {
 			restaurantFoodID
+		}
+	}
+}
+mutation addHotel(
+	$name: String
+	$companyID: Int
+	$latitude: Float
+	$longtitude: Float
+	$address: String
+	$taxNumber: String
+) {
+	__typename
+	insert_Hotel(
+		objects: {
+			name: $name
+			companyID: $companyID
+			Location: { data: { latitude: $latitude, longtitude: $longtitude, address: $address } }
+			taxNumber: $taxNumber
+		}
+	) {
+		returning {
+			hotelID
 		}
 	}
 }
