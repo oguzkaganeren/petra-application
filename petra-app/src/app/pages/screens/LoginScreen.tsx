@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Text, Layout } from '@ui-kitten/components';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, AsyncStorage } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Mutation } from 'react-apollo';
@@ -22,7 +22,10 @@ export interface LoginProps {
 /**
  * Login state
  */
-export interface LoginState {}
+export interface LoginState {
+	userID: number;
+	accessToken: string;
+}
 
 /**
  * Login
@@ -30,6 +33,11 @@ export interface LoginState {}
 export class LoginScreen extends React.Component<LoginProps, LoginState> {
 	constructor(props: LoginProps) {
 		super(props);
+		this.state = {
+			userID: 0,
+			accessToken: ''
+		};
+		this.controlUser();
 	}
 
 	signInWithGoogle = async () => {
@@ -80,11 +88,13 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 									})
 										.then(res => {
 											const userID = res.data.insert_User.returning[0].userID;
-											console.log('here');
+											const accessToken = res.data.insert_User.returning[0].accessToken;
+											AsyncStorage.multiSet([
+												['userID', userID.toString()],
+												['accessToken', accessToken]
+											]);
 											this.props.navigation.navigate('HomeScreen', {
-												userID: userID,
-												name: result.user.givenName,
-												mail: result.user.email
+												userID: userID
 											});
 										})
 										.catch(err => alert(err));
@@ -108,23 +118,38 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 					</Formik>
 				)}
 			</ControlUserComponent>
-			{/* <Button
-				onPress={() => {
-					this.signInWithGoogle();
-
-					//setTimeout(saveRocket(), 0); //The code is important. I love this code.
-				}}
-			>
-				Google sign in
-			</Button> */}
 		</Layout>
 	);
+	/**
+	 * To SignOUT!!!!!
+	 * let keys = ['userID', 'accessToken'];
+		AsyncStorage.multiRemove(keys, (err) => {
+			console.log('Local storage user info removed!');
+		});
+	 */
+	controlUser = () => {
+		AsyncStorage.multiGet(['userID', 'accessToken']).then(data => {
+			let userID = data[0][1];
+			let accessToken = data[1][1];
+
+			if (accessToken !== null) {
+				this.setState({ userID: parseInt(userID, 10), accessToken: accessToken });
+				this.props.navigation.navigate('HomeScreen', {
+					userID: userID,
+					accessToken: accessToken
+				});
+			} else {
+				return this.renderSetUserComponent;
+			}
+		});
+		return null;
+	};
 	/**
 	 * Renders login
 	 * @returns
 	 */
 	render() {
-		return <Layout>{this.renderSetUserComponent}</Layout>;
+		return <Layout>{this.state.accessToken.length == 0 ? this.renderSetUserComponent : null}</Layout>;
 	}
 }
 
