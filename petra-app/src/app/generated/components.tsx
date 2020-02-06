@@ -20618,7 +20618,8 @@ export type AddRestaurantMutationVariables = {
   address?: Maybe<Scalars['String']>,
   RestaurantType?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
-  since?: Maybe<Scalars['date']>
+  since?: Maybe<Scalars['date']>,
+  taxNumber?: Maybe<Scalars['String']>
 };
 
 
@@ -20633,12 +20634,47 @@ export type AddRestaurantMutation = (
   )> }
 );
 
+export type AddFoodTypeMutationVariables = {
+  foodType?: Maybe<Scalars['String']>
+};
+
+
+export type AddFoodTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantFoodType: Maybe<(
+    { __typename?: 'RestaurantFoodType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantFoodType' }
+      & Pick<RestaurantFoodType, 'restaurantFoodTypeID'>
+    )> }
+  )> }
+);
+
+export type AddFoodMutationVariables = {
+  name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  restaurantFoodTypeID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddFoodMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantFood: Maybe<(
+    { __typename?: 'RestaurantFood_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantFood' }
+      & Pick<RestaurantFood, 'restaurantFoodID'>
+    )> }
+  )> }
+);
+
 export type AddHotelMutationVariables = {
   name?: Maybe<Scalars['String']>,
   companyID?: Maybe<Scalars['Int']>,
   latitude?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
-  address?: Maybe<Scalars['String']>
+  address?: Maybe<Scalars['String']>,
+  taxNumber?: Maybe<Scalars['String']>
 };
 
 
@@ -20649,6 +20685,22 @@ export type AddHotelMutation = (
     & { returning: Array<(
       { __typename?: 'Hotel' }
       & Pick<Hotel, 'hotelID'>
+    )> }
+  )> }
+);
+
+export type AddArchSiteTypeMutationVariables = {
+  name?: Maybe<Scalars['String']>
+};
+
+
+export type AddArchSiteTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSiteType: Maybe<(
+    { __typename?: 'ArchSiteType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSiteType' }
+      & Pick<ArchSiteType, 'archSiteTypeID'>
     )> }
   )> }
 );
@@ -20727,9 +20779,9 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
 export const AddRestaurantDocument = gql`
-    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date) {
+    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date, $taxNumber: String) {
   __typename
-  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID}) {
+  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
     returning {
       restaurantID
     }
@@ -20756,10 +20808,70 @@ export function withAddRestaurant<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type AddRestaurantMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMutation>;
 export type AddRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMutation, AddRestaurantMutationVariables>;
-export const AddHotelDocument = gql`
-    mutation addHotel($name: String, $companyID: Int, $latitude: Float, $longtitude: Float, $address: String) {
+export const AddFoodTypeDocument = gql`
+    mutation addFoodType($foodType: String) {
   __typename
-  insert_Hotel(objects: {name: $name, companyID: $companyID, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}}) {
+  insert_RestaurantFoodType(objects: {type: $foodType}) {
+    returning {
+      restaurantFoodTypeID
+    }
+  }
+}
+    `;
+export type AddFoodTypeMutationFn = ApolloReactCommon.MutationFunction<AddFoodTypeMutation, AddFoodTypeMutationVariables>;
+export type AddFoodTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddFoodTypeMutation, AddFoodTypeMutationVariables>, 'mutation'>;
+
+    export const AddFoodTypeComponent = (props: AddFoodTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddFoodTypeMutation, AddFoodTypeMutationVariables> mutation={AddFoodTypeDocument} {...props} />
+    );
+    
+export type AddFoodTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddFoodTypeMutation, AddFoodTypeMutationVariables> & TChildProps;
+export function withAddFoodType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddFoodTypeMutation,
+  AddFoodTypeMutationVariables,
+  AddFoodTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddFoodTypeMutation, AddFoodTypeMutationVariables, AddFoodTypeProps<TChildProps>>(AddFoodTypeDocument, {
+      alias: 'addFoodType',
+      ...operationOptions
+    });
+};
+export type AddFoodTypeMutationResult = ApolloReactCommon.MutationResult<AddFoodTypeMutation>;
+export type AddFoodTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodTypeMutation, AddFoodTypeMutationVariables>;
+export const AddFoodDocument = gql`
+    mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
+  __typename
+  insert_RestaurantFood(objects: {name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID}) {
+    returning {
+      restaurantFoodID
+    }
+  }
+}
+    `;
+export type AddFoodMutationFn = ApolloReactCommon.MutationFunction<AddFoodMutation, AddFoodMutationVariables>;
+export type AddFoodComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddFoodMutation, AddFoodMutationVariables>, 'mutation'>;
+
+    export const AddFoodComponent = (props: AddFoodComponentProps) => (
+      <ApolloReactComponents.Mutation<AddFoodMutation, AddFoodMutationVariables> mutation={AddFoodDocument} {...props} />
+    );
+    
+export type AddFoodProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddFoodMutation, AddFoodMutationVariables> & TChildProps;
+export function withAddFood<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddFoodMutation,
+  AddFoodMutationVariables,
+  AddFoodProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddFoodMutation, AddFoodMutationVariables, AddFoodProps<TChildProps>>(AddFoodDocument, {
+      alias: 'addFood',
+      ...operationOptions
+    });
+};
+export type AddFoodMutationResult = ApolloReactCommon.MutationResult<AddFoodMutation>;
+export type AddFoodMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodMutation, AddFoodMutationVariables>;
+export const AddHotelDocument = gql`
+    mutation addHotel($name: String, $companyID: Int, $latitude: Float, $longtitude: Float, $address: String, $taxNumber: String) {
+  __typename
+  insert_Hotel(objects: {name: $name, companyID: $companyID, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, taxNumber: $taxNumber}) {
     returning {
       hotelID
     }
@@ -20786,6 +20898,36 @@ export function withAddHotel<TProps, TChildProps = {}>(operationOptions?: Apollo
 };
 export type AddHotelMutationResult = ApolloReactCommon.MutationResult<AddHotelMutation>;
 export type AddHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelMutation, AddHotelMutationVariables>;
+export const AddArchSiteTypeDocument = gql`
+    mutation addArchSiteType($name: String) {
+  __typename
+  insert_ArchSiteType(objects: {name: $name}) {
+    returning {
+      archSiteTypeID
+    }
+  }
+}
+    `;
+export type AddArchSiteTypeMutationFn = ApolloReactCommon.MutationFunction<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;
+export type AddArchSiteTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>, 'mutation'>;
+
+    export const AddArchSiteTypeComponent = (props: AddArchSiteTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables> mutation={AddArchSiteTypeDocument} {...props} />
+    );
+    
+export type AddArchSiteTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables> & TChildProps;
+export function withAddArchSiteType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSiteTypeMutation,
+  AddArchSiteTypeMutationVariables,
+  AddArchSiteTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables, AddArchSiteTypeProps<TChildProps>>(AddArchSiteTypeDocument, {
+      alias: 'addArchSiteType',
+      ...operationOptions
+    });
+};
+export type AddArchSiteTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteTypeMutation>;
+export type AddArchSiteTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
