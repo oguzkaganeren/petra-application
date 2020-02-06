@@ -6,67 +6,49 @@ import { SearchComponent } from '../../components/SearchComponent';
 /**
  * Home props
  */
-export interface HomeProps {
+export interface RestaurantDetailScreenProps {
 	navigation: any;
 }
 /**
  * Home state
  */
-export interface HomeState {}
+export interface RestaurantDetailScreenState {}
 
 /**
  * Home
  */
-export class HomeScreen extends React.Component<HomeProps, HomeState> {
-	constructor(props: HomeProps) {
+export class RestaurantDetailScreen extends React.Component<RestaurantDetailScreenProps, RestaurantDetailScreenState> {
+	constructor(props: RestaurantDetailScreenProps) {
 		super(props);
 		this.state = {};
 	}
 	/**
-	 * Renders home
+	 * Renders Restaurant Detail Screen
 	 * @returns
 	 */
 	render() {
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<SearchComponent></SearchComponent>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddCompanyScreen', {
+						this.props.navigation.navigate('AddFoodTypeScreen', {
 							userID: userID
 						});
 					}}
 				>
-					Add Company
+					Add Food Type
 				</Button>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddRestaurantScreen', {
+						this.props.navigation.navigate('AddFoodScreen', {
 							userID: userID
 						});
 					}}
 				>
-					Add Restaurant
+					Add Food
 				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('RestaurantDetailScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Restaurant Details
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('ArchSiteDetailScreen', {
-							userID: userID
-						});
-					}}
-				>
-					ArchSite Details
-				</Button>
+
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>

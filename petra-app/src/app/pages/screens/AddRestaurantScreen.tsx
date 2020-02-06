@@ -3,7 +3,7 @@ import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddRestaurantComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
-import { GetAllFoodTypesComponent } from '../../components/GetAllFoodTypes';
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -50,7 +50,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								RestaurantType: '',
 								name: '',
 								since: new Date(),
-								GetFoodType: ''
+								taxNumber: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -66,13 +66,15 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								address: Yup.string()
 									.min(5, 'Too Short!')
 									.required('Required'),
+								taxNumber: Yup.string()
+									.min(5, 'Too Short!')
+									.required('Required'),
 								//sadece longtitude kontrol etsem yeterli
 								longtitude: Yup.number().required('Required')
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log('food type test:' + values.GetFoodType);
 									console.log(
 										values.name +
 											' ' +
@@ -83,9 +85,11 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											values.ISO +
 											' ' +
 											this.convertDateFormatForQuery(values.since) +
+											' ' +
+											values.taxNumber +
 											' '
 									);
-									/*AddRestaurantMutation({
+									AddRestaurantMutation({
 										variables: {
 											name: values.name.toString(),
 											ISO: values.ISO.toString(),
@@ -94,7 +98,8 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											latitude: parseFloat(values.latitude),
 											address: values.address.toString(),
 											RestaurantType: values.RestaurantType,
-											CompanyID: 2
+											CompanyID: 2,
+											taxNumber: values.taxNumber.toString()
 										}
 									})
 										.then(res => {
@@ -112,7 +117,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											console.log('long:' + values.longtitude);
 											console.log('lat:' + values.latitude);
 											console.log('address:' + values.address);
-										});*/
+										});
 									formikActions.setSubmitting(false);
 								}, 500);
 							}}
@@ -121,6 +126,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
+
 									<Button
 										onPress={() => {
 											props.handleSubmit();
@@ -129,12 +135,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									>
 										Add Restaurant
 									</Button>
-									<GetAllFoodTypesComponent
-										label="Select Food Type"
-										parentReference={value => {
-											props.values.GetFoodType = value;
-										}}
-									/>
+
 									<Input
 										label="Restaurant Name"
 										placeholder="Enter Your Restaurant Name"
@@ -173,6 +174,15 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										onChangeText={props.handleChange('ISO')}
 										onBlur={props.handleBlur('ISO')}
 										value={props.values.ISO}
+									/>
+									<Input
+										label="Tax Number"
+										status={props.touched.taxNumber && props.errors.taxNumber ? 'danger' : 'success'}
+										caption={props.touched.taxNumber && props.errors.taxNumber ? props.errors.taxNumber : ''}
+										placeholder="Enter your Tax Number Please"
+										onChangeText={props.handleChange('taxNumber')}
+										onBlur={props.handleBlur('taxNumber')}
+										value={props.values.taxNumber}
 									/>
 									<Datepicker date={props.values.since} onSelect={e => props.setFieldValue('since', e)} />
 									<LocationComponent
