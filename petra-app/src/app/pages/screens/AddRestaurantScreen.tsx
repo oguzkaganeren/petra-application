@@ -3,6 +3,7 @@ import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddRestaurantComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
+import { GetAllFoodTypesComponent } from '../../components/GetAllFoodTypes';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -48,7 +49,8 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								address: '',
 								RestaurantType: '',
 								name: '',
-								since: new Date()
+								since: new Date(),
+								GetFoodType: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -70,6 +72,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
+									console.log('food type test:' + values.GetFoodType);
 									console.log(
 										values.name +
 											' ' +
@@ -82,7 +85,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											this.convertDateFormatForQuery(values.since) +
 											' '
 									);
-									AddRestaurantMutation({
+									/*AddRestaurantMutation({
 										variables: {
 											name: values.name.toString(),
 											ISO: values.ISO.toString(),
@@ -109,7 +112,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											console.log('long:' + values.longtitude);
 											console.log('lat:' + values.latitude);
 											console.log('address:' + values.address);
-										});
+										});*/
 									formikActions.setSubmitting(false);
 								}, 500);
 							}}
@@ -118,7 +121,20 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-
+									<Button
+										onPress={() => {
+											props.handleSubmit();
+										}}
+										disabled={props.isSubmitting}
+									>
+										Add Restaurant
+									</Button>
+									<GetAllFoodTypesComponent
+										label="Select Food Type"
+										parentReference={value => {
+											props.values.GetFoodType = value;
+										}}
+									/>
 									<Input
 										label="Restaurant Name"
 										placeholder="Enter Your Restaurant Name"
@@ -170,14 +186,6 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									{props.touched.longtitude && props.errors.longtitude ? (
 										<Text status="danger">{props.errors.longtitude}</Text>
 									) : null}
-									<Button
-										onPress={() => {
-											props.handleSubmit();
-										}}
-										disabled={props.isSubmitting}
-									>
-										Add Restaurant
-									</Button>
 								</Layout>
 							)}
 						</Formik>

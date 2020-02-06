@@ -4952,6 +4952,7 @@ export type Hotel = {
   locationID: Scalars['Int'],
   name: Scalars['String'],
   star?: Maybe<Scalars['Float']>,
+  taxNumber: Scalars['String'],
 };
 
 
@@ -5103,6 +5104,7 @@ export type Hotel_Bool_Exp = {
   locationID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
+  taxNumber?: Maybe<String_Comparison_Exp>,
 };
 
 export enum Hotel_Constraint {
@@ -5128,6 +5130,7 @@ export type Hotel_Insert_Input = {
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Max_Fields = {
@@ -5138,6 +5141,7 @@ export type Hotel_Max_Fields = {
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Max_Order_By = {
@@ -5147,6 +5151,7 @@ export type Hotel_Max_Order_By = {
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Hotel_Min_Fields = {
@@ -5157,6 +5162,7 @@ export type Hotel_Min_Fields = {
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Min_Order_By = {
@@ -5166,6 +5172,7 @@ export type Hotel_Min_Order_By = {
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Hotel_Mutation_Response = {
@@ -5198,6 +5205,7 @@ export type Hotel_Order_By = {
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export enum Hotel_Select_Column {
@@ -5206,7 +5214,8 @@ export enum Hotel_Select_Column {
   HotelId = 'hotelID',
   LocationId = 'locationID',
   Name = 'name',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Hotel_Set_Input = {
@@ -5216,6 +5225,7 @@ export type Hotel_Set_Input = {
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Hotel_Stddev_Fields = {
@@ -5284,7 +5294,8 @@ export enum Hotel_Update_Column {
   HotelId = 'hotelID',
   LocationId = 'locationID',
   Name = 'name',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Hotel_Var_Pop_Fields = {
@@ -11976,6 +11987,7 @@ export type Restaurant = {
   restaurantTypeID: Scalars['Int'],
   since: Scalars['date'],
   star?: Maybe<Scalars['Float']>,
+  taxNumber: Scalars['String'],
 };
 
 
@@ -12151,6 +12163,7 @@ export type Restaurant_Bool_Exp = {
   restaurantTypeID?: Maybe<Int_Comparison_Exp>,
   since?: Maybe<Date_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
+  taxNumber?: Maybe<String_Comparison_Exp>,
 };
 
 export enum Restaurant_Constraint {
@@ -12181,6 +12194,7 @@ export type Restaurant_Insert_Input = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Max_Fields = {
@@ -12193,6 +12207,7 @@ export type Restaurant_Max_Fields = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Max_Order_By = {
@@ -12204,6 +12219,7 @@ export type Restaurant_Max_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Restaurant_Min_Fields = {
@@ -12216,6 +12232,7 @@ export type Restaurant_Min_Fields = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Min_Order_By = {
@@ -12227,6 +12244,7 @@ export type Restaurant_Min_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export type Restaurant_Mutation_Response = {
@@ -12263,6 +12281,7 @@ export type Restaurant_Order_By = {
   restaurantTypeID?: Maybe<Order_By>,
   since?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
+  taxNumber?: Maybe<Order_By>,
 };
 
 export enum Restaurant_Select_Column {
@@ -12273,7 +12292,8 @@ export enum Restaurant_Select_Column {
   RestaurantId = 'restaurantID',
   RestaurantTypeId = 'restaurantTypeID',
   Since = 'since',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Restaurant_Set_Input = {
@@ -12285,6 +12305,7 @@ export type Restaurant_Set_Input = {
   restaurantTypeID?: Maybe<Scalars['Int']>,
   since?: Maybe<Scalars['date']>,
   star?: Maybe<Scalars['Float']>,
+  taxNumber?: Maybe<Scalars['String']>,
 };
 
 export type Restaurant_Stddev_Fields = {
@@ -12363,7 +12384,8 @@ export enum Restaurant_Update_Column {
   RestaurantId = 'restaurantID',
   RestaurantTypeId = 'restaurantTypeID',
   Since = 'since',
-  Star = 'star'
+  Star = 'star',
+  TaxNumber = 'taxNumber'
 }
 
 export type Restaurant_Var_Pop_Fields = {
@@ -20631,6 +20653,17 @@ export type AddHotelMutation = (
   )> }
 );
 
+export type GetFoodTypesQueryVariables = {};
+
+
+export type GetFoodTypesQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantFoodType: Array<(
+    { __typename?: 'RestaurantFoodType' }
+    & Pick<RestaurantFoodType, 'type' | 'restaurantFoodTypeID'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20753,3 +20786,30 @@ export function withAddHotel<TProps, TChildProps = {}>(operationOptions?: Apollo
 };
 export type AddHotelMutationResult = ApolloReactCommon.MutationResult<AddHotelMutation>;
 export type AddHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelMutation, AddHotelMutationVariables>;
+export const GetFoodTypesDocument = gql`
+    query getFoodTypes {
+  __typename
+  RestaurantFoodType {
+    type
+    restaurantFoodTypeID
+  }
+}
+    `;
+export type GetFoodTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetFoodTypesQuery, GetFoodTypesQueryVariables>, 'query'>;
+
+    export const GetFoodTypesComponent = (props: GetFoodTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetFoodTypesQuery, GetFoodTypesQueryVariables> query={GetFoodTypesDocument} {...props} />
+    );
+    
+export type GetFoodTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodTypesQuery, GetFoodTypesQueryVariables> & TChildProps;
+export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetFoodTypesQuery,
+  GetFoodTypesQueryVariables,
+  GetFoodTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetFoodTypesQuery, GetFoodTypesQueryVariables, GetFoodTypesProps<TChildProps>>(GetFoodTypesDocument, {
+      alias: 'getFoodTypes',
+      ...operationOptions
+    });
+};
+export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypesQuery, GetFoodTypesQueryVariables>;
