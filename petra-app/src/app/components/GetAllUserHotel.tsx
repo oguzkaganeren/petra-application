@@ -1,11 +1,11 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetUserCompanyComponent } from '../generated/components';
+import { GetUserHotelComponent } from '../generated/components';
 /**
  * Location props
  */
-export interface GetAllUserCompanyProps {
+export interface GetAllUserHotelProps {
 	label: string;
 	parentReference: any;
 	userID: number;
@@ -14,7 +14,7 @@ export interface GetAllUserCompanyProps {
 /**
  * Location state
  */
-export interface GetAllUserCompanyState {
+export interface GetAllUserHotelState {
 	selected: any;
 	setSelectedOption: any;
 	datam: any;
@@ -23,7 +23,7 @@ export interface GetAllUserCompanyState {
 /**
  * Location component
  */
-export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompanyProps, GetAllUserCompanyState> {
+export class GetAllUserHotelComponent extends React.Component<GetAllUserHotelProps, GetAllUserHotelState> {
 	/**
 	 * Creates an instance of Location component.
 	 * @param props
@@ -59,19 +59,19 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 	render() {
 		return (
 			<Layout>
-				<GetUserCompanyComponent variables={{ userID: this.props.userID }}>
+				<GetUserHotelComponent variables={{ userID: this.props.userID }}>
 					{({ loading, error, data }) => {
 						if (loading) return <Text>Loading</Text>;
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.CompanyUser.map(dat => {
+							data.Hotel.map(dat => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.companyID)) {
-										this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
+									if (this.state.datam.every(item => item.id !== dat.hotelID)) {
+										this.state.datam.push({ id: dat.hotelID, text: dat.name });
 									}
 								} else {
-									this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
+									this.state.datam.push({ id: dat.hotelID, text: dat.name });
 								}
 							});
 							return (
@@ -85,7 +85,7 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 							);
 						}
 					}}
-				</GetUserCompanyComponent>
+				</GetUserHotelComponent>
 			</Layout>
 		);
 	}

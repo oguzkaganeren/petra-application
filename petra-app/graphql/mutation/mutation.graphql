@@ -137,3 +137,17 @@ mutation addRoomProperty($content: String!) {
 		}
 	}
 }
+mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input!]!, $hotelID: Int!) {
+	__typename
+	insert_Room(
+		objects: {
+			roomNo: $roomNo
+			RoomPropertyRooms: { data: $roomPropRoom }
+			HotelRooms: { data: { hotelID: $hotelID } }
+		}
+	) {
+		returning {
+			roomID
+		}
+	}
+}

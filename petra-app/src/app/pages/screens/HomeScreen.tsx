@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/BottomComponent';
 import { SearchComponent } from '../../components/SearchComponent';
+
 /**
  * Home props
  */
@@ -87,6 +88,7 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					>
 						Hotel Details
 					</Button>
+
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>
 					</Layout>

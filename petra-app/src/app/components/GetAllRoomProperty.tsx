@@ -1,29 +1,28 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetUserCompanyComponent } from '../generated/components';
+import { GetRoomPropertyComponent } from '../generated/components';
 /**
  * Location props
  */
-export interface GetAllUserCompanyProps {
+export interface GetAllRoomPropertyProps {
 	label: string;
 	parentReference: any;
-	userID: number;
 }
 
 /**
  * Location state
  */
-export interface GetAllUserCompanyState {
+export interface GetAllRoomPropertyState {
 	selected: any;
-	setSelectedOption: any;
 	datam: any;
+	idSelected: any;
 }
 
 /**
  * Location component
  */
-export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompanyProps, GetAllUserCompanyState> {
+export class GetAllRoomPropertyComponent extends React.Component<GetAllRoomPropertyProps, GetAllRoomPropertyState> {
 	/**
 	 * Creates an instance of Location component.
 	 * @param props
@@ -31,9 +30,9 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: null,
-			setSelectedOption: null,
-			datam: []
+			selected: [],
+			datam: [],
+			idSelected: []
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
@@ -43,14 +42,17 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 	 * @param value
 	 */
 	onValueChange(value) {
-		const id = value.id;
-		this.props.parentReference(id);
 		this.setState({
 			selected: value.text
 		});
+
+		const filter = Object.keys(value).reduce((result, key) => {
+			return result.concat({ roomPropertyID: value[key].roomPropertyID });
+		}, []);
+		this.props.parentReference(filter);
 	}
 	private keyExtractor = (item, index): string => {
-		return item.id.toString();
+		return item.roomPropertyID.toString();
 	};
 	/**
 	 * Renders Location component
@@ -59,25 +61,26 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 	render() {
 		return (
 			<Layout>
-				<GetUserCompanyComponent variables={{ userID: this.props.userID }}>
+				<GetRoomPropertyComponent>
 					{({ loading, error, data }) => {
 						if (loading) return <Text>Loading</Text>;
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.CompanyUser.map(dat => {
+							data.RoomProperty.map(dat => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.companyID)) {
-										this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
+									if (this.state.datam.every(item => item.roomPropertyID !== dat.roomPropertyID)) {
+										this.state.datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
 									}
 								} else {
-									this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
+									this.state.datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
 								}
 							});
 							return (
 								<Select
 									data={this.state.datam}
 									placeholder={this.props.label}
+									multiSelect={true}
 									selectedOption={this.state.selected}
 									keyExtractor={this.keyExtractor.bind(this)}
 									onSelect={this.onValueChange}
@@ -85,7 +88,7 @@ export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompan
 							);
 						}
 					}}
-				</GetUserCompanyComponent>
+				</GetRoomPropertyComponent>
 			</Layout>
 		);
 	}

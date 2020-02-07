@@ -38,7 +38,15 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				>
 					Add Hotel Room Property
 				</Button>
-
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddRoomScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Hotel Room
+				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>

@@ -14,3 +14,15 @@ query getUserCompany($userID: Int!) {
 		companyID
 	}
 }
+query getRoomProperty {
+	RoomProperty {
+		content
+		roomPropertyID
+	}
+}
+query getUserHotel($userID: Int!) {
+	Hotel(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		hotelID
+		name
+	}
+}
