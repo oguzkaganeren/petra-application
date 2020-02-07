@@ -9068,6 +9068,7 @@ export type Mutation_Root = {
   delete_RoomPicture?: Maybe<RoomPicture_Mutation_Response>,
   delete_RoomPrice?: Maybe<RoomPrice_Mutation_Response>,
   delete_RoomProperty?: Maybe<RoomProperty_Mutation_Response>,
+  delete_RoomPropertyRoom?: Maybe<RoomPropertyRoom_Mutation_Response>,
   delete_Tag?: Maybe<Tag_Mutation_Response>,
   delete_TravelGuide?: Maybe<TravelGuide_Mutation_Response>,
   delete_TravelGuideArchSite?: Maybe<TravelGuideArchSite_Mutation_Response>,
@@ -9125,6 +9126,7 @@ export type Mutation_Root = {
   insert_RoomPicture?: Maybe<RoomPicture_Mutation_Response>,
   insert_RoomPrice?: Maybe<RoomPrice_Mutation_Response>,
   insert_RoomProperty?: Maybe<RoomProperty_Mutation_Response>,
+  insert_RoomPropertyRoom?: Maybe<RoomPropertyRoom_Mutation_Response>,
   insert_Tag?: Maybe<Tag_Mutation_Response>,
   insert_TravelGuide?: Maybe<TravelGuide_Mutation_Response>,
   insert_TravelGuideArchSite?: Maybe<TravelGuideArchSite_Mutation_Response>,
@@ -9182,6 +9184,7 @@ export type Mutation_Root = {
   update_RoomPicture?: Maybe<RoomPicture_Mutation_Response>,
   update_RoomPrice?: Maybe<RoomPrice_Mutation_Response>,
   update_RoomProperty?: Maybe<RoomProperty_Mutation_Response>,
+  update_RoomPropertyRoom?: Maybe<RoomPropertyRoom_Mutation_Response>,
   update_Tag?: Maybe<Tag_Mutation_Response>,
   update_TravelGuide?: Maybe<TravelGuide_Mutation_Response>,
   update_TravelGuideArchSite?: Maybe<TravelGuideArchSite_Mutation_Response>,
@@ -9431,6 +9434,11 @@ export type Mutation_RootDelete_RoomPriceArgs = {
 
 export type Mutation_RootDelete_RoomPropertyArgs = {
   where: RoomProperty_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_RoomPropertyRoomArgs = {
+  where: RoomPropertyRoom_Bool_Exp
 };
 
 
@@ -9764,6 +9772,12 @@ export type Mutation_RootInsert_RoomPriceArgs = {
 export type Mutation_RootInsert_RoomPropertyArgs = {
   objects: Array<RoomProperty_Insert_Input>,
   on_conflict?: Maybe<RoomProperty_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_RoomPropertyRoomArgs = {
+  objects: Array<RoomPropertyRoom_Insert_Input>,
+  on_conflict?: Maybe<RoomPropertyRoom_On_Conflict>
 };
 
 
@@ -10154,6 +10168,13 @@ export type Mutation_RootUpdate_RoomPropertyArgs = {
   _inc?: Maybe<RoomProperty_Inc_Input>,
   _set?: Maybe<RoomProperty_Set_Input>,
   where: RoomProperty_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_RoomPropertyRoomArgs = {
+  _inc?: Maybe<RoomPropertyRoom_Inc_Input>,
+  _set?: Maybe<RoomPropertyRoom_Set_Input>,
+  where: RoomPropertyRoom_Bool_Exp
 };
 
 
@@ -10620,6 +10641,9 @@ export type Query_Root = {
   RoomPrice_aggregate: RoomPrice_Aggregate,
   RoomPrice_by_pk?: Maybe<RoomPrice>,
   RoomProperty: Array<RoomProperty>,
+  RoomPropertyRoom: Array<RoomPropertyRoom>,
+  RoomPropertyRoom_aggregate: RoomPropertyRoom_Aggregate,
+  RoomPropertyRoom_by_pk?: Maybe<RoomPropertyRoom>,
   RoomProperty_aggregate: RoomProperty_Aggregate,
   RoomProperty_by_pk?: Maybe<RoomProperty>,
   Room_aggregate: Room_Aggregate,
@@ -11727,6 +11751,29 @@ export type Query_RootRoomPropertyArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<RoomProperty_Order_By>>,
   where?: Maybe<RoomProperty_Bool_Exp>
+};
+
+
+export type Query_RootRoomPropertyRoomArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
+
+export type Query_RootRoomPropertyRoom_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
+
+export type Query_RootRoomPropertyRoom_By_PkArgs = {
+  roomPropertyRoomID: Scalars['Int']
 };
 
 
@@ -15290,10 +15337,10 @@ export type Room = {
   RoomPictures_aggregate: RoomPicture_Aggregate,
   RoomPrices: Array<RoomPrice>,
   RoomPrices_aggregate: RoomPrice_Aggregate,
-  RoomProperty: RoomProperty,
+  RoomPropertyRooms: Array<RoomPropertyRoom>,
+  RoomPropertyRooms_aggregate: RoomPropertyRoom_Aggregate,
   roomID: Scalars['Int'],
   roomNo: Scalars['String'],
-  roomPropertyID: Scalars['Int'],
 };
 
 
@@ -15350,6 +15397,24 @@ export type RoomRoomPrices_AggregateArgs = {
   where?: Maybe<RoomPrice_Bool_Exp>
 };
 
+
+export type RoomRoomPropertyRoomsArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
+
+export type RoomRoomPropertyRooms_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
 export type Room_Aggregate = {
    __typename?: 'Room_aggregate',
   aggregate?: Maybe<Room_Aggregate_Fields>,
@@ -15399,25 +15464,22 @@ export type Room_Arr_Rel_Insert_Input = {
 export type Room_Avg_Fields = {
    __typename?: 'Room_avg_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Avg_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Bool_Exp = {
   HotelRooms?: Maybe<HotelRoom_Bool_Exp>,
   RoomPictures?: Maybe<RoomPicture_Bool_Exp>,
   RoomPrices?: Maybe<RoomPrice_Bool_Exp>,
-  RoomProperty?: Maybe<RoomProperty_Bool_Exp>,
+  RoomPropertyRooms?: Maybe<RoomPropertyRoom_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
   _not?: Maybe<Room_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
   roomID?: Maybe<Int_Comparison_Exp>,
   roomNo?: Maybe<String_Comparison_Exp>,
-  roomPropertyID?: Maybe<Int_Comparison_Exp>,
 };
 
 export enum Room_Constraint {
@@ -15426,43 +15488,37 @@ export enum Room_Constraint {
 
 export type Room_Inc_Input = {
   roomID?: Maybe<Scalars['Int']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Insert_Input = {
   HotelRooms?: Maybe<HotelRoom_Arr_Rel_Insert_Input>,
   RoomPictures?: Maybe<RoomPicture_Arr_Rel_Insert_Input>,
   RoomPrices?: Maybe<RoomPrice_Arr_Rel_Insert_Input>,
-  RoomProperty?: Maybe<RoomProperty_Obj_Rel_Insert_Input>,
+  RoomPropertyRooms?: Maybe<RoomPropertyRoom_Arr_Rel_Insert_Input>,
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Max_Fields = {
    __typename?: 'Room_max_fields',
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Max_Order_By = {
   roomID?: Maybe<Order_By>,
   roomNo?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Min_Fields = {
    __typename?: 'Room_min_fields',
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Min_Order_By = {
   roomID?: Maybe<Order_By>,
   roomNo?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Mutation_Response = {
@@ -15486,105 +15542,87 @@ export type Room_Order_By = {
   HotelRooms_aggregate?: Maybe<HotelRoom_Aggregate_Order_By>,
   RoomPictures_aggregate?: Maybe<RoomPicture_Aggregate_Order_By>,
   RoomPrices_aggregate?: Maybe<RoomPrice_Aggregate_Order_By>,
-  RoomProperty?: Maybe<RoomProperty_Order_By>,
+  RoomPropertyRooms_aggregate?: Maybe<RoomPropertyRoom_Aggregate_Order_By>,
   roomID?: Maybe<Order_By>,
   roomNo?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export enum Room_Select_Column {
   RoomId = 'roomID',
-  RoomNo = 'roomNo',
-  RoomPropertyId = 'roomPropertyID'
+  RoomNo = 'roomNo'
 }
 
 export type Room_Set_Input = {
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Stddev_Fields = {
    __typename?: 'Room_stddev_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Stddev_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Stddev_Pop_Fields = {
    __typename?: 'Room_stddev_pop_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Stddev_Pop_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Stddev_Samp_Fields = {
    __typename?: 'Room_stddev_samp_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Stddev_Samp_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Sum_Fields = {
    __typename?: 'Room_sum_fields',
   roomID?: Maybe<Scalars['Int']>,
-  roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
 export type Room_Sum_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export enum Room_Update_Column {
   RoomId = 'roomID',
-  RoomNo = 'roomNo',
-  RoomPropertyId = 'roomPropertyID'
+  RoomNo = 'roomNo'
 }
 
 export type Room_Var_Pop_Fields = {
    __typename?: 'Room_var_pop_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Var_Pop_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Var_Samp_Fields = {
    __typename?: 'Room_var_samp_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Var_Samp_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type Room_Variance_Fields = {
    __typename?: 'Room_variance_fields',
   roomID?: Maybe<Scalars['Float']>,
-  roomPropertyID?: Maybe<Scalars['Float']>,
 };
 
 export type Room_Variance_Order_By = {
   roomID?: Maybe<Order_By>,
-  roomPropertyID?: Maybe<Order_By>,
 };
 
 export type RoomPicture = {
@@ -16110,28 +16148,28 @@ export type RoomPrice_Variance_Order_By = {
 
 export type RoomProperty = {
    __typename?: 'RoomProperty',
-  Rooms: Array<Room>,
-  Rooms_aggregate: Room_Aggregate,
+  RoomPropertyRooms: Array<RoomPropertyRoom>,
+  RoomPropertyRooms_aggregate: RoomPropertyRoom_Aggregate,
   content: Scalars['String'],
   roomPropertyID: Scalars['Int'],
 };
 
 
-export type RoomPropertyRoomsArgs = {
-  distinct_on?: Maybe<Array<Room_Select_Column>>,
+export type RoomPropertyRoomPropertyRoomsArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
   offset?: Maybe<Scalars['Int']>,
-  order_by?: Maybe<Array<Room_Order_By>>,
-  where?: Maybe<Room_Bool_Exp>
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
 };
 
 
-export type RoomPropertyRooms_AggregateArgs = {
-  distinct_on?: Maybe<Array<Room_Select_Column>>,
+export type RoomPropertyRoomPropertyRooms_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
   offset?: Maybe<Scalars['Int']>,
-  order_by?: Maybe<Array<Room_Order_By>>,
-  where?: Maybe<Room_Bool_Exp>
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
 };
 
 export type RoomProperty_Aggregate = {
@@ -16190,7 +16228,7 @@ export type RoomProperty_Avg_Order_By = {
 };
 
 export type RoomProperty_Bool_Exp = {
-  Rooms?: Maybe<Room_Bool_Exp>,
+  RoomPropertyRooms?: Maybe<RoomPropertyRoom_Bool_Exp>,
   _and?: Maybe<Array<Maybe<RoomProperty_Bool_Exp>>>,
   _not?: Maybe<RoomProperty_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomProperty_Bool_Exp>>>,
@@ -16207,7 +16245,7 @@ export type RoomProperty_Inc_Input = {
 };
 
 export type RoomProperty_Insert_Input = {
-  Rooms?: Maybe<Room_Arr_Rel_Insert_Input>,
+  RoomPropertyRooms?: Maybe<RoomPropertyRoom_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
 };
@@ -16252,7 +16290,7 @@ export type RoomProperty_On_Conflict = {
 };
 
 export type RoomProperty_Order_By = {
-  Rooms_aggregate?: Maybe<Room_Aggregate_Order_By>,
+  RoomPropertyRooms_aggregate?: Maybe<RoomPropertyRoom_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
   roomPropertyID?: Maybe<Order_By>,
 };
@@ -16333,6 +16371,263 @@ export type RoomProperty_Variance_Fields = {
 
 export type RoomProperty_Variance_Order_By = {
   roomPropertyID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom = {
+   __typename?: 'RoomPropertyRoom',
+  Room: Room,
+  RoomProperty: RoomProperty,
+  roomID: Scalars['Int'],
+  roomPropertyID: Scalars['Int'],
+  roomPropertyRoomID: Scalars['Int'],
+};
+
+export type RoomPropertyRoom_Aggregate = {
+   __typename?: 'RoomPropertyRoom_aggregate',
+  aggregate?: Maybe<RoomPropertyRoom_Aggregate_Fields>,
+  nodes: Array<RoomPropertyRoom>,
+};
+
+export type RoomPropertyRoom_Aggregate_Fields = {
+   __typename?: 'RoomPropertyRoom_aggregate_fields',
+  avg?: Maybe<RoomPropertyRoom_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<RoomPropertyRoom_Max_Fields>,
+  min?: Maybe<RoomPropertyRoom_Min_Fields>,
+  stddev?: Maybe<RoomPropertyRoom_Stddev_Fields>,
+  stddev_pop?: Maybe<RoomPropertyRoom_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<RoomPropertyRoom_Stddev_Samp_Fields>,
+  sum?: Maybe<RoomPropertyRoom_Sum_Fields>,
+  var_pop?: Maybe<RoomPropertyRoom_Var_Pop_Fields>,
+  var_samp?: Maybe<RoomPropertyRoom_Var_Samp_Fields>,
+  variance?: Maybe<RoomPropertyRoom_Variance_Fields>,
+};
+
+
+export type RoomPropertyRoom_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type RoomPropertyRoom_Aggregate_Order_By = {
+  avg?: Maybe<RoomPropertyRoom_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<RoomPropertyRoom_Max_Order_By>,
+  min?: Maybe<RoomPropertyRoom_Min_Order_By>,
+  stddev?: Maybe<RoomPropertyRoom_Stddev_Order_By>,
+  stddev_pop?: Maybe<RoomPropertyRoom_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<RoomPropertyRoom_Stddev_Samp_Order_By>,
+  sum?: Maybe<RoomPropertyRoom_Sum_Order_By>,
+  var_pop?: Maybe<RoomPropertyRoom_Var_Pop_Order_By>,
+  var_samp?: Maybe<RoomPropertyRoom_Var_Samp_Order_By>,
+  variance?: Maybe<RoomPropertyRoom_Variance_Order_By>,
+};
+
+export type RoomPropertyRoom_Arr_Rel_Insert_Input = {
+  data: Array<RoomPropertyRoom_Insert_Input>,
+  on_conflict?: Maybe<RoomPropertyRoom_On_Conflict>,
+};
+
+export type RoomPropertyRoom_Avg_Fields = {
+   __typename?: 'RoomPropertyRoom_avg_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Avg_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Bool_Exp = {
+  Room?: Maybe<Room_Bool_Exp>,
+  RoomProperty?: Maybe<RoomProperty_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<RoomPropertyRoom_Bool_Exp>>>,
+  _not?: Maybe<RoomPropertyRoom_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<RoomPropertyRoom_Bool_Exp>>>,
+  roomID?: Maybe<Int_Comparison_Exp>,
+  roomPropertyID?: Maybe<Int_Comparison_Exp>,
+  roomPropertyRoomID?: Maybe<Int_Comparison_Exp>,
+};
+
+export enum RoomPropertyRoom_Constraint {
+  RoomPropertyRoomPkey = 'RoomPropertyRoom_pkey'
+}
+
+export type RoomPropertyRoom_Inc_Input = {
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Insert_Input = {
+  Room?: Maybe<Room_Obj_Rel_Insert_Input>,
+  RoomProperty?: Maybe<RoomProperty_Obj_Rel_Insert_Input>,
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Max_Fields = {
+   __typename?: 'RoomPropertyRoom_max_fields',
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Max_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Min_Fields = {
+   __typename?: 'RoomPropertyRoom_min_fields',
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Min_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Mutation_Response = {
+   __typename?: 'RoomPropertyRoom_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<RoomPropertyRoom>,
+};
+
+export type RoomPropertyRoom_Obj_Rel_Insert_Input = {
+  data: RoomPropertyRoom_Insert_Input,
+  on_conflict?: Maybe<RoomPropertyRoom_On_Conflict>,
+};
+
+export type RoomPropertyRoom_On_Conflict = {
+  constraint: RoomPropertyRoom_Constraint,
+  update_columns: Array<RoomPropertyRoom_Update_Column>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>,
+};
+
+export type RoomPropertyRoom_Order_By = {
+  Room?: Maybe<Room_Order_By>,
+  RoomProperty?: Maybe<RoomProperty_Order_By>,
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export enum RoomPropertyRoom_Select_Column {
+  RoomId = 'roomID',
+  RoomPropertyId = 'roomPropertyID',
+  RoomPropertyRoomId = 'roomPropertyRoomID'
+}
+
+export type RoomPropertyRoom_Set_Input = {
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Stddev_Fields = {
+   __typename?: 'RoomPropertyRoom_stddev_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Stddev_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Stddev_Pop_Fields = {
+   __typename?: 'RoomPropertyRoom_stddev_pop_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Stddev_Pop_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Stddev_Samp_Fields = {
+   __typename?: 'RoomPropertyRoom_stddev_samp_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Stddev_Samp_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Sum_Fields = {
+   __typename?: 'RoomPropertyRoom_sum_fields',
+  roomID?: Maybe<Scalars['Int']>,
+  roomPropertyID?: Maybe<Scalars['Int']>,
+  roomPropertyRoomID?: Maybe<Scalars['Int']>,
+};
+
+export type RoomPropertyRoom_Sum_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export enum RoomPropertyRoom_Update_Column {
+  RoomId = 'roomID',
+  RoomPropertyId = 'roomPropertyID',
+  RoomPropertyRoomId = 'roomPropertyRoomID'
+}
+
+export type RoomPropertyRoom_Var_Pop_Fields = {
+   __typename?: 'RoomPropertyRoom_var_pop_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Var_Pop_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Var_Samp_Fields = {
+   __typename?: 'RoomPropertyRoom_var_samp_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Var_Samp_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
+};
+
+export type RoomPropertyRoom_Variance_Fields = {
+   __typename?: 'RoomPropertyRoom_variance_fields',
+  roomID?: Maybe<Scalars['Float']>,
+  roomPropertyID?: Maybe<Scalars['Float']>,
+  roomPropertyRoomID?: Maybe<Scalars['Float']>,
+};
+
+export type RoomPropertyRoom_Variance_Order_By = {
+  roomID?: Maybe<Order_By>,
+  roomPropertyID?: Maybe<Order_By>,
+  roomPropertyRoomID?: Maybe<Order_By>,
 };
 
 export type String_Comparison_Exp = {
@@ -16495,6 +16790,9 @@ export type Subscription_Root = {
   RoomPrice_aggregate: RoomPrice_Aggregate,
   RoomPrice_by_pk?: Maybe<RoomPrice>,
   RoomProperty: Array<RoomProperty>,
+  RoomPropertyRoom: Array<RoomPropertyRoom>,
+  RoomPropertyRoom_aggregate: RoomPropertyRoom_Aggregate,
+  RoomPropertyRoom_by_pk?: Maybe<RoomPropertyRoom>,
   RoomProperty_aggregate: RoomProperty_Aggregate,
   RoomProperty_by_pk?: Maybe<RoomProperty>,
   Room_aggregate: Room_Aggregate,
@@ -17602,6 +17900,29 @@ export type Subscription_RootRoomPropertyArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<RoomProperty_Order_By>>,
   where?: Maybe<RoomProperty_Bool_Exp>
+};
+
+
+export type Subscription_RootRoomPropertyRoomArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
+
+export type Subscription_RootRoomPropertyRoom_AggregateArgs = {
+  distinct_on?: Maybe<Array<RoomPropertyRoom_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<RoomPropertyRoom_Order_By>>,
+  where?: Maybe<RoomPropertyRoom_Bool_Exp>
+};
+
+
+export type Subscription_RootRoomPropertyRoom_By_PkArgs = {
+  roomPropertyRoomID: Scalars['Int']
 };
 
 
@@ -20721,6 +21042,24 @@ export type AddRoomPropertyMutation = (
   )> }
 );
 
+export type AddRoomMutationVariables = {
+  roomNo: Scalars['String'],
+  roomPropRoom: Array<RoomPropertyRoom_Insert_Input>,
+  hotelID: Scalars['Int']
+};
+
+
+export type AddRoomMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Room: Maybe<(
+    { __typename?: 'Room_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -20746,6 +21085,30 @@ export type GetUserCompanyQuery = (
       { __typename?: 'Company' }
       & Pick<Company, 'name'>
     ) }
+  )> }
+);
+
+export type GetRoomPropertyQueryVariables = {};
+
+
+export type GetRoomPropertyQuery = (
+  { __typename?: 'query_root' }
+  & { RoomProperty: Array<(
+    { __typename?: 'RoomProperty' }
+    & Pick<RoomProperty, 'content' | 'roomPropertyID'>
+  )> }
+);
+
+export type GetUserHotelQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserHotelQuery = (
+  { __typename?: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'hotelID' | 'name'>
   )> }
 );
 
@@ -20992,6 +21355,36 @@ export function withAddRoomProperty<TProps, TChildProps = {}>(operationOptions?:
 };
 export type AddRoomPropertyMutationResult = ApolloReactCommon.MutationResult<AddRoomPropertyMutation>;
 export type AddRoomPropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomPropertyMutation, AddRoomPropertyMutationVariables>;
+export const AddRoomDocument = gql`
+    mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input!]!, $hotelID: Int!) {
+  __typename
+  insert_Room(objects: {roomNo: $roomNo, RoomPropertyRooms: {data: $roomPropRoom}, HotelRooms: {data: {hotelID: $hotelID}}}) {
+    returning {
+      roomID
+    }
+  }
+}
+    `;
+export type AddRoomMutationFn = ApolloReactCommon.MutationFunction<AddRoomMutation, AddRoomMutationVariables>;
+export type AddRoomComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRoomMutation, AddRoomMutationVariables>, 'mutation'>;
+
+    export const AddRoomComponent = (props: AddRoomComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRoomMutation, AddRoomMutationVariables> mutation={AddRoomDocument} {...props} />
+    );
+    
+export type AddRoomProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRoomMutation, AddRoomMutationVariables> & TChildProps;
+export function withAddRoom<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRoomMutation,
+  AddRoomMutationVariables,
+  AddRoomProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRoomMutation, AddRoomMutationVariables, AddRoomProps<TChildProps>>(AddRoomDocument, {
+      alias: 'addRoom',
+      ...operationOptions
+    });
+};
+export type AddRoomMutationResult = ApolloReactCommon.MutationResult<AddRoomMutation>;
+export type AddRoomMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomMutation, AddRoomMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -21048,3 +21441,55 @@ export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
+export const GetRoomPropertyDocument = gql`
+    query getRoomProperty {
+  RoomProperty {
+    content
+    roomPropertyID
+  }
+}
+    `;
+export type GetRoomPropertyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRoomPropertyQuery, GetRoomPropertyQueryVariables>, 'query'>;
+
+    export const GetRoomPropertyComponent = (props: GetRoomPropertyComponentProps) => (
+      <ApolloReactComponents.Query<GetRoomPropertyQuery, GetRoomPropertyQueryVariables> query={GetRoomPropertyDocument} {...props} />
+    );
+    
+export type GetRoomPropertyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRoomPropertyQuery, GetRoomPropertyQueryVariables> & TChildProps;
+export function withGetRoomProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRoomPropertyQuery,
+  GetRoomPropertyQueryVariables,
+  GetRoomPropertyProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRoomPropertyQuery, GetRoomPropertyQueryVariables, GetRoomPropertyProps<TChildProps>>(GetRoomPropertyDocument, {
+      alias: 'getRoomProperty',
+      ...operationOptions
+    });
+};
+export type GetRoomPropertyQueryResult = ApolloReactCommon.QueryResult<GetRoomPropertyQuery, GetRoomPropertyQueryVariables>;
+export const GetUserHotelDocument = gql`
+    query getUserHotel($userID: Int!) {
+  Hotel(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    hotelID
+    name
+  }
+}
+    `;
+export type GetUserHotelComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserHotelQuery, GetUserHotelQueryVariables>, 'query'> & ({ variables: GetUserHotelQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserHotelComponent = (props: GetUserHotelComponentProps) => (
+      <ApolloReactComponents.Query<GetUserHotelQuery, GetUserHotelQueryVariables> query={GetUserHotelDocument} {...props} />
+    );
+    
+export type GetUserHotelProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserHotelQuery, GetUserHotelQueryVariables> & TChildProps;
+export function withGetUserHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserHotelQuery,
+  GetUserHotelQueryVariables,
+  GetUserHotelProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserHotelQuery, GetUserHotelQueryVariables, GetUserHotelProps<TChildProps>>(GetUserHotelDocument, {
+      alias: 'getUserHotel',
+      ...operationOptions
+    });
+};
+export type GetUserHotelQueryResult = ApolloReactCommon.QueryResult<GetUserHotelQuery, GetUserHotelQueryVariables>;

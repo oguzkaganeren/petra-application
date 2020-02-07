@@ -1,27 +1,32 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddRoomPropertyComponent } from '../../generated/components';
+import { AddRoomComponent, GetUserHotelComponent } from '../../generated/components';
+import { GetAllRoomPropertyComponent } from '../../components/GetAllRoomProperty';
+import { GetAllUserHotelComponent } from '../../components/GetAllUserHotel';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
  * AddRestaurant props
  */
-export interface AddRoomPropertyProps {
+export interface AddRoomProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddRoomPropertyState {}
+export interface AddRoomState {}
 
 /**
  * Location
  */
-export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps, AddRoomPropertyState> {
-	constructor(props: AddRoomPropertyProps) {
+export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
+	constructor(props: AddRoomProps) {
 		super(props);
 		this.state = {};
+		/**
+		 * {"roomPropRoom": [{"roomPropertyID": 1},{"roomPropertyID": 2}]}
+		 */
 	}
 
 	/**
@@ -29,29 +34,33 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 	 * @returns
 	 */
 	render() {
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+				<AddRoomComponent>
+					{AddRoomMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								roomNo: '',
+								roomPropRoom: [],
+								hotelID: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								content: Yup.string()
-									.min(2, 'Too Short!')
+								roomNo: Yup.string()
+									.min(1, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required')
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.content + ' ');
-									AddRoomProperyMutation({
+									AddRoomMutation({
 										variables: {
-											content: values.content.toString()
+											roomNo: values.roomNo,
+											roomPropRoom: values.roomPropRoom,
+											hotelID: values.hotelID
 										}
 									})
 										.then(res => {
@@ -62,7 +71,7 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.content);
+											console.log('roomProp:' + values.roomPropRoom);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,14 +83,27 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Food Type"
-										placeholder="Enter a Food Type"
-										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
-										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
-										onChangeText={props.handleChange('content')}
-										onBlur={props.handleBlur('content')}
-										value={props.values.content}
+										label="Room No"
+										placeholder="Enter a Room No"
+										status={props.touched.roomNo && props.errors.roomNo ? 'danger' : 'success'}
+										caption={props.touched.roomNo && props.errors.roomNo ? props.errors.roomNo : ''}
+										onChangeText={props.handleChange('roomNo')}
+										onBlur={props.handleBlur('roomNo')}
+										value={props.values.roomNo}
 										autoFocus
+									/>
+									<GetAllRoomPropertyComponent
+										label="Select Room Properties"
+										parentReference={value => {
+											props.values.roomPropRoom = value;
+										}}
+									/>
+									<GetAllUserHotelComponent
+										label="Select Your Company"
+										parentReference={value => {
+											props.values.hotelID = value;
+										}}
+										userID={parseInt(userID)}
 									/>
 									<Button
 										onPress={() => {
@@ -89,13 +111,13 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Room Property
+										Add Room
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddRoomPropertyComponent>
+				</AddRoomComponent>
 			</Layout>
 		);
 	}
