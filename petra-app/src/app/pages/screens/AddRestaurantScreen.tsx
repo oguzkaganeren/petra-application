@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
-import { AddRestaurantComponent } from '../../generated/components';
+import { AddRestaurantComponent, GetUserCompanyComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
-
+import { GetAllUserCompanyComponent } from '../../components/GetAllUserCompany';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -36,6 +36,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 	 * @returns
 	 */
 	render() {
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -51,7 +52,8 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									RestaurantType: '',
 									name: '',
 									since: new Date(),
-									taxNumber: ''
+									taxNumber: '',
+									companyID: 0
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
@@ -99,7 +101,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 												latitude: parseFloat(values.latitude),
 												address: values.address.toString(),
 												RestaurantType: values.RestaurantType,
-												CompanyID: 2,
+												CompanyID: values.companyID,
 												taxNumber: values.taxNumber.toString()
 											}
 										})
@@ -136,7 +138,13 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										>
 											Add Restaurant
 										</Button>
-
+										<GetAllUserCompanyComponent
+											label="Select Your Company"
+											parentReference={value => {
+												props.values.companyID = value;
+											}}
+											userID={parseInt(userID)}
+										/>
 										<Input
 											label="Restaurant Name"
 											placeholder="Enter Your Restaurant Name"

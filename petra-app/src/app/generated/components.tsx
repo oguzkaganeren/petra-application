@@ -20716,6 +20716,23 @@ export type GetFoodTypesQuery = (
   )> }
 );
 
+export type GetUserCompanyQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserCompanyQuery = (
+  { __typename: 'query_root' }
+  & { CompanyUser: Array<(
+    { __typename?: 'CompanyUser' }
+    & Pick<CompanyUser, 'companyID'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20956,3 +20973,32 @@ export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypesQuery, GetFoodTypesQueryVariables>;
+export const GetUserCompanyDocument = gql`
+    query getUserCompany($userID: Int!) {
+  __typename
+  CompanyUser(where: {User: {userID: {_eq: $userID}}}) {
+    Company {
+      name
+    }
+    companyID
+  }
+}
+    `;
+export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserCompanyQuery, GetUserCompanyQueryVariables>, 'query'> & ({ variables: GetUserCompanyQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserCompanyComponent = (props: GetUserCompanyComponentProps) => (
+      <ApolloReactComponents.Query<GetUserCompanyQuery, GetUserCompanyQueryVariables> query={GetUserCompanyDocument} {...props} />
+    );
+    
+export type GetUserCompanyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserCompanyQuery, GetUserCompanyQueryVariables> & TChildProps;
+export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserCompanyQuery,
+  GetUserCompanyQueryVariables,
+  GetUserCompanyProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserCompanyQuery, GetUserCompanyQueryVariables, GetUserCompanyProps<TChildProps>>(GetUserCompanyDocument, {
+      alias: 'getUserCompany',
+      ...operationOptions
+    });
+};
+export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
