@@ -20705,6 +20705,22 @@ export type AddArchSiteTypeMutation = (
   )> }
 );
 
+export type AddRoomPropertyMutationVariables = {
+  content: Scalars['String']
+};
+
+
+export type AddRoomPropertyMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RoomProperty: Maybe<(
+    { __typename?: 'RoomProperty_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RoomProperty' }
+      & Pick<RoomProperty, 'roomPropertyID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -20946,6 +20962,36 @@ export function withAddArchSiteType<TProps, TChildProps = {}>(operationOptions?:
 };
 export type AddArchSiteTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteTypeMutation>;
 export type AddArchSiteTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;
+export const AddRoomPropertyDocument = gql`
+    mutation addRoomProperty($content: String!) {
+  __typename
+  insert_RoomProperty(objects: {content: $content}) {
+    returning {
+      roomPropertyID
+    }
+  }
+}
+    `;
+export type AddRoomPropertyMutationFn = ApolloReactCommon.MutationFunction<AddRoomPropertyMutation, AddRoomPropertyMutationVariables>;
+export type AddRoomPropertyComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRoomPropertyMutation, AddRoomPropertyMutationVariables>, 'mutation'>;
+
+    export const AddRoomPropertyComponent = (props: AddRoomPropertyComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRoomPropertyMutation, AddRoomPropertyMutationVariables> mutation={AddRoomPropertyDocument} {...props} />
+    );
+    
+export type AddRoomPropertyProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRoomPropertyMutation, AddRoomPropertyMutationVariables> & TChildProps;
+export function withAddRoomProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRoomPropertyMutation,
+  AddRoomPropertyMutationVariables,
+  AddRoomPropertyProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRoomPropertyMutation, AddRoomPropertyMutationVariables, AddRoomPropertyProps<TChildProps>>(AddRoomPropertyDocument, {
+      alias: 'addRoomProperty',
+      ...operationOptions
+    });
+};
+export type AddRoomPropertyMutationResult = ApolloReactCommon.MutationResult<AddRoomPropertyMutation>;
+export type AddRoomPropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomPropertyMutation, AddRoomPropertyMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
