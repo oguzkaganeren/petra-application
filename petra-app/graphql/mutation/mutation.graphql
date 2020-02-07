@@ -129,3 +129,11 @@ mutation addArchSiteType($name: String) {
 		}
 	}
 }
+mutation addRoomProperty($content: String!) {
+	__typename
+	insert_RoomProperty(objects: { content: $content }) {
+		returning {
+			roomPropertyID
+		}
+	}
+}
