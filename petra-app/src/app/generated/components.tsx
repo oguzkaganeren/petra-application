@@ -21060,6 +21060,69 @@ export type AddRoomMutation = (
   )> }
 );
 
+export type AddArchSiteMutationVariables = {
+  archSiteTypeID?: Maybe<Scalars['Int']>,
+  age?: Maybe<Scalars['Int']>,
+  altitude?: Maybe<Scalars['Float']>,
+  companyID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  destruction?: Maybe<Scalars['String']>,
+  diameter?: Maybe<Scalars['Float']>,
+  name?: Maybe<Scalars['String']>,
+  period?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+  latitude?: Maybe<Scalars['Float']>,
+  longtitude?: Maybe<Scalars['Float']>
+};
+
+
+export type AddArchSiteMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSite: Maybe<(
+    { __typename?: 'ArchSite_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSite' }
+      & Pick<ArchSite, 'archSiteID'>
+    )> }
+  )> }
+);
+
+export type AddArchSiteCommentMutationVariables = {
+  archSiteID?: Maybe<Scalars['Int']>,
+  content?: Maybe<Scalars['String']>,
+  date?: Maybe<Scalars['timestamptz']>,
+  star?: Maybe<Scalars['Float']>,
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddArchSiteCommentMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSiteComment: Maybe<(
+    { __typename?: 'ArchSiteComment_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSiteComment' }
+      & Pick<ArchSiteComment, 'archSiteCommentID'>
+    )> }
+  )> }
+);
+
+export type AddArchSiteEntranceTypeMutationVariables = {
+  content?: Maybe<Scalars['String']>
+};
+
+
+export type AddArchSiteEntranceTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSiteEntranceType: Maybe<(
+    { __typename?: 'ArchSiteEntranceType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSiteEntranceType' }
+      & Pick<ArchSiteEntranceType, 'archSiteEntranceTypeID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21120,6 +21183,17 @@ export type GetUserHotelQuery = (
   & { Hotel: Array<(
     { __typename?: 'Hotel' }
     & Pick<Hotel, 'hotelID' | 'name'>
+  )> }
+);
+
+export type GetArchSiteTypesQueryVariables = {};
+
+
+export type GetArchSiteTypesQuery = (
+  { __typename: 'query_root' }
+  & { ArchSiteType: Array<(
+    { __typename?: 'ArchSiteType' }
+    & Pick<ArchSiteType, 'name' | 'archSiteTypeID'>
   )> }
 );
 
@@ -21396,6 +21470,96 @@ export function withAddRoom<TProps, TChildProps = {}>(operationOptions?: ApolloR
 };
 export type AddRoomMutationResult = ApolloReactCommon.MutationResult<AddRoomMutation>;
 export type AddRoomMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomMutation, AddRoomMutationVariables>;
+export const AddArchSiteDocument = gql`
+    mutation addArchSite($archSiteTypeID: Int, $age: Int, $altitude: Float, $companyID: Int, $description: String, $destruction: String, $diameter: Float, $name: String, $period: String, $address: String, $latitude: Float, $longtitude: Float) {
+  __typename
+  insert_ArchSite(objects: {ArchSiteTypeArchSites: {data: {archSiteTypeID: $archSiteTypeID}}, age: $age, altitude: $altitude, companyID: $companyID, description: $description, destruction: $destruction, diameter: $diameter, name: $name, period: $period, Location: {data: {address: $address, latitude: $latitude, longtitude: $longtitude}}}) {
+    returning {
+      archSiteID
+    }
+  }
+}
+    `;
+export type AddArchSiteMutationFn = ApolloReactCommon.MutationFunction<AddArchSiteMutation, AddArchSiteMutationVariables>;
+export type AddArchSiteComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSiteMutation, AddArchSiteMutationVariables>, 'mutation'>;
+
+    export const AddArchSiteComponent = (props: AddArchSiteComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSiteMutation, AddArchSiteMutationVariables> mutation={AddArchSiteDocument} {...props} />
+    );
+    
+export type AddArchSiteProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSiteMutation, AddArchSiteMutationVariables> & TChildProps;
+export function withAddArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSiteMutation,
+  AddArchSiteMutationVariables,
+  AddArchSiteProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSiteMutation, AddArchSiteMutationVariables, AddArchSiteProps<TChildProps>>(AddArchSiteDocument, {
+      alias: 'addArchSite',
+      ...operationOptions
+    });
+};
+export type AddArchSiteMutationResult = ApolloReactCommon.MutationResult<AddArchSiteMutation>;
+export type AddArchSiteMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteMutation, AddArchSiteMutationVariables>;
+export const AddArchSiteCommentDocument = gql`
+    mutation addArchSiteComment($archSiteID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+  __typename
+  insert_ArchSiteComment(objects: {archSiteID: $archSiteID, content: $content, date: $date, star: $star, userID: $userID}) {
+    returning {
+      archSiteCommentID
+    }
+  }
+}
+    `;
+export type AddArchSiteCommentMutationFn = ApolloReactCommon.MutationFunction<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables>;
+export type AddArchSiteCommentComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables>, 'mutation'>;
+
+    export const AddArchSiteCommentComponent = (props: AddArchSiteCommentComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables> mutation={AddArchSiteCommentDocument} {...props} />
+    );
+    
+export type AddArchSiteCommentProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables> & TChildProps;
+export function withAddArchSiteComment<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSiteCommentMutation,
+  AddArchSiteCommentMutationVariables,
+  AddArchSiteCommentProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables, AddArchSiteCommentProps<TChildProps>>(AddArchSiteCommentDocument, {
+      alias: 'addArchSiteComment',
+      ...operationOptions
+    });
+};
+export type AddArchSiteCommentMutationResult = ApolloReactCommon.MutationResult<AddArchSiteCommentMutation>;
+export type AddArchSiteCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables>;
+export const AddArchSiteEntranceTypeDocument = gql`
+    mutation addArchSiteEntranceType($content: String) {
+  __typename
+  insert_ArchSiteEntranceType(objects: {content: $content}) {
+    returning {
+      archSiteEntranceTypeID
+    }
+  }
+}
+    `;
+export type AddArchSiteEntranceTypeMutationFn = ApolloReactCommon.MutationFunction<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables>;
+export type AddArchSiteEntranceTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables>, 'mutation'>;
+
+    export const AddArchSiteEntranceTypeComponent = (props: AddArchSiteEntranceTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables> mutation={AddArchSiteEntranceTypeDocument} {...props} />
+    );
+    
+export type AddArchSiteEntranceTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables> & TChildProps;
+export function withAddArchSiteEntranceType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSiteEntranceTypeMutation,
+  AddArchSiteEntranceTypeMutationVariables,
+  AddArchSiteEntranceTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables, AddArchSiteEntranceTypeProps<TChildProps>>(AddArchSiteEntranceTypeDocument, {
+      alias: 'addArchSiteEntranceType',
+      ...operationOptions
+    });
+};
+export type AddArchSiteEntranceTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteEntranceTypeMutation>;
+export type AddArchSiteEntranceTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -21531,3 +21695,30 @@ export function withGetUserHotel<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetUserHotelQueryResult = ApolloReactCommon.QueryResult<GetUserHotelQuery, GetUserHotelQueryVariables>;
+export const GetArchSiteTypesDocument = gql`
+    query GetArchSiteTypes {
+  __typename
+  ArchSiteType {
+    name
+    archSiteTypeID
+  }
+}
+    `;
+export type GetArchSiteTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables>, 'query'>;
+
+    export const GetArchSiteTypesComponent = (props: GetArchSiteTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables> query={GetArchSiteTypesDocument} {...props} />
+    );
+    
+export type GetArchSiteTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables> & TChildProps;
+export function withGetArchSiteTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteTypesQuery,
+  GetArchSiteTypesQueryVariables,
+  GetArchSiteTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables, GetArchSiteTypesProps<TChildProps>>(GetArchSiteTypesDocument, {
+      alias: 'getArchSiteTypes',
+      ...operationOptions
+    });
+};
+export type GetArchSiteTypesQueryResult = ApolloReactCommon.QueryResult<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables>;
