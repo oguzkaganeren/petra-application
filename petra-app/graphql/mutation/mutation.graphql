@@ -203,3 +203,19 @@ mutation addArchSiteEntranceType($content: String) {
 		}
 	}
 }
+mutation addRestaurantCuisineType($name: String) {
+	__typename
+	insert_RestaurantCuisineType(objects: { name: $name }) {
+		returning {
+			restaurantCuisineTypeID
+		}
+	}
+}
+mutation addTag($name: String) {
+	__typename
+	insert_Tag(objects: { name: $name }) {
+		returning {
+			tagID
+		}
+	}
+}
