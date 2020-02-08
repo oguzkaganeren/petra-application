@@ -106,6 +106,7 @@ mutation addHotel(
 	$longtitude: Float
 	$address: String
 	$taxNumber: String
+	$hotelServiceProperty: [HotelService_insert_input!]!
 ) {
 	__typename
 	insert_Hotel(
@@ -114,6 +115,7 @@ mutation addHotel(
 			companyID: $companyID
 			Location: { data: { latitude: $latitude, longtitude: $longtitude, address: $address } }
 			taxNumber: $taxNumber
+			HotelServices: { data: $hotelServiceProperty }
 		}
 	) {
 		returning {
