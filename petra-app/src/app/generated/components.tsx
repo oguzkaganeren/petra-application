@@ -21060,6 +21060,22 @@ export type AddRoomMutation = (
   )> }
 );
 
+export type AddHotelServicePropertyMutationVariables = {
+  content: Scalars['String']
+};
+
+
+export type AddHotelServicePropertyMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_HotelServiceProperty: Maybe<(
+    { __typename?: 'HotelServiceProperty_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'HotelServiceProperty' }
+      & Pick<HotelServiceProperty, 'hotelServicePropertyID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21385,6 +21401,36 @@ export function withAddRoom<TProps, TChildProps = {}>(operationOptions?: ApolloR
 };
 export type AddRoomMutationResult = ApolloReactCommon.MutationResult<AddRoomMutation>;
 export type AddRoomMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomMutation, AddRoomMutationVariables>;
+export const AddHotelServicePropertyDocument = gql`
+    mutation addHotelServiceProperty($content: String!) {
+  __typename
+  insert_HotelServiceProperty(objects: {content: $content}) {
+    returning {
+      hotelServicePropertyID
+    }
+  }
+}
+    `;
+export type AddHotelServicePropertyMutationFn = ApolloReactCommon.MutationFunction<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables>;
+export type AddHotelServicePropertyComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables>, 'mutation'>;
+
+    export const AddHotelServicePropertyComponent = (props: AddHotelServicePropertyComponentProps) => (
+      <ApolloReactComponents.Mutation<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables> mutation={AddHotelServicePropertyDocument} {...props} />
+    );
+    
+export type AddHotelServicePropertyProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables> & TChildProps;
+export function withAddHotelServiceProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddHotelServicePropertyMutation,
+  AddHotelServicePropertyMutationVariables,
+  AddHotelServicePropertyProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables, AddHotelServicePropertyProps<TChildProps>>(AddHotelServicePropertyDocument, {
+      alias: 'addHotelServiceProperty',
+      ...operationOptions
+    });
+};
+export type AddHotelServicePropertyMutationResult = ApolloReactCommon.MutationResult<AddHotelServicePropertyMutation>;
+export type AddHotelServicePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
