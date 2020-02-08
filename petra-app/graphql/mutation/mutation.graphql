@@ -161,3 +161,11 @@ mutation addHotelServiceProperty($content: String!) {
 		}
 	}
 }
+mutation addHotelComment($content: String!, $date: timestamptz!, $hotelID: Int!, $star: Float, $userID: Int) {
+	__typename
+	insert_HotelComment(objects: { content: $content, date: $date, hotelID: $hotelID, star: $star, userID: $userID }) {
+		returning {
+			hotelCommentID
+		}
+	}
+}
