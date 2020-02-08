@@ -61,7 +61,7 @@ mutation addRestaurant(
 	$latitude: Float
 	$longtitude: Float
 	$address: String
-	$RestaurantType: String
+	$restaurantTypeID: Int
 	$name: String
 	$since: date
 	$taxNumber: String
@@ -71,7 +71,7 @@ mutation addRestaurant(
 		objects: {
 			ISO: $ISO
 			Location: { data: { latitude: $latitude, longtitude: $longtitude, address: $address } }
-			RestaurantType: { data: { type: $RestaurantType } }
+			restaurantTypeID: $restaurantTypeID
 			name: $name
 			since: $since
 			companyID: $CompanyID

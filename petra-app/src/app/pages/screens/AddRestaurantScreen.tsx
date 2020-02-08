@@ -3,6 +3,7 @@ import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddRestaurantComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
+import { GetAllRestaurantTypesComponent } from '../../components/GetAllRestaurantTypes';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -47,7 +48,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								latitude: '',
 								longtitude: '',
 								address: '',
-								RestaurantType: '',
+								RestaurantTypeID: 0,
 								name: '',
 								since: new Date(),
 								taxNumber: ''
@@ -61,8 +62,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								ISO: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!'),
-								RestaurantType: Yup.string() //ComboBox Olacak
-									.required('Required'),
+
 								address: Yup.string()
 									.min(5, 'Too Short!')
 									.required('Required'),
@@ -80,7 +80,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											' ' +
 											values.address +
 											' ' +
-											values.RestaurantType +
+											values.RestaurantTypeID +
 											' ' +
 											values.ISO +
 											' ' +
@@ -97,7 +97,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											longtitude: parseFloat(values.longtitude),
 											latitude: parseFloat(values.latitude),
 											address: values.address.toString(),
-											RestaurantType: values.RestaurantType,
+											restaurantTypeID: values.RestaurantTypeID,
 											CompanyID: 2,
 											taxNumber: values.taxNumber.toString()
 										}
@@ -113,7 +113,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											console.log('name:' + values.name);
 											console.log('ISO:' + values.ISO);
 											console.log('since:' + values.since);
-											console.log('RestaurantType:' + values.RestaurantType);
+											console.log('RestaurantType:' + values.RestaurantTypeID);
 											console.log('long:' + values.longtitude);
 											console.log('lat:' + values.latitude);
 											console.log('address:' + values.address);
@@ -155,16 +155,11 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										onBlur={props.handleBlur('address')}
 										value={props.values.address}
 									/>
-									<Input
-										label="Restaurant Type"
-										status={props.touched.RestaurantType && props.errors.RestaurantType ? 'danger' : 'success'}
-										caption={
-											props.touched.RestaurantType && props.errors.RestaurantType ? props.errors.RestaurantType : ''
-										}
-										placeholder="Enter Your Restaurant Type"
-										onChangeText={props.handleChange('RestaurantType')}
-										onBlur={props.handleBlur('RestaurantType')}
-										value={props.values.RestaurantType}
+									<GetAllRestaurantTypesComponent
+										label="Select Restaurant Type"
+										parentReference={value => {
+											props.values.RestaurantTypeID = value;
+										}}
 									/>
 									<Input
 										label="ISO Certificate"
@@ -193,6 +188,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											props.values.longtitude = value;
 										}}
 									/>
+
 									{props.touched.longtitude && props.errors.longtitude ? (
 										<Text status="danger">{props.errors.longtitude}</Text>
 									) : null}

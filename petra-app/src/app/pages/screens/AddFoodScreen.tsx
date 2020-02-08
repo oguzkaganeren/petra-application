@@ -37,7 +37,7 @@ export class AddFoodScreen extends React.Component<AddFoodProps, AddFoodState> {
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								foodTypeID: '', //Sonra düzeltilecek
+								foodTypeID: 0, //Sonra düzeltilecek
 								name: '',
 								price: 0
 							}}
