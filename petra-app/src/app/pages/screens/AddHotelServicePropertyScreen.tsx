@@ -1,25 +1,28 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddFoodTypeComponent } from '../../generated/components';
+import { AddHotelServicePropertyComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
  * AddRestaurant props
  */
-export interface AddFoodTypeProps {
+export interface AddHotelServicePropertyProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddFoodTypeState {}
+export interface AddHotelServicePropertyState {}
 
 /**
  * Location
  */
-export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFoodTypeState> {
-	constructor(props: AddFoodTypeProps) {
+export class AddHotelServicePropertyScreen extends React.Component<
+	AddHotelServicePropertyProps,
+	AddHotelServicePropertyState
+> {
+	constructor(props: AddHotelServicePropertyProps) {
 		super(props);
 		this.state = {};
 	}
@@ -31,16 +34,16 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 	render() {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddFoodTypeComponent>
-					{AddFoodTypeMutation => (
+				<AddHotelServicePropertyComponent>
+					{AddHotelServicePropertyMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								foodType: ''
+								content: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								foodType: Yup.string()
+								content: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required')
@@ -48,10 +51,9 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.foodType + ' ');
-									AddFoodTypeMutation({
+									AddHotelServicePropertyMutation({
 										variables: {
-											foodType: values.foodType.toString()
+											content: values.content.toString()
 										}
 									})
 										.then(res => {
@@ -62,7 +64,7 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 										})
 										.catch(err => {
 											alert(err);
-											console.log('foodType:' + values.foodType);
+											console.log('foodType:' + values.content);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,13 +76,13 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Food Type"
-										placeholder="Enter a Food Type"
-										status={props.touched.foodType && props.errors.foodType ? 'danger' : 'success'}
-										caption={props.touched.foodType && props.errors.foodType ? props.errors.foodType : ''}
-										onChangeText={props.handleChange('foodType')}
-										onBlur={props.handleBlur('foodType')}
-										value={props.values.foodType}
+										label="Service Property"
+										placeholder="Enter a Service Property"
+										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
+										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
+										onChangeText={props.handleChange('content')}
+										onBlur={props.handleBlur('content')}
+										value={props.values.content}
 										autoFocus
 									/>
 									<Button
@@ -89,13 +91,13 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Food Type
+										Add Service Property
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddFoodTypeComponent>
+				</AddHotelServicePropertyComponent>
 			</Layout>
 		);
 	}

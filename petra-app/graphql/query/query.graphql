@@ -33,3 +33,10 @@ query getUserHotel($userID: Int!) {
 		name
 	}
 }
+query getHotelServiceProperty {
+	__typename
+	HotelServiceProperty {
+		content
+		hotelServicePropertyID
+	}
+}
