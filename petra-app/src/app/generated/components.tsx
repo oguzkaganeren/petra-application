@@ -7044,6 +7044,7 @@ export type Museum = {
   Location: Location,
   MuseumComments: Array<MuseumComment>,
   MuseumComments_aggregate: MuseumComment_Aggregate,
+  MuseumType: MuseumType,
   MuseumWorkingSchedules: Array<MuseumWorkingSchedule>,
   MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
   TravelGuideMuseums: Array<TravelGuideMuseum>,
@@ -7052,6 +7053,7 @@ export type Museum = {
   description: Scalars['String'],
   locationID: Scalars['Int'],
   museumID: Scalars['Int'],
+  museumTypeID: Scalars['Int'],
   name: Scalars['String'],
 };
 
@@ -7160,18 +7162,21 @@ export type Museum_Avg_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Avg_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Bool_Exp = {
   Company?: Maybe<Company_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   MuseumComments?: Maybe<MuseumComment_Bool_Exp>,
+  MuseumType?: Maybe<MuseumType_Bool_Exp>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
@@ -7181,6 +7186,7 @@ export type Museum_Bool_Exp = {
   description?: Maybe<String_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
+  museumTypeID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
 };
 
@@ -7192,18 +7198,21 @@ export type Museum_Inc_Input = {
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Insert_Input = {
   Company?: Maybe<Company_Obj_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   MuseumComments?: Maybe<MuseumComment_Arr_Rel_Insert_Input>,
+  MuseumType?: Maybe<MuseumType_Obj_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7213,6 +7222,7 @@ export type Museum_Max_Fields = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7221,6 +7231,7 @@ export type Museum_Max_Order_By = {
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7230,6 +7241,7 @@ export type Museum_Min_Fields = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7238,6 +7250,7 @@ export type Museum_Min_Order_By = {
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7262,12 +7275,14 @@ export type Museum_Order_By = {
   Company?: Maybe<Company_Order_By>,
   Location?: Maybe<Location_Order_By>,
   MuseumComments_aggregate?: Maybe<MuseumComment_Aggregate_Order_By>,
+  MuseumType?: Maybe<MuseumType_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7276,6 +7291,7 @@ export enum Museum_Select_Column {
   Description = 'description',
   LocationId = 'locationID',
   MuseumId = 'museumID',
+  MuseumTypeId = 'museumTypeID',
   Name = 'name'
 }
 
@@ -7284,6 +7300,7 @@ export type Museum_Set_Input = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7292,12 +7309,14 @@ export type Museum_Stddev_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Stddev_Pop_Fields = {
@@ -7305,12 +7324,14 @@ export type Museum_Stddev_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Stddev_Samp_Fields = {
@@ -7318,12 +7339,14 @@ export type Museum_Stddev_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Sum_Fields = {
@@ -7331,12 +7354,14 @@ export type Museum_Sum_Fields = {
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Sum_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export enum Museum_Update_Column {
@@ -7344,6 +7369,7 @@ export enum Museum_Update_Column {
   Description = 'description',
   LocationId = 'locationID',
   MuseumId = 'museumID',
+  MuseumTypeId = 'museumTypeID',
   Name = 'name'
 }
 
@@ -7352,12 +7378,14 @@ export type Museum_Var_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Var_Samp_Fields = {
@@ -7365,12 +7393,14 @@ export type Museum_Var_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Variance_Fields = {
@@ -7378,12 +7408,14 @@ export type Museum_Variance_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Variance_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
 };
 
 export type MuseumComment = {
@@ -8221,6 +8253,211 @@ export type MuseumPrice_Variance_Order_By = {
   price?: Maybe<Order_By>,
 };
 
+export type MuseumType = {
+   __typename?: 'MuseumType',
+  museumTypeID: Scalars['Int'],
+  type: Scalars['String'],
+};
+
+export type MuseumType_Aggregate = {
+   __typename?: 'MuseumType_aggregate',
+  aggregate?: Maybe<MuseumType_Aggregate_Fields>,
+  nodes: Array<MuseumType>,
+};
+
+export type MuseumType_Aggregate_Fields = {
+   __typename?: 'MuseumType_aggregate_fields',
+  avg?: Maybe<MuseumType_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<MuseumType_Max_Fields>,
+  min?: Maybe<MuseumType_Min_Fields>,
+  stddev?: Maybe<MuseumType_Stddev_Fields>,
+  stddev_pop?: Maybe<MuseumType_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<MuseumType_Stddev_Samp_Fields>,
+  sum?: Maybe<MuseumType_Sum_Fields>,
+  var_pop?: Maybe<MuseumType_Var_Pop_Fields>,
+  var_samp?: Maybe<MuseumType_Var_Samp_Fields>,
+  variance?: Maybe<MuseumType_Variance_Fields>,
+};
+
+
+export type MuseumType_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<MuseumType_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type MuseumType_Aggregate_Order_By = {
+  avg?: Maybe<MuseumType_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<MuseumType_Max_Order_By>,
+  min?: Maybe<MuseumType_Min_Order_By>,
+  stddev?: Maybe<MuseumType_Stddev_Order_By>,
+  stddev_pop?: Maybe<MuseumType_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<MuseumType_Stddev_Samp_Order_By>,
+  sum?: Maybe<MuseumType_Sum_Order_By>,
+  var_pop?: Maybe<MuseumType_Var_Pop_Order_By>,
+  var_samp?: Maybe<MuseumType_Var_Samp_Order_By>,
+  variance?: Maybe<MuseumType_Variance_Order_By>,
+};
+
+export type MuseumType_Arr_Rel_Insert_Input = {
+  data: Array<MuseumType_Insert_Input>,
+  on_conflict?: Maybe<MuseumType_On_Conflict>,
+};
+
+export type MuseumType_Avg_Fields = {
+   __typename?: 'MuseumType_avg_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Avg_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
+  _not?: Maybe<MuseumType_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
+  museumTypeID?: Maybe<Int_Comparison_Exp>,
+  type?: Maybe<String_Comparison_Exp>,
+};
+
+export enum MuseumType_Constraint {
+  MuseumTypePkey = 'MuseumType_pkey',
+  MuseumTypeTypeKey = 'MuseumType_type_key'
+}
+
+export type MuseumType_Inc_Input = {
+  museumTypeID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumType_Insert_Input = {
+  museumTypeID?: Maybe<Scalars['Int']>,
+  type?: Maybe<Scalars['String']>,
+};
+
+export type MuseumType_Max_Fields = {
+   __typename?: 'MuseumType_max_fields',
+  museumTypeID?: Maybe<Scalars['Int']>,
+  type?: Maybe<Scalars['String']>,
+};
+
+export type MuseumType_Max_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+  type?: Maybe<Order_By>,
+};
+
+export type MuseumType_Min_Fields = {
+   __typename?: 'MuseumType_min_fields',
+  museumTypeID?: Maybe<Scalars['Int']>,
+  type?: Maybe<Scalars['String']>,
+};
+
+export type MuseumType_Min_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+  type?: Maybe<Order_By>,
+};
+
+export type MuseumType_Mutation_Response = {
+   __typename?: 'MuseumType_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<MuseumType>,
+};
+
+export type MuseumType_Obj_Rel_Insert_Input = {
+  data: MuseumType_Insert_Input,
+  on_conflict?: Maybe<MuseumType_On_Conflict>,
+};
+
+export type MuseumType_On_Conflict = {
+  constraint: MuseumType_Constraint,
+  update_columns: Array<MuseumType_Update_Column>,
+  where?: Maybe<MuseumType_Bool_Exp>,
+};
+
+export type MuseumType_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+  type?: Maybe<Order_By>,
+};
+
+export enum MuseumType_Select_Column {
+  MuseumTypeId = 'museumTypeID',
+  Type = 'type'
+}
+
+export type MuseumType_Set_Input = {
+  museumTypeID?: Maybe<Scalars['Int']>,
+  type?: Maybe<Scalars['String']>,
+};
+
+export type MuseumType_Stddev_Fields = {
+   __typename?: 'MuseumType_stddev_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Stddev_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Stddev_Pop_Fields = {
+   __typename?: 'MuseumType_stddev_pop_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Stddev_Pop_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Stddev_Samp_Fields = {
+   __typename?: 'MuseumType_stddev_samp_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Stddev_Samp_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Sum_Fields = {
+   __typename?: 'MuseumType_sum_fields',
+  museumTypeID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumType_Sum_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export enum MuseumType_Update_Column {
+  MuseumTypeId = 'museumTypeID',
+  Type = 'type'
+}
+
+export type MuseumType_Var_Pop_Fields = {
+   __typename?: 'MuseumType_var_pop_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Var_Pop_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Var_Samp_Fields = {
+   __typename?: 'MuseumType_var_samp_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Var_Samp_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumType_Variance_Fields = {
+   __typename?: 'MuseumType_variance_fields',
+  museumTypeID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumType_Variance_Order_By = {
+  museumTypeID?: Maybe<Order_By>,
+};
+
 export type MuseumWorkingDay = {
    __typename?: 'MuseumWorkingDay',
   Day: Day,
@@ -9048,6 +9285,7 @@ export type Mutation_Root = {
   delete_MuseumComment?: Maybe<MuseumComment_Mutation_Response>,
   delete_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   delete_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
+  delete_MuseumType?: Maybe<MuseumType_Mutation_Response>,
   delete_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   delete_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   delete_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9106,6 +9344,7 @@ export type Mutation_Root = {
   insert_MuseumComment?: Maybe<MuseumComment_Mutation_Response>,
   insert_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   insert_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
+  insert_MuseumType?: Maybe<MuseumType_Mutation_Response>,
   insert_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   insert_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   insert_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9164,6 +9403,7 @@ export type Mutation_Root = {
   update_MuseumComment?: Maybe<MuseumComment_Mutation_Response>,
   update_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   update_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
+  update_MuseumType?: Maybe<MuseumType_Mutation_Response>,
   update_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   update_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   update_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9334,6 +9574,11 @@ export type Mutation_RootDelete_MuseumEntranceTypeArgs = {
 
 export type Mutation_RootDelete_MuseumPriceArgs = {
   where: MuseumPrice_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_MuseumTypeArgs = {
+  where: MuseumType_Bool_Exp
 };
 
 
@@ -9652,6 +9897,12 @@ export type Mutation_RootInsert_MuseumEntranceTypeArgs = {
 export type Mutation_RootInsert_MuseumPriceArgs = {
   objects: Array<MuseumPrice_Insert_Input>,
   on_conflict?: Maybe<MuseumPrice_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_MuseumTypeArgs = {
+  objects: Array<MuseumType_Insert_Input>,
+  on_conflict?: Maybe<MuseumType_On_Conflict>
 };
 
 
@@ -10028,6 +10279,13 @@ export type Mutation_RootUpdate_MuseumPriceArgs = {
   _inc?: Maybe<MuseumPrice_Inc_Input>,
   _set?: Maybe<MuseumPrice_Set_Input>,
   where: MuseumPrice_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_MuseumTypeArgs = {
+  _inc?: Maybe<MuseumType_Inc_Input>,
+  _set?: Maybe<MuseumType_Set_Input>,
+  where: MuseumType_Bool_Exp
 };
 
 
@@ -10583,6 +10841,9 @@ export type Query_Root = {
   MuseumPrice: Array<MuseumPrice>,
   MuseumPrice_aggregate: MuseumPrice_Aggregate,
   MuseumPrice_by_pk?: Maybe<MuseumPrice>,
+  MuseumType: Array<MuseumType>,
+  MuseumType_aggregate: MuseumType_Aggregate,
+  MuseumType_by_pk?: Maybe<MuseumType>,
   MuseumWorkingDay: Array<MuseumWorkingDay>,
   MuseumWorkingDaySchedule: Array<MuseumWorkingDaySchedule>,
   MuseumWorkingDaySchedule_aggregate: MuseumWorkingDaySchedule_Aggregate,
@@ -11305,6 +11566,29 @@ export type Query_RootMuseumPrice_AggregateArgs = {
 
 export type Query_RootMuseumPrice_By_PkArgs = {
   museumPriceID: Scalars['Int']
+};
+
+
+export type Query_RootMuseumTypeArgs = {
+  distinct_on?: Maybe<Array<MuseumType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumType_Order_By>>,
+  where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Query_RootMuseumType_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumType_Order_By>>,
+  where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Query_RootMuseumType_By_PkArgs = {
+  museumTypeID: Scalars['Int']
 };
 
 
@@ -16732,6 +17016,9 @@ export type Subscription_Root = {
   MuseumPrice: Array<MuseumPrice>,
   MuseumPrice_aggregate: MuseumPrice_Aggregate,
   MuseumPrice_by_pk?: Maybe<MuseumPrice>,
+  MuseumType: Array<MuseumType>,
+  MuseumType_aggregate: MuseumType_Aggregate,
+  MuseumType_by_pk?: Maybe<MuseumType>,
   MuseumWorkingDay: Array<MuseumWorkingDay>,
   MuseumWorkingDaySchedule: Array<MuseumWorkingDaySchedule>,
   MuseumWorkingDaySchedule_aggregate: MuseumWorkingDaySchedule_Aggregate,
@@ -17454,6 +17741,29 @@ export type Subscription_RootMuseumPrice_AggregateArgs = {
 
 export type Subscription_RootMuseumPrice_By_PkArgs = {
   museumPriceID: Scalars['Int']
+};
+
+
+export type Subscription_RootMuseumTypeArgs = {
+  distinct_on?: Maybe<Array<MuseumType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumType_Order_By>>,
+  where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Subscription_RootMuseumType_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumType_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumType_Order_By>>,
+  where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Subscription_RootMuseumType_By_PkArgs = {
+  museumTypeID: Scalars['Int']
 };
 
 
@@ -21155,6 +21465,22 @@ export type AddTagMutation = (
   )> }
 );
 
+export type AddRestaurantTypeMutationVariables = {
+  type?: Maybe<Scalars['String']>
+};
+
+
+export type AddRestaurantTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantType: Maybe<(
+    { __typename?: 'RestaurantType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantType' }
+      & Pick<RestaurantType, 'restaurantTypeID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21652,6 +21978,36 @@ export function withAddTag<TProps, TChildProps = {}>(operationOptions?: ApolloRe
 };
 export type AddTagMutationResult = ApolloReactCommon.MutationResult<AddTagMutation>;
 export type AddTagMutationOptions = ApolloReactCommon.BaseMutationOptions<AddTagMutation, AddTagMutationVariables>;
+export const AddRestaurantTypeDocument = gql`
+    mutation addRestaurantType($type: String) {
+  __typename
+  insert_RestaurantType(objects: {type: $type}) {
+    returning {
+      restaurantTypeID
+    }
+  }
+}
+    `;
+export type AddRestaurantTypeMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables>;
+export type AddRestaurantTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantTypeComponent = (props: AddRestaurantTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables> mutation={AddRestaurantTypeDocument} {...props} />
+    );
+    
+export type AddRestaurantTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables> & TChildProps;
+export function withAddRestaurantType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantTypeMutation,
+  AddRestaurantTypeMutationVariables,
+  AddRestaurantTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables, AddRestaurantTypeProps<TChildProps>>(AddRestaurantTypeDocument, {
+      alias: 'addRestaurantType',
+      ...operationOptions
+    });
+};
+export type AddRestaurantTypeMutationResult = ApolloReactCommon.MutationResult<AddRestaurantTypeMutation>;
+export type AddRestaurantTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
