@@ -2,23 +2,22 @@ import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/BottomComponent';
-import { SearchComponent } from '../../components/SearchComponent';
 /**
  * Home props
  */
-export interface RestaurantDetailScreenProps {
+export interface ArticleDetailScreenProps {
 	navigation: any;
 }
 /**
  * Home state
  */
-export interface RestaurantDetailScreenState {}
+export interface ArticleDetailScreenState {}
 
 /**
  * Home
  */
-export class RestaurantDetailScreen extends React.Component<RestaurantDetailScreenProps, RestaurantDetailScreenState> {
-	constructor(props: RestaurantDetailScreenProps) {
+export class ArticleDetailScreen extends React.Component<ArticleDetailScreenProps, ArticleDetailScreenState> {
+	constructor(props: ArticleDetailScreenProps) {
 		super(props);
 		this.state = {};
 	}
@@ -32,30 +31,12 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 			<Layout style={{ flex: 1 }}>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddFoodTypeScreen', {
+						this.props.navigation.navigate('AddTagScreen', {
 							userID: userID
 						});
 					}}
 				>
-					Add Food Type
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddFoodScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add Food
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add Cuisine Type
+					Add Tag
 				</Button>
 
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>

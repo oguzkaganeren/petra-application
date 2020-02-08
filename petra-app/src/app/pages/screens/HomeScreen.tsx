@@ -88,6 +88,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					>
 						Hotel Details
 					</Button>
+					<Button
+						onPress={() => {
+							this.props.navigation.navigate('ArticleDetailScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Article Details
+					</Button>
 
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>

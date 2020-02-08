@@ -21123,6 +21123,38 @@ export type AddArchSiteEntranceTypeMutation = (
   )> }
 );
 
+export type AddRestaurantCuisineTypeMutationVariables = {
+  name?: Maybe<Scalars['String']>
+};
+
+
+export type AddRestaurantCuisineTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantCuisineType: Maybe<(
+    { __typename?: 'RestaurantCuisineType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantCuisineType' }
+      & Pick<RestaurantCuisineType, 'restaurantCuisineTypeID'>
+    )> }
+  )> }
+);
+
+export type AddTagMutationVariables = {
+  name?: Maybe<Scalars['String']>
+};
+
+
+export type AddTagMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Tag: Maybe<(
+    { __typename?: 'Tag_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Tag' }
+      & Pick<Tag, 'tagID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21560,6 +21592,66 @@ export function withAddArchSiteEntranceType<TProps, TChildProps = {}>(operationO
 };
 export type AddArchSiteEntranceTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteEntranceTypeMutation>;
 export type AddArchSiteEntranceTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables>;
+export const AddRestaurantCuisineTypeDocument = gql`
+    mutation addRestaurantCuisineType($name: String) {
+  __typename
+  insert_RestaurantCuisineType(objects: {name: $name}) {
+    returning {
+      restaurantCuisineTypeID
+    }
+  }
+}
+    `;
+export type AddRestaurantCuisineTypeMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables>;
+export type AddRestaurantCuisineTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantCuisineTypeComponent = (props: AddRestaurantCuisineTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables> mutation={AddRestaurantCuisineTypeDocument} {...props} />
+    );
+    
+export type AddRestaurantCuisineTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables> & TChildProps;
+export function withAddRestaurantCuisineType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantCuisineTypeMutation,
+  AddRestaurantCuisineTypeMutationVariables,
+  AddRestaurantCuisineTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables, AddRestaurantCuisineTypeProps<TChildProps>>(AddRestaurantCuisineTypeDocument, {
+      alias: 'addRestaurantCuisineType',
+      ...operationOptions
+    });
+};
+export type AddRestaurantCuisineTypeMutationResult = ApolloReactCommon.MutationResult<AddRestaurantCuisineTypeMutation>;
+export type AddRestaurantCuisineTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables>;
+export const AddTagDocument = gql`
+    mutation addTag($name: String) {
+  __typename
+  insert_Tag(objects: {name: $name}) {
+    returning {
+      tagID
+    }
+  }
+}
+    `;
+export type AddTagMutationFn = ApolloReactCommon.MutationFunction<AddTagMutation, AddTagMutationVariables>;
+export type AddTagComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddTagMutation, AddTagMutationVariables>, 'mutation'>;
+
+    export const AddTagComponent = (props: AddTagComponentProps) => (
+      <ApolloReactComponents.Mutation<AddTagMutation, AddTagMutationVariables> mutation={AddTagDocument} {...props} />
+    );
+    
+export type AddTagProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddTagMutation, AddTagMutationVariables> & TChildProps;
+export function withAddTag<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddTagMutation,
+  AddTagMutationVariables,
+  AddTagProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddTagMutation, AddTagMutationVariables, AddTagProps<TChildProps>>(AddTagDocument, {
+      alias: 'addTag',
+      ...operationOptions
+    });
+};
+export type AddTagMutationResult = ApolloReactCommon.MutationResult<AddTagMutation>;
+export type AddTagMutationOptions = ApolloReactCommon.BaseMutationOptions<AddTagMutation, AddTagMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
