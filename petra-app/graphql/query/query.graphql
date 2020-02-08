@@ -1,7 +1,14 @@
 query getFoodTypes {
-  __typename
-  RestaurantFoodType {
-    type
-    restaurantFoodTypeID
-  }
+	__typename
+	RestaurantFoodType {
+		type
+		restaurantFoodTypeID
+	}
+}
+query getRestaurantTypes {
+	__typename
+	RestaurantType {
+		type
+		restaurantTypeID
+	}
 }

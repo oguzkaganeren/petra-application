@@ -3458,6 +3458,8 @@ export type Company = {
   Location: Location,
   Museums: Array<Museum>,
   Museums_aggregate: Museum_Aggregate,
+  Restaurants: Array<Restaurant>,
+  Restaurants_aggregate: Restaurant_Aggregate,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3559,6 +3561,24 @@ export type CompanyMuseums_AggregateArgs = {
   where?: Maybe<Museum_Bool_Exp>
 };
 
+
+export type CompanyRestaurantsArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
+
+export type CompanyRestaurants_AggregateArgs = {
+  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Restaurant_Order_By>>,
+  where?: Maybe<Restaurant_Bool_Exp>
+};
+
 export type Company_Aggregate = {
    __typename?: 'Company_aggregate',
   aggregate?: Maybe<Company_Aggregate_Fields>,
@@ -3623,6 +3643,7 @@ export type Company_Bool_Exp = {
   Hotels?: Maybe<Hotel_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   Museums?: Maybe<Museum_Bool_Exp>,
+  Restaurants?: Maybe<Restaurant_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
   _not?: Maybe<Company_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
@@ -3654,6 +3675,7 @@ export type Company_Insert_Input = {
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
+  Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3739,6 +3761,7 @@ export type Company_Order_By = {
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Location?: Maybe<Location_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
+  Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   faxNumber?: Maybe<Order_By>,
@@ -20616,7 +20639,7 @@ export type AddRestaurantMutationVariables = {
   latitude?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
   address?: Maybe<Scalars['String']>,
-  RestaurantType?: Maybe<Scalars['String']>,
+  restaurantTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   since?: Maybe<Scalars['date']>,
   taxNumber?: Maybe<Scalars['String']>
@@ -20716,6 +20739,17 @@ export type GetFoodTypesQuery = (
   )> }
 );
 
+export type GetRestaurantTypesQueryVariables = {};
+
+
+export type GetRestaurantTypesQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantType: Array<(
+    { __typename?: 'RestaurantType' }
+    & Pick<RestaurantType, 'type' | 'restaurantTypeID'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -20780,9 +20814,9 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
 export const AddRestaurantDocument = gql`
-    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date, $taxNumber: String) {
+    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $restaurantTypeID: Int, $name: String, $since: date, $taxNumber: String) {
   __typename
-  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
+  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, restaurantTypeID: $restaurantTypeID, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
     returning {
       restaurantID
     }
@@ -20956,3 +20990,30 @@ export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypesQuery, GetFoodTypesQueryVariables>;
+export const GetRestaurantTypesDocument = gql`
+    query getRestaurantTypes {
+  __typename
+  RestaurantType {
+    type
+    restaurantTypeID
+  }
+}
+    `;
+export type GetRestaurantTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>, 'query'>;
+
+    export const GetRestaurantTypesComponent = (props: GetRestaurantTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> query={GetRestaurantTypesDocument} {...props} />
+    );
+    
+export type GetRestaurantTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> & TChildProps;
+export function withGetRestaurantTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantTypesQuery,
+  GetRestaurantTypesQueryVariables,
+  GetRestaurantTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables, GetRestaurantTypesProps<TChildProps>>(GetRestaurantTypesDocument, {
+      alias: 'getRestaurantTypes',
+      ...operationOptions
+    });
+};
+export type GetRestaurantTypesQueryResult = ApolloReactCommon.QueryResult<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>;
