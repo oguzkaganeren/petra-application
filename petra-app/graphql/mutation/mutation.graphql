@@ -177,3 +177,27 @@ mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: I
 		}
 	}
 }
+mutation addArchSiteWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_ArchSiteWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			archSiteID: $archSiteID
+			ArchSiteWorkingDaySchedules: {
+				data: { ArchSiteWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			archSiteWorkingScheduleID
+		}
+	}
+}
