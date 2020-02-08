@@ -3,6 +3,7 @@ import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddHotelComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
+import { GetAllUserCompanyComponent } from '../../components/GetAllUserCompany';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -48,18 +49,17 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddHotelScreen>
+				<AddHotelComponent>
 					{AddHotelMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
+								latitude: 0,
+								longtitude: 0,
+								address: '',
 								name: '',
 								taxNumber: '',
-								registerDate: '',
-								mail: '',
-								longtitude: 0,
-								latitude: 0,
-								address: ''
+								companyID: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -70,9 +70,6 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 								taxNumber: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
-									.required('Required'),
-								mail: Yup.string()
-									.email('Invalid email')
 									.required('Required'),
 								address: Yup.string()
 									.min(5, 'Too Short!')
@@ -87,12 +84,10 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										variables: {
 											name: values.name.toString(),
 											taxNumber: values.taxNumber.toString(),
-											registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
-											mail: values.mail.toString(),
 											longtitude: values.longtitude,
 											latitude: values.latitude,
 											address: values.address.toString(),
-											userID: userID
+											companyID: values.companyID
 										}
 									})
 										.then(res => {
@@ -122,7 +117,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 
 									<Input
 										label="Name"
-										placeholder="Limited Cmd."
+										placeholder="Hotel Name"
 										status={props.touched.name && props.errors.name ? 'danger' : 'success'}
 										caption={props.touched.name && props.errors.name ? props.errors.name : ''}
 										onChangeText={props.handleChange('name')}
@@ -139,14 +134,12 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										onBlur={props.handleBlur('taxNumber')}
 										value={props.values.taxNumber}
 									/>
-									<Input
-										label="Email"
-										status={props.touched.mail && props.errors.mail ? 'danger' : 'success'}
-										caption={props.touched.mail && props.errors.mail ? props.errors.mail : ''}
-										placeholder="john.doe@example.com"
-										onChangeText={props.handleChange('mail')}
-										onBlur={props.handleBlur('mail')}
-										value={props.values.mail}
+									<GetAllUserCompanyComponent
+										label="Select Your Company"
+										parentReference={value => {
+											props.values.companyID = value;
+										}}
+										userID={parseInt(userID)}
 									/>
 									<Input
 										label="Address"
@@ -174,13 +167,13 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Company
+										Add Hotel
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddHotelScreen>
+				</AddHotelComponent>
 			</Layout>
 		);
 	}
