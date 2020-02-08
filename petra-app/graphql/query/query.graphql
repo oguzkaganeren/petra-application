@@ -40,3 +40,12 @@ query getHotelServiceProperty {
 		hotelServicePropertyID
 	}
 }
+query getHotelRoom($hotelID: Int!) {
+	__typename
+	HotelRoom(where: { hotelID: { _eq: $hotelID } }) {
+		roomID
+		Room {
+			roomNo
+		}
+	}
+}

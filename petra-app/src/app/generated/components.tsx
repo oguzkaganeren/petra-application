@@ -21097,6 +21097,25 @@ export type AddHotelCommentMutation = (
   )> }
 );
 
+export type AddHotelRoomPriceMutationVariables = {
+  finishDate: Scalars['timestamptz'],
+  price: Scalars['Float'],
+  roomID: Scalars['Int'],
+  startDate: Scalars['timestamptz']
+};
+
+
+export type AddHotelRoomPriceMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RoomPrice: Maybe<(
+    { __typename?: 'RoomPrice_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RoomPrice' }
+      & Pick<RoomPrice, 'roomPriceID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21168,6 +21187,23 @@ export type GetHotelServicePropertyQuery = (
   & { HotelServiceProperty: Array<(
     { __typename?: 'HotelServiceProperty' }
     & Pick<HotelServiceProperty, 'content' | 'hotelServicePropertyID'>
+  )> }
+);
+
+export type GetHotelRoomQueryVariables = {
+  hotelID: Scalars['Int']
+};
+
+
+export type GetHotelRoomQuery = (
+  { __typename: 'query_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & Pick<HotelRoom, 'roomID'>
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo'>
+    ) }
   )> }
 );
 
@@ -21504,6 +21540,36 @@ export function withAddHotelComment<TProps, TChildProps = {}>(operationOptions?:
 };
 export type AddHotelCommentMutationResult = ApolloReactCommon.MutationResult<AddHotelCommentMutation>;
 export type AddHotelCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelCommentMutation, AddHotelCommentMutationVariables>;
+export const AddHotelRoomPriceDocument = gql`
+    mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: Int!, $startDate: timestamptz!) {
+  __typename
+  insert_RoomPrice(objects: {finishDate: $finishDate, price: $price, roomID: $roomID, startDate: $startDate}) {
+    returning {
+      roomPriceID
+    }
+  }
+}
+    `;
+export type AddHotelRoomPriceMutationFn = ApolloReactCommon.MutationFunction<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables>;
+export type AddHotelRoomPriceComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables>, 'mutation'>;
+
+    export const AddHotelRoomPriceComponent = (props: AddHotelRoomPriceComponentProps) => (
+      <ApolloReactComponents.Mutation<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables> mutation={AddHotelRoomPriceDocument} {...props} />
+    );
+    
+export type AddHotelRoomPriceProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables> & TChildProps;
+export function withAddHotelRoomPrice<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddHotelRoomPriceMutation,
+  AddHotelRoomPriceMutationVariables,
+  AddHotelRoomPriceProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables, AddHotelRoomPriceProps<TChildProps>>(AddHotelRoomPriceDocument, {
+      alias: 'addHotelRoomPrice',
+      ...operationOptions
+    });
+};
+export type AddHotelRoomPriceMutationResult = ApolloReactCommon.MutationResult<AddHotelRoomPriceMutation>;
+export type AddHotelRoomPriceMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -21666,3 +21732,32 @@ export function withGetHotelServiceProperty<TProps, TChildProps = {}>(operationO
     });
 };
 export type GetHotelServicePropertyQueryResult = ApolloReactCommon.QueryResult<GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables>;
+export const GetHotelRoomDocument = gql`
+    query getHotelRoom($hotelID: Int!) {
+  __typename
+  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+    roomID
+    Room {
+      roomNo
+    }
+  }
+}
+    `;
+export type GetHotelRoomComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomQuery, GetHotelRoomQueryVariables>, 'query'> & ({ variables: GetHotelRoomQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetHotelRoomComponent = (props: GetHotelRoomComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelRoomQuery, GetHotelRoomQueryVariables> query={GetHotelRoomDocument} {...props} />
+    );
+    
+export type GetHotelRoomProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomQuery, GetHotelRoomQueryVariables> & TChildProps;
+export function withGetHotelRoom<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomQuery,
+  GetHotelRoomQueryVariables,
+  GetHotelRoomProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelRoomQuery, GetHotelRoomQueryVariables, GetHotelRoomProps<TChildProps>>(GetHotelRoomDocument, {
+      alias: 'getHotelRoom',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomQuery, GetHotelRoomQueryVariables>;

@@ -169,3 +169,11 @@ mutation addHotelComment($content: String!, $date: timestamptz!, $hotelID: Int!,
 		}
 	}
 }
+mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: Int!, $startDate: timestamptz!) {
+	__typename
+	insert_RoomPrice(objects: { finishDate: $finishDate, price: $price, roomID: $roomID, startDate: $startDate }) {
+		returning {
+			roomPriceID
+		}
+	}
+}
