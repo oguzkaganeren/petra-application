@@ -21481,6 +21481,42 @@ export type AddRestaurantTypeMutation = (
   )> }
 );
 
+export type AddRestaurantCommentMutationVariables = {
+  restaurantID?: Maybe<Scalars['Int']>,
+  content?: Maybe<Scalars['String']>,
+  date?: Maybe<Scalars['timestamptz']>,
+  star?: Maybe<Scalars['Float']>,
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddRestaurantCommentMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantComment: Maybe<(
+    { __typename?: 'RestaurantComment_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantComment' }
+      & Pick<RestaurantComment, 'restaurantCommentID'>
+    )> }
+  )> }
+);
+
+export type AddMuseumTypeMutationVariables = {
+  type?: Maybe<Scalars['String']>
+};
+
+
+export type AddMuseumTypeMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_MuseumType: Maybe<(
+    { __typename?: 'MuseumType_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'MuseumType' }
+      & Pick<MuseumType, 'museumTypeID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -21552,6 +21588,17 @@ export type GetArchSiteTypesQuery = (
   & { ArchSiteType: Array<(
     { __typename?: 'ArchSiteType' }
     & Pick<ArchSiteType, 'name' | 'archSiteTypeID'>
+  )> }
+);
+
+export type GetCuisineTypesQueryVariables = {};
+
+
+export type GetCuisineTypesQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantCuisineType: Array<(
+    { __typename?: 'RestaurantCuisineType' }
+    & Pick<RestaurantCuisineType, 'name' | 'restaurantCuisineTypeID'>
   )> }
 );
 
@@ -22008,6 +22055,66 @@ export function withAddRestaurantType<TProps, TChildProps = {}>(operationOptions
 };
 export type AddRestaurantTypeMutationResult = ApolloReactCommon.MutationResult<AddRestaurantTypeMutation>;
 export type AddRestaurantTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables>;
+export const AddRestaurantCommentDocument = gql`
+    mutation addRestaurantComment($restaurantID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+  __typename
+  insert_RestaurantComment(objects: {restaurantID: $restaurantID, content: $content, date: $date, star: $star, userID: $userID}) {
+    returning {
+      restaurantCommentID
+    }
+  }
+}
+    `;
+export type AddRestaurantCommentMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables>;
+export type AddRestaurantCommentComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantCommentComponent = (props: AddRestaurantCommentComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables> mutation={AddRestaurantCommentDocument} {...props} />
+    );
+    
+export type AddRestaurantCommentProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables> & TChildProps;
+export function withAddRestaurantComment<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantCommentMutation,
+  AddRestaurantCommentMutationVariables,
+  AddRestaurantCommentProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables, AddRestaurantCommentProps<TChildProps>>(AddRestaurantCommentDocument, {
+      alias: 'addRestaurantComment',
+      ...operationOptions
+    });
+};
+export type AddRestaurantCommentMutationResult = ApolloReactCommon.MutationResult<AddRestaurantCommentMutation>;
+export type AddRestaurantCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables>;
+export const AddMuseumTypeDocument = gql`
+    mutation addMuseumType($type: String) {
+  __typename
+  insert_MuseumType(objects: {type: $type}) {
+    returning {
+      museumTypeID
+    }
+  }
+}
+    `;
+export type AddMuseumTypeMutationFn = ApolloReactCommon.MutationFunction<AddMuseumTypeMutation, AddMuseumTypeMutationVariables>;
+export type AddMuseumTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddMuseumTypeMutation, AddMuseumTypeMutationVariables>, 'mutation'>;
+
+    export const AddMuseumTypeComponent = (props: AddMuseumTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<AddMuseumTypeMutation, AddMuseumTypeMutationVariables> mutation={AddMuseumTypeDocument} {...props} />
+    );
+    
+export type AddMuseumTypeProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddMuseumTypeMutation, AddMuseumTypeMutationVariables> & TChildProps;
+export function withAddMuseumType<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddMuseumTypeMutation,
+  AddMuseumTypeMutationVariables,
+  AddMuseumTypeProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddMuseumTypeMutation, AddMuseumTypeMutationVariables, AddMuseumTypeProps<TChildProps>>(AddMuseumTypeDocument, {
+      alias: 'addMuseumType',
+      ...operationOptions
+    });
+};
+export type AddMuseumTypeMutationResult = ApolloReactCommon.MutationResult<AddMuseumTypeMutation>;
+export type AddMuseumTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumTypeMutation, AddMuseumTypeMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -22170,3 +22277,30 @@ export function withGetArchSiteTypes<TProps, TChildProps = {}>(operationOptions?
     });
 };
 export type GetArchSiteTypesQueryResult = ApolloReactCommon.QueryResult<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables>;
+export const GetCuisineTypesDocument = gql`
+    query getCuisineTypes {
+  __typename
+  RestaurantCuisineType {
+    name
+    restaurantCuisineTypeID
+  }
+}
+    `;
+export type GetCuisineTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCuisineTypesQuery, GetCuisineTypesQueryVariables>, 'query'>;
+
+    export const GetCuisineTypesComponent = (props: GetCuisineTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetCuisineTypesQuery, GetCuisineTypesQueryVariables> query={GetCuisineTypesDocument} {...props} />
+    );
+    
+export type GetCuisineTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCuisineTypesQuery, GetCuisineTypesQueryVariables> & TChildProps;
+export function withGetCuisineTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCuisineTypesQuery,
+  GetCuisineTypesQueryVariables,
+  GetCuisineTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCuisineTypesQuery, GetCuisineTypesQueryVariables, GetCuisineTypesProps<TChildProps>>(GetCuisineTypesDocument, {
+      alias: 'getCuisineTypes',
+      ...operationOptions
+    });
+};
+export type GetCuisineTypesQueryResult = ApolloReactCommon.QueryResult<GetCuisineTypesQuery, GetCuisineTypesQueryVariables>;

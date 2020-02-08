@@ -227,3 +227,21 @@ mutation addRestaurantType($type: String) {
 		}
 	}
 }
+mutation addRestaurantComment($restaurantID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+	__typename
+	insert_RestaurantComment(
+		objects: { restaurantID: $restaurantID, content: $content, date: $date, star: $star, userID: $userID }
+	) {
+		returning {
+			restaurantCommentID
+		}
+	}
+}
+mutation addMuseumType($type: String) {
+	__typename
+	insert_MuseumType(objects: { type: $type }) {
+		returning {
+			museumTypeID
+		}
+	}
+}

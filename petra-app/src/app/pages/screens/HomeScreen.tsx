@@ -72,6 +72,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					</Button>
 					<Button
 						onPress={() => {
+							this.props.navigation.navigate('MuseumDetailScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Museum Details
+					</Button>
+					<Button
+						onPress={() => {
 							this.props.navigation.navigate('AddHotelScreen', {
 								userID: userID
 							});

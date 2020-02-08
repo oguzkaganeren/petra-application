@@ -40,3 +40,10 @@ query GetArchSiteTypes {
 		archSiteTypeID
 	}
 }
+query getCuisineTypes {
+	__typename
+	RestaurantCuisineType {
+		name
+		restaurantCuisineTypeID
+	}
+}
