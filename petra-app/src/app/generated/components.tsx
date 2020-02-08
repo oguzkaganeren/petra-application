@@ -20937,7 +20937,7 @@ export type AddRestaurantMutationVariables = {
   latitude?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
   address?: Maybe<Scalars['String']>,
-  RestaurantType?: Maybe<Scalars['String']>,
+  restaurantTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   since?: Maybe<Scalars['date']>,
   taxNumber?: Maybe<Scalars['String']>
@@ -21087,6 +21087,17 @@ export type GetFoodTypesQuery = (
   )> }
 );
 
+export type GetRestaurantTypesQueryVariables = {};
+
+
+export type GetRestaurantTypesQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantType: Array<(
+    { __typename?: 'RestaurantType' }
+    & Pick<RestaurantType, 'type' | 'restaurantTypeID'>
+  )> }
+);
+
 export type GetUserCompanyQueryVariables = {
   userID: Scalars['Int']
 };
@@ -21192,9 +21203,9 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
 export const AddRestaurantDocument = gql`
-    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $RestaurantType: String, $name: String, $since: date, $taxNumber: String) {
+    mutation addRestaurant($CompanyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $restaurantTypeID: Int, $name: String, $since: date, $taxNumber: String) {
   __typename
-  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, RestaurantType: {data: {type: $RestaurantType}}, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
+  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, restaurantTypeID: $restaurantTypeID, name: $name, since: $since, companyID: $CompanyID, taxNumber: $taxNumber}) {
     returning {
       restaurantID
     }
@@ -21458,6 +21469,33 @@ export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypesQuery, GetFoodTypesQueryVariables>;
+export const GetRestaurantTypesDocument = gql`
+    query getRestaurantTypes {
+  __typename
+  RestaurantType {
+    type
+    restaurantTypeID
+  }
+}
+    `;
+export type GetRestaurantTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>, 'query'>;
+
+    export const GetRestaurantTypesComponent = (props: GetRestaurantTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> query={GetRestaurantTypesDocument} {...props} />
+    );
+    
+export type GetRestaurantTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> & TChildProps;
+export function withGetRestaurantTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantTypesQuery,
+  GetRestaurantTypesQueryVariables,
+  GetRestaurantTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables, GetRestaurantTypesProps<TChildProps>>(GetRestaurantTypesDocument, {
+      alias: 'getRestaurantTypes',
+      ...operationOptions
+    });
+};
+export type GetRestaurantTypesQueryResult = ApolloReactCommon.QueryResult<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>;
 export const GetUserCompanyDocument = gql`
     query getUserCompany($userID: Int!) {
   __typename

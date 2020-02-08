@@ -5,7 +5,7 @@ import { AddArchSiteTypeComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
- * AddRestaurant props
+ * AddArchSiteType props
  */
 export interface AddArchSiteTypeProps {
 	navigation: any;

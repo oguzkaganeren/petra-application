@@ -5,6 +5,13 @@ query getFoodTypes {
 		restaurantFoodTypeID
 	}
 }
+query getRestaurantTypes {
+	__typename
+	RestaurantType {
+		type
+		restaurantTypeID
+	}
+}
 query getUserCompany($userID: Int!) {
 	__typename
 	CompanyUser(where: { User: { userID: { _eq: $userID } } }) {

@@ -4,6 +4,7 @@ import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/com
 import { AddRestaurantComponent, GetUserCompanyComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../components/GetAllUserCompany';
+import { GetAllRestaurantTypesComponent } from '../../components/GetAllRestaurantTypes';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -49,7 +50,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									latitude: '',
 									longtitude: '',
 									address: '',
-									RestaurantType: '',
+									RestaurantType: 0,
 									name: '',
 									since: new Date(),
 									taxNumber: '',
@@ -64,8 +65,6 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 									ISO: Yup.string()
 										.min(2, 'Too Short!')
 										.max(50, 'Too Long!'),
-									RestaurantType: Yup.string() //ComboBox Olacak
-										.required('Required'),
 									address: Yup.string()
 										.min(5, 'Too Short!')
 										.required('Required'),
@@ -100,7 +99,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 												longtitude: parseFloat(values.longtitude),
 												latitude: parseFloat(values.latitude),
 												address: values.address.toString(),
-												RestaurantType: values.RestaurantType,
+												restaurantTypeID: values.RestaurantType,
 												CompanyID: values.companyID,
 												taxNumber: values.taxNumber.toString()
 											}
@@ -164,16 +163,11 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											onBlur={props.handleBlur('address')}
 											value={props.values.address}
 										/>
-										<Input
-											label="Restaurant Type"
-											status={props.touched.RestaurantType && props.errors.RestaurantType ? 'danger' : 'success'}
-											caption={
-												props.touched.RestaurantType && props.errors.RestaurantType ? props.errors.RestaurantType : ''
-											}
-											placeholder="Enter Your Restaurant Type"
-											onChangeText={props.handleChange('RestaurantType')}
-											onBlur={props.handleBlur('RestaurantType')}
-											value={props.values.RestaurantType}
+										<GetAllRestaurantTypesComponent
+											label="Select Restaurant Type"
+											parentReference={value => {
+												props.values.RestaurantType = value;
+											}}
 										/>
 										<Input
 											label="ISO Certificate"
