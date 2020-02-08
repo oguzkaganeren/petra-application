@@ -20,6 +20,7 @@ import { HotelDetailScreen } from './app/pages/screens/HotelDetailScreen';
 import { AddRoomPropertyScreen } from './app/pages/screens/AddRoomPropertyScreen';
 import { AddRoomScreen } from './app/pages/screens/AddRoomScreen';
 import { AddHotelServicePropertyScreen } from './app/pages/screens/AddHotelServicePropertyScreen';
+import { AddHotelCommentScreen } from './app/pages/screens/AddHotelCommentScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -50,7 +51,8 @@ const RootStack = createStackNavigator(
 		HotelDetailScreen: { screen: HotelDetailScreen },
 		AddRoomPropertyScreen: { screen: AddRoomPropertyScreen },
 		AddRoomScreen: { screen: AddRoomScreen },
-		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen }
+		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen },
+		AddHotelCommentScreen: { screen: AddHotelCommentScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
