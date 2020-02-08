@@ -219,3 +219,11 @@ mutation addTag($name: String) {
 		}
 	}
 }
+mutation addRestaurantType($type: String) {
+	__typename
+	insert_RestaurantType(objects: { type: $type }) {
+		returning {
+			restaurantTypeID
+		}
+	}
+}
