@@ -1,68 +1,73 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddRoomPropertyComponent } from '../../generated/components';
+import { AddArchSiteEntranceTypeComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
- * AddRestaurant props
+ * AddHotel props
  */
-export interface AddRoomPropertyProps {
+export interface AddArchSiteEntranceTypeProps {
 	navigation: any;
 }
 /**
- * Location state
+ * AddHotel state
  */
-export interface AddRoomPropertyState {}
+export interface AddArchSiteEntranceTypeState {}
 
 /**
- * Location
+ * AddHotel
  */
-export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps, AddRoomPropertyState> {
-	constructor(props: AddRoomPropertyProps) {
+export class AddArchSiteEntranceTypeScreen extends React.Component<
+	AddArchSiteEntranceTypeProps,
+	AddArchSiteEntranceTypeState
+> {
+	constructor(props: AddArchSiteEntranceTypeProps) {
 		super(props);
 		this.state = {};
 	}
-
 	/**
 	 * Renders
 	 * @returns
 	 */
 	render() {
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const archSiteID = this.props.navigation.getParam('archSiteID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+				<AddArchSiteEntranceTypeComponent>
+					{AddArchSiteEntranceTypeMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								content: '',
+								star: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
 								content: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
-									.required('Required')
+									.required('Required'),
+								star: Yup.number().required('Required')
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.content + ' ');
-									AddRoomProperyMutation({
+									AddArchSiteEntranceTypeMutation({
 										variables: {
-											content: values.content.toString()
+											content: values.content
 										}
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
+											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.content);
+											console.log('content:' + values.content);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,8 +79,8 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Room Property Type"
-										placeholder="Enter a Room Property Type"
+										label="Content"
+										placeholder="Enter your comment"
 										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
 										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
 										onChangeText={props.handleChange('content')}
@@ -83,22 +88,21 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										value={props.values.content}
 										autoFocus
 									/>
+
 									<Button
 										onPress={() => {
 											props.handleSubmit();
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Room Property
+										Add ArchSite Entrance Type
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddRoomPropertyComponent>
+				</AddArchSiteEntranceTypeComponent>
 			</Layout>
 		);
 	}
 }
-
-const styles: any = StyleSheet.create({});

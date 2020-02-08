@@ -33,3 +33,10 @@ query getUserHotel($userID: Int!) {
 		name
 	}
 }
+query GetArchSiteTypes {
+	__typename
+	ArchSiteType {
+		name
+		archSiteTypeID
+	}
+}
