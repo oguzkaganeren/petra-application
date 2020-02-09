@@ -5,19 +5,19 @@ import { Button, Layout, Text } from '@ui-kitten/components';
 /**
  * Home props
  */
-export interface HomeProps {
+export interface MapProps {
 	navigation: any;
 }
 /**
  * Home state
  */
-export interface HomeState {}
+export interface MapState {}
 
 /**
  * Home
  */
-export class HomeScreen extends React.Component<HomeProps, HomeState> {
-	constructor(props: HomeProps) {
+export class MapScreen extends React.Component<MapProps, MapState> {
+	constructor(props: MapProps) {
 		super(props);
 		this.state = {};
 	}
