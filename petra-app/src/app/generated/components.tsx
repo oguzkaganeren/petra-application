@@ -7044,7 +7044,8 @@ export type Museum = {
   Location: Location,
   MuseumComments: Array<MuseumComment>,
   MuseumComments_aggregate: MuseumComment_Aggregate,
-  MuseumType: MuseumType,
+  MuseumTypeMuseums: Array<MuseumTypeMuseum>,
+  MuseumTypeMuseums_aggregate: MuseumTypeMuseum_Aggregate,
   MuseumWorkingSchedules: Array<MuseumWorkingSchedule>,
   MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
   TravelGuideMuseums: Array<TravelGuideMuseum>,
@@ -7053,7 +7054,6 @@ export type Museum = {
   description: Scalars['String'],
   locationID: Scalars['Int'],
   museumID: Scalars['Int'],
-  museumTypeID: Scalars['Int'],
   name: Scalars['String'],
 };
 
@@ -7073,6 +7073,24 @@ export type MuseumMuseumComments_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<MuseumComment_Order_By>>,
   where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type MuseumMuseumTypeMuseumsArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type MuseumMuseumTypeMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
 };
 
 
@@ -7162,21 +7180,19 @@ export type Museum_Avg_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Avg_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Bool_Exp = {
   Company?: Maybe<Company_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   MuseumComments?: Maybe<MuseumComment_Bool_Exp>,
-  MuseumType?: Maybe<MuseumType_Bool_Exp>,
+  MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Bool_Exp>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
@@ -7186,7 +7202,6 @@ export type Museum_Bool_Exp = {
   description?: Maybe<String_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
-  museumTypeID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
 };
 
@@ -7198,21 +7213,19 @@ export type Museum_Inc_Input = {
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Insert_Input = {
   Company?: Maybe<Company_Obj_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   MuseumComments?: Maybe<MuseumComment_Arr_Rel_Insert_Input>,
-  MuseumType?: Maybe<MuseumType_Obj_Rel_Insert_Input>,
+  MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7222,7 +7235,6 @@ export type Museum_Max_Fields = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7231,7 +7243,6 @@ export type Museum_Max_Order_By = {
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7241,7 +7252,6 @@ export type Museum_Min_Fields = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7250,7 +7260,6 @@ export type Museum_Min_Order_By = {
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7275,14 +7284,13 @@ export type Museum_Order_By = {
   Company?: Maybe<Company_Order_By>,
   Location?: Maybe<Location_Order_By>,
   MuseumComments_aggregate?: Maybe<MuseumComment_Aggregate_Order_By>,
-  MuseumType?: Maybe<MuseumType_Order_By>,
+  MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
@@ -7291,7 +7299,6 @@ export enum Museum_Select_Column {
   Description = 'description',
   LocationId = 'locationID',
   MuseumId = 'museumID',
-  MuseumTypeId = 'museumTypeID',
   Name = 'name'
 }
 
@@ -7300,7 +7307,6 @@ export type Museum_Set_Input = {
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -7309,14 +7315,12 @@ export type Museum_Stddev_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Stddev_Pop_Fields = {
@@ -7324,14 +7328,12 @@ export type Museum_Stddev_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Stddev_Samp_Fields = {
@@ -7339,14 +7341,12 @@ export type Museum_Stddev_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Sum_Fields = {
@@ -7354,14 +7354,12 @@ export type Museum_Sum_Fields = {
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
-  museumTypeID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Sum_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export enum Museum_Update_Column {
@@ -7369,7 +7367,6 @@ export enum Museum_Update_Column {
   Description = 'description',
   LocationId = 'locationID',
   MuseumId = 'museumID',
-  MuseumTypeId = 'museumTypeID',
   Name = 'name'
 }
 
@@ -7378,14 +7375,12 @@ export type Museum_Var_Pop_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Pop_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Var_Samp_Fields = {
@@ -7393,14 +7388,12 @@ export type Museum_Var_Samp_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Samp_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type Museum_Variance_Fields = {
@@ -7408,14 +7401,12 @@ export type Museum_Variance_Fields = {
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
-  museumTypeID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Variance_Order_By = {
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
-  museumTypeID?: Maybe<Order_By>,
 };
 
 export type MuseumComment = {
@@ -8255,8 +8246,28 @@ export type MuseumPrice_Variance_Order_By = {
 
 export type MuseumType = {
    __typename?: 'MuseumType',
+  MuseumTypeMuseums: Array<MuseumTypeMuseum>,
+  MuseumTypeMuseums_aggregate: MuseumTypeMuseum_Aggregate,
   museumTypeID: Scalars['Int'],
   type: Scalars['String'],
+};
+
+
+export type MuseumTypeMuseumTypeMuseumsArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type MuseumTypeMuseumTypeMuseums_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
 };
 
 export type MuseumType_Aggregate = {
@@ -8315,6 +8326,7 @@ export type MuseumType_Avg_Order_By = {
 };
 
 export type MuseumType_Bool_Exp = {
+  MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
   _not?: Maybe<MuseumType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
@@ -8332,6 +8344,7 @@ export type MuseumType_Inc_Input = {
 };
 
 export type MuseumType_Insert_Input = {
+  MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   museumTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -8376,6 +8389,7 @@ export type MuseumType_On_Conflict = {
 };
 
 export type MuseumType_Order_By = {
+  MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   museumTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
@@ -8456,6 +8470,263 @@ export type MuseumType_Variance_Fields = {
 
 export type MuseumType_Variance_Order_By = {
   museumTypeID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum = {
+   __typename?: 'MuseumTypeMuseum',
+  Museum: Museum,
+  MuseumType: MuseumType,
+  museumID: Scalars['Int'],
+  museumTypeID: Scalars['Int'],
+  museumTypeMuseumID: Scalars['Int'],
+};
+
+export type MuseumTypeMuseum_Aggregate = {
+   __typename?: 'MuseumTypeMuseum_aggregate',
+  aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Fields>,
+  nodes: Array<MuseumTypeMuseum>,
+};
+
+export type MuseumTypeMuseum_Aggregate_Fields = {
+   __typename?: 'MuseumTypeMuseum_aggregate_fields',
+  avg?: Maybe<MuseumTypeMuseum_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<MuseumTypeMuseum_Max_Fields>,
+  min?: Maybe<MuseumTypeMuseum_Min_Fields>,
+  stddev?: Maybe<MuseumTypeMuseum_Stddev_Fields>,
+  stddev_pop?: Maybe<MuseumTypeMuseum_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<MuseumTypeMuseum_Stddev_Samp_Fields>,
+  sum?: Maybe<MuseumTypeMuseum_Sum_Fields>,
+  var_pop?: Maybe<MuseumTypeMuseum_Var_Pop_Fields>,
+  var_samp?: Maybe<MuseumTypeMuseum_Var_Samp_Fields>,
+  variance?: Maybe<MuseumTypeMuseum_Variance_Fields>,
+};
+
+
+export type MuseumTypeMuseum_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type MuseumTypeMuseum_Aggregate_Order_By = {
+  avg?: Maybe<MuseumTypeMuseum_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<MuseumTypeMuseum_Max_Order_By>,
+  min?: Maybe<MuseumTypeMuseum_Min_Order_By>,
+  stddev?: Maybe<MuseumTypeMuseum_Stddev_Order_By>,
+  stddev_pop?: Maybe<MuseumTypeMuseum_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<MuseumTypeMuseum_Stddev_Samp_Order_By>,
+  sum?: Maybe<MuseumTypeMuseum_Sum_Order_By>,
+  var_pop?: Maybe<MuseumTypeMuseum_Var_Pop_Order_By>,
+  var_samp?: Maybe<MuseumTypeMuseum_Var_Samp_Order_By>,
+  variance?: Maybe<MuseumTypeMuseum_Variance_Order_By>,
+};
+
+export type MuseumTypeMuseum_Arr_Rel_Insert_Input = {
+  data: Array<MuseumTypeMuseum_Insert_Input>,
+  on_conflict?: Maybe<MuseumTypeMuseum_On_Conflict>,
+};
+
+export type MuseumTypeMuseum_Avg_Fields = {
+   __typename?: 'MuseumTypeMuseum_avg_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Avg_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Bool_Exp = {
+  Museum?: Maybe<Museum_Bool_Exp>,
+  MuseumType?: Maybe<MuseumType_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<MuseumTypeMuseum_Bool_Exp>>>,
+  _not?: Maybe<MuseumTypeMuseum_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<MuseumTypeMuseum_Bool_Exp>>>,
+  museumID?: Maybe<Int_Comparison_Exp>,
+  museumTypeID?: Maybe<Int_Comparison_Exp>,
+  museumTypeMuseumID?: Maybe<Int_Comparison_Exp>,
+};
+
+export enum MuseumTypeMuseum_Constraint {
+  MuseumTypeMuseumPkey = 'MuseumTypeMuseum_pkey'
+}
+
+export type MuseumTypeMuseum_Inc_Input = {
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Insert_Input = {
+  Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
+  MuseumType?: Maybe<MuseumType_Obj_Rel_Insert_Input>,
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Max_Fields = {
+   __typename?: 'MuseumTypeMuseum_max_fields',
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Max_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Min_Fields = {
+   __typename?: 'MuseumTypeMuseum_min_fields',
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Min_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Mutation_Response = {
+   __typename?: 'MuseumTypeMuseum_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<MuseumTypeMuseum>,
+};
+
+export type MuseumTypeMuseum_Obj_Rel_Insert_Input = {
+  data: MuseumTypeMuseum_Insert_Input,
+  on_conflict?: Maybe<MuseumTypeMuseum_On_Conflict>,
+};
+
+export type MuseumTypeMuseum_On_Conflict = {
+  constraint: MuseumTypeMuseum_Constraint,
+  update_columns: Array<MuseumTypeMuseum_Update_Column>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>,
+};
+
+export type MuseumTypeMuseum_Order_By = {
+  Museum?: Maybe<Museum_Order_By>,
+  MuseumType?: Maybe<MuseumType_Order_By>,
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export enum MuseumTypeMuseum_Select_Column {
+  MuseumId = 'museumID',
+  MuseumTypeId = 'museumTypeID',
+  MuseumTypeMuseumId = 'museumTypeMuseumID'
+}
+
+export type MuseumTypeMuseum_Set_Input = {
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Stddev_Fields = {
+   __typename?: 'MuseumTypeMuseum_stddev_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Stddev_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Stddev_Pop_Fields = {
+   __typename?: 'MuseumTypeMuseum_stddev_pop_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Stddev_Pop_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Stddev_Samp_Fields = {
+   __typename?: 'MuseumTypeMuseum_stddev_samp_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Stddev_Samp_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Sum_Fields = {
+   __typename?: 'MuseumTypeMuseum_sum_fields',
+  museumID?: Maybe<Scalars['Int']>,
+  museumTypeID?: Maybe<Scalars['Int']>,
+  museumTypeMuseumID?: Maybe<Scalars['Int']>,
+};
+
+export type MuseumTypeMuseum_Sum_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export enum MuseumTypeMuseum_Update_Column {
+  MuseumId = 'museumID',
+  MuseumTypeId = 'museumTypeID',
+  MuseumTypeMuseumId = 'museumTypeMuseumID'
+}
+
+export type MuseumTypeMuseum_Var_Pop_Fields = {
+   __typename?: 'MuseumTypeMuseum_var_pop_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Var_Pop_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Var_Samp_Fields = {
+   __typename?: 'MuseumTypeMuseum_var_samp_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Var_Samp_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
+};
+
+export type MuseumTypeMuseum_Variance_Fields = {
+   __typename?: 'MuseumTypeMuseum_variance_fields',
+  museumID?: Maybe<Scalars['Float']>,
+  museumTypeID?: Maybe<Scalars['Float']>,
+  museumTypeMuseumID?: Maybe<Scalars['Float']>,
+};
+
+export type MuseumTypeMuseum_Variance_Order_By = {
+  museumID?: Maybe<Order_By>,
+  museumTypeID?: Maybe<Order_By>,
+  museumTypeMuseumID?: Maybe<Order_By>,
 };
 
 export type MuseumWorkingDay = {
@@ -9286,6 +9557,7 @@ export type Mutation_Root = {
   delete_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   delete_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
   delete_MuseumType?: Maybe<MuseumType_Mutation_Response>,
+  delete_MuseumTypeMuseum?: Maybe<MuseumTypeMuseum_Mutation_Response>,
   delete_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   delete_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   delete_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9345,6 +9617,7 @@ export type Mutation_Root = {
   insert_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   insert_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
   insert_MuseumType?: Maybe<MuseumType_Mutation_Response>,
+  insert_MuseumTypeMuseum?: Maybe<MuseumTypeMuseum_Mutation_Response>,
   insert_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   insert_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   insert_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9404,6 +9677,7 @@ export type Mutation_Root = {
   update_MuseumEntranceType?: Maybe<MuseumEntranceType_Mutation_Response>,
   update_MuseumPrice?: Maybe<MuseumPrice_Mutation_Response>,
   update_MuseumType?: Maybe<MuseumType_Mutation_Response>,
+  update_MuseumTypeMuseum?: Maybe<MuseumTypeMuseum_Mutation_Response>,
   update_MuseumWorkingDay?: Maybe<MuseumWorkingDay_Mutation_Response>,
   update_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   update_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
@@ -9579,6 +9853,11 @@ export type Mutation_RootDelete_MuseumPriceArgs = {
 
 export type Mutation_RootDelete_MuseumTypeArgs = {
   where: MuseumType_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_MuseumTypeMuseumArgs = {
+  where: MuseumTypeMuseum_Bool_Exp
 };
 
 
@@ -9903,6 +10182,12 @@ export type Mutation_RootInsert_MuseumPriceArgs = {
 export type Mutation_RootInsert_MuseumTypeArgs = {
   objects: Array<MuseumType_Insert_Input>,
   on_conflict?: Maybe<MuseumType_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_MuseumTypeMuseumArgs = {
+  objects: Array<MuseumTypeMuseum_Insert_Input>,
+  on_conflict?: Maybe<MuseumTypeMuseum_On_Conflict>
 };
 
 
@@ -10286,6 +10571,13 @@ export type Mutation_RootUpdate_MuseumTypeArgs = {
   _inc?: Maybe<MuseumType_Inc_Input>,
   _set?: Maybe<MuseumType_Set_Input>,
   where: MuseumType_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_MuseumTypeMuseumArgs = {
+  _inc?: Maybe<MuseumTypeMuseum_Inc_Input>,
+  _set?: Maybe<MuseumTypeMuseum_Set_Input>,
+  where: MuseumTypeMuseum_Bool_Exp
 };
 
 
@@ -10842,6 +11134,9 @@ export type Query_Root = {
   MuseumPrice_aggregate: MuseumPrice_Aggregate,
   MuseumPrice_by_pk?: Maybe<MuseumPrice>,
   MuseumType: Array<MuseumType>,
+  MuseumTypeMuseum: Array<MuseumTypeMuseum>,
+  MuseumTypeMuseum_aggregate: MuseumTypeMuseum_Aggregate,
+  MuseumTypeMuseum_by_pk?: Maybe<MuseumTypeMuseum>,
   MuseumType_aggregate: MuseumType_Aggregate,
   MuseumType_by_pk?: Maybe<MuseumType>,
   MuseumWorkingDay: Array<MuseumWorkingDay>,
@@ -11575,6 +11870,29 @@ export type Query_RootMuseumTypeArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<MuseumType_Order_By>>,
   where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Query_RootMuseumTypeMuseumArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type Query_RootMuseumTypeMuseum_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type Query_RootMuseumTypeMuseum_By_PkArgs = {
+  museumTypeMuseumID: Scalars['Int']
 };
 
 
@@ -17017,6 +17335,9 @@ export type Subscription_Root = {
   MuseumPrice_aggregate: MuseumPrice_Aggregate,
   MuseumPrice_by_pk?: Maybe<MuseumPrice>,
   MuseumType: Array<MuseumType>,
+  MuseumTypeMuseum: Array<MuseumTypeMuseum>,
+  MuseumTypeMuseum_aggregate: MuseumTypeMuseum_Aggregate,
+  MuseumTypeMuseum_by_pk?: Maybe<MuseumTypeMuseum>,
   MuseumType_aggregate: MuseumType_Aggregate,
   MuseumType_by_pk?: Maybe<MuseumType>,
   MuseumWorkingDay: Array<MuseumWorkingDay>,
@@ -17750,6 +18071,29 @@ export type Subscription_RootMuseumTypeArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<MuseumType_Order_By>>,
   where?: Maybe<MuseumType_Bool_Exp>
+};
+
+
+export type Subscription_RootMuseumTypeMuseumArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type Subscription_RootMuseumTypeMuseum_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumTypeMuseum_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumTypeMuseum_Order_By>>,
+  where?: Maybe<MuseumTypeMuseum_Bool_Exp>
+};
+
+
+export type Subscription_RootMuseumTypeMuseum_By_PkArgs = {
+  museumTypeMuseumID: Scalars['Int']
 };
 
 
@@ -21707,6 +22051,77 @@ export type GetCuisineTypesQuery = (
   )> }
 );
 
+export type GetHotelLocationQueryVariables = {};
+
+
+export type GetHotelLocationQuery = (
+  { __typename?: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'name' | 'locationID' | 'hotelID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+    ) }
+  )> }
+);
+
+export type GetArchSiteLocationQueryVariables = {};
+
+
+export type GetArchSiteLocationQuery = (
+  { __typename?: 'query_root' }
+  & { ArchSite: Array<(
+    { __typename?: 'ArchSite' }
+    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+    ) }
+  )> }
+);
+
+export type GetMuseumLocationQueryVariables = {};
+
+
+export type GetMuseumLocationQuery = (
+  { __typename?: 'query_root' }
+  & { Museum: Array<(
+    { __typename?: 'Museum' }
+    & Pick<Museum, 'name' | 'locationID' | 'museumID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+    ) }
+  )> }
+);
+
+export type GetRestaurantLocationQueryVariables = {};
+
+
+export type GetRestaurantLocationQuery = (
+  { __typename?: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'locationID' | 'restaurantID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+    ) }
+  )> }
+);
+
+export type GetDayQueryVariables = {};
+
+
+export type GetDayQuery = (
+  { __typename: 'query_root' }
+  & { Day: Array<(
+    { __typename?: 'Day' }
+    & Pick<Day, 'dayID' | 'name'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -22585,3 +23000,158 @@ export function withGetCuisineTypes<TProps, TChildProps = {}>(operationOptions?:
     });
 };
 export type GetCuisineTypesQueryResult = ApolloReactCommon.QueryResult<GetCuisineTypesQuery, GetCuisineTypesQueryVariables>;
+export const GetHotelLocationDocument = gql`
+    query getHotelLocation {
+  Hotel {
+    Location {
+      latitude
+      longtitude
+      address
+    }
+    name
+    locationID
+    hotelID
+  }
+}
+    `;
+export type GetHotelLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelLocationQuery, GetHotelLocationQueryVariables>, 'query'>;
+
+    export const GetHotelLocationComponent = (props: GetHotelLocationComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelLocationQuery, GetHotelLocationQueryVariables> query={GetHotelLocationDocument} {...props} />
+    );
+    
+export type GetHotelLocationProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelLocationQuery, GetHotelLocationQueryVariables> & TChildProps;
+export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelLocationQuery,
+  GetHotelLocationQueryVariables,
+  GetHotelLocationProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelLocationQuery, GetHotelLocationQueryVariables, GetHotelLocationProps<TChildProps>>(GetHotelLocationDocument, {
+      alias: 'getHotelLocation',
+      ...operationOptions
+    });
+};
+export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
+export const GetArchSiteLocationDocument = gql`
+    query getArchSiteLocation {
+  ArchSite {
+    Location {
+      latitude
+      longtitude
+      address
+    }
+    name
+    locationID
+    archSiteID
+  }
+}
+    `;
+export type GetArchSiteLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>, 'query'>;
+
+    export const GetArchSiteLocationComponent = (props: GetArchSiteLocationComponentProps) => (
+      <ApolloReactComponents.Query<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables> query={GetArchSiteLocationDocument} {...props} />
+    );
+    
+export type GetArchSiteLocationProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables> & TChildProps;
+export function withGetArchSiteLocation<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteLocationQuery,
+  GetArchSiteLocationQueryVariables,
+  GetArchSiteLocationProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables, GetArchSiteLocationProps<TChildProps>>(GetArchSiteLocationDocument, {
+      alias: 'getArchSiteLocation',
+      ...operationOptions
+    });
+};
+export type GetArchSiteLocationQueryResult = ApolloReactCommon.QueryResult<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>;
+export const GetMuseumLocationDocument = gql`
+    query getMuseumLocation {
+  Museum {
+    Location {
+      latitude
+      longtitude
+      address
+    }
+    name
+    locationID
+    museumID
+  }
+}
+    `;
+export type GetMuseumLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>, 'query'>;
+
+    export const GetMuseumLocationComponent = (props: GetMuseumLocationComponentProps) => (
+      <ApolloReactComponents.Query<GetMuseumLocationQuery, GetMuseumLocationQueryVariables> query={GetMuseumLocationDocument} {...props} />
+    );
+    
+export type GetMuseumLocationProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumLocationQuery, GetMuseumLocationQueryVariables> & TChildProps;
+export function withGetMuseumLocation<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetMuseumLocationQuery,
+  GetMuseumLocationQueryVariables,
+  GetMuseumLocationProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetMuseumLocationQuery, GetMuseumLocationQueryVariables, GetMuseumLocationProps<TChildProps>>(GetMuseumLocationDocument, {
+      alias: 'getMuseumLocation',
+      ...operationOptions
+    });
+};
+export type GetMuseumLocationQueryResult = ApolloReactCommon.QueryResult<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>;
+export const GetRestaurantLocationDocument = gql`
+    query getRestaurantLocation {
+  Restaurant {
+    Location {
+      latitude
+      longtitude
+      address
+    }
+    name
+    locationID
+    restaurantID
+  }
+}
+    `;
+export type GetRestaurantLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantLocationQuery, GetRestaurantLocationQueryVariables>, 'query'>;
+
+    export const GetRestaurantLocationComponent = (props: GetRestaurantLocationComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantLocationQuery, GetRestaurantLocationQueryVariables> query={GetRestaurantLocationDocument} {...props} />
+    );
+    
+export type GetRestaurantLocationProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantLocationQuery, GetRestaurantLocationQueryVariables> & TChildProps;
+export function withGetRestaurantLocation<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantLocationQuery,
+  GetRestaurantLocationQueryVariables,
+  GetRestaurantLocationProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantLocationQuery, GetRestaurantLocationQueryVariables, GetRestaurantLocationProps<TChildProps>>(GetRestaurantLocationDocument, {
+      alias: 'getRestaurantLocation',
+      ...operationOptions
+    });
+};
+export type GetRestaurantLocationQueryResult = ApolloReactCommon.QueryResult<GetRestaurantLocationQuery, GetRestaurantLocationQueryVariables>;
+export const GetDayDocument = gql`
+    query getDay {
+  __typename
+  Day {
+    dayID
+    name
+  }
+}
+    `;
+export type GetDayComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetDayQuery, GetDayQueryVariables>, 'query'>;
+
+    export const GetDayComponent = (props: GetDayComponentProps) => (
+      <ApolloReactComponents.Query<GetDayQuery, GetDayQueryVariables> query={GetDayDocument} {...props} />
+    );
+    
+export type GetDayProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetDayQuery, GetDayQueryVariables> & TChildProps;
+export function withGetDay<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetDayQuery,
+  GetDayQueryVariables,
+  GetDayProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetDayQuery, GetDayQueryVariables, GetDayProps<TChildProps>>(GetDayDocument, {
+      alias: 'getDay',
+      ...operationOptions
+    });
+};
+export type GetDayQueryResult = ApolloReactCommon.QueryResult<GetDayQuery, GetDayQueryVariables>;
