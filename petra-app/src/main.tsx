@@ -37,6 +37,7 @@ import { HotelMapScreen } from './app/pages/screens/HotelMapScreen';
 import { ArchSiteMapScreen } from './app/pages/screens/ArchSiteMapScreen';
 import { MuseumMapScreen } from './app/pages/screens/MuseumMapScreen';
 import { RestaurantMapScreen } from './app/pages/screens/RestaurantMapScreen';
+import { AddArchSiteWorkingScheduleScreen } from './app/pages/screens/AddArchSiteWorkingScheduleScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -84,7 +85,8 @@ const RootStack = createStackNavigator(
 		HotelMapScreen: { screen: HotelMapScreen },
 		ArchSiteMapScreen: { screen: ArchSiteMapScreen },
 		MuseumMapScreen: { screen: MuseumMapScreen },
-		RestaurantMapScreen: { screen: RestaurantMapScreen }
+		RestaurantMapScreen: { screen: RestaurantMapScreen },
+		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',

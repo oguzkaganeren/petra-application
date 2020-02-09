@@ -1,19 +1,20 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetDayComponent } from '../generated/components';
+import { GetUserArchSiteComponent } from '../generated/components';
 /**
  * Location props
  */
-export interface GetAllDayProps {
+export interface GetAllUserArchSiteProps {
 	label: string;
 	parentReference: any;
+	userID: number;
 }
 
 /**
  * Location state
  */
-export interface GetAllDayState {
+export interface GetAllUserArchSiteState {
 	selected: any;
 	setSelectedOption: any;
 	datam: any;
@@ -22,7 +23,7 @@ export interface GetAllDayState {
 /**
  * Location component
  */
-export class GetAllDayComponent extends React.Component<GetAllDayProps, GetAllDayState> {
+export class GetAllUserArchSiteComponent extends React.Component<GetAllUserArchSiteProps, GetAllUserArchSiteState> {
 	/**
 	 * Creates an instance of Location component.
 	 * @param props
@@ -58,23 +59,22 @@ export class GetAllDayComponent extends React.Component<GetAllDayProps, GetAllDa
 	render() {
 		return (
 			<Layout>
-				<GetDayComponent>
+				<GetUserArchSiteComponent variables={{ userID: this.props.userID }}>
 					{({ loading, error, data }) => {
 						if (loading) return <Text>Loading</Text>;
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.Day.map(dat => {
+							data.ArchSite.map(dat => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.dayID)) {
-										this.state.datam.push({ id: dat.dayID, text: dat.name });
+									if (this.state.datam.every(item => item.id !== dat.archSiteID)) {
+										this.state.datam.push({ id: dat.archSiteID, text: dat.name });
 									}
 								} else {
-									this.state.datam.push({ id: dat.dayID, text: dat.name });
+									this.state.datam.push({ id: dat.archSiteID, text: dat.name });
 								}
 							});
 							return (
-								//keyEx. Ekle
 								<Select
 									data={this.state.datam}
 									placeholder={this.props.label}
@@ -85,7 +85,7 @@ export class GetAllDayComponent extends React.Component<GetAllDayProps, GetAllDa
 							);
 						}
 					}}
-				</GetDayComponent>
+				</GetUserArchSiteComponent>
 			</Layout>
 		);
 	}

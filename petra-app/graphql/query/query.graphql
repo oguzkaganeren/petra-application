@@ -118,3 +118,9 @@ query getDay {
 		name
 	}
 }
+query getUserArchSite($userID: Int!) {
+	ArchSite(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		archSiteID
+		name
+	}
+}
