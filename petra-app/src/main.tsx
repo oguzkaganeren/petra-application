@@ -19,6 +19,9 @@ import { AddArchSiteTypeScreen } from './app/pages/screens/AddArchSiteTypeScreen
 import { HotelDetailScreen } from './app/pages/screens/HotelDetailScreen';
 import { AddRoomPropertyScreen } from './app/pages/screens/AddRoomPropertyScreen';
 import { AddRoomScreen } from './app/pages/screens/AddRoomScreen';
+import { AddHotelServicePropertyScreen } from './app/pages/screens/AddHotelServicePropertyScreen';
+import { AddHotelCommentScreen } from './app/pages/screens/AddHotelCommentScreen';
+import { AddHotelRoomPriceScreen } from './app/pages/screens/AddHotelRoomPrice';
 import { AddArchSiteScreen } from './app/pages/screens/AddArchSiteScreen';
 import { AddArchSiteCommentScreen } from './app/pages/screens/AddArchSiteCommentScreen';
 import { AddArchSiteEntranceTypeScreen } from './app/pages/screens/AddArchSiteEnterenceTypeScreen';
@@ -32,12 +35,20 @@ import { AddMuseumTypeScreen } from './app/pages/screens/AddMuseumTypeScreen';
 import { AddMuseumScreen } from './app/pages/screens/AddMuseumScreen';
 import { AddMuseumCommentScreen } from './app/pages/screens/AddMuseumCommentScreen';
 import { AddMuseumEntranceTypeScreen } from './app/pages/screens/AddMuseumEntranceTypeScreen';
+import { MapScreen } from './app/pages/screens/MapScreen';
+import { HotelMapScreen } from './app/pages/screens/HotelMapScreen';
+import { ArchSiteMapScreen } from './app/pages/screens/ArchSiteMapScreen';
+import { MuseumMapScreen } from './app/pages/screens/MuseumMapScreen';
+import { RestaurantMapScreen } from './app/pages/screens/RestaurantMapScreen';
+import { AddArchSiteWorkingScheduleScreen } from './app/pages/screens/AddArchSiteWorkingScheduleScreen';
+import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/AddMuseumWorkingScheduleScreen';
+import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/AddRestaurantWorkingScheduleScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://192.168.99.100:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.1.102:8080/v1/graphql' });
 const MyHeader = navigation => {
 	return {
 		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
@@ -62,6 +73,9 @@ const RootStack = createStackNavigator(
 		HotelDetailScreen: { screen: HotelDetailScreen },
 		AddRoomPropertyScreen: { screen: AddRoomPropertyScreen },
 		AddRoomScreen: { screen: AddRoomScreen },
+		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen },
+		AddHotelCommentScreen: { screen: AddHotelCommentScreen },
+		AddHotelRoomPriceScreen: { screen: AddHotelRoomPriceScreen },
 		AddArchSiteScreen: { screen: AddArchSiteScreen },
 		AddArchSiteCommentScreen: { screen: AddArchSiteCommentScreen },
 		AddArchSiteEntranceTypeScreen: { screen: AddArchSiteEntranceTypeScreen },
@@ -74,7 +88,15 @@ const RootStack = createStackNavigator(
 		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen },
 		AddMuseumScreen: { screen: AddMuseumScreen },
 		AddMuseumCommentScreen: { screen: AddMuseumCommentScreen },
-		AddMuseumEntranceTypeScreen: { screen: AddMuseumEntranceTypeScreen }
+		AddMuseumEntranceTypeScreen: { screen: AddMuseumEntranceTypeScreen },
+		MapScreen: { screen: MapScreen },
+		HotelMapScreen: { screen: HotelMapScreen },
+		ArchSiteMapScreen: { screen: ArchSiteMapScreen },
+		MuseumMapScreen: { screen: MuseumMapScreen },
+		RestaurantMapScreen: { screen: RestaurantMapScreen },
+		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen },
+		AddMuseumWorkingScheduleScreen: { screen: AddMuseumWorkingScheduleScreen },
+		AddRestaurantWorkingScheduleScreen: { screen: AddRestaurantWorkingScheduleScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',

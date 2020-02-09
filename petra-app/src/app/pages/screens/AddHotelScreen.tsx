@@ -4,6 +4,7 @@ import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddHotelComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../components/GetAllUserCompany';
+import { GetAllHotelServicePropertyComponent } from '../../components/GetAllHotelServiceProperty';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -59,7 +60,8 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 								address: '',
 								name: '',
 								taxNumber: '',
-								companyID: 0
+								companyID: 0,
+								hotelServiceProperty: []
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -87,7 +89,8 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 											longtitude: values.longtitude,
 											latitude: values.latitude,
 											address: values.address.toString(),
-											companyID: values.companyID
+											companyID: values.companyID,
+											hotelServiceProperty: values.hotelServiceProperty
 										}
 									})
 										.then(res => {
@@ -149,6 +152,12 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										onChangeText={props.handleChange('address')}
 										onBlur={props.handleBlur('address')}
 										value={props.values.address}
+									/>
+									<GetAllHotelServicePropertyComponent
+										label="Select Hotel Properties"
+										parentReference={value => {
+											props.values.hotelServiceProperty = value;
+										}}
 									/>
 									<LocationComponent
 										latitude={value => {
