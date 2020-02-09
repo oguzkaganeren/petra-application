@@ -63,3 +63,58 @@ query getCuisineTypes {
 		restaurantCuisineTypeID
 	}
 }
+query getHotelLocation {
+	Hotel {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		hotelID
+	}
+}
+query getArchSiteLocation {
+	ArchSite {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		archSiteID
+	}
+}
+query getMuseumLocation {
+	Museum {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		museumID
+	}
+}
+query getRestaurantLocation {
+	Restaurant {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		restaurantID
+	}
+}
+query getDay {
+	__typename
+	Day {
+		dayID
+		name
+	}
+}

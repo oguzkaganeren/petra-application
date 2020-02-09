@@ -32,6 +32,11 @@ import { AddRestaurantTypeScreen } from './app/pages/screens/AddRestaurantTypeSc
 import { AddRestaurantCommentScreen } from './app/pages/screens/AddRestaurantCommentScreen';
 import { MuseumDetailScreen } from './app/pages/screens/MuseumDetailScreen';
 import { AddMuseumTypeScreen } from './app/pages/screens/AddMuseumTypeScreen';
+import { MapScreen } from './app/pages/screens/MapScreen';
+import { HotelMapScreen } from './app/pages/screens/HotelMapScreen';
+import { ArchSiteMapScreen } from './app/pages/screens/ArchSiteMapScreen';
+import { MuseumMapScreen } from './app/pages/screens/MuseumMapScreen';
+import { RestaurantMapScreen } from './app/pages/screens/RestaurantMapScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -64,7 +69,7 @@ const RootStack = createStackNavigator(
 		AddRoomScreen: { screen: AddRoomScreen },
 		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen },
 		AddHotelCommentScreen: { screen: AddHotelCommentScreen },
-		AddHotelRoomPriceScreen: { screen: AddHotelRoomPriceScreen }
+		AddHotelRoomPriceScreen: { screen: AddHotelRoomPriceScreen },
 		AddArchSiteScreen: { screen: AddArchSiteScreen },
 		AddArchSiteCommentScreen: { screen: AddArchSiteCommentScreen },
 		AddArchSiteEntranceTypeScreen: { screen: AddArchSiteEntranceTypeScreen },
@@ -74,7 +79,12 @@ const RootStack = createStackNavigator(
 		AddRestaurantTypeScreen: { screen: AddRestaurantTypeScreen },
 		AddRestaurantCommentScreen: { screen: AddRestaurantCommentScreen },
 		MuseumDetailScreen: { screen: MuseumDetailScreen },
-		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen }
+		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen },
+		MapScreen: { screen: MapScreen },
+		HotelMapScreen: { screen: HotelMapScreen },
+		ArchSiteMapScreen: { screen: ArchSiteMapScreen },
+		MuseumMapScreen: { screen: MuseumMapScreen },
+		RestaurantMapScreen: { screen: RestaurantMapScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
