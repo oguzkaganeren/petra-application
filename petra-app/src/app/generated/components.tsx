@@ -22122,6 +22122,19 @@ export type GetDayQuery = (
   )> }
 );
 
+export type GetUserArchSiteQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserArchSiteQuery = (
+  { __typename?: 'query_root' }
+  & { ArchSite: Array<(
+    { __typename?: 'ArchSite' }
+    & Pick<ArchSite, 'archSiteID' | 'name'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -23155,3 +23168,29 @@ export function withGetDay<TProps, TChildProps = {}>(operationOptions?: ApolloRe
     });
 };
 export type GetDayQueryResult = ApolloReactCommon.QueryResult<GetDayQuery, GetDayQueryVariables>;
+export const GetUserArchSiteDocument = gql`
+    query getUserArchSite($userID: Int!) {
+  ArchSite(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    archSiteID
+    name
+  }
+}
+    `;
+export type GetUserArchSiteComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>, 'query'> & ({ variables: GetUserArchSiteQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserArchSiteComponent = (props: GetUserArchSiteComponentProps) => (
+      <ApolloReactComponents.Query<GetUserArchSiteQuery, GetUserArchSiteQueryVariables> query={GetUserArchSiteDocument} {...props} />
+    );
+    
+export type GetUserArchSiteProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArchSiteQuery, GetUserArchSiteQueryVariables> & TChildProps;
+export function withGetUserArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserArchSiteQuery,
+  GetUserArchSiteQueryVariables,
+  GetUserArchSiteProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserArchSiteQuery, GetUserArchSiteQueryVariables, GetUserArchSiteProps<TChildProps>>(GetUserArchSiteDocument, {
+      alias: 'getUserArchSite',
+      ...operationOptions
+    });
+};
+export type GetUserArchSiteQueryResult = ApolloReactCommon.QueryResult<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>;
