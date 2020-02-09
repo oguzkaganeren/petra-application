@@ -59,7 +59,8 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 								mail: '',
 								longtitude: 0,
 								latitude: 0,
-								address: ''
+								address: '',
+								phone: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -68,6 +69,10 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 									.max(50, 'Too Long!')
 									.required('Required'),
 								taxNumber: Yup.string()
+									.min(2, 'Too Short!')
+									.max(50, 'Too Long!')
+									.required('Required'),
+								phone: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required'),
@@ -89,6 +94,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 											taxNumber: values.taxNumber.toString(),
 											registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
 											mail: values.mail.toString(),
+											phone: values.phone.toString(),
 											longtitude: values.longtitude,
 											latitude: values.latitude,
 											address: values.address.toString(),
@@ -105,6 +111,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('tax:' + values.taxNumber);
+											console.log('phone:' + values.phone);
 											console.log('registerDate:' + values.registerDate);
 											console.log('mail:' + values.mail);
 											console.log('long:' + values.longtitude);
@@ -147,6 +154,15 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 										onChangeText={props.handleChange('mail')}
 										onBlur={props.handleBlur('mail')}
 										value={props.values.mail}
+									/>
+									<Input
+										label="Phone Number"
+										status={props.touched.phone && props.errors.phone ? 'danger' : 'success'}
+										caption={props.touched.phone && props.errors.phone ? props.errors.phone : ''}
+										placeholder="54-2548568-22"
+										onChangeText={props.handleChange('phone')}
+										onBlur={props.handleBlur('phone')}
+										value={props.values.phone}
 									/>
 									<Input
 										label="Address"

@@ -36,6 +36,7 @@ mutation addCompany(
 	$latitude: Float!
 	$address: String
 	$userID: Int!
+	$phone: String
 ) {
 	__typename
 	insert_Company(
@@ -47,6 +48,7 @@ mutation addCompany(
 			mail: $mail
 			CompanyUsers: { data: { userID: $userID } }
 			Location: { data: { longtitude: $longtitude, latitude: $latitude, address: $address } }
+			CompanyPhones: { data: { Phone: { data: { phone: $phone } } } }
 		}
 	) {
 		returning {
@@ -55,8 +57,10 @@ mutation addCompany(
 		}
 	}
 }
+
 mutation addRestaurant(
-	$CompanyID: Int
+	$restCusTypes: [RestaurantAndCuisineType_insert_input!]!
+	$companyID: Int
 	$ISO: String
 	$latitude: Float
 	$longtitude: Float
@@ -74,8 +78,9 @@ mutation addRestaurant(
 			restaurantTypeID: $restaurantTypeID
 			name: $name
 			since: $since
-			companyID: $CompanyID
+			companyID: $companyID
 			taxNumber: $taxNumber
+			RestaurantAndCuisineTypes: { data: $restCusTypes }
 		}
 	) {
 		returning {
@@ -83,6 +88,7 @@ mutation addRestaurant(
 		}
 	}
 }
+
 mutation addFoodType($foodType: String) {
 	__typename
 	insert_RestaurantFoodType(objects: { type: $foodType }) {
@@ -242,6 +248,46 @@ mutation addMuseumType($type: String) {
 	insert_MuseumType(objects: { type: $type }) {
 		returning {
 			museumTypeID
+		}
+	}
+}
+mutation addMuseum(
+	$museumTypeID: Int
+	$companyID: Int
+	$description: String
+	$name: String
+	$address: String
+	$latitude: Float
+	$longtitude: Float
+) {
+	__typename
+	insert_Museum(
+		objects: {
+			companyID: $companyID
+			description: $description
+			name: $name
+			Location: { data: { address: $address, latitude: $latitude, longtitude: $longtitude } }
+			MuseumTypeMuseums: { data: { museumTypeID: $museumTypeID } }
+		}
+	) {
+		returning {
+			museumID
+		}
+	}
+}
+mutation addMuseumComment($content: String, $date: timestamptz, $museumID: Int, $star: Float, $userID: Int) {
+	__typename
+	insert_MuseumComment(objects: { content: $content, date: $date, museumID: $museumID, star: $star, userID: $userID }) {
+		returning {
+			museumCommentID
+		}
+	}
+}
+mutation addMuseumEntranceType($content: String) {
+	__typename
+	insert_MuseumEntranceType(objects: { content: $content }) {
+		returning {
+			museumEntranceTypeID
 		}
 	}
 }

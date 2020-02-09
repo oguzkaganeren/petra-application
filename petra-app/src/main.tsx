@@ -29,6 +29,9 @@ import { AddRestaurantTypeScreen } from './app/pages/screens/AddRestaurantTypeSc
 import { AddRestaurantCommentScreen } from './app/pages/screens/AddRestaurantCommentScreen';
 import { MuseumDetailScreen } from './app/pages/screens/MuseumDetailScreen';
 import { AddMuseumTypeScreen } from './app/pages/screens/AddMuseumTypeScreen';
+import { AddMuseumScreen } from './app/pages/screens/AddMuseumScreen';
+import { AddMuseumCommentScreen } from './app/pages/screens/AddMuseumCommentScreen';
+import { AddMuseumEntranceTypeScreen } from './app/pages/screens/AddMuseumEntranceTypeScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -68,7 +71,10 @@ const RootStack = createStackNavigator(
 		AddRestaurantTypeScreen: { screen: AddRestaurantTypeScreen },
 		AddRestaurantCommentScreen: { screen: AddRestaurantCommentScreen },
 		MuseumDetailScreen: { screen: MuseumDetailScreen },
-		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen }
+		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen },
+		AddMuseumScreen: { screen: AddMuseumScreen },
+		AddMuseumCommentScreen: { screen: AddMuseumCommentScreen },
+		AddMuseumEntranceTypeScreen: { screen: AddMuseumEntranceTypeScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
