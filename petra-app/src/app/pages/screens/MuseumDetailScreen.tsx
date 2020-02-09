@@ -40,31 +40,31 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 				</Button>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteScreen', {
+						this.props.navigation.navigate('AddMuseumScreen', {
 							userID: userID
 						});
 					}}
 				>
-					Add ArchSite
+					Add Museum
 				</Button>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteCommentScreen', {
+						this.props.navigation.navigate('AddMuseumCommentScreen', {
 							userID: userID,
-							archSiteID: 1 //Değişecek
+							museumID: 1 //Değişecek
 						});
 					}}
 				>
-					Add ArchSite Comment
+					Add Museum Comment
 				</Button>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteEntranceTypeScreen', {
+						this.props.navigation.navigate('AddMuseumEntranceTypeScreen', {
 							userID: userID
 						});
 					}}
 				>
-					Add ArchSite Entrance Type
+					Add Museum Entrance Type
 				</Button>
 
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>

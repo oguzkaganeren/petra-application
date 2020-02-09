@@ -1,29 +1,28 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
-import { AddRestaurantComponent, GetUserCompanyComponent } from '../../generated/components';
+import { AddMuseumComponent, GetUserCompanyComponent } from '../../generated/components';
 import { LocationComponent } from '../../components/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../components/GetAllUserCompany';
-import { GetAllRestaurantTypesComponent } from '../../components/GetAllRestaurantTypes';
+import { GetAllMuseumTypesComponent } from '../../components/GetAllMuseumTypes';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { GetAllCuisineTypesComponent } from '../../components/GetAllCuisineTypes';
 /**
  * AddRestaurant props
  */
-export interface AddRestaurantProps {
+export interface AddMuseumProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddRestaurantState {}
+export interface AddMuseumState {}
 
 /**
  * Location
  */
-export class AddRestaurantScreen extends React.Component<AddRestaurantProps, AddRestaurantState> {
-	constructor(props: AddRestaurantProps) {
+export class AddMuseumScreen extends React.Component<AddMuseumProps, AddMuseumState> {
+	constructor(props: AddMuseumProps) {
 		super(props);
 		this.state = {};
 	}
@@ -42,21 +41,19 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<AddRestaurantComponent>
-						{AddRestaurantMutation => (
+					<AddMuseumComponent>
+						{AddMuseumMutation => (
 							<Formik
 								//değişkenlerin başlangıç değerleri
 								initialValues={{
-									ISO: '',
-									latitude: '',
-									longtitude: '',
-									address: '',
-									restaurantTypeID: 0,
-									name: '',
-									since: new Date(),
-									taxNumber: '',
+									MuseumTypeID: 0,
+									altitude: 0.0,
 									companyID: 0,
-									cuisineTypes: []
+									description: '',
+									name: '',
+									address: '',
+									latitude: '',
+									longtitude: ''
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
@@ -64,13 +61,11 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										.min(2, 'Too Short!')
 										.max(50, 'Too Long!')
 										.required('Required'),
-									ISO: Yup.string()
-										.min(2, 'Too Short!')
-										.max(50, 'Too Long!'),
 									address: Yup.string()
 										.min(5, 'Too Short!')
 										.required('Required'),
-									taxNumber: Yup.string()
+									altitude: Yup.number().required('Required'),
+									description: Yup.string()
 										.min(5, 'Too Short!')
 										.required('Required'),
 									//sadece longtitude kontrol etsem yeterli
@@ -80,31 +75,17 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								onSubmit={(values, formikActions) => {
 									setTimeout(() => {
 										console.log(
-											values.name +
-												' ' +
-												values.address +
-												' ' +
-												values.restaurantTypeID +
-												' ' +
-												values.ISO +
-												' ' +
-												this.convertDateFormatForQuery(values.since) +
-												' ' +
-												values.taxNumber +
-												' '
+											values.name + ' ' + values.address + ' ' + values.altitude + ' ' + values.description + ' '
 										);
-										AddRestaurantMutation({
+										AddMuseumMutation({
 											variables: {
 												name: values.name.toString(),
-												ISO: values.ISO.toString(),
-												since: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
-												restCusTypes: values.cuisineTypes,
+												description: values.description, //sonra utc ayarına bak!
 												longtitude: parseFloat(values.longtitude),
 												latitude: parseFloat(values.latitude),
 												address: values.address.toString(),
-												restaurantTypeID: values.restaurantTypeID,
 												companyID: values.companyID,
-												taxNumber: values.taxNumber.toString()
+												museumTypeID: values.MuseumTypeID
 											}
 										})
 											.then(res => {
@@ -116,10 +97,10 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											.catch(err => {
 												alert(err);
 												console.log('name:' + values.name);
-												console.log('ISO:' + values.ISO);
-												console.log('since:' + values.since);
-												console.log('cuisineTypes:' + values.cuisineTypes);
-												console.log('RestaurantType:' + values.restaurantTypeID);
+												console.log('address:' + values.address);
+												console.log('altitude:' + values.altitude);
+												console.log('archSiteTypeID:' + values.MuseumTypeID);
+												console.log('description:' + values.description);
 												console.log('long:' + values.longtitude);
 												console.log('lat:' + values.latitude);
 												console.log('address:' + values.address);
@@ -139,7 +120,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											}}
 											disabled={props.isSubmitting}
 										>
-											Add Restaurant
+											Add Museum
 										</Button>
 										<GetAllUserCompanyComponent
 											label="Select Your Company"
@@ -149,8 +130,8 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											userID={parseInt(userID)}
 										/>
 										<Input
-											label="Restaurant Name"
-											placeholder="Enter Your Restaurant Name"
+											label="Museum Name"
+											placeholder="Enter Your Museum Name"
 											status={props.touched.name && props.errors.name ? 'danger' : 'success'}
 											caption={props.touched.name && props.errors.name ? props.errors.name : ''}
 											onChangeText={props.handleChange('name')}
@@ -167,38 +148,23 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											onBlur={props.handleBlur('address')}
 											value={props.values.address}
 										/>
-										<GetAllRestaurantTypesComponent
-											label="Select Restaurant Type"
+
+										<GetAllMuseumTypesComponent
+											label="Select Museum Type"
 											parentReference={value => {
-												props.values.restaurantTypeID = value;
+												props.values.MuseumTypeID = value;
 											}}
+										/>
+										<Input
+											label="Description"
+											status={props.touched.description && props.errors.description ? 'danger' : 'success'}
+											caption={props.touched.description && props.errors.description ? props.errors.description : ''}
+											placeholder="Enter the Description of the Archsite"
+											onChangeText={props.handleChange('description')}
+											onBlur={props.handleBlur('description')}
+											value={props.values.description}
 										/>
 
-										<Input
-											label="ISO Certificate"
-											status={props.touched.ISO && props.errors.ISO ? 'danger' : 'success'}
-											caption={props.touched.ISO && props.errors.ISO ? props.errors.ISO : ''}
-											placeholder="Do you have any certificate?"
-											onChangeText={props.handleChange('ISO')}
-											onBlur={props.handleBlur('ISO')}
-											value={props.values.ISO}
-										/>
-										<GetAllCuisineTypesComponent
-											label="Select Restaurant Cuisine Types"
-											parentReference={value => {
-												props.values.cuisineTypes = value;
-											}}
-										/>
-										<Input
-											label="Tax Number"
-											status={props.touched.taxNumber && props.errors.taxNumber ? 'danger' : 'success'}
-											caption={props.touched.taxNumber && props.errors.taxNumber ? props.errors.taxNumber : ''}
-											placeholder="Enter your Tax Number Please"
-											onChangeText={props.handleChange('taxNumber')}
-											onBlur={props.handleBlur('taxNumber')}
-											value={props.values.taxNumber}
-										/>
-										<Datepicker date={props.values.since} onSelect={e => props.setFieldValue('since', e)} />
 										<LocationComponent
 											latitude={value => {
 												props.values.latitude = value;
@@ -214,7 +180,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								)}
 							</Formik>
 						)}
-					</AddRestaurantComponent>
+					</AddMuseumComponent>
 				</ScrollView>
 			</Layout>
 		);

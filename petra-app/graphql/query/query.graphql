@@ -47,3 +47,10 @@ query getCuisineTypes {
 		restaurantCuisineTypeID
 	}
 }
+query getMuseumTypes {
+	__typename
+	MuseumType {
+		museumTypeID
+		type
+	}
+}
