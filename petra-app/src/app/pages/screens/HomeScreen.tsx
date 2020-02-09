@@ -32,8 +32,6 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<SearchComponent></SearchComponent>
-
 					<Button
 						onPress={() => {
 							this.props.navigation.navigate('AddCompanyScreen', {
@@ -106,7 +104,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					>
 						Article Details
 					</Button>
-
+					<Button
+						onPress={() => {
+							this.props.navigation.navigate('MapScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Map Screen
+					</Button>
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>
 					</Layout>

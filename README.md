@@ -7,9 +7,9 @@
 
 ### Restore SQL
 
-- `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_07-02-2020_11_11_30.sql`
+- `docker exec -i petra-application_postgres_1 psql -U postgres -d postgres < backup/dump_09-02-2020_11_36_54.sql`
 
-- Import meta settings `07-02-2020_11_11_30.json` with using your hasura settings.
+- Import meta settings `09-02-2020_11_36_54.sql.json` with using your hasura settings.
 
 #### Nothing
 

@@ -112,6 +112,7 @@ mutation addHotel(
 	$longtitude: Float
 	$address: String
 	$taxNumber: String
+	$hotelServiceProperty: [HotelService_insert_input!]!
 ) {
 	__typename
 	insert_Hotel(
@@ -120,6 +121,7 @@ mutation addHotel(
 			companyID: $companyID
 			Location: { data: { latitude: $latitude, longtitude: $longtitude, address: $address } }
 			taxNumber: $taxNumber
+			HotelServices: { data: $hotelServiceProperty }
 		}
 	) {
 		returning {
@@ -154,6 +156,54 @@ mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input
 	) {
 		returning {
 			roomID
+		}
+	}
+}
+mutation addHotelServiceProperty($content: String!) {
+	__typename
+	insert_HotelServiceProperty(objects: { content: $content }) {
+		returning {
+			hotelServicePropertyID
+		}
+	}
+}
+mutation addHotelComment($content: String!, $date: timestamptz!, $hotelID: Int!, $star: Float, $userID: Int) {
+	__typename
+	insert_HotelComment(objects: { content: $content, date: $date, hotelID: $hotelID, star: $star, userID: $userID }) {
+		returning {
+			hotelCommentID
+		}
+	}
+}
+mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: Int!, $startDate: timestamptz!) {
+	__typename
+	insert_RoomPrice(objects: { finishDate: $finishDate, price: $price, roomID: $roomID, startDate: $startDate }) {
+		returning {
+			roomPriceID
+		}
+	}
+}
+mutation addArchSiteWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_ArchSiteWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			archSiteID: $archSiteID
+			ArchSiteWorkingDaySchedules: {
+				data: { ArchSiteWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			archSiteWorkingScheduleID
 		}
 	}
 }
@@ -288,6 +338,54 @@ mutation addMuseumEntranceType($content: String) {
 	insert_MuseumEntranceType(objects: { content: $content }) {
 		returning {
 			museumEntranceTypeID
+		}
+	}
+}
+mutation addMuseumWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_MuseumWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			museumID: $archSiteID
+			MuseumWorkingDaySchedules: {
+				data: { MuseumWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			museumWorkingScheduleID
+		}
+	}
+}
+mutation addRestaurantWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_RestaurantWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			restaurantID: $archSiteID
+			RestaurantWorkingDaySchedules: {
+				data: { RestaurantWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			restaurantWorkingScheduleID
 		}
 	}
 }

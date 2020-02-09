@@ -76,7 +76,15 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				>
 					Add Restaurant Comment
 				</Button>
-
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Restaurant Working Schedule
+				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>

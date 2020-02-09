@@ -33,6 +33,22 @@ query getUserHotel($userID: Int!) {
 		name
 	}
 }
+query getHotelServiceProperty {
+	__typename
+	HotelServiceProperty {
+		content
+		hotelServicePropertyID
+	}
+}
+query getHotelRoom($hotelID: Int!) {
+	__typename
+	HotelRoom(where: { hotelID: { _eq: $hotelID } }) {
+		roomID
+		Room {
+			roomNo
+		}
+	}
+}
 query GetArchSiteTypes {
 	__typename
 	ArchSiteType {
@@ -52,5 +68,78 @@ query getMuseumTypes {
 	MuseumType {
 		museumTypeID
 		type
+	}
+}
+query getHotelLocation {
+	Hotel {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		hotelID
+	}
+}
+query getArchSiteLocation {
+	ArchSite {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		archSiteID
+	}
+}
+query getMuseumLocation {
+	Museum {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		museumID
+	}
+}
+query getRestaurantLocation {
+	Restaurant {
+		Location {
+			latitude
+			longtitude
+			address
+		}
+		name
+		locationID
+		restaurantID
+	}
+}
+query getDay {
+	__typename
+	Day {
+		dayID
+		name
+	}
+}
+query getUserArchSite($userID: Int!) {
+	ArchSite(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		archSiteID
+		name
+	}
+}
+query getUserMuseum($userID: Int!) {
+	Museum(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		museumID
+		name
+	}
+}
+query getUserRestaurant($userID: Int!) {
+	Restaurant(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		restaurantID
+		name
 	}
 }
