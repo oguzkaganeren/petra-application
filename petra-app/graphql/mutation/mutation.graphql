@@ -295,3 +295,51 @@ mutation addMuseumType($type: String) {
 		}
 	}
 }
+mutation addMuseumWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_MuseumWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			museumID: $archSiteID
+			MuseumWorkingDaySchedules: {
+				data: { MuseumWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			museumWorkingScheduleID
+		}
+	}
+}
+mutation addRestaurantWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_RestaurantWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			restaurantID: $archSiteID
+			RestaurantWorkingDaySchedules: {
+				data: { RestaurantWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			restaurantWorkingScheduleID
+		}
+	}
+}

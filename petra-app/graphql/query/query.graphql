@@ -124,3 +124,15 @@ query getUserArchSite($userID: Int!) {
 		name
 	}
 }
+query getUserMuseum($userID: Int!) {
+	Museum(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		museumID
+		name
+	}
+}
+query getUserRestaurant($userID: Int!) {
+	Restaurant(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		restaurantID
+		name
+	}
+}

@@ -21938,6 +21938,48 @@ export type AddMuseumTypeMutation = (
   )> }
 );
 
+export type AddMuseumWorkingScheduleMutationVariables = {
+  startDate: Scalars['timestamptz'],
+  finishDate: Scalars['timestamptz'],
+  archSiteID: Scalars['Int'],
+  closeHour: Scalars['timetz'],
+  openHour: Scalars['timetz'],
+  dayID: Scalars['Int']
+};
+
+
+export type AddMuseumWorkingScheduleMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_MuseumWorkingSchedule: Maybe<(
+    { __typename?: 'MuseumWorkingSchedule_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'MuseumWorkingSchedule' }
+      & Pick<MuseumWorkingSchedule, 'museumWorkingScheduleID'>
+    )> }
+  )> }
+);
+
+export type AddRestaurantWorkingScheduleMutationVariables = {
+  startDate: Scalars['timestamptz'],
+  finishDate: Scalars['timestamptz'],
+  archSiteID: Scalars['Int'],
+  closeHour: Scalars['timetz'],
+  openHour: Scalars['timetz'],
+  dayID: Scalars['Int']
+};
+
+
+export type AddRestaurantWorkingScheduleMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantWorkingSchedule: Maybe<(
+    { __typename?: 'RestaurantWorkingSchedule_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantWorkingSchedule' }
+      & Pick<RestaurantWorkingSchedule, 'restaurantWorkingScheduleID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -22132,6 +22174,32 @@ export type GetUserArchSiteQuery = (
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
     & Pick<ArchSite, 'archSiteID' | 'name'>
+  )> }
+);
+
+export type GetUserMuseumQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserMuseumQuery = (
+  { __typename?: 'query_root' }
+  & { Museum: Array<(
+    { __typename?: 'Museum' }
+    & Pick<Museum, 'museumID' | 'name'>
+  )> }
+);
+
+export type GetUserRestaurantQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserRestaurantQuery = (
+  { __typename?: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'restaurantID' | 'name'>
   )> }
 );
 
@@ -22768,6 +22836,66 @@ export function withAddMuseumType<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type AddMuseumTypeMutationResult = ApolloReactCommon.MutationResult<AddMuseumTypeMutation>;
 export type AddMuseumTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumTypeMutation, AddMuseumTypeMutationVariables>;
+export const AddMuseumWorkingScheduleDocument = gql`
+    mutation addMuseumWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+  __typename
+  insert_MuseumWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, museumID: $archSiteID, MuseumWorkingDaySchedules: {data: {MuseumWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+    returning {
+      museumWorkingScheduleID
+    }
+  }
+}
+    `;
+export type AddMuseumWorkingScheduleMutationFn = ApolloReactCommon.MutationFunction<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables>;
+export type AddMuseumWorkingScheduleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables>, 'mutation'>;
+
+    export const AddMuseumWorkingScheduleComponent = (props: AddMuseumWorkingScheduleComponentProps) => (
+      <ApolloReactComponents.Mutation<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables> mutation={AddMuseumWorkingScheduleDocument} {...props} />
+    );
+    
+export type AddMuseumWorkingScheduleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables> & TChildProps;
+export function withAddMuseumWorkingSchedule<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddMuseumWorkingScheduleMutation,
+  AddMuseumWorkingScheduleMutationVariables,
+  AddMuseumWorkingScheduleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables, AddMuseumWorkingScheduleProps<TChildProps>>(AddMuseumWorkingScheduleDocument, {
+      alias: 'addMuseumWorkingSchedule',
+      ...operationOptions
+    });
+};
+export type AddMuseumWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddMuseumWorkingScheduleMutation>;
+export type AddMuseumWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables>;
+export const AddRestaurantWorkingScheduleDocument = gql`
+    mutation addRestaurantWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+  __typename
+  insert_RestaurantWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, restaurantID: $archSiteID, RestaurantWorkingDaySchedules: {data: {RestaurantWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+    returning {
+      restaurantWorkingScheduleID
+    }
+  }
+}
+    `;
+export type AddRestaurantWorkingScheduleMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>;
+export type AddRestaurantWorkingScheduleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantWorkingScheduleComponent = (props: AddRestaurantWorkingScheduleComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables> mutation={AddRestaurantWorkingScheduleDocument} {...props} />
+    );
+    
+export type AddRestaurantWorkingScheduleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables> & TChildProps;
+export function withAddRestaurantWorkingSchedule<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantWorkingScheduleMutation,
+  AddRestaurantWorkingScheduleMutationVariables,
+  AddRestaurantWorkingScheduleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables, AddRestaurantWorkingScheduleProps<TChildProps>>(AddRestaurantWorkingScheduleDocument, {
+      alias: 'addRestaurantWorkingSchedule',
+      ...operationOptions
+    });
+};
+export type AddRestaurantWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddRestaurantWorkingScheduleMutation>;
+export type AddRestaurantWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -23194,3 +23322,55 @@ export function withGetUserArchSite<TProps, TChildProps = {}>(operationOptions?:
     });
 };
 export type GetUserArchSiteQueryResult = ApolloReactCommon.QueryResult<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>;
+export const GetUserMuseumDocument = gql`
+    query getUserMuseum($userID: Int!) {
+  Museum(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    museumID
+    name
+  }
+}
+    `;
+export type GetUserMuseumComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserMuseumQuery, GetUserMuseumQueryVariables>, 'query'> & ({ variables: GetUserMuseumQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserMuseumComponent = (props: GetUserMuseumComponentProps) => (
+      <ApolloReactComponents.Query<GetUserMuseumQuery, GetUserMuseumQueryVariables> query={GetUserMuseumDocument} {...props} />
+    );
+    
+export type GetUserMuseumProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserMuseumQuery, GetUserMuseumQueryVariables> & TChildProps;
+export function withGetUserMuseum<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserMuseumQuery,
+  GetUserMuseumQueryVariables,
+  GetUserMuseumProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserMuseumQuery, GetUserMuseumQueryVariables, GetUserMuseumProps<TChildProps>>(GetUserMuseumDocument, {
+      alias: 'getUserMuseum',
+      ...operationOptions
+    });
+};
+export type GetUserMuseumQueryResult = ApolloReactCommon.QueryResult<GetUserMuseumQuery, GetUserMuseumQueryVariables>;
+export const GetUserRestaurantDocument = gql`
+    query getUserRestaurant($userID: Int!) {
+  Restaurant(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    restaurantID
+    name
+  }
+}
+    `;
+export type GetUserRestaurantComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>, 'query'> & ({ variables: GetUserRestaurantQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserRestaurantComponent = (props: GetUserRestaurantComponentProps) => (
+      <ApolloReactComponents.Query<GetUserRestaurantQuery, GetUserRestaurantQueryVariables> query={GetUserRestaurantDocument} {...props} />
+    );
+    
+export type GetUserRestaurantProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserRestaurantQuery, GetUserRestaurantQueryVariables> & TChildProps;
+export function withGetUserRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserRestaurantQuery,
+  GetUserRestaurantQueryVariables,
+  GetUserRestaurantProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserRestaurantQuery, GetUserRestaurantQueryVariables, GetUserRestaurantProps<TChildProps>>(GetUserRestaurantDocument, {
+      alias: 'getUserRestaurant',
+      ...operationOptions
+    });
+};
+export type GetUserRestaurantQueryResult = ApolloReactCommon.QueryResult<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>;

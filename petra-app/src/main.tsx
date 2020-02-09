@@ -38,6 +38,8 @@ import { ArchSiteMapScreen } from './app/pages/screens/ArchSiteMapScreen';
 import { MuseumMapScreen } from './app/pages/screens/MuseumMapScreen';
 import { RestaurantMapScreen } from './app/pages/screens/RestaurantMapScreen';
 import { AddArchSiteWorkingScheduleScreen } from './app/pages/screens/AddArchSiteWorkingScheduleScreen';
+import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/AddMuseumWorkingScheduleScreen';
+import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/AddRestaurantWorkingScheduleScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -86,7 +88,9 @@ const RootStack = createStackNavigator(
 		ArchSiteMapScreen: { screen: ArchSiteMapScreen },
 		MuseumMapScreen: { screen: MuseumMapScreen },
 		RestaurantMapScreen: { screen: RestaurantMapScreen },
-		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen }
+		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen },
+		AddMuseumWorkingScheduleScreen: { screen: AddMuseumWorkingScheduleScreen },
+		AddRestaurantWorkingScheduleScreen: { screen: AddRestaurantWorkingScheduleScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
