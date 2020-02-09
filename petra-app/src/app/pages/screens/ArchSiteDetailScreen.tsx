@@ -38,6 +38,34 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 				>
 					Add ArchSite Type
 				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddArchSiteScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add ArchSite
+				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddArchSiteCommentScreen', {
+							userID: userID,
+							archSiteID: 1 //Değişecek
+						});
+					}}
+				>
+					Add ArchSite Comment
+				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddArchSiteEntranceTypeScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add ArchSite Entrance Type
+				</Button>
 
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>

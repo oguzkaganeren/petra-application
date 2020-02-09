@@ -22,6 +22,16 @@ import { AddRoomScreen } from './app/pages/screens/AddRoomScreen';
 import { AddHotelServicePropertyScreen } from './app/pages/screens/AddHotelServicePropertyScreen';
 import { AddHotelCommentScreen } from './app/pages/screens/AddHotelCommentScreen';
 import { AddHotelRoomPriceScreen } from './app/pages/screens/AddHotelRoomPrice';
+import { AddArchSiteScreen } from './app/pages/screens/AddArchSiteScreen';
+import { AddArchSiteCommentScreen } from './app/pages/screens/AddArchSiteCommentScreen';
+import { AddArchSiteEntranceTypeScreen } from './app/pages/screens/AddArchSiteEnterenceTypeScreen';
+import { AddRestaurantCuisineTypeScreen } from './app/pages/screens/AddRestaurantCuisineTypeScreen';
+import { ArticleDetailScreen } from './app/pages/screens/ArticleDetailScreen';
+import { AddTagScreen } from './app/pages/screens/AddTagScreen';
+import { AddRestaurantTypeScreen } from './app/pages/screens/AddRestaurantTypeScreen';
+import { AddRestaurantCommentScreen } from './app/pages/screens/AddRestaurantCommentScreen';
+import { MuseumDetailScreen } from './app/pages/screens/MuseumDetailScreen';
+import { AddMuseumTypeScreen } from './app/pages/screens/AddMuseumTypeScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -55,6 +65,16 @@ const RootStack = createStackNavigator(
 		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen },
 		AddHotelCommentScreen: { screen: AddHotelCommentScreen },
 		AddHotelRoomPriceScreen: { screen: AddHotelRoomPriceScreen }
+		AddArchSiteScreen: { screen: AddArchSiteScreen },
+		AddArchSiteCommentScreen: { screen: AddArchSiteCommentScreen },
+		AddArchSiteEntranceTypeScreen: { screen: AddArchSiteEntranceTypeScreen },
+		AddRestaurantCuisineTypeScreen: { screen: AddRestaurantCuisineTypeScreen },
+		ArticleDetailScreen: { screen: ArticleDetailScreen },
+		AddTagScreen: { screen: AddTagScreen },
+		AddRestaurantTypeScreen: { screen: AddRestaurantTypeScreen },
+		AddRestaurantCommentScreen: { screen: AddRestaurantCommentScreen },
+		MuseumDetailScreen: { screen: MuseumDetailScreen },
+		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
