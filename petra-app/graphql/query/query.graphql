@@ -49,3 +49,17 @@ query getHotelRoom($hotelID: Int!) {
 		}
 	}
 }
+query GetArchSiteTypes {
+	__typename
+	ArchSiteType {
+		name
+		archSiteTypeID
+	}
+}
+query getCuisineTypes {
+	__typename
+	RestaurantCuisineType {
+		name
+		restaurantCuisineTypeID
+	}
+}

@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddRoomPropertyComponent } from '../../generated/components';
+import { AddRestaurantTypeComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
  * AddRestaurant props
  */
-export interface AddRoomPropertyProps {
+export interface AddRestaurantTypeProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddRoomPropertyState {}
+export interface AddRestaurantTypeState {}
 
 /**
  * Location
  */
-export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps, AddRoomPropertyState> {
-	constructor(props: AddRoomPropertyProps) {
+export class AddRestaurantTypeScreen extends React.Component<AddRestaurantTypeProps, AddRestaurantTypeState> {
+	constructor(props: AddRestaurantTypeProps) {
 		super(props);
 		this.state = {};
 	}
@@ -31,16 +31,16 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 	render() {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+				<AddRestaurantTypeComponent>
+					{AddRestaurantTypeMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								type: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								content: Yup.string()
+								type: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required')
@@ -48,21 +48,21 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.content + ' ');
-									AddRoomProperyMutation({
+									console.log(values.type + ' ');
+									AddRestaurantTypeMutation({
 										variables: {
-											content: values.content.toString()
+											type: values.type.toString()
 										}
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
+											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.content);
+											console.log('foodType:' + values.type);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,13 +74,13 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Room Property Type"
-										placeholder="Enter a Room Property Type"
-										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
-										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
-										onChangeText={props.handleChange('content')}
-										onBlur={props.handleBlur('content')}
-										value={props.values.content}
+										label="Restaurant Type"
+										placeholder="Enter a Restaurant Type"
+										status={props.touched.type && props.errors.type ? 'danger' : 'success'}
+										caption={props.touched.type && props.errors.type ? props.errors.type : ''}
+										onChangeText={props.handleChange('type')}
+										onBlur={props.handleBlur('type')}
+										value={props.values.type}
 										autoFocus
 									/>
 									<Button
@@ -89,13 +89,13 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Room Property
+										Add Restaurant Type
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddRoomPropertyComponent>
+				</AddRestaurantTypeComponent>
 			</Layout>
 		);
 	}

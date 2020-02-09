@@ -1,68 +1,75 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddRoomPropertyComponent } from '../../generated/components';
+import { AddRestaurantCommentComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
- * AddRestaurant props
+ * AddHotel props
  */
-export interface AddRoomPropertyProps {
+export interface AddRestaurantCommentProps {
 	navigation: any;
 }
 /**
- * Location state
+ * AddHotel state
  */
-export interface AddRoomPropertyState {}
+export interface AddRestaurantCommentState {}
 
 /**
- * Location
+ * AddHotel
  */
-export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps, AddRoomPropertyState> {
-	constructor(props: AddRoomPropertyProps) {
+export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCommentProps, AddRestaurantCommentState> {
+	constructor(props: AddRestaurantCommentProps) {
 		super(props);
 		this.state = {};
 	}
-
 	/**
 	 * Renders
 	 * @returns
 	 */
 	render() {
+		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const restaurantID = this.props.navigation.getParam('restaurantID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+				<AddRestaurantCommentComponent>
+					{AddRestaurantCommentMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								content: '',
+								star: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
 								content: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
-									.required('Required')
+									.required('Required'),
+								star: Yup.number().required('Required')
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.content + ' ');
-									AddRoomProperyMutation({
+									AddRestaurantCommentMutation({
 										variables: {
-											content: values.content.toString()
+											content: values.content,
+											date: new Date(),
+											restaurantID: restaurantID,
+											star: values.star,
+											userID: userID
 										}
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
+											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.content);
+											console.log('content:' + values.content);
+											console.log('star:' + values.star);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,8 +81,8 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Room Property Type"
-										placeholder="Enter a Room Property Type"
+										label="Content"
+										placeholder="Enter your comment"
 										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
 										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
 										onChangeText={props.handleChange('content')}
@@ -83,22 +90,29 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										value={props.values.content}
 										autoFocus
 									/>
+									<Input
+										label="Star"
+										status={props.touched.star && props.errors.star ? 'danger' : 'success'}
+										caption={props.touched.star && props.errors.star ? props.errors.star : ''}
+										placeholder="3"
+										onChangeText={props.handleChange('star')}
+										onBlur={props.handleBlur('star')}
+										value={props.values.star.toString()}
+									/>
 									<Button
 										onPress={() => {
 											props.handleSubmit();
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Room Property
+										Add Restaurant Comment
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddRoomPropertyComponent>
+				</AddRestaurantCommentComponent>
 			</Layout>
 		);
 	}
 }
-
-const styles: any = StyleSheet.create({});

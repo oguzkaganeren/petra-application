@@ -70,6 +70,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					</Button>
 					<Button
 						onPress={() => {
+							this.props.navigation.navigate('MuseumDetailScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Museum Details
+					</Button>
+					<Button
+						onPress={() => {
 							this.props.navigation.navigate('AddHotelScreen', {
 								userID: userID
 							});
@@ -88,13 +97,14 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					</Button>
 					<Button
 						onPress={() => {
-							this.props.navigation.navigate('MapScreen', {
+							this.props.navigation.navigate('ArticleDetailScreen', {
 								userID: userID
 							});
 						}}
 					>
-						Hotel Details
+						Article Details
 					</Button>
+
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>
 					</Layout>

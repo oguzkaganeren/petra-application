@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
-import { AddRoomPropertyComponent } from '../../generated/components';
+import { AddMuseumTypeComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
- * AddRestaurant props
+ * AddArchSiteType props
  */
-export interface AddRoomPropertyProps {
+export interface AddMuseumTypeProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddRoomPropertyState {}
+export interface AddMuseumTypeState {}
 
 /**
  * Location
  */
-export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps, AddRoomPropertyState> {
-	constructor(props: AddRoomPropertyProps) {
+export class AddMuseumTypeScreen extends React.Component<AddMuseumTypeProps, AddMuseumTypeState> {
+	constructor(props: AddMuseumTypeProps) {
 		super(props);
 		this.state = {};
 	}
@@ -31,16 +31,16 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 	render() {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+				<AddMuseumTypeComponent>
+					{AddMuseumTypeMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								typeName: ''
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								content: Yup.string()
+								typeName: Yup.string()
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required')
@@ -48,21 +48,21 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
-									console.log(values.content + ' ');
-									AddRoomProperyMutation({
+									console.log(values.typeName + ' ');
+									AddMuseumTypeMutation({
 										variables: {
-											content: values.content.toString()
+											type: values.typeName.toString()
 										}
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
+											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.content);
+											console.log('ArchSiteType:' + values.typeName);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
@@ -74,13 +74,13 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="Room Property Type"
-										placeholder="Enter a Room Property Type"
-										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
-										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
-										onChangeText={props.handleChange('content')}
-										onBlur={props.handleBlur('content')}
-										value={props.values.content}
+										label="ArchSite Type"
+										placeholder="Enter a ArchSite Type"
+										status={props.touched.typeName && props.errors.typeName ? 'danger' : 'success'}
+										caption={props.touched.typeName && props.errors.typeName ? props.errors.typeName : ''}
+										onChangeText={props.handleChange('typeName')}
+										onBlur={props.handleBlur('typeName')}
+										value={props.values.typeName}
 										autoFocus
 									/>
 									<Button
@@ -89,13 +89,13 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										}}
 										disabled={props.isSubmitting}
 									>
-										Add Room Property
+										Add Museum Type
 									</Button>
 								</Layout>
 							)}
 						</Formik>
 					)}
-				</AddRoomPropertyComponent>
+				</AddMuseumTypeComponent>
 			</Layout>
 		);
 	}

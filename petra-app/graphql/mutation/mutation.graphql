@@ -201,3 +201,97 @@ mutation addArchSiteWorkingSchedule(
 		}
 	}
 }
+mutation addArchSite(
+	$archSiteTypeID: Int
+	$age: Int
+	$altitude: Float
+	$companyID: Int
+	$description: String
+	$destruction: String
+	$diameter: Float
+	$name: String
+	$period: String
+	$address: String
+	$latitude: Float
+	$longtitude: Float
+) {
+	__typename
+	insert_ArchSite(
+		objects: {
+			ArchSiteTypeArchSites: { data: { archSiteTypeID: $archSiteTypeID } }
+			age: $age
+			altitude: $altitude
+			companyID: $companyID
+			description: $description
+			destruction: $destruction
+			diameter: $diameter
+			name: $name
+			period: $period
+			Location: { data: { address: $address, latitude: $latitude, longtitude: $longtitude } }
+		}
+	) {
+		returning {
+			archSiteID
+		}
+	}
+}
+mutation addArchSiteComment($archSiteID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+	__typename
+	insert_ArchSiteComment(
+		objects: { archSiteID: $archSiteID, content: $content, date: $date, star: $star, userID: $userID }
+	) {
+		returning {
+			archSiteCommentID
+		}
+	}
+}
+mutation addArchSiteEntranceType($content: String) {
+	__typename
+	insert_ArchSiteEntranceType(objects: { content: $content }) {
+		returning {
+			archSiteEntranceTypeID
+		}
+	}
+}
+mutation addRestaurantCuisineType($name: String) {
+	__typename
+	insert_RestaurantCuisineType(objects: { name: $name }) {
+		returning {
+			restaurantCuisineTypeID
+		}
+	}
+}
+mutation addTag($name: String) {
+	__typename
+	insert_Tag(objects: { name: $name }) {
+		returning {
+			tagID
+		}
+	}
+}
+mutation addRestaurantType($type: String) {
+	__typename
+	insert_RestaurantType(objects: { type: $type }) {
+		returning {
+			restaurantTypeID
+		}
+	}
+}
+mutation addRestaurantComment($restaurantID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+	__typename
+	insert_RestaurantComment(
+		objects: { restaurantID: $restaurantID, content: $content, date: $date, star: $star, userID: $userID }
+	) {
+		returning {
+			restaurantCommentID
+		}
+	}
+}
+mutation addMuseumType($type: String) {
+	__typename
+	insert_MuseumType(objects: { type: $type }) {
+		returning {
+			museumTypeID
+		}
+	}
+}
