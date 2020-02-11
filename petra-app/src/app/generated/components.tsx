@@ -22040,6 +22040,22 @@ export type AddRestaurantWorkingScheduleMutation = (
   )> }
 );
 
+export type AddTravelGuideMutationVariables = {
+  travelGuide: Array<TravelGuide_Insert_Input>
+};
+
+
+export type AddTravelGuideMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_TravelGuide: Maybe<(
+    { __typename?: 'TravelGuide_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'TravelGuide' }
+      & Pick<TravelGuide, 'travelGuideID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -23057,6 +23073,36 @@ export function withAddRestaurantWorkingSchedule<TProps, TChildProps = {}>(opera
 };
 export type AddRestaurantWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddRestaurantWorkingScheduleMutation>;
 export type AddRestaurantWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>;
+export const AddTravelGuideDocument = gql`
+    mutation addTravelGuide($travelGuide: [TravelGuide_insert_input!]!) {
+  __typename
+  insert_TravelGuide(objects: $travelGuide) {
+    returning {
+      travelGuideID
+    }
+  }
+}
+    `;
+export type AddTravelGuideMutationFn = ApolloReactCommon.MutationFunction<AddTravelGuideMutation, AddTravelGuideMutationVariables>;
+export type AddTravelGuideComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddTravelGuideMutation, AddTravelGuideMutationVariables>, 'mutation'>;
+
+    export const AddTravelGuideComponent = (props: AddTravelGuideComponentProps) => (
+      <ApolloReactComponents.Mutation<AddTravelGuideMutation, AddTravelGuideMutationVariables> mutation={AddTravelGuideDocument} {...props} />
+    );
+    
+export type AddTravelGuideProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddTravelGuideMutation, AddTravelGuideMutationVariables> & TChildProps;
+export function withAddTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddTravelGuideMutation,
+  AddTravelGuideMutationVariables,
+  AddTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddTravelGuideMutation, AddTravelGuideMutationVariables, AddTravelGuideProps<TChildProps>>(AddTravelGuideDocument, {
+      alias: 'addTravelGuide',
+      ...operationOptions
+    });
+};
+export type AddTravelGuideMutationResult = ApolloReactCommon.MutationResult<AddTravelGuideMutation>;
+export type AddTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<AddTravelGuideMutation, AddTravelGuideMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
