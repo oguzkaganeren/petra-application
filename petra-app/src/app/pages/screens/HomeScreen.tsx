@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../components/BottomComponent';
-import { SearchComponent } from '../../components/SearchComponent';
+import { BottomComponent } from '../../components/Public/BottomComponent';
+import { SearchComponent } from '../../components/Public/SearchComponent';
 
 /**
  * Home props
