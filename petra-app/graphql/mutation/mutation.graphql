@@ -389,3 +389,11 @@ mutation addRestaurantWorkingSchedule(
 		}
 	}
 }
+mutation addTravelGuide($travelGuide: [TravelGuide_insert_input!]!) {
+	__typename
+	insert_TravelGuide(objects: $travelGuide) {
+		returning {
+			travelGuideID
+		}
+	}
+}
