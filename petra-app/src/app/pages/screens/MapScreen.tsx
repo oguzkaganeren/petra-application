@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { HotelLocationComponent } from '../../components/HotelLocationComponent';
-import { ArchSiteLocationComponent } from '../../components/ArchSiteLocationComponent';
+import { HotelLocationComponent } from '../../components/Hotel/HotelLocationComponent';
+import { ArchSiteLocationComponent } from '../../components/ArchSite/ArchSiteLocationComponent';
 /**
  * Home props
  */
