@@ -22040,6 +22040,46 @@ export type AddRestaurantWorkingScheduleMutation = (
   )> }
 );
 
+export type AddArchSitePriceMutationVariables = {
+  finishDate?: Maybe<Scalars['timestamptz']>,
+  price?: Maybe<Scalars['Float']>,
+  startDate?: Maybe<Scalars['timestamptz']>,
+  archSiteID?: Maybe<Scalars['Int']>,
+  archSiteEntranceTypeID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddArchSitePriceMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_ArchSitePrice: Maybe<(
+    { __typename?: 'ArchSitePrice_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSitePrice' }
+      & Pick<ArchSitePrice, 'archSitePriceID'>
+    )> }
+  )> }
+);
+
+export type AddMuseumPriceMutationVariables = {
+  finishDate?: Maybe<Scalars['timestamptz']>,
+  startDate?: Maybe<Scalars['timestamptz']>,
+  price?: Maybe<Scalars['Float']>,
+  museumID?: Maybe<Scalars['Int']>,
+  entranceTypeID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddMuseumPriceMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_MuseumPrice: Maybe<(
+    { __typename?: 'MuseumPrice_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'MuseumPrice' }
+      & Pick<MuseumPrice, 'museumPriceID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -22271,6 +22311,28 @@ export type GetUserRestaurantQuery = (
   & { Restaurant: Array<(
     { __typename?: 'Restaurant' }
     & Pick<Restaurant, 'restaurantID' | 'name'>
+  )> }
+);
+
+export type GetArchSiteEntranceTypesQueryVariables = {};
+
+
+export type GetArchSiteEntranceTypesQuery = (
+  { __typename: 'query_root' }
+  & { ArchSiteEntranceType: Array<(
+    { __typename?: 'ArchSiteEntranceType' }
+    & Pick<ArchSiteEntranceType, 'archSiteEntranceTypeID' | 'content'>
+  )> }
+);
+
+export type GetMuseumEntranceTypesQueryVariables = {};
+
+
+export type GetMuseumEntranceTypesQuery = (
+  { __typename: 'query_root' }
+  & { MuseumEntranceType: Array<(
+    { __typename?: 'MuseumEntranceType' }
+    & Pick<MuseumEntranceType, 'content' | 'museumEntranceTypeID'>
   )> }
 );
 
@@ -23057,6 +23119,66 @@ export function withAddRestaurantWorkingSchedule<TProps, TChildProps = {}>(opera
 };
 export type AddRestaurantWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddRestaurantWorkingScheduleMutation>;
 export type AddRestaurantWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>;
+export const AddArchSitePriceDocument = gql`
+    mutation addArchSitePrice($finishDate: timestamptz, $price: Float, $startDate: timestamptz, $archSiteID: Int, $archSiteEntranceTypeID: Int) {
+  __typename
+  insert_ArchSitePrice(objects: {finishDate: $finishDate, price: $price, startDate: $startDate, archSiteID: $archSiteID, archSiteEntranceTypeID: $archSiteEntranceTypeID}) {
+    returning {
+      archSitePriceID
+    }
+  }
+}
+    `;
+export type AddArchSitePriceMutationFn = ApolloReactCommon.MutationFunction<AddArchSitePriceMutation, AddArchSitePriceMutationVariables>;
+export type AddArchSitePriceComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArchSitePriceMutation, AddArchSitePriceMutationVariables>, 'mutation'>;
+
+    export const AddArchSitePriceComponent = (props: AddArchSitePriceComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArchSitePriceMutation, AddArchSitePriceMutationVariables> mutation={AddArchSitePriceDocument} {...props} />
+    );
+    
+export type AddArchSitePriceProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArchSitePriceMutation, AddArchSitePriceMutationVariables> & TChildProps;
+export function withAddArchSitePrice<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArchSitePriceMutation,
+  AddArchSitePriceMutationVariables,
+  AddArchSitePriceProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArchSitePriceMutation, AddArchSitePriceMutationVariables, AddArchSitePriceProps<TChildProps>>(AddArchSitePriceDocument, {
+      alias: 'addArchSitePrice',
+      ...operationOptions
+    });
+};
+export type AddArchSitePriceMutationResult = ApolloReactCommon.MutationResult<AddArchSitePriceMutation>;
+export type AddArchSitePriceMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSitePriceMutation, AddArchSitePriceMutationVariables>;
+export const AddMuseumPriceDocument = gql`
+    mutation addMuseumPrice($finishDate: timestamptz, $startDate: timestamptz, $price: Float, $museumID: Int, $entranceTypeID: Int) {
+  __typename
+  insert_MuseumPrice(objects: {finishDate: $finishDate, startDate: $startDate, price: $price, museumID: $museumID, entranceTypeID: $entranceTypeID}) {
+    returning {
+      museumPriceID
+    }
+  }
+}
+    `;
+export type AddMuseumPriceMutationFn = ApolloReactCommon.MutationFunction<AddMuseumPriceMutation, AddMuseumPriceMutationVariables>;
+export type AddMuseumPriceComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddMuseumPriceMutation, AddMuseumPriceMutationVariables>, 'mutation'>;
+
+    export const AddMuseumPriceComponent = (props: AddMuseumPriceComponentProps) => (
+      <ApolloReactComponents.Mutation<AddMuseumPriceMutation, AddMuseumPriceMutationVariables> mutation={AddMuseumPriceDocument} {...props} />
+    );
+    
+export type AddMuseumPriceProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddMuseumPriceMutation, AddMuseumPriceMutationVariables> & TChildProps;
+export function withAddMuseumPrice<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddMuseumPriceMutation,
+  AddMuseumPriceMutationVariables,
+  AddMuseumPriceProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddMuseumPriceMutation, AddMuseumPriceMutationVariables, AddMuseumPriceProps<TChildProps>>(AddMuseumPriceDocument, {
+      alias: 'addMuseumPrice',
+      ...operationOptions
+    });
+};
+export type AddMuseumPriceMutationResult = ApolloReactCommon.MutationResult<AddMuseumPriceMutation>;
+export type AddMuseumPriceMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumPriceMutation, AddMuseumPriceMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -23562,3 +23684,57 @@ export function withGetUserRestaurant<TProps, TChildProps = {}>(operationOptions
     });
 };
 export type GetUserRestaurantQueryResult = ApolloReactCommon.QueryResult<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>;
+export const GetArchSiteEntranceTypesDocument = gql`
+    query getArchSiteEntranceTypes {
+  __typename
+  ArchSiteEntranceType {
+    archSiteEntranceTypeID
+    content
+  }
+}
+    `;
+export type GetArchSiteEntranceTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables>, 'query'>;
+
+    export const GetArchSiteEntranceTypesComponent = (props: GetArchSiteEntranceTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables> query={GetArchSiteEntranceTypesDocument} {...props} />
+    );
+    
+export type GetArchSiteEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables> & TChildProps;
+export function withGetArchSiteEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteEntranceTypesQuery,
+  GetArchSiteEntranceTypesQueryVariables,
+  GetArchSiteEntranceTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables, GetArchSiteEntranceTypesProps<TChildProps>>(GetArchSiteEntranceTypesDocument, {
+      alias: 'getArchSiteEntranceTypes',
+      ...operationOptions
+    });
+};
+export type GetArchSiteEntranceTypesQueryResult = ApolloReactCommon.QueryResult<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables>;
+export const GetMuseumEntranceTypesDocument = gql`
+    query getMuseumEntranceTypes {
+  __typename
+  MuseumEntranceType {
+    content
+    museumEntranceTypeID
+  }
+}
+    `;
+export type GetMuseumEntranceTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables>, 'query'>;
+
+    export const GetMuseumEntranceTypesComponent = (props: GetMuseumEntranceTypesComponentProps) => (
+      <ApolloReactComponents.Query<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables> query={GetMuseumEntranceTypesDocument} {...props} />
+    );
+    
+export type GetMuseumEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables> & TChildProps;
+export function withGetMuseumEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetMuseumEntranceTypesQuery,
+  GetMuseumEntranceTypesQueryVariables,
+  GetMuseumEntranceTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables, GetMuseumEntranceTypesProps<TChildProps>>(GetMuseumEntranceTypesDocument, {
+      alias: 'getMuseumEntranceTypes',
+      ...operationOptions
+    });
+};
+export type GetMuseumEntranceTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables>;

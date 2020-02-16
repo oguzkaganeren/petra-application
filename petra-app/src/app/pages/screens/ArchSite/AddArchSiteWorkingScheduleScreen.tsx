@@ -97,7 +97,7 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 										})
 										.catch(err => {
 											alert(err);
-											console.log('roomProp:' + values.roomPropRoom);
+											//console.log('roomProp:' + values.roomPropRoom);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);

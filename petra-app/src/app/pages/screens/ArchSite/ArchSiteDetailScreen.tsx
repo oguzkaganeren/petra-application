@@ -75,6 +75,15 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 				>
 					Add ArchSite Working Schedule
 				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddArchSitePriceScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add ArchSite Price
+				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>

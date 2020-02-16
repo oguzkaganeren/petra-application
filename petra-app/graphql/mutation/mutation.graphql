@@ -389,3 +389,47 @@ mutation addRestaurantWorkingSchedule(
 		}
 	}
 }
+mutation addArchSitePrice(
+	$finishDate: timestamptz
+	$price: Float
+	$startDate: timestamptz
+	$archSiteID: Int
+	$archSiteEntranceTypeID: Int
+) {
+	__typename
+	insert_ArchSitePrice(
+		objects: {
+			finishDate: $finishDate
+			price: $price
+			startDate: $startDate
+			archSiteID: $archSiteID
+			archSiteEntranceTypeID: $archSiteEntranceTypeID
+		}
+	) {
+		returning {
+			archSitePriceID
+		}
+	}
+}
+mutation addMuseumPrice(
+	$finishDate: timestamptz
+	$startDate: timestamptz
+	$price: Float
+	$museumID: Int
+	$entranceTypeID: Int
+) {
+	__typename
+	insert_MuseumPrice(
+		objects: {
+			finishDate: $finishDate
+			startDate: $startDate
+			price: $price
+			museumID: $museumID
+			entranceTypeID: $entranceTypeID
+		}
+	) {
+		returning {
+			museumPriceID
+		}
+	}
+}
