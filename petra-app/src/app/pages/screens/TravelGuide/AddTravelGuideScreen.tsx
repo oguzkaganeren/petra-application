@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Input, Spinner } from '@ui-kitten/components';
+import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List } from '@ui-kitten/components';
 import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
+import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
+import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
+import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationComponent';
 import { AddTravelGuideComponent } from '../../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -17,6 +20,9 @@ export interface AddTravelGuideProps {
 export interface AddTravelGuideState {
 	latitude: number;
 	longtitude: number;
+	selectedIndex: number;
+	setSelectedIndex: number;
+	listData: any;
 }
 
 /**
@@ -27,8 +33,20 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 		super(props);
 		this.state = {
 			longtitude: 0,
-			latitude: 0
+			latitude: 0,
+			selectedIndex: 0,
+			setSelectedIndex: 0,
+			listData: []
 		};
+	}
+	addItem(item) {
+		// only add if the item doesn't exist in the list
+		console.log(this.state.listData);
+		if (!(this.state.listData.filter(e => e.id === item.id).length > 0)) {
+			this.setState(state => ({
+				listData: state.listData.concat([item])
+			}));
+		}
 	}
 	/**
 	 * Renders home
@@ -36,7 +54,29 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 	 */
 	render() {
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const travelGuideTest = '';
+
+		const renderItemArcIcon = style => <Icon {...style} name="globe-2-outline" />;
+		const renderItemMuseumIcon = style => <Icon {...style} name="archive-outline" />;
+		const renderItemHotelIcon = style => <Icon {...style} name="briefcase-outline" />;
+		const renderItemRestIcon = style => <Icon {...style} name="award-outline" />;
+		const renderItem = ({ item, index }) => (
+			<ListItem
+				title={item.title}
+				description={item.description}
+				icon={
+					item.type == 'hotel'
+						? renderItemHotelIcon
+						: item.type == 'restaurant'
+						? renderItemRestIcon
+						: item.type == 'archsite'
+						? renderItemArcIcon
+						: item.type == 'museum'
+						? renderItemMuseumIcon
+						: null
+				}
+			/>
+		);
+
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -60,11 +100,16 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 								//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 								onSubmit={(values, formikActions) => {
 									setTimeout(() => {
-										console.log(values.name + ' ' + values.price + ' ' + values.foodTypeID);
 										AddTravelGuideMutation({
 											variables: {
 												travelGuide: [
-													{ title: values.title, userID: userID, creationDate: new Date(), cost: values.cost }
+													{
+														title: values.title,
+														userID: userID,
+														creationDate: new Date(),
+														cost: values.cost,
+														TravelGuideHotels: { data: this.state.listData } //değiştir
+													}
 												]
 											}
 										})
@@ -75,9 +120,6 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											})
 											.catch(err => {
 												alert(err);
-												console.log('name:' + values.name);
-												console.log('price:' + values.price);
-												console.log('foodTypeId:' + values.foodTypeID);
 											});
 										formikActions.setSubmitting(false);
 									}, 500);
@@ -108,20 +150,94 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											value={props.values.cost.toString()}
 											autoFocus
 										/>
-										<ArchSiteLocationComponent
-											latitude={value => {
-												this.setState({
-													latitude: value
-												});
-												console.log(value);
+
+										<TabView
+											selectedIndex={this.state.selectedIndex}
+											onSelect={value => {
+												this.setState({ setSelectedIndex: value });
 											}}
-											longitude={value => {
-												this.setState({
-													longtitude: value
-												});
-												console.log(value);
-											}}
-										/>
+										>
+											<Tab title="Add yours">
+												<Layout style={styles.tabContainer}></Layout>
+											</Tab>
+											<Tab title="Arch. Sites">
+												<Layout style={styles.tabContainer}>
+													<ArchSiteLocationComponent
+														marker={value => {
+															/*this.setState({
+																latitude: value
+															});*/
+															//console.log(value);
+															let item = {
+																id: value.id,
+																title: value.title,
+																description: value.description,
+																type: value.type
+															};
+															this.addItem(item);
+														}}
+													/>
+												</Layout>
+											</Tab>
+											<Tab title="Museums">
+												<Layout style={styles.tabContainer}>
+													<MuseumLocationComponent
+														marker={value => {
+															/*this.setState({
+																	latitude: value
+																});*/
+															//console.log(value);
+															let item = {
+																id: value.id,
+																title: value.title,
+																description: value.description,
+																type: value.type
+															};
+															this.addItem(item);
+														}}
+													/>
+												</Layout>
+											</Tab>
+											<Tab title="Restaurants">
+												<Layout style={styles.tabContainer}>
+													<RestaurantLocationComponent
+														marker={value => {
+															/*this.setState({
+																latitude: value
+															});*/
+															//console.log(value);
+															let item = {
+																id: value.id,
+																title: value.title,
+																description: value.description,
+																type: value.type
+															};
+															this.addItem(item);
+														}}
+													/>
+												</Layout>
+											</Tab>
+											<Tab title="Hotels">
+												<Layout style={styles.tabContainer}>
+													<HotelLocationComponent
+														marker={value => {
+															/*this.setState({
+																	latitude: value
+																});*/
+															//console.log(value);
+															let item = {
+																id: value.id,
+																title: value.title,
+																description: value.description,
+																type: value.type
+															};
+															this.addItem(item);
+														}}
+													/>
+												</Layout>
+											</Tab>
+										</TabView>
+										<List data={this.state.listData} renderItem={renderItem} />
 										<Button
 											onPress={() => {
 												props.handleSubmit();
