@@ -143,3 +143,17 @@ query getUserRestaurant($userID: Int!) {
 		name
 	}
 }
+query getArchSiteEntranceTypes {
+	__typename
+	ArchSiteEntranceType {
+		archSiteEntranceTypeID
+		content
+	}
+}
+query getMuseumEntranceTypes {
+	__typename
+	MuseumEntranceType {
+		content
+		museumEntranceTypeID
+	}
+}

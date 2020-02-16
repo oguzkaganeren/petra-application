@@ -75,6 +75,15 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 				>
 					Add Museum Working Schedule
 				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddMuseumPriceScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Museum Price
+				</Button>
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
 				</Layout>

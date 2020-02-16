@@ -1,33 +1,35 @@
 import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
-import { AddHotelRoomPriceComponent } from '../../../generated/components';
-import { GetAllHotelRoomComponent } from '../../../components/Hotel/GetAllHotelRoom';
-import { GetAllUserHotelComponent } from '../../../components/Hotel/GetAllUserHotel';
+import { AddMuseumPriceComponent } from '../../../generated/components';
+import { GetAllMuseumEntranceTypesComponent } from '../../../components/Museum/GetAllMuseumEntranceTypes';
+import { GetAllUserMuseumComponent } from '../../../components/Museum/GetAllUserMuseum';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
  * AddRestaurant props
  */
-export interface AddHotelRoomPriceProps {
+export interface AddMuseumPriceProps {
 	navigation: any;
 }
 /**
  * Location state
  */
-export interface AddHotelRoomPriceState {
-	hotelID: number;
+export interface AddMuseumPriceState {
+	museumID: number;
+	entranceTypeID: number;
 	theDate: any;
 }
 
 /**
  * Location
  */
-export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPriceProps, AddHotelRoomPriceState> {
-	constructor(props: AddHotelRoomPriceProps) {
+export class AddMuseumPriceScreen extends React.Component<AddMuseumPriceProps, AddMuseumPriceState> {
+	constructor(props: AddMuseumPriceProps) {
 		super(props);
 		this.state = {
-			hotelID: 0,
+			museumID: 0,
+			entranceTypeID: 0,
 			theDate: {}
 		};
 		/**
@@ -43,17 +45,17 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	 */
 	render() {
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const hotelID = this.props.navigation.getParam('hotelID', 'NO-ID');
+		const archSiteID = this.props.navigation.getParam('archSiteID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<AddHotelRoomPriceComponent>
-					{AddHotelRoomPriceMutation => (
+				<AddMuseumPriceComponent>
+					{AddMuseumPriceMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								roomID: 0,
+								museumID: 0,
 								price: 0,
-								hotelID: 0
+								entranceTypeID: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -64,17 +66,18 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 								setTimeout(() => {
 									console.log(this.state.theDate.endDate);
 									console.log(this.state.theDate.startDate);
-									AddHotelRoomPriceMutation({
+									AddMuseumPriceMutation({
 										variables: {
-											roomID: values.roomID,
+											museumID: values.museumID,
 											finishDate: this.state.theDate.endDate,
 											startDate: this.state.theDate.startDate,
-											price: values.price
+											price: values.price,
+											entranceTypeID: values.entranceTypeID
 										}
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
+											ToastAndroid.show('Museum Price has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
@@ -90,20 +93,19 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserHotelComponent
-										label="Select Your Company"
+									<GetAllUserMuseumComponent
+										label="Select Your ArchSite"
 										parentReference={value => {
-											props.values.hotelID = value;
-											this.setState({ hotelID: value });
+											props.values.museumID = value;
+											this.setState({ museumID: value });
 										}}
 										userID={parseInt(userID)}
 									/>
-									<GetAllHotelRoomComponent
-										label="Select Hotel Room"
+									<GetAllMuseumEntranceTypesComponent
+										label="Select EntranceType"
 										parentReference={value => {
-											props.values.roomID = value;
+											props.values.entranceTypeID = value;
 										}}
-										hotelID={this.state.hotelID}
 									/>
 									<Input
 										label="Price"
@@ -127,7 +129,7 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 							)}
 						</Formik>
 					)}
-				</AddHotelRoomPriceComponent>
+				</AddMuseumPriceComponent>
 			</Layout>
 		);
 	}
