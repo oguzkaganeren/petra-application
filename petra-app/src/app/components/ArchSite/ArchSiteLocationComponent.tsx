@@ -8,8 +8,7 @@ import { Marker } from 'react-native-maps';
  * Location props
  */
 export interface ArchSiteLocationProps {
-	latitude: any;
-	longitude: any;
+	marker: any;
 }
 
 /**
@@ -294,12 +293,10 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 		console.log(region);
 		this.setState({ region });
 	}
-	/* onMarkerChange = coordinate => {
-		const { longitude, latitude } = coordinate;
-		this.setState({ marker: coordinate });
-		this.props.latitude(latitude);
-		this.props.longitude(longitude);
-	}; */
+	_onMarkerPress(markerData) {
+		console.log(markerData);
+		this.props.marker(markerData);
+	}
 	/**
 	 * Renders Location component
 	 * @returns
@@ -315,12 +312,13 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 						if (data) {
 							data.ArchSite.map(dat => {
 								if (this.state.markers.length > 0) {
-									if (this.state.markers.every(item => item.id !== dat.locationID)) {
+									if (this.state.markers.every(item => item.id !== dat.archSiteID)) {
 										this.state.markers.push({
 											id: dat.archSiteID,
 											title: dat.name,
 											description: dat.Location.address,
-											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+											type: 'archsite'
 										});
 									}
 								} else {
@@ -328,7 +326,8 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 										id: dat.archSiteID,
 										title: dat.name,
 										description: dat.Location.address,
-										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+										type: 'archsite'
 									});
 								}
 							});
@@ -345,10 +344,7 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 											coordinate={marker.coordinates}
 											description={marker.description}
 											title={marker.title}
-											onSelect={e => {
-												console.log(e);
-												//this.onMarkerChange(e.nativeEvent.coordinate);
-											}}
+											onPress={this._onMarkerPress.bind(this, marker)}
 										/>
 									))}
 								</MapView>
