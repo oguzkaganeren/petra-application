@@ -8,8 +8,7 @@ import { Marker } from 'react-native-maps';
  * Location props
  */
 export interface HotelLocationProps {
-	latitude: any;
-	longitude: any;
+	marker: any;
 }
 
 /**
@@ -294,6 +293,9 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 		console.log(region);
 		this.setState({ region });
 	}
+	_onMarkerPress(markerData) {
+		this.props.marker(markerData);
+	}
 	/* onMarkerChange = coordinate => {
 		const { longitude, latitude } = coordinate;
 		this.setState({ marker: coordinate });
@@ -315,12 +317,13 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 						if (data) {
 							data.Hotel.map(dat => {
 								if (this.state.markers.length > 0) {
-									if (this.state.markers.every(item => item.id !== dat.locationID)) {
+									if (this.state.markers.every(item => item.id !== dat.hotelID)) {
 										this.state.markers.push({
 											id: dat.hotelID,
 											title: dat.name,
 											description: dat.Location.address,
-											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+											type: 'hotel'
 										});
 									}
 								} else {
@@ -328,7 +331,8 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 										id: dat.hotelID,
 										title: dat.name,
 										description: dat.Location.address,
-										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+										type: 'hotel'
 									});
 								}
 							});
@@ -345,10 +349,7 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 											coordinate={marker.coordinates}
 											description={marker.description}
 											title={marker.title}
-											onSelect={e => {
-												console.log(e);
-												//this.onMarkerChange(e.nativeEvent.coordinate);
-											}}
+											onPress={this._onMarkerPress.bind(this, marker)}
 										/>
 									))}
 								</MapView>

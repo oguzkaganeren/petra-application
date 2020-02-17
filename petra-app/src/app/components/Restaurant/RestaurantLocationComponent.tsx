@@ -8,8 +8,7 @@ import { Marker } from 'react-native-maps';
  * Location props
  */
 export interface RestaurantLocationProps {
-	latitude: any;
-	longitude: any;
+	marker: any;
 }
 
 /**
@@ -294,6 +293,9 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 		console.log(region);
 		this.setState({ region });
 	}
+	_onMarkerPress(markerData) {
+		this.props.marker(markerData);
+	}
 	/* onMarkerChange = coordinate => {
 		const { longitude, latitude } = coordinate;
 		this.setState({ marker: coordinate });
@@ -320,7 +322,8 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 											id: dat.restaurantID,
 											title: dat.name,
 											description: dat.Location.address,
-											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+											type: 'restaurant'
 										});
 									}
 								} else {
@@ -328,7 +331,8 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 										id: dat.restaurantID,
 										title: dat.name,
 										description: dat.Location.address,
-										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude }
+										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
+										type: 'restaurant'
 									});
 								}
 							});
@@ -345,10 +349,7 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 											coordinate={marker.coordinates}
 											description={marker.description}
 											title={marker.title}
-											onSelect={e => {
-												console.log(e);
-												//this.onMarkerChange(e.nativeEvent.coordinate);
-											}}
+											onPress={this._onMarkerPress.bind(this, marker)}
 										/>
 									))}
 								</MapView>
