@@ -331,6 +331,8 @@ export class TravelGuideLocationComponent extends React.Component<TravelGuideLoc
 					customMapStyle={this.state.mapStyle}
 					initialRegion={this.state.region}
 					onPress={this._onMapPress.bind(this)}
+					showsUserLocation={true}
+					followsUserLocation={true}
 				>
 					{this.state.markers.map((marker, index) => (
 						<Marker

@@ -317,7 +317,7 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 						if (data) {
 							data.Restaurant.map(dat => {
 								if (this.state.markers.length > 0) {
-									if (this.state.markers.every(item => item.id !== dat.locationID)) {
+									if (this.state.markers.every(item => item.id !== dat.restaurantID)) {
 										this.state.markers.push({
 											id: dat.restaurantID,
 											title: dat.name,
