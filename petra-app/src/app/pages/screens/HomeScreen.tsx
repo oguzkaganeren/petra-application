@@ -113,6 +113,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 					>
 						Map Screen
 					</Button>
+					<Button
+						onPress={() => {
+							this.props.navigation.navigate('AddTravelGuideScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Add Travel Guide
+					</Button>
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>
 					</Layout>

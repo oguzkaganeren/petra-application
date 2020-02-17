@@ -45,12 +45,17 @@ import { AddArchSitePriceScreen } from './app/pages/screens/ArchSite/AddArchSite
 import { AddMuseumPriceScreen } from './app/pages/screens/Museum/AddMuseumPriceScreen';
 import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
 import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
+import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
+<<<<<<< HEAD
 const client = new ApolloClient({ uri: 'http://192.168.99.100:8080/v1/graphql' });
+=======
+const client = new ApolloClient({ uri: 'http://193.140.24.167:8080/v1/graphql' });
+>>>>>>> origin/master
 const MyHeader = navigation => {
 	return {
 		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
@@ -99,8 +104,12 @@ const RootStack = createStackNavigator(
 		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen },
 		AddMuseumWorkingScheduleScreen: { screen: AddMuseumWorkingScheduleScreen },
 		AddRestaurantWorkingScheduleScreen: { screen: AddRestaurantWorkingScheduleScreen },
+<<<<<<< HEAD
 		AddArchSitePriceScreen: { screen: AddArchSitePriceScreen },
 		AddMuseumPriceScreen: { screen: AddMuseumPriceScreen }
+=======
+		AddTravelGuideScreen: { screen: AddTravelGuideScreen }
+>>>>>>> origin/master
 	},
 	{
 		initialRouteName: 'LoginScreen',
