@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, YellowBox, ScrollView } from 'react-native';
 import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List } from '@ui-kitten/components';
 import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
@@ -39,6 +39,9 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 			setSelectedIndex: 0,
 			listData: []
 		};
+		YellowBox.ignoreWarnings([
+			'VirtualizedLists should never be nested' // TODO: Remove when fixed
+		]);
 	}
 	addItem(item) {
 		// only add if the item doesn't exist in the list
@@ -300,6 +303,7 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 												</Layout>
 											</Tab>
 										</TabView>
+
 										<List data={this.state.listData} renderItem={renderItem} />
 										<Button
 											onPress={() => {
