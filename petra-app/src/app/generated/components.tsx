@@ -14420,6 +14420,7 @@ export type RestaurantMenu = {
   RestaurantMenuFoods: Array<RestaurantMenuFood>,
   RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
   name: Scalars['String'],
+  price: Scalars['Float'],
   restaurantID: Scalars['Int'],
   restaurantMenuID: Scalars['Int'],
 };
@@ -14490,11 +14491,13 @@ export type RestaurantMenu_Arr_Rel_Insert_Input = {
 
 export type RestaurantMenu_Avg_Fields = {
    __typename?: 'RestaurantMenu_avg_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Avg_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14506,6 +14509,7 @@ export type RestaurantMenu_Bool_Exp = {
   _not?: Maybe<RestaurantMenu_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
   name?: Maybe<String_Comparison_Exp>,
+  price?: Maybe<Float_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
   restaurantMenuID?: Maybe<Int_Comparison_Exp>,
 };
@@ -14523,6 +14527,7 @@ export type RestaurantMenu_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
@@ -14530,12 +14535,14 @@ export type RestaurantMenu_Insert_Input = {
 export type RestaurantMenu_Max_Fields = {
    __typename?: 'RestaurantMenu_max_fields',
   name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Max_Order_By = {
   name?: Maybe<Order_By>,
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14543,12 +14550,14 @@ export type RestaurantMenu_Max_Order_By = {
 export type RestaurantMenu_Min_Fields = {
    __typename?: 'RestaurantMenu_min_fields',
   name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Min_Order_By = {
   name?: Maybe<Order_By>,
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14574,101 +14583,119 @@ export type RestaurantMenu_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export enum RestaurantMenu_Select_Column {
   Name = 'name',
+  Price = 'price',
   RestaurantId = 'restaurantID',
   RestaurantMenuId = 'restaurantMenuID'
 }
 
 export type RestaurantMenu_Set_Input = {
   name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Stddev_Fields = {
    __typename?: 'RestaurantMenu_stddev_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Stddev_Pop_Fields = {
    __typename?: 'RestaurantMenu_stddev_pop_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Pop_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Stddev_Samp_Fields = {
    __typename?: 'RestaurantMenu_stddev_samp_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Samp_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Sum_Fields = {
    __typename?: 'RestaurantMenu_sum_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Sum_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export enum RestaurantMenu_Update_Column {
   Name = 'name',
+  Price = 'price',
   RestaurantId = 'restaurantID',
   RestaurantMenuId = 'restaurantMenuID'
 }
 
 export type RestaurantMenu_Var_Pop_Fields = {
    __typename?: 'RestaurantMenu_var_pop_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Var_Pop_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Var_Samp_Fields = {
    __typename?: 'RestaurantMenu_var_samp_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Var_Samp_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Variance_Fields = {
    __typename?: 'RestaurantMenu_variance_fields',
+  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Variance_Order_By = {
+  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -22119,6 +22146,22 @@ export type AddTravelGuideMutation = (
   )> }
 );
 
+export type AddRestaurantMenuMutationVariables = {
+  restaurantMenu: Array<RestaurantMenu_Insert_Input>
+};
+
+
+export type AddRestaurantMenuMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_RestaurantMenu: Maybe<(
+    { __typename?: 'RestaurantMenu_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'RestaurantMenu' }
+      & Pick<RestaurantMenu, 'restaurantMenuID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -22372,6 +22415,17 @@ export type GetMuseumEntranceTypesQuery = (
   & { MuseumEntranceType: Array<(
     { __typename?: 'MuseumEntranceType' }
     & Pick<MuseumEntranceType, 'content' | 'museumEntranceTypeID'>
+  )> }
+);
+
+export type GetFoodQueryVariables = {};
+
+
+export type GetFoodQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantFood: Array<(
+    { __typename?: 'RestaurantFood' }
+    & Pick<RestaurantFood, 'name' | 'restaurantFoodID'>
   )> }
 );
 
@@ -23248,6 +23302,36 @@ export function withAddTravelGuide<TProps, TChildProps = {}>(operationOptions?: 
 };
 export type AddTravelGuideMutationResult = ApolloReactCommon.MutationResult<AddTravelGuideMutation>;
 export type AddTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<AddTravelGuideMutation, AddTravelGuideMutationVariables>;
+export const AddRestaurantMenuDocument = gql`
+    mutation addRestaurantMenu($restaurantMenu: [RestaurantMenu_insert_input!]!) {
+  __typename
+  insert_RestaurantMenu(objects: $restaurantMenu) {
+    returning {
+      restaurantMenuID
+    }
+  }
+}
+    `;
+export type AddRestaurantMenuMutationFn = ApolloReactCommon.MutationFunction<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables>;
+export type AddRestaurantMenuComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables>, 'mutation'>;
+
+    export const AddRestaurantMenuComponent = (props: AddRestaurantMenuComponentProps) => (
+      <ApolloReactComponents.Mutation<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables> mutation={AddRestaurantMenuDocument} {...props} />
+    );
+    
+export type AddRestaurantMenuProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables> & TChildProps;
+export function withAddRestaurantMenu<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddRestaurantMenuMutation,
+  AddRestaurantMenuMutationVariables,
+  AddRestaurantMenuProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables, AddRestaurantMenuProps<TChildProps>>(AddRestaurantMenuDocument, {
+      alias: 'addRestaurantMenu',
+      ...operationOptions
+    });
+};
+export type AddRestaurantMenuMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMenuMutation>;
+export type AddRestaurantMenuMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -23807,3 +23891,30 @@ export function withGetMuseumEntranceTypes<TProps, TChildProps = {}>(operationOp
     });
 };
 export type GetMuseumEntranceTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables>;
+export const GetFoodDocument = gql`
+    query getFood {
+  __typename
+  RestaurantFood {
+    name
+    restaurantFoodID
+  }
+}
+    `;
+export type GetFoodComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetFoodQuery, GetFoodQueryVariables>, 'query'>;
+
+    export const GetFoodComponent = (props: GetFoodComponentProps) => (
+      <ApolloReactComponents.Query<GetFoodQuery, GetFoodQueryVariables> query={GetFoodDocument} {...props} />
+    );
+    
+export type GetFoodProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodQuery, GetFoodQueryVariables> & TChildProps;
+export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetFoodQuery,
+  GetFoodQueryVariables,
+  GetFoodProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetFoodQuery, GetFoodQueryVariables, GetFoodProps<TChildProps>>(GetFoodDocument, {
+      alias: 'getFood',
+      ...operationOptions
+    });
+};
+export type GetFoodQueryResult = ApolloReactCommon.QueryResult<GetFoodQuery, GetFoodQueryVariables>;

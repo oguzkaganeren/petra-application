@@ -157,3 +157,10 @@ query getMuseumEntranceTypes {
 		museumEntranceTypeID
 	}
 }
+query getFood {
+	__typename
+	RestaurantFood {
+		name
+		restaurantFoodID
+	}
+}

@@ -107,7 +107,7 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 									<GetAllUserRestaurantComponent
-										label="Select Your Company"
+										label="Select Your Restaurant"
 										parentReference={value => {
 											props.values.restaurantID = value;
 										}}

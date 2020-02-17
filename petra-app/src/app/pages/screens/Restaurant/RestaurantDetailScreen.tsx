@@ -59,6 +59,15 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				</Button>
 				<Button
 					onPress={() => {
+						this.props.navigation.navigate('AddMenuScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Menu
+				</Button>
+				<Button
+					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
 							userID: userID
 						});
