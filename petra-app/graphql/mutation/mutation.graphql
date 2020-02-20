@@ -449,3 +449,27 @@ mutation addRestaurantMenu($restaurantMenu: [RestaurantMenu_insert_input!]!) {
 		}
 	}
 }
+mutation addArticle(
+	$content: String
+	$editDate: timestamptz
+	$publishDate: timestamptz
+	$title: String
+	$articleTags: [ArticleTag_insert_input!]!
+	$userID: Int
+) {
+	__typename
+	insert_Article(
+		objects: {
+			content: $content
+			editDate: $editDate
+			publishDate: $publishDate
+			title: $title
+			ArticleTags: { data: $articleTags }
+			ArticleUsers: { data: { userID: $userID } }
+		}
+	) {
+		returning {
+			articleID
+		}
+	}
+}

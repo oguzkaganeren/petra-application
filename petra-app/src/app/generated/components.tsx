@@ -3458,8 +3458,6 @@ export type Company = {
   Location: Location,
   Museums: Array<Museum>,
   Museums_aggregate: Museum_Aggregate,
-  Restaurants: Array<Restaurant>,
-  Restaurants_aggregate: Restaurant_Aggregate,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3561,24 +3559,6 @@ export type CompanyMuseums_AggregateArgs = {
   where?: Maybe<Museum_Bool_Exp>
 };
 
-
-export type CompanyRestaurantsArgs = {
-  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
-  limit?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  order_by?: Maybe<Array<Restaurant_Order_By>>,
-  where?: Maybe<Restaurant_Bool_Exp>
-};
-
-
-export type CompanyRestaurants_AggregateArgs = {
-  distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
-  limit?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  order_by?: Maybe<Array<Restaurant_Order_By>>,
-  where?: Maybe<Restaurant_Bool_Exp>
-};
-
 export type Company_Aggregate = {
    __typename?: 'Company_aggregate',
   aggregate?: Maybe<Company_Aggregate_Fields>,
@@ -3643,7 +3623,6 @@ export type Company_Bool_Exp = {
   Hotels?: Maybe<Hotel_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   Museums?: Maybe<Museum_Bool_Exp>,
-  Restaurants?: Maybe<Restaurant_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
   _not?: Maybe<Company_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Company_Bool_Exp>>>,
@@ -3675,7 +3654,6 @@ export type Company_Insert_Input = {
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
-  Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
@@ -3761,7 +3739,6 @@ export type Company_Order_By = {
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Location?: Maybe<Location_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
-  Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   faxNumber?: Maybe<Order_By>,
@@ -14420,7 +14397,6 @@ export type RestaurantMenu = {
   RestaurantMenuFoods: Array<RestaurantMenuFood>,
   RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
   name: Scalars['String'],
-  price: Scalars['Float'],
   restaurantID: Scalars['Int'],
   restaurantMenuID: Scalars['Int'],
 };
@@ -14491,13 +14467,11 @@ export type RestaurantMenu_Arr_Rel_Insert_Input = {
 
 export type RestaurantMenu_Avg_Fields = {
    __typename?: 'RestaurantMenu_avg_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Avg_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14509,7 +14483,6 @@ export type RestaurantMenu_Bool_Exp = {
   _not?: Maybe<RestaurantMenu_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
   name?: Maybe<String_Comparison_Exp>,
-  price?: Maybe<Float_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
   restaurantMenuID?: Maybe<Int_Comparison_Exp>,
 };
@@ -14527,7 +14500,6 @@ export type RestaurantMenu_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
   name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
@@ -14535,14 +14507,12 @@ export type RestaurantMenu_Insert_Input = {
 export type RestaurantMenu_Max_Fields = {
    __typename?: 'RestaurantMenu_max_fields',
   name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Max_Order_By = {
   name?: Maybe<Order_By>,
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14550,14 +14520,12 @@ export type RestaurantMenu_Max_Order_By = {
 export type RestaurantMenu_Min_Fields = {
    __typename?: 'RestaurantMenu_min_fields',
   name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Min_Order_By = {
   name?: Maybe<Order_By>,
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -14583,119 +14551,101 @@ export type RestaurantMenu_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
   name?: Maybe<Order_By>,
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export enum RestaurantMenu_Select_Column {
   Name = 'name',
-  Price = 'price',
   RestaurantId = 'restaurantID',
   RestaurantMenuId = 'restaurantMenuID'
 }
 
 export type RestaurantMenu_Set_Input = {
   name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Stddev_Fields = {
    __typename?: 'RestaurantMenu_stddev_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Stddev_Pop_Fields = {
    __typename?: 'RestaurantMenu_stddev_pop_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Pop_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Stddev_Samp_Fields = {
    __typename?: 'RestaurantMenu_stddev_samp_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Stddev_Samp_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Sum_Fields = {
    __typename?: 'RestaurantMenu_sum_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
 };
 
 export type RestaurantMenu_Sum_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export enum RestaurantMenu_Update_Column {
   Name = 'name',
-  Price = 'price',
   RestaurantId = 'restaurantID',
   RestaurantMenuId = 'restaurantMenuID'
 }
 
 export type RestaurantMenu_Var_Pop_Fields = {
    __typename?: 'RestaurantMenu_var_pop_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Var_Pop_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Var_Samp_Fields = {
    __typename?: 'RestaurantMenu_var_samp_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Var_Samp_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export type RestaurantMenu_Variance_Fields = {
    __typename?: 'RestaurantMenu_variance_fields',
-  price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Float']>,
   restaurantMenuID?: Maybe<Scalars['Float']>,
 };
 
 export type RestaurantMenu_Variance_Order_By = {
-  price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
@@ -22162,6 +22112,27 @@ export type AddRestaurantMenuMutation = (
   )> }
 );
 
+export type AddArticleMutationVariables = {
+  content?: Maybe<Scalars['String']>,
+  editDate?: Maybe<Scalars['timestamptz']>,
+  publishDate?: Maybe<Scalars['timestamptz']>,
+  title?: Maybe<Scalars['String']>,
+  articleTags: Array<ArticleTag_Insert_Input>,
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type AddArticleMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Article: Maybe<(
+    { __typename?: 'Article_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Article' }
+      & Pick<Article, 'articleID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -22426,6 +22397,17 @@ export type GetFoodQuery = (
   & { RestaurantFood: Array<(
     { __typename?: 'RestaurantFood' }
     & Pick<RestaurantFood, 'name' | 'restaurantFoodID'>
+  )> }
+);
+
+export type GetTagsQueryVariables = {};
+
+
+export type GetTagsQuery = (
+  { __typename: 'query_root' }
+  & { Tag: Array<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'name' | 'tagID'>
   )> }
 );
 
@@ -23332,6 +23314,36 @@ export function withAddRestaurantMenu<TProps, TChildProps = {}>(operationOptions
 };
 export type AddRestaurantMenuMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMenuMutation>;
 export type AddRestaurantMenuMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables>;
+export const AddArticleDocument = gql`
+    mutation addArticle($content: String, $editDate: timestamptz, $publishDate: timestamptz, $title: String, $articleTags: [ArticleTag_insert_input!]!, $userID: Int) {
+  __typename
+  insert_Article(objects: {content: $content, editDate: $editDate, publishDate: $publishDate, title: $title, ArticleTags: {data: $articleTags}, ArticleUsers: {data: {userID: $userID}}}) {
+    returning {
+      articleID
+    }
+  }
+}
+    `;
+export type AddArticleMutationFn = ApolloReactCommon.MutationFunction<AddArticleMutation, AddArticleMutationVariables>;
+export type AddArticleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArticleMutation, AddArticleMutationVariables>, 'mutation'>;
+
+    export const AddArticleComponent = (props: AddArticleComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArticleMutation, AddArticleMutationVariables> mutation={AddArticleDocument} {...props} />
+    );
+    
+export type AddArticleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArticleMutation, AddArticleMutationVariables> & TChildProps;
+export function withAddArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArticleMutation,
+  AddArticleMutationVariables,
+  AddArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArticleMutation, AddArticleMutationVariables, AddArticleProps<TChildProps>>(AddArticleDocument, {
+      alias: 'addArticle',
+      ...operationOptions
+    });
+};
+export type AddArticleMutationResult = ApolloReactCommon.MutationResult<AddArticleMutation>;
+export type AddArticleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArticleMutation, AddArticleMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -23918,3 +23930,30 @@ export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloR
     });
 };
 export type GetFoodQueryResult = ApolloReactCommon.QueryResult<GetFoodQuery, GetFoodQueryVariables>;
+export const GetTagsDocument = gql`
+    query getTags {
+  __typename
+  Tag {
+    name
+    tagID
+  }
+}
+    `;
+export type GetTagsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTagsQuery, GetTagsQueryVariables>, 'query'>;
+
+    export const GetTagsComponent = (props: GetTagsComponentProps) => (
+      <ApolloReactComponents.Query<GetTagsQuery, GetTagsQueryVariables> query={GetTagsDocument} {...props} />
+    );
+    
+export type GetTagsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTagsQuery, GetTagsQueryVariables> & TChildProps;
+export function withGetTags<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTagsQuery,
+  GetTagsQueryVariables,
+  GetTagsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetTagsQuery, GetTagsQueryVariables, GetTagsProps<TChildProps>>(GetTagsDocument, {
+      alias: 'getTags',
+      ...operationOptions
+    });
+};
+export type GetTagsQueryResult = ApolloReactCommon.QueryResult<GetTagsQuery, GetTagsQueryVariables>;
