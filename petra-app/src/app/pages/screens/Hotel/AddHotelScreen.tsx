@@ -5,6 +5,8 @@ import { AddHotelComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
 import { GetAllHotelServicePropertyComponent } from '../../../components/Hotel/GetAllHotelServiceProperty';
+import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
+import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -16,7 +18,9 @@ export interface AddHotelProps {
 /**
  * AddHotel state
  */
-export interface AddHotelState {}
+export interface AddHotelState {
+	cityID: number;
+}
 
 /**
  * AddHotel
@@ -24,7 +28,9 @@ export interface AddHotelState {}
 export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState> {
 	constructor(props: AddHotelProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			cityID: 0
+		};
 	}
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
@@ -58,6 +64,8 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 								latitude: 0,
 								longtitude: 0,
 								address: '',
+								districtID: 0,
+								cityID: 0,
 								name: '',
 								taxNumber: '',
 								companyID: 0,
@@ -84,13 +92,29 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 								setTimeout(() => {
 									AddHotelMutation({
 										variables: {
-											name: values.name.toString(),
-											taxNumber: values.taxNumber.toString(),
-											longtitude: values.longtitude,
-											latitude: values.latitude,
-											address: values.address.toString(),
-											companyID: values.companyID,
-											hotelServiceProperty: values.hotelServiceProperty
+											hotel: [
+												{
+													name: values.name.toString(),
+													taxNumber: values.taxNumber.toString(),
+													Location: {
+														data: {
+															longtitude: values.longtitude,
+															latitude: values.latitude,
+															Address: {
+																data: {
+																	address: values.address.toString(),
+																	districtID: values.districtID,
+																	cityID: values.cityID
+																}
+															}
+														}
+													},
+													companyID: values.companyID,
+													HotelServices: {
+														data: values.hotelServiceProperty
+													}
+												}
+											]
 										}
 									})
 										.then(res => {
@@ -144,11 +168,28 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										}}
 										userID={parseInt(userID)}
 									/>
+									<GetAllCitiesComponent
+										label="Select City"
+										parentReference={value => {
+											props.values.cityID = value;
+											this.setState({ cityID: value });
+										}}
+									/>
+									<GetAllCityDistrictsComponent
+										label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
+										parentReference={value => {
+											props.values.districtID = value;
+										}}
+										cityID={this.state.cityID}
+									/>
+
 									<Input
 										label="Address"
 										status={props.touched.address && props.errors.address ? 'danger' : 'success'}
 										caption={props.touched.address && props.errors.address ? props.errors.address : ''}
 										placeholder="your address"
+										multiline={true}
+										style={{ minHeight: 50 }}
 										onChangeText={props.handleChange('address')}
 										onBlur={props.handleBlur('address')}
 										value={props.values.address}

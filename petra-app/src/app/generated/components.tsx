@@ -18,6 +18,304 @@ export type Scalars = {
   inet: any,
 };
 
+export type Address = {
+   __typename?: 'Address',
+  City: City,
+  District: District,
+  Locations: Array<Location>,
+  Locations_aggregate: Location_Aggregate,
+  address: Scalars['String'],
+  addressID: Scalars['Int'],
+  cityID: Scalars['Int'],
+  districtID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
+};
+
+
+export type AddressLocationsArgs = {
+  distinct_on?: Maybe<Array<Location_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Location_Order_By>>,
+  where?: Maybe<Location_Bool_Exp>
+};
+
+
+export type AddressLocations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Location_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Location_Order_By>>,
+  where?: Maybe<Location_Bool_Exp>
+};
+
+export type Address_Aggregate = {
+   __typename?: 'Address_aggregate',
+  aggregate?: Maybe<Address_Aggregate_Fields>,
+  nodes: Array<Address>,
+};
+
+export type Address_Aggregate_Fields = {
+   __typename?: 'Address_aggregate_fields',
+  avg?: Maybe<Address_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<Address_Max_Fields>,
+  min?: Maybe<Address_Min_Fields>,
+  stddev?: Maybe<Address_Stddev_Fields>,
+  stddev_pop?: Maybe<Address_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<Address_Stddev_Samp_Fields>,
+  sum?: Maybe<Address_Sum_Fields>,
+  var_pop?: Maybe<Address_Var_Pop_Fields>,
+  var_samp?: Maybe<Address_Var_Samp_Fields>,
+  variance?: Maybe<Address_Variance_Fields>,
+};
+
+
+export type Address_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Address_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type Address_Aggregate_Order_By = {
+  avg?: Maybe<Address_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<Address_Max_Order_By>,
+  min?: Maybe<Address_Min_Order_By>,
+  stddev?: Maybe<Address_Stddev_Order_By>,
+  stddev_pop?: Maybe<Address_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<Address_Stddev_Samp_Order_By>,
+  sum?: Maybe<Address_Sum_Order_By>,
+  var_pop?: Maybe<Address_Var_Pop_Order_By>,
+  var_samp?: Maybe<Address_Var_Samp_Order_By>,
+  variance?: Maybe<Address_Variance_Order_By>,
+};
+
+export type Address_Arr_Rel_Insert_Input = {
+  data: Array<Address_Insert_Input>,
+  on_conflict?: Maybe<Address_On_Conflict>,
+};
+
+export type Address_Avg_Fields = {
+   __typename?: 'Address_avg_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Avg_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Bool_Exp = {
+  City?: Maybe<City_Bool_Exp>,
+  District?: Maybe<District_Bool_Exp>,
+  Locations?: Maybe<Location_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<Address_Bool_Exp>>>,
+  _not?: Maybe<Address_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<Address_Bool_Exp>>>,
+  address?: Maybe<String_Comparison_Exp>,
+  addressID?: Maybe<Int_Comparison_Exp>,
+  cityID?: Maybe<Int_Comparison_Exp>,
+  districtID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
+};
+
+export enum Address_Constraint {
+  AddressPkey = 'Address_pkey'
+}
+
+export type Address_Inc_Input = {
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type Address_Insert_Input = {
+  City?: Maybe<City_Obj_Rel_Insert_Input>,
+  District?: Maybe<District_Obj_Rel_Insert_Input>,
+  Locations?: Maybe<Location_Arr_Rel_Insert_Input>,
+  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type Address_Max_Fields = {
+   __typename?: 'Address_max_fields',
+  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type Address_Max_Order_By = {
+  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Min_Fields = {
+   __typename?: 'Address_min_fields',
+  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type Address_Min_Order_By = {
+  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Mutation_Response = {
+   __typename?: 'Address_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<Address>,
+};
+
+export type Address_Obj_Rel_Insert_Input = {
+  data: Address_Insert_Input,
+  on_conflict?: Maybe<Address_On_Conflict>,
+};
+
+export type Address_On_Conflict = {
+  constraint: Address_Constraint,
+  update_columns: Array<Address_Update_Column>,
+  where?: Maybe<Address_Bool_Exp>,
+};
+
+export type Address_Order_By = {
+  City?: Maybe<City_Order_By>,
+  District?: Maybe<District_Order_By>,
+  Locations_aggregate?: Maybe<Location_Aggregate_Order_By>,
+  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
+};
+
+export enum Address_Select_Column {
+  Address = 'address',
+  AddressId = 'addressID',
+  CityId = 'cityID',
+  DistrictId = 'districtID',
+  IsDeleted = 'isDeleted'
+}
+
+export type Address_Set_Input = {
+  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type Address_Stddev_Fields = {
+   __typename?: 'Address_stddev_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Stddev_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Stddev_Pop_Fields = {
+   __typename?: 'Address_stddev_pop_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Stddev_Pop_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Stddev_Samp_Fields = {
+   __typename?: 'Address_stddev_samp_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Stddev_Samp_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Sum_Fields = {
+   __typename?: 'Address_sum_fields',
+  addressID?: Maybe<Scalars['Int']>,
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type Address_Sum_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export enum Address_Update_Column {
+  Address = 'address',
+  AddressId = 'addressID',
+  CityId = 'cityID',
+  DistrictId = 'districtID',
+  IsDeleted = 'isDeleted'
+}
+
+export type Address_Var_Pop_Fields = {
+   __typename?: 'Address_var_pop_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Var_Pop_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Var_Samp_Fields = {
+   __typename?: 'Address_var_samp_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Var_Samp_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type Address_Variance_Fields = {
+   __typename?: 'Address_variance_fields',
+  addressID?: Maybe<Scalars['Float']>,
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type Address_Variance_Order_By = {
+  addressID?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
 export type ArchSite = {
    __typename?: 'ArchSite',
   ArchSiteComments: Array<ArchSiteComment>,
@@ -39,6 +337,7 @@ export type ArchSite = {
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
   diameter?: Maybe<Scalars['Float']>,
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   name: Scalars['String'],
   period?: Maybe<Scalars['String']>,
@@ -217,6 +516,7 @@ export type ArchSite_Bool_Exp = {
   description?: Maybe<String_Comparison_Exp>,
   destruction?: Maybe<String_Comparison_Exp>,
   diameter?: Maybe<Float_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   period?: Maybe<String_Comparison_Exp>,
@@ -248,6 +548,7 @@ export type ArchSite_Insert_Input = {
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
   diameter?: Maybe<Scalars['Float']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   period?: Maybe<Scalars['String']>,
@@ -339,6 +640,7 @@ export type ArchSite_Order_By = {
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   period?: Maybe<Order_By>,
@@ -352,6 +654,7 @@ export enum ArchSite_Select_Column {
   Description = 'description',
   Destruction = 'destruction',
   Diameter = 'diameter',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   Period = 'period'
@@ -365,6 +668,7 @@ export type ArchSite_Set_Input = {
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
   diameter?: Maybe<Scalars['Float']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   period?: Maybe<Scalars['String']>,
@@ -454,6 +758,7 @@ export enum ArchSite_Update_Column {
   Description = 'description',
   Destruction = 'destruction',
   Diameter = 'diameter',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   Period = 'period'
@@ -524,6 +829,7 @@ export type ArchSiteComment = {
   archSiteID: Scalars['Int'],
   content: Scalars['String'],
   date: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   star: Scalars['Float'],
   userID: Scalars['Int'],
 };
@@ -599,6 +905,7 @@ export type ArchSiteComment_Bool_Exp = {
   archSiteID?: Maybe<Int_Comparison_Exp>,
   content?: Maybe<String_Comparison_Exp>,
   date?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
   userID?: Maybe<Int_Comparison_Exp>,
 };
@@ -620,6 +927,7 @@ export type ArchSiteComment_Insert_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   star?: Maybe<Scalars['Float']>,
   userID?: Maybe<Scalars['Int']>,
 };
@@ -686,6 +994,7 @@ export type ArchSiteComment_Order_By = {
   archSiteID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
 };
@@ -695,6 +1004,7 @@ export enum ArchSiteComment_Select_Column {
   ArchSiteId = 'archSiteID',
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   Star = 'star',
   UserId = 'userID'
 }
@@ -704,6 +1014,7 @@ export type ArchSiteComment_Set_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   star?: Maybe<Scalars['Float']>,
   userID?: Maybe<Scalars['Int']>,
 };
@@ -773,6 +1084,7 @@ export enum ArchSiteComment_Update_Column {
   ArchSiteId = 'archSiteID',
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   Star = 'star',
   UserId = 'userID'
 }
@@ -828,6 +1140,7 @@ export type ArchSiteEntranceType = {
   ArchSitePrices_aggregate: ArchSitePrice_Aggregate,
   archSiteEntranceTypeID: Scalars['Int'],
   content: Scalars['String'],
+  isDeleted: Scalars['Boolean'],
 };
 
 
@@ -910,6 +1223,7 @@ export type ArchSiteEntranceType_Bool_Exp = {
   _or?: Maybe<Array<Maybe<ArchSiteEntranceType_Bool_Exp>>>,
   archSiteEntranceTypeID?: Maybe<Int_Comparison_Exp>,
   content?: Maybe<String_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum ArchSiteEntranceType_Constraint {
@@ -924,6 +1238,7 @@ export type ArchSiteEntranceType_Insert_Input = {
   ArchSitePrices?: Maybe<ArchSitePrice_Arr_Rel_Insert_Input>,
   archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteEntranceType_Max_Fields = {
@@ -969,16 +1284,19 @@ export type ArchSiteEntranceType_Order_By = {
   ArchSitePrices_aggregate?: Maybe<ArchSitePrice_Aggregate_Order_By>,
   archSiteEntranceTypeID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum ArchSiteEntranceType_Select_Column {
   ArchSiteEntranceTypeId = 'archSiteEntranceTypeID',
-  Content = 'content'
+  Content = 'content',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteEntranceType_Set_Input = {
   archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteEntranceType_Stddev_Fields = {
@@ -1019,7 +1337,8 @@ export type ArchSiteEntranceType_Sum_Order_By = {
 
 export enum ArchSiteEntranceType_Update_Column {
   ArchSiteEntranceTypeId = 'archSiteEntranceTypeID',
-  Content = 'content'
+  Content = 'content',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteEntranceType_Var_Pop_Fields = {
@@ -1057,6 +1376,7 @@ export type ArchSitePrice = {
   archSiteID: Scalars['Int'],
   archSitePriceID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   price: Scalars['Float'],
   startDate: Scalars['timestamptz'],
 };
@@ -1132,6 +1452,7 @@ export type ArchSitePrice_Bool_Exp = {
   archSiteID?: Maybe<Int_Comparison_Exp>,
   archSitePriceID?: Maybe<Int_Comparison_Exp>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   price?: Maybe<Float_Comparison_Exp>,
   startDate?: Maybe<Timestamptz_Comparison_Exp>,
 };
@@ -1153,6 +1474,7 @@ export type ArchSitePrice_Insert_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSitePriceID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   price?: Maybe<Scalars['Float']>,
   startDate?: Maybe<Scalars['timestamptz']>,
 };
@@ -1219,6 +1541,7 @@ export type ArchSitePrice_Order_By = {
   archSiteID?: Maybe<Order_By>,
   archSitePriceID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   startDate?: Maybe<Order_By>,
 };
@@ -1228,6 +1551,7 @@ export enum ArchSitePrice_Select_Column {
   ArchSiteId = 'archSiteID',
   ArchSitePriceId = 'archSitePriceID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   Price = 'price',
   StartDate = 'startDate'
 }
@@ -1237,6 +1561,7 @@ export type ArchSitePrice_Set_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSitePriceID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   price?: Maybe<Scalars['Float']>,
   startDate?: Maybe<Scalars['timestamptz']>,
 };
@@ -1306,6 +1631,7 @@ export enum ArchSitePrice_Update_Column {
   ArchSiteId = 'archSiteID',
   ArchSitePriceId = 'archSitePriceID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   Price = 'price',
   StartDate = 'startDate'
 }
@@ -1360,6 +1686,7 @@ export type ArchSiteType = {
   ArchSiteTypeArchSites: Array<ArchSiteTypeArchSite>,
   ArchSiteTypeArchSites_aggregate: ArchSiteTypeArchSite_Aggregate,
   archSiteTypeID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
 };
 
@@ -1442,6 +1769,7 @@ export type ArchSiteType_Bool_Exp = {
   _not?: Maybe<ArchSiteType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<ArchSiteType_Bool_Exp>>>,
   archSiteTypeID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
 };
 
@@ -1456,6 +1784,7 @@ export type ArchSiteType_Inc_Input = {
 export type ArchSiteType_Insert_Input = {
   ArchSiteTypeArchSites?: Maybe<ArchSiteTypeArchSite_Arr_Rel_Insert_Input>,
   archSiteTypeID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -1501,16 +1830,19 @@ export type ArchSiteType_On_Conflict = {
 export type ArchSiteType_Order_By = {
   ArchSiteTypeArchSites_aggregate?: Maybe<ArchSiteTypeArchSite_Aggregate_Order_By>,
   archSiteTypeID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
 export enum ArchSiteType_Select_Column {
   ArchSiteTypeId = 'archSiteTypeID',
+  IsDeleted = 'isDeleted',
   Name = 'name'
 }
 
 export type ArchSiteType_Set_Input = {
   archSiteTypeID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -1552,6 +1884,7 @@ export type ArchSiteType_Sum_Order_By = {
 
 export enum ArchSiteType_Update_Column {
   ArchSiteTypeId = 'archSiteTypeID',
+  IsDeleted = 'isDeleted',
   Name = 'name'
 }
 
@@ -1589,6 +1922,7 @@ export type ArchSiteTypeArchSite = {
   archSiteID: Scalars['Int'],
   archSiteTypeArchSiteID: Scalars['Int'],
   archSiteTypeID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
 };
 
 export type ArchSiteTypeArchSite_Aggregate = {
@@ -1659,6 +1993,7 @@ export type ArchSiteTypeArchSite_Bool_Exp = {
   archSiteID?: Maybe<Int_Comparison_Exp>,
   archSiteTypeArchSiteID?: Maybe<Int_Comparison_Exp>,
   archSiteTypeID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum ArchSiteTypeArchSite_Constraint {
@@ -1677,6 +2012,7 @@ export type ArchSiteTypeArchSite_Insert_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeArchSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteTypeArchSite_Max_Fields = {
@@ -1728,18 +2064,21 @@ export type ArchSiteTypeArchSite_Order_By = {
   archSiteID?: Maybe<Order_By>,
   archSiteTypeArchSiteID?: Maybe<Order_By>,
   archSiteTypeID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum ArchSiteTypeArchSite_Select_Column {
   ArchSiteId = 'archSiteID',
   ArchSiteTypeArchSiteId = 'archSiteTypeArchSiteID',
-  ArchSiteTypeId = 'archSiteTypeID'
+  ArchSiteTypeId = 'archSiteTypeID',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteTypeArchSite_Set_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeArchSiteID?: Maybe<Scalars['Int']>,
   archSiteTypeID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteTypeArchSite_Stddev_Fields = {
@@ -1797,7 +2136,8 @@ export type ArchSiteTypeArchSite_Sum_Order_By = {
 export enum ArchSiteTypeArchSite_Update_Column {
   ArchSiteId = 'archSiteID',
   ArchSiteTypeArchSiteId = 'archSiteTypeArchSiteID',
-  ArchSiteTypeId = 'archSiteTypeID'
+  ArchSiteTypeId = 'archSiteTypeID',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteTypeArchSite_Var_Pop_Fields = {
@@ -1847,6 +2187,7 @@ export type ArchSiteWorkingDay = {
   archSiteWorkingDayID: Scalars['Int'],
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   openHour: Scalars['timetz'],
 };
 
@@ -1934,6 +2275,7 @@ export type ArchSiteWorkingDay_Bool_Exp = {
   archSiteWorkingDayID?: Maybe<Int_Comparison_Exp>,
   closeHour?: Maybe<Timetz_Comparison_Exp>,
   dayID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   openHour?: Maybe<Timetz_Comparison_Exp>,
 };
 
@@ -1952,6 +2294,7 @@ export type ArchSiteWorkingDay_Insert_Input = {
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   openHour?: Maybe<Scalars['timetz']>,
 };
 
@@ -2008,6 +2351,7 @@ export type ArchSiteWorkingDay_Order_By = {
   archSiteWorkingDayID?: Maybe<Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   openHour?: Maybe<Order_By>,
 };
 
@@ -2015,6 +2359,7 @@ export enum ArchSiteWorkingDay_Select_Column {
   ArchSiteWorkingDayId = 'archSiteWorkingDayID',
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   OpenHour = 'openHour'
 }
 
@@ -2022,6 +2367,7 @@ export type ArchSiteWorkingDay_Set_Input = {
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   openHour?: Maybe<Scalars['timetz']>,
 };
 
@@ -2073,6 +2419,7 @@ export enum ArchSiteWorkingDay_Update_Column {
   ArchSiteWorkingDayId = 'archSiteWorkingDayID',
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   OpenHour = 'openHour'
 }
 
@@ -2116,6 +2463,7 @@ export type ArchSiteWorkingDaySchedule = {
   archSiteWorkingDayID: Scalars['Int'],
   archSiteWorkingDayScheduleID: Scalars['Int'],
   archSiteWorkingScheduleID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
 };
 
 export type ArchSiteWorkingDaySchedule_Aggregate = {
@@ -2186,6 +2534,7 @@ export type ArchSiteWorkingDaySchedule_Bool_Exp = {
   archSiteWorkingDayID?: Maybe<Int_Comparison_Exp>,
   archSiteWorkingDayScheduleID?: Maybe<Int_Comparison_Exp>,
   archSiteWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum ArchSiteWorkingDaySchedule_Constraint {
@@ -2204,6 +2553,7 @@ export type ArchSiteWorkingDaySchedule_Insert_Input = {
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   archSiteWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteWorkingDaySchedule_Max_Fields = {
@@ -2255,18 +2605,21 @@ export type ArchSiteWorkingDaySchedule_Order_By = {
   archSiteWorkingDayID?: Maybe<Order_By>,
   archSiteWorkingDayScheduleID?: Maybe<Order_By>,
   archSiteWorkingScheduleID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum ArchSiteWorkingDaySchedule_Select_Column {
   ArchSiteWorkingDayId = 'archSiteWorkingDayID',
   ArchSiteWorkingDayScheduleId = 'archSiteWorkingDayScheduleID',
-  ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID'
+  ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteWorkingDaySchedule_Set_Input = {
   archSiteWorkingDayID?: Maybe<Scalars['Int']>,
   archSiteWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type ArchSiteWorkingDaySchedule_Stddev_Fields = {
@@ -2324,7 +2677,8 @@ export type ArchSiteWorkingDaySchedule_Sum_Order_By = {
 export enum ArchSiteWorkingDaySchedule_Update_Column {
   ArchSiteWorkingDayId = 'archSiteWorkingDayID',
   ArchSiteWorkingDayScheduleId = 'archSiteWorkingDayScheduleID',
-  ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID'
+  ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID',
+  IsDeleted = 'isDeleted'
 }
 
 export type ArchSiteWorkingDaySchedule_Var_Pop_Fields = {
@@ -2374,6 +2728,7 @@ export type ArchSiteWorkingSchedule = {
   archSiteID: Scalars['Int'],
   archSiteWorkingScheduleID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   startDate: Scalars['timestamptz'],
 };
 
@@ -2461,6 +2816,7 @@ export type ArchSiteWorkingSchedule_Bool_Exp = {
   archSiteID?: Maybe<Int_Comparison_Exp>,
   archSiteWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   startDate?: Maybe<Timestamptz_Comparison_Exp>,
 };
 
@@ -2479,6 +2835,7 @@ export type ArchSiteWorkingSchedule_Insert_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   startDate?: Maybe<Scalars['timestamptz']>,
 };
 
@@ -2535,6 +2892,7 @@ export type ArchSiteWorkingSchedule_Order_By = {
   archSiteID?: Maybe<Order_By>,
   archSiteWorkingScheduleID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   startDate?: Maybe<Order_By>,
 };
 
@@ -2542,6 +2900,7 @@ export enum ArchSiteWorkingSchedule_Select_Column {
   ArchSiteId = 'archSiteID',
   ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   StartDate = 'startDate'
 }
 
@@ -2549,6 +2908,7 @@ export type ArchSiteWorkingSchedule_Set_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
   archSiteWorkingScheduleID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   startDate?: Maybe<Scalars['timestamptz']>,
 };
 
@@ -2600,6 +2960,7 @@ export enum ArchSiteWorkingSchedule_Update_Column {
   ArchSiteId = 'archSiteID',
   ArchSiteWorkingScheduleId = 'archSiteWorkingScheduleID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   StartDate = 'startDate'
 }
 
@@ -2645,6 +3006,7 @@ export type Article = {
   articleID: Scalars['Int'],
   content: Scalars['String'],
   editDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   publishDate: Scalars['timestamptz'],
   title: Scalars['String'],
 };
@@ -2749,6 +3111,7 @@ export type Article_Bool_Exp = {
   articleID?: Maybe<Int_Comparison_Exp>,
   content?: Maybe<String_Comparison_Exp>,
   editDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   publishDate?: Maybe<Timestamptz_Comparison_Exp>,
   title?: Maybe<String_Comparison_Exp>,
 };
@@ -2767,6 +3130,7 @@ export type Article_Insert_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -2828,6 +3192,7 @@ export type Article_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
 };
@@ -2836,6 +3201,7 @@ export enum Article_Select_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
 }
@@ -2844,6 +3210,7 @@ export type Article_Set_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -2888,6 +3255,7 @@ export enum Article_Update_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
 }
@@ -2925,6 +3293,7 @@ export type ArticleTag = {
   Tag: Tag,
   articleID: Scalars['Int'],
   articleTagID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   tagID: Scalars['Int'],
 };
 
@@ -2995,6 +3364,7 @@ export type ArticleTag_Bool_Exp = {
   _or?: Maybe<Array<Maybe<ArticleTag_Bool_Exp>>>,
   articleID?: Maybe<Int_Comparison_Exp>,
   articleTagID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   tagID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -3013,6 +3383,7 @@ export type ArticleTag_Insert_Input = {
   Tag?: Maybe<Tag_Obj_Rel_Insert_Input>,
   articleID?: Maybe<Scalars['Int']>,
   articleTagID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   tagID?: Maybe<Scalars['Int']>,
 };
 
@@ -3064,18 +3435,21 @@ export type ArticleTag_Order_By = {
   Tag?: Maybe<Tag_Order_By>,
   articleID?: Maybe<Order_By>,
   articleTagID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   tagID?: Maybe<Order_By>,
 };
 
 export enum ArticleTag_Select_Column {
   ArticleId = 'articleID',
   ArticleTagId = 'articleTagID',
+  IsDeleted = 'isDeleted',
   TagId = 'tagID'
 }
 
 export type ArticleTag_Set_Input = {
   articleID?: Maybe<Scalars['Int']>,
   articleTagID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   tagID?: Maybe<Scalars['Int']>,
 };
 
@@ -3134,6 +3508,7 @@ export type ArticleTag_Sum_Order_By = {
 export enum ArticleTag_Update_Column {
   ArticleId = 'articleID',
   ArticleTagId = 'articleTagID',
+  IsDeleted = 'isDeleted',
   TagId = 'tagID'
 }
 
@@ -3182,6 +3557,7 @@ export type ArticleUser = {
   User: User,
   articleID: Scalars['Int'],
   articleUserID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   userID: Scalars['Int'],
 };
 
@@ -3252,6 +3628,7 @@ export type ArticleUser_Bool_Exp = {
   _or?: Maybe<Array<Maybe<ArticleUser_Bool_Exp>>>,
   articleID?: Maybe<Int_Comparison_Exp>,
   articleUserID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   userID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -3270,6 +3647,7 @@ export type ArticleUser_Insert_Input = {
   User?: Maybe<User_Obj_Rel_Insert_Input>,
   articleID?: Maybe<Scalars['Int']>,
   articleUserID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   userID?: Maybe<Scalars['Int']>,
 };
 
@@ -3321,18 +3699,21 @@ export type ArticleUser_Order_By = {
   User?: Maybe<User_Order_By>,
   articleID?: Maybe<Order_By>,
   articleUserID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
 };
 
 export enum ArticleUser_Select_Column {
   ArticleId = 'articleID',
   ArticleUserId = 'articleUserID',
+  IsDeleted = 'isDeleted',
   UserId = 'userID'
 }
 
 export type ArticleUser_Set_Input = {
   articleID?: Maybe<Scalars['Int']>,
   articleUserID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   userID?: Maybe<Scalars['Int']>,
 };
 
@@ -3391,6 +3772,7 @@ export type ArticleUser_Sum_Order_By = {
 export enum ArticleUser_Update_Column {
   ArticleId = 'articleID',
   ArticleUserId = 'articleUserID',
+  IsDeleted = 'isDeleted',
   UserId = 'userID'
 }
 
@@ -3445,6 +3827,295 @@ export type Boolean_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Boolean']>>,
 };
 
+export type City = {
+   __typename?: 'City',
+  Addresses: Array<Address>,
+  Addresses_aggregate: Address_Aggregate,
+  Country: Country,
+  Districts: Array<District>,
+  Districts_aggregate: District_Aggregate,
+  city: Scalars['String'],
+  cityID: Scalars['Int'],
+  countryID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
+};
+
+
+export type CityAddressesArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type CityAddresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type CityDistrictsArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+
+export type CityDistricts_AggregateArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+export type City_Aggregate = {
+   __typename?: 'City_aggregate',
+  aggregate?: Maybe<City_Aggregate_Fields>,
+  nodes: Array<City>,
+};
+
+export type City_Aggregate_Fields = {
+   __typename?: 'City_aggregate_fields',
+  avg?: Maybe<City_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<City_Max_Fields>,
+  min?: Maybe<City_Min_Fields>,
+  stddev?: Maybe<City_Stddev_Fields>,
+  stddev_pop?: Maybe<City_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<City_Stddev_Samp_Fields>,
+  sum?: Maybe<City_Sum_Fields>,
+  var_pop?: Maybe<City_Var_Pop_Fields>,
+  var_samp?: Maybe<City_Var_Samp_Fields>,
+  variance?: Maybe<City_Variance_Fields>,
+};
+
+
+export type City_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<City_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type City_Aggregate_Order_By = {
+  avg?: Maybe<City_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<City_Max_Order_By>,
+  min?: Maybe<City_Min_Order_By>,
+  stddev?: Maybe<City_Stddev_Order_By>,
+  stddev_pop?: Maybe<City_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<City_Stddev_Samp_Order_By>,
+  sum?: Maybe<City_Sum_Order_By>,
+  var_pop?: Maybe<City_Var_Pop_Order_By>,
+  var_samp?: Maybe<City_Var_Samp_Order_By>,
+  variance?: Maybe<City_Variance_Order_By>,
+};
+
+export type City_Arr_Rel_Insert_Input = {
+  data: Array<City_Insert_Input>,
+  on_conflict?: Maybe<City_On_Conflict>,
+};
+
+export type City_Avg_Fields = {
+   __typename?: 'City_avg_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Avg_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Bool_Exp = {
+  Addresses?: Maybe<Address_Bool_Exp>,
+  Country?: Maybe<Country_Bool_Exp>,
+  Districts?: Maybe<District_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<City_Bool_Exp>>>,
+  _not?: Maybe<City_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<City_Bool_Exp>>>,
+  city?: Maybe<String_Comparison_Exp>,
+  cityID?: Maybe<Int_Comparison_Exp>,
+  countryID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
+};
+
+export enum City_Constraint {
+  CityPkey = 'City_pkey'
+}
+
+export type City_Inc_Input = {
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type City_Insert_Input = {
+  Addresses?: Maybe<Address_Arr_Rel_Insert_Input>,
+  Country?: Maybe<Country_Obj_Rel_Insert_Input>,
+  Districts?: Maybe<District_Arr_Rel_Insert_Input>,
+  city?: Maybe<Scalars['String']>,
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type City_Max_Fields = {
+   __typename?: 'City_max_fields',
+  city?: Maybe<Scalars['String']>,
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type City_Max_Order_By = {
+  city?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Min_Fields = {
+   __typename?: 'City_min_fields',
+  city?: Maybe<Scalars['String']>,
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type City_Min_Order_By = {
+  city?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Mutation_Response = {
+   __typename?: 'City_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<City>,
+};
+
+export type City_Obj_Rel_Insert_Input = {
+  data: City_Insert_Input,
+  on_conflict?: Maybe<City_On_Conflict>,
+};
+
+export type City_On_Conflict = {
+  constraint: City_Constraint,
+  update_columns: Array<City_Update_Column>,
+  where?: Maybe<City_Bool_Exp>,
+};
+
+export type City_Order_By = {
+  Addresses_aggregate?: Maybe<Address_Aggregate_Order_By>,
+  Country?: Maybe<Country_Order_By>,
+  Districts_aggregate?: Maybe<District_Aggregate_Order_By>,
+  city?: Maybe<Order_By>,
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
+};
+
+export enum City_Select_Column {
+  City = 'city',
+  CityId = 'cityID',
+  CountryId = 'countryID',
+  IsDeleted = 'isDeleted'
+}
+
+export type City_Set_Input = {
+  city?: Maybe<Scalars['String']>,
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type City_Stddev_Fields = {
+   __typename?: 'City_stddev_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Stddev_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Stddev_Pop_Fields = {
+   __typename?: 'City_stddev_pop_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Stddev_Pop_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Stddev_Samp_Fields = {
+   __typename?: 'City_stddev_samp_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Stddev_Samp_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Sum_Fields = {
+   __typename?: 'City_sum_fields',
+  cityID?: Maybe<Scalars['Int']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type City_Sum_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export enum City_Update_Column {
+  City = 'city',
+  CityId = 'cityID',
+  CountryId = 'countryID',
+  IsDeleted = 'isDeleted'
+}
+
+export type City_Var_Pop_Fields = {
+   __typename?: 'City_var_pop_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Var_Pop_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Var_Samp_Fields = {
+   __typename?: 'City_var_samp_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Var_Samp_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type City_Variance_Fields = {
+   __typename?: 'City_variance_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type City_Variance_Order_By = {
+  cityID?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
 export type Company = {
    __typename?: 'Company',
   ArchSites: Array<ArchSite>,
@@ -3463,6 +4134,7 @@ export type Company = {
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   logoUrl?: Maybe<Scalars['String']>,
   mail: Scalars['String'],
@@ -3650,6 +4322,7 @@ export type Company_Bool_Exp = {
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   faxNumber?: Maybe<String_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   logoUrl?: Maybe<String_Comparison_Exp>,
   mail?: Maybe<String_Comparison_Exp>,
@@ -3679,6 +4352,7 @@ export type Company_Insert_Input = {
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   logoUrl?: Maybe<Scalars['String']>,
   mail?: Maybe<Scalars['String']>,
@@ -3765,6 +4439,7 @@ export type Company_Order_By = {
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   faxNumber?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   logoUrl?: Maybe<Order_By>,
   mail?: Maybe<Order_By>,
@@ -3777,6 +4452,7 @@ export enum Company_Select_Column {
   CompanyId = 'companyID',
   Description = 'description',
   FaxNumber = 'faxNumber',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   LogoUrl = 'logoUrl',
   Mail = 'mail',
@@ -3789,6 +4465,7 @@ export type Company_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   faxNumber?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   logoUrl?: Maybe<Scalars['String']>,
   mail?: Maybe<Scalars['String']>,
@@ -3845,6 +4522,7 @@ export enum Company_Update_Column {
   CompanyId = 'companyID',
   Description = 'description',
   FaxNumber = 'faxNumber',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   LogoUrl = 'logoUrl',
   Mail = 'mail',
@@ -3892,6 +4570,7 @@ export type CompanyContact = {
   authority: Scalars['String'],
   compantUserID: Scalars['Int'],
   companyContactID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
 };
 
 export type CompanyContact_Aggregate = {
@@ -3959,6 +4638,7 @@ export type CompanyContact_Bool_Exp = {
   authority?: Maybe<String_Comparison_Exp>,
   compantUserID?: Maybe<Int_Comparison_Exp>,
   companyContactID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum CompanyContact_Constraint {
@@ -3975,6 +4655,7 @@ export type CompanyContact_Insert_Input = {
   authority?: Maybe<Scalars['String']>,
   compantUserID?: Maybe<Scalars['Int']>,
   companyContactID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type CompanyContact_Max_Fields = {
@@ -4025,18 +4706,21 @@ export type CompanyContact_Order_By = {
   authority?: Maybe<Order_By>,
   compantUserID?: Maybe<Order_By>,
   companyContactID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum CompanyContact_Select_Column {
   Authority = 'authority',
   CompantUserId = 'compantUserID',
-  CompanyContactId = 'companyContactID'
+  CompanyContactId = 'companyContactID',
+  IsDeleted = 'isDeleted'
 }
 
 export type CompanyContact_Set_Input = {
   authority?: Maybe<Scalars['String']>,
   compantUserID?: Maybe<Scalars['Int']>,
   companyContactID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type CompanyContact_Stddev_Fields = {
@@ -4086,7 +4770,8 @@ export type CompanyContact_Sum_Order_By = {
 export enum CompanyContact_Update_Column {
   Authority = 'authority',
   CompantUserId = 'compantUserID',
-  CompanyContactId = 'companyContactID'
+  CompanyContactId = 'companyContactID',
+  IsDeleted = 'isDeleted'
 }
 
 export type CompanyContact_Var_Pop_Fields = {
@@ -4128,6 +4813,7 @@ export type CompanyPhone = {
   Phone: Phone,
   companyID: Scalars['Int'],
   companyPhoneID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   phoneID: Scalars['Int'],
 };
 
@@ -4198,6 +4884,7 @@ export type CompanyPhone_Bool_Exp = {
   _or?: Maybe<Array<Maybe<CompanyPhone_Bool_Exp>>>,
   companyID?: Maybe<Int_Comparison_Exp>,
   companyPhoneID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   phoneID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -4216,6 +4903,7 @@ export type CompanyPhone_Insert_Input = {
   Phone?: Maybe<Phone_Obj_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   companyPhoneID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   phoneID?: Maybe<Scalars['Int']>,
 };
 
@@ -4267,18 +4955,21 @@ export type CompanyPhone_Order_By = {
   Phone?: Maybe<Phone_Order_By>,
   companyID?: Maybe<Order_By>,
   companyPhoneID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
 };
 
 export enum CompanyPhone_Select_Column {
   CompanyId = 'companyID',
   CompanyPhoneId = 'companyPhoneID',
+  IsDeleted = 'isDeleted',
   PhoneId = 'phoneID'
 }
 
 export type CompanyPhone_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
   companyPhoneID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   phoneID?: Maybe<Scalars['Int']>,
 };
 
@@ -4337,6 +5028,7 @@ export type CompanyPhone_Sum_Order_By = {
 export enum CompanyPhone_Update_Column {
   CompanyId = 'companyID',
   CompanyPhoneId = 'companyPhoneID',
+  IsDeleted = 'isDeleted',
   PhoneId = 'phoneID'
 }
 
@@ -4387,6 +5079,7 @@ export type CompanyUser = {
   User: User,
   companyID: Scalars['Int'],
   companyUserID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   userID: Scalars['Int'],
 };
 
@@ -4476,6 +5169,7 @@ export type CompanyUser_Bool_Exp = {
   _or?: Maybe<Array<Maybe<CompanyUser_Bool_Exp>>>,
   companyID?: Maybe<Int_Comparison_Exp>,
   companyUserID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   userID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -4495,6 +5189,7 @@ export type CompanyUser_Insert_Input = {
   User?: Maybe<User_Obj_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   companyUserID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   userID?: Maybe<Scalars['Int']>,
 };
 
@@ -4547,18 +5242,21 @@ export type CompanyUser_Order_By = {
   User?: Maybe<User_Order_By>,
   companyID?: Maybe<Order_By>,
   companyUserID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
 };
 
 export enum CompanyUser_Select_Column {
   CompanyId = 'companyID',
   CompanyUserId = 'companyUserID',
+  IsDeleted = 'isDeleted',
   UserId = 'userID'
 }
 
 export type CompanyUser_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
   companyUserID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   userID?: Maybe<Scalars['Int']>,
 };
 
@@ -4617,6 +5315,7 @@ export type CompanyUser_Sum_Order_By = {
 export enum CompanyUser_Update_Column {
   CompanyId = 'companyID',
   CompanyUserId = 'companyUserID',
+  IsDeleted = 'isDeleted',
   UserId = 'userID'
 }
 
@@ -4659,6 +5358,240 @@ export type CompanyUser_Variance_Order_By = {
   userID?: Maybe<Order_By>,
 };
 
+export type Country = {
+   __typename?: 'Country',
+  Cities: Array<City>,
+  Cities_aggregate: City_Aggregate,
+  country: Scalars['String'],
+  countryID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
+};
+
+
+export type CountryCitiesArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type CountryCities_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+export type Country_Aggregate = {
+   __typename?: 'Country_aggregate',
+  aggregate?: Maybe<Country_Aggregate_Fields>,
+  nodes: Array<Country>,
+};
+
+export type Country_Aggregate_Fields = {
+   __typename?: 'Country_aggregate_fields',
+  avg?: Maybe<Country_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<Country_Max_Fields>,
+  min?: Maybe<Country_Min_Fields>,
+  stddev?: Maybe<Country_Stddev_Fields>,
+  stddev_pop?: Maybe<Country_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<Country_Stddev_Samp_Fields>,
+  sum?: Maybe<Country_Sum_Fields>,
+  var_pop?: Maybe<Country_Var_Pop_Fields>,
+  var_samp?: Maybe<Country_Var_Samp_Fields>,
+  variance?: Maybe<Country_Variance_Fields>,
+};
+
+
+export type Country_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Country_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type Country_Aggregate_Order_By = {
+  avg?: Maybe<Country_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<Country_Max_Order_By>,
+  min?: Maybe<Country_Min_Order_By>,
+  stddev?: Maybe<Country_Stddev_Order_By>,
+  stddev_pop?: Maybe<Country_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<Country_Stddev_Samp_Order_By>,
+  sum?: Maybe<Country_Sum_Order_By>,
+  var_pop?: Maybe<Country_Var_Pop_Order_By>,
+  var_samp?: Maybe<Country_Var_Samp_Order_By>,
+  variance?: Maybe<Country_Variance_Order_By>,
+};
+
+export type Country_Arr_Rel_Insert_Input = {
+  data: Array<Country_Insert_Input>,
+  on_conflict?: Maybe<Country_On_Conflict>,
+};
+
+export type Country_Avg_Fields = {
+   __typename?: 'Country_avg_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Avg_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Bool_Exp = {
+  Cities?: Maybe<City_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<Country_Bool_Exp>>>,
+  _not?: Maybe<Country_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<Country_Bool_Exp>>>,
+  country?: Maybe<String_Comparison_Exp>,
+  countryID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
+};
+
+export enum Country_Constraint {
+  CountryPkey = 'Country_pkey'
+}
+
+export type Country_Inc_Input = {
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type Country_Insert_Input = {
+  Cities?: Maybe<City_Arr_Rel_Insert_Input>,
+  country?: Maybe<Scalars['String']>,
+  countryID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type Country_Max_Fields = {
+   __typename?: 'Country_max_fields',
+  country?: Maybe<Scalars['String']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type Country_Max_Order_By = {
+  country?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Min_Fields = {
+   __typename?: 'Country_min_fields',
+  country?: Maybe<Scalars['String']>,
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type Country_Min_Order_By = {
+  country?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Mutation_Response = {
+   __typename?: 'Country_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<Country>,
+};
+
+export type Country_Obj_Rel_Insert_Input = {
+  data: Country_Insert_Input,
+  on_conflict?: Maybe<Country_On_Conflict>,
+};
+
+export type Country_On_Conflict = {
+  constraint: Country_Constraint,
+  update_columns: Array<Country_Update_Column>,
+  where?: Maybe<Country_Bool_Exp>,
+};
+
+export type Country_Order_By = {
+  Cities_aggregate?: Maybe<City_Aggregate_Order_By>,
+  country?: Maybe<Order_By>,
+  countryID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
+};
+
+export enum Country_Select_Column {
+  Country = 'country',
+  CountryId = 'countryID',
+  IsDeleted = 'isDeleted'
+}
+
+export type Country_Set_Input = {
+  country?: Maybe<Scalars['String']>,
+  countryID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type Country_Stddev_Fields = {
+   __typename?: 'Country_stddev_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Stddev_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Stddev_Pop_Fields = {
+   __typename?: 'Country_stddev_pop_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Stddev_Pop_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Stddev_Samp_Fields = {
+   __typename?: 'Country_stddev_samp_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Stddev_Samp_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Sum_Fields = {
+   __typename?: 'Country_sum_fields',
+  countryID?: Maybe<Scalars['Int']>,
+};
+
+export type Country_Sum_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export enum Country_Update_Column {
+  Country = 'country',
+  CountryId = 'countryID',
+  IsDeleted = 'isDeleted'
+}
+
+export type Country_Var_Pop_Fields = {
+   __typename?: 'Country_var_pop_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Var_Pop_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Var_Samp_Fields = {
+   __typename?: 'Country_var_samp_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Var_Samp_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
+export type Country_Variance_Fields = {
+   __typename?: 'Country_variance_fields',
+  countryID?: Maybe<Scalars['Float']>,
+};
+
+export type Country_Variance_Order_By = {
+  countryID?: Maybe<Order_By>,
+};
+
 
 export type Date_Comparison_Exp = {
   _eq?: Maybe<Scalars['date']>,
@@ -4681,6 +5614,7 @@ export type Day = {
   RestaurantWorkingDays: Array<RestaurantWorkingDay>,
   RestaurantWorkingDays_aggregate: RestaurantWorkingDay_Aggregate,
   dayID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
 };
 
@@ -4801,6 +5735,7 @@ export type Day_Bool_Exp = {
   _not?: Maybe<Day_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Day_Bool_Exp>>>,
   dayID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
 };
 
@@ -4817,6 +5752,7 @@ export type Day_Insert_Input = {
   MuseumWorkingDays?: Maybe<MuseumWorkingDay_Arr_Rel_Insert_Input>,
   RestaurantWorkingDays?: Maybe<RestaurantWorkingDay_Arr_Rel_Insert_Input>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -4864,16 +5800,19 @@ export type Day_Order_By = {
   MuseumWorkingDays_aggregate?: Maybe<MuseumWorkingDay_Aggregate_Order_By>,
   RestaurantWorkingDays_aggregate?: Maybe<RestaurantWorkingDay_Aggregate_Order_By>,
   dayID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
 };
 
 export enum Day_Select_Column {
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   Name = 'name'
 }
 
 export type Day_Set_Input = {
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
 };
 
@@ -4915,6 +5854,7 @@ export type Day_Sum_Order_By = {
 
 export enum Day_Update_Column {
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   Name = 'name'
 }
 
@@ -4945,6 +5885,272 @@ export type Day_Variance_Order_By = {
   dayID?: Maybe<Order_By>,
 };
 
+export type District = {
+   __typename?: 'District',
+  Addresses: Array<Address>,
+  Addresses_aggregate: Address_Aggregate,
+  City: City,
+  cityID: Scalars['Int'],
+  district: Scalars['String'],
+  districtID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
+};
+
+
+export type DistrictAddressesArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type DistrictAddresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+export type District_Aggregate = {
+   __typename?: 'District_aggregate',
+  aggregate?: Maybe<District_Aggregate_Fields>,
+  nodes: Array<District>,
+};
+
+export type District_Aggregate_Fields = {
+   __typename?: 'District_aggregate_fields',
+  avg?: Maybe<District_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<District_Max_Fields>,
+  min?: Maybe<District_Min_Fields>,
+  stddev?: Maybe<District_Stddev_Fields>,
+  stddev_pop?: Maybe<District_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<District_Stddev_Samp_Fields>,
+  sum?: Maybe<District_Sum_Fields>,
+  var_pop?: Maybe<District_Var_Pop_Fields>,
+  var_samp?: Maybe<District_Var_Samp_Fields>,
+  variance?: Maybe<District_Variance_Fields>,
+};
+
+
+export type District_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<District_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type District_Aggregate_Order_By = {
+  avg?: Maybe<District_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<District_Max_Order_By>,
+  min?: Maybe<District_Min_Order_By>,
+  stddev?: Maybe<District_Stddev_Order_By>,
+  stddev_pop?: Maybe<District_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<District_Stddev_Samp_Order_By>,
+  sum?: Maybe<District_Sum_Order_By>,
+  var_pop?: Maybe<District_Var_Pop_Order_By>,
+  var_samp?: Maybe<District_Var_Samp_Order_By>,
+  variance?: Maybe<District_Variance_Order_By>,
+};
+
+export type District_Arr_Rel_Insert_Input = {
+  data: Array<District_Insert_Input>,
+  on_conflict?: Maybe<District_On_Conflict>,
+};
+
+export type District_Avg_Fields = {
+   __typename?: 'District_avg_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Avg_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Bool_Exp = {
+  Addresses?: Maybe<Address_Bool_Exp>,
+  City?: Maybe<City_Bool_Exp>,
+  _and?: Maybe<Array<Maybe<District_Bool_Exp>>>,
+  _not?: Maybe<District_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<District_Bool_Exp>>>,
+  cityID?: Maybe<Int_Comparison_Exp>,
+  district?: Maybe<String_Comparison_Exp>,
+  districtID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
+};
+
+export enum District_Constraint {
+  DistrictPkey = 'District_pkey'
+}
+
+export type District_Inc_Input = {
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type District_Insert_Input = {
+  Addresses?: Maybe<Address_Arr_Rel_Insert_Input>,
+  City?: Maybe<City_Obj_Rel_Insert_Input>,
+  cityID?: Maybe<Scalars['Int']>,
+  district?: Maybe<Scalars['String']>,
+  districtID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type District_Max_Fields = {
+   __typename?: 'District_max_fields',
+  cityID?: Maybe<Scalars['Int']>,
+  district?: Maybe<Scalars['String']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type District_Max_Order_By = {
+  cityID?: Maybe<Order_By>,
+  district?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Min_Fields = {
+   __typename?: 'District_min_fields',
+  cityID?: Maybe<Scalars['Int']>,
+  district?: Maybe<Scalars['String']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type District_Min_Order_By = {
+  cityID?: Maybe<Order_By>,
+  district?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Mutation_Response = {
+   __typename?: 'District_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<District>,
+};
+
+export type District_Obj_Rel_Insert_Input = {
+  data: District_Insert_Input,
+  on_conflict?: Maybe<District_On_Conflict>,
+};
+
+export type District_On_Conflict = {
+  constraint: District_Constraint,
+  update_columns: Array<District_Update_Column>,
+  where?: Maybe<District_Bool_Exp>,
+};
+
+export type District_Order_By = {
+  Addresses_aggregate?: Maybe<Address_Aggregate_Order_By>,
+  City?: Maybe<City_Order_By>,
+  cityID?: Maybe<Order_By>,
+  district?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
+};
+
+export enum District_Select_Column {
+  CityId = 'cityID',
+  District = 'district',
+  DistrictId = 'districtID',
+  IsDeleted = 'isDeleted'
+}
+
+export type District_Set_Input = {
+  cityID?: Maybe<Scalars['Int']>,
+  district?: Maybe<Scalars['String']>,
+  districtID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
+};
+
+export type District_Stddev_Fields = {
+   __typename?: 'District_stddev_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Stddev_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Stddev_Pop_Fields = {
+   __typename?: 'District_stddev_pop_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Stddev_Pop_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Stddev_Samp_Fields = {
+   __typename?: 'District_stddev_samp_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Stddev_Samp_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Sum_Fields = {
+   __typename?: 'District_sum_fields',
+  cityID?: Maybe<Scalars['Int']>,
+  districtID?: Maybe<Scalars['Int']>,
+};
+
+export type District_Sum_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export enum District_Update_Column {
+  CityId = 'cityID',
+  District = 'district',
+  DistrictId = 'districtID',
+  IsDeleted = 'isDeleted'
+}
+
+export type District_Var_Pop_Fields = {
+   __typename?: 'District_var_pop_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Var_Pop_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Var_Samp_Fields = {
+   __typename?: 'District_var_samp_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Var_Samp_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
+export type District_Variance_Fields = {
+   __typename?: 'District_variance_fields',
+  cityID?: Maybe<Scalars['Float']>,
+  districtID?: Maybe<Scalars['Float']>,
+};
+
+export type District_Variance_Order_By = {
+  cityID?: Maybe<Order_By>,
+  districtID?: Maybe<Order_By>,
+};
+
 export type Float_Comparison_Exp = {
   _eq?: Maybe<Scalars['Float']>,
   _gt?: Maybe<Scalars['Float']>,
@@ -4972,6 +6178,7 @@ export type Hotel = {
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   hotelID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   name: Scalars['String'],
   star?: Maybe<Scalars['Float']>,
@@ -5124,6 +6331,7 @@ export type Hotel_Bool_Exp = {
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   hotelID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
@@ -5150,6 +6358,7 @@ export type Hotel_Insert_Input = {
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
@@ -5225,6 +6434,7 @@ export type Hotel_Order_By = {
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
@@ -5235,6 +6445,7 @@ export enum Hotel_Select_Column {
   CompanyId = 'companyID',
   Description = 'description',
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   Star = 'star',
@@ -5245,6 +6456,7 @@ export type Hotel_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   star?: Maybe<Scalars['Float']>,
@@ -5315,6 +6527,7 @@ export enum Hotel_Update_Column {
   CompanyId = 'companyID',
   Description = 'description',
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   Star = 'star',
@@ -5374,6 +6587,7 @@ export type HotelComment = {
   date: Scalars['timestamptz'],
   hotelCommentID: Scalars['Int'],
   hotelID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   star: Scalars['Float'],
   userID: Scalars['Int'],
 };
@@ -5449,6 +6663,7 @@ export type HotelComment_Bool_Exp = {
   date?: Maybe<Timestamptz_Comparison_Exp>,
   hotelCommentID?: Maybe<Int_Comparison_Exp>,
   hotelID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
   userID?: Maybe<Int_Comparison_Exp>,
 };
@@ -5470,6 +6685,7 @@ export type HotelComment_Insert_Input = {
   date?: Maybe<Scalars['timestamptz']>,
   hotelCommentID?: Maybe<Scalars['Int']>,
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   star?: Maybe<Scalars['Float']>,
   userID?: Maybe<Scalars['Int']>,
 };
@@ -5536,6 +6752,7 @@ export type HotelComment_Order_By = {
   date?: Maybe<Order_By>,
   hotelCommentID?: Maybe<Order_By>,
   hotelID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
 };
@@ -5545,6 +6762,7 @@ export enum HotelComment_Select_Column {
   Date = 'date',
   HotelCommentId = 'hotelCommentID',
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   Star = 'star',
   UserId = 'userID'
 }
@@ -5554,6 +6772,7 @@ export type HotelComment_Set_Input = {
   date?: Maybe<Scalars['timestamptz']>,
   hotelCommentID?: Maybe<Scalars['Int']>,
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   star?: Maybe<Scalars['Float']>,
   userID?: Maybe<Scalars['Int']>,
 };
@@ -5623,6 +6842,7 @@ export enum HotelComment_Update_Column {
   Date = 'date',
   HotelCommentId = 'hotelCommentID',
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   Star = 'star',
   UserId = 'userID'
 }
@@ -5678,6 +6898,7 @@ export type HotelRoom = {
   Room: Room,
   hotelID: Scalars['Int'],
   hotelRoomID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   roomID: Scalars['Int'],
 };
 
@@ -5748,6 +6969,7 @@ export type HotelRoom_Bool_Exp = {
   _or?: Maybe<Array<Maybe<HotelRoom_Bool_Exp>>>,
   hotelID?: Maybe<Int_Comparison_Exp>,
   hotelRoomID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   roomID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -5766,6 +6988,7 @@ export type HotelRoom_Insert_Input = {
   Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   hotelID?: Maybe<Scalars['Int']>,
   hotelRoomID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
 };
 
@@ -5817,18 +7040,21 @@ export type HotelRoom_Order_By = {
   Room?: Maybe<Room_Order_By>,
   hotelID?: Maybe<Order_By>,
   hotelRoomID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
 };
 
 export enum HotelRoom_Select_Column {
   HotelId = 'hotelID',
   HotelRoomId = 'hotelRoomID',
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID'
 }
 
 export type HotelRoom_Set_Input = {
   hotelID?: Maybe<Scalars['Int']>,
   hotelRoomID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
 };
 
@@ -5887,6 +7113,7 @@ export type HotelRoom_Sum_Order_By = {
 export enum HotelRoom_Update_Column {
   HotelId = 'hotelID',
   HotelRoomId = 'hotelRoomID',
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID'
 }
 
@@ -5936,6 +7163,7 @@ export type HotelService = {
   hotelID: Scalars['Int'],
   hotelServiceHotelID: Scalars['Int'],
   hotelServicePropertyID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
 };
 
 export type HotelService_Aggregate = {
@@ -6006,6 +7234,7 @@ export type HotelService_Bool_Exp = {
   hotelID?: Maybe<Int_Comparison_Exp>,
   hotelServiceHotelID?: Maybe<Int_Comparison_Exp>,
   hotelServicePropertyID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum HotelService_Constraint {
@@ -6024,6 +7253,7 @@ export type HotelService_Insert_Input = {
   hotelID?: Maybe<Scalars['Int']>,
   hotelServiceHotelID?: Maybe<Scalars['Int']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type HotelService_Max_Fields = {
@@ -6075,18 +7305,21 @@ export type HotelService_Order_By = {
   hotelID?: Maybe<Order_By>,
   hotelServiceHotelID?: Maybe<Order_By>,
   hotelServicePropertyID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum HotelService_Select_Column {
   HotelId = 'hotelID',
   HotelServiceHotelId = 'hotelServiceHotelID',
-  HotelServicePropertyId = 'hotelServicePropertyID'
+  HotelServicePropertyId = 'hotelServicePropertyID',
+  IsDeleted = 'isDeleted'
 }
 
 export type HotelService_Set_Input = {
   hotelID?: Maybe<Scalars['Int']>,
   hotelServiceHotelID?: Maybe<Scalars['Int']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type HotelService_Stddev_Fields = {
@@ -6144,7 +7377,8 @@ export type HotelService_Sum_Order_By = {
 export enum HotelService_Update_Column {
   HotelId = 'hotelID',
   HotelServiceHotelId = 'hotelServiceHotelID',
-  HotelServicePropertyId = 'hotelServicePropertyID'
+  HotelServicePropertyId = 'hotelServicePropertyID',
+  IsDeleted = 'isDeleted'
 }
 
 export type HotelService_Var_Pop_Fields = {
@@ -6192,6 +7426,7 @@ export type HotelServiceProperty = {
   HotelServices_aggregate: HotelService_Aggregate,
   content: Scalars['String'],
   hotelServicePropertyID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
 };
 
 
@@ -6274,6 +7509,7 @@ export type HotelServiceProperty_Bool_Exp = {
   _or?: Maybe<Array<Maybe<HotelServiceProperty_Bool_Exp>>>,
   content?: Maybe<String_Comparison_Exp>,
   hotelServicePropertyID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
 export enum HotelServiceProperty_Constraint {
@@ -6288,6 +7524,7 @@ export type HotelServiceProperty_Insert_Input = {
   HotelServices?: Maybe<HotelService_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type HotelServiceProperty_Max_Fields = {
@@ -6333,16 +7570,19 @@ export type HotelServiceProperty_Order_By = {
   HotelServices_aggregate?: Maybe<HotelService_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
   hotelServicePropertyID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
 };
 
 export enum HotelServiceProperty_Select_Column {
   Content = 'content',
-  HotelServicePropertyId = 'hotelServicePropertyID'
+  HotelServicePropertyId = 'hotelServicePropertyID',
+  IsDeleted = 'isDeleted'
 }
 
 export type HotelServiceProperty_Set_Input = {
   content?: Maybe<Scalars['String']>,
   hotelServicePropertyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
 export type HotelServiceProperty_Stddev_Fields = {
@@ -6383,7 +7623,8 @@ export type HotelServiceProperty_Sum_Order_By = {
 
 export enum HotelServiceProperty_Update_Column {
   Content = 'content',
-  HotelServicePropertyId = 'hotelServicePropertyID'
+  HotelServicePropertyId = 'hotelServicePropertyID',
+  IsDeleted = 'isDeleted'
 }
 
 export type HotelServiceProperty_Var_Pop_Fields = {
@@ -6440,6 +7681,7 @@ export type Int_Comparison_Exp = {
 
 export type Location = {
    __typename?: 'Location',
+  Address: Address,
   ArchSites: Array<ArchSite>,
   ArchSites_aggregate: ArchSite_Aggregate,
   Companies: Array<Company>,
@@ -6452,7 +7694,8 @@ export type Location = {
   Restaurants_aggregate: Restaurant_Aggregate,
   TravelGuideLocations: Array<TravelGuideLocation>,
   TravelGuideLocations_aggregate: TravelGuideLocation_Aggregate,
-  address?: Maybe<Scalars['String']>,
+  addressID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   latitude: Scalars['Float'],
   locationID: Scalars['Int'],
   longtitude: Scalars['Float'],
@@ -6614,18 +7857,21 @@ export type Location_Arr_Rel_Insert_Input = {
 
 export type Location_Avg_Fields = {
    __typename?: 'Location_avg_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Avg_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
 };
 
 export type Location_Bool_Exp = {
+  Address?: Maybe<Address_Bool_Exp>,
   ArchSites?: Maybe<ArchSite_Bool_Exp>,
   Companies?: Maybe<Company_Bool_Exp>,
   Hotels?: Maybe<Hotel_Bool_Exp>,
@@ -6635,7 +7881,8 @@ export type Location_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Location_Bool_Exp>>>,
   _not?: Maybe<Location_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Location_Bool_Exp>>>,
-  address?: Maybe<String_Comparison_Exp>,
+  addressID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   latitude?: Maybe<Float_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   longtitude?: Maybe<Float_Comparison_Exp>,
@@ -6646,17 +7893,20 @@ export enum Location_Constraint {
 }
 
 export type Location_Inc_Input = {
+  addressID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
 };
 
 export type Location_Insert_Input = {
+  Address?: Maybe<Address_Obj_Rel_Insert_Input>,
   ArchSites?: Maybe<ArchSite_Arr_Rel_Insert_Input>,
   Companies?: Maybe<Company_Arr_Rel_Insert_Input>,
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
   Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
   TravelGuideLocations?: Maybe<TravelGuideLocation_Arr_Rel_Insert_Input>,
-  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
@@ -6664,14 +7914,14 @@ export type Location_Insert_Input = {
 
 export type Location_Max_Fields = {
    __typename?: 'Location_max_fields',
-  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Max_Order_By = {
-  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6679,14 +7929,14 @@ export type Location_Max_Order_By = {
 
 export type Location_Min_Fields = {
    __typename?: 'Location_min_fields',
-  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Min_Order_By = {
-  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6710,27 +7960,31 @@ export type Location_On_Conflict = {
 };
 
 export type Location_Order_By = {
+  Address?: Maybe<Address_Order_By>,
   ArchSites_aggregate?: Maybe<ArchSite_Aggregate_Order_By>,
   Companies_aggregate?: Maybe<Company_Aggregate_Order_By>,
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
   Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
   TravelGuideLocations_aggregate?: Maybe<TravelGuideLocation_Aggregate_Order_By>,
-  address?: Maybe<Order_By>,
+  addressID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
 };
 
 export enum Location_Select_Column {
-  Address = 'address',
+  AddressId = 'addressID',
+  IsDeleted = 'isDeleted',
   Latitude = 'latitude',
   LocationId = 'locationID',
   Longtitude = 'longtitude'
 }
 
 export type Location_Set_Input = {
-  address?: Maybe<Scalars['String']>,
+  addressID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
@@ -6738,12 +7992,14 @@ export type Location_Set_Input = {
 
 export type Location_Stddev_Fields = {
    __typename?: 'Location_stddev_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6751,12 +8007,14 @@ export type Location_Stddev_Order_By = {
 
 export type Location_Stddev_Pop_Fields = {
    __typename?: 'Location_stddev_pop_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Pop_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6764,12 +8022,14 @@ export type Location_Stddev_Pop_Order_By = {
 
 export type Location_Stddev_Samp_Fields = {
    __typename?: 'Location_stddev_samp_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Stddev_Samp_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6777,19 +8037,22 @@ export type Location_Stddev_Samp_Order_By = {
 
 export type Location_Sum_Fields = {
    __typename?: 'Location_sum_fields',
+  addressID?: Maybe<Scalars['Int']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Sum_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
 };
 
 export enum Location_Update_Column {
-  Address = 'address',
+  AddressId = 'addressID',
+  IsDeleted = 'isDeleted',
   Latitude = 'latitude',
   LocationId = 'locationID',
   Longtitude = 'longtitude'
@@ -6797,12 +8060,14 @@ export enum Location_Update_Column {
 
 export type Location_Var_Pop_Fields = {
    __typename?: 'Location_var_pop_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Var_Pop_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6810,12 +8075,14 @@ export type Location_Var_Pop_Order_By = {
 
 export type Location_Var_Samp_Fields = {
    __typename?: 'Location_var_samp_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Var_Samp_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6823,12 +8090,14 @@ export type Location_Var_Samp_Order_By = {
 
 export type Location_Variance_Fields = {
    __typename?: 'Location_variance_fields',
+  addressID?: Maybe<Scalars['Float']>,
   latitude?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   longtitude?: Maybe<Scalars['Float']>,
 };
 
 export type Location_Variance_Order_By = {
+  addressID?: Maybe<Order_By>,
   latitude?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   longtitude?: Maybe<Order_By>,
@@ -6838,6 +8107,7 @@ export type LoginType = {
    __typename?: 'LoginType',
   Users: Array<User>,
   Users_aggregate: User_Aggregate,
+  isDeleted: Scalars['Boolean'],
   loginTypeID: Scalars['Int'],
   type: Scalars['String'],
 };
@@ -6920,6 +8190,7 @@ export type LoginType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<LoginType_Bool_Exp>>>,
   _not?: Maybe<LoginType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<LoginType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   loginTypeID?: Maybe<Int_Comparison_Exp>,
   type?: Maybe<String_Comparison_Exp>,
 };
@@ -6934,6 +8205,7 @@ export type LoginType_Inc_Input = {
 
 export type LoginType_Insert_Input = {
   Users?: Maybe<User_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   loginTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -6979,16 +8251,19 @@ export type LoginType_On_Conflict = {
 
 export type LoginType_Order_By = {
   Users_aggregate?: Maybe<User_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   loginTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
 
 export enum LoginType_Select_Column {
+  IsDeleted = 'isDeleted',
   LoginTypeId = 'loginTypeID',
   Type = 'type'
 }
 
 export type LoginType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   loginTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -7030,6 +8305,7 @@ export type LoginType_Sum_Order_By = {
 };
 
 export enum LoginType_Update_Column {
+  IsDeleted = 'isDeleted',
   LoginTypeId = 'loginTypeID',
   Type = 'type'
 }
@@ -7075,6 +8351,7 @@ export type Museum = {
   TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
   companyID: Scalars['Int'],
   description: Scalars['String'],
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   museumID: Scalars['Int'],
   name: Scalars['String'],
@@ -7223,6 +8500,7 @@ export type Museum_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
@@ -7247,6 +8525,7 @@ export type Museum_Insert_Input = {
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
@@ -7312,6 +8591,7 @@ export type Museum_Order_By = {
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
@@ -7320,6 +8600,7 @@ export type Museum_Order_By = {
 export enum Museum_Select_Column {
   CompanyId = 'companyID',
   Description = 'description',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   MuseumId = 'museumID',
   Name = 'name'
@@ -7328,6 +8609,7 @@ export enum Museum_Select_Column {
 export type Museum_Set_Input = {
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
@@ -7388,6 +8670,7 @@ export type Museum_Sum_Order_By = {
 export enum Museum_Update_Column {
   CompanyId = 'companyID',
   Description = 'description',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   MuseumId = 'museumID',
   Name = 'name'
@@ -7438,6 +8721,7 @@ export type MuseumComment = {
   User: User,
   content: Scalars['String'],
   date: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   museumCommentID: Scalars['Int'],
   museumID: Scalars['Int'],
   star: Scalars['Float'],
@@ -7513,6 +8797,7 @@ export type MuseumComment_Bool_Exp = {
   _or?: Maybe<Array<Maybe<MuseumComment_Bool_Exp>>>,
   content?: Maybe<String_Comparison_Exp>,
   date?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumCommentID?: Maybe<Int_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
@@ -7534,6 +8819,7 @@ export type MuseumComment_Insert_Input = {
   User?: Maybe<User_Obj_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumCommentID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
   star?: Maybe<Scalars['Float']>,
@@ -7600,6 +8886,7 @@ export type MuseumComment_Order_By = {
   User?: Maybe<User_Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumCommentID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
@@ -7609,6 +8896,7 @@ export type MuseumComment_Order_By = {
 export enum MuseumComment_Select_Column {
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   MuseumCommentId = 'museumCommentID',
   MuseumId = 'museumID',
   Star = 'star',
@@ -7618,6 +8906,7 @@ export enum MuseumComment_Select_Column {
 export type MuseumComment_Set_Input = {
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumCommentID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
   star?: Maybe<Scalars['Float']>,
@@ -7687,6 +8976,7 @@ export type MuseumComment_Sum_Order_By = {
 export enum MuseumComment_Update_Column {
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   MuseumCommentId = 'museumCommentID',
   MuseumId = 'museumID',
   Star = 'star',
@@ -7743,6 +9033,7 @@ export type MuseumEntranceType = {
   MuseumPrices: Array<MuseumPrice>,
   MuseumPrices_aggregate: MuseumPrice_Aggregate,
   content: Scalars['String'],
+  isDeleted: Scalars['Boolean'],
   museumEntranceTypeID: Scalars['Int'],
 };
 
@@ -7825,6 +9116,7 @@ export type MuseumEntranceType_Bool_Exp = {
   _not?: Maybe<MuseumEntranceType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumEntranceType_Bool_Exp>>>,
   content?: Maybe<String_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumEntranceTypeID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -7839,6 +9131,7 @@ export type MuseumEntranceType_Inc_Input = {
 export type MuseumEntranceType_Insert_Input = {
   MuseumPrices?: Maybe<MuseumPrice_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumEntranceTypeID?: Maybe<Scalars['Int']>,
 };
 
@@ -7884,16 +9177,19 @@ export type MuseumEntranceType_On_Conflict = {
 export type MuseumEntranceType_Order_By = {
   MuseumPrices_aggregate?: Maybe<MuseumPrice_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumEntranceTypeID?: Maybe<Order_By>,
 };
 
 export enum MuseumEntranceType_Select_Column {
   Content = 'content',
+  IsDeleted = 'isDeleted',
   MuseumEntranceTypeId = 'museumEntranceTypeID'
 }
 
 export type MuseumEntranceType_Set_Input = {
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumEntranceTypeID?: Maybe<Scalars['Int']>,
 };
 
@@ -7935,6 +9231,7 @@ export type MuseumEntranceType_Sum_Order_By = {
 
 export enum MuseumEntranceType_Update_Column {
   Content = 'content',
+  IsDeleted = 'isDeleted',
   MuseumEntranceTypeId = 'museumEntranceTypeID'
 }
 
@@ -7970,6 +9267,7 @@ export type MuseumPrice = {
   MuseumEntranceType: MuseumEntranceType,
   entranceTypeID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   museumID: Scalars['Int'],
   museumPriceID: Scalars['Int'],
   price: Scalars['Float'],
@@ -8044,6 +9342,7 @@ export type MuseumPrice_Bool_Exp = {
   _or?: Maybe<Array<Maybe<MuseumPrice_Bool_Exp>>>,
   entranceTypeID?: Maybe<Int_Comparison_Exp>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   museumPriceID?: Maybe<Int_Comparison_Exp>,
   price?: Maybe<Float_Comparison_Exp>,
@@ -8064,6 +9363,7 @@ export type MuseumPrice_Insert_Input = {
   MuseumEntranceType?: Maybe<MuseumEntranceType_Obj_Rel_Insert_Input>,
   entranceTypeID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumPriceID?: Maybe<Scalars['Int']>,
   price?: Maybe<Scalars['Float']>,
@@ -8129,6 +9429,7 @@ export type MuseumPrice_Order_By = {
   MuseumEntranceType?: Maybe<MuseumEntranceType_Order_By>,
   entranceTypeID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   museumPriceID?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
@@ -8138,6 +9439,7 @@ export type MuseumPrice_Order_By = {
 export enum MuseumPrice_Select_Column {
   EntranceTypeId = 'entranceTypeID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumPriceId = 'museumPriceID',
   Price = 'price',
@@ -8147,6 +9449,7 @@ export enum MuseumPrice_Select_Column {
 export type MuseumPrice_Set_Input = {
   entranceTypeID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumPriceID?: Maybe<Scalars['Int']>,
   price?: Maybe<Scalars['Float']>,
@@ -8216,6 +9519,7 @@ export type MuseumPrice_Sum_Order_By = {
 export enum MuseumPrice_Update_Column {
   EntranceTypeId = 'entranceTypeID',
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumPriceId = 'museumPriceID',
   Price = 'price',
@@ -8271,6 +9575,7 @@ export type MuseumType = {
    __typename?: 'MuseumType',
   MuseumTypeMuseums: Array<MuseumTypeMuseum>,
   MuseumTypeMuseums_aggregate: MuseumTypeMuseum_Aggregate,
+  isDeleted: Scalars['Boolean'],
   museumTypeID: Scalars['Int'],
   type: Scalars['String'],
 };
@@ -8353,6 +9658,7 @@ export type MuseumType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
   _not?: Maybe<MuseumType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumTypeID?: Maybe<Int_Comparison_Exp>,
   type?: Maybe<String_Comparison_Exp>,
 };
@@ -8368,6 +9674,7 @@ export type MuseumType_Inc_Input = {
 
 export type MuseumType_Insert_Input = {
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -8413,16 +9720,19 @@ export type MuseumType_On_Conflict = {
 
 export type MuseumType_Order_By = {
   MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
 
 export enum MuseumType_Select_Column {
+  IsDeleted = 'isDeleted',
   MuseumTypeId = 'museumTypeID',
   Type = 'type'
 }
 
 export type MuseumType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -8464,6 +9774,7 @@ export type MuseumType_Sum_Order_By = {
 };
 
 export enum MuseumType_Update_Column {
+  IsDeleted = 'isDeleted',
   MuseumTypeId = 'museumTypeID',
   Type = 'type'
 }
@@ -8499,6 +9810,7 @@ export type MuseumTypeMuseum = {
    __typename?: 'MuseumTypeMuseum',
   Museum: Museum,
   MuseumType: MuseumType,
+  isDeleted: Scalars['Boolean'],
   museumID: Scalars['Int'],
   museumTypeID: Scalars['Int'],
   museumTypeMuseumID: Scalars['Int'],
@@ -8569,6 +9881,7 @@ export type MuseumTypeMuseum_Bool_Exp = {
   _and?: Maybe<Array<Maybe<MuseumTypeMuseum_Bool_Exp>>>,
   _not?: Maybe<MuseumTypeMuseum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumTypeMuseum_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   museumTypeID?: Maybe<Int_Comparison_Exp>,
   museumTypeMuseumID?: Maybe<Int_Comparison_Exp>,
@@ -8587,6 +9900,7 @@ export type MuseumTypeMuseum_Inc_Input = {
 export type MuseumTypeMuseum_Insert_Input = {
   Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
   MuseumType?: Maybe<MuseumType_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumTypeID?: Maybe<Scalars['Int']>,
   museumTypeMuseumID?: Maybe<Scalars['Int']>,
@@ -8638,18 +9952,21 @@ export type MuseumTypeMuseum_On_Conflict = {
 export type MuseumTypeMuseum_Order_By = {
   Museum?: Maybe<Museum_Order_By>,
   MuseumType?: Maybe<MuseumType_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   museumTypeID?: Maybe<Order_By>,
   museumTypeMuseumID?: Maybe<Order_By>,
 };
 
 export enum MuseumTypeMuseum_Select_Column {
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumTypeId = 'museumTypeID',
   MuseumTypeMuseumId = 'museumTypeMuseumID'
 }
 
 export type MuseumTypeMuseum_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumTypeID?: Maybe<Scalars['Int']>,
   museumTypeMuseumID?: Maybe<Scalars['Int']>,
@@ -8708,6 +10025,7 @@ export type MuseumTypeMuseum_Sum_Order_By = {
 };
 
 export enum MuseumTypeMuseum_Update_Column {
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumTypeId = 'museumTypeID',
   MuseumTypeMuseumId = 'museumTypeMuseumID'
@@ -8759,6 +10077,7 @@ export type MuseumWorkingDay = {
   MuseumWorkingDaySchedules_aggregate: MuseumWorkingDaySchedule_Aggregate,
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   museumWorkingDayID: Scalars['Int'],
   openHour: Scalars['timetz'],
 };
@@ -8846,6 +10165,7 @@ export type MuseumWorkingDay_Bool_Exp = {
   _or?: Maybe<Array<Maybe<MuseumWorkingDay_Bool_Exp>>>,
   closeHour?: Maybe<Timetz_Comparison_Exp>,
   dayID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumWorkingDayID?: Maybe<Int_Comparison_Exp>,
   openHour?: Maybe<Timetz_Comparison_Exp>,
 };
@@ -8864,6 +10184,7 @@ export type MuseumWorkingDay_Insert_Input = {
   MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Arr_Rel_Insert_Input>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
   openHour?: Maybe<Scalars['timetz']>,
 };
@@ -8920,6 +10241,7 @@ export type MuseumWorkingDay_Order_By = {
   MuseumWorkingDaySchedules_aggregate?: Maybe<MuseumWorkingDaySchedule_Aggregate_Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumWorkingDayID?: Maybe<Order_By>,
   openHour?: Maybe<Order_By>,
 };
@@ -8927,6 +10249,7 @@ export type MuseumWorkingDay_Order_By = {
 export enum MuseumWorkingDay_Select_Column {
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   MuseumWorkingDayId = 'museumWorkingDayID',
   OpenHour = 'openHour'
 }
@@ -8934,6 +10257,7 @@ export enum MuseumWorkingDay_Select_Column {
 export type MuseumWorkingDay_Set_Input = {
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
   openHour?: Maybe<Scalars['timetz']>,
 };
@@ -8985,6 +10309,7 @@ export type MuseumWorkingDay_Sum_Order_By = {
 export enum MuseumWorkingDay_Update_Column {
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   MuseumWorkingDayId = 'museumWorkingDayID',
   OpenHour = 'openHour'
 }
@@ -9026,6 +10351,7 @@ export type MuseumWorkingDaySchedule = {
    __typename?: 'MuseumWorkingDaySchedule',
   MuseumWorkingDay: MuseumWorkingDay,
   MuseumWorkingSchedule: MuseumWorkingSchedule,
+  isDeleted: Scalars['Boolean'],
   museumWorkingDayID: Scalars['Int'],
   museumWorkingDayScheduleID: Scalars['Int'],
   museumWorkingScheduleID: Scalars['Int'],
@@ -9096,6 +10422,7 @@ export type MuseumWorkingDaySchedule_Bool_Exp = {
   _and?: Maybe<Array<Maybe<MuseumWorkingDaySchedule_Bool_Exp>>>,
   _not?: Maybe<MuseumWorkingDaySchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumWorkingDaySchedule_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumWorkingDayID?: Maybe<Int_Comparison_Exp>,
   museumWorkingDayScheduleID?: Maybe<Int_Comparison_Exp>,
   museumWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
@@ -9114,6 +10441,7 @@ export type MuseumWorkingDaySchedule_Inc_Input = {
 export type MuseumWorkingDaySchedule_Insert_Input = {
   MuseumWorkingDay?: Maybe<MuseumWorkingDay_Obj_Rel_Insert_Input>,
   MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
   museumWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -9165,18 +10493,21 @@ export type MuseumWorkingDaySchedule_On_Conflict = {
 export type MuseumWorkingDaySchedule_Order_By = {
   MuseumWorkingDay?: Maybe<MuseumWorkingDay_Order_By>,
   MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumWorkingDayID?: Maybe<Order_By>,
   museumWorkingDayScheduleID?: Maybe<Order_By>,
   museumWorkingScheduleID?: Maybe<Order_By>,
 };
 
 export enum MuseumWorkingDaySchedule_Select_Column {
+  IsDeleted = 'isDeleted',
   MuseumWorkingDayId = 'museumWorkingDayID',
   MuseumWorkingDayScheduleId = 'museumWorkingDayScheduleID',
   MuseumWorkingScheduleId = 'museumWorkingScheduleID'
 }
 
 export type MuseumWorkingDaySchedule_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumWorkingDayID?: Maybe<Scalars['Int']>,
   museumWorkingDayScheduleID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -9235,6 +10566,7 @@ export type MuseumWorkingDaySchedule_Sum_Order_By = {
 };
 
 export enum MuseumWorkingDaySchedule_Update_Column {
+  IsDeleted = 'isDeleted',
   MuseumWorkingDayId = 'museumWorkingDayID',
   MuseumWorkingDayScheduleId = 'museumWorkingDayScheduleID',
   MuseumWorkingScheduleId = 'museumWorkingScheduleID'
@@ -9285,6 +10617,7 @@ export type MuseumWorkingSchedule = {
   MuseumWorkingDaySchedules: Array<MuseumWorkingDaySchedule>,
   MuseumWorkingDaySchedules_aggregate: MuseumWorkingDaySchedule_Aggregate,
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   museumID: Scalars['Int'],
   museumWorkingScheduleID: Scalars['Int'],
   startDate: Scalars['timestamptz'],
@@ -9372,6 +10705,7 @@ export type MuseumWorkingSchedule_Bool_Exp = {
   _not?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<MuseumWorkingSchedule_Bool_Exp>>>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   museumWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
   startDate?: Maybe<Timestamptz_Comparison_Exp>,
@@ -9390,6 +10724,7 @@ export type MuseumWorkingSchedule_Insert_Input = {
   Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
   MuseumWorkingDaySchedules?: Maybe<MuseumWorkingDaySchedule_Arr_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
   startDate?: Maybe<Scalars['timestamptz']>,
@@ -9446,6 +10781,7 @@ export type MuseumWorkingSchedule_Order_By = {
   Museum?: Maybe<Museum_Order_By>,
   MuseumWorkingDaySchedules_aggregate?: Maybe<MuseumWorkingDaySchedule_Aggregate_Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   museumWorkingScheduleID?: Maybe<Order_By>,
   startDate?: Maybe<Order_By>,
@@ -9453,6 +10789,7 @@ export type MuseumWorkingSchedule_Order_By = {
 
 export enum MuseumWorkingSchedule_Select_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumWorkingScheduleId = 'museumWorkingScheduleID',
   StartDate = 'startDate'
@@ -9460,6 +10797,7 @@ export enum MuseumWorkingSchedule_Select_Column {
 
 export type MuseumWorkingSchedule_Set_Input = {
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   museumWorkingScheduleID?: Maybe<Scalars['Int']>,
   startDate?: Maybe<Scalars['timestamptz']>,
@@ -9511,6 +10849,7 @@ export type MuseumWorkingSchedule_Sum_Order_By = {
 
 export enum MuseumWorkingSchedule_Update_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   MuseumWorkingScheduleId = 'museumWorkingScheduleID',
   StartDate = 'startDate'
@@ -9551,6 +10890,7 @@ export type MuseumWorkingSchedule_Variance_Order_By = {
 
 export type Mutation_Root = {
    __typename?: 'mutation_root',
+  delete_Address?: Maybe<Address_Mutation_Response>,
   delete_ArchSite?: Maybe<ArchSite_Mutation_Response>,
   delete_ArchSiteComment?: Maybe<ArchSiteComment_Mutation_Response>,
   delete_ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Mutation_Response>,
@@ -9563,11 +10903,14 @@ export type Mutation_Root = {
   delete_Article?: Maybe<Article_Mutation_Response>,
   delete_ArticleTag?: Maybe<ArticleTag_Mutation_Response>,
   delete_ArticleUser?: Maybe<ArticleUser_Mutation_Response>,
+  delete_City?: Maybe<City_Mutation_Response>,
   delete_Company?: Maybe<Company_Mutation_Response>,
   delete_CompanyContact?: Maybe<CompanyContact_Mutation_Response>,
   delete_CompanyPhone?: Maybe<CompanyPhone_Mutation_Response>,
   delete_CompanyUser?: Maybe<CompanyUser_Mutation_Response>,
+  delete_Country?: Maybe<Country_Mutation_Response>,
   delete_Day?: Maybe<Day_Mutation_Response>,
+  delete_District?: Maybe<District_Mutation_Response>,
   delete_Hotel?: Maybe<Hotel_Mutation_Response>,
   delete_HotelComment?: Maybe<HotelComment_Mutation_Response>,
   delete_HotelRoom?: Maybe<HotelRoom_Mutation_Response>,
@@ -9611,6 +10954,7 @@ export type Mutation_Root = {
   delete_TravelGuideRestaurant?: Maybe<TravelGuideRestaurant_Mutation_Response>,
   delete_User?: Maybe<User_Mutation_Response>,
   delete_UserType?: Maybe<UserType_Mutation_Response>,
+  insert_Address?: Maybe<Address_Mutation_Response>,
   insert_ArchSite?: Maybe<ArchSite_Mutation_Response>,
   insert_ArchSiteComment?: Maybe<ArchSiteComment_Mutation_Response>,
   insert_ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Mutation_Response>,
@@ -9623,11 +10967,14 @@ export type Mutation_Root = {
   insert_Article?: Maybe<Article_Mutation_Response>,
   insert_ArticleTag?: Maybe<ArticleTag_Mutation_Response>,
   insert_ArticleUser?: Maybe<ArticleUser_Mutation_Response>,
+  insert_City?: Maybe<City_Mutation_Response>,
   insert_Company?: Maybe<Company_Mutation_Response>,
   insert_CompanyContact?: Maybe<CompanyContact_Mutation_Response>,
   insert_CompanyPhone?: Maybe<CompanyPhone_Mutation_Response>,
   insert_CompanyUser?: Maybe<CompanyUser_Mutation_Response>,
+  insert_Country?: Maybe<Country_Mutation_Response>,
   insert_Day?: Maybe<Day_Mutation_Response>,
+  insert_District?: Maybe<District_Mutation_Response>,
   insert_Hotel?: Maybe<Hotel_Mutation_Response>,
   insert_HotelComment?: Maybe<HotelComment_Mutation_Response>,
   insert_HotelRoom?: Maybe<HotelRoom_Mutation_Response>,
@@ -9671,6 +11018,7 @@ export type Mutation_Root = {
   insert_TravelGuideRestaurant?: Maybe<TravelGuideRestaurant_Mutation_Response>,
   insert_User?: Maybe<User_Mutation_Response>,
   insert_UserType?: Maybe<UserType_Mutation_Response>,
+  update_Address?: Maybe<Address_Mutation_Response>,
   update_ArchSite?: Maybe<ArchSite_Mutation_Response>,
   update_ArchSiteComment?: Maybe<ArchSiteComment_Mutation_Response>,
   update_ArchSiteEntranceType?: Maybe<ArchSiteEntranceType_Mutation_Response>,
@@ -9683,11 +11031,14 @@ export type Mutation_Root = {
   update_Article?: Maybe<Article_Mutation_Response>,
   update_ArticleTag?: Maybe<ArticleTag_Mutation_Response>,
   update_ArticleUser?: Maybe<ArticleUser_Mutation_Response>,
+  update_City?: Maybe<City_Mutation_Response>,
   update_Company?: Maybe<Company_Mutation_Response>,
   update_CompanyContact?: Maybe<CompanyContact_Mutation_Response>,
   update_CompanyPhone?: Maybe<CompanyPhone_Mutation_Response>,
   update_CompanyUser?: Maybe<CompanyUser_Mutation_Response>,
+  update_Country?: Maybe<Country_Mutation_Response>,
   update_Day?: Maybe<Day_Mutation_Response>,
+  update_District?: Maybe<District_Mutation_Response>,
   update_Hotel?: Maybe<Hotel_Mutation_Response>,
   update_HotelComment?: Maybe<HotelComment_Mutation_Response>,
   update_HotelRoom?: Maybe<HotelRoom_Mutation_Response>,
@@ -9731,6 +11082,11 @@ export type Mutation_Root = {
   update_TravelGuideRestaurant?: Maybe<TravelGuideRestaurant_Mutation_Response>,
   update_User?: Maybe<User_Mutation_Response>,
   update_UserType?: Maybe<UserType_Mutation_Response>,
+};
+
+
+export type Mutation_RootDelete_AddressArgs = {
+  where: Address_Bool_Exp
 };
 
 
@@ -9794,6 +11150,11 @@ export type Mutation_RootDelete_ArticleUserArgs = {
 };
 
 
+export type Mutation_RootDelete_CityArgs = {
+  where: City_Bool_Exp
+};
+
+
 export type Mutation_RootDelete_CompanyArgs = {
   where: Company_Bool_Exp
 };
@@ -9814,8 +11175,18 @@ export type Mutation_RootDelete_CompanyUserArgs = {
 };
 
 
+export type Mutation_RootDelete_CountryArgs = {
+  where: Country_Bool_Exp
+};
+
+
 export type Mutation_RootDelete_DayArgs = {
   where: Day_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_DistrictArgs = {
+  where: District_Bool_Exp
 };
 
 
@@ -10034,6 +11405,12 @@ export type Mutation_RootDelete_UserTypeArgs = {
 };
 
 
+export type Mutation_RootInsert_AddressArgs = {
+  objects: Array<Address_Insert_Input>,
+  on_conflict?: Maybe<Address_On_Conflict>
+};
+
+
 export type Mutation_RootInsert_ArchSiteArgs = {
   objects: Array<ArchSite_Insert_Input>,
   on_conflict?: Maybe<ArchSite_On_Conflict>
@@ -10106,6 +11483,12 @@ export type Mutation_RootInsert_ArticleUserArgs = {
 };
 
 
+export type Mutation_RootInsert_CityArgs = {
+  objects: Array<City_Insert_Input>,
+  on_conflict?: Maybe<City_On_Conflict>
+};
+
+
 export type Mutation_RootInsert_CompanyArgs = {
   objects: Array<Company_Insert_Input>,
   on_conflict?: Maybe<Company_On_Conflict>
@@ -10130,9 +11513,21 @@ export type Mutation_RootInsert_CompanyUserArgs = {
 };
 
 
+export type Mutation_RootInsert_CountryArgs = {
+  objects: Array<Country_Insert_Input>,
+  on_conflict?: Maybe<Country_On_Conflict>
+};
+
+
 export type Mutation_RootInsert_DayArgs = {
   objects: Array<Day_Insert_Input>,
   on_conflict?: Maybe<Day_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_DistrictArgs = {
+  objects: Array<District_Insert_Input>,
+  on_conflict?: Maybe<District_On_Conflict>
 };
 
 
@@ -10394,6 +11789,13 @@ export type Mutation_RootInsert_UserTypeArgs = {
 };
 
 
+export type Mutation_RootUpdate_AddressArgs = {
+  _inc?: Maybe<Address_Inc_Input>,
+  _set?: Maybe<Address_Set_Input>,
+  where: Address_Bool_Exp
+};
+
+
 export type Mutation_RootUpdate_ArchSiteArgs = {
   _inc?: Maybe<ArchSite_Inc_Input>,
   _set?: Maybe<ArchSite_Set_Input>,
@@ -10478,6 +11880,13 @@ export type Mutation_RootUpdate_ArticleUserArgs = {
 };
 
 
+export type Mutation_RootUpdate_CityArgs = {
+  _inc?: Maybe<City_Inc_Input>,
+  _set?: Maybe<City_Set_Input>,
+  where: City_Bool_Exp
+};
+
+
 export type Mutation_RootUpdate_CompanyArgs = {
   _inc?: Maybe<Company_Inc_Input>,
   _set?: Maybe<Company_Set_Input>,
@@ -10506,10 +11915,24 @@ export type Mutation_RootUpdate_CompanyUserArgs = {
 };
 
 
+export type Mutation_RootUpdate_CountryArgs = {
+  _inc?: Maybe<Country_Inc_Input>,
+  _set?: Maybe<Country_Set_Input>,
+  where: Country_Bool_Exp
+};
+
+
 export type Mutation_RootUpdate_DayArgs = {
   _inc?: Maybe<Day_Inc_Input>,
   _set?: Maybe<Day_Set_Input>,
   where: Day_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_DistrictArgs = {
+  _inc?: Maybe<District_Inc_Input>,
+  _set?: Maybe<District_Set_Input>,
+  where: District_Bool_Exp
 };
 
 
@@ -10828,6 +12251,7 @@ export type Phone = {
   CompanyPhones_aggregate: CompanyPhone_Aggregate,
   Users: Array<User>,
   Users_aggregate: User_Aggregate,
+  isDeleted: Scalars['Boolean'],
   phone: Scalars['String'],
   phoneID: Scalars['Int'],
 };
@@ -10929,6 +12353,7 @@ export type Phone_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Phone_Bool_Exp>>>,
   _not?: Maybe<Phone_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Phone_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   phone?: Maybe<String_Comparison_Exp>,
   phoneID?: Maybe<Int_Comparison_Exp>,
 };
@@ -10944,6 +12369,7 @@ export type Phone_Inc_Input = {
 export type Phone_Insert_Input = {
   CompanyPhones?: Maybe<CompanyPhone_Arr_Rel_Insert_Input>,
   Users?: Maybe<User_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   phone?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
 };
@@ -10990,16 +12416,19 @@ export type Phone_On_Conflict = {
 export type Phone_Order_By = {
   CompanyPhones_aggregate?: Maybe<CompanyPhone_Aggregate_Order_By>,
   Users_aggregate?: Maybe<User_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   phone?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
 };
 
 export enum Phone_Select_Column {
+  IsDeleted = 'isDeleted',
   Phone = 'phone',
   PhoneId = 'phoneID'
 }
 
 export type Phone_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   phone?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
 };
@@ -11041,6 +12470,7 @@ export type Phone_Sum_Order_By = {
 };
 
 export enum Phone_Update_Column {
+  IsDeleted = 'isDeleted',
   Phone = 'phone',
   PhoneId = 'phoneID'
 }
@@ -11074,6 +12504,9 @@ export type Phone_Variance_Order_By = {
 
 export type Query_Root = {
    __typename?: 'query_root',
+  Address: Array<Address>,
+  Address_aggregate: Address_Aggregate,
+  Address_by_pk?: Maybe<Address>,
   ArchSite: Array<ArchSite>,
   ArchSiteComment: Array<ArchSiteComment>,
   ArchSiteComment_aggregate: ArchSiteComment_Aggregate,
@@ -11110,6 +12543,9 @@ export type Query_Root = {
   ArticleUser_by_pk?: Maybe<ArticleUser>,
   Article_aggregate: Article_Aggregate,
   Article_by_pk?: Maybe<Article>,
+  City: Array<City>,
+  City_aggregate: City_Aggregate,
+  City_by_pk?: Maybe<City>,
   Company: Array<Company>,
   CompanyContact: Array<CompanyContact>,
   CompanyContact_aggregate: CompanyContact_Aggregate,
@@ -11122,9 +12558,15 @@ export type Query_Root = {
   CompanyUser_by_pk?: Maybe<CompanyUser>,
   Company_aggregate: Company_Aggregate,
   Company_by_pk?: Maybe<Company>,
+  Country: Array<Country>,
+  Country_aggregate: Country_Aggregate,
+  Country_by_pk?: Maybe<Country>,
   Day: Array<Day>,
   Day_aggregate: Day_Aggregate,
   Day_by_pk?: Maybe<Day>,
+  District: Array<District>,
+  District_aggregate: District_Aggregate,
+  District_by_pk?: Maybe<District>,
   Hotel: Array<Hotel>,
   HotelComment: Array<HotelComment>,
   HotelComment_aggregate: HotelComment_Aggregate,
@@ -11254,6 +12696,29 @@ export type Query_Root = {
   UserType_by_pk?: Maybe<UserType>,
   User_aggregate: User_Aggregate,
   User_by_pk?: Maybe<User>,
+};
+
+
+export type Query_RootAddressArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type Query_RootAddress_AggregateArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type Query_RootAddress_By_PkArgs = {
+  addressID: Scalars['Int']
 };
 
 
@@ -11533,6 +12998,29 @@ export type Query_RootArticle_By_PkArgs = {
 };
 
 
+export type Query_RootCityArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type Query_RootCity_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type Query_RootCity_By_PkArgs = {
+  cityID: Scalars['Int']
+};
+
+
 export type Query_RootCompanyArgs = {
   distinct_on?: Maybe<Array<Company_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
@@ -11625,6 +13113,29 @@ export type Query_RootCompany_By_PkArgs = {
 };
 
 
+export type Query_RootCountryArgs = {
+  distinct_on?: Maybe<Array<Country_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Country_Order_By>>,
+  where?: Maybe<Country_Bool_Exp>
+};
+
+
+export type Query_RootCountry_AggregateArgs = {
+  distinct_on?: Maybe<Array<Country_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Country_Order_By>>,
+  where?: Maybe<Country_Bool_Exp>
+};
+
+
+export type Query_RootCountry_By_PkArgs = {
+  countryID: Scalars['Int']
+};
+
+
 export type Query_RootDayArgs = {
   distinct_on?: Maybe<Array<Day_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
@@ -11645,6 +13156,29 @@ export type Query_RootDay_AggregateArgs = {
 
 export type Query_RootDay_By_PkArgs = {
   dayID: Scalars['Int']
+};
+
+
+export type Query_RootDistrictArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+
+export type Query_RootDistrict_AggregateArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+
+export type Query_RootDistrict_By_PkArgs = {
+  districtID: Scalars['Int']
 };
 
 
@@ -12653,6 +14187,7 @@ export type Restaurant = {
   TravelGuideRestaurants: Array<TravelGuideRestaurant>,
   TravelGuideRestaurants_aggregate: TravelGuideRestaurant_Aggregate,
   companyID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   name: Scalars['String'],
   restaurantID: Scalars['Int'],
@@ -12829,6 +14364,7 @@ export type Restaurant_Bool_Exp = {
   _not?: Maybe<Restaurant_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Restaurant_Bool_Exp>>>,
   companyID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
@@ -12860,6 +14396,7 @@ export type Restaurant_Insert_Input = {
   RestaurantWorkingSchedules?: Maybe<RestaurantWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideRestaurants?: Maybe<TravelGuideRestaurant_Arr_Rel_Insert_Input>,
   companyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -12947,6 +14484,7 @@ export type Restaurant_Order_By = {
   RestaurantWorkingSchedules_aggregate?: Maybe<RestaurantWorkingSchedule_Aggregate_Order_By>,
   TravelGuideRestaurants_aggregate?: Maybe<TravelGuideRestaurant_Aggregate_Order_By>,
   companyID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -12959,6 +14497,7 @@ export type Restaurant_Order_By = {
 export enum Restaurant_Select_Column {
   Iso = 'ISO',
   CompanyId = 'companyID',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   RestaurantId = 'restaurantID',
@@ -12971,6 +14510,7 @@ export enum Restaurant_Select_Column {
 export type Restaurant_Set_Input = {
   ISO?: Maybe<Scalars['String']>,
   companyID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   name?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -13051,6 +14591,7 @@ export type Restaurant_Sum_Order_By = {
 export enum Restaurant_Update_Column {
   Iso = 'ISO',
   CompanyId = 'companyID',
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   Name = 'name',
   RestaurantId = 'restaurantID',
@@ -13115,6 +14656,7 @@ export type RestaurantAndCuisineType = {
    __typename?: 'RestaurantAndCuisineType',
   Restaurant: Restaurant,
   RestaurantCuisineType: RestaurantCuisineType,
+  isDeleted: Scalars['Boolean'],
   restaurantAndCuisineTypeID: Scalars['Int'],
   restaurantCuisineTypeID: Scalars['Int'],
   restaurantID: Scalars['Int'],
@@ -13185,6 +14727,7 @@ export type RestaurantAndCuisineType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantAndCuisineType_Bool_Exp>>>,
   _not?: Maybe<RestaurantAndCuisineType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantAndCuisineType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantAndCuisineTypeID?: Maybe<Int_Comparison_Exp>,
   restaurantCuisineTypeID?: Maybe<Int_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
@@ -13203,6 +14746,7 @@ export type RestaurantAndCuisineType_Inc_Input = {
 export type RestaurantAndCuisineType_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   RestaurantCuisineType?: Maybe<RestaurantCuisineType_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantAndCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -13254,18 +14798,21 @@ export type RestaurantAndCuisineType_On_Conflict = {
 export type RestaurantAndCuisineType_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   RestaurantCuisineType?: Maybe<RestaurantCuisineType_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantAndCuisineTypeID?: Maybe<Order_By>,
   restaurantCuisineTypeID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
 };
 
 export enum RestaurantAndCuisineType_Select_Column {
+  IsDeleted = 'isDeleted',
   RestaurantAndCuisineTypeId = 'restaurantAndCuisineTypeID',
   RestaurantCuisineTypeId = 'restaurantCuisineTypeID',
   RestaurantId = 'restaurantID'
 }
 
 export type RestaurantAndCuisineType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantAndCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -13324,6 +14871,7 @@ export type RestaurantAndCuisineType_Sum_Order_By = {
 };
 
 export enum RestaurantAndCuisineType_Update_Column {
+  IsDeleted = 'isDeleted',
   RestaurantAndCuisineTypeId = 'restaurantAndCuisineTypeID',
   RestaurantCuisineTypeId = 'restaurantCuisineTypeID',
   RestaurantId = 'restaurantID'
@@ -13374,6 +14922,7 @@ export type RestaurantComment = {
   User: User,
   content: Scalars['String'],
   date: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   restaurantCommentID: Scalars['Int'],
   restaurantID: Scalars['Int'],
   star: Scalars['Float'],
@@ -13449,6 +14998,7 @@ export type RestaurantComment_Bool_Exp = {
   _or?: Maybe<Array<Maybe<RestaurantComment_Bool_Exp>>>,
   content?: Maybe<String_Comparison_Exp>,
   date?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantCommentID?: Maybe<Int_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
   star?: Maybe<Float_Comparison_Exp>,
@@ -13470,6 +15020,7 @@ export type RestaurantComment_Insert_Input = {
   User?: Maybe<User_Obj_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantCommentID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
   star?: Maybe<Scalars['Float']>,
@@ -13536,6 +15087,7 @@ export type RestaurantComment_Order_By = {
   User?: Maybe<User_Order_By>,
   content?: Maybe<Order_By>,
   date?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantCommentID?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   star?: Maybe<Order_By>,
@@ -13545,6 +15097,7 @@ export type RestaurantComment_Order_By = {
 export enum RestaurantComment_Select_Column {
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   RestaurantCommentId = 'restaurantCommentID',
   RestaurantId = 'restaurantID',
   Star = 'star',
@@ -13554,6 +15107,7 @@ export enum RestaurantComment_Select_Column {
 export type RestaurantComment_Set_Input = {
   content?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantCommentID?: Maybe<Scalars['Int']>,
   restaurantID?: Maybe<Scalars['Int']>,
   star?: Maybe<Scalars['Float']>,
@@ -13623,6 +15177,7 @@ export type RestaurantComment_Sum_Order_By = {
 export enum RestaurantComment_Update_Column {
   Content = 'content',
   Date = 'date',
+  IsDeleted = 'isDeleted',
   RestaurantCommentId = 'restaurantCommentID',
   RestaurantId = 'restaurantID',
   Star = 'star',
@@ -13678,6 +15233,7 @@ export type RestaurantCuisineType = {
    __typename?: 'RestaurantCuisineType',
   RestaurantAndCuisineTypes: Array<RestaurantAndCuisineType>,
   RestaurantAndCuisineTypes_aggregate: RestaurantAndCuisineType_Aggregate,
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
   restaurantCuisineTypeID: Scalars['Int'],
 };
@@ -13760,6 +15316,7 @@ export type RestaurantCuisineType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantCuisineType_Bool_Exp>>>,
   _not?: Maybe<RestaurantCuisineType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantCuisineType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   restaurantCuisineTypeID?: Maybe<Int_Comparison_Exp>,
 };
@@ -13774,6 +15331,7 @@ export type RestaurantCuisineType_Inc_Input = {
 
 export type RestaurantCuisineType_Insert_Input = {
   RestaurantAndCuisineTypes?: Maybe<RestaurantAndCuisineType_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
 };
@@ -13819,16 +15377,19 @@ export type RestaurantCuisineType_On_Conflict = {
 
 export type RestaurantCuisineType_Order_By = {
   RestaurantAndCuisineTypes_aggregate?: Maybe<RestaurantAndCuisineType_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   restaurantCuisineTypeID?: Maybe<Order_By>,
 };
 
 export enum RestaurantCuisineType_Select_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   RestaurantCuisineTypeId = 'restaurantCuisineTypeID'
 }
 
 export type RestaurantCuisineType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   restaurantCuisineTypeID?: Maybe<Scalars['Int']>,
 };
@@ -13870,6 +15431,7 @@ export type RestaurantCuisineType_Sum_Order_By = {
 };
 
 export enum RestaurantCuisineType_Update_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   RestaurantCuisineTypeId = 'restaurantCuisineTypeID'
 }
@@ -13906,6 +15468,7 @@ export type RestaurantFood = {
   RestaurantFoodType: RestaurantFoodType,
   RestaurantMenuFoods: Array<RestaurantMenuFood>,
   RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
   price?: Maybe<Scalars['Float']>,
   restaurantFoodID: Scalars['Int'],
@@ -13995,6 +15558,7 @@ export type RestaurantFood_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantFood_Bool_Exp>>>,
   _not?: Maybe<RestaurantFood_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantFood_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   price?: Maybe<Float_Comparison_Exp>,
   restaurantFoodID?: Maybe<Int_Comparison_Exp>,
@@ -14013,6 +15577,7 @@ export type RestaurantFood_Inc_Input = {
 export type RestaurantFood_Insert_Input = {
   RestaurantFoodType?: Maybe<RestaurantFoodType_Obj_Rel_Insert_Input>,
   RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
@@ -14069,6 +15634,7 @@ export type RestaurantFood_On_Conflict = {
 export type RestaurantFood_Order_By = {
   RestaurantFoodType?: Maybe<RestaurantFoodType_Order_By>,
   RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   restaurantFoodID?: Maybe<Order_By>,
@@ -14076,6 +15642,7 @@ export type RestaurantFood_Order_By = {
 };
 
 export enum RestaurantFood_Select_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   Price = 'price',
   RestaurantFoodId = 'restaurantFoodID',
@@ -14083,6 +15650,7 @@ export enum RestaurantFood_Select_Column {
 }
 
 export type RestaurantFood_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
@@ -14142,6 +15710,7 @@ export type RestaurantFood_Sum_Order_By = {
 };
 
 export enum RestaurantFood_Update_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   Price = 'price',
   RestaurantFoodId = 'restaurantFoodID',
@@ -14191,6 +15760,7 @@ export type RestaurantFoodType = {
    __typename?: 'RestaurantFoodType',
   RestaurantFoods: Array<RestaurantFood>,
   RestaurantFoods_aggregate: RestaurantFood_Aggregate,
+  isDeleted: Scalars['Boolean'],
   restaurantFoodTypeID: Scalars['Int'],
   type: Scalars['String'],
 };
@@ -14273,6 +15843,7 @@ export type RestaurantFoodType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantFoodType_Bool_Exp>>>,
   _not?: Maybe<RestaurantFoodType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantFoodType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantFoodTypeID?: Maybe<Int_Comparison_Exp>,
   type?: Maybe<String_Comparison_Exp>,
 };
@@ -14287,6 +15858,7 @@ export type RestaurantFoodType_Inc_Input = {
 
 export type RestaurantFoodType_Insert_Input = {
   RestaurantFoods?: Maybe<RestaurantFood_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantFoodTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -14332,16 +15904,19 @@ export type RestaurantFoodType_On_Conflict = {
 
 export type RestaurantFoodType_Order_By = {
   RestaurantFoods_aggregate?: Maybe<RestaurantFood_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantFoodTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
 
 export enum RestaurantFoodType_Select_Column {
+  IsDeleted = 'isDeleted',
   RestaurantFoodTypeId = 'restaurantFoodTypeID',
   Type = 'type'
 }
 
 export type RestaurantFoodType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantFoodTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -14383,6 +15958,7 @@ export type RestaurantFoodType_Sum_Order_By = {
 };
 
 export enum RestaurantFoodType_Update_Column {
+  IsDeleted = 'isDeleted',
   RestaurantFoodTypeId = 'restaurantFoodTypeID',
   Type = 'type'
 }
@@ -14419,6 +15995,7 @@ export type RestaurantMenu = {
   Restaurant: Restaurant,
   RestaurantMenuFoods: Array<RestaurantMenuFood>,
   RestaurantMenuFoods_aggregate: RestaurantMenuFood_Aggregate,
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
   price: Scalars['Float'],
   restaurantID: Scalars['Int'],
@@ -14508,6 +16085,7 @@ export type RestaurantMenu_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
   _not?: Maybe<RestaurantMenu_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenu_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   price?: Maybe<Float_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
@@ -14526,6 +16104,7 @@ export type RestaurantMenu_Inc_Input = {
 export type RestaurantMenu_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   RestaurantMenuFoods?: Maybe<RestaurantMenuFood_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -14582,6 +16161,7 @@ export type RestaurantMenu_On_Conflict = {
 export type RestaurantMenu_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   RestaurantMenuFoods_aggregate?: Maybe<RestaurantMenuFood_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
@@ -14589,6 +16169,7 @@ export type RestaurantMenu_Order_By = {
 };
 
 export enum RestaurantMenu_Select_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   Price = 'price',
   RestaurantId = 'restaurantID',
@@ -14596,6 +16177,7 @@ export enum RestaurantMenu_Select_Column {
 }
 
 export type RestaurantMenu_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   restaurantID?: Maybe<Scalars['Int']>,
@@ -14655,6 +16237,7 @@ export type RestaurantMenu_Sum_Order_By = {
 };
 
 export enum RestaurantMenu_Update_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   Price = 'price',
   RestaurantId = 'restaurantID',
@@ -14704,6 +16287,7 @@ export type RestaurantMenuFood = {
    __typename?: 'RestaurantMenuFood',
   RestaurantFood: RestaurantFood,
   RestaurantMenu: RestaurantMenu,
+  isDeleted: Scalars['Boolean'],
   restaurantFoodID: Scalars['Int'],
   restaurantMenuFoodID: Scalars['Int'],
   restaurantMenuID: Scalars['Int'],
@@ -14774,6 +16358,7 @@ export type RestaurantMenuFood_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantMenuFood_Bool_Exp>>>,
   _not?: Maybe<RestaurantMenuFood_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantMenuFood_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantFoodID?: Maybe<Int_Comparison_Exp>,
   restaurantMenuFoodID?: Maybe<Int_Comparison_Exp>,
   restaurantMenuID?: Maybe<Int_Comparison_Exp>,
@@ -14792,6 +16377,7 @@ export type RestaurantMenuFood_Inc_Input = {
 export type RestaurantMenuFood_Insert_Input = {
   RestaurantFood?: Maybe<RestaurantFood_Obj_Rel_Insert_Input>,
   RestaurantMenu?: Maybe<RestaurantMenu_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
@@ -14843,18 +16429,21 @@ export type RestaurantMenuFood_On_Conflict = {
 export type RestaurantMenuFood_Order_By = {
   RestaurantFood?: Maybe<RestaurantFood_Order_By>,
   RestaurantMenu?: Maybe<RestaurantMenu_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantFoodID?: Maybe<Order_By>,
   restaurantMenuFoodID?: Maybe<Order_By>,
   restaurantMenuID?: Maybe<Order_By>,
 };
 
 export enum RestaurantMenuFood_Select_Column {
+  IsDeleted = 'isDeleted',
   RestaurantFoodId = 'restaurantFoodID',
   RestaurantMenuFoodId = 'restaurantMenuFoodID',
   RestaurantMenuId = 'restaurantMenuID'
 }
 
 export type RestaurantMenuFood_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuFoodID?: Maybe<Scalars['Int']>,
   restaurantMenuID?: Maybe<Scalars['Int']>,
@@ -14913,6 +16502,7 @@ export type RestaurantMenuFood_Sum_Order_By = {
 };
 
 export enum RestaurantMenuFood_Update_Column {
+  IsDeleted = 'isDeleted',
   RestaurantFoodId = 'restaurantFoodID',
   RestaurantMenuFoodId = 'restaurantMenuFoodID',
   RestaurantMenuId = 'restaurantMenuID'
@@ -14961,6 +16551,7 @@ export type RestaurantType = {
    __typename?: 'RestaurantType',
   Restaurants: Array<Restaurant>,
   Restaurants_aggregate: Restaurant_Aggregate,
+  isDeleted: Scalars['Boolean'],
   restaurantTypeID: Scalars['Int'],
   type: Scalars['String'],
 };
@@ -15043,6 +16634,7 @@ export type RestaurantType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantType_Bool_Exp>>>,
   _not?: Maybe<RestaurantType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantTypeID?: Maybe<Int_Comparison_Exp>,
   type?: Maybe<String_Comparison_Exp>,
 };
@@ -15057,6 +16649,7 @@ export type RestaurantType_Inc_Input = {
 
 export type RestaurantType_Insert_Input = {
   Restaurants?: Maybe<Restaurant_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -15102,16 +16695,19 @@ export type RestaurantType_On_Conflict = {
 
 export type RestaurantType_Order_By = {
   Restaurants_aggregate?: Maybe<Restaurant_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantTypeID?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
 };
 
 export enum RestaurantType_Select_Column {
+  IsDeleted = 'isDeleted',
   RestaurantTypeId = 'restaurantTypeID',
   Type = 'type'
 }
 
 export type RestaurantType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantTypeID?: Maybe<Scalars['Int']>,
   type?: Maybe<Scalars['String']>,
 };
@@ -15153,6 +16749,7 @@ export type RestaurantType_Sum_Order_By = {
 };
 
 export enum RestaurantType_Update_Column {
+  IsDeleted = 'isDeleted',
   RestaurantTypeId = 'restaurantTypeID',
   Type = 'type'
 }
@@ -15191,6 +16788,7 @@ export type RestaurantWorkingDay = {
   RestaurantWorkingDaySchedules_aggregate: RestaurantWorkingDaySchedule_Aggregate,
   closeHour: Scalars['timetz'],
   dayID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   openHour: Scalars['timetz'],
   restaurantWorkingDayID: Scalars['Int'],
 };
@@ -15278,6 +16876,7 @@ export type RestaurantWorkingDay_Bool_Exp = {
   _or?: Maybe<Array<Maybe<RestaurantWorkingDay_Bool_Exp>>>,
   closeHour?: Maybe<Timetz_Comparison_Exp>,
   dayID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   openHour?: Maybe<Timetz_Comparison_Exp>,
   restaurantWorkingDayID?: Maybe<Int_Comparison_Exp>,
 };
@@ -15296,6 +16895,7 @@ export type RestaurantWorkingDay_Insert_Input = {
   RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Arr_Rel_Insert_Input>,
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   openHour?: Maybe<Scalars['timetz']>,
   restaurantWorkingDayID?: Maybe<Scalars['Int']>,
 };
@@ -15352,6 +16952,7 @@ export type RestaurantWorkingDay_Order_By = {
   RestaurantWorkingDaySchedules_aggregate?: Maybe<RestaurantWorkingDaySchedule_Aggregate_Order_By>,
   closeHour?: Maybe<Order_By>,
   dayID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   openHour?: Maybe<Order_By>,
   restaurantWorkingDayID?: Maybe<Order_By>,
 };
@@ -15359,6 +16960,7 @@ export type RestaurantWorkingDay_Order_By = {
 export enum RestaurantWorkingDay_Select_Column {
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   OpenHour = 'openHour',
   RestaurantWorkingDayId = 'restaurantWorkingDayID'
 }
@@ -15366,6 +16968,7 @@ export enum RestaurantWorkingDay_Select_Column {
 export type RestaurantWorkingDay_Set_Input = {
   closeHour?: Maybe<Scalars['timetz']>,
   dayID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   openHour?: Maybe<Scalars['timetz']>,
   restaurantWorkingDayID?: Maybe<Scalars['Int']>,
 };
@@ -15417,6 +17020,7 @@ export type RestaurantWorkingDay_Sum_Order_By = {
 export enum RestaurantWorkingDay_Update_Column {
   CloseHour = 'closeHour',
   DayId = 'dayID',
+  IsDeleted = 'isDeleted',
   OpenHour = 'openHour',
   RestaurantWorkingDayId = 'restaurantWorkingDayID'
 }
@@ -15458,6 +17062,7 @@ export type RestaurantWorkingDaySchedule = {
    __typename?: 'RestaurantWorkingDaySchedule',
   RestaurantWorkingDay: RestaurantWorkingDay,
   RestaurantWorkingSchedule: RestaurantWorkingSchedule,
+  isDeleted: Scalars['Boolean'],
   restaurantWorkingDayID: Scalars['Int'],
   restaurantWorkingDaySchedule: Scalars['Int'],
   restaurantWorkingScheduleID: Scalars['Int'],
@@ -15528,6 +17133,7 @@ export type RestaurantWorkingDaySchedule_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RestaurantWorkingDaySchedule_Bool_Exp>>>,
   _not?: Maybe<RestaurantWorkingDaySchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantWorkingDaySchedule_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantWorkingDayID?: Maybe<Int_Comparison_Exp>,
   restaurantWorkingDaySchedule?: Maybe<Int_Comparison_Exp>,
   restaurantWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
@@ -15546,6 +17152,7 @@ export type RestaurantWorkingDaySchedule_Inc_Input = {
 export type RestaurantWorkingDaySchedule_Insert_Input = {
   RestaurantWorkingDay?: Maybe<RestaurantWorkingDay_Obj_Rel_Insert_Input>,
   RestaurantWorkingSchedule?: Maybe<RestaurantWorkingSchedule_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantWorkingDayID?: Maybe<Scalars['Int']>,
   restaurantWorkingDaySchedule?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -15597,18 +17204,21 @@ export type RestaurantWorkingDaySchedule_On_Conflict = {
 export type RestaurantWorkingDaySchedule_Order_By = {
   RestaurantWorkingDay?: Maybe<RestaurantWorkingDay_Order_By>,
   RestaurantWorkingSchedule?: Maybe<RestaurantWorkingSchedule_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantWorkingDayID?: Maybe<Order_By>,
   restaurantWorkingDaySchedule?: Maybe<Order_By>,
   restaurantWorkingScheduleID?: Maybe<Order_By>,
 };
 
 export enum RestaurantWorkingDaySchedule_Select_Column {
+  IsDeleted = 'isDeleted',
   RestaurantWorkingDayId = 'restaurantWorkingDayID',
   RestaurantWorkingDaySchedule = 'restaurantWorkingDaySchedule',
   RestaurantWorkingScheduleId = 'restaurantWorkingScheduleID'
 }
 
 export type RestaurantWorkingDaySchedule_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantWorkingDayID?: Maybe<Scalars['Int']>,
   restaurantWorkingDaySchedule?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
@@ -15667,6 +17277,7 @@ export type RestaurantWorkingDaySchedule_Sum_Order_By = {
 };
 
 export enum RestaurantWorkingDaySchedule_Update_Column {
+  IsDeleted = 'isDeleted',
   RestaurantWorkingDayId = 'restaurantWorkingDayID',
   RestaurantWorkingDaySchedule = 'restaurantWorkingDaySchedule',
   RestaurantWorkingScheduleId = 'restaurantWorkingScheduleID'
@@ -15717,6 +17328,7 @@ export type RestaurantWorkingSchedule = {
   RestaurantWorkingDaySchedules: Array<RestaurantWorkingDaySchedule>,
   RestaurantWorkingDaySchedules_aggregate: RestaurantWorkingDaySchedule_Aggregate,
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   restaurantID: Scalars['Int'],
   restaurantWorkingScheduleID: Scalars['Int'],
   startDate: Scalars['timestamptz'],
@@ -15804,6 +17416,7 @@ export type RestaurantWorkingSchedule_Bool_Exp = {
   _not?: Maybe<RestaurantWorkingSchedule_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RestaurantWorkingSchedule_Bool_Exp>>>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
   restaurantWorkingScheduleID?: Maybe<Int_Comparison_Exp>,
   startDate?: Maybe<Timestamptz_Comparison_Exp>,
@@ -15822,6 +17435,7 @@ export type RestaurantWorkingSchedule_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   RestaurantWorkingDaySchedules?: Maybe<RestaurantWorkingDaySchedule_Arr_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
   startDate?: Maybe<Scalars['timestamptz']>,
@@ -15878,6 +17492,7 @@ export type RestaurantWorkingSchedule_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   RestaurantWorkingDaySchedules_aggregate?: Maybe<RestaurantWorkingDaySchedule_Aggregate_Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   restaurantWorkingScheduleID?: Maybe<Order_By>,
   startDate?: Maybe<Order_By>,
@@ -15885,6 +17500,7 @@ export type RestaurantWorkingSchedule_Order_By = {
 
 export enum RestaurantWorkingSchedule_Select_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   RestaurantId = 'restaurantID',
   RestaurantWorkingScheduleId = 'restaurantWorkingScheduleID',
   StartDate = 'startDate'
@@ -15892,6 +17508,7 @@ export enum RestaurantWorkingSchedule_Select_Column {
 
 export type RestaurantWorkingSchedule_Set_Input = {
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   restaurantID?: Maybe<Scalars['Int']>,
   restaurantWorkingScheduleID?: Maybe<Scalars['Int']>,
   startDate?: Maybe<Scalars['timestamptz']>,
@@ -15943,6 +17560,7 @@ export type RestaurantWorkingSchedule_Sum_Order_By = {
 
 export enum RestaurantWorkingSchedule_Update_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   RestaurantId = 'restaurantID',
   RestaurantWorkingScheduleId = 'restaurantWorkingScheduleID',
   StartDate = 'startDate'
@@ -15991,6 +17609,7 @@ export type Room = {
   RoomPrices_aggregate: RoomPrice_Aggregate,
   RoomPropertyRooms: Array<RoomPropertyRoom>,
   RoomPropertyRooms_aggregate: RoomPropertyRoom_Aggregate,
+  isDeleted: Scalars['Boolean'],
   roomID: Scalars['Int'],
   roomNo: Scalars['String'],
 };
@@ -16130,6 +17749,7 @@ export type Room_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
   _not?: Maybe<Room_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Room_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   roomID?: Maybe<Int_Comparison_Exp>,
   roomNo?: Maybe<String_Comparison_Exp>,
 };
@@ -16147,6 +17767,7 @@ export type Room_Insert_Input = {
   RoomPictures?: Maybe<RoomPicture_Arr_Rel_Insert_Input>,
   RoomPrices?: Maybe<RoomPrice_Arr_Rel_Insert_Input>,
   RoomPropertyRooms?: Maybe<RoomPropertyRoom_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
 };
@@ -16195,16 +17816,19 @@ export type Room_Order_By = {
   RoomPictures_aggregate?: Maybe<RoomPicture_Aggregate_Order_By>,
   RoomPrices_aggregate?: Maybe<RoomPrice_Aggregate_Order_By>,
   RoomPropertyRooms_aggregate?: Maybe<RoomPropertyRoom_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
   roomNo?: Maybe<Order_By>,
 };
 
 export enum Room_Select_Column {
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomNo = 'roomNo'
 }
 
 export type Room_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomNo?: Maybe<Scalars['String']>,
 };
@@ -16246,6 +17870,7 @@ export type Room_Sum_Order_By = {
 };
 
 export enum Room_Update_Column {
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomNo = 'roomNo'
 }
@@ -16281,6 +17906,7 @@ export type RoomPicture = {
    __typename?: 'RoomPicture',
   Room: Room,
   addDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   roomID: Scalars['Int'],
   roomPictureID: Scalars['Int'],
   url: Scalars['String'],
@@ -16349,6 +17975,7 @@ export type RoomPicture_Bool_Exp = {
   _not?: Maybe<RoomPicture_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomPicture_Bool_Exp>>>,
   addDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   roomID?: Maybe<Int_Comparison_Exp>,
   roomPictureID?: Maybe<Int_Comparison_Exp>,
   url?: Maybe<String_Comparison_Exp>,
@@ -16366,6 +17993,7 @@ export type RoomPicture_Inc_Input = {
 export type RoomPicture_Insert_Input = {
   Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   addDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPictureID?: Maybe<Scalars['Int']>,
   url?: Maybe<Scalars['String']>,
@@ -16421,6 +18049,7 @@ export type RoomPicture_On_Conflict = {
 export type RoomPicture_Order_By = {
   Room?: Maybe<Room_Order_By>,
   addDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
   roomPictureID?: Maybe<Order_By>,
   url?: Maybe<Order_By>,
@@ -16428,6 +18057,7 @@ export type RoomPicture_Order_By = {
 
 export enum RoomPicture_Select_Column {
   AddDate = 'addDate',
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomPictureId = 'roomPictureID',
   Url = 'url'
@@ -16435,6 +18065,7 @@ export enum RoomPicture_Select_Column {
 
 export type RoomPicture_Set_Input = {
   addDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPictureID?: Maybe<Scalars['Int']>,
   url?: Maybe<Scalars['String']>,
@@ -16486,6 +18117,7 @@ export type RoomPicture_Sum_Order_By = {
 
 export enum RoomPicture_Update_Column {
   AddDate = 'addDate',
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomPictureId = 'roomPictureID',
   Url = 'url'
@@ -16528,6 +18160,7 @@ export type RoomPrice = {
    __typename?: 'RoomPrice',
   Room: Room,
   finishDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   price: Scalars['Float'],
   roomID: Scalars['Int'],
   roomPriceID: Scalars['Int'],
@@ -16599,6 +18232,7 @@ export type RoomPrice_Bool_Exp = {
   _not?: Maybe<RoomPrice_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomPrice_Bool_Exp>>>,
   finishDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   price?: Maybe<Float_Comparison_Exp>,
   roomID?: Maybe<Int_Comparison_Exp>,
   roomPriceID?: Maybe<Int_Comparison_Exp>,
@@ -16617,6 +18251,7 @@ export type RoomPrice_Inc_Input = {
 export type RoomPrice_Insert_Input = {
   Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   price?: Maybe<Scalars['Float']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPriceID?: Maybe<Scalars['Int']>,
@@ -16677,6 +18312,7 @@ export type RoomPrice_On_Conflict = {
 export type RoomPrice_Order_By = {
   Room?: Maybe<Room_Order_By>,
   finishDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   price?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
   roomPriceID?: Maybe<Order_By>,
@@ -16685,6 +18321,7 @@ export type RoomPrice_Order_By = {
 
 export enum RoomPrice_Select_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   Price = 'price',
   RoomId = 'roomID',
   RoomPriceId = 'roomPriceID',
@@ -16693,6 +18330,7 @@ export enum RoomPrice_Select_Column {
 
 export type RoomPrice_Set_Input = {
   finishDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   price?: Maybe<Scalars['Float']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPriceID?: Maybe<Scalars['Int']>,
@@ -16753,6 +18391,7 @@ export type RoomPrice_Sum_Order_By = {
 
 export enum RoomPrice_Update_Column {
   FinishDate = 'finishDate',
+  IsDeleted = 'isDeleted',
   Price = 'price',
   RoomId = 'roomID',
   RoomPriceId = 'roomPriceID',
@@ -16803,6 +18442,7 @@ export type RoomProperty = {
   RoomPropertyRooms: Array<RoomPropertyRoom>,
   RoomPropertyRooms_aggregate: RoomPropertyRoom_Aggregate,
   content: Scalars['String'],
+  isDeleted: Scalars['Boolean'],
   roomPropertyID: Scalars['Int'],
 };
 
@@ -16885,6 +18525,7 @@ export type RoomProperty_Bool_Exp = {
   _not?: Maybe<RoomProperty_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomProperty_Bool_Exp>>>,
   content?: Maybe<String_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   roomPropertyID?: Maybe<Int_Comparison_Exp>,
 };
 
@@ -16899,6 +18540,7 @@ export type RoomProperty_Inc_Input = {
 export type RoomProperty_Insert_Input = {
   RoomPropertyRooms?: Maybe<RoomPropertyRoom_Arr_Rel_Insert_Input>,
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
@@ -16944,16 +18586,19 @@ export type RoomProperty_On_Conflict = {
 export type RoomProperty_Order_By = {
   RoomPropertyRooms_aggregate?: Maybe<RoomPropertyRoom_Aggregate_Order_By>,
   content?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   roomPropertyID?: Maybe<Order_By>,
 };
 
 export enum RoomProperty_Select_Column {
   Content = 'content',
+  IsDeleted = 'isDeleted',
   RoomPropertyId = 'roomPropertyID'
 }
 
 export type RoomProperty_Set_Input = {
   content?: Maybe<Scalars['String']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
 };
 
@@ -16995,6 +18640,7 @@ export type RoomProperty_Sum_Order_By = {
 
 export enum RoomProperty_Update_Column {
   Content = 'content',
+  IsDeleted = 'isDeleted',
   RoomPropertyId = 'roomPropertyID'
 }
 
@@ -17029,6 +18675,7 @@ export type RoomPropertyRoom = {
    __typename?: 'RoomPropertyRoom',
   Room: Room,
   RoomProperty: RoomProperty,
+  isDeleted: Scalars['Boolean'],
   roomID: Scalars['Int'],
   roomPropertyID: Scalars['Int'],
   roomPropertyRoomID: Scalars['Int'],
@@ -17099,6 +18746,7 @@ export type RoomPropertyRoom_Bool_Exp = {
   _and?: Maybe<Array<Maybe<RoomPropertyRoom_Bool_Exp>>>,
   _not?: Maybe<RoomPropertyRoom_Bool_Exp>,
   _or?: Maybe<Array<Maybe<RoomPropertyRoom_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   roomID?: Maybe<Int_Comparison_Exp>,
   roomPropertyID?: Maybe<Int_Comparison_Exp>,
   roomPropertyRoomID?: Maybe<Int_Comparison_Exp>,
@@ -17117,6 +18765,7 @@ export type RoomPropertyRoom_Inc_Input = {
 export type RoomPropertyRoom_Insert_Input = {
   Room?: Maybe<Room_Obj_Rel_Insert_Input>,
   RoomProperty?: Maybe<RoomProperty_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
   roomPropertyRoomID?: Maybe<Scalars['Int']>,
@@ -17168,18 +18817,21 @@ export type RoomPropertyRoom_On_Conflict = {
 export type RoomPropertyRoom_Order_By = {
   Room?: Maybe<Room_Order_By>,
   RoomProperty?: Maybe<RoomProperty_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   roomID?: Maybe<Order_By>,
   roomPropertyID?: Maybe<Order_By>,
   roomPropertyRoomID?: Maybe<Order_By>,
 };
 
 export enum RoomPropertyRoom_Select_Column {
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomPropertyId = 'roomPropertyID',
   RoomPropertyRoomId = 'roomPropertyRoomID'
 }
 
 export type RoomPropertyRoom_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   roomID?: Maybe<Scalars['Int']>,
   roomPropertyID?: Maybe<Scalars['Int']>,
   roomPropertyRoomID?: Maybe<Scalars['Int']>,
@@ -17238,6 +18890,7 @@ export type RoomPropertyRoom_Sum_Order_By = {
 };
 
 export enum RoomPropertyRoom_Update_Column {
+  IsDeleted = 'isDeleted',
   RoomId = 'roomID',
   RoomPropertyId = 'roomPropertyID',
   RoomPropertyRoomId = 'roomPropertyRoomID'
@@ -17302,6 +18955,9 @@ export type String_Comparison_Exp = {
 
 export type Subscription_Root = {
    __typename?: 'subscription_root',
+  Address: Array<Address>,
+  Address_aggregate: Address_Aggregate,
+  Address_by_pk?: Maybe<Address>,
   ArchSite: Array<ArchSite>,
   ArchSiteComment: Array<ArchSiteComment>,
   ArchSiteComment_aggregate: ArchSiteComment_Aggregate,
@@ -17338,6 +18994,9 @@ export type Subscription_Root = {
   ArticleUser_by_pk?: Maybe<ArticleUser>,
   Article_aggregate: Article_Aggregate,
   Article_by_pk?: Maybe<Article>,
+  City: Array<City>,
+  City_aggregate: City_Aggregate,
+  City_by_pk?: Maybe<City>,
   Company: Array<Company>,
   CompanyContact: Array<CompanyContact>,
   CompanyContact_aggregate: CompanyContact_Aggregate,
@@ -17350,9 +19009,15 @@ export type Subscription_Root = {
   CompanyUser_by_pk?: Maybe<CompanyUser>,
   Company_aggregate: Company_Aggregate,
   Company_by_pk?: Maybe<Company>,
+  Country: Array<Country>,
+  Country_aggregate: Country_Aggregate,
+  Country_by_pk?: Maybe<Country>,
   Day: Array<Day>,
   Day_aggregate: Day_Aggregate,
   Day_by_pk?: Maybe<Day>,
+  District: Array<District>,
+  District_aggregate: District_Aggregate,
+  District_by_pk?: Maybe<District>,
   Hotel: Array<Hotel>,
   HotelComment: Array<HotelComment>,
   HotelComment_aggregate: HotelComment_Aggregate,
@@ -17482,6 +19147,29 @@ export type Subscription_Root = {
   UserType_by_pk?: Maybe<UserType>,
   User_aggregate: User_Aggregate,
   User_by_pk?: Maybe<User>,
+};
+
+
+export type Subscription_RootAddressArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type Subscription_RootAddress_AggregateArgs = {
+  distinct_on?: Maybe<Array<Address_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Address_Order_By>>,
+  where?: Maybe<Address_Bool_Exp>
+};
+
+
+export type Subscription_RootAddress_By_PkArgs = {
+  addressID: Scalars['Int']
 };
 
 
@@ -17761,6 +19449,29 @@ export type Subscription_RootArticle_By_PkArgs = {
 };
 
 
+export type Subscription_RootCityArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type Subscription_RootCity_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type Subscription_RootCity_By_PkArgs = {
+  cityID: Scalars['Int']
+};
+
+
 export type Subscription_RootCompanyArgs = {
   distinct_on?: Maybe<Array<Company_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
@@ -17853,6 +19564,29 @@ export type Subscription_RootCompany_By_PkArgs = {
 };
 
 
+export type Subscription_RootCountryArgs = {
+  distinct_on?: Maybe<Array<Country_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Country_Order_By>>,
+  where?: Maybe<Country_Bool_Exp>
+};
+
+
+export type Subscription_RootCountry_AggregateArgs = {
+  distinct_on?: Maybe<Array<Country_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Country_Order_By>>,
+  where?: Maybe<Country_Bool_Exp>
+};
+
+
+export type Subscription_RootCountry_By_PkArgs = {
+  countryID: Scalars['Int']
+};
+
+
 export type Subscription_RootDayArgs = {
   distinct_on?: Maybe<Array<Day_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
@@ -17873,6 +19607,29 @@ export type Subscription_RootDay_AggregateArgs = {
 
 export type Subscription_RootDay_By_PkArgs = {
   dayID: Scalars['Int']
+};
+
+
+export type Subscription_RootDistrictArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+
+export type Subscription_RootDistrict_AggregateArgs = {
+  distinct_on?: Maybe<Array<District_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<District_Order_By>>,
+  where?: Maybe<District_Bool_Exp>
+};
+
+
+export type Subscription_RootDistrict_By_PkArgs = {
+  districtID: Scalars['Int']
 };
 
 
@@ -18868,6 +20625,7 @@ export type Tag = {
    __typename?: 'Tag',
   ArticleTags: Array<ArticleTag>,
   ArticleTags_aggregate: ArticleTag_Aggregate,
+  isDeleted: Scalars['Boolean'],
   name: Scalars['String'],
   tagID: Scalars['Int'],
 };
@@ -18950,6 +20708,7 @@ export type Tag_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Tag_Bool_Exp>>>,
   _not?: Maybe<Tag_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Tag_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
   tagID?: Maybe<Int_Comparison_Exp>,
 };
@@ -18964,6 +20723,7 @@ export type Tag_Inc_Input = {
 
 export type Tag_Insert_Input = {
   ArticleTags?: Maybe<ArticleTag_Arr_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   tagID?: Maybe<Scalars['Int']>,
 };
@@ -19009,16 +20769,19 @@ export type Tag_On_Conflict = {
 
 export type Tag_Order_By = {
   ArticleTags_aggregate?: Maybe<ArticleTag_Aggregate_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
   tagID?: Maybe<Order_By>,
 };
 
 export enum Tag_Select_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   TagId = 'tagID'
 }
 
 export type Tag_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   name?: Maybe<Scalars['String']>,
   tagID?: Maybe<Scalars['Int']>,
 };
@@ -19060,6 +20823,7 @@ export type Tag_Sum_Order_By = {
 };
 
 export enum Tag_Update_Column {
+  IsDeleted = 'isDeleted',
   Name = 'name',
   TagId = 'tagID'
 }
@@ -19132,6 +20896,7 @@ export type TravelGuide = {
   User: User,
   cost?: Maybe<Scalars['Float']>,
   creationDate: Scalars['timestamptz'],
+  isDeleted: Scalars['Boolean'],
   title: Scalars['String'],
   travelGuideID: Scalars['Int'],
   userID: Scalars['Int'],
@@ -19298,6 +21063,7 @@ export type TravelGuide_Bool_Exp = {
   _or?: Maybe<Array<Maybe<TravelGuide_Bool_Exp>>>,
   cost?: Maybe<Float_Comparison_Exp>,
   creationDate?: Maybe<Timestamptz_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   title?: Maybe<String_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
   userID?: Maybe<Int_Comparison_Exp>,
@@ -19322,6 +21088,7 @@ export type TravelGuide_Insert_Input = {
   User?: Maybe<User_Obj_Rel_Insert_Input>,
   cost?: Maybe<Scalars['Float']>,
   creationDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   title?: Maybe<Scalars['String']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   userID?: Maybe<Scalars['Int']>,
@@ -19387,6 +21154,7 @@ export type TravelGuide_Order_By = {
   User?: Maybe<User_Order_By>,
   cost?: Maybe<Order_By>,
   creationDate?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
   userID?: Maybe<Order_By>,
@@ -19395,6 +21163,7 @@ export type TravelGuide_Order_By = {
 export enum TravelGuide_Select_Column {
   Cost = 'cost',
   CreationDate = 'creationDate',
+  IsDeleted = 'isDeleted',
   Title = 'title',
   TravelGuideId = 'travelGuideID',
   UserId = 'userID'
@@ -19403,6 +21172,7 @@ export enum TravelGuide_Select_Column {
 export type TravelGuide_Set_Input = {
   cost?: Maybe<Scalars['Float']>,
   creationDate?: Maybe<Scalars['timestamptz']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   title?: Maybe<Scalars['String']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   userID?: Maybe<Scalars['Int']>,
@@ -19463,6 +21233,7 @@ export type TravelGuide_Sum_Order_By = {
 export enum TravelGuide_Update_Column {
   Cost = 'cost',
   CreationDate = 'creationDate',
+  IsDeleted = 'isDeleted',
   Title = 'title',
   TravelGuideId = 'travelGuideID',
   UserId = 'userID'
@@ -19512,6 +21283,7 @@ export type TravelGuideArchSite = {
   ArchSite: ArchSite,
   TravelGuide: TravelGuide,
   archSiteID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   note?: Maybe<Scalars['String']>,
   travelGuideArchSiteID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
@@ -19583,6 +21355,7 @@ export type TravelGuideArchSite_Bool_Exp = {
   _not?: Maybe<TravelGuideArchSite_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideArchSite_Bool_Exp>>>,
   archSiteID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   note?: Maybe<String_Comparison_Exp>,
   travelGuideArchSiteID?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
@@ -19602,6 +21375,7 @@ export type TravelGuideArchSite_Insert_Input = {
   ArchSite?: Maybe<ArchSite_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   archSiteID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   travelGuideArchSiteID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -19658,6 +21432,7 @@ export type TravelGuideArchSite_Order_By = {
   ArchSite?: Maybe<ArchSite_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
   archSiteID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideArchSiteID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -19665,6 +21440,7 @@ export type TravelGuideArchSite_Order_By = {
 
 export enum TravelGuideArchSite_Select_Column {
   ArchSiteId = 'archSiteID',
+  IsDeleted = 'isDeleted',
   Note = 'note',
   TravelGuideArchSiteId = 'travelGuideArchSiteID',
   TravelGuideId = 'travelGuideID'
@@ -19672,6 +21448,7 @@ export enum TravelGuideArchSite_Select_Column {
 
 export type TravelGuideArchSite_Set_Input = {
   archSiteID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   travelGuideArchSiteID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -19731,6 +21508,7 @@ export type TravelGuideArchSite_Sum_Order_By = {
 
 export enum TravelGuideArchSite_Update_Column {
   ArchSiteId = 'archSiteID',
+  IsDeleted = 'isDeleted',
   Note = 'note',
   TravelGuideArchSiteId = 'travelGuideArchSiteID',
   TravelGuideId = 'travelGuideID'
@@ -19780,6 +21558,7 @@ export type TravelGuideHotel = {
   Hotel: Hotel,
   TravelGuide: TravelGuide,
   hotelID: Scalars['Int'],
+  isDeleted: Scalars['Boolean'],
   note?: Maybe<Scalars['String']>,
   travelGuideHotel: Scalars['Int'],
   travelGuideID: Scalars['Int'],
@@ -19851,6 +21630,7 @@ export type TravelGuideHotel_Bool_Exp = {
   _not?: Maybe<TravelGuideHotel_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideHotel_Bool_Exp>>>,
   hotelID?: Maybe<Int_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   note?: Maybe<String_Comparison_Exp>,
   travelGuideHotel?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
@@ -19870,6 +21650,7 @@ export type TravelGuideHotel_Insert_Input = {
   Hotel?: Maybe<Hotel_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   travelGuideHotel?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -19926,6 +21707,7 @@ export type TravelGuideHotel_Order_By = {
   Hotel?: Maybe<Hotel_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
   hotelID?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideHotel?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -19933,6 +21715,7 @@ export type TravelGuideHotel_Order_By = {
 
 export enum TravelGuideHotel_Select_Column {
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   Note = 'note',
   TravelGuideHotel = 'travelGuideHotel',
   TravelGuideId = 'travelGuideID'
@@ -19940,6 +21723,7 @@ export enum TravelGuideHotel_Select_Column {
 
 export type TravelGuideHotel_Set_Input = {
   hotelID?: Maybe<Scalars['Int']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   travelGuideHotel?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -19999,6 +21783,7 @@ export type TravelGuideHotel_Sum_Order_By = {
 
 export enum TravelGuideHotel_Update_Column {
   HotelId = 'hotelID',
+  IsDeleted = 'isDeleted',
   Note = 'note',
   TravelGuideHotel = 'travelGuideHotel',
   TravelGuideId = 'travelGuideID'
@@ -20047,6 +21832,7 @@ export type TravelGuideLocation = {
    __typename?: 'TravelGuideLocation',
   Location: Location,
   TravelGuide: TravelGuide,
+  isDeleted: Scalars['Boolean'],
   locationID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
   travelGuideLocationID: Scalars['Int'],
@@ -20117,6 +21903,7 @@ export type TravelGuideLocation_Bool_Exp = {
   _and?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
   _not?: Maybe<TravelGuideLocation_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
   travelGuideLocationID?: Maybe<Int_Comparison_Exp>,
@@ -20135,6 +21922,7 @@ export type TravelGuideLocation_Inc_Input = {
 export type TravelGuideLocation_Insert_Input = {
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -20186,18 +21974,21 @@ export type TravelGuideLocation_On_Conflict = {
 export type TravelGuideLocation_Order_By = {
   Location?: Maybe<Location_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
   travelGuideLocationID?: Maybe<Order_By>,
 };
 
 export enum TravelGuideLocation_Select_Column {
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
 }
 
 export type TravelGuideLocation_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -20256,6 +22047,7 @@ export type TravelGuideLocation_Sum_Order_By = {
 };
 
 export enum TravelGuideLocation_Update_Column {
+  IsDeleted = 'isDeleted',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
@@ -20304,6 +22096,7 @@ export type TravelGuideMuseum = {
    __typename?: 'TravelGuideMuseum',
   Museum: Museum,
   TravelGuide: TravelGuide,
+  isDeleted: Scalars['Boolean'],
   museumID: Scalars['Int'],
   note?: Maybe<Scalars['String']>,
   travelGuideID: Scalars['Int'],
@@ -20375,6 +22168,7 @@ export type TravelGuideMuseum_Bool_Exp = {
   _and?: Maybe<Array<Maybe<TravelGuideMuseum_Bool_Exp>>>,
   _not?: Maybe<TravelGuideMuseum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideMuseum_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   museumID?: Maybe<Int_Comparison_Exp>,
   note?: Maybe<String_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
@@ -20394,6 +22188,7 @@ export type TravelGuideMuseum_Inc_Input = {
 export type TravelGuideMuseum_Insert_Input = {
   Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   note?: Maybe<Scalars['String']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -20450,6 +22245,7 @@ export type TravelGuideMuseum_On_Conflict = {
 export type TravelGuideMuseum_Order_By = {
   Museum?: Maybe<Museum_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -20457,6 +22253,7 @@ export type TravelGuideMuseum_Order_By = {
 };
 
 export enum TravelGuideMuseum_Select_Column {
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   Note = 'note',
   TravelGuideId = 'travelGuideID',
@@ -20464,6 +22261,7 @@ export enum TravelGuideMuseum_Select_Column {
 }
 
 export type TravelGuideMuseum_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   museumID?: Maybe<Scalars['Int']>,
   note?: Maybe<Scalars['String']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -20523,6 +22321,7 @@ export type TravelGuideMuseum_Sum_Order_By = {
 };
 
 export enum TravelGuideMuseum_Update_Column {
+  IsDeleted = 'isDeleted',
   MuseumId = 'museumID',
   Note = 'note',
   TravelGuideId = 'travelGuideID',
@@ -20572,6 +22371,7 @@ export type TravelGuideRestaurant = {
    __typename?: 'TravelGuideRestaurant',
   Restaurant: Restaurant,
   TravelGuide: TravelGuide,
+  isDeleted: Scalars['Boolean'],
   note?: Maybe<Scalars['String']>,
   restaurantID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
@@ -20643,6 +22443,7 @@ export type TravelGuideRestaurant_Bool_Exp = {
   _and?: Maybe<Array<Maybe<TravelGuideRestaurant_Bool_Exp>>>,
   _not?: Maybe<TravelGuideRestaurant_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideRestaurant_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   note?: Maybe<String_Comparison_Exp>,
   restaurantID?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
@@ -20662,6 +22463,7 @@ export type TravelGuideRestaurant_Inc_Input = {
 export type TravelGuideRestaurant_Insert_Input = {
   Restaurant?: Maybe<Restaurant_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -20718,6 +22520,7 @@ export type TravelGuideRestaurant_On_Conflict = {
 export type TravelGuideRestaurant_Order_By = {
   Restaurant?: Maybe<Restaurant_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
+  isDeleted?: Maybe<Order_By>,
   note?: Maybe<Order_By>,
   restaurantID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
@@ -20725,6 +22528,7 @@ export type TravelGuideRestaurant_Order_By = {
 };
 
 export enum TravelGuideRestaurant_Select_Column {
+  IsDeleted = 'isDeleted',
   Note = 'note',
   RestaurantId = 'restaurantID',
   TravelGuideId = 'travelGuideID',
@@ -20732,6 +22536,7 @@ export enum TravelGuideRestaurant_Select_Column {
 }
 
 export type TravelGuideRestaurant_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   note?: Maybe<Scalars['String']>,
   restaurantID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
@@ -20791,6 +22596,7 @@ export type TravelGuideRestaurant_Sum_Order_By = {
 };
 
 export enum TravelGuideRestaurant_Update_Column {
+  IsDeleted = 'isDeleted',
   Note = 'note',
   RestaurantId = 'restaurantID',
   TravelGuideId = 'travelGuideID',
@@ -20857,6 +22663,7 @@ export type User = {
   accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked: Scalars['Boolean'],
+  isDeleted: Scalars['Boolean'],
   loginDate: Scalars['timestamptz'],
   loginIP: Scalars['inet'],
   loginTypeID: Scalars['Int'],
@@ -21073,6 +22880,7 @@ export type User_Bool_Exp = {
   accessToken?: Maybe<String_Comparison_Exp>,
   birthDate?: Maybe<Date_Comparison_Exp>,
   isBlocked?: Maybe<Boolean_Comparison_Exp>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   loginDate?: Maybe<Timestamptz_Comparison_Exp>,
   loginIP?: Maybe<Inet_Comparison_Exp>,
   loginTypeID?: Maybe<Int_Comparison_Exp>,
@@ -21111,6 +22919,7 @@ export type User_Insert_Input = {
   accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked?: Maybe<Scalars['Boolean']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
   loginIP?: Maybe<Scalars['inet']>,
   loginTypeID?: Maybe<Scalars['Int']>,
@@ -21216,6 +23025,7 @@ export type User_Order_By = {
   accessToken?: Maybe<Order_By>,
   birthDate?: Maybe<Order_By>,
   isBlocked?: Maybe<Order_By>,
+  isDeleted?: Maybe<Order_By>,
   loginDate?: Maybe<Order_By>,
   loginIP?: Maybe<Order_By>,
   loginTypeID?: Maybe<Order_By>,
@@ -21233,6 +23043,7 @@ export enum User_Select_Column {
   AccessToken = 'accessToken',
   BirthDate = 'birthDate',
   IsBlocked = 'isBlocked',
+  IsDeleted = 'isDeleted',
   LoginDate = 'loginDate',
   LoginIp = 'loginIP',
   LoginTypeId = 'loginTypeID',
@@ -21250,6 +23061,7 @@ export type User_Set_Input = {
   accessToken?: Maybe<Scalars['String']>,
   birthDate?: Maybe<Scalars['date']>,
   isBlocked?: Maybe<Scalars['Boolean']>,
+  isDeleted?: Maybe<Scalars['Boolean']>,
   loginDate?: Maybe<Scalars['timestamptz']>,
   loginIP?: Maybe<Scalars['inet']>,
   loginTypeID?: Maybe<Scalars['Int']>,
@@ -21327,6 +23139,7 @@ export enum User_Update_Column {
   AccessToken = 'accessToken',
   BirthDate = 'birthDate',
   IsBlocked = 'isBlocked',
+  IsDeleted = 'isDeleted',
   LoginDate = 'loginDate',
   LoginIp = 'loginIP',
   LoginTypeId = 'loginTypeID',
@@ -21387,6 +23200,7 @@ export type User_Variance_Order_By = {
 
 export type UserType = {
    __typename?: 'UserType',
+  isDeleted: Scalars['Boolean'],
   type: Scalars['String'],
   userTypeID: Scalars['Int'],
 };
@@ -21450,6 +23264,7 @@ export type UserType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<UserType_Bool_Exp>>>,
   _not?: Maybe<UserType_Bool_Exp>,
   _or?: Maybe<Array<Maybe<UserType_Bool_Exp>>>,
+  isDeleted?: Maybe<Boolean_Comparison_Exp>,
   type?: Maybe<String_Comparison_Exp>,
   userTypeID?: Maybe<Int_Comparison_Exp>,
 };
@@ -21463,6 +23278,7 @@ export type UserType_Inc_Input = {
 };
 
 export type UserType_Insert_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   type?: Maybe<Scalars['String']>,
   userTypeID?: Maybe<Scalars['Int']>,
 };
@@ -21507,16 +23323,19 @@ export type UserType_On_Conflict = {
 };
 
 export type UserType_Order_By = {
+  isDeleted?: Maybe<Order_By>,
   type?: Maybe<Order_By>,
   userTypeID?: Maybe<Order_By>,
 };
 
 export enum UserType_Select_Column {
+  IsDeleted = 'isDeleted',
   Type = 'type',
   UserTypeId = 'userTypeID'
 }
 
 export type UserType_Set_Input = {
+  isDeleted?: Maybe<Scalars['Boolean']>,
   type?: Maybe<Scalars['String']>,
   userTypeID?: Maybe<Scalars['Int']>,
 };
@@ -21558,6 +23377,7 @@ export type UserType_Sum_Order_By = {
 };
 
 export enum UserType_Update_Column {
+  IsDeleted = 'isDeleted',
   Type = 'type',
   UserTypeId = 'userTypeID'
 }
@@ -21612,16 +23432,7 @@ export type ControlUserMutation = (
 );
 
 export type AddCompanyMutationVariables = {
-  name: Scalars['String'],
-  taxNumber: Scalars['String'],
-  faxNumber?: Maybe<Scalars['String']>,
-  registerDate: Scalars['timestamptz'],
-  mail: Scalars['String'],
-  longtitude: Scalars['Float'],
-  latitude: Scalars['Float'],
-  address?: Maybe<Scalars['String']>,
-  userID: Scalars['Int'],
-  phone?: Maybe<Scalars['String']>
+  company: Array<Company_Insert_Input>
 };
 
 
@@ -21637,16 +23448,7 @@ export type AddCompanyMutation = (
 );
 
 export type AddRestaurantMutationVariables = {
-  restCusTypes: Array<RestaurantAndCuisineType_Insert_Input>,
-  companyID?: Maybe<Scalars['Int']>,
-  ISO?: Maybe<Scalars['String']>,
-  latitude?: Maybe<Scalars['Float']>,
-  longtitude?: Maybe<Scalars['Float']>,
-  address?: Maybe<Scalars['String']>,
-  restaurantTypeID?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  since?: Maybe<Scalars['date']>,
-  taxNumber?: Maybe<Scalars['String']>
+  resta: Array<Restaurant_Insert_Input>
 };
 
 
@@ -21696,13 +23498,7 @@ export type AddFoodMutation = (
 );
 
 export type AddHotelMutationVariables = {
-  name?: Maybe<Scalars['String']>,
-  companyID?: Maybe<Scalars['Int']>,
-  latitude?: Maybe<Scalars['Float']>,
-  longtitude?: Maybe<Scalars['Float']>,
-  address?: Maybe<Scalars['String']>,
-  taxNumber?: Maybe<Scalars['String']>,
-  hotelServiceProperty: Array<HotelService_Insert_Input>
+  hotel: Array<Hotel_Insert_Input>
 };
 
 
@@ -21844,18 +23640,7 @@ export type AddArchSiteWorkingScheduleMutation = (
 );
 
 export type AddArchSiteMutationVariables = {
-  archSiteTypeID?: Maybe<Scalars['Int']>,
-  age?: Maybe<Scalars['Int']>,
-  altitude?: Maybe<Scalars['Float']>,
-  companyID?: Maybe<Scalars['Int']>,
-  description?: Maybe<Scalars['String']>,
-  destruction?: Maybe<Scalars['String']>,
-  diameter?: Maybe<Scalars['Float']>,
-  name?: Maybe<Scalars['String']>,
-  period?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>,
-  latitude?: Maybe<Scalars['Float']>,
-  longtitude?: Maybe<Scalars['Float']>
+  arch: Array<ArchSite_Insert_Input>
 };
 
 
@@ -21991,13 +23776,7 @@ export type AddMuseumTypeMutation = (
 );
 
 export type AddMuseumMutationVariables = {
-  museumTypeID?: Maybe<Scalars['Int']>,
-  companyID?: Maybe<Scalars['Int']>,
-  description?: Maybe<Scalars['String']>,
-  name?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>,
-  latitude?: Maybe<Scalars['Float']>,
-  longtitude?: Maybe<Scalars['Float']>
+  museum: Array<Museum_Insert_Input>
 };
 
 
@@ -22296,7 +24075,11 @@ export type GetHotelLocationQuery = (
     & Pick<Hotel, 'name' | 'locationID' | 'hotelID'>
     & { Location: (
       { __typename?: 'Location' }
-      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+      & Pick<Location, 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address'>
+      ) }
     ) }
   )> }
 );
@@ -22311,7 +24094,11 @@ export type GetArchSiteLocationQuery = (
     & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID'>
     & { Location: (
       { __typename?: 'Location' }
-      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+      & Pick<Location, 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address'>
+      ) }
     ) }
   )> }
 );
@@ -22326,7 +24113,11 @@ export type GetMuseumLocationQuery = (
     & Pick<Museum, 'name' | 'locationID' | 'museumID'>
     & { Location: (
       { __typename?: 'Location' }
-      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+      & Pick<Location, 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address'>
+      ) }
     ) }
   )> }
 );
@@ -22341,7 +24132,11 @@ export type GetRestaurantLocationQuery = (
     & Pick<Restaurant, 'name' | 'locationID' | 'restaurantID'>
     & { Location: (
       { __typename?: 'Location' }
-      & Pick<Location, 'latitude' | 'longtitude' | 'address'>
+      & Pick<Location, 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address'>
+      ) }
     ) }
   )> }
 );
@@ -22429,6 +24224,30 @@ export type GetFoodQuery = (
   )> }
 );
 
+export type GetCitiesQueryVariables = {};
+
+
+export type GetCitiesQuery = (
+  { __typename: 'query_root' }
+  & { City: Array<(
+    { __typename?: 'City' }
+    & Pick<City, 'cityID' | 'city'>
+  )> }
+);
+
+export type GetCityDistrictsQueryVariables = {
+  cityID: Scalars['Int']
+};
+
+
+export type GetCityDistrictsQuery = (
+  { __typename: 'query_root' }
+  & { District: Array<(
+    { __typename?: 'District' }
+    & Pick<District, 'district' | 'districtID'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
@@ -22462,9 +24281,9 @@ export function withControlUser<TProps, TChildProps = {}>(operationOptions?: Apo
 export type ControlUserMutationResult = ApolloReactCommon.MutationResult<ControlUserMutation>;
 export type ControlUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlUserMutation, ControlUserMutationVariables>;
 export const AddCompanyDocument = gql`
-    mutation addCompany($name: String!, $taxNumber: String!, $faxNumber: String, $registerDate: timestamptz!, $mail: String!, $longtitude: Float!, $latitude: Float!, $address: String, $userID: Int!, $phone: String) {
+    mutation addCompany($company: [Company_insert_input!]!) {
   __typename
-  insert_Company(objects: {name: $name, taxNumber: $taxNumber, faxNumber: $faxNumber, registerDate: $registerDate, mail: $mail, CompanyUsers: {data: {userID: $userID}}, Location: {data: {longtitude: $longtitude, latitude: $latitude, address: $address}}, CompanyPhones: {data: {Phone: {data: {phone: $phone}}}}}) {
+  insert_Company(objects: $company) {
     returning {
       companyID
       locationID
@@ -22493,9 +24312,9 @@ export function withAddCompany<TProps, TChildProps = {}>(operationOptions?: Apol
 export type AddCompanyMutationResult = ApolloReactCommon.MutationResult<AddCompanyMutation>;
 export type AddCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddCompanyMutation, AddCompanyMutationVariables>;
 export const AddRestaurantDocument = gql`
-    mutation addRestaurant($restCusTypes: [RestaurantAndCuisineType_insert_input!]!, $companyID: Int, $ISO: String, $latitude: Float, $longtitude: Float, $address: String, $restaurantTypeID: Int, $name: String, $since: date, $taxNumber: String) {
+    mutation addRestaurant($resta: [Restaurant_insert_input!]!) {
   __typename
-  insert_Restaurant(objects: {ISO: $ISO, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, restaurantTypeID: $restaurantTypeID, name: $name, since: $since, companyID: $companyID, taxNumber: $taxNumber, RestaurantAndCuisineTypes: {data: $restCusTypes}}) {
+  insert_Restaurant(objects: $resta) {
     returning {
       restaurantID
     }
@@ -22583,9 +24402,9 @@ export function withAddFood<TProps, TChildProps = {}>(operationOptions?: ApolloR
 export type AddFoodMutationResult = ApolloReactCommon.MutationResult<AddFoodMutation>;
 export type AddFoodMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodMutation, AddFoodMutationVariables>;
 export const AddHotelDocument = gql`
-    mutation addHotel($name: String, $companyID: Int, $latitude: Float, $longtitude: Float, $address: String, $taxNumber: String, $hotelServiceProperty: [HotelService_insert_input!]!) {
+    mutation addHotel($hotel: [Hotel_insert_input!]!) {
   __typename
-  insert_Hotel(objects: {name: $name, companyID: $companyID, Location: {data: {latitude: $latitude, longtitude: $longtitude, address: $address}}, taxNumber: $taxNumber, HotelServices: {data: $hotelServiceProperty}}) {
+  insert_Hotel(objects: $hotel) {
     returning {
       hotelID
     }
@@ -22823,9 +24642,9 @@ export function withAddArchSiteWorkingSchedule<TProps, TChildProps = {}>(operati
 export type AddArchSiteWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddArchSiteWorkingScheduleMutation>;
 export type AddArchSiteWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteWorkingScheduleMutation, AddArchSiteWorkingScheduleMutationVariables>;
 export const AddArchSiteDocument = gql`
-    mutation addArchSite($archSiteTypeID: Int, $age: Int, $altitude: Float, $companyID: Int, $description: String, $destruction: String, $diameter: Float, $name: String, $period: String, $address: String, $latitude: Float, $longtitude: Float) {
+    mutation addArchSite($arch: [ArchSite_insert_input!]!) {
   __typename
-  insert_ArchSite(objects: {ArchSiteTypeArchSites: {data: {archSiteTypeID: $archSiteTypeID}}, age: $age, altitude: $altitude, companyID: $companyID, description: $description, destruction: $destruction, diameter: $diameter, name: $name, period: $period, Location: {data: {address: $address, latitude: $latitude, longtitude: $longtitude}}}) {
+  insert_ArchSite(objects: $arch) {
     returning {
       archSiteID
     }
@@ -23063,9 +24882,9 @@ export function withAddMuseumType<TProps, TChildProps = {}>(operationOptions?: A
 export type AddMuseumTypeMutationResult = ApolloReactCommon.MutationResult<AddMuseumTypeMutation>;
 export type AddMuseumTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumTypeMutation, AddMuseumTypeMutationVariables>;
 export const AddMuseumDocument = gql`
-    mutation addMuseum($museumTypeID: Int, $companyID: Int, $description: String, $name: String, $address: String, $latitude: Float, $longtitude: Float) {
+    mutation addMuseum($museum: [Museum_insert_input!]!) {
   __typename
-  insert_Museum(objects: {companyID: $companyID, description: $description, name: $name, Location: {data: {address: $address, latitude: $latitude, longtitude: $longtitude}}, MuseumTypeMuseums: {data: {museumTypeID: $museumTypeID}}}) {
+  insert_Museum(objects: $museum) {
     returning {
       museumID
     }
@@ -23610,7 +25429,9 @@ export const GetHotelLocationDocument = gql`
     Location {
       latitude
       longtitude
-      address
+      Address {
+        address
+      }
     }
     name
     locationID
@@ -23642,7 +25463,9 @@ export const GetArchSiteLocationDocument = gql`
     Location {
       latitude
       longtitude
-      address
+      Address {
+        address
+      }
     }
     name
     locationID
@@ -23674,7 +25497,9 @@ export const GetMuseumLocationDocument = gql`
     Location {
       latitude
       longtitude
-      address
+      Address {
+        address
+      }
     }
     name
     locationID
@@ -23706,7 +25531,9 @@ export const GetRestaurantLocationDocument = gql`
     Location {
       latitude
       longtitude
-      address
+      Address {
+        address
+      }
     }
     name
     locationID
@@ -23918,3 +25745,57 @@ export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloR
     });
 };
 export type GetFoodQueryResult = ApolloReactCommon.QueryResult<GetFoodQuery, GetFoodQueryVariables>;
+export const GetCitiesDocument = gql`
+    query getCities {
+  __typename
+  City(where: {Country: {countryID: {_eq: 1}}}) {
+    cityID
+    city
+  }
+}
+    `;
+export type GetCitiesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCitiesQuery, GetCitiesQueryVariables>, 'query'>;
+
+    export const GetCitiesComponent = (props: GetCitiesComponentProps) => (
+      <ApolloReactComponents.Query<GetCitiesQuery, GetCitiesQueryVariables> query={GetCitiesDocument} {...props} />
+    );
+    
+export type GetCitiesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCitiesQuery, GetCitiesQueryVariables> & TChildProps;
+export function withGetCities<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCitiesQuery,
+  GetCitiesQueryVariables,
+  GetCitiesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCitiesQuery, GetCitiesQueryVariables, GetCitiesProps<TChildProps>>(GetCitiesDocument, {
+      alias: 'getCities',
+      ...operationOptions
+    });
+};
+export type GetCitiesQueryResult = ApolloReactCommon.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
+export const GetCityDistrictsDocument = gql`
+    query getCityDistricts($cityID: Int!) {
+  __typename
+  District(where: {cityID: {_eq: $cityID}}) {
+    district
+    districtID
+  }
+}
+    `;
+export type GetCityDistrictsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>, 'query'> & ({ variables: GetCityDistrictsQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetCityDistrictsComponent = (props: GetCityDistrictsComponentProps) => (
+      <ApolloReactComponents.Query<GetCityDistrictsQuery, GetCityDistrictsQueryVariables> query={GetCityDistrictsDocument} {...props} />
+    );
+    
+export type GetCityDistrictsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCityDistrictsQuery, GetCityDistrictsQueryVariables> & TChildProps;
+export function withGetCityDistricts<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCityDistrictsQuery,
+  GetCityDistrictsQueryVariables,
+  GetCityDistrictsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCityDistrictsQuery, GetCityDistrictsQueryVariables, GetCityDistrictsProps<TChildProps>>(GetCityDistrictsDocument, {
+      alias: 'getCityDistricts',
+      ...operationOptions
+    });
+};
+export type GetCityDistrictsQueryResult = ApolloReactCommon.QueryResult<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>;
