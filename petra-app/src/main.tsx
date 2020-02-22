@@ -7,7 +7,6 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/Public/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
-import { AddLocationScreen } from './app/pages/screens/AddLocationScreen';
 import { AddCompanyScreen } from './app/pages/screens/Company/AddCompanyScreen';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
@@ -47,6 +46,7 @@ import { AddMuseumPriceScreen } from './app/pages/screens/Museum/AddMuseumPriceS
 import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
 import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
 import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
+import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -65,7 +65,6 @@ const RootStack = createStackNavigator(
 	{
 		HomeScreen: { screen: HomeScreen },
 		LoginScreen: { screen: LoginScreen },
-		AddLocationScreen: { screen: AddLocationScreen },
 		AddCompanyScreen: { screen: AddCompanyScreen },
 		AddRestaurantScreen: { screen: AddRestaurantScreen },
 		RestaurantDetailScreen: { screen: RestaurantDetailScreen },
@@ -104,7 +103,8 @@ const RootStack = createStackNavigator(
 		AddArchSitePriceScreen: { screen: AddArchSitePriceScreen },
 		AddMuseumPriceScreen: { screen: AddMuseumPriceScreen },
 		AddTravelGuideScreen: { screen: AddTravelGuideScreen },
-		AddMenuScreen: { screen: AddMenuScreen }
+		AddMenuScreen: { screen: AddMenuScreen },
+		SearchScreen: { screen: SearchScreen }
 	},
 	{
 		initialRouteName: 'LoginScreen',
