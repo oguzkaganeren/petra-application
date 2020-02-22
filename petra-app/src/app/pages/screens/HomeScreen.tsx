@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/Public/BottomComponent';
-import { SearchComponent } from '../../components/Public/SearchComponent';
 
 /**
  * Home props
@@ -121,6 +120,15 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 						}}
 					>
 						Add Travel Guide
+					</Button>
+					<Button
+						onPress={() => {
+							this.props.navigation.navigate('SearchScreen', {
+								userID: userID
+							});
+						}}
+					>
+						Show Search Screen
 					</Button>
 					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 						<BottomComponent></BottomComponent>
