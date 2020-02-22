@@ -5,6 +5,8 @@ import { AddRestaurantComponent, GetUserCompanyComponent } from '../../../genera
 import { LocationComponent } from '../../../components/Public/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
 import { GetAllRestaurantTypesComponent } from '../../../components/Restaurant/GetAllRestaurantTypes';
+import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
+import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { GetAllCuisineTypesComponent } from '../../../components/Restaurant/GetAllCuisineTypes';
@@ -17,7 +19,9 @@ export interface AddRestaurantProps {
 /**
  * Location state
  */
-export interface AddRestaurantState {}
+export interface AddRestaurantState {
+	cityID: number;
+}
 
 /**
  * Location
@@ -25,7 +29,9 @@ export interface AddRestaurantState {}
 export class AddRestaurantScreen extends React.Component<AddRestaurantProps, AddRestaurantState> {
 	constructor(props: AddRestaurantProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			cityID: 0
+		};
 	}
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
@@ -48,15 +54,17 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 								//değişkenlerin başlangıç değerleri
 								initialValues={{
 									ISO: '',
-									latitude: '',
-									longtitude: '',
+									latitude: 0,
+									longtitude: 0,
 									address: '',
 									restaurantTypeID: 0,
 									name: '',
 									since: new Date(),
 									taxNumber: '',
 									companyID: 0,
-									cuisineTypes: []
+									cuisineTypes: [],
+									districtID: 0,
+									cityID: 0
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
@@ -95,7 +103,31 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										);
 										AddRestaurantMutation({
 											variables: {
-												name: values.name.toString(),
+												resta: [
+													{
+														name: values.name.toString(),
+														ISO: values.ISO.toString(),
+														since: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
+														RestaurantAndCuisineTypes: { data: values.cuisineTypes },
+														Location: {
+															data: {
+																longtitude: values.longtitude,
+																latitude: values.latitude,
+																Address: {
+																	data: {
+																		address: values.address.toString(),
+																		districtID: values.districtID,
+																		cityID: values.cityID
+																	}
+																}
+															}
+														},
+														restaurantTypeID: values.restaurantTypeID,
+														companyID: values.companyID,
+														taxNumber: values.taxNumber.toString()
+													}
+												]
+												/* name: values.name.toString(),
 												ISO: values.ISO.toString(),
 												since: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
 												restCusTypes: values.cuisineTypes,
@@ -104,7 +136,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 												address: values.address.toString(),
 												restaurantTypeID: values.restaurantTypeID,
 												companyID: values.companyID,
-												taxNumber: values.taxNumber.toString()
+												taxNumber: values.taxNumber.toString() */
 											}
 										})
 											.then(res => {
@@ -157,6 +189,20 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											onBlur={props.handleBlur('name')}
 											value={props.values.name}
 											autoFocus
+										/>
+										<GetAllCitiesComponent
+											label="Select City"
+											parentReference={value => {
+												props.values.cityID = value;
+												this.setState({ cityID: value });
+											}}
+										/>
+										<GetAllCityDistrictsComponent
+											label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
+											parentReference={value => {
+												props.values.districtID = value;
+											}}
+											cityID={this.state.cityID}
 										/>
 										<Input
 											label="Address"
