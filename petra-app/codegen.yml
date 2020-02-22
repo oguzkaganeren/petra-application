@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://193.140.24.167:8080/v1/graphql'
+schema: 'http://194.27.61.230:8080/v1/graphql'
 documents: 'graphql/**/*.graphql'
 generates:
   src/app/generated/components.tsx:
