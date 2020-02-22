@@ -321,7 +321,7 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 										this.state.markers.push({
 											id: dat.museumID,
 											title: dat.name,
-											description: dat.Location.address,
+											description: dat.Location.Address.address,
 											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 											type: 'museum'
 										});
@@ -330,7 +330,7 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 									this.state.markers.push({
 										id: dat.museumID,
 										title: dat.name,
-										description: dat.Location.address,
+										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 										type: 'museum'
 									});

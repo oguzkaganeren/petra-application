@@ -5,6 +5,8 @@ import { AddArchSiteComponent, GetUserCompanyComponent } from '../../../generate
 import { LocationComponent } from '../../../components/Public/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
 import { GetAllArchSiteTypesComponent } from '../../../components/ArchSite/GetAllArchSiteTypes';
+import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
+import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -16,7 +18,9 @@ export interface AddArchSiteProps {
 /**
  * Location state
  */
-export interface AddArchSiteState {}
+export interface AddArchSiteState {
+	cityID: number;
+}
 
 /**
  * Location
@@ -24,7 +28,9 @@ export interface AddArchSiteState {}
 export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArchSiteState> {
 	constructor(props: AddArchSiteProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			cityID: 0
+		};
 	}
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
@@ -56,8 +62,10 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 									name: '',
 									period: '',
 									address: '',
-									latitude: '',
-									longtitude: ''
+									latitude: 0,
+									longtitude: 0,
+									districtID: 0,
+									cityID: 0
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
@@ -104,7 +112,33 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 										);
 										AddArchSiteMutation({
 											variables: {
-												name: values.name.toString(),
+												arch: [
+													{
+														name: values.name.toString(),
+														age: parseInt(values.age.toString()),
+														altitude: values.altitude,
+														description: values.description, //sonra utc ayarına bak!
+														Location: {
+															data: {
+																longtitude: values.longtitude,
+																latitude: values.latitude,
+																Address: {
+																	data: {
+																		address: values.address.toString(),
+																		districtID: values.districtID,
+																		cityID: values.cityID
+																	}
+																}
+															}
+														},
+														companyID: values.companyID,
+														ArchSiteTypeArchSites: { data: [{ archSiteTypeID: values.archSiteTypeID }] },
+														destruction: values.destruction,
+														diameter: values.diameter,
+														period: values.period
+													}
+												]
+												/* name: values.name.toString(),
 												age: parseInt(values.age.toString()),
 												altitude: values.altitude,
 												description: values.description, //sonra utc ayarına bak!
@@ -115,7 +149,7 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 												archSiteTypeID: values.archSiteTypeID,
 												destruction: values.destruction,
 												diameter: values.diameter,
-												period: values.period
+												period: values.period */
 											}
 										})
 											.then(res => {
@@ -171,6 +205,20 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 											onBlur={props.handleBlur('name')}
 											value={props.values.name}
 											autoFocus
+										/>
+										<GetAllCitiesComponent
+											label="Select City"
+											parentReference={value => {
+												props.values.cityID = value;
+												this.setState({ cityID: value });
+											}}
+										/>
+										<GetAllCityDistrictsComponent
+											label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
+											parentReference={value => {
+												props.values.districtID = value;
+											}}
+											cityID={this.state.cityID}
 										/>
 										<Input
 											label="Address"

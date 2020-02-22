@@ -321,7 +321,7 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 										this.state.markers.push({
 											id: dat.restaurantID,
 											title: dat.name,
-											description: dat.Location.address,
+											description: dat.Location.Address.address,
 											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 											type: 'restaurant'
 										});
@@ -330,7 +330,7 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 									this.state.markers.push({
 										id: dat.restaurantID,
 										title: dat.name,
-										description: dat.Location.address,
+										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 										type: 'restaurant'
 									});
