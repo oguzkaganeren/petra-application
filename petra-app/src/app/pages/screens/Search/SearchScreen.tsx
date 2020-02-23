@@ -6,8 +6,7 @@ import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSite
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
 import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
 import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationComponent';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
+import { SearchMapComponent } from '../../../components/Search/SearchMapComponent';
 /**
  * Home props
  */
@@ -19,8 +18,6 @@ export interface SearchProps {
  */
 export interface SearchState {
 	cityID: number;
-	errorMessage: String;
-	userLoc: any;
 	selectedIndex: number;
 	setSelectedIndex: number;
 }
@@ -33,24 +30,11 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 		super(props);
 		this.state = {
 			cityID: 0,
-			errorMessage: '',
 			selectedIndex: 0,
-			setSelectedIndex: 0,
-			userLoc: null
+			setSelectedIndex: 0
 		};
 	}
-	_getLocationAsync = async () => {
-		let { status } = await Permissions.askAsync(Permissions.LOCATION);
-		if (status !== 'granted') {
-			this.setState({
-				errorMessage: 'Permission to access location was denied'
-			});
-		}
 
-		let userLoc = await Location.getCurrentPositionAsync({});
-		this.setState({ userLoc });
-		console.log(userLoc);
-	};
 	/**
 	 * Renders home
 	 * @returns
@@ -65,9 +49,6 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 						this.setState({ cityID: value });
 					}}
 				/>
-				<Button appearance="outline" onPress={this._getLocationAsync}>
-					Current my location
-				</Button>
 				<GetAllCitiesComponent
 					label="Target"
 					parentReference={value => {
@@ -81,7 +62,23 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 					}}
 				>
 					<Tab title="Yours">
-						<Layout style={styles.tabContainer}></Layout>
+						<Layout style={styles.tabContainer}>
+							<SearchMapComponent
+								marker={value => {
+									/*this.setState({
+																latitude: value
+															});*/
+									let item = {
+										id: value.id,
+										title: value.title,
+										description: value.description,
+										coordinates: value.coordinates,
+										type: value.type
+									};
+									//this.addItem(item);
+								}}
+							/>
+						</Layout>
 					</Tab>
 					<Tab title="Arch. Sites">
 						<Layout style={styles.tabContainer}>
