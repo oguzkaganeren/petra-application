@@ -4,7 +4,6 @@ import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/comp
 import { AddArchSiteWorkingScheduleComponent } from '../../../generated/components';
 import { GetAllDayComponent } from '../../../components/Public/GetAllDayComponent';
 import { GetAllUserArchSiteComponent } from '../../../components/ArchSite/GetAllUserArchSite';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -143,38 +142,6 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 									>
 										Set Close Hour
 									</Button>
-									{this.state.showOpenHour && (
-										<DateTimePicker
-											testID="dateTimePicker"
-											timeZoneOffsetInMinutes={0}
-											value={new Date()}
-											mode={'time'}
-											is24Hour={true}
-											display="default"
-											onChange={(event, selectedDate) => {
-												props.values.openHour = selectedDate;
-												this.setState({
-													showOpenHour: false
-												});
-											}}
-										/>
-									)}
-									{this.state.showCloseHour && (
-										<DateTimePicker
-											testID="dateTimePicker"
-											timeZoneOffsetInMinutes={0}
-											value={new Date()}
-											mode={'time'}
-											is24Hour={true}
-											display="default"
-											onChange={(event, selectedDate) => {
-												props.values.closeHour = selectedDate;
-												this.setState({
-													showCloseHour: false
-												});
-											}}
-										/>
-									)}
 									<Button
 										onPress={() => {
 											props.handleSubmit();
