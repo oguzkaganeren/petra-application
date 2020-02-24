@@ -1,0 +1,352 @@
+mutation controlUser(
+	$loginDate: timestamptz
+	$loginIP: inet
+	$loginTypeID: Int
+	$mail: String
+	$name: String
+	$registerDate: timestamptz
+	$accessToken: String
+) {
+	__typename
+	insert_User(
+		objects: {
+			loginDate: $loginDate
+			loginIP: $loginIP
+			loginTypeID: $loginTypeID
+			mail: $mail
+			name: $name
+			registerDate: $registerDate
+			accessToken: $accessToken
+		}
+		on_conflict: { constraint: User_mail_key, update_columns: loginDate, where: {} }
+	) {
+		returning {
+			userID
+			accessToken
+		}
+	}
+}
+mutation addCompany($company: [Company_insert_input!]!) {
+	__typename
+	insert_Company(objects: $company) {
+		returning {
+			companyID
+			locationID
+		}
+	}
+}
+
+mutation addRestaurant($resta: [Restaurant_insert_input!]!) {
+	__typename
+	insert_Restaurant(objects: $resta) {
+		returning {
+			restaurantID
+		}
+	}
+}
+
+mutation addFoodType($foodType: String) {
+	__typename
+	insert_RestaurantFoodType(objects: { type: $foodType }) {
+		returning {
+			restaurantFoodTypeID
+		}
+	}
+}
+mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
+	__typename
+	insert_RestaurantFood(objects: { name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID }) {
+		returning {
+			restaurantFoodID
+		}
+	}
+}
+mutation addHotel($hotel: [Hotel_insert_input!]!) {
+	__typename
+	insert_Hotel(objects: $hotel) {
+		returning {
+			hotelID
+		}
+	}
+}
+
+mutation addArchSiteType($name: String) {
+	__typename
+	insert_ArchSiteType(objects: { name: $name }) {
+		returning {
+			archSiteTypeID
+		}
+	}
+}
+mutation addRoomProperty($content: String!) {
+	__typename
+	insert_RoomProperty(objects: { content: $content }) {
+		returning {
+			roomPropertyID
+		}
+	}
+}
+mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input!]!, $hotelID: Int!) {
+	__typename
+	insert_Room(
+		objects: {
+			roomNo: $roomNo
+			RoomPropertyRooms: { data: $roomPropRoom }
+			HotelRooms: { data: { hotelID: $hotelID } }
+		}
+	) {
+		returning {
+			roomID
+		}
+	}
+}
+mutation addHotelServiceProperty($content: String!) {
+	__typename
+	insert_HotelServiceProperty(objects: { content: $content }) {
+		returning {
+			hotelServicePropertyID
+		}
+	}
+}
+mutation addHotelComment($content: String!, $date: timestamptz!, $hotelID: Int!, $star: Float, $userID: Int) {
+	__typename
+	insert_HotelComment(objects: { content: $content, date: $date, hotelID: $hotelID, star: $star, userID: $userID }) {
+		returning {
+			hotelCommentID
+		}
+	}
+}
+mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: Int!, $startDate: timestamptz!) {
+	__typename
+	insert_RoomPrice(objects: { finishDate: $finishDate, price: $price, roomID: $roomID, startDate: $startDate }) {
+		returning {
+			roomPriceID
+		}
+	}
+}
+mutation addArchSiteWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_ArchSiteWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			archSiteID: $archSiteID
+			ArchSiteWorkingDaySchedules: {
+				data: { ArchSiteWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			archSiteWorkingScheduleID
+		}
+	}
+}
+mutation addArchSite($arch: [ArchSite_insert_input!]!) {
+	__typename
+	insert_ArchSite(objects: $arch) {
+		returning {
+			archSiteID
+		}
+	}
+}
+
+mutation addArchSiteComment($archSiteID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+	__typename
+	insert_ArchSiteComment(
+		objects: { archSiteID: $archSiteID, content: $content, date: $date, star: $star, userID: $userID }
+	) {
+		returning {
+			archSiteCommentID
+		}
+	}
+}
+mutation addArchSiteEntranceType($content: String) {
+	__typename
+	insert_ArchSiteEntranceType(objects: { content: $content }) {
+		returning {
+			archSiteEntranceTypeID
+		}
+	}
+}
+mutation addRestaurantCuisineType($name: String) {
+	__typename
+	insert_RestaurantCuisineType(objects: { name: $name }) {
+		returning {
+			restaurantCuisineTypeID
+		}
+	}
+}
+mutation addTag($name: String) {
+	__typename
+	insert_Tag(objects: { name: $name }) {
+		returning {
+			tagID
+		}
+	}
+}
+mutation addRestaurantType($type: String) {
+	__typename
+	insert_RestaurantType(objects: { type: $type }) {
+		returning {
+			restaurantTypeID
+		}
+	}
+}
+mutation addRestaurantComment($restaurantID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+	__typename
+	insert_RestaurantComment(
+		objects: { restaurantID: $restaurantID, content: $content, date: $date, star: $star, userID: $userID }
+	) {
+		returning {
+			restaurantCommentID
+		}
+	}
+}
+mutation addMuseumType($type: String) {
+	__typename
+	insert_MuseumType(objects: { type: $type }) {
+		returning {
+			museumTypeID
+		}
+	}
+}
+mutation addMuseum($museum: [Museum_insert_input!]!) {
+	__typename
+	insert_Museum(objects: $museum) {
+		returning {
+			museumID
+		}
+	}
+}
+
+mutation addMuseumComment($content: String, $date: timestamptz, $museumID: Int, $star: Float, $userID: Int) {
+	__typename
+	insert_MuseumComment(objects: { content: $content, date: $date, museumID: $museumID, star: $star, userID: $userID }) {
+		returning {
+			museumCommentID
+		}
+	}
+}
+mutation addMuseumEntranceType($content: String) {
+	__typename
+	insert_MuseumEntranceType(objects: { content: $content }) {
+		returning {
+			museumEntranceTypeID
+		}
+	}
+}
+mutation addMuseumWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_MuseumWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			museumID: $archSiteID
+			MuseumWorkingDaySchedules: {
+				data: { MuseumWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			museumWorkingScheduleID
+		}
+	}
+}
+mutation addRestaurantWorkingSchedule(
+	$startDate: timestamptz!
+	$finishDate: timestamptz!
+	$archSiteID: Int!
+	$closeHour: timetz!
+	$openHour: timetz!
+	$dayID: Int!
+) {
+	__typename
+	insert_RestaurantWorkingSchedule(
+		objects: {
+			startDate: $startDate
+			finishDate: $finishDate
+			restaurantID: $archSiteID
+			RestaurantWorkingDaySchedules: {
+				data: { RestaurantWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
+			}
+		}
+	) {
+		returning {
+			restaurantWorkingScheduleID
+		}
+	}
+}
+mutation addArchSitePrice(
+	$finishDate: timestamptz
+	$price: Float
+	$startDate: timestamptz
+	$archSiteID: Int
+	$archSiteEntranceTypeID: Int
+) {
+	__typename
+	insert_ArchSitePrice(
+		objects: {
+			finishDate: $finishDate
+			price: $price
+			startDate: $startDate
+			archSiteID: $archSiteID
+			archSiteEntranceTypeID: $archSiteEntranceTypeID
+		}
+	) {
+		returning {
+			archSitePriceID
+		}
+	}
+}
+mutation addMuseumPrice(
+	$finishDate: timestamptz
+	$startDate: timestamptz
+	$price: Float
+	$museumID: Int
+	$entranceTypeID: Int
+) {
+	__typename
+	insert_MuseumPrice(
+		objects: {
+			finishDate: $finishDate
+			startDate: $startDate
+			price: $price
+			museumID: $museumID
+			entranceTypeID: $entranceTypeID
+		}
+	) {
+		returning {
+			museumPriceID
+		}
+	}
+}
+mutation addTravelGuide($travelGuide: [TravelGuide_insert_input!]!) {
+	__typename
+	insert_TravelGuide(objects: $travelGuide) {
+		returning {
+			travelGuideID
+		}
+	}
+}
+mutation addRestaurantMenu($restaurantMenu: [RestaurantMenu_insert_input!]!) {
+	__typename
+	insert_RestaurantMenu(objects: $restaurantMenu) {
+		returning {
+			restaurantMenuID
+		}
+	}
+}
