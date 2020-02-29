@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { BottomNavigation, Text, Icon, Layout } from '@ui-kitten/components';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
-import { Polyline } from 'react-native-maps';
-import { UrlTile } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 /**
@@ -93,11 +90,19 @@ export class SearchMapComponent extends React.Component<SearchMapProps, SearchMa
 			if (respJson.features[0].geometry.coordinates.length > 0) {
 				const points = respJson.features[0].geometry.coordinates;
 				const polyCoords = points.map((point, index) => {
-					return {
-						latitude: point[1],
-						longitude: point[0]
-					};
+					if (Platform.OS === 'web') {
+						return {
+							lat: point[1],
+							lng: point[0]
+						};
+					} else {
+						return {
+							latitude: point[1],
+							longitude: point[0]
+						};
+					}
 				});
+				console.log(polyCoords);
 				this.setState({ polyCoords });
 			}
 			return;
@@ -127,11 +132,11 @@ export class SearchMapComponent extends React.Component<SearchMapProps, SearchMa
 					followsUserLocation={true}
 					showsMyLocationButton={true}
 					showsCompass={true}
-					mapType={Platform.OS == 'android' ? 'none' : 'standard'}
+					//mapType={Platform.OS == 'android' ? 'none' : 'standard'}
 					userLocationAnnotationTitle="Your position"
 				>
 					{this.state.markers.map(marker => (
-						<Marker
+						<MapView.Marker
 							key={marker.id}
 							coordinate={marker.coordinates}
 							description={marker.description}
@@ -140,19 +145,7 @@ export class SearchMapComponent extends React.Component<SearchMapProps, SearchMa
 						/>
 					))}
 
-					<Polyline coordinates={this.state.polyCoords} strokeWidth={5} strokeColor="#00a8ff" zIndex={16} />
-					<UrlTile
-						/**
-						 * The url template of the tile server. The patterns {x} {y} {z} will be replaced at runtime
-						 * For example, http://c.tile.openstreetmap.org/{z}/{x}/{y}.png
-						 */
-						urlTemplate={'http://c.tile.openstreetmap.org/{z}/{x}/{y}.png'}
-						/**
-						 * The maximum zoom level for this tile overlay. Corresponds to the maximumZ setting in
-						 * MKTileOverlay. iOS only.
-						 */
-						zIndex={15}
-					/>
+					<MapView.Polyline coordinates={this.state.polyCoords} strokeWidth={5} strokeColor="#00a8ff" />
 				</MapView>
 			</Layout>
 		);
