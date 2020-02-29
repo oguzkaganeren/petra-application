@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddArchSitePriceComponent } from '../../../generated/components';
 import { GetAllArchSiteEntranceTypesComponent } from '../../../components/ArchSite/GetAllArchSiteEntranceTypes';
@@ -77,7 +77,6 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('ArchSite Price has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})

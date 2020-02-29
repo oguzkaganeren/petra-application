@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddHotelComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
@@ -119,7 +119,6 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})

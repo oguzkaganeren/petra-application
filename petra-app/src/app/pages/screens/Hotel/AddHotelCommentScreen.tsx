@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddHotelCommentComponent } from '../../../generated/components';
 import { Formik } from 'formik';
@@ -62,7 +62,6 @@ export class AddHotelCommentScreen extends React.Component<AddHotelCommentProps,
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})

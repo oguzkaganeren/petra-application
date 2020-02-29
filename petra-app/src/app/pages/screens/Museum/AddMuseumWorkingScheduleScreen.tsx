@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddMuseumWorkingScheduleComponent } from '../../../generated/components';
 import { GetAllDayComponent } from '../../../components/Public/GetAllDayComponent';
@@ -90,7 +90,6 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
