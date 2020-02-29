@@ -321,7 +321,7 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 										this.state.markers.push({
 											id: dat.hotelID,
 											title: dat.name,
-											description: dat.Location.address,
+											description: dat.Location.Address.address,
 											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 											type: 'hotel'
 										});
@@ -330,7 +330,7 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 									this.state.markers.push({
 										id: dat.hotelID,
 										title: dat.name,
-										description: dat.Location.address,
+										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 										type: 'hotel'
 									});

@@ -316,7 +316,7 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 										this.state.markers.push({
 											id: dat.archSiteID,
 											title: dat.name,
-											description: dat.Location.address,
+											description: dat.Location.Address.address,
 											coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 											type: 'archsite'
 										});
@@ -325,7 +325,7 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 									this.state.markers.push({
 										id: dat.archSiteID,
 										title: dat.name,
-										description: dat.Location.address,
+										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
 										type: 'archsite'
 									});

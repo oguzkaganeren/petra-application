@@ -5,6 +5,8 @@ import { AddMuseumComponent, GetUserCompanyComponent } from '../../../generated/
 import { LocationComponent } from '../../../components/Public/LocationComponent';
 import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
 import { GetAllMuseumTypesComponent } from '../../../components/Museum/GetAllMuseumTypes';
+import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
+import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -16,7 +18,9 @@ export interface AddMuseumProps {
 /**
  * Location state
  */
-export interface AddMuseumState {}
+export interface AddMuseumState {
+	cityID: number;
+}
 
 /**
  * Location
@@ -24,7 +28,9 @@ export interface AddMuseumState {}
 export class AddMuseumScreen extends React.Component<AddMuseumProps, AddMuseumState> {
 	constructor(props: AddMuseumProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			cityID: 0
+		};
 	}
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
@@ -52,8 +58,10 @@ export class AddMuseumScreen extends React.Component<AddMuseumProps, AddMuseumSt
 									description: '',
 									name: '',
 									address: '',
-									latitude: '',
-									longtitude: ''
+									latitude: 0,
+									districtID: 0,
+									cityID: 0,
+									longtitude: 0
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
@@ -79,13 +87,27 @@ export class AddMuseumScreen extends React.Component<AddMuseumProps, AddMuseumSt
 										);
 										AddMuseumMutation({
 											variables: {
-												name: values.name.toString(),
-												description: values.description, //sonra utc ayarına bak!
-												longtitude: parseFloat(values.longtitude),
-												latitude: parseFloat(values.latitude),
-												address: values.address.toString(),
-												companyID: values.companyID,
-												museumTypeID: values.MuseumTypeID
+												museum: [
+													{
+														name: values.name.toString(),
+														description: values.description,
+														companyID: values.companyID,
+														Location: {
+															data: {
+																longtitude: values.longtitude,
+																latitude: values.latitude,
+																Address: {
+																	data: {
+																		address: values.address.toString(),
+																		districtID: values.districtID,
+																		cityID: values.cityID
+																	}
+																}
+															}
+														},
+														MuseumTypeMuseums: { data: [{ museumTypeID: values.MuseumTypeID }] }
+													}
+												]
 											}
 										})
 											.then(res => {
@@ -138,6 +160,20 @@ export class AddMuseumScreen extends React.Component<AddMuseumProps, AddMuseumSt
 											onBlur={props.handleBlur('name')}
 											value={props.values.name}
 											autoFocus
+										/>
+										<GetAllCitiesComponent
+											label="Select City"
+											parentReference={value => {
+												props.values.cityID = value;
+												this.setState({ cityID: value });
+											}}
+										/>
+										<GetAllCityDistrictsComponent
+											label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
+											parentReference={value => {
+												props.values.districtID = value;
+											}}
+											cityID={this.state.cityID}
 										/>
 										<Input
 											label="Address"

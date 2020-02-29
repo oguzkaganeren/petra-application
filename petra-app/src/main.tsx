@@ -7,7 +7,6 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/Public/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
-import { AddLocationScreen } from './app/pages/screens/AddLocationScreen';
 import { AddCompanyScreen } from './app/pages/screens/Company/AddCompanyScreen';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
@@ -47,7 +46,11 @@ import { AddMuseumPriceScreen } from './app/pages/screens/Museum/AddMuseumPriceS
 import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
 import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
 import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
+<<<<<<< HEAD
 import { AddArticleScreen } from './app/pages/screens/Article/AddArticleScreen';
+=======
+import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
+>>>>>>> 23eeb405b051482b83d59285339684a57ce8cbc7
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -66,7 +69,6 @@ const RootStack = createStackNavigator(
 	{
 		HomeScreen: { screen: HomeScreen },
 		LoginScreen: { screen: LoginScreen },
-		AddLocationScreen: { screen: AddLocationScreen },
 		AddCompanyScreen: { screen: AddCompanyScreen },
 		AddRestaurantScreen: { screen: AddRestaurantScreen },
 		RestaurantDetailScreen: { screen: RestaurantDetailScreen },
@@ -106,7 +108,11 @@ const RootStack = createStackNavigator(
 		AddMuseumPriceScreen: { screen: AddMuseumPriceScreen },
 		AddTravelGuideScreen: { screen: AddTravelGuideScreen },
 		AddMenuScreen: { screen: AddMenuScreen },
+<<<<<<< HEAD
 		AddArticleScreen: { screen: AddArticleScreen }
+=======
+		SearchScreen: { screen: SearchScreen }
+>>>>>>> 23eeb405b051482b83d59285339684a57ce8cbc7
 	},
 	{
 		initialRouteName: 'LoginScreen',

@@ -75,19 +75,24 @@ query getHotelLocation {
 		Location {
 			latitude
 			longtitude
-			address
+			Address {
+				address
+			}
 		}
 		name
 		locationID
 		hotelID
 	}
 }
+
 query getArchSiteLocation {
 	ArchSite {
 		Location {
 			latitude
 			longtitude
-			address
+			Address {
+				address
+			}
 		}
 		name
 		locationID
@@ -99,25 +104,31 @@ query getMuseumLocation {
 		Location {
 			latitude
 			longtitude
-			address
+			Address {
+				address
+			}
 		}
 		name
 		locationID
 		museumID
 	}
 }
+
 query getRestaurantLocation {
 	Restaurant {
 		Location {
 			latitude
 			longtitude
-			address
+			Address {
+				address
+			}
 		}
 		name
 		locationID
 		restaurantID
 	}
 }
+
 query getDay {
 	__typename
 	Day {
@@ -164,10 +175,25 @@ query getFood {
 		restaurantFoodID
 	}
 }
+<<<<<<< HEAD
 query getTags {
 	__typename
 	Tag {
 		name
 		tagID
+=======
+query getCities {
+	__typename
+	City(where: { Country: { countryID: { _eq: 1 } } }) {
+		cityID
+		city
+	}
+}
+query getCityDistricts($cityID: Int!) {
+	__typename
+	District(where: { cityID: { _eq: $cityID } }) {
+		district
+		districtID
+>>>>>>> 23eeb405b051482b83d59285339684a57ce8cbc7
 	}
 }
