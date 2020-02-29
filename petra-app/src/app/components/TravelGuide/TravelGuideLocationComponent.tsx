@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { BottomNavigation, Text, Icon, Layout } from '@ui-kitten/components';
 import { GetHotelLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { Marker } from 'react-native-maps';
 /**
  * Location props
  */
@@ -293,17 +292,25 @@ export class TravelGuideLocationComponent extends React.Component<TravelGuideLoc
 		console.log(region);
 		this.setState({ region });
 	}
-	_onMapPress(data) {
-		const coordinate = data.nativeEvent.coordinate;
+	_onMapPress = data => {
+		let longitude;
+		let latitude;
+		if (Platform.OS === 'web') {
+			latitude = data.latLng.lat();
+			longitude = data.latLng.lng();
+		} else {
+			latitude = data.nativeEvent.coordinate.latitude;
+			longitude = data.nativeEvent.coordinate.longitude;
+		}
 		this.setState(state => ({
 			markers: state.markers.concat({
-				coordinates: coordinate,
+				coordinates: { longitude, latitude },
 				type: 'travelguide'
 			})
 		}));
 		//sadece son işaretlenen markerı gönderiyorum
 		this.props.marker({
-			coordinates: coordinate,
+			coordinates: { longitude, latitude },
 			type: 'travelguide'
 		});
 		/* this.state.markers.push({
@@ -311,7 +318,7 @@ export class TravelGuideLocationComponent extends React.Component<TravelGuideLoc
 			type: 'travelguide'
 		}); */
 		//this.props.marker(markerData);
-	}
+	};
 	/* onMarkerChange = coordinate => {
 		const { longitude, latitude } = coordinate;
 		this.setState({ marker: coordinate });
@@ -330,12 +337,12 @@ export class TravelGuideLocationComponent extends React.Component<TravelGuideLoc
 					provider={PROVIDER_GOOGLE}
 					customMapStyle={this.state.mapStyle}
 					initialRegion={this.state.region}
-					onPress={this._onMapPress.bind(this)}
+					onPress={this._onMapPress}
 					showsUserLocation={true}
 					followsUserLocation={true}
 				>
 					{this.state.markers.map((marker, index) => (
-						<Marker
+						<MapView.Marker
 							key={index}
 							coordinate={marker.coordinates}
 							//description={marker.description}
