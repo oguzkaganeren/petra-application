@@ -10024,10 +10024,10 @@ react-native-view-shot@3.0.2:
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.0.2.tgz#daccaec5b8038a680b17533ff7e72876e68c7d0d"
   integrity sha512-JZOkGo2jzSX2b7N6N2uDr0wQjSz+QmBtY8jzeo0XJY6bLOfaY5nmWyYxDmDRoSpKiFkGTCkyhUqNnjo6lXOtEw==
 
-react-native-web-maps@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-web-maps/-/react-native-web-maps-0.2.0.tgz#348dbcd9d08fc2c894235d2be0d75989084b5004"
-  integrity sha512-NapoturnD65xVci3AXAZfZR7Z84WXrwpbqQedEhB8vYxmuzw7PddOXJokwtT4UnRtwqh1cg3q3cNWYy3p2+4/w==
+react-native-web-maps-test@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-web-maps-test/-/react-native-web-maps-test-0.2.1.tgz#50d8f03f78e4aceb525754c687daf39fd3d68ea8"
+  integrity sha512-o0mQAzpHboqCIysM3e8FuEm6vGGspYHo1kx7X3S71LKCvIm4sGQeOwMbPViNNW9NWN4Au+/DT8eMplBqt0HizA==
   dependencies:
     react-google-maps "^9.4.5"
 
