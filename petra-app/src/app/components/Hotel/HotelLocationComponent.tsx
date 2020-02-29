@@ -3,7 +3,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { BottomNavigation, Text, Icon, Layout } from '@ui-kitten/components';
 import { GetHotelLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { Marker } from 'react-native-maps';
 /**
  * Location props
  */
@@ -344,7 +343,7 @@ export class HotelLocationComponent extends React.Component<HotelLocationProps, 
 									initialRegion={this.state.region}
 								>
 									{this.state.markers.map(marker => (
-										<Marker
+										<MapView.Marker
 											key={marker.id}
 											coordinate={marker.coordinates}
 											description={marker.description}
