@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { BottomNavigation, BottomNavigationTab, Icon, Layout } from '@ui-kitten/components';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
 /**
  * Location props
  */
@@ -43,9 +42,18 @@ export class LocationComponent extends React.Component<LocationComponentProps, L
 		console.log(region);
 		this.setState({ region });
 	}
-	onMarkerChange = coordinate => {
-		const { longitude, latitude } = coordinate;
-		this.setState({ marker: coordinate });
+	onMarkerChange = event => {
+		let longitude;
+		let latitude;
+		if (Platform.OS === 'web') {
+			latitude = event.latLng.lat();
+			longitude = event.latLng.lng();
+		} else {
+			latitude = event.nativeEvent.coordinate.latitude;
+			longitude = event.nativeEvent.coordinate.longitude;
+		}
+		//const { longitude, latitude } = coordinate;
+		this.setState({ marker: { longitude, latitude } });
 		this.props.latitude(latitude);
 		this.props.longitude(longitude);
 	};
@@ -59,11 +67,12 @@ export class LocationComponent extends React.Component<LocationComponentProps, L
 				style={styles.mapStyle}
 				initialRegion={this.state.region}
 				onPress={e => {
-					this.onMarkerChange(e.nativeEvent.coordinate);
+					this.onMarkerChange(e);
+					//e.nativeEvent.coordinate
 				}}
 			>
 				{/* eğer marker null değilse gösterir */}
-				{this.state.marker && <Marker coordinate={this.state.marker} />}
+				{this.state.marker && <MapView.Marker coordinate={this.state.marker} />}
 			</MapView>
 		);
 	}

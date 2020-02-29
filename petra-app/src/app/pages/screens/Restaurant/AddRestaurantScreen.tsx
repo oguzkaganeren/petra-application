@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, ScrollView, ToastAndroid } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddRestaurantComponent, GetUserCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
@@ -141,7 +141,6 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										})
 											.then(res => {
 												alert(JSON.stringify(res));
-												ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 												//this.props.navigation.navigate('Home');
 											})

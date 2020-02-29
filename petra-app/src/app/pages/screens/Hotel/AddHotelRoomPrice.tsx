@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddHotelRoomPriceComponent } from '../../../generated/components';
 import { GetAllHotelRoomComponent } from '../../../components/Hotel/GetAllHotelRoom';
@@ -74,7 +74,6 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Room property has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})

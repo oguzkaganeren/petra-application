@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
@@ -135,7 +135,6 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 										})
 											.then(res => {
 												alert(JSON.stringify(res));
-												ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 												//this.props.navigation.navigate('Home');
 											})

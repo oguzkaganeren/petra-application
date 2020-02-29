@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddMuseumPriceComponent } from '../../../generated/components';
 import { GetAllMuseumEntranceTypesComponent } from '../../../components/Museum/GetAllMuseumEntranceTypes';
@@ -77,7 +77,6 @@ export class AddMuseumPriceScreen extends React.Component<AddMuseumPriceProps, A
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Museum Price has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})

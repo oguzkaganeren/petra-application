@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, ToastAndroid } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddRestaurantMenuComponent } from '../../../generated/components';
 import { GetAllUserRestaurantComponent } from '../../../components/Restaurant/GetAllUserRestaurant';
@@ -70,7 +70,6 @@ export class AddMenuScreen extends React.Component<AddMenuProps, AddMenuState> {
 									})
 										.then(res => {
 											alert(JSON.stringify(res));
-											ToastAndroid.show('Company has been added successfully', ToastAndroid.SHORT);
 
 											//this.props.navigation.navigate('Home');
 										})
