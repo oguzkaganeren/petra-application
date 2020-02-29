@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { BottomNavigation, Text, Icon, Layout } from '@ui-kitten/components';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { BottomNavigation, Text, Icon, Layout, Button } from '@ui-kitten/components';
 import { GetRestaurantLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 /**
@@ -292,9 +292,10 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 		console.log(region);
 		this.setState({ region });
 	}
-	_onMarkerPress(markerData) {
+	_onMarkerPress = markerData => {
 		this.props.marker(markerData);
-	}
+		console.log(markerData);
+	};
 	/* onMarkerChange = coordinate => {
 		const { longitude, latitude } = coordinate;
 		this.setState({ marker: coordinate });
@@ -306,6 +307,7 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 	 * @returns
 	 */
 	render() {
+		let markers = [];
 		return (
 			<Layout>
 				<GetRestaurantLocationComponent>
@@ -342,14 +344,27 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 									customMapStyle={this.state.mapStyle}
 									initialRegion={this.state.region}
 								>
-									{this.state.markers.map(marker => (
+									{this.state.markers.map((marker, index) => (
 										<MapView.Marker
 											key={marker.id}
 											coordinate={marker.coordinates}
 											description={marker.description}
+											ref={marker => (markers[index] = marker)}
 											title={marker.title}
-											onPress={this._onMarkerPress.bind(this, marker)}
-										/>
+											onPress={event => {
+												markers[index].showCallout();
+												this._onMarkerPress.bind(this, marker);
+											}}
+										>
+											<MapView.Callout onPress={console.log('clicked')}>
+												<View style={{ padding: 10 }}>
+													<Text>{marker.title}</Text>
+													<Text>{marker.description}</Text>
+													<Button>Ekle</Button>
+													<Button status="success">Detay</Button>
+												</View>
+											</MapView.Callout>
+										</MapView.Marker>
 									))}
 								</MapView>
 							);
