@@ -353,14 +353,13 @@ export class RestaurantLocationComponent extends React.Component<RestaurantLocat
 											title={marker.title}
 											onPress={event => {
 												markers[index].showCallout();
-												this._onMarkerPress.bind(this, marker);
 											}}
 										>
 											<MapView.Callout onPress={console.log('clicked')}>
 												<View style={{ padding: 10 }}>
 													<Text>{marker.title}</Text>
 													<Text>{marker.description}</Text>
-													<Button>Ekle</Button>
+													<Button onPress={this._onMarkerPress.bind(this, marker)}>Ekle</Button>
 													<Button status="success">Detay</Button>
 												</View>
 											</MapView.Callout>

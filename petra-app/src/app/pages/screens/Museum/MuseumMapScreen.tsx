@@ -37,15 +37,19 @@ export class MuseumMapScreen extends React.Component<MuseumMapProps, MuseumMapSt
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 					<MuseumLocationComponent
-						latitude={value => {
-							this.setState({
-								latitude: value
-							});
-						}}
-						longitude={value => {
-							this.setState({
-								longtitude: value
-							});
+						marker={value => {
+							/*this.setState({
+																	latitude: value
+																});*/
+							//console.log(value);
+							let item = {
+								id: value.id,
+								title: value.title,
+								description: value.description,
+								coordinates: value.coordinates,
+								type: value.type
+							};
+							//this.addItem(item);
 						}}
 					/>
 				</ScrollView>

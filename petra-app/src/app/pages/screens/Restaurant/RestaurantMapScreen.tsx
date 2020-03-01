@@ -37,15 +37,19 @@ export class RestaurantMapScreen extends React.Component<RestaurantMapProps, Res
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 					<RestaurantLocationComponent
-						latitude={value => {
-							this.setState({
-								latitude: value
-							});
-						}}
-						longitude={value => {
-							this.setState({
-								longtitude: value
-							});
+						marker={value => {
+							/*this.setState({
+																latitude: value
+															});*/
+							//console.log(value);
+							let item = {
+								id: value.id,
+								title: value.title,
+								description: value.description,
+								coordinates: value.coordinates,
+								type: value.type
+							};
+							//this.addItem(item);
 						}}
 					/>
 				</ScrollView>

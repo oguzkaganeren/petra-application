@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { BottomNavigation, Text, Icon, Layout } from '@ui-kitten/components';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { Button, Text, Icon, Layout } from '@ui-kitten/components';
 import { GetMuseumLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 /**
@@ -306,6 +306,7 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 	 * @returns
 	 */
 	render() {
+		let markers = [];
 		return (
 			<Layout>
 				<GetMuseumLocationComponent>
@@ -342,14 +343,26 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 									customMapStyle={this.state.mapStyle}
 									initialRegion={this.state.region}
 								>
-									{this.state.markers.map(marker => (
+									{this.state.markers.map((marker, index) => (
 										<MapView.Marker
 											key={marker.id}
 											coordinate={marker.coordinates}
 											description={marker.description}
+											ref={marker => (markers[index] = marker)}
 											title={marker.title}
-											onPress={this._onMarkerPress.bind(this, marker)}
-										/>
+											onPress={event => {
+												markers[index].showCallout();
+											}}
+										>
+											<MapView.Callout onPress={console.log('clicked')}>
+												<View style={{ padding: 10 }}>
+													<Text>{marker.title}</Text>
+													<Text>{marker.description}</Text>
+													<Button onPress={this._onMarkerPress.bind(this, marker)}>Ekle</Button>
+													<Button status="success">Detay</Button>
+												</View>
+											</MapView.Callout>
+										</MapView.Marker>
 									))}
 								</MapView>
 							);

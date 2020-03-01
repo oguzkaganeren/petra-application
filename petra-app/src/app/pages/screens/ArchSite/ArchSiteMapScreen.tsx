@@ -37,15 +37,18 @@ export class ArchSiteMapScreen extends React.Component<ArchSiteMapProps, ArchSit
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 					<ArchSiteLocationComponent
-						latitude={value => {
-							this.setState({
-								latitude: value
-							});
-						}}
-						longitude={value => {
-							this.setState({
-								longtitude: value
-							});
+						marker={value => {
+							/*this.setState({
+																latitude: value
+															});*/
+							let item = {
+								id: value.id,
+								title: value.title,
+								description: value.description,
+								coordinates: value.coordinates,
+								type: value.type
+							};
+							//this.addItem(item);
 						}}
 					/>
 				</ScrollView>
