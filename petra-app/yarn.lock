@@ -2082,6 +2082,13 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
+"@react-native-community/datetimepicker@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.1.0.tgz#4e3413462cbbe5c48fab6cebd422835031cdf7b9"
+  integrity sha512-InktUrx0/4JTy1YsgswljgID7oB3L8wkFobRhnLGWPExSsNHeecGW2/nBP31ZaOPHcjVWhpOQMZt0zDpKfGE/Q==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-community/masked-view@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
@@ -9980,6 +9987,13 @@ react-native-maps@0.26.1:
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.26.1.tgz#6ec316259b38d259c8974448d894bd7a23101da4"
   integrity sha512-p4VTB8YB5ZmOmDRCUpoHZkm05amZwhIo04AJMBbB9+JAR2PNNfpo0vceoWX0Mag4wnePkdzPomeWMplr/wimTg==
 
+react-native-modal-datetime-picker@^8.5.1:
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-8.5.1.tgz#61e18b114c265964fdf6b2e39f4874028f96d06f"
+  integrity sha512-ZV3dCKDXLRcyRiUWmmQCeuRulY5fr0RVO2rS0Tt+dUA+1gg8ral+NG4LoqPsrVPJgrf3RKWSmU+O0fZXyw2Vow==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-reanimated@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"
@@ -10024,10 +10038,10 @@ react-native-view-shot@3.0.2:
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.0.2.tgz#daccaec5b8038a680b17533ff7e72876e68c7d0d"
   integrity sha512-JZOkGo2jzSX2b7N6N2uDr0wQjSz+QmBtY8jzeo0XJY6bLOfaY5nmWyYxDmDRoSpKiFkGTCkyhUqNnjo6lXOtEw==
 
-react-native-web-maps-test@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-web-maps-test/-/react-native-web-maps-test-0.2.1.tgz#50d8f03f78e4aceb525754c687daf39fd3d68ea8"
-  integrity sha512-o0mQAzpHboqCIysM3e8FuEm6vGGspYHo1kx7X3S71LKCvIm4sGQeOwMbPViNNW9NWN4Au+/DT8eMplBqt0HizA==
+react-native-web-maps-test@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-web-maps-test/-/react-native-web-maps-test-0.2.4.tgz#5fa48689dc6b8cea98e66df3bfe82d5a90518a00"
+  integrity sha512-ySXRtqA+rG7ahNWOX6zlP43kbWrjOAiebgp5mRYlCxaWUDSlNFKj7+awwJVqFK+bJojT5oHMM7egkUS6WOF6rQ==
   dependencies:
     react-google-maps "^9.4.5"
 

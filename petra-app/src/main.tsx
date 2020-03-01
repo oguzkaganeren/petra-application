@@ -107,7 +107,7 @@ const RootStack = createStackNavigator(
 		SearchScreen: { screen: SearchScreen }
 	},
 	{
-		initialRouteName: 'HomeScreen',
+		initialRouteName: 'LoginScreen',
 		defaultNavigationOptions: ({ navigation }) => {
 			return MyHeader(navigation);
 		}
