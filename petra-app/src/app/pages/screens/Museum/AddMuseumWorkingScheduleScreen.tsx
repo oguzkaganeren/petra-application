@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
+import { Button, Layout, Text, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddMuseumWorkingScheduleComponent } from '../../../generated/components';
 import { GetAllDayComponent } from '../../../components/Public/GetAllDayComponent';
 import { GetAllUserMuseumComponent } from '../../../components/Museum/GetAllUserMuseum';
+import TimePicker from 'react-native-simple-time-picker';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -42,11 +43,6 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 	onSelect = value => {
 		this.setState({ theDate: value });
 	};
-	convertDateFormatForQuery = (date: Date) => {
-		console.log('A date has been picked: ', date);
-		let formattedDate = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-		return formattedDate;
-	};
 	/**
 	 * Renders
 	 * @returns
@@ -63,8 +59,10 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 							initialValues={{
 								museumID: 0,
 								dayID: 0,
-								openHour: new Date(),
-								closeHour: new Date()
+								openHour: 0,
+								openMinute: 0,
+								closeHour: 0,
+								closeMinute: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -84,8 +82,8 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 											startDate: this.state.theDate.startDate,
 											finishDate: this.state.theDate.endDate,
 											dayID: values.dayID,
-											openHour: this.convertDateFormatForQuery(values.openHour),
-											closeHour: this.convertDateFormatForQuery(values.closeHour)
+											openHour: values.openHour + ':' + values.openMinute + ':' + '00',
+											closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00'
 										}
 									})
 										.then(res => {
@@ -118,29 +116,24 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 											props.values.dayID = value;
 										}}
 									/>
-									<Button
-										onPress={() => {
-											this.setState({
-												showOpenHour: true,
-												showCloseHour: false
-											});
+									<Text>Open Hours</Text>
+									<TimePicker
+										selectedHours={props.values.openHour}
+										selectedMinutes={props.values.openMinute}
+										onChange={(hours, minutes) => {
+											props.values.openHour = hours;
+											props.values.openMinute = minutes;
 										}}
-										disabled={props.isSubmitting}
-									>
-										Set Open Hour
-									</Button>
-									<Button
-										onPress={() => {
-											this.setState({
-												showCloseHour: true,
-												showOpenHour: false
-											});
+									/>
+									<Text>Close Hours</Text>
+									<TimePicker
+										selectedHours={props.values.closeHour}
+										selectedMinutes={props.values.closeMinute}
+										onChange={(hours, minutes) => {
+											props.values.closeHour = hours;
+											props.values.closeMinute = minutes;
 										}}
-										disabled={props.isSubmitting}
-									>
-										Set Close Hour
-									</Button>
-
+									/>
 									<Button
 										onPress={() => {
 											props.handleSubmit();
