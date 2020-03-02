@@ -27,7 +27,8 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		//const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const userID = 4;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, TabView, Tab } from '@ui-kitten/components';
+import { Text, Layout, TabView, Tab } from '@ui-kitten/components';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
@@ -43,16 +43,20 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<GetAllCitiesComponent
-					label="Where from"
-					parentReference={value => {
-						this.setState({ cityID: value });
-					}}
-				/>
-				<GetAllCitiesComponent
-					label="Target"
-					parentReference={value => {
-						this.setState({ cityID: value });
+				<Text>Please Select a start point and end point</Text>
+				<SearchMapComponent
+					marker={value => {
+						/*this.setState({
+																latitude: value
+															});*/
+						let item = {
+							id: value.id,
+							title: value.title,
+							description: value.description,
+							coordinates: value.coordinates,
+							type: value.type
+						};
+						//this.addItem(item);
 					}}
 				/>
 				<TabView
@@ -62,23 +66,7 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 					}}
 				>
 					<Tab title="Yours">
-						<Layout style={styles.tabContainer}>
-							<SearchMapComponent
-								marker={value => {
-									/*this.setState({
-																latitude: value
-															});*/
-									let item = {
-										id: value.id,
-										title: value.title,
-										description: value.description,
-										coordinates: value.coordinates,
-										type: value.type
-									};
-									//this.addItem(item);
-								}}
-							/>
-						</Layout>
+						<Layout style={styles.tabContainer}></Layout>
 					</Tab>
 					<Tab title="Arch. Sites">
 						<Layout style={styles.tabContainer}>
