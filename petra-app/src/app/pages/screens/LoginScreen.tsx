@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { Button, Text, Layout } from '@ui-kitten/components';
-import { StyleSheet, AsyncStorage } from 'react-native';
+import { Button, Text, Layout, Spinner, Input } from '@ui-kitten/components';
+import { StyleSheet, AsyncStorage, View, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Mutation } from 'react-apollo';
 import * as Google from 'expo-google-app-auth';
 import { ControlUserComponent } from '../../generated/components';
 import * as Network from 'expo-network';
+
 const IOS_CLIENT_ID = '29671483454-ca7ar2q60s28c3eab6m83n5rh0hd19b0.apps.googleusercontent.com';
 const ANDROID_CLIENT_ID = '29671483454-nqtdad5lh9qibq6q1gjgii5m4dk9sfme.apps.googleusercontent.com';
 
@@ -67,7 +68,18 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			<ControlUserComponent>
 				{ControlUserMutation => (
 					<Formik
-						initialValues={{}}
+						initialValues={{
+							email: '',
+							password: ''
+						}}
+						validationSchema={Yup.object({
+							mail: Yup.string()
+								.email('Invalid email')
+								.required('Required'),
+							password: Yup.string()
+								.min(5, 'Too Short!')
+								.required('Required')
+						})}
 						onSubmit={async (values, formikActions) => {
 							// this.props.requestSentHandler();
 							const result = await this.signInWithGoogle();
@@ -115,9 +127,18 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 								Google Login
 							</Button>
 						)}
+
+						
 					</Formik>
 				)}
 			</ControlUserComponent>
+			<Button
+				onPress={() => {
+					this.props.navigation.navigate('RegisterScreen');
+				}}
+			>
+				Register
+						</Button>
 		</Layout>
 	);
 	/**
@@ -132,7 +153,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			let userID = data[0][1];
 			let accessToken = data[1][1];
 
-			if (accessToken !== null) {
+			/*if (accessToken !== null) {
 				this.setState({ userID: parseInt(userID, 10), accessToken: accessToken });
 				this.props.navigation.navigate('HomeScreen', {
 					userID: userID,
@@ -140,9 +161,9 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 				});
 			} else {
 				return this.renderSetUserComponent;
-			}
+			}*/
 		});
-		return null;
+		return this.renderSetUserComponent;
 	};
 	/**
 	 * Renders login

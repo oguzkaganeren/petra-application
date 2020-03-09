@@ -1,9 +1,5 @@
 overwrite: true
-<<<<<<< HEAD
 schema: 'http://192.168.99.100:8080/v1/graphql'
-=======
-schema: 'http://194.27.61.230:8080/v1/graphql'
->>>>>>> 23eeb405b051482b83d59285339684a57ce8cbc7
 documents: 'graphql/**/*.graphql'
 generates:
   src/app/generated/components.tsx:
