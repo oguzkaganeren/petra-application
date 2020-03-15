@@ -27,6 +27,7 @@
         "formik": "^2.1.2",
         "graphql": "^14.6.0",
         "graphql-tag": "^2.10.3",
+        "naive-tsp": "^1.0.3",
         "node-dijkstra": "^2.5.0",
         "react": "~16.9.0",
         "react-apollo": "^3.1.3",
