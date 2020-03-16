@@ -16,7 +16,6 @@ export interface GetAllHotelServicePropertyProps {
 export interface GetAllHotelServicePropertyState {
 	selected: any;
 	datam: any;
-	idSelected: any;
 }
 
 /**
@@ -34,8 +33,7 @@ export class GetAllHotelServicePropertyComponent extends React.Component<
 		super(props);
 		this.state = {
 			selected: [],
-			datam: [],
-			idSelected: []
+			datam: []
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
