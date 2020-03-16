@@ -85,8 +85,19 @@ query getHotelLocation {
 	}
 }
 
-query getArchSiteLocation {
-	ArchSite {
+query getArchSiteLocation(
+	$cityID: Int!
+	$archSiteEntranceTypeID: Int!
+	$priceDate: timestamptz!
+	$archSiteTypeIDs: [Int!]!
+) {
+	ArchSite(
+		where: {
+			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
+			ArchSitePrices: { archSiteEntranceTypeID: { _eq: $archSiteEntranceTypeID }, finishDate: { _gte: $priceDate } }
+			ArchSiteTypeArchSites: { archSiteTypeID: { _in: $archSiteTypeIDs } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude
@@ -97,8 +108,18 @@ query getArchSiteLocation {
 		name
 		locationID
 		archSiteID
+		age
+		ArchSitePrices {
+			price
+			finishDate
+			archSiteEntranceTypeID
+		}
+		ArchSiteTypeArchSites {
+			archSiteTypeID
+		}
 	}
 }
+
 query getMuseumLocation {
 	Museum {
 		Location {

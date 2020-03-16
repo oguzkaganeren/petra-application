@@ -24084,14 +24084,19 @@ export type GetHotelLocationQuery = (
   )> }
 );
 
-export type GetArchSiteLocationQueryVariables = {};
+export type GetArchSiteLocationQueryVariables = {
+  cityID: Scalars['Int'],
+  archSiteEntranceTypeID: Scalars['Int'],
+  priceDate: Scalars['timestamptz'],
+  archSiteTypeIDs: Array<Scalars['Int']>
+};
 
 
 export type GetArchSiteLocationQuery = (
   { __typename?: 'query_root' }
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID'>
+    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
@@ -24099,7 +24104,13 @@ export type GetArchSiteLocationQuery = (
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
       ) }
-    ) }
+    ), ArchSitePrices: Array<(
+      { __typename?: 'ArchSitePrice' }
+      & Pick<ArchSitePrice, 'price' | 'finishDate' | 'archSiteEntranceTypeID'>
+    )>, ArchSiteTypeArchSites: Array<(
+      { __typename?: 'ArchSiteTypeArchSite' }
+      & Pick<ArchSiteTypeArchSite, 'archSiteTypeID'>
+    )> }
   )> }
 );
 
@@ -25458,8 +25469,8 @@ export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?
 };
 export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
 export const GetArchSiteLocationDocument = gql`
-    query getArchSiteLocation {
-  ArchSite {
+    query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int!, $priceDate: timestamptz!, $archSiteTypeIDs: [Int!]!) {
+  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}}) {
     Location {
       latitude
       longtitude
@@ -25470,10 +25481,19 @@ export const GetArchSiteLocationDocument = gql`
     name
     locationID
     archSiteID
+    age
+    ArchSitePrices {
+      price
+      finishDate
+      archSiteEntranceTypeID
+    }
+    ArchSiteTypeArchSites {
+      archSiteTypeID
+    }
   }
 }
     `;
-export type GetArchSiteLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>, 'query'>;
+export type GetArchSiteLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>, 'query'> & ({ variables: GetArchSiteLocationQueryVariables; skip?: boolean; } | { skip: boolean; });
 
     export const GetArchSiteLocationComponent = (props: GetArchSiteLocationComponentProps) => (
       <ApolloReactComponents.Query<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables> query={GetArchSiteLocationDocument} {...props} />

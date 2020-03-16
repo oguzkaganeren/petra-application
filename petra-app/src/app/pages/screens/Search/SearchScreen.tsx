@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Text, Layout, TabView, Tab } from '@ui-kitten/components';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
 import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
