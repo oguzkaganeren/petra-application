@@ -87,9 +87,9 @@ query getHotelLocation {
 
 query getArchSiteLocation(
 	$cityID: Int!
-	$archSiteEntranceTypeID: Int!
-	$priceDate: timestamptz!
-	$archSiteTypeIDs: [Int!]!
+	$archSiteEntranceTypeID: Int
+	$priceDate: timestamptz
+	$archSiteTypeIDs: [Int!]
 ) {
 	ArchSite(
 		where: {
@@ -120,8 +120,14 @@ query getArchSiteLocation(
 	}
 }
 
-query getMuseumLocation {
-	Museum {
+query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
+	Museum(
+		where: {
+			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
+			MuseumPrices: { entranceTypeID: { _eq: $museumEntranceTypeID }, finishDate: { _gte: $priceDate } }
+			MuseumTypeMuseums: { museumTypeID: { _in: $museumTypeIDs } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude

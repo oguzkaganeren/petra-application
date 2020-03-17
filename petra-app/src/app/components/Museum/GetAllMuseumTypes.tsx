@@ -15,7 +15,6 @@ export interface GetAllMuseumTypesProps {
  */
 export interface GetAllMuseumTypesState {
 	selected: any;
-	setSelectedOption: any;
 	datam: any;
 }
 
@@ -30,8 +29,7 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: null,
-			setSelectedOption: null,
+			selected: [],
 			datam: []
 		};
 		this.onValueChange = this.onValueChange.bind(this);
@@ -42,8 +40,10 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 	 * @param value
 	 */
 	onValueChange(value) {
-		const id = value.id;
-		this.props.parentReference(id);
+		const filter = Object.keys(value).reduce((result, key) => {
+			return result.concat({ id: value[key].id });
+		}, []);
+		this.props.parentReference(filter);
 		this.setState({
 			selected: value.text
 		});
@@ -78,6 +78,7 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 								<Select
 									data={this.state.datam}
 									placeholder={this.props.label}
+									multiSelect={true}
 									selectedOption={this.state.selected}
 									keyExtractor={this.keyExtractor.bind(this)}
 									onSelect={this.onValueChange}

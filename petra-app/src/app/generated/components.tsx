@@ -8343,6 +8343,8 @@ export type Museum = {
   Location: Location,
   MuseumComments: Array<MuseumComment>,
   MuseumComments_aggregate: MuseumComment_Aggregate,
+  MuseumPrices: Array<MuseumPrice>,
+  MuseumPrices_aggregate: MuseumPrice_Aggregate,
   MuseumTypeMuseums: Array<MuseumTypeMuseum>,
   MuseumTypeMuseums_aggregate: MuseumTypeMuseum_Aggregate,
   MuseumWorkingSchedules: Array<MuseumWorkingSchedule>,
@@ -8373,6 +8375,24 @@ export type MuseumMuseumComments_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<MuseumComment_Order_By>>,
   where?: Maybe<MuseumComment_Bool_Exp>
+};
+
+
+export type MuseumMuseumPricesArgs = {
+  distinct_on?: Maybe<Array<MuseumPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumPrice_Order_By>>,
+  where?: Maybe<MuseumPrice_Bool_Exp>
+};
+
+
+export type MuseumMuseumPrices_AggregateArgs = {
+  distinct_on?: Maybe<Array<MuseumPrice_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<MuseumPrice_Order_By>>,
+  where?: Maybe<MuseumPrice_Bool_Exp>
 };
 
 
@@ -8492,6 +8512,7 @@ export type Museum_Bool_Exp = {
   Company?: Maybe<Company_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
   MuseumComments?: Maybe<MuseumComment_Bool_Exp>,
+  MuseumPrices?: Maybe<MuseumPrice_Bool_Exp>,
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Bool_Exp>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Bool_Exp>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Bool_Exp>,
@@ -8520,6 +8541,7 @@ export type Museum_Insert_Input = {
   Company?: Maybe<Company_Obj_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   MuseumComments?: Maybe<MuseumComment_Arr_Rel_Insert_Input>,
+  MuseumPrices?: Maybe<MuseumPrice_Arr_Rel_Insert_Input>,
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
@@ -8586,6 +8608,7 @@ export type Museum_Order_By = {
   Company?: Maybe<Company_Order_By>,
   Location?: Maybe<Location_Order_By>,
   MuseumComments_aggregate?: Maybe<MuseumComment_Aggregate_Order_By>,
+  MuseumPrices_aggregate?: Maybe<MuseumPrice_Aggregate_Order_By>,
   MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
@@ -9264,6 +9287,7 @@ export type MuseumEntranceType_Variance_Order_By = {
 
 export type MuseumPrice = {
    __typename?: 'MuseumPrice',
+  Museum: Museum,
   MuseumEntranceType: MuseumEntranceType,
   entranceTypeID: Scalars['Int'],
   finishDate: Scalars['timestamptz'],
@@ -9336,6 +9360,7 @@ export type MuseumPrice_Avg_Order_By = {
 };
 
 export type MuseumPrice_Bool_Exp = {
+  Museum?: Maybe<Museum_Bool_Exp>,
   MuseumEntranceType?: Maybe<MuseumEntranceType_Bool_Exp>,
   _and?: Maybe<Array<Maybe<MuseumPrice_Bool_Exp>>>,
   _not?: Maybe<MuseumPrice_Bool_Exp>,
@@ -9360,6 +9385,7 @@ export type MuseumPrice_Inc_Input = {
 };
 
 export type MuseumPrice_Insert_Input = {
+  Museum?: Maybe<Museum_Obj_Rel_Insert_Input>,
   MuseumEntranceType?: Maybe<MuseumEntranceType_Obj_Rel_Insert_Input>,
   entranceTypeID?: Maybe<Scalars['Int']>,
   finishDate?: Maybe<Scalars['timestamptz']>,
@@ -9426,6 +9452,7 @@ export type MuseumPrice_On_Conflict = {
 };
 
 export type MuseumPrice_Order_By = {
+  Museum?: Maybe<Museum_Order_By>,
   MuseumEntranceType?: Maybe<MuseumEntranceType_Order_By>,
   entranceTypeID?: Maybe<Order_By>,
   finishDate?: Maybe<Order_By>,
@@ -24086,9 +24113,9 @@ export type GetHotelLocationQuery = (
 
 export type GetArchSiteLocationQueryVariables = {
   cityID: Scalars['Int'],
-  archSiteEntranceTypeID: Scalars['Int'],
-  priceDate: Scalars['timestamptz'],
-  archSiteTypeIDs: Array<Scalars['Int']>
+  archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
+  priceDate?: Maybe<Scalars['timestamptz']>,
+  archSiteTypeIDs?: Maybe<Array<Scalars['Int']>>
 };
 
 
@@ -24114,7 +24141,12 @@ export type GetArchSiteLocationQuery = (
   )> }
 );
 
-export type GetMuseumLocationQueryVariables = {};
+export type GetMuseumLocationQueryVariables = {
+  cityID: Scalars['Int'],
+  museumEntranceTypeID?: Maybe<Scalars['Int']>,
+  priceDate?: Maybe<Scalars['timestamptz']>,
+  museumTypeIDs?: Maybe<Array<Scalars['Int']>>
+};
 
 
 export type GetMuseumLocationQuery = (
@@ -25469,7 +25501,7 @@ export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?
 };
 export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
 export const GetArchSiteLocationDocument = gql`
-    query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int!, $priceDate: timestamptz!, $archSiteTypeIDs: [Int!]!) {
+    query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int, $priceDate: timestamptz, $archSiteTypeIDs: [Int!]) {
   ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}}) {
     Location {
       latitude
@@ -25512,8 +25544,8 @@ export function withGetArchSiteLocation<TProps, TChildProps = {}>(operationOptio
 };
 export type GetArchSiteLocationQueryResult = ApolloReactCommon.QueryResult<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>;
 export const GetMuseumLocationDocument = gql`
-    query getMuseumLocation {
-  Museum {
+    query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
+  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}}) {
     Location {
       latitude
       longtitude
@@ -25527,7 +25559,7 @@ export const GetMuseumLocationDocument = gql`
   }
 }
     `;
-export type GetMuseumLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>, 'query'>;
+export type GetMuseumLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>, 'query'> & ({ variables: GetMuseumLocationQueryVariables; skip?: boolean; } | { skip: boolean; });
 
     export const GetMuseumLocationComponent = (props: GetMuseumLocationComponentProps) => (
       <ApolloReactComponents.Query<GetMuseumLocationQuery, GetMuseumLocationQueryVariables> query={GetMuseumLocationDocument} {...props} />
