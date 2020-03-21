@@ -22696,6 +22696,7 @@ export type User = {
   loginTypeID: Scalars['Int'],
   mail: Scalars['String'],
   name: Scalars['String'],
+  password: Scalars['String'],
   phoneID?: Maybe<Scalars['Int']>,
   profileImageUrl?: Maybe<Scalars['String']>,
   registerDate: Scalars['timestamptz'],
@@ -22913,6 +22914,7 @@ export type User_Bool_Exp = {
   loginTypeID?: Maybe<Int_Comparison_Exp>,
   mail?: Maybe<String_Comparison_Exp>,
   name?: Maybe<String_Comparison_Exp>,
+  password?: Maybe<String_Comparison_Exp>,
   phoneID?: Maybe<Int_Comparison_Exp>,
   profileImageUrl?: Maybe<String_Comparison_Exp>,
   registerDate?: Maybe<Timestamptz_Comparison_Exp>,
@@ -22952,6 +22954,7 @@ export type User_Insert_Input = {
   loginTypeID?: Maybe<Scalars['Int']>,
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
   profileImageUrl?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
@@ -22968,6 +22971,7 @@ export type User_Max_Fields = {
   loginTypeID?: Maybe<Scalars['Int']>,
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
   profileImageUrl?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
@@ -22983,6 +22987,7 @@ export type User_Max_Order_By = {
   loginTypeID?: Maybe<Order_By>,
   mail?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
+  password?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
   profileImageUrl?: Maybe<Order_By>,
   registerDate?: Maybe<Order_By>,
@@ -22999,6 +23004,7 @@ export type User_Min_Fields = {
   loginTypeID?: Maybe<Scalars['Int']>,
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
   profileImageUrl?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
@@ -23014,6 +23020,7 @@ export type User_Min_Order_By = {
   loginTypeID?: Maybe<Order_By>,
   mail?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
+  password?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
   profileImageUrl?: Maybe<Order_By>,
   registerDate?: Maybe<Order_By>,
@@ -23058,6 +23065,7 @@ export type User_Order_By = {
   loginTypeID?: Maybe<Order_By>,
   mail?: Maybe<Order_By>,
   name?: Maybe<Order_By>,
+  password?: Maybe<Order_By>,
   phoneID?: Maybe<Order_By>,
   profileImageUrl?: Maybe<Order_By>,
   registerDate?: Maybe<Order_By>,
@@ -23076,6 +23084,7 @@ export enum User_Select_Column {
   LoginTypeId = 'loginTypeID',
   Mail = 'mail',
   Name = 'name',
+  Password = 'password',
   PhoneId = 'phoneID',
   ProfileImageUrl = 'profileImageUrl',
   RegisterDate = 'registerDate',
@@ -23094,6 +23103,7 @@ export type User_Set_Input = {
   loginTypeID?: Maybe<Scalars['Int']>,
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
   phoneID?: Maybe<Scalars['Int']>,
   profileImageUrl?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
@@ -23172,6 +23182,7 @@ export enum User_Update_Column {
   LoginTypeId = 'loginTypeID',
   Mail = 'mail',
   Name = 'name',
+  Password = 'password',
   PhoneId = 'phoneID',
   ProfileImageUrl = 'profileImageUrl',
   RegisterDate = 'registerDate',
@@ -23443,7 +23454,9 @@ export type ControlUserMutationVariables = {
   mail?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
   registerDate?: Maybe<Scalars['timestamptz']>,
-  accessToken?: Maybe<Scalars['String']>
+  accessToken?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
+  surname?: Maybe<Scalars['String']>
 };
 
 
@@ -24270,6 +24283,17 @@ export type GetFoodQuery = (
   )> }
 );
 
+export type GetTagsQueryVariables = {};
+
+
+export type GetTagsQuery = (
+  { __typename: 'query_root' }
+  & { Tag: Array<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'name' | 'tagID'>
+  )> }
+);
+
 export type GetCitiesQueryVariables = {};
 
 
@@ -24294,11 +24318,25 @@ export type GetCityDistrictsQuery = (
   )> }
 );
 
+export type GetLoginUserQueryVariables = {
+  mail?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>
+};
+
+
+export type GetLoginUserQuery = (
+  { __typename: 'query_root' }
+  & { User: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'userID'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
-    mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String) {
+    mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String, $password: String, $surname: String) {
   __typename
-  insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate, accessToken: $accessToken}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
+  insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate, accessToken: $accessToken, password: $password, surname: $surname}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
     returning {
       userID
       accessToken
@@ -25805,6 +25843,33 @@ export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloR
     });
 };
 export type GetFoodQueryResult = ApolloReactCommon.QueryResult<GetFoodQuery, GetFoodQueryVariables>;
+export const GetTagsDocument = gql`
+    query getTags {
+  __typename
+  Tag {
+    name
+    tagID
+  }
+}
+    `;
+export type GetTagsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTagsQuery, GetTagsQueryVariables>, 'query'>;
+
+    export const GetTagsComponent = (props: GetTagsComponentProps) => (
+      <ApolloReactComponents.Query<GetTagsQuery, GetTagsQueryVariables> query={GetTagsDocument} {...props} />
+    );
+    
+export type GetTagsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTagsQuery, GetTagsQueryVariables> & TChildProps;
+export function withGetTags<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTagsQuery,
+  GetTagsQueryVariables,
+  GetTagsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetTagsQuery, GetTagsQueryVariables, GetTagsProps<TChildProps>>(GetTagsDocument, {
+      alias: 'getTags',
+      ...operationOptions
+    });
+};
+export type GetTagsQueryResult = ApolloReactCommon.QueryResult<GetTagsQuery, GetTagsQueryVariables>;
 export const GetCitiesDocument = gql`
     query getCities {
   __typename
@@ -25859,3 +25924,29 @@ export function withGetCityDistricts<TProps, TChildProps = {}>(operationOptions?
     });
 };
 export type GetCityDistrictsQueryResult = ApolloReactCommon.QueryResult<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>;
+export const GetLoginUserDocument = gql`
+    query getLoginUser($mail: String, $password: String) {
+  __typename
+  User(where: {mail: {_eq: $mail}, password: {_eq: $password}}) {
+    userID
+  }
+}
+    `;
+export type GetLoginUserComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetLoginUserQuery, GetLoginUserQueryVariables>, 'query'>;
+
+    export const GetLoginUserComponent = (props: GetLoginUserComponentProps) => (
+      <ApolloReactComponents.Query<GetLoginUserQuery, GetLoginUserQueryVariables> query={GetLoginUserDocument} {...props} />
+    );
+    
+export type GetLoginUserProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetLoginUserQuery, GetLoginUserQueryVariables> & TChildProps;
+export function withGetLoginUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetLoginUserQuery,
+  GetLoginUserQueryVariables,
+  GetLoginUserProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetLoginUserQuery, GetLoginUserQueryVariables, GetLoginUserProps<TChildProps>>(GetLoginUserDocument, {
+      alias: 'getLoginUser',
+      ...operationOptions
+    });
+};
+export type GetLoginUserQueryResult = ApolloReactCommon.QueryResult<GetLoginUserQuery, GetLoginUserQueryVariables>;

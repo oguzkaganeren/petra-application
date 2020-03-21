@@ -207,6 +207,14 @@ query getFood {
 		restaurantFoodID
 	}
 }
+query getTags {
+	__typename
+	Tag {
+		name
+		tagID
+		}
+	}
+
 query getCities {
 	__typename
 	City(where: { Country: { countryID: { _eq: 1 } } }) {
@@ -220,4 +228,10 @@ query getCityDistricts($cityID: Int!) {
 		district
 		districtID
 	}
+}
+query getLoginUser($mail: String, $password: String) {
+  __typename
+  User(where: { mail: { _eq: $mail }, password: { _eq: $password } }) {
+    userID
+  }
 }

@@ -46,6 +46,7 @@ import { AddMuseumPriceScreen } from './app/pages/screens/Museum/AddMuseumPriceS
 import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
 import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
 import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
+import { AddArticleScreen } from './app/pages/screens/Article/AddArticleScreen';
 import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
@@ -104,6 +105,7 @@ const RootStack = createStackNavigator(
 		AddMuseumPriceScreen: { screen: AddMuseumPriceScreen },
 		AddTravelGuideScreen: { screen: AddTravelGuideScreen },
 		AddMenuScreen: { screen: AddMenuScreen },
+		AddArticleScreen: { screen: AddArticleScreen },
 		SearchScreen: { screen: SearchScreen }
 	},
 	{

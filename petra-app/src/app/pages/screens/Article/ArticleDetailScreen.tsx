@@ -38,6 +38,15 @@ export class ArticleDetailScreen extends React.Component<ArticleDetailScreenProp
 				>
 					Add Tag
 				</Button>
+				<Button
+					onPress={() => {
+						this.props.navigation.navigate('AddArticleScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Article
+				</Button>
 
 				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
 					<BottomComponent></BottomComponent>
