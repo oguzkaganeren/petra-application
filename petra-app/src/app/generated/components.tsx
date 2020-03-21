@@ -23981,6 +23981,22 @@ export type AddRestaurantMenuMutation = (
   )> }
 );
 
+export type AddArticleMutationVariables = {
+  addArticle: Array<Article_Insert_Input>
+};
+
+
+export type AddArticleMutation = (
+  { __typename: 'mutation_root' }
+  & { insert_Article: Maybe<(
+    { __typename?: 'Article_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Article' }
+      & Pick<Article, 'articleID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -25235,6 +25251,36 @@ export function withAddRestaurantMenu<TProps, TChildProps = {}>(operationOptions
 };
 export type AddRestaurantMenuMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMenuMutation>;
 export type AddRestaurantMenuMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMenuMutation, AddRestaurantMenuMutationVariables>;
+export const AddArticleDocument = gql`
+    mutation addArticle($addArticle: [Article_insert_input!]!) {
+  __typename
+  insert_Article(objects: $addArticle) {
+    returning {
+      articleID
+    }
+  }
+}
+    `;
+export type AddArticleMutationFn = ApolloReactCommon.MutationFunction<AddArticleMutation, AddArticleMutationVariables>;
+export type AddArticleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<AddArticleMutation, AddArticleMutationVariables>, 'mutation'>;
+
+    export const AddArticleComponent = (props: AddArticleComponentProps) => (
+      <ApolloReactComponents.Mutation<AddArticleMutation, AddArticleMutationVariables> mutation={AddArticleDocument} {...props} />
+    );
+    
+export type AddArticleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<AddArticleMutation, AddArticleMutationVariables> & TChildProps;
+export function withAddArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AddArticleMutation,
+  AddArticleMutationVariables,
+  AddArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, AddArticleMutation, AddArticleMutationVariables, AddArticleProps<TChildProps>>(AddArticleDocument, {
+      alias: 'addArticle',
+      ...operationOptions
+    });
+};
+export type AddArticleMutationResult = ApolloReactCommon.MutationResult<AddArticleMutation>;
+export type AddArticleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArticleMutation, AddArticleMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename

@@ -58,12 +58,24 @@ export class AddArticleScreen extends React.Component<AddArticleProps, AddArticl
 								setTimeout(() => {
 									AddArticleMutation({
 										variables: {
-											content: values.content,
-											articleTags: values.tags,
-											userID: userID,
-											editDate: new Date(),
-											publishDate: new Date(),
-											title: values.title
+											addArticle: [
+												{
+													content: values.content,
+													ArticleUsers: {
+														data: [
+															{
+																userID: userID
+															}
+														]
+													},
+													ArticleTags: {
+														data: values.tags
+													},
+													editDate: new Date(),
+													publishDate: new Date(),
+													title: values.title
+												}
+											]
 										}
 									})
 										.then(res => {
