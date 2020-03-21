@@ -42,7 +42,6 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
-				<Text>Please Select a start point and end point</Text>
 				<SearchMapComponent
 					marker={value => {
 						/*this.setState({
