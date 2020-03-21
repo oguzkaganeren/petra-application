@@ -24161,7 +24161,10 @@ export type GetMuseumLocationQuery = (
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
       ) }
-    ) }
+    ), MuseumPrices: Array<(
+      { __typename?: 'MuseumPrice' }
+      & Pick<MuseumPrice, 'price' | 'finishDate' | 'entranceTypeID'>
+    )> }
   )> }
 );
 
@@ -25552,6 +25555,11 @@ export const GetMuseumLocationDocument = gql`
       Address {
         address
       }
+    }
+    MuseumPrices {
+      price
+      finishDate
+      entranceTypeID
     }
     name
     locationID

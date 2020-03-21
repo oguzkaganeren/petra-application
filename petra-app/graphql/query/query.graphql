@@ -135,6 +135,11 @@ query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: t
 				address
 			}
 		}
+		MuseumPrices {
+			price
+			finishDate
+			entranceTypeID
+		}
 		name
 		locationID
 		museumID
