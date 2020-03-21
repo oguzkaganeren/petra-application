@@ -363,3 +363,20 @@ mutation addArticle($addArticle: [Article_insert_input!]!) {
 		}
 	}
 }
+mutation controlLoginMailUser(
+	$loginDate: timestamptz
+	$loginTypeID: Int
+	$loginIP: inet
+	$mail: String!
+	$password: String!
+) {
+	__typename
+	update_User(
+		where: { mail: { _eq: $mail }, password: { _eq: $password } }
+		_set: { loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID }
+	) {
+		returning {
+			userID
+		}
+	}
+}

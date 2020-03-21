@@ -212,8 +212,8 @@ query getTags {
 	Tag {
 		name
 		tagID
-		}
 	}
+}
 
 query getCities {
 	__typename
@@ -228,10 +228,4 @@ query getCityDistricts($cityID: Int!) {
 		district
 		districtID
 	}
-}
-query getLoginUser($mail: String, $password: String) {
-  __typename
-  User(where: { mail: { _eq: $mail }, password: { _eq: $password } }) {
-    userID
-  }
 }

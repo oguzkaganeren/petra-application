@@ -48,6 +48,7 @@ import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaura
 import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
 import { AddArticleScreen } from './app/pages/screens/Article/AddArticleScreen';
 import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
+import { RegisterScreen } from './app/pages/screens/RegisterScreen';
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -106,10 +107,11 @@ const RootStack = createStackNavigator(
 		AddTravelGuideScreen: { screen: AddTravelGuideScreen },
 		AddMenuScreen: { screen: AddMenuScreen },
 		AddArticleScreen: { screen: AddArticleScreen },
-		SearchScreen: { screen: SearchScreen }
+		SearchScreen: { screen: SearchScreen },
+		RegisterScreen: { screen: RegisterScreen }
 	},
 	{
-		initialRouteName: 'HomeScreen',
+		initialRouteName: 'LoginScreen',
 		defaultNavigationOptions: ({ navigation }) => {
 			return MyHeader(navigation);
 		}

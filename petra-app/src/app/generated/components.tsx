@@ -23997,6 +23997,26 @@ export type AddArticleMutation = (
   )> }
 );
 
+export type ControlLoginMailUserMutationVariables = {
+  loginDate?: Maybe<Scalars['timestamptz']>,
+  loginTypeID?: Maybe<Scalars['Int']>,
+  loginIP?: Maybe<Scalars['inet']>,
+  mail: Scalars['String'],
+  password: Scalars['String']
+};
+
+
+export type ControlLoginMailUserMutation = (
+  { __typename: 'mutation_root' }
+  & { update_User: Maybe<(
+    { __typename?: 'User_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'userID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -24331,20 +24351,6 @@ export type GetCityDistrictsQuery = (
   & { District: Array<(
     { __typename?: 'District' }
     & Pick<District, 'district' | 'districtID'>
-  )> }
-);
-
-export type GetLoginUserQueryVariables = {
-  mail?: Maybe<Scalars['String']>,
-  password?: Maybe<Scalars['String']>
-};
-
-
-export type GetLoginUserQuery = (
-  { __typename: 'query_root' }
-  & { User: Array<(
-    { __typename?: 'User' }
-    & Pick<User, 'userID'>
   )> }
 );
 
@@ -25281,6 +25287,36 @@ export function withAddArticle<TProps, TChildProps = {}>(operationOptions?: Apol
 };
 export type AddArticleMutationResult = ApolloReactCommon.MutationResult<AddArticleMutation>;
 export type AddArticleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArticleMutation, AddArticleMutationVariables>;
+export const ControlLoginMailUserDocument = gql`
+    mutation controlLoginMailUser($loginDate: timestamptz, $loginTypeID: Int, $loginIP: inet, $mail: String!, $password: String!) {
+  __typename
+  update_User(where: {mail: {_eq: $mail}, password: {_eq: $password}}, _set: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID}) {
+    returning {
+      userID
+    }
+  }
+}
+    `;
+export type ControlLoginMailUserMutationFn = ApolloReactCommon.MutationFunction<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables>;
+export type ControlLoginMailUserComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables>, 'mutation'>;
+
+    export const ControlLoginMailUserComponent = (props: ControlLoginMailUserComponentProps) => (
+      <ApolloReactComponents.Mutation<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables> mutation={ControlLoginMailUserDocument} {...props} />
+    );
+    
+export type ControlLoginMailUserProps<TChildProps = {}> = ApolloReactHoc.MutateProps<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables> & TChildProps;
+export function withControlLoginMailUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  ControlLoginMailUserMutation,
+  ControlLoginMailUserMutationVariables,
+  ControlLoginMailUserProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables, ControlLoginMailUserProps<TChildProps>>(ControlLoginMailUserDocument, {
+      alias: 'controlLoginMailUser',
+      ...operationOptions
+    });
+};
+export type ControlLoginMailUserMutationResult = ApolloReactCommon.MutationResult<ControlLoginMailUserMutation>;
+export type ControlLoginMailUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -25970,29 +26006,3 @@ export function withGetCityDistricts<TProps, TChildProps = {}>(operationOptions?
     });
 };
 export type GetCityDistrictsQueryResult = ApolloReactCommon.QueryResult<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>;
-export const GetLoginUserDocument = gql`
-    query getLoginUser($mail: String, $password: String) {
-  __typename
-  User(where: {mail: {_eq: $mail}, password: {_eq: $password}}) {
-    userID
-  }
-}
-    `;
-export type GetLoginUserComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetLoginUserQuery, GetLoginUserQueryVariables>, 'query'>;
-
-    export const GetLoginUserComponent = (props: GetLoginUserComponentProps) => (
-      <ApolloReactComponents.Query<GetLoginUserQuery, GetLoginUserQueryVariables> query={GetLoginUserDocument} {...props} />
-    );
-    
-export type GetLoginUserProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetLoginUserQuery, GetLoginUserQueryVariables> & TChildProps;
-export function withGetLoginUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetLoginUserQuery,
-  GetLoginUserQueryVariables,
-  GetLoginUserProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetLoginUserQuery, GetLoginUserQueryVariables, GetLoginUserProps<TChildProps>>(GetLoginUserDocument, {
-      alias: 'getLoginUser',
-      ...operationOptions
-    });
-};
-export type GetLoginUserQueryResult = ApolloReactCommon.QueryResult<GetLoginUserQuery, GetLoginUserQueryVariables>;
