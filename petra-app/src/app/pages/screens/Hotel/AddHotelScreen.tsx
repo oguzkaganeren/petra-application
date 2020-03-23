@@ -14,6 +14,7 @@ import * as Yup from 'yup';
  */
 export interface AddHotelProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state
@@ -53,7 +54,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelComponent>

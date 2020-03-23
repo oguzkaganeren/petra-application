@@ -8,6 +8,7 @@ import { SearchComponent } from '../../../components/Public/SearchComponent';
  */
 export interface RestaurantDetailScreenProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -27,7 +28,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button

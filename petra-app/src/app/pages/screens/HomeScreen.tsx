@@ -8,12 +8,13 @@ import { BottomComponent } from '../../components/Public/BottomComponent';
  */
 export interface HomeProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
  */
 export interface HomeState {}
-
+declare var global: any;
 /**
  * Home
  */
@@ -27,116 +28,123 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	 * @returns
 	 */
 	render() {
-		//const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const userID = 4;
-		return (
-			<Layout style={{ flex: 1 }}>
-				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('AddCompanyScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Add Company
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('AddRestaurantScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Add Restaurant
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('RestaurantDetailScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Restaurant Details
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('ArchSiteDetailScreen', {
-								userID: userID
-							});
-						}}
-					>
-						ArchSite Details
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('MuseumDetailScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Museum Details
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('AddHotelScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Add Hotel
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('HotelDetailScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Hotel Details
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('ArticleDetailScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Article Details
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('MapScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Map Screen
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('AddTravelGuideScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Add Travel Guide
-					</Button>
-					<Button
-						onPress={() => {
-							this.props.navigation.navigate('SearchScreen', {
-								userID: userID
-							});
-						}}
-					>
-						Show Search Screen
-					</Button>
-					<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-						<BottomComponent></BottomComponent>
-					</Layout>
-				</ScrollView>
-			</Layout>
-		);
+		if (global.userID == -1) {
+			return (
+				<Layout>
+					<Text>Kullanıcı girişi yapılmamış sayfası</Text>
+				</Layout>
+			);
+		} else {
+			const { userID } = global.userID;
+			return (
+				<Layout style={{ flex: 1 }}>
+					<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('AddCompanyScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Add Company
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('AddRestaurantScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Add Restaurant
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('RestaurantDetailScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Restaurant Details
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('ArchSiteDetailScreen', {
+									userID: userID
+								});
+							}}
+						>
+							ArchSite Details
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('MuseumDetailScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Museum Details
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('AddHotelScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Add Hotel
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('HotelDetailScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Hotel Details
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('ArticleDetailScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Article Details
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('MapScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Map Screen
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('AddTravelGuideScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Add Travel Guide
+						</Button>
+						<Button
+							onPress={() => {
+								this.props.navigation.navigate('SearchScreen', {
+									userID: userID
+								});
+							}}
+						>
+							Show Search Screen
+						</Button>
+						<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+							<BottomComponent></BottomComponent>
+						</Layout>
+					</ScrollView>
+				</Layout>
+			);
+		}
 	}
 }
 

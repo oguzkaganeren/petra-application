@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddRestaurantCuisineTypeProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state

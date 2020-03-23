@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddMuseumEntranceTypeProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state
@@ -31,8 +32,6 @@ export class AddMuseumEntranceTypeScreen extends React.Component<
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const archSiteID = this.props.navigation.getParam('archSiteID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddMuseumEntranceTypeComponent>

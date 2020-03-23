@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddMuseumTypeProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state

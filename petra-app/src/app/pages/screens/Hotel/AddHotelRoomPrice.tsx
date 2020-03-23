@@ -11,6 +11,7 @@ import * as Yup from 'yup';
  */
 export interface AddHotelRoomPriceProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -42,8 +43,7 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const hotelID = this.props.navigation.getParam('hotelID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelRoomPriceComponent>

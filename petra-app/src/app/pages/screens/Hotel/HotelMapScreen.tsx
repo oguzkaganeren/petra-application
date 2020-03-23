@@ -7,6 +7,7 @@ import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationC
  */
 export interface HotelMapProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -32,7 +33,7 @@ export class HotelMapScreen extends React.Component<HotelMapProps, HotelMapState
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

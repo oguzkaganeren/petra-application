@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddTagScreenProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state

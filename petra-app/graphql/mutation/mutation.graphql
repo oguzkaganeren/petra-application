@@ -26,7 +26,7 @@ mutation controlUser(
 	) {
 		returning {
 			userID
-			accessToken
+			userTypeID
 		}
 	}
 }
@@ -377,6 +377,7 @@ mutation controlLoginMailUser(
 	) {
 		returning {
 			userID
+			userTypeID
 		}
 	}
 }

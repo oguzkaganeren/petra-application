@@ -15,6 +15,7 @@ import { GetAllCuisineTypesComponent } from '../../../components/Restaurant/GetA
  */
 export interface AddRestaurantProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -44,7 +45,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = global.userID;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

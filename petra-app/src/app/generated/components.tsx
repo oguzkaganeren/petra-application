@@ -23466,7 +23466,7 @@ export type ControlUserMutation = (
     { __typename?: 'User_mutation_response' }
     & { returning: Array<(
       { __typename?: 'User' }
-      & Pick<User, 'userID' | 'accessToken'>
+      & Pick<User, 'userID' | 'userTypeID'>
     )> }
   )> }
 );
@@ -24012,7 +24012,7 @@ export type ControlLoginMailUserMutation = (
     { __typename?: 'User_mutation_response' }
     & { returning: Array<(
       { __typename?: 'User' }
-      & Pick<User, 'userID'>
+      & Pick<User, 'userID' | 'userTypeID'>
     )> }
   )> }
 );
@@ -24361,7 +24361,7 @@ export const ControlUserDocument = gql`
   insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate, accessToken: $accessToken, password: $password, surname: $surname}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
     returning {
       userID
-      accessToken
+      userTypeID
     }
   }
 }
@@ -25293,6 +25293,7 @@ export const ControlLoginMailUserDocument = gql`
   update_User(where: {mail: {_eq: $mail}, password: {_eq: $password}}, _set: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID}) {
     returning {
       userID
+      userTypeID
     }
   }
 }

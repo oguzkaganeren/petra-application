@@ -7,11 +7,13 @@ import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesCo
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+declare var global: any;
 /**
  * AddCompany props
  */
 export interface AddCompanyProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -51,7 +53,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = global.userID;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView>

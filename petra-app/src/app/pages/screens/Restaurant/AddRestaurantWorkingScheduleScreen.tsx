@@ -12,6 +12,7 @@ import * as Yup from 'yup';
  */
 export interface AddRestaurantWorkingScheduleProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -48,8 +49,7 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const hotelID = this.props.navigation.getParam('hotelID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantWorkingScheduleComponent>

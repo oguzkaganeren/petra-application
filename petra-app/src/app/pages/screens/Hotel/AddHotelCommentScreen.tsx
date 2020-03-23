@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddHotelCommentProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state
@@ -28,8 +29,8 @@ export class AddHotelCommentScreen extends React.Component<AddHotelCommentProps,
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const hotelID = this.props.navigation.getParam('hotelID', 'NO-ID');
+		const { userID } = this.props.route.params;
+		const { hotelID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelCommentComponent>

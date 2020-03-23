@@ -28,7 +28,8 @@ export interface LoginState {
 	accessToken: string;
 	secureTextEntry: boolean;
 }
-
+declare var global: any;
+global.userID = -1;
 /**
  * Login
  */
@@ -42,6 +43,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 		};
 		this.controlUser();
 	}
+
 	signInWithGoogle = async () => {
 		try {
 			const result = await Google.logInAsync({
@@ -103,14 +105,11 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 										})
 											.then(res => {
 												const userID = res.data.insert_User.returning[0].userID;
-												const accessToken = res.data.insert_User.returning[0].accessToken;
-												AsyncStorage.multiSet([
-													['userID', userID.toString()],
-													['accessToken', accessToken]
-												]);
-												this.props.navigation.navigate('HomeScreen', {
-													userID: userID
-												});
+												const userTypeID = res.data.insert_User.returning[0].userTypeID;
+												AsyncStorage.multiSet([['userID', userID.toString()]]);
+												global.userID = userID;
+												global.userTypeID = userTypeID;
+												this.props.navigation.navigate('HomeScreen');
 											})
 											.catch(err => alert(err));
 									} else {
@@ -166,10 +165,10 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 								})
 									.then(res => {
 										const userID = res.data.update_User.returning[0].userID;
-
-										this.props.navigation.navigate('HomeScreen', {
-											userID: userID
-										});
+										const userTypeID = res.data.update_User.returning[0].userTypeID;
+										global.userID = userID;
+										global.userTypeID = userTypeID;
+										this.props.navigation.navigate('HomeScreen');
 									})
 									.catch(err => alert(err));
 								formikActions.setSubmitting(false);

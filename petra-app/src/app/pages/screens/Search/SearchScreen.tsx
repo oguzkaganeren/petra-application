@@ -11,6 +11,7 @@ import { SearchMapComponent } from '../../../components/Search/SearchMapComponen
  */
 export interface SearchProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -39,7 +40,6 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<SearchMapComponent

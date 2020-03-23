@@ -7,6 +7,7 @@ import { RestaurantLocationComponent } from '../../../components/Restaurant/Rest
  */
 export interface RestaurantMapProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -32,7 +33,7 @@ export class RestaurantMapScreen extends React.Component<RestaurantMapProps, Res
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

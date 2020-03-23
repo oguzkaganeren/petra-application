@@ -11,6 +11,7 @@ import * as Yup from 'yup';
  */
 export interface AddRoomProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -34,7 +35,7 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRoomComponent>

@@ -10,6 +10,7 @@ import * as Yup from 'yup';
  */
 export interface AddFoodProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state

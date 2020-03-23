@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddArchSiteCommentProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state
@@ -28,8 +29,8 @@ export class AddArchSiteCommentScreen extends React.Component<AddArchSiteComment
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const archSiteID = this.props.navigation.getParam('archSiteID', 'NO-ID');
+		const { userID } = this.props.route.params;
+		const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSiteCommentComponent>

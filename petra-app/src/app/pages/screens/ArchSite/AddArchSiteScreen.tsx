@@ -14,6 +14,7 @@ import * as Yup from 'yup';
  */
 export interface AddArchSiteProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -43,7 +44,7 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

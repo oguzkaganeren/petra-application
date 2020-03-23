@@ -7,6 +7,7 @@ import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSite
  */
 export interface ArchSiteMapProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -32,7 +33,7 @@ export class ArchSiteMapScreen extends React.Component<ArchSiteMapProps, ArchSit
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

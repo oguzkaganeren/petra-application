@@ -1,6 +1,11 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+//import { createStackNavigator } from 'react-navigation-stack';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Drawer as UIKittenDrawer, Layout, Text } from '@ui-kitten/components';
 import { HomeScreen } from './app/pages/screens/HomeScreen';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
@@ -49,82 +54,132 @@ import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelG
 import { AddArticleScreen } from './app/pages/screens/Article/AddArticleScreen';
 import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
 import { RegisterScreen } from './app/pages/screens/RegisterScreen';
+declare var global: any;
+/**
+ * Eğer drawer ile tıkladığın bir sayfada header gözükmesini istiyorsan her bir ekran için yeni bir stack oluşturmalısın
+ * by oguz
+ */
+
 // Graphql modules
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
 const client = new ApolloClient({ uri: 'http://192.168.1.108:8080/v1/graphql' });
-const MyHeader = navigation => {
-	return {
-		header: props => <HeaderComponent headerTitle={navigation.getParam('title')} />
+
+const Drawer = createDrawerNavigator();
+
+const DrawerContent = ({ navigation, state }) => {
+	const onSelect = index => {
+		navigation.navigate(state.routeNames[index]);
 	};
+	console.log(state.routeNames);
+	return (
+		<UIKittenDrawer
+			data={[
+				{ title: 'Login' },
+				{ title: 'Home' },
+				global.userTypeID == 2 ? { title: 'Add Company' } : {},
+				global.userTypeID == 2 ? { title: 'Add Restaurant' } : {}
+			]}
+			selectedIndex={state.index}
+			onSelect={onSelect}
+		/>
+	);
 };
-/**
- * Define navigator
- */
-const RootStack = createStackNavigator(
-	{
-		HomeScreen: { screen: HomeScreen },
-		LoginScreen: { screen: LoginScreen },
-		AddCompanyScreen: { screen: AddCompanyScreen },
-		AddRestaurantScreen: { screen: AddRestaurantScreen },
-		RestaurantDetailScreen: { screen: RestaurantDetailScreen },
-		AddFoodTypeScreen: { screen: AddFoodTypeScreen },
-		AddFoodScreen: { screen: AddFoodScreen },
-		AddHotelScreen: { screen: AddHotelScreen },
-		ArchSiteDetailScreen: { screen: ArchSiteDetailScreen },
-		AddArchSiteTypeScreen: { screen: AddArchSiteTypeScreen },
-		HotelDetailScreen: { screen: HotelDetailScreen },
-		AddRoomPropertyScreen: { screen: AddRoomPropertyScreen },
-		AddRoomScreen: { screen: AddRoomScreen },
-		AddHotelServicePropertyScreen: { screen: AddHotelServicePropertyScreen },
-		AddHotelCommentScreen: { screen: AddHotelCommentScreen },
-		AddHotelRoomPriceScreen: { screen: AddHotelRoomPriceScreen },
-		AddArchSiteScreen: { screen: AddArchSiteScreen },
-		AddArchSiteCommentScreen: { screen: AddArchSiteCommentScreen },
-		AddArchSiteEntranceTypeScreen: { screen: AddArchSiteEntranceTypeScreen },
-		AddRestaurantCuisineTypeScreen: { screen: AddRestaurantCuisineTypeScreen },
-		ArticleDetailScreen: { screen: ArticleDetailScreen },
-		AddTagScreen: { screen: AddTagScreen },
-		AddRestaurantTypeScreen: { screen: AddRestaurantTypeScreen },
-		AddRestaurantCommentScreen: { screen: AddRestaurantCommentScreen },
-		MuseumDetailScreen: { screen: MuseumDetailScreen },
-		AddMuseumTypeScreen: { screen: AddMuseumTypeScreen },
-		AddMuseumScreen: { screen: AddMuseumScreen },
-		AddMuseumCommentScreen: { screen: AddMuseumCommentScreen },
-		AddMuseumEntranceTypeScreen: { screen: AddMuseumEntranceTypeScreen },
-		MapScreen: { screen: MapScreen },
-		HotelMapScreen: { screen: HotelMapScreen },
-		ArchSiteMapScreen: { screen: ArchSiteMapScreen },
-		MuseumMapScreen: { screen: MuseumMapScreen },
-		RestaurantMapScreen: { screen: RestaurantMapScreen },
-		AddArchSiteWorkingScheduleScreen: { screen: AddArchSiteWorkingScheduleScreen },
-		AddMuseumWorkingScheduleScreen: { screen: AddMuseumWorkingScheduleScreen },
-		AddRestaurantWorkingScheduleScreen: { screen: AddRestaurantWorkingScheduleScreen },
-		AddArchSitePriceScreen: { screen: AddArchSitePriceScreen },
-		AddMuseumPriceScreen: { screen: AddMuseumPriceScreen },
-		AddTravelGuideScreen: { screen: AddTravelGuideScreen },
-		AddMenuScreen: { screen: AddMenuScreen },
-		AddArticleScreen: { screen: AddArticleScreen },
-		SearchScreen: { screen: SearchScreen },
-		RegisterScreen: { screen: RegisterScreen }
-	},
-	{
-		initialRouteName: 'LoginScreen',
-		defaultNavigationOptions: ({ navigation }) => {
-			return MyHeader(navigation);
-		}
-	}
+
+export const DrawerNavigator = () => (
+	<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
+		<Drawer.Screen name="LoginScreen" component={LoginStack} />
+		<Drawer.Screen name="HomeScreen" component={HomeStack} />
+		<Drawer.Screen name="AddCompanyScreen" component={AddCompanyStack} />
+		<Drawer.Screen name="AddRestaurantScreen" component={AddRestaurantScreen} />
+	</Drawer.Navigator>
 );
-const App = createAppContainer(RootStack);
+
+const Stack = createStackNavigator();
+function LoginStack() {
+	return (
+		<Stack.Navigator initialRouteName="LoginScreen">
+			<Stack.Screen
+				name="LoginScreen"
+				component={LoginScreen}
+				options={{
+					title: 'Home',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function HomeStack() {
+	return (
+		<Stack.Navigator initialRouteName="HomeScreen">
+			<Stack.Screen
+				name="HomeScreen"
+				component={HomeScreen}
+				options={{
+					title: 'Home',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function AddCompanyStack() {
+	return (
+		<Stack.Navigator initialRouteName="AddCompanyScreen">
+			<Stack.Screen
+				name="AddCompanyScreen"
+				component={AddCompanyScreen}
+				options={{
+					title: 'Add your Company',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
 /**View or Fragment??? */
 export default () => (
 	<React.Fragment>
 		<IconRegistry icons={EvaIconsPack} />
+
 		<ApolloProvider client={client}>
 			<ApplicationProvider mapping={mapping} theme={lightTheme}>
-				<App />
+				<NavigationContainer>
+					<DrawerNavigator />
+				</NavigationContainer>
 			</ApplicationProvider>
 		</ApolloProvider>
 	</React.Fragment>

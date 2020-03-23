@@ -7,6 +7,7 @@ import { BottomComponent } from '../../../components/Public/BottomComponent';
  */
 export interface ArticleDetailScreenProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -26,7 +27,7 @@ export class ArticleDetailScreen extends React.Component<ArticleDetailScreenProp
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button

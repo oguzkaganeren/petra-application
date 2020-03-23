@@ -7,6 +7,7 @@ import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocati
  */
 export interface MuseumMapProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -32,7 +33,6 @@ export class MuseumMapScreen extends React.Component<MuseumMapProps, MuseumMapSt
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

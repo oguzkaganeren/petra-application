@@ -11,6 +11,7 @@ import * as Yup from 'yup';
  */
 export interface AddArchSitePriceProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -44,8 +45,8 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const archSiteID = this.props.navigation.getParam('archSiteID', 'NO-ID');
+		const { userID } = this.props.route.params;
+		const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSitePriceComponent>

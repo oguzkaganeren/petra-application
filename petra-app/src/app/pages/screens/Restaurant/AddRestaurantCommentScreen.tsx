@@ -9,6 +9,7 @@ import * as Yup from 'yup';
  */
 export interface AddRestaurantCommentProps {
 	navigation: any;
+	route: any;
 }
 /**
  * AddHotel state
@@ -28,8 +29,8 @@ export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCom
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
-		const restaurantID = this.props.navigation.getParam('restaurantID', 'NO-ID');
+		const { userID } = this.props.route.params;
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantCommentComponent>

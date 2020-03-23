@@ -21,7 +21,7 @@ export interface BottomState {
 export class BottomComponent extends React.Component<BottomProps, BottomState> {
 	SearchIcon = style => <Icon {...style} name="search-outline" />;
 
-	FavIcon = style => <Icon {...style} name="heart-outline" />;
+	FlagIcon = style => <Icon {...style} name="flag-outline" />;
 
 	SettingsIcon = style => <Icon {...style} name="settings-outline" />;
 
@@ -47,8 +47,8 @@ export class BottomComponent extends React.Component<BottomProps, BottomState> {
 					this.setState({ bottomSelectedIndex: value });
 				}}
 			>
+				<BottomNavigationTab title="Explore" icon={this.FlagIcon} />
 				<BottomNavigationTab title="Search" icon={this.SearchIcon} />
-				<BottomNavigationTab title="Favorites" icon={this.FavIcon} />
 				<BottomNavigationTab title="Settings" icon={this.SettingsIcon} />
 			</BottomNavigation>
 		);

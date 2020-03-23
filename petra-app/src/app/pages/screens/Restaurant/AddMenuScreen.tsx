@@ -11,6 +11,7 @@ import * as Yup from 'yup';
  */
 export interface AddMenuProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Location state
@@ -31,7 +32,7 @@ export class AddMenuScreen extends React.Component<AddMenuProps, AddMenuState> {
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantMenuComponent>
