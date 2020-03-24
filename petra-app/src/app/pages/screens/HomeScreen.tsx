@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/Public/BottomComponent';
-import { useIsFocused } from '@react-navigation/native';
 /**
  * Home props
  */
@@ -24,13 +23,12 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 		super(props);
 		this.state = {};
 	}
-	isFocused = useIsFocused();
 	/**
 	 * Renders home
 	 * @returns
 	 */
 	render() {
-		if (this.props.route.params === undefined && this.isFocused) {
+		if (this.props.route.params === undefined) {
 			return (
 				<Layout>
 					<Text>Kullanıcı girişi yapılmamış sayfası</Text>
