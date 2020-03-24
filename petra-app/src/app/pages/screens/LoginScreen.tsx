@@ -109,7 +109,9 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 												AsyncStorage.multiSet([['userID', userID.toString()]]);
 												global.userID = userID;
 												global.userTypeID = userTypeID;
-												this.props.navigation.navigate('HomeScreen');
+												this.props.navigation.navigate('HomeScreen', {
+													userID: userID
+												});
 											})
 											.catch(err => alert(err));
 									} else {
@@ -168,7 +170,9 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 										const userTypeID = res.data.update_User.returning[0].userTypeID;
 										global.userID = userID;
 										global.userTypeID = userTypeID;
-										this.props.navigation.navigate('HomeScreen');
+										this.props.navigation.navigate('HomeScreen', {
+											userID: userID
+										});
 									})
 									.catch(err => alert(err));
 								formikActions.setSubmitting(false);

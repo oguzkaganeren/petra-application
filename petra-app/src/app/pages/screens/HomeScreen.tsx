@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import { BottomComponent } from '../../components/Public/BottomComponent';
-
+import { useIsFocused } from '@react-navigation/native';
 /**
  * Home props
  */
@@ -15,6 +15,7 @@ export interface HomeProps {
  */
 export interface HomeState {}
 declare var global: any;
+
 /**
  * Home
  */
@@ -23,19 +24,20 @@ export class HomeScreen extends React.Component<HomeProps, HomeState> {
 		super(props);
 		this.state = {};
 	}
+	isFocused = useIsFocused();
 	/**
 	 * Renders home
 	 * @returns
 	 */
 	render() {
-		if (global.userID == -1) {
+		if (this.props.route.params === undefined && this.isFocused) {
 			return (
 				<Layout>
 					<Text>Kullanıcı girişi yapılmamış sayfası</Text>
 				</Layout>
 			);
 		} else {
-			const { userID } = global.userID;
+			const { userID } = this.props.route.params;
 			return (
 				<Layout style={{ flex: 1 }}>
 					<ScrollView contentContainerStyle={{ flexGrow: 1 }}>

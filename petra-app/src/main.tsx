@@ -73,7 +73,6 @@ const DrawerContent = ({ navigation, state }) => {
 	const onSelect = index => {
 		navigation.navigate(state.routeNames[index]);
 	};
-	console.log(state.routeNames);
 	return (
 		<UIKittenDrawer
 			data={[
