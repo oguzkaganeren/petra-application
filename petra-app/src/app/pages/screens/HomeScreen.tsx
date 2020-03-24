@@ -13,8 +13,9 @@ export interface HomeProps {
 /**
  * Home state
  */
-export interface HomeState {}
-declare var global: any;
+export interface HomeState {
+	userID: number;
+}
 
 /**
  * Home
@@ -22,22 +23,31 @@ declare var global: any;
 export class HomeScreen extends React.Component<HomeProps, HomeState> {
 	constructor(props: HomeProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			userID: -1
+		};
 	}
-	isFocused = useIsFocused();
+	Allowance = () => {
+		const isFocused = useIsFocused();
+		if (isFocused && this.props.route.params !== undefined) {
+			this.setState({ userID: this.props.route.params.userID });
+		}
+		return isFocused;
+	};
 	/**
 	 * Renders home
 	 * @returns
 	 */
 	render() {
-		if (this.props.route.params === undefined && this.isFocused) {
+		const isFocused = this.Allowance;
+		const userID = this.state.userID;
+		if (userID == -1 && isFocused) {
 			return (
 				<Layout>
 					<Text>Kullanıcı girişi yapılmamış sayfası</Text>
 				</Layout>
 			);
 		} else {
-			const { userID } = this.props.route.params;
 			return (
 				<Layout style={{ flex: 1 }}>
 					<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
