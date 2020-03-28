@@ -13,6 +13,11 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { HeaderComponent } from '../src/app/components/Public/HeaderComponent';
 import { LoginScreen } from './app/pages/screens/LoginScreen';
 import { AddCompanyScreen } from './app/pages/screens/Company/AddCompanyScreen';
+import ArchSiteScreen from './app/pages/screens/ArchSite/ArchSiteScreen';
+import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
+import RestaurantScreen from './app/pages/screens/Restaurant/RestaurantScreen';
+import HotelScreen from './app/pages/screens/Hotel/HotelScreen';
+import CompanyScreen from './app/pages/screens/Hotel/HotelScreen';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
 import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
@@ -76,10 +81,13 @@ const DrawerContent = ({ navigation, state }) => {
 	return (
 		<UIKittenDrawer
 			data={[
-				{ title: 'Login' },
+				global.userID == -1 ? { title: 'Login' } : {},
 				{ title: 'Home' },
-				global.userTypeID == 2 ? { title: 'Add Company' } : {},
-				global.userTypeID == 2 ? { title: 'Add Restaurant' } : {}
+				global.userTypeID == 2 ? { title: 'Company' } : {},
+				global.userTypeID == 2 ? { title: 'Restaurant' } : {},
+				global.userTypeID == 2 ? { title: 'Hotel' } : {},
+				global.userTypeID == 2 ? { title: 'Museum' } : {},
+				global.userTypeID == 2 ? { title: 'Archaeological Site' } : {}
 			]}
 			selectedIndex={state.index}
 			onSelect={onSelect}
@@ -91,8 +99,11 @@ export const DrawerNavigator = () => (
 	<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
 		<Drawer.Screen name="LoginScreen" component={LoginStack} />
 		<Drawer.Screen name="HomeScreen" component={HomeStack} />
-		<Drawer.Screen name="AddCompanyScreen" component={AddCompanyStack} />
-		<Drawer.Screen name="AddRestaurantScreen" component={AddRestaurantScreen} />
+		<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
+		<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
+		<Drawer.Screen name="HotelScreen" component={HotelStack} />
+		<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
+		<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
 	</Drawer.Navigator>
 );
 
@@ -145,14 +156,110 @@ function HomeStack() {
 		</Stack.Navigator>
 	);
 }
-function AddCompanyStack() {
+function CompanyStack() {
 	return (
-		<Stack.Navigator initialRouteName="AddCompanyScreen">
+		<Stack.Navigator initialRouteName="CompanyScreen">
 			<Stack.Screen
-				name="AddCompanyScreen"
-				component={AddCompanyScreen}
+				name="CompanyScreen"
+				component={CompanyScreen}
 				options={{
-					title: 'Add your Company',
+					title: 'Company',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function RestaurantStack() {
+	return (
+		<Stack.Navigator initialRouteName="RestaurantScreen">
+			<Stack.Screen
+				name="RestaurantScreen"
+				component={RestaurantScreen}
+				options={{
+					title: 'Restaurant',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function HotelStack() {
+	return (
+		<Stack.Navigator initialRouteName="HotelScreen">
+			<Stack.Screen
+				name="HotelScreen"
+				component={HotelScreen}
+				options={{
+					title: 'Hotel',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function MuseumStack() {
+	return (
+		<Stack.Navigator initialRouteName="MuseumScreen">
+			<Stack.Screen
+				name="MuseumScreen"
+				component={MuseumScreen}
+				options={{
+					title: 'Museum',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function ArchSiteStack() {
+	return (
+		<Stack.Navigator initialRouteName="ArchSiteScreen">
+			<Stack.Screen
+				name="ArchSiteScreen"
+				component={ArchSiteScreen}
+				options={{
+					title: 'Archaeological Site',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =
