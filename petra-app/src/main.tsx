@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Drawer as UIKittenDrawer, Layout, Text } from '@ui-kitten/components';
-import { HomeScreen } from './app/pages/screens/HomeScreen';
+import HomeScreen from './app/pages/screens/HomeScreen';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
