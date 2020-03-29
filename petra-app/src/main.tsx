@@ -92,7 +92,7 @@ const userTypeFiveMenus = [
 	{ title: 'Museum' },
 	{ title: 'Archaeological Site' },
 	{ title: 'Article' },
-	{ title: 'TravelGuide' }
+	{ title: 'Travel Guide' }
 ];
 const Drawer = createDrawerNavigator();
 
