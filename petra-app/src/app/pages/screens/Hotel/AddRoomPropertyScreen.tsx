@@ -52,7 +52,11 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 									console.log(values.content + ' ');
 									AddRoomProperyMutation({
 										variables: {
-											content: values.content.toString()
+											RoomProperty: [
+												{
+													content: values.content.toString()
+												}
+											]
 										}
 									})
 										.then(res => {

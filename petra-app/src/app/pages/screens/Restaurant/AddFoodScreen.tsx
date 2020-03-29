@@ -56,9 +56,13 @@ export class AddFoodScreen extends React.Component<AddFoodProps, AddFoodState> {
 									console.log(values.name + ' ' + values.price + ' ' + values.foodTypeID);
 									AddFoodMutation({
 										variables: {
-											name: values.name.toString(),
-											price: values.price,
-											restaurantFoodTypeID: values.foodTypeID
+											food:[
+												{
+													name: values.name,
+													price: values.price,
+													restaurantFoodTypeID: values.foodTypeID
+												}
+											]
 										}
 									})
 										.then(res => {

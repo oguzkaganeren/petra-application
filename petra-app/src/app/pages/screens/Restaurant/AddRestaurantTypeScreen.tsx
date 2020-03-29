@@ -52,7 +52,11 @@ export class AddRestaurantTypeScreen extends React.Component<AddRestaurantTypePr
 									console.log(values.type + ' ');
 									AddRestaurantTypeMutation({
 										variables: {
-											type: values.type.toString()
+											RestaurantType:[
+												{
+													type: values.type.toString()
+												}
+											]
 										}
 									})
 										.then(res => {

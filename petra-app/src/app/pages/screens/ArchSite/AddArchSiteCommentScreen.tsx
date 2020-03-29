@@ -29,8 +29,8 @@ export class AddArchSiteCommentScreen extends React.Component<AddArchSiteComment
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
-		const { archSiteID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
+		//const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSiteCommentComponent>
@@ -54,11 +54,17 @@ export class AddArchSiteCommentScreen extends React.Component<AddArchSiteComment
 								setTimeout(() => {
 									AddArchSiteCommentMutation({
 										variables: {
-											content: values.content,
-											date: new Date(),
-											archSiteID: archSiteID,
-											star: values.star,
-											userID: userID
+											ArchSiteComment:[
+												{
+													content: values.content,
+													date: new Date(),
+													//archSiteID: archSiteID,
+													archSiteID: 1,
+													star: values.star,
+													//userID: userID
+													userID: 75
+												}
+											]
 										}
 									})
 										.then(res => {

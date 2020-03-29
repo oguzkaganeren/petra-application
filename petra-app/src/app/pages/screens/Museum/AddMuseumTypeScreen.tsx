@@ -52,7 +52,11 @@ export class AddMuseumTypeScreen extends React.Component<AddMuseumTypeProps, Add
 									console.log(values.typeName + ' ');
 									AddMuseumTypeMutation({
 										variables: {
-											type: values.typeName.toString()
+											MuseumType:[
+												{
+													type: values.typeName.toString()
+												}
+											]
 										}
 									})
 										.then(res => {

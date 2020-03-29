@@ -29,8 +29,8 @@ export class AddHotelCommentScreen extends React.Component<AddHotelCommentProps,
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
-		const { hotelID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
+		//const { hotelID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelCommentComponent>
@@ -54,11 +54,19 @@ export class AddHotelCommentScreen extends React.Component<AddHotelCommentProps,
 								setTimeout(() => {
 									AddHotelCommentMutation({
 										variables: {
-											content: values.content,
-											date: new Date(),
-											hotelID: hotelID,
-											star: values.star,
-											userID: userID
+											HotelComment:[
+												{
+													content: values.content,
+													date: new Date(),
+													//hotelID: hotelID,
+													hotelID: 2,
+													star: values.star,
+													//userID: userID
+													userID: 75
+												}
+											]
+
+											
 										}
 									})
 										.then(res => {
