@@ -52,7 +52,11 @@ export class AddTagScreen extends React.Component<AddTagScreenProps, AddTagScree
 									console.log(values.name + ' ');
 									AddTagMutation({
 										variables: {
-											name: values.name.toString()
+											Tag:[
+												{
+													name: values.name.toString()
+												}
+											]
 										}
 									})
 										.then(res => {

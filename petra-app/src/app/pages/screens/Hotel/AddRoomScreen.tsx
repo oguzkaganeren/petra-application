@@ -35,7 +35,7 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRoomComponent>
@@ -103,7 +103,8 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 										parentReference={value => {
 											props.values.hotelID = value;
 										}}
-										userID={parseInt(userID)}
+										//userID={parseInt(userID)}
+										userID={4}
 									/>
 									<Button
 										onPress={() => {

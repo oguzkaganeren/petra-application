@@ -45,7 +45,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 	 * @returns
 	 */
 	render() {
-		const { userID } = global.userID;
+		//const { userID } = global.userID;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -178,7 +178,8 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 											parentReference={value => {
 												props.values.companyID = value;
 											}}
-											userID={parseInt(userID)}
+											//userID={parseInt(userID)}
+											userID={75}
 										/>
 										<Input
 											label="Restaurant Name"

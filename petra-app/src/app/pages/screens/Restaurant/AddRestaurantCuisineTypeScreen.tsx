@@ -53,7 +53,11 @@ export class AddRestaurantCuisineTypeScreen extends React.Component<
 								setTimeout(() => {
 									AddRestaurantCuisineTypeMutation({
 										variables: {
-											name: values.name
+											RestaurantCuisineType:[
+												{
+													name: values.name
+												}
+											]
 										}
 									})
 										.then(res => {

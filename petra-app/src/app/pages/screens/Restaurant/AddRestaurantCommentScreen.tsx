@@ -29,8 +29,8 @@ export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCom
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
-		const { restaurantID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
+		//const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantCommentComponent>
@@ -54,11 +54,17 @@ export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCom
 								setTimeout(() => {
 									AddRestaurantCommentMutation({
 										variables: {
-											content: values.content,
-											date: new Date(),
-											restaurantID: restaurantID,
-											star: values.star,
-											userID: userID
+											RestaurantComment:[
+												{
+													content: values.content,
+													date: new Date(),
+													//restaurantID: restaurantID,
+													restaurantID: 1,
+													star: values.star,
+													//userID: userID
+													userID: 75
+												}
+											]
 										}
 									})
 										.then(res => {

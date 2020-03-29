@@ -54,7 +54,12 @@ export class AddHotelServicePropertyScreen extends React.Component<
 								setTimeout(() => {
 									AddHotelServicePropertyMutation({
 										variables: {
-											content: values.content.toString()
+											HotelServiceProperty:[
+												{
+													content: values.content.toString()
+												}
+											]
+											
 										}
 									})
 										.then(res => {

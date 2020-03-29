@@ -52,7 +52,11 @@ export class AddArchSiteTypeScreen extends React.Component<AddArchSiteTypeProps,
 									console.log(values.typeName + ' ');
 									AddArchSiteTypeMutation({
 										variables: {
-											name: values.typeName.toString()
+											archSiteType: [
+												{
+													name: values.typeName
+												}
+											]
 										}
 									})
 										.then(res => {

@@ -100,14 +100,18 @@ export class RegisterScreen extends React.Component<RegisterProps, RegisterState
 									setTimeout(() => {
 										controlUserMutation({
 											variables: {
-												name: values.name,
-												surname: values.surname,
-												mail: values.mail,
-												password: values.password,
-												loginDate: values.loginDate,
-												loginIP: IP,
-												loginTypeID: values.loginTypeID,
-												registerDate: values.registerDate
+												controlUser:[
+													{
+														name: values.name,
+														surname: values.surname,
+														mail: values.mail,
+														password: values.password,
+														loginDate: values.loginDate,
+														loginIP: IP,
+														loginTypeID: values.loginTypeID,
+														registerDate: values.registerDate
+													}
+												]
 											}
 										})
 											.then(res => {

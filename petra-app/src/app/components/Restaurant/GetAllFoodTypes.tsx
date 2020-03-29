@@ -49,7 +49,7 @@ export class GetAllFoodTypesComponent extends React.Component<GetAllFoodTypesPro
 		});
 	}
 	private keyExtractor = (item, index): string => {
-		return item.id.toString();
+		return String(item.id);
 	};
 	/**
 	 * Renders Location component

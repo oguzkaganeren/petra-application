@@ -79,13 +79,15 @@ const DrawerContent = ({ navigation, state }) => {
 				{ title: 'Login' },
 				{ title: 'Home' },
 				global.userTypeID == 2 ? { title: 'Add Company' } : {},
-				global.userTypeID == 2 ? { title: 'Add Restaurant' } : {}
+				global.userTypeID == 2 ? { title: 'Add Restaurant' } : {},
+				{ title: 'RestDetail' },
+				{ title: 'Register' }
 			]}
 			selectedIndex={state.index}
 			onSelect={onSelect}
 		/>
 	);
-};
+};0
 
 export const DrawerNavigator = () => (
 	<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
@@ -93,6 +95,8 @@ export const DrawerNavigator = () => (
 		<Drawer.Screen name="HomeScreen" component={HomeStack} />
 		<Drawer.Screen name="AddCompanyScreen" component={AddCompanyStack} />
 		<Drawer.Screen name="AddRestaurantScreen" component={AddRestaurantScreen} />
+		<Drawer.Screen name="AddMuseumPriceScreen" component={AddMuseumPriceScreen} />
+		<Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
 	</Drawer.Navigator>
 );
 

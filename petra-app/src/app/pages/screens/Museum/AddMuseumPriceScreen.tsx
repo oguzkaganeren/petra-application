@@ -45,7 +45,7 @@ export class AddMuseumPriceScreen extends React.Component<AddMuseumPriceProps, A
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddMuseumPriceComponent>
@@ -68,11 +68,15 @@ export class AddMuseumPriceScreen extends React.Component<AddMuseumPriceProps, A
 									console.log(this.state.theDate.startDate);
 									AddMuseumPriceMutation({
 										variables: {
-											museumID: values.museumID,
-											finishDate: this.state.theDate.endDate,
-											startDate: this.state.theDate.startDate,
-											price: values.price,
-											entranceTypeID: values.entranceTypeID
+											MuseumPrice:[
+												{
+													museumID: values.museumID,
+													finishDate: this.state.theDate.endDate,
+													startDate: this.state.theDate.startDate,
+													price: values.price,
+													entranceTypeID: values.entranceTypeID
+												}
+											]
 										}
 									})
 										.then(res => {
@@ -93,12 +97,13 @@ export class AddMuseumPriceScreen extends React.Component<AddMuseumPriceProps, A
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 									<GetAllUserMuseumComponent
-										label="Select Your ArchSite"
+										label="Select Your Museum"
 										parentReference={value => {
 											props.values.museumID = value;
 											this.setState({ museumID: value });
 										}}
-										userID={parseInt(userID)}
+										//userID={parseInt(userID)}
+										userID={4}
 									/>
 									<GetAllMuseumEntranceTypesComponent
 										label="Select EntranceType"

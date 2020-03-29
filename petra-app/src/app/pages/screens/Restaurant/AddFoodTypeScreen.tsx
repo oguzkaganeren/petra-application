@@ -52,7 +52,10 @@ export class AddFoodTypeScreen extends React.Component<AddFoodTypeProps, AddFood
 									console.log(values.foodType + ' ');
 									AddFoodTypeMutation({
 										variables: {
-											foodType: values.foodType.toString()
+											foodType: [
+												{type: values.foodType.toString()}
+											]
+											
 										}
 									})
 										.then(res => {

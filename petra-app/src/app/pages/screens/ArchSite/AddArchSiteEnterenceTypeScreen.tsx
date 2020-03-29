@@ -32,8 +32,8 @@ export class AddArchSiteEntranceTypeScreen extends React.Component<
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
-		const { archSiteID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
+		//const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSiteEntranceTypeComponent>
@@ -57,7 +57,11 @@ export class AddArchSiteEntranceTypeScreen extends React.Component<
 								setTimeout(() => {
 									AddArchSiteEntranceTypeMutation({
 										variables: {
-											content: values.content
+											ArchSiteEntranceType: [
+												{
+													content: values.content
+												}
+											]
 										}
 									})
 										.then(res => {
