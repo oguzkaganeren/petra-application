@@ -78,12 +78,26 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 									console.log(values.closeHour);
 									AddRestaurantWorkingScheduleMutation({
 										variables: {
-											archSiteID: values.restaurantID,
-											startDate: this.state.theDate.startDate,
-											finishDate: this.state.theDate.endDate,
-											dayID: values.dayID,
-											openHour: values.openHour + ':' + values.openMinute + ':' + '00',
-											closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00'
+											RestaurantWorkingSchedule: [
+												{
+													restaurantID: values.restaurantID,
+													startDate: this.state.theDate.startDate,
+													finishDate: this.state.theDate.endDate,
+													RestaurantWorkingDaySchedules: {
+														data: [
+															{
+																RestaurantWorkingDay: {
+																	data: {
+																		closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00',
+																		openHour: values.openHour + ':' + values.openMinute + ':' + '00',
+																		dayID: values.dayID
+																	}
+																}
+															}
+														]
+													}
+												}
+											]
 										}
 									})
 										.then(res => {

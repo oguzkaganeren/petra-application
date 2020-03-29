@@ -72,7 +72,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://192.168.1.108:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.43.239:8080/v1/graphql' });
 const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
 const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
 const userTypeTwoMenus = [
@@ -139,7 +139,6 @@ const DrawerContent = ({ navigation, state }) => {
 	console.log(state);
 	return (
 		<UIKittenDrawer
-<<<<<<< HEAD
 			data={
 				global.userTypeID == 1
 					? userTypeOneMenus
@@ -182,32 +181,6 @@ function DrawerNavigator() {
 			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} /> */
 	}
 }
-=======
-			data={[
-				{ title: 'Login' },
-				{ title: 'Home' },
-				global.userTypeID == 2 ? { title: 'Add Company' } : {},
-				global.userTypeID == 2 ? { title: 'Add Restaurant' } : {},
-				{ title: 'RestDetail' },
-				{ title: 'Register' }
-			]}
-			selectedIndex={state.index}
-			onSelect={onSelect}
-		/>
-	);
-};0
-
-export const DrawerNavigator = () => (
-	<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
-		<Drawer.Screen name="LoginScreen" component={LoginStack} />
-		<Drawer.Screen name="HomeScreen" component={HomeStack} />
-		<Drawer.Screen name="AddCompanyScreen" component={AddCompanyStack} />
-		<Drawer.Screen name="AddRestaurantScreen" component={AddRestaurantScreen} />
-		<Drawer.Screen name="AddMuseumPriceScreen" component={AddMuseumPriceScreen} />
-		<Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
-	</Drawer.Navigator>
-);
->>>>>>> f99f0805f6db6720e55a0bf3e04db22162b1c439
 
 const Stack = createStackNavigator();
 function LoginStack() {

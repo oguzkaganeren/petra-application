@@ -1,20 +1,12 @@
 mutation controlUser($controlUser: [User_insert_input!]!) {
-  __typename
-  insert_User(
-    objects: $controlUser
-    on_conflict: {
-      constraint: User_mail_key
-      update_columns: loginDate
-      where: {}
-    }
-  ) {
-    returning {
-      userID
-      userTypeID
-    }
-  }
+	__typename
+	insert_User(objects: $controlUser, on_conflict: { constraint: User_mail_key, update_columns: loginDate, where: {} }) {
+		returning {
+			userID
+			userTypeID
+		}
+	}
 }
-
 
 mutation addCompany($company: [Company_insert_input!]!) {
 	__typename
@@ -36,21 +28,21 @@ mutation addRestaurant($resta: [Restaurant_insert_input!]!) {
 }
 
 mutation addFoodType($foodType: [RestaurantFoodType_insert_input!]!) {
-  __typename
-  insert_RestaurantFoodType(objects: $foodType) {
-    returning {
-      restaurantFoodTypeID
-    }
-  }
+	__typename
+	insert_RestaurantFoodType(objects: $foodType) {
+		returning {
+			restaurantFoodTypeID
+		}
+	}
 }
 
 mutation addFood($food: [RestaurantFood_insert_input!]!) {
-  __typename
-  insert_RestaurantFood(objects: $food) {
-    returning {
-      restaurantFoodID
-    }
-  }
+	__typename
+	insert_RestaurantFood(objects: $food) {
+		returning {
+			restaurantFoodID
+		}
+	}
 }
 
 mutation addHotel($hotel: [Hotel_insert_input!]!) {
@@ -63,21 +55,21 @@ mutation addHotel($hotel: [Hotel_insert_input!]!) {
 }
 
 mutation addArchSiteType($archSiteType: [ArchSiteType_insert_input!]!) {
-  __typename
-  insert_ArchSiteType(objects: $archSiteType) {
-    returning {
-      archSiteTypeID
-    }
-  }
+	__typename
+	insert_ArchSiteType(objects: $archSiteType) {
+		returning {
+			archSiteTypeID
+		}
+	}
 }
 
 mutation addRoomProperty($RoomProperty: [RoomProperty_insert_input!]!) {
-  __typename
-  insert_RoomProperty(objects: $RoomProperty) {
-    returning {
-      roomPropertyID
-    }
-  }
+	__typename
+	insert_RoomProperty(objects: $RoomProperty) {
+		returning {
+			roomPropertyID
+		}
+	}
 }
 
 mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input!]!, $hotelID: Int!) {
@@ -94,41 +86,39 @@ mutation addRoom($roomNo: String!, $roomPropRoom: [RoomPropertyRoom_insert_input
 		}
 	}
 }
-mutation addHotelServiceProperty(
-  $HotelServiceProperty: [HotelServiceProperty_insert_input!]!
-) {
-  __typename
-  insert_HotelServiceProperty(objects: $HotelServiceProperty) {
-    returning {
-      hotelServicePropertyID
-    }
-  }
+mutation addHotelServiceProperty($HotelServiceProperty: [HotelServiceProperty_insert_input!]!) {
+	__typename
+	insert_HotelServiceProperty(objects: $HotelServiceProperty) {
+		returning {
+			hotelServicePropertyID
+		}
+	}
 }
 
 mutation addHotelComment($HotelComment: [HotelComment_insert_input!]!) {
-  __typename
-  insert_HotelComment(objects: $HotelComment) {
-    returning {
-      hotelCommentID
-    }
-  }
+	__typename
+	insert_HotelComment(objects: $HotelComment) {
+		returning {
+			hotelCommentID
+		}
+	}
 }
 mutation addHotelRoomPrice($RoomPrice: [RoomPrice_insert_input!]!) {
-  __typename
-  insert_RoomPrice(objects: $RoomPrice) {
-    returning {
-      roomPriceID
-    }
-  }
+	__typename
+	insert_RoomPrice(objects: $RoomPrice) {
+		returning {
+			roomPriceID
+		}
+	}
 }
 
 mutation addArchSiteWorkingSchedule($ArchSiteWorkingSchedule: [ArchSiteWorkingSchedule_insert_input!]!) {
-  __typename
-  insert_ArchSiteWorkingSchedule(objects: {}) {
-    returning {
-      archSiteWorkingScheduleID
-    }
-  }
+	__typename
+	insert_ArchSiteWorkingSchedule(objects: $ArchSiteWorkingSchedule) {
+		returning {
+			archSiteWorkingScheduleID
+		}
+	}
 }
 
 mutation addArchSite($arch: [ArchSite_insert_input!]!) {
@@ -140,76 +130,67 @@ mutation addArchSite($arch: [ArchSite_insert_input!]!) {
 	}
 }
 
-mutation addArchSiteComment(
-  $ArchSiteComment: [ArchSiteComment_insert_input!]!
-) {
-  __typename
-  insert_ArchSiteComment(objects: $ArchSiteComment) {
-    returning {
-      archSiteCommentID
-    }
-  }
+mutation addArchSiteComment($ArchSiteComment: [ArchSiteComment_insert_input!]!) {
+	__typename
+	insert_ArchSiteComment(objects: $ArchSiteComment) {
+		returning {
+			archSiteCommentID
+		}
+	}
 }
 
-mutation addArchSiteEntranceType(
-  $ArchSiteEntranceType: [ArchSiteEntranceType_insert_input!]!
-) {
-  __typename
-  insert_ArchSiteEntranceType(objects: $ArchSiteEntranceType) {
-    returning {
-      archSiteEntranceTypeID
-    }
-  }
+mutation addArchSiteEntranceType($ArchSiteEntranceType: [ArchSiteEntranceType_insert_input!]!) {
+	__typename
+	insert_ArchSiteEntranceType(objects: $ArchSiteEntranceType) {
+		returning {
+			archSiteEntranceTypeID
+		}
+	}
 }
 
-mutation addRestaurantCuisineType(
-  $RestaurantCuisineType: [RestaurantCuisineType_insert_input!]!
-) {
-  __typename
-  insert_RestaurantCuisineType(objects: $RestaurantCuisineType) {
-    returning {
-      restaurantCuisineTypeID
-    }
-  }
+mutation addRestaurantCuisineType($RestaurantCuisineType: [RestaurantCuisineType_insert_input!]!) {
+	__typename
+	insert_RestaurantCuisineType(objects: $RestaurantCuisineType) {
+		returning {
+			restaurantCuisineTypeID
+		}
+	}
 }
-
 
 mutation addTag($Tag: [Tag_insert_input!]!) {
-  __typename
-  insert_Tag(objects: $Tag) {
-    returning {
-      tagID
-    }
-  }
+	__typename
+	insert_Tag(objects: $Tag) {
+		returning {
+			tagID
+		}
+	}
 }
 
 mutation addRestaurantType($RestaurantType: [RestaurantType_insert_input!]!) {
-  __typename
-  insert_RestaurantType(objects: $RestaurantType) {
-    returning {
-      restaurantTypeID
-    }
-  }
+	__typename
+	insert_RestaurantType(objects: $RestaurantType) {
+		returning {
+			restaurantTypeID
+		}
+	}
 }
 
-mutation addRestaurantComment(
-  $RestaurantComment: [RestaurantComment_insert_input!]!
-) {
-  __typename
-  insert_RestaurantComment(objects: $RestaurantComment) {
-    returning {
-      restaurantCommentID
-    }
-  }
+mutation addRestaurantComment($RestaurantComment: [RestaurantComment_insert_input!]!) {
+	__typename
+	insert_RestaurantComment(objects: $RestaurantComment) {
+		returning {
+			restaurantCommentID
+		}
+	}
 }
 
 mutation addMuseumType($MuseumType: [MuseumType_insert_input!]!) {
-  __typename
-  insert_MuseumType(objects: $MuseumType) {
-    returning {
-      museumTypeID
-    }
-  }
+	__typename
+	insert_MuseumType(objects: $MuseumType) {
+		returning {
+			museumTypeID
+		}
+	}
 }
 
 mutation addMuseum($museum: [Museum_insert_input!]!) {
@@ -222,88 +203,54 @@ mutation addMuseum($museum: [Museum_insert_input!]!) {
 }
 
 mutation addMuseumComment($MuseumComment: [MuseumComment_insert_input!]!) {
-  __typename
-  insert_MuseumComment(objects: $MuseumComment) {
-    returning {
-      museumCommentID
-    }
-  }
+	__typename
+	insert_MuseumComment(objects: $MuseumComment) {
+		returning {
+			museumCommentID
+		}
+	}
 }
-mutation addMuseumEntranceType(
-  $MuseumEntranceType: [MuseumEntranceType_insert_input!]!
-) {
-  __typename
-  insert_MuseumEntranceType(objects: $MuseumEntranceType) {
-    returning {
-      museumEntranceTypeID
-    }
-  }
+mutation addMuseumEntranceType($MuseumEntranceType: [MuseumEntranceType_insert_input!]!) {
+	__typename
+	insert_MuseumEntranceType(objects: $MuseumEntranceType) {
+		returning {
+			museumEntranceTypeID
+		}
+	}
 }
 
-mutation addMuseumWorkingSchedule(
-	$startDate: timestamptz!
-	$finishDate: timestamptz!
-	$archSiteID: Int!
-	$closeHour: timetz!
-	$openHour: timetz!
-	$dayID: Int!
-) {
+mutation addMuseumWorkingSchedule($MuseumWorkingSchedule: [MuseumWorkingSchedule_insert_input!]!) {
 	__typename
-	insert_MuseumWorkingSchedule(
-		objects: {
-			startDate: $startDate
-			finishDate: $finishDate
-			museumID: $archSiteID
-			MuseumWorkingDaySchedules: {
-				data: { MuseumWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
-			}
-		}
-	) {
+	insert_MuseumWorkingSchedule(objects: $MuseumWorkingSchedule) {
 		returning {
 			museumWorkingScheduleID
 		}
 	}
 }
-mutation addRestaurantWorkingSchedule(
-	$startDate: timestamptz!
-	$finishDate: timestamptz!
-	$archSiteID: Int!
-	$closeHour: timetz!
-	$openHour: timetz!
-	$dayID: Int!
-) {
+mutation addRestaurantWorkingSchedule($RestaurantWorkingSchedule: [RestaurantWorkingSchedule_insert_input!]!) {
 	__typename
-	insert_RestaurantWorkingSchedule(
-		objects: {
-			startDate: $startDate
-			finishDate: $finishDate
-			restaurantID: $archSiteID
-			RestaurantWorkingDaySchedules: {
-				data: { RestaurantWorkingDay: { data: { closeHour: $closeHour, openHour: $openHour, dayID: $dayID } } }
-			}
-		}
-	) {
+	insert_RestaurantWorkingSchedule(objects: $RestaurantWorkingSchedule) {
 		returning {
 			restaurantWorkingScheduleID
 		}
 	}
 }
 mutation addArchSitePrice($ArchSitePrice: [ArchSitePrice_insert_input!]!) {
-  __typename
-  insert_ArchSitePrice(objects: $ArchSitePrice) {
-    returning {
-      archSitePriceID
-    }
-  }
+	__typename
+	insert_ArchSitePrice(objects: $ArchSitePrice) {
+		returning {
+			archSitePriceID
+		}
+	}
 }
 
 mutation addMuseumPrice($MuseumPrice: [MuseumPrice_insert_input!]!) {
-  __typename
-  insert_MuseumPrice(objects: $MuseumPrice) {
-    returning {
-      museumPriceID
-    }
-  }
+	__typename
+	insert_MuseumPrice(objects: $MuseumPrice) {
+		returning {
+			museumPriceID
+		}
+	}
 }
 
 mutation addTravelGuide($travelGuide: [TravelGuide_insert_input!]!) {

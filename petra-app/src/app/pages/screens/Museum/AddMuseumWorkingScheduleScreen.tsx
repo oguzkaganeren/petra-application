@@ -78,12 +78,26 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 									console.log(values.closeHour);
 									AddMuseumWorkingScheduleMutation({
 										variables: {
-											archSiteID: values.museumID,
-											startDate: this.state.theDate.startDate,
-											finishDate: this.state.theDate.endDate,
-											dayID: values.dayID,
-											openHour: values.openHour + ':' + values.openMinute + ':' + '00',
-											closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00'
+											MuseumWorkingSchedule: [
+												{
+													museumID: values.museumID,
+													startDate: this.state.theDate.startDate,
+													finishDate: this.state.theDate.endDate,
+													MuseumWorkingDaySchedules: {
+														data: [
+															{
+																MuseumWorkingDay: {
+																	data: {
+																		closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00',
+																		openHour: values.openHour + ':' + values.openMinute + ':' + '00',
+																		dayID: values.dayID
+																	}
+																}
+															}
+														]
+													}
+												}
+											]
 										}
 									})
 										.then(res => {

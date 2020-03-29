@@ -23834,12 +23834,7 @@ export type AddMuseumEntranceTypeMutation = (
 );
 
 export type AddMuseumWorkingScheduleMutationVariables = {
-  startDate: Scalars['timestamptz'],
-  finishDate: Scalars['timestamptz'],
-  archSiteID: Scalars['Int'],
-  closeHour: Scalars['timetz'],
-  openHour: Scalars['timetz'],
-  dayID: Scalars['Int']
+  MuseumWorkingSchedule: Array<MuseumWorkingSchedule_Insert_Input>
 };
 
 
@@ -23855,12 +23850,7 @@ export type AddMuseumWorkingScheduleMutation = (
 );
 
 export type AddRestaurantWorkingScheduleMutationVariables = {
-  startDate: Scalars['timestamptz'],
-  finishDate: Scalars['timestamptz'],
-  archSiteID: Scalars['Int'],
-  closeHour: Scalars['timetz'],
-  openHour: Scalars['timetz'],
-  dayID: Scalars['Int']
+  RestaurantWorkingSchedule: Array<RestaurantWorkingSchedule_Insert_Input>
 };
 
 
@@ -24678,7 +24668,7 @@ export type AddHotelRoomPriceMutationOptions = ApolloReactCommon.BaseMutationOpt
 export const AddArchSiteWorkingScheduleDocument = gql`
     mutation addArchSiteWorkingSchedule($ArchSiteWorkingSchedule: [ArchSiteWorkingSchedule_insert_input!]!) {
   __typename
-  insert_ArchSiteWorkingSchedule(objects: {}) {
+  insert_ArchSiteWorkingSchedule(objects: $ArchSiteWorkingSchedule) {
     returning {
       archSiteWorkingScheduleID
     }
@@ -25036,9 +25026,9 @@ export function withAddMuseumEntranceType<TProps, TChildProps = {}>(operationOpt
 export type AddMuseumEntranceTypeMutationResult = ApolloReactCommon.MutationResult<AddMuseumEntranceTypeMutation>;
 export type AddMuseumEntranceTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumEntranceTypeMutation, AddMuseumEntranceTypeMutationVariables>;
 export const AddMuseumWorkingScheduleDocument = gql`
-    mutation addMuseumWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+    mutation addMuseumWorkingSchedule($MuseumWorkingSchedule: [MuseumWorkingSchedule_insert_input!]!) {
   __typename
-  insert_MuseumWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, museumID: $archSiteID, MuseumWorkingDaySchedules: {data: {MuseumWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+  insert_MuseumWorkingSchedule(objects: $MuseumWorkingSchedule) {
     returning {
       museumWorkingScheduleID
     }
@@ -25066,9 +25056,9 @@ export function withAddMuseumWorkingSchedule<TProps, TChildProps = {}>(operation
 export type AddMuseumWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddMuseumWorkingScheduleMutation>;
 export type AddMuseumWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables>;
 export const AddRestaurantWorkingScheduleDocument = gql`
-    mutation addRestaurantWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+    mutation addRestaurantWorkingSchedule($RestaurantWorkingSchedule: [RestaurantWorkingSchedule_insert_input!]!) {
   __typename
-  insert_RestaurantWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, restaurantID: $archSiteID, RestaurantWorkingDaySchedules: {data: {RestaurantWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+  insert_RestaurantWorkingSchedule(objects: $RestaurantWorkingSchedule) {
     returning {
       restaurantWorkingScheduleID
     }
