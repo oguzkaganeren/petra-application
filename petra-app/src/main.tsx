@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 //import { createStackNavigator } from 'react-navigation-stack';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Drawer as UIKittenDrawer, Layout, Text } from '@ui-kitten/components';
 import HomeScreen from './app/pages/screens/HomeScreen';
@@ -17,7 +17,9 @@ import ArchSiteScreen from './app/pages/screens/ArchSite/ArchSiteScreen';
 import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
 import RestaurantScreen from './app/pages/screens/Restaurant/RestaurantScreen';
 import HotelScreen from './app/pages/screens/Hotel/HotelScreen';
-import CompanyScreen from './app/pages/screens/Hotel/HotelScreen';
+import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
+import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
+import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
 import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
@@ -71,41 +73,114 @@ import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
 const client = new ApolloClient({ uri: 'http://192.168.1.108:8080/v1/graphql' });
-
+const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
+const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
+const userTypeTwoMenus = [
+	{ title: 'Home' },
+	{ title: 'Company' },
+	{ title: 'Restaurant' },
+	{ title: 'Hotel' },
+	{ title: 'Museum' },
+	{ title: 'Archaeological Site' }
+];
+const userTypeThreeMenus = [{ title: 'Home' }, { title: 'Article' }];
+const userTypeFiveMenus = [
+	{ title: 'Home' },
+	{ title: 'Company' },
+	{ title: 'Restaurant' },
+	{ title: 'Hotel' },
+	{ title: 'Museum' },
+	{ title: 'Archaeological Site' },
+	{ title: 'Article' },
+	{ title: 'TravelGuide' }
+];
 const Drawer = createDrawerNavigator();
 
 const DrawerContent = ({ navigation, state }) => {
-	const onSelect = index => {
-		navigation.navigate(state.routeNames[index]);
+	let index = state.index;
+	global.userTypeID == 1 && index == 1
+		? (index = 0)
+		: global.userTypeID == 1
+		? (index = 1)
+		: (global.userTypeID == 2 || global.userTypeID == 4) && index == 1
+		? (index = 0)
+		: global.userTypeID == 2 || global.userTypeID == 4
+		? (index = index - 1)
+		: global.userTypeID == 3 && index == 1
+		? (index = 0)
+		: global.userTypeID == 3
+		? (index = 1)
+		: global.userTypeID == 5 && index == 1
+		? (index = 0)
+		: global.userTypeID == 5
+		? (index = index - 1)
+		: index;
+	const onSelect = indexvalue => {
+		global.userTypeID == 1 && indexvalue == 0
+			? (indexvalue = 1)
+			: global.userTypeID == 1
+			? (indexvalue = 8)
+			: (global.userTypeID == 2 || global.userTypeID == 4) && indexvalue == 0
+			? (indexvalue = 1)
+			: global.userTypeID == 2 || global.userTypeID == 4
+			? (indexvalue = indexvalue + 1)
+			: global.userTypeID == 3 && indexvalue == 0
+			? (indexvalue = 1)
+			: global.userTypeID == 3
+			? (indexvalue = 7)
+			: global.userTypeID == 5 && indexvalue == 0
+			? (indexvalue = 1)
+			: global.userTypeID == 5
+			? (indexvalue = indexvalue + 1)
+			: indexvalue;
+		console.log(state.routeNames[indexvalue]);
+		navigation.navigate(state.routeNames[indexvalue]);
 	};
+	console.log(state);
 	return (
 		<UIKittenDrawer
-			data={[
-				global.userID == -1 ? { title: 'Login' } : {},
-				{ title: 'Home' },
-				global.userTypeID == 2 ? { title: 'Company' } : {},
-				global.userTypeID == 2 ? { title: 'Restaurant' } : {},
-				global.userTypeID == 2 ? { title: 'Hotel' } : {},
-				global.userTypeID == 2 ? { title: 'Museum' } : {},
-				global.userTypeID == 2 ? { title: 'Archaeological Site' } : {}
-			]}
-			selectedIndex={state.index}
+			data={
+				global.userTypeID == 1
+					? userTypeOneMenus
+					: global.userTypeID == 2 || global.userTypeID == 4
+					? userTypeTwoMenus
+					: global.userTypeID == 3
+					? userTypeThreeMenus
+					: global.userTypeID == 5
+					? userTypeFiveMenus
+					: unregisteredMenu
+			}
+			selectedIndex={index}
 			onSelect={onSelect}
 		/>
 	);
 };
-
-export const DrawerNavigator = () => (
-	<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
-		<Drawer.Screen name="LoginScreen" component={LoginStack} />
-		<Drawer.Screen name="HomeScreen" component={HomeStack} />
-		<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
-		<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
-		<Drawer.Screen name="HotelScreen" component={HotelStack} />
-		<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
-		<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
-	</Drawer.Navigator>
-);
+function DrawerNavigator() {
+	return (
+		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
+			<Drawer.Screen name="LoginScreen" component={LoginStack} />
+			<Drawer.Screen name="HomeScreen" component={HomeStack} />
+			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
+			<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
+			<Drawer.Screen name="HotelScreen" component={HotelStack} />
+			<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
+			<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
+			<Drawer.Screen name="ArticleScreen" component={ArticleStack} />
+			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} />
+		</Drawer.Navigator>
+	);
+	{
+		/* 	<Drawer.Screen name="LoginScreen" component={LoginStack} />
+			<Drawer.Screen name="HomeScreen" component={HomeStack} />
+			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
+			<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
+			<Drawer.Screen name="HotelScreen" component={HotelStack} />
+			<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
+			<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
+			<Drawer.Screen name="ArticleScreen" component={ArticleStack} />
+			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} /> */
+	}
+}
 
 const Stack = createStackNavigator();
 function LoginStack() {
@@ -260,6 +335,54 @@ function ArchSiteStack() {
 				component={ArchSiteScreen}
 				options={{
 					title: 'Archaeological Site',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function ArticleStack() {
+	return (
+		<Stack.Navigator initialRouteName="ArticleScreen">
+			<Stack.Screen
+				name="ArticleScreen"
+				component={ArticleScreen}
+				options={{
+					title: 'Article',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function TravelGuideStack() {
+	return (
+		<Stack.Navigator initialRouteName="TravelGuideScreen">
+			<Stack.Screen
+				name="TravelGuideScreen"
+				component={TravelGuideScreen}
+				options={{
+					title: 'Travel Guide',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =
