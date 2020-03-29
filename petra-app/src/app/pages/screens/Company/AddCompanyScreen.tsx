@@ -53,7 +53,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 	 * @returns
 	 */
 	render() {
-		const { userID } = global.userID;
+		//const { userID } = global.userID;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView>
@@ -108,7 +108,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 														registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
 														mail: values.mail.toString(),
 														CompanyPhones: { data: [{ Phone: { data: { phone: values.phone.toString() } } }] },
-														CompanyUsers: { data: [{ userID: userID }] },
+														CompanyUsers: { data: [{ userID: 75 }] },
 														Location: {
 															data: {
 																longtitude: values.longtitude,

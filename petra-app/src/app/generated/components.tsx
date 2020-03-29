@@ -23448,15 +23448,7 @@ export type UserType_Variance_Order_By = {
 };
 
 export type ControlUserMutationVariables = {
-  loginDate?: Maybe<Scalars['timestamptz']>,
-  loginIP?: Maybe<Scalars['inet']>,
-  loginTypeID?: Maybe<Scalars['Int']>,
-  mail?: Maybe<Scalars['String']>,
-  name?: Maybe<Scalars['String']>,
-  registerDate?: Maybe<Scalars['timestamptz']>,
-  accessToken?: Maybe<Scalars['String']>,
-  password?: Maybe<Scalars['String']>,
-  surname?: Maybe<Scalars['String']>
+  controlUser: Array<User_Insert_Input>
 };
 
 
@@ -23504,7 +23496,7 @@ export type AddRestaurantMutation = (
 );
 
 export type AddFoodTypeMutationVariables = {
-  foodType?: Maybe<Scalars['String']>
+  foodType: Array<RestaurantFoodType_Insert_Input>
 };
 
 
@@ -23520,9 +23512,7 @@ export type AddFoodTypeMutation = (
 );
 
 export type AddFoodMutationVariables = {
-  name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
-  restaurantFoodTypeID?: Maybe<Scalars['Int']>
+  food: Array<RestaurantFood_Insert_Input>
 };
 
 
@@ -23554,7 +23544,7 @@ export type AddHotelMutation = (
 );
 
 export type AddArchSiteTypeMutationVariables = {
-  name?: Maybe<Scalars['String']>
+  archSiteType: Array<ArchSiteType_Insert_Input>
 };
 
 
@@ -23570,7 +23560,7 @@ export type AddArchSiteTypeMutation = (
 );
 
 export type AddRoomPropertyMutationVariables = {
-  content: Scalars['String']
+  RoomProperty: Array<RoomProperty_Insert_Input>
 };
 
 
@@ -23604,7 +23594,7 @@ export type AddRoomMutation = (
 );
 
 export type AddHotelServicePropertyMutationVariables = {
-  content: Scalars['String']
+  HotelServiceProperty: Array<HotelServiceProperty_Insert_Input>
 };
 
 
@@ -23620,11 +23610,7 @@ export type AddHotelServicePropertyMutation = (
 );
 
 export type AddHotelCommentMutationVariables = {
-  content: Scalars['String'],
-  date: Scalars['timestamptz'],
-  hotelID: Scalars['Int'],
-  star?: Maybe<Scalars['Float']>,
-  userID?: Maybe<Scalars['Int']>
+  HotelComment: Array<HotelComment_Insert_Input>
 };
 
 
@@ -23640,10 +23626,7 @@ export type AddHotelCommentMutation = (
 );
 
 export type AddHotelRoomPriceMutationVariables = {
-  finishDate: Scalars['timestamptz'],
-  price: Scalars['Float'],
-  roomID: Scalars['Int'],
-  startDate: Scalars['timestamptz']
+  RoomPrice: Array<RoomPrice_Insert_Input>
 };
 
 
@@ -23659,12 +23642,7 @@ export type AddHotelRoomPriceMutation = (
 );
 
 export type AddArchSiteWorkingScheduleMutationVariables = {
-  startDate: Scalars['timestamptz'],
-  finishDate: Scalars['timestamptz'],
-  archSiteID: Scalars['Int'],
-  closeHour: Scalars['timetz'],
-  openHour: Scalars['timetz'],
-  dayID: Scalars['Int']
+  ArchSiteWorkingSchedule: Array<ArchSiteWorkingSchedule_Insert_Input>
 };
 
 
@@ -23696,11 +23674,7 @@ export type AddArchSiteMutation = (
 );
 
 export type AddArchSiteCommentMutationVariables = {
-  archSiteID?: Maybe<Scalars['Int']>,
-  content?: Maybe<Scalars['String']>,
-  date?: Maybe<Scalars['timestamptz']>,
-  star?: Maybe<Scalars['Float']>,
-  userID?: Maybe<Scalars['Int']>
+  ArchSiteComment: Array<ArchSiteComment_Insert_Input>
 };
 
 
@@ -23716,7 +23690,7 @@ export type AddArchSiteCommentMutation = (
 );
 
 export type AddArchSiteEntranceTypeMutationVariables = {
-  content?: Maybe<Scalars['String']>
+  ArchSiteEntranceType: Array<ArchSiteEntranceType_Insert_Input>
 };
 
 
@@ -23732,7 +23706,7 @@ export type AddArchSiteEntranceTypeMutation = (
 );
 
 export type AddRestaurantCuisineTypeMutationVariables = {
-  name?: Maybe<Scalars['String']>
+  RestaurantCuisineType: Array<RestaurantCuisineType_Insert_Input>
 };
 
 
@@ -23748,7 +23722,7 @@ export type AddRestaurantCuisineTypeMutation = (
 );
 
 export type AddTagMutationVariables = {
-  name?: Maybe<Scalars['String']>
+  Tag: Array<Tag_Insert_Input>
 };
 
 
@@ -23764,7 +23738,7 @@ export type AddTagMutation = (
 );
 
 export type AddRestaurantTypeMutationVariables = {
-  type?: Maybe<Scalars['String']>
+  RestaurantType: Array<RestaurantType_Insert_Input>
 };
 
 
@@ -23780,11 +23754,7 @@ export type AddRestaurantTypeMutation = (
 );
 
 export type AddRestaurantCommentMutationVariables = {
-  restaurantID?: Maybe<Scalars['Int']>,
-  content?: Maybe<Scalars['String']>,
-  date?: Maybe<Scalars['timestamptz']>,
-  star?: Maybe<Scalars['Float']>,
-  userID?: Maybe<Scalars['Int']>
+  RestaurantComment: Array<RestaurantComment_Insert_Input>
 };
 
 
@@ -23800,7 +23770,7 @@ export type AddRestaurantCommentMutation = (
 );
 
 export type AddMuseumTypeMutationVariables = {
-  type?: Maybe<Scalars['String']>
+  MuseumType: Array<MuseumType_Insert_Input>
 };
 
 
@@ -23832,11 +23802,7 @@ export type AddMuseumMutation = (
 );
 
 export type AddMuseumCommentMutationVariables = {
-  content?: Maybe<Scalars['String']>,
-  date?: Maybe<Scalars['timestamptz']>,
-  museumID?: Maybe<Scalars['Int']>,
-  star?: Maybe<Scalars['Float']>,
-  userID?: Maybe<Scalars['Int']>
+  MuseumComment: Array<MuseumComment_Insert_Input>
 };
 
 
@@ -23852,7 +23818,7 @@ export type AddMuseumCommentMutation = (
 );
 
 export type AddMuseumEntranceTypeMutationVariables = {
-  content?: Maybe<Scalars['String']>
+  MuseumEntranceType: Array<MuseumEntranceType_Insert_Input>
 };
 
 
@@ -23868,12 +23834,7 @@ export type AddMuseumEntranceTypeMutation = (
 );
 
 export type AddMuseumWorkingScheduleMutationVariables = {
-  startDate: Scalars['timestamptz'],
-  finishDate: Scalars['timestamptz'],
-  archSiteID: Scalars['Int'],
-  closeHour: Scalars['timetz'],
-  openHour: Scalars['timetz'],
-  dayID: Scalars['Int']
+  MuseumWorkingSchedule: Array<MuseumWorkingSchedule_Insert_Input>
 };
 
 
@@ -23889,12 +23850,7 @@ export type AddMuseumWorkingScheduleMutation = (
 );
 
 export type AddRestaurantWorkingScheduleMutationVariables = {
-  startDate: Scalars['timestamptz'],
-  finishDate: Scalars['timestamptz'],
-  archSiteID: Scalars['Int'],
-  closeHour: Scalars['timetz'],
-  openHour: Scalars['timetz'],
-  dayID: Scalars['Int']
+  RestaurantWorkingSchedule: Array<RestaurantWorkingSchedule_Insert_Input>
 };
 
 
@@ -23910,11 +23866,7 @@ export type AddRestaurantWorkingScheduleMutation = (
 );
 
 export type AddArchSitePriceMutationVariables = {
-  finishDate?: Maybe<Scalars['timestamptz']>,
-  price?: Maybe<Scalars['Float']>,
-  startDate?: Maybe<Scalars['timestamptz']>,
-  archSiteID?: Maybe<Scalars['Int']>,
-  archSiteEntranceTypeID?: Maybe<Scalars['Int']>
+  ArchSitePrice: Array<ArchSitePrice_Insert_Input>
 };
 
 
@@ -23930,11 +23882,7 @@ export type AddArchSitePriceMutation = (
 );
 
 export type AddMuseumPriceMutationVariables = {
-  finishDate?: Maybe<Scalars['timestamptz']>,
-  startDate?: Maybe<Scalars['timestamptz']>,
-  price?: Maybe<Scalars['Float']>,
-  museumID?: Maybe<Scalars['Int']>,
-  entranceTypeID?: Maybe<Scalars['Int']>
+  MuseumPrice: Array<MuseumPrice_Insert_Input>
 };
 
 
@@ -24356,9 +24304,9 @@ export type GetCityDistrictsQuery = (
 
 
 export const ControlUserDocument = gql`
-    mutation controlUser($loginDate: timestamptz, $loginIP: inet, $loginTypeID: Int, $mail: String, $name: String, $registerDate: timestamptz, $accessToken: String, $password: String, $surname: String) {
+    mutation controlUser($controlUser: [User_insert_input!]!) {
   __typename
-  insert_User(objects: {loginDate: $loginDate, loginIP: $loginIP, loginTypeID: $loginTypeID, mail: $mail, name: $name, registerDate: $registerDate, accessToken: $accessToken, password: $password, surname: $surname}, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
+  insert_User(objects: $controlUser, on_conflict: {constraint: User_mail_key, update_columns: loginDate, where: {}}) {
     returning {
       userID
       userTypeID
@@ -24448,9 +24396,9 @@ export function withAddRestaurant<TProps, TChildProps = {}>(operationOptions?: A
 export type AddRestaurantMutationResult = ApolloReactCommon.MutationResult<AddRestaurantMutation>;
 export type AddRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantMutation, AddRestaurantMutationVariables>;
 export const AddFoodTypeDocument = gql`
-    mutation addFoodType($foodType: String) {
+    mutation addFoodType($foodType: [RestaurantFoodType_insert_input!]!) {
   __typename
-  insert_RestaurantFoodType(objects: {type: $foodType}) {
+  insert_RestaurantFoodType(objects: $foodType) {
     returning {
       restaurantFoodTypeID
     }
@@ -24478,9 +24426,9 @@ export function withAddFoodType<TProps, TChildProps = {}>(operationOptions?: Apo
 export type AddFoodTypeMutationResult = ApolloReactCommon.MutationResult<AddFoodTypeMutation>;
 export type AddFoodTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFoodTypeMutation, AddFoodTypeMutationVariables>;
 export const AddFoodDocument = gql`
-    mutation addFood($name: String, $price: Float, $restaurantFoodTypeID: Int) {
+    mutation addFood($food: [RestaurantFood_insert_input!]!) {
   __typename
-  insert_RestaurantFood(objects: {name: $name, price: $price, restaurantFoodTypeID: $restaurantFoodTypeID}) {
+  insert_RestaurantFood(objects: $food) {
     returning {
       restaurantFoodID
     }
@@ -24538,9 +24486,9 @@ export function withAddHotel<TProps, TChildProps = {}>(operationOptions?: Apollo
 export type AddHotelMutationResult = ApolloReactCommon.MutationResult<AddHotelMutation>;
 export type AddHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelMutation, AddHotelMutationVariables>;
 export const AddArchSiteTypeDocument = gql`
-    mutation addArchSiteType($name: String) {
+    mutation addArchSiteType($archSiteType: [ArchSiteType_insert_input!]!) {
   __typename
-  insert_ArchSiteType(objects: {name: $name}) {
+  insert_ArchSiteType(objects: $archSiteType) {
     returning {
       archSiteTypeID
     }
@@ -24568,9 +24516,9 @@ export function withAddArchSiteType<TProps, TChildProps = {}>(operationOptions?:
 export type AddArchSiteTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteTypeMutation>;
 export type AddArchSiteTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteTypeMutation, AddArchSiteTypeMutationVariables>;
 export const AddRoomPropertyDocument = gql`
-    mutation addRoomProperty($content: String!) {
+    mutation addRoomProperty($RoomProperty: [RoomProperty_insert_input!]!) {
   __typename
-  insert_RoomProperty(objects: {content: $content}) {
+  insert_RoomProperty(objects: $RoomProperty) {
     returning {
       roomPropertyID
     }
@@ -24628,9 +24576,9 @@ export function withAddRoom<TProps, TChildProps = {}>(operationOptions?: ApolloR
 export type AddRoomMutationResult = ApolloReactCommon.MutationResult<AddRoomMutation>;
 export type AddRoomMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRoomMutation, AddRoomMutationVariables>;
 export const AddHotelServicePropertyDocument = gql`
-    mutation addHotelServiceProperty($content: String!) {
+    mutation addHotelServiceProperty($HotelServiceProperty: [HotelServiceProperty_insert_input!]!) {
   __typename
-  insert_HotelServiceProperty(objects: {content: $content}) {
+  insert_HotelServiceProperty(objects: $HotelServiceProperty) {
     returning {
       hotelServicePropertyID
     }
@@ -24658,9 +24606,9 @@ export function withAddHotelServiceProperty<TProps, TChildProps = {}>(operationO
 export type AddHotelServicePropertyMutationResult = ApolloReactCommon.MutationResult<AddHotelServicePropertyMutation>;
 export type AddHotelServicePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelServicePropertyMutation, AddHotelServicePropertyMutationVariables>;
 export const AddHotelCommentDocument = gql`
-    mutation addHotelComment($content: String!, $date: timestamptz!, $hotelID: Int!, $star: Float, $userID: Int) {
+    mutation addHotelComment($HotelComment: [HotelComment_insert_input!]!) {
   __typename
-  insert_HotelComment(objects: {content: $content, date: $date, hotelID: $hotelID, star: $star, userID: $userID}) {
+  insert_HotelComment(objects: $HotelComment) {
     returning {
       hotelCommentID
     }
@@ -24688,9 +24636,9 @@ export function withAddHotelComment<TProps, TChildProps = {}>(operationOptions?:
 export type AddHotelCommentMutationResult = ApolloReactCommon.MutationResult<AddHotelCommentMutation>;
 export type AddHotelCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelCommentMutation, AddHotelCommentMutationVariables>;
 export const AddHotelRoomPriceDocument = gql`
-    mutation addHotelRoomPrice($finishDate: timestamptz!, $price: Float!, $roomID: Int!, $startDate: timestamptz!) {
+    mutation addHotelRoomPrice($RoomPrice: [RoomPrice_insert_input!]!) {
   __typename
-  insert_RoomPrice(objects: {finishDate: $finishDate, price: $price, roomID: $roomID, startDate: $startDate}) {
+  insert_RoomPrice(objects: $RoomPrice) {
     returning {
       roomPriceID
     }
@@ -24718,9 +24666,9 @@ export function withAddHotelRoomPrice<TProps, TChildProps = {}>(operationOptions
 export type AddHotelRoomPriceMutationResult = ApolloReactCommon.MutationResult<AddHotelRoomPriceMutation>;
 export type AddHotelRoomPriceMutationOptions = ApolloReactCommon.BaseMutationOptions<AddHotelRoomPriceMutation, AddHotelRoomPriceMutationVariables>;
 export const AddArchSiteWorkingScheduleDocument = gql`
-    mutation addArchSiteWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+    mutation addArchSiteWorkingSchedule($ArchSiteWorkingSchedule: [ArchSiteWorkingSchedule_insert_input!]!) {
   __typename
-  insert_ArchSiteWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, archSiteID: $archSiteID, ArchSiteWorkingDaySchedules: {data: {ArchSiteWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+  insert_ArchSiteWorkingSchedule(objects: $ArchSiteWorkingSchedule) {
     returning {
       archSiteWorkingScheduleID
     }
@@ -24778,9 +24726,9 @@ export function withAddArchSite<TProps, TChildProps = {}>(operationOptions?: Apo
 export type AddArchSiteMutationResult = ApolloReactCommon.MutationResult<AddArchSiteMutation>;
 export type AddArchSiteMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteMutation, AddArchSiteMutationVariables>;
 export const AddArchSiteCommentDocument = gql`
-    mutation addArchSiteComment($archSiteID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+    mutation addArchSiteComment($ArchSiteComment: [ArchSiteComment_insert_input!]!) {
   __typename
-  insert_ArchSiteComment(objects: {archSiteID: $archSiteID, content: $content, date: $date, star: $star, userID: $userID}) {
+  insert_ArchSiteComment(objects: $ArchSiteComment) {
     returning {
       archSiteCommentID
     }
@@ -24808,9 +24756,9 @@ export function withAddArchSiteComment<TProps, TChildProps = {}>(operationOption
 export type AddArchSiteCommentMutationResult = ApolloReactCommon.MutationResult<AddArchSiteCommentMutation>;
 export type AddArchSiteCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteCommentMutation, AddArchSiteCommentMutationVariables>;
 export const AddArchSiteEntranceTypeDocument = gql`
-    mutation addArchSiteEntranceType($content: String) {
+    mutation addArchSiteEntranceType($ArchSiteEntranceType: [ArchSiteEntranceType_insert_input!]!) {
   __typename
-  insert_ArchSiteEntranceType(objects: {content: $content}) {
+  insert_ArchSiteEntranceType(objects: $ArchSiteEntranceType) {
     returning {
       archSiteEntranceTypeID
     }
@@ -24838,9 +24786,9 @@ export function withAddArchSiteEntranceType<TProps, TChildProps = {}>(operationO
 export type AddArchSiteEntranceTypeMutationResult = ApolloReactCommon.MutationResult<AddArchSiteEntranceTypeMutation>;
 export type AddArchSiteEntranceTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSiteEntranceTypeMutation, AddArchSiteEntranceTypeMutationVariables>;
 export const AddRestaurantCuisineTypeDocument = gql`
-    mutation addRestaurantCuisineType($name: String) {
+    mutation addRestaurantCuisineType($RestaurantCuisineType: [RestaurantCuisineType_insert_input!]!) {
   __typename
-  insert_RestaurantCuisineType(objects: {name: $name}) {
+  insert_RestaurantCuisineType(objects: $RestaurantCuisineType) {
     returning {
       restaurantCuisineTypeID
     }
@@ -24868,9 +24816,9 @@ export function withAddRestaurantCuisineType<TProps, TChildProps = {}>(operation
 export type AddRestaurantCuisineTypeMutationResult = ApolloReactCommon.MutationResult<AddRestaurantCuisineTypeMutation>;
 export type AddRestaurantCuisineTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantCuisineTypeMutation, AddRestaurantCuisineTypeMutationVariables>;
 export const AddTagDocument = gql`
-    mutation addTag($name: String) {
+    mutation addTag($Tag: [Tag_insert_input!]!) {
   __typename
-  insert_Tag(objects: {name: $name}) {
+  insert_Tag(objects: $Tag) {
     returning {
       tagID
     }
@@ -24898,9 +24846,9 @@ export function withAddTag<TProps, TChildProps = {}>(operationOptions?: ApolloRe
 export type AddTagMutationResult = ApolloReactCommon.MutationResult<AddTagMutation>;
 export type AddTagMutationOptions = ApolloReactCommon.BaseMutationOptions<AddTagMutation, AddTagMutationVariables>;
 export const AddRestaurantTypeDocument = gql`
-    mutation addRestaurantType($type: String) {
+    mutation addRestaurantType($RestaurantType: [RestaurantType_insert_input!]!) {
   __typename
-  insert_RestaurantType(objects: {type: $type}) {
+  insert_RestaurantType(objects: $RestaurantType) {
     returning {
       restaurantTypeID
     }
@@ -24928,9 +24876,9 @@ export function withAddRestaurantType<TProps, TChildProps = {}>(operationOptions
 export type AddRestaurantTypeMutationResult = ApolloReactCommon.MutationResult<AddRestaurantTypeMutation>;
 export type AddRestaurantTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantTypeMutation, AddRestaurantTypeMutationVariables>;
 export const AddRestaurantCommentDocument = gql`
-    mutation addRestaurantComment($restaurantID: Int, $content: String, $date: timestamptz, $star: Float, $userID: Int) {
+    mutation addRestaurantComment($RestaurantComment: [RestaurantComment_insert_input!]!) {
   __typename
-  insert_RestaurantComment(objects: {restaurantID: $restaurantID, content: $content, date: $date, star: $star, userID: $userID}) {
+  insert_RestaurantComment(objects: $RestaurantComment) {
     returning {
       restaurantCommentID
     }
@@ -24958,9 +24906,9 @@ export function withAddRestaurantComment<TProps, TChildProps = {}>(operationOpti
 export type AddRestaurantCommentMutationResult = ApolloReactCommon.MutationResult<AddRestaurantCommentMutation>;
 export type AddRestaurantCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantCommentMutation, AddRestaurantCommentMutationVariables>;
 export const AddMuseumTypeDocument = gql`
-    mutation addMuseumType($type: String) {
+    mutation addMuseumType($MuseumType: [MuseumType_insert_input!]!) {
   __typename
-  insert_MuseumType(objects: {type: $type}) {
+  insert_MuseumType(objects: $MuseumType) {
     returning {
       museumTypeID
     }
@@ -25018,9 +24966,9 @@ export function withAddMuseum<TProps, TChildProps = {}>(operationOptions?: Apoll
 export type AddMuseumMutationResult = ApolloReactCommon.MutationResult<AddMuseumMutation>;
 export type AddMuseumMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumMutation, AddMuseumMutationVariables>;
 export const AddMuseumCommentDocument = gql`
-    mutation addMuseumComment($content: String, $date: timestamptz, $museumID: Int, $star: Float, $userID: Int) {
+    mutation addMuseumComment($MuseumComment: [MuseumComment_insert_input!]!) {
   __typename
-  insert_MuseumComment(objects: {content: $content, date: $date, museumID: $museumID, star: $star, userID: $userID}) {
+  insert_MuseumComment(objects: $MuseumComment) {
     returning {
       museumCommentID
     }
@@ -25048,9 +24996,9 @@ export function withAddMuseumComment<TProps, TChildProps = {}>(operationOptions?
 export type AddMuseumCommentMutationResult = ApolloReactCommon.MutationResult<AddMuseumCommentMutation>;
 export type AddMuseumCommentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumCommentMutation, AddMuseumCommentMutationVariables>;
 export const AddMuseumEntranceTypeDocument = gql`
-    mutation addMuseumEntranceType($content: String) {
+    mutation addMuseumEntranceType($MuseumEntranceType: [MuseumEntranceType_insert_input!]!) {
   __typename
-  insert_MuseumEntranceType(objects: {content: $content}) {
+  insert_MuseumEntranceType(objects: $MuseumEntranceType) {
     returning {
       museumEntranceTypeID
     }
@@ -25078,9 +25026,9 @@ export function withAddMuseumEntranceType<TProps, TChildProps = {}>(operationOpt
 export type AddMuseumEntranceTypeMutationResult = ApolloReactCommon.MutationResult<AddMuseumEntranceTypeMutation>;
 export type AddMuseumEntranceTypeMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumEntranceTypeMutation, AddMuseumEntranceTypeMutationVariables>;
 export const AddMuseumWorkingScheduleDocument = gql`
-    mutation addMuseumWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+    mutation addMuseumWorkingSchedule($MuseumWorkingSchedule: [MuseumWorkingSchedule_insert_input!]!) {
   __typename
-  insert_MuseumWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, museumID: $archSiteID, MuseumWorkingDaySchedules: {data: {MuseumWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+  insert_MuseumWorkingSchedule(objects: $MuseumWorkingSchedule) {
     returning {
       museumWorkingScheduleID
     }
@@ -25108,9 +25056,9 @@ export function withAddMuseumWorkingSchedule<TProps, TChildProps = {}>(operation
 export type AddMuseumWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddMuseumWorkingScheduleMutation>;
 export type AddMuseumWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddMuseumWorkingScheduleMutation, AddMuseumWorkingScheduleMutationVariables>;
 export const AddRestaurantWorkingScheduleDocument = gql`
-    mutation addRestaurantWorkingSchedule($startDate: timestamptz!, $finishDate: timestamptz!, $archSiteID: Int!, $closeHour: timetz!, $openHour: timetz!, $dayID: Int!) {
+    mutation addRestaurantWorkingSchedule($RestaurantWorkingSchedule: [RestaurantWorkingSchedule_insert_input!]!) {
   __typename
-  insert_RestaurantWorkingSchedule(objects: {startDate: $startDate, finishDate: $finishDate, restaurantID: $archSiteID, RestaurantWorkingDaySchedules: {data: {RestaurantWorkingDay: {data: {closeHour: $closeHour, openHour: $openHour, dayID: $dayID}}}}}) {
+  insert_RestaurantWorkingSchedule(objects: $RestaurantWorkingSchedule) {
     returning {
       restaurantWorkingScheduleID
     }
@@ -25138,9 +25086,9 @@ export function withAddRestaurantWorkingSchedule<TProps, TChildProps = {}>(opera
 export type AddRestaurantWorkingScheduleMutationResult = ApolloReactCommon.MutationResult<AddRestaurantWorkingScheduleMutation>;
 export type AddRestaurantWorkingScheduleMutationOptions = ApolloReactCommon.BaseMutationOptions<AddRestaurantWorkingScheduleMutation, AddRestaurantWorkingScheduleMutationVariables>;
 export const AddArchSitePriceDocument = gql`
-    mutation addArchSitePrice($finishDate: timestamptz, $price: Float, $startDate: timestamptz, $archSiteID: Int, $archSiteEntranceTypeID: Int) {
+    mutation addArchSitePrice($ArchSitePrice: [ArchSitePrice_insert_input!]!) {
   __typename
-  insert_ArchSitePrice(objects: {finishDate: $finishDate, price: $price, startDate: $startDate, archSiteID: $archSiteID, archSiteEntranceTypeID: $archSiteEntranceTypeID}) {
+  insert_ArchSitePrice(objects: $ArchSitePrice) {
     returning {
       archSitePriceID
     }
@@ -25168,9 +25116,9 @@ export function withAddArchSitePrice<TProps, TChildProps = {}>(operationOptions?
 export type AddArchSitePriceMutationResult = ApolloReactCommon.MutationResult<AddArchSitePriceMutation>;
 export type AddArchSitePriceMutationOptions = ApolloReactCommon.BaseMutationOptions<AddArchSitePriceMutation, AddArchSitePriceMutationVariables>;
 export const AddMuseumPriceDocument = gql`
-    mutation addMuseumPrice($finishDate: timestamptz, $startDate: timestamptz, $price: Float, $museumID: Int, $entranceTypeID: Int) {
+    mutation addMuseumPrice($MuseumPrice: [MuseumPrice_insert_input!]!) {
   __typename
-  insert_MuseumPrice(objects: {finishDate: $finishDate, startDate: $startDate, price: $price, museumID: $museumID, entranceTypeID: $entranceTypeID}) {
+  insert_MuseumPrice(objects: $MuseumPrice) {
     returning {
       museumPriceID
     }

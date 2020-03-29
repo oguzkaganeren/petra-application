@@ -55,7 +55,11 @@ export class AddMuseumEntranceTypeScreen extends React.Component<
 								setTimeout(() => {
 									AddMuseumEntranceTypeMutation({
 										variables: {
-											content: values.content
+											MuseumEntranceType:[
+												{
+													content: values.content
+												}
+											]
 										}
 									})
 										.then(res => {

@@ -81,12 +81,26 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 									console.log(values.openHour + ':' + values.openMinute + ':' + '00');
 									AddArchSiteWorkingScheduleMutation({
 										variables: {
-											archSiteID: values.archSiteID,
-											startDate: this.state.theDate.startDate,
-											finishDate: this.state.theDate.endDate,
-											dayID: values.dayID,
-											openHour: values.openHour + ':' + values.openMinute + ':' + '00',
-											closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00'
+											ArchSiteWorkingSchedule: [
+												{
+													archSiteID: values.archSiteID,
+													startDate: this.state.theDate.startDate,
+													finishDate: this.state.theDate.endDate,
+													ArchSiteWorkingDaySchedules: {
+														data: [
+															{
+																ArchSiteWorkingDay: {
+																	data: {
+																		closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00',
+																		openHour: values.openHour + ':' + values.openMinute + ':' + '00',
+																		dayID: values.dayID
+																	}
+																}
+															}
+														]
+													}
+												}
+											]
 										}
 									})
 										.then(res => {

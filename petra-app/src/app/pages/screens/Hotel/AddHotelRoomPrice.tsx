@@ -43,7 +43,7 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
+		//const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelRoomPriceComponent>
@@ -66,10 +66,17 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 									console.log(this.state.theDate.startDate);
 									AddHotelRoomPriceMutation({
 										variables: {
-											roomID: values.roomID,
-											finishDate: this.state.theDate.endDate,
-											startDate: this.state.theDate.startDate,
-											price: values.price
+											RoomPrice:[
+												{
+													roomID: values.roomID,
+													finishDate: this.state.theDate.endDate,
+													startDate: this.state.theDate.startDate,
+													price: values.price
+												}
+											]
+											
+											
+											
 										}
 									})
 										.then(res => {
@@ -95,7 +102,8 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 											props.values.hotelID = value;
 											this.setState({ hotelID: value });
 										}}
-										userID={parseInt(userID)}
+										//userID={parseInt(userID)}
+										userID={4}
 									/>
 									<GetAllHotelRoomComponent
 										label="Select Hotel Room"
