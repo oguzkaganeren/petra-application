@@ -295,3 +295,36 @@ mutation controlLoginMailUser(
 		}
 	}
 }
+mutation updateHotel(
+	$hotelID: Int
+	$locationID: Int
+	$addressID: Int
+	$hotel: Hotel_set_input!
+	$hotelLocation: Location_set_input!
+	$hotelAddress: Address_set_input!
+) {
+	__typename
+	update_Hotel(where: { hotelID: { _eq: $hotelID } }, _set: $hotel) {
+		returning {
+			hotelID
+		}
+	}
+	update_Location(where: { locationID: { _eq: $locationID } }, _set: $hotelLocation) {
+		returning {
+			locationID
+		}
+	}
+	update_Address(where: { addressID: { _eq: $addressID } }, _set: $hotelAddress) {
+		returning {
+			addressID
+		}
+	}
+}
+mutation deleteHotel($hotelID: Int) {
+	__typename
+	update_Hotel(where: { hotelID: { _eq: $hotelID } }, _set: { isDeleted: true }) {
+		returning {
+			hotelID
+		}
+	}
+}

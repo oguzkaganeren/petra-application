@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../components/Public/BottomComponent';
-import { useIsFocused } from '@react-navigation/native';
+import { Button, Layout, Text, Icon } from '@ui-kitten/components';
+import GetUserHotelList from '../../../components/Hotel/GetUserHotelList';
 declare var global: any;
 /**
- * Home props
+ * props
  */
 export interface HotelProps {
 	navigation: any;
@@ -13,10 +12,11 @@ export interface HotelProps {
 }
 
 /**
- * Home
+ *
  */
 const HotelScreen: React.FC<HotelProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
+	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -36,9 +36,16 @@ const HotelScreen: React.FC<HotelProps> = props => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<Text>Hotel ile ilgili şeyler</Text>
-				</ScrollView>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						props.navigation.navigate('AddHotelScreen', {});
+					}}
+				>
+					Add Hotel
+				</Button>
+				<GetUserHotelList navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
 	}

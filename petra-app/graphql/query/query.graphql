@@ -28,9 +28,14 @@ query getRoomProperty {
 	}
 }
 query getUserHotel($userID: Int!) {
-	Hotel(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+	Hotel(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
 		hotelID
 		name
+		description
+		star
+		Company {
+			name
+		}
 	}
 }
 query getHotelServiceProperty {
@@ -227,5 +232,37 @@ query getCityDistricts($cityID: Int!) {
 	District(where: { cityID: { _eq: $cityID } }) {
 		district
 		districtID
+	}
+}
+query getHotelListInfo {
+	__typename
+	Hotel(where: { isDeleted: { _eq: false } }) {
+		description
+		name
+		star
+		Company {
+			name
+		}
+	}
+}
+query getHotelByID($hotelID: Int) {
+	__typename
+	Hotel(where: { hotelID: { _eq: $hotelID } }) {
+		description
+		name
+		star
+		taxNumber
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
 	}
 }

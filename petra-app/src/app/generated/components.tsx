@@ -23965,6 +23965,55 @@ export type ControlLoginMailUserMutation = (
   )> }
 );
 
+export type UpdateHotelMutationVariables = {
+  hotelID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  addressID?: Maybe<Scalars['Int']>,
+  hotel: Hotel_Set_Input,
+  hotelLocation: Location_Set_Input,
+  hotelAddress: Address_Set_Input
+};
+
+
+export type UpdateHotelMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Hotel: Maybe<(
+    { __typename?: 'Hotel_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Hotel' }
+      & Pick<Hotel, 'hotelID'>
+    )> }
+  )>, update_Location: Maybe<(
+    { __typename?: 'Location_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'locationID'>
+    )> }
+  )>, update_Address: Maybe<(
+    { __typename?: 'Address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressID'>
+    )> }
+  )> }
+);
+
+export type DeleteHotelMutationVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteHotelMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Hotel: Maybe<(
+    { __typename?: 'Hotel_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Hotel' }
+      & Pick<Hotel, 'hotelID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -24024,7 +24073,11 @@ export type GetUserHotelQuery = (
   { __typename?: 'query_root' }
   & { Hotel: Array<(
     { __typename?: 'Hotel' }
-    & Pick<Hotel, 'hotelID' | 'name'>
+    & Pick<Hotel, 'hotelID' | 'name' | 'description' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
   )> }
 );
 
@@ -24299,6 +24352,42 @@ export type GetCityDistrictsQuery = (
   & { District: Array<(
     { __typename?: 'District' }
     & Pick<District, 'district' | 'districtID'>
+  )> }
+);
+
+export type GetHotelListInfoQueryVariables = {};
+
+
+export type GetHotelListInfoQuery = (
+  { __typename: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetHotelByIdQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelByIdQuery = (
+  { __typename: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+      ) }
+    ) }
   )> }
 );
 
@@ -25266,6 +25355,76 @@ export function withControlLoginMailUser<TProps, TChildProps = {}>(operationOpti
 };
 export type ControlLoginMailUserMutationResult = ApolloReactCommon.MutationResult<ControlLoginMailUserMutation>;
 export type ControlLoginMailUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ControlLoginMailUserMutation, ControlLoginMailUserMutationVariables>;
+export const UpdateHotelDocument = gql`
+    mutation updateHotel($hotelID: Int, $locationID: Int, $addressID: Int, $hotel: Hotel_set_input!, $hotelLocation: Location_set_input!, $hotelAddress: Address_set_input!) {
+  __typename
+  update_Hotel(where: {hotelID: {_eq: $hotelID}}, _set: $hotel) {
+    returning {
+      hotelID
+    }
+  }
+  update_Location(where: {locationID: {_eq: $locationID}}, _set: $hotelLocation) {
+    returning {
+      locationID
+    }
+  }
+  update_Address(where: {addressID: {_eq: $addressID}}, _set: $hotelAddress) {
+    returning {
+      addressID
+    }
+  }
+}
+    `;
+export type UpdateHotelMutationFn = ApolloReactCommon.MutationFunction<UpdateHotelMutation, UpdateHotelMutationVariables>;
+export type UpdateHotelComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateHotelMutation, UpdateHotelMutationVariables>, 'mutation'>;
+
+    export const UpdateHotelComponent = (props: UpdateHotelComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateHotelMutation, UpdateHotelMutationVariables> mutation={UpdateHotelDocument} {...props} />
+    );
+    
+export type UpdateHotelProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateHotelMutation, UpdateHotelMutationVariables> & TChildProps;
+export function withUpdateHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateHotelMutation,
+  UpdateHotelMutationVariables,
+  UpdateHotelProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateHotelMutation, UpdateHotelMutationVariables, UpdateHotelProps<TChildProps>>(UpdateHotelDocument, {
+      alias: 'updateHotel',
+      ...operationOptions
+    });
+};
+export type UpdateHotelMutationResult = ApolloReactCommon.MutationResult<UpdateHotelMutation>;
+export type UpdateHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateHotelMutation, UpdateHotelMutationVariables>;
+export const DeleteHotelDocument = gql`
+    mutation deleteHotel($hotelID: Int) {
+  __typename
+  update_Hotel(where: {hotelID: {_eq: $hotelID}}, _set: {isDeleted: true}) {
+    returning {
+      hotelID
+    }
+  }
+}
+    `;
+export type DeleteHotelMutationFn = ApolloReactCommon.MutationFunction<DeleteHotelMutation, DeleteHotelMutationVariables>;
+export type DeleteHotelComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteHotelMutation, DeleteHotelMutationVariables>, 'mutation'>;
+
+    export const DeleteHotelComponent = (props: DeleteHotelComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteHotelMutation, DeleteHotelMutationVariables> mutation={DeleteHotelDocument} {...props} />
+    );
+    
+export type DeleteHotelProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteHotelMutation, DeleteHotelMutationVariables> & TChildProps;
+export function withDeleteHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteHotelMutation,
+  DeleteHotelMutationVariables,
+  DeleteHotelProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteHotelMutation, DeleteHotelMutationVariables, DeleteHotelProps<TChildProps>>(DeleteHotelDocument, {
+      alias: 'deleteHotel',
+      ...operationOptions
+    });
+};
+export type DeleteHotelMutationResult = ApolloReactCommon.MutationResult<DeleteHotelMutation>;
+export type DeleteHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteHotelMutation, DeleteHotelMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -25377,9 +25536,14 @@ export function withGetRoomProperty<TProps, TChildProps = {}>(operationOptions?:
 export type GetRoomPropertyQueryResult = ApolloReactCommon.QueryResult<GetRoomPropertyQuery, GetRoomPropertyQueryVariables>;
 export const GetUserHotelDocument = gql`
     query getUserHotel($userID: Int!) {
-  Hotel(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+  Hotel(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
     hotelID
     name
+    description
+    star
+    Company {
+      name
+    }
   }
 }
     `;
@@ -25955,3 +26119,75 @@ export function withGetCityDistricts<TProps, TChildProps = {}>(operationOptions?
     });
 };
 export type GetCityDistrictsQueryResult = ApolloReactCommon.QueryResult<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>;
+export const GetHotelListInfoDocument = gql`
+    query getHotelListInfo {
+  __typename
+  Hotel(where: {isDeleted: {_eq: false}}) {
+    description
+    name
+    star
+    Company {
+      name
+    }
+  }
+}
+    `;
+export type GetHotelListInfoComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelListInfoQuery, GetHotelListInfoQueryVariables>, 'query'>;
+
+    export const GetHotelListInfoComponent = (props: GetHotelListInfoComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelListInfoQuery, GetHotelListInfoQueryVariables> query={GetHotelListInfoDocument} {...props} />
+    );
+    
+export type GetHotelListInfoProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelListInfoQuery, GetHotelListInfoQueryVariables> & TChildProps;
+export function withGetHotelListInfo<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelListInfoQuery,
+  GetHotelListInfoQueryVariables,
+  GetHotelListInfoProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelListInfoQuery, GetHotelListInfoQueryVariables, GetHotelListInfoProps<TChildProps>>(GetHotelListInfoDocument, {
+      alias: 'getHotelListInfo',
+      ...operationOptions
+    });
+};
+export type GetHotelListInfoQueryResult = ApolloReactCommon.QueryResult<GetHotelListInfoQuery, GetHotelListInfoQueryVariables>;
+export const GetHotelByIdDocument = gql`
+    query getHotelByID($hotelID: Int) {
+  __typename
+  Hotel(where: {hotelID: {_eq: $hotelID}}) {
+    description
+    name
+    star
+    taxNumber
+    locationID
+    Location {
+      addressID
+      Address {
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+  }
+}
+    `;
+export type GetHotelByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelByIdQuery, GetHotelByIdQueryVariables>, 'query'>;
+
+    export const GetHotelByIdComponent = (props: GetHotelByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelByIdQuery, GetHotelByIdQueryVariables> query={GetHotelByIdDocument} {...props} />
+    );
+    
+export type GetHotelByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelByIdQuery, GetHotelByIdQueryVariables> & TChildProps;
+export function withGetHotelById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelByIdQuery,
+  GetHotelByIdQueryVariables,
+  GetHotelByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelByIdQuery, GetHotelByIdQueryVariables, GetHotelByIdProps<TChildProps>>(GetHotelByIdDocument, {
+      alias: 'getHotelById',
+      ...operationOptions
+    });
+};
+export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelByIdQuery, GetHotelByIdQueryVariables>;
