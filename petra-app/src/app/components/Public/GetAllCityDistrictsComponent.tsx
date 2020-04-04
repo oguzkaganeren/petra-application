@@ -46,7 +46,7 @@ export class GetAllCityDistrictsComponent extends React.Component<GetAllCityDist
 		const id = value.id;
 		this.props.parentReference(id);
 		this.setState({
-			selected: value.text
+			selected: value
 		});
 	}
 	private keyExtractor = (item, index): string => {
@@ -81,7 +81,7 @@ export class GetAllCityDistrictsComponent extends React.Component<GetAllCityDist
 									placeholder={this.props.label}
 									selectedOption={this.state.selected}
 									keyExtractor={this.keyExtractor.bind(this)}
-									onSelect={this.onValueChange}
+									onSelect={value => this.onValueChange(value)}
 								/>
 							);
 						}

@@ -45,12 +45,9 @@ export class GetAllCitiesComponent extends React.Component<GetAllCitiesProps, Ge
 		const id = value.id;
 		this.props.parentReference(id);
 		this.setState({
-			selected: value.text
+			selected: value
 		});
 	}
-	private keyExtractor = (item, index): string => {
-		return item.id.toString();
-	};
 	/**
 	 * Renders Location component
 	 * @returns
@@ -79,8 +76,7 @@ export class GetAllCitiesComponent extends React.Component<GetAllCitiesProps, Ge
 									data={this.state.datam}
 									placeholder={this.props.label}
 									selectedOption={this.state.selected}
-									keyExtractor={this.keyExtractor.bind(this)}
-									onSelect={this.onValueChange}
+									onSelect={value => this.onValueChange(value)}
 								/>
 							);
 						}

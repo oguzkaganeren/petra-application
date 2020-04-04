@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { AddHotelComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
-import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
+import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
 import { GetAllHotelServicePropertyComponent } from '../../../components/Hotel/GetAllHotelServiceProperty';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+declare var global: any;
 /**
  * AddHotel props
  */
@@ -21,6 +23,7 @@ export interface AddHotelProps {
  */
 export interface AddHotelState {
 	cityID: number;
+	star: number;
 }
 
 /**
@@ -30,9 +33,11 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 	constructor(props: AddHotelProps) {
 		super(props);
 		this.state = {
-			cityID: 0
+			cityID: 0,
+			star: 1
 		};
 	}
+	accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate =
@@ -54,7 +59,6 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 	 * @returns
 	 */
 	render() {
-		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelComponent>
@@ -64,6 +68,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 							initialValues={{
 								latitude: 0,
 								longtitude: 0,
+								description: '',
 								address: '',
 								districtID: 0,
 								cityID: 0,
@@ -97,6 +102,8 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 												{
 													name: values.name.toString(),
 													taxNumber: values.taxNumber.toString(),
+													description: values.description,
+													star: this.state.star,
 													Location: {
 														data: {
 															longtitude: values.longtitude,
@@ -141,7 +148,16 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-
+									<Button
+										icon={this.accessoryItemIcon}
+										appearance="ghost"
+										onPress={() => {
+											props.handleSubmit();
+										}}
+										disabled={props.isSubmitting}
+									>
+										Add Hotel
+									</Button>
 									<Input
 										label="Name"
 										placeholder="Hotel Name"
@@ -151,6 +167,20 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										onBlur={props.handleBlur('name')}
 										value={props.values.name}
 										autoFocus
+									/>
+									<Text style={{ color: 'gray' }}>Select your hotel star</Text>
+									<StarRating
+										containerStyle={{ width: Dimensions.get('window').width / 8 }}
+										disabled={false}
+										emptyStar={'ios-star-outline'}
+										fullStar={'ios-star'}
+										halfStar={'ios-star-half'}
+										iconSet={'Ionicons'}
+										maxStars={5}
+										rating={this.state.star}
+										starSize={25}
+										fullStarColor={'orange'}
+										selectedStar={rating => this.setState({ star: rating })}
 									/>
 									<Input
 										label="Tax Number"
@@ -166,7 +196,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										parentReference={value => {
 											props.values.companyID = value;
 										}}
-										userID={parseInt(userID)}
+										userID={parseInt(global.userID)}
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
@@ -194,6 +224,18 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										onBlur={props.handleBlur('address')}
 										value={props.values.address}
 									/>
+									<Input
+										label="Description"
+										status={props.touched.address && props.errors.address ? 'danger' : 'success'}
+										caption={props.touched.address && props.errors.address ? props.errors.address : ''}
+										placeholder="Add your description"
+										multiline={true}
+										style={{ minHeight: 50 }}
+										onChangeText={props.handleChange('description')}
+										onBlur={props.handleBlur('description')}
+										value={props.values.description}
+									/>
+
 									<GetAllHotelServicePropertyComponent
 										label="Select Hotel Properties"
 										parentReference={value => {
@@ -211,14 +253,6 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 									{props.touched.longtitude && props.errors.longtitude ? (
 										<Text status="danger">{props.errors.longtitude}</Text>
 									) : null}
-									<Button
-										onPress={() => {
-											props.handleSubmit();
-										}}
-										disabled={props.isSubmitting}
-									>
-										Add Hotel
-									</Button>
 								</Layout>
 							)}
 						</Formik>

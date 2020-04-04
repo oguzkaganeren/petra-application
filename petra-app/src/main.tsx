@@ -17,6 +17,7 @@ import ArchSiteScreen from './app/pages/screens/ArchSite/ArchSiteScreen';
 import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
 import RestaurantScreen from './app/pages/screens/Restaurant/RestaurantScreen';
 import HotelScreen from './app/pages/screens/Hotel/HotelScreen';
+import EditHotelScreen from './app/pages/screens/Hotel/EditHotelScreen';
 import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
 import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
@@ -72,7 +73,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://192.168.1.108:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.43.239:8080/v1/graphql' });
 const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
 const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
 const userTypeTwoMenus = [
@@ -287,6 +288,42 @@ function HotelStack() {
 				component={HotelScreen}
 				options={{
 					title: 'Hotel',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="EditHotelScreen"
+				component={EditHotelScreen}
+				options={{
+					title: 'Edit Hotel',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddHotelScreen"
+				component={AddHotelScreen}
+				options={{
+					title: 'Add Hotel',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =

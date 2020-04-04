@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetUserCompanyComponent } from '../../generated/components';
+declare var global: any;
 /**
  * Location props
  */
@@ -12,83 +13,53 @@ export interface GetAllUserCompanyProps {
 }
 
 /**
- * Location state
- */
-export interface GetAllUserCompanyState {
-	selected: any;
-	setSelectedOption: any;
-	datam: any;
-}
-
-/**
  * Location component
  */
-export class GetAllUserCompanyComponent extends React.Component<GetAllUserCompanyProps, GetAllUserCompanyState> {
-	/**
-	 * Creates an instance of Location component.
-	 * @param props
-	 */
-	constructor(props) {
-		super(props);
-		this.state = {
-			selected: null,
-			setSelectedOption: null,
-			datam: []
-		};
-		this.onValueChange = this.onValueChange.bind(this);
-	}
-
+const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
+	const [selectedOption, setSelectedOption] = React.useState(null);
+	const [localData, setLocalData] = React.useState([]);
 	/**
 	 * Determines whether value change on
 	 * @param value
 	 */
-	onValueChange(value) {
+	function onValueChange(value) {
 		const id = value.id;
-		this.props.parentReference(id);
-		this.setState({
-			selected: value.text
-		});
-	}
-	private keyExtractor = (item, index): string => {
-		return item.id.toString();
-	};
-	/**
-	 * Renders Location component
-	 * @returns
-	 */
-	render() {
-		return (
-			<Layout>
-				<GetUserCompanyComponent variables={{ userID: this.props.userID }}>
-					{({ loading, error, data }) => {
-						if (loading) return <Text>Loading</Text>;
-						if (error) return <Text>error</Text>;
+		setSelectedOption(value);
 
-						if (data) {
-							data.CompanyUser.map(dat => {
-								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.companyID)) {
-										this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
-									}
-								} else {
-									this.state.datam.push({ id: dat.companyID, text: dat.Company.name });
-								}
-							});
-							return (
-								<Select
-									data={this.state.datam}
-									placeholder={this.props.label}
-									selectedOption={this.state.selected}
-									keyExtractor={this.keyExtractor.bind(this)}
-									onSelect={this.onValueChange}
-								/>
-							);
-						}
-					}}
-				</GetUserCompanyComponent>
-			</Layout>
-		);
+		props.parentReference(id);
 	}
-}
+	return (
+		<Layout>
+			<GetUserCompanyComponent variables={{ userID: global.userID }}>
+				{({ loading, error, data }) => {
+					if (loading) return <Text>Loading</Text>;
+					if (error) return <Text>error</Text>;
+
+					if (data) {
+						data.CompanyUser.map(dat => {
+							if (localData.length > 0) {
+								if (localData.every(item => item.id !== dat.companyID)) {
+									localData.push({ id: dat.companyID, text: dat.Company.name });
+									console.log(dat.companyID);
+								}
+							} else {
+								localData.push({ id: dat.companyID, text: dat.Company.name });
+							}
+						});
+						return (
+							<Select
+								data={localData}
+								placeholder={props.label}
+								selectedOption={selectedOption}
+								onSelect={value => onValueChange(value)}
+							/>
+						);
+					}
+				}}
+			</GetUserCompanyComponent>
+		</Layout>
+	);
+};
 
 const styles: any = StyleSheet.create({});
+export default GetAllUserCompany;

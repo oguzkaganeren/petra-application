@@ -44,7 +44,7 @@ export class GetAllHotelServicePropertyComponent extends React.Component<
 	 */
 	onValueChange(value) {
 		this.setState({
-			selected: value.text
+			selected: value
 		});
 
 		const filter = Object.keys(value).reduce((result, key) => {
@@ -84,7 +84,7 @@ export class GetAllHotelServicePropertyComponent extends React.Component<
 									multiSelect={true}
 									selectedOption={this.state.selected}
 									keyExtractor={this.keyExtractor.bind(this)}
-									onSelect={this.onValueChange}
+									onSelect={value => this.onValueChange(value)}
 								/>
 							);
 						}
