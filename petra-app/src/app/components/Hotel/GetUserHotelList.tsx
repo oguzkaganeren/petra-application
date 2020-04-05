@@ -26,7 +26,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 		console.log(items);
 		setHotelList(items);
 	}
-	function deleteHotel(hotelID) {
+	function deleteHotel(item) {
 		return (
 			<DeleteHotelComponent>
 				{(DeleteHotelMutation) => (
@@ -41,11 +41,11 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteHotelMutation({
 									variables: {
-										hotelID: hotelID,
+										hotelID: item.key,
 									},
 								})
 									.then((res) => {
-										removeItem(hotelID);
+										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -57,15 +57,26 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{(props) => (
+						{(fprops) => (
 							<Layout>
+								<Button
+									appearance="ghost"
+									onPress={() => {
+										props.navigation.navigate('EditHotelScreen', {
+											hotelID: item.key,
+										});
+									}}
+									disabled={fprops.isSubmitting}
+								>
+									Edit
+								</Button>
 								<Button
 									icon={accessoryItemIcon}
 									appearance="ghost"
 									onPress={() => {
-										props.handleSubmit();
+										fprops.handleSubmit();
 									}}
-									disabled={props.isSubmitting}
+									disabled={fprops.isSubmitting}
 								></Button>
 							</Layout>
 						)}
@@ -77,7 +88,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	function renderItemAccessory(item) {
 		console.log(item.star);
 		return global.userTypeID == 5 || global.userTypeID == 4 || global.userTypeID == 2 ? (
-			deleteHotel(item.key)
+			deleteHotel(item)
 		) : (
 			<StarRating
 				disabled={false}
@@ -103,7 +114,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
-					props.navigation.navigate('EditHotelScreen', {
+					props.navigation.navigate('HotelDetailScreen', {
 						hotelID: item.key,
 					});
 				}}

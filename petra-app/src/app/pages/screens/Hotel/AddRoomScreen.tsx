@@ -35,24 +35,21 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 	 * @returns
 	 */
 	render() {
-		//const { userID } = this.props.route.params;
+		const { userID } = this.props.route.params;
+		const { hotelID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRoomComponent>
-					{AddRoomMutation => (
+					{(AddRoomMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
 								roomNo: '',
 								roomPropRoom: [],
-								hotelID: 0
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								roomNo: Yup.string()
-									.min(1, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required')
+								roomNo: Yup.string().min(1, 'Too Short!').max(50, 'Too Long!').required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -61,15 +58,15 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 										variables: {
 											roomNo: values.roomNo,
 											roomPropRoom: values.roomPropRoom,
-											hotelID: values.hotelID
-										}
+											hotelID: hotelID,
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('roomProp:' + values.roomPropRoom);
 										});
@@ -78,7 +75,7 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
@@ -94,17 +91,9 @@ export class AddRoomScreen extends React.Component<AddRoomProps, AddRoomState> {
 									/>
 									<GetAllRoomPropertyComponent
 										label="Select Room Properties"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.roomPropRoom = value;
 										}}
-									/>
-									<GetAllUserHotelComponent
-										label="Select Your Company"
-										parentReference={value => {
-											props.values.hotelID = value;
-										}}
-										//userID={parseInt(userID)}
-										userID={4}
 									/>
 									<Button
 										onPress={() => {

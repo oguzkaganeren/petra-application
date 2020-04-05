@@ -24391,6 +24391,17 @@ export type GetHotelByIdQuery = (
   )> }
 );
 
+export type GetArticleListQueryVariables = {};
+
+
+export type GetArticleListQuery = (
+  { __typename: 'query_root' }
+  & { Article: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title'>
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($controlUser: [User_insert_input!]!) {
@@ -26191,3 +26202,32 @@ export function withGetHotelById<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelByIdQuery, GetHotelByIdQueryVariables>;
+export const GetArticleListDocument = gql`
+    query getArticleList {
+  __typename
+  Article {
+    articleID
+    content
+    publishDate
+    title
+  }
+}
+    `;
+export type GetArticleListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArticleListQuery, GetArticleListQueryVariables>, 'query'>;
+
+    export const GetArticleListComponent = (props: GetArticleListComponentProps) => (
+      <ApolloReactComponents.Query<GetArticleListQuery, GetArticleListQueryVariables> query={GetArticleListDocument} {...props} />
+    );
+    
+export type GetArticleListProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArticleListQuery, GetArticleListQueryVariables> & TChildProps;
+export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArticleListQuery,
+  GetArticleListQueryVariables,
+  GetArticleListProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArticleListQuery, GetArticleListQueryVariables, GetArticleListProps<TChildProps>>(GetArticleListDocument, {
+      alias: 'getArticleList',
+      ...operationOptions
+    });
+};
+export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;

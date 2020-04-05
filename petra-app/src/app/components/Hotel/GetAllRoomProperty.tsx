@@ -32,7 +32,7 @@ export class GetAllRoomPropertyComponent extends React.Component<GetAllRoomPrope
 		this.state = {
 			selected: [],
 			datam: [],
-			idSelected: []
+			idSelected: [],
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
@@ -43,7 +43,7 @@ export class GetAllRoomPropertyComponent extends React.Component<GetAllRoomPrope
 	 */
 	onValueChange(value) {
 		this.setState({
-			selected: value.text
+			selected: value,
 		});
 
 		const filter = Object.keys(value).reduce((result, key) => {
@@ -67,9 +67,9 @@ export class GetAllRoomPropertyComponent extends React.Component<GetAllRoomPrope
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.RoomProperty.map(dat => {
+							data.RoomProperty.map((dat) => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.roomPropertyID !== dat.roomPropertyID)) {
+									if (this.state.datam.every((item) => item.roomPropertyID !== dat.roomPropertyID)) {
 										this.state.datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
 									}
 								} else {

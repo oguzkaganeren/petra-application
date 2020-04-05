@@ -205,6 +205,24 @@ function LoginStack() {
 					},
 				}}
 			/>
+			<Stack.Screen
+				name="RegisterScreen"
+				component={RegisterScreen}
+				options={{
+					title: 'Register',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }
@@ -324,6 +342,96 @@ function HotelStack() {
 				component={AddHotelScreen}
 				options={{
 					title: 'Add Hotel',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="HotelDetailScreen"
+				component={HotelDetailScreen}
+				options={{
+					title: 'Hotel Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="AddRoomPropertyScreen"
+				component={AddRoomPropertyScreen}
+				options={{
+					title: 'Add Room Property',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="AddRoomScreen"
+				component={AddRoomScreen}
+				options={{
+					title: 'Add Room',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="AddHotelServicePropertyScreen"
+				component={AddHotelServicePropertyScreen}
+				options={{
+					title: 'Add Service Property',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="AddHotelRoomPriceScreen"
+				component={AddHotelRoomPriceScreen}
+				options={{
+					title: 'Add Room Price',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =
