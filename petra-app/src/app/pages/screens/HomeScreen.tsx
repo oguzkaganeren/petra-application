@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../components/Public/BottomComponent';
+import { TabView, BottomNavigationTab, Layout, Text, Icon } from '@ui-kitten/components';
+import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
 
 declare var global: any;
@@ -18,6 +18,12 @@ export interface HomeProps {
  */
 const HomeScreen: React.FC<HomeProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
+	const [selectedIndex, setSelectedIndex] = React.useState(0);
+	const SearchIcon = (style) => <Icon {...style} name="search-outline" />;
+
+	const FlagIcon = (style) => <Icon {...style} name="flag-outline" />;
+
+	const SettingsIcon = (style) => <Icon {...style} name="settings-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -36,19 +42,31 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		);
 	} else {
 		return (
-			<Layout style={{ flex: 1 }}>
-				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-					<BottomComponent></BottomComponent>
-				</Layout>
-			</Layout>
+			<TabView selectedIndex={selectedIndex} onSelect={setSelectedIndex}>
+				<BottomNavigationTab title="Explore" icon={FlagIcon}>
+					<Layout style={styles.tabContainer}>
+						<GetArticleList />
+					</Layout>
+				</BottomNavigationTab>
+				<BottomNavigationTab title="Search" icon={SearchIcon}>
+					<Layout style={styles.tabContainer}>
+						<SearchScreen />
+					</Layout>
+				</BottomNavigationTab>
+				<BottomNavigationTab title="Settings" icon={SettingsIcon}>
+					<Layout style={styles.tabContainer}>
+						<Text>List of transactions.</Text>
+					</Layout>
+				</BottomNavigationTab>
+			</TabView>
 		);
 	}
 };
 
 const styles: any = StyleSheet.create({
-	mapStyle: {
+	tabContainer: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
+		height: Dimensions.get('window').height,
 	},
 });
 export default HomeScreen;

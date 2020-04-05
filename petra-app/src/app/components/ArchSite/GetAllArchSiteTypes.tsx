@@ -30,7 +30,7 @@ export class GetAllArchSiteTypesComponent extends React.Component<GetAllArchSite
 		super(props);
 		this.state = {
 			selected: [],
-			datam: []
+			datam: [],
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
@@ -45,7 +45,7 @@ export class GetAllArchSiteTypesComponent extends React.Component<GetAllArchSite
 		}, []);
 		this.props.parentReference(filter);
 		this.setState({
-			selected: value.text
+			selected: value,
 		});
 	}
 	private keyExtractor = (item, index): string => {
@@ -64,9 +64,9 @@ export class GetAllArchSiteTypesComponent extends React.Component<GetAllArchSite
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.ArchSiteType.map(dat => {
+							data.ArchSiteType.map((dat) => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.archSiteTypeID)) {
+									if (this.state.datam.every((item) => item.id !== dat.archSiteTypeID)) {
 										this.state.datam.push({ id: dat.archSiteTypeID, text: dat.name });
 									}
 								} else {

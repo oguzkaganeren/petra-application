@@ -30,7 +30,7 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 		super(props);
 		this.state = {
 			selected: [],
-			datam: []
+			datam: [],
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
@@ -45,7 +45,7 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 		}, []);
 		this.props.parentReference(filter);
 		this.setState({
-			selected: value.text
+			selected: value,
 		});
 	}
 	private keyExtractor = (item, index): string => {
@@ -64,9 +64,9 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.MuseumType.map(dat => {
+							data.MuseumType.map((dat) => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.museumTypeID)) {
+									if (this.state.datam.every((item) => item.id !== dat.museumTypeID)) {
 										this.state.datam.push({ id: dat.museumTypeID, text: dat.type });
 									}
 								} else {

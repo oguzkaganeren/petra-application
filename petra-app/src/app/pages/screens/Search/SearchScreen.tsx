@@ -9,10 +9,7 @@ import { SearchMapComponent } from '../../../components/Search/SearchMapComponen
 /**
  * Home props
  */
-export interface SearchProps {
-	navigation: any;
-	route: any;
-}
+export interface SearchProps {}
 /**
  * Home state
  */
@@ -31,7 +28,7 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 		this.state = {
 			cityID: 0,
 			selectedIndex: 0,
-			setSelectedIndex: 0
+			setSelectedIndex: 0,
 		};
 	}
 
@@ -43,7 +40,7 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 		return (
 			<Layout style={{ flex: 1 }}>
 				<SearchMapComponent
-					marker={value => {
+					marker={(value) => {
 						/*this.setState({
 																latitude: value
 															});*/
@@ -52,7 +49,7 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 							title: value.title,
 							description: value.description,
 							coordinates: value.coordinates,
-							type: value.type
+							type: value.type,
 						};
 						//this.addItem(item);
 					}}
@@ -65,6 +62,6 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });

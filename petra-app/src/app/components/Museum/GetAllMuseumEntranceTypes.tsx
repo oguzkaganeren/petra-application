@@ -35,7 +35,7 @@ export class GetAllMuseumEntranceTypesComponent extends React.Component<
 		this.state = {
 			selected: null,
 			setSelectedOption: null,
-			datam: []
+			datam: [],
 		};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
@@ -48,7 +48,7 @@ export class GetAllMuseumEntranceTypesComponent extends React.Component<
 		const id = value.id;
 		this.props.parentReference(id);
 		this.setState({
-			selected: value.text
+			selected: value,
 		});
 	}
 	private keyExtractor = (item, index): string => {
@@ -67,9 +67,9 @@ export class GetAllMuseumEntranceTypesComponent extends React.Component<
 						if (error) return <Text>error</Text>;
 
 						if (data) {
-							data.MuseumEntranceType.map(dat => {
+							data.MuseumEntranceType.map((dat) => {
 								if (this.state.datam.length > 0) {
-									if (this.state.datam.every(item => item.id !== dat.museumEntranceTypeID)) {
+									if (this.state.datam.every((item) => item.id !== dat.museumEntranceTypeID)) {
 										this.state.datam.push({ id: dat.museumEntranceTypeID, text: dat.content });
 									}
 								} else {
