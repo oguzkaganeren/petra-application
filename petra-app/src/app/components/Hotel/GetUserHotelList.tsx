@@ -17,18 +17,23 @@ export interface GetUserHotelListProps {
 /**
  * Home
  */
-const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
+const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	const [hotelList, setHotelList] = React.useState([]);
-	const [, updateState] = React.useState();
-
+	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	function removeItem(key) {
+		setRemoveItemBool(true);
+		const items = hotelList.filter((item, index) => Object.values(item)[0] !== key);
+		console.log(items);
+		setHotelList(items);
+	}
 	function deleteHotel(hotelID) {
 		return (
 			<DeleteHotelComponent>
-				{DeleteHotelMutation => (
+				{(DeleteHotelMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -36,13 +41,14 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 								console.log(values.name + ' ');
 								DeleteHotelMutation({
 									variables: {
-										hotelID: hotelID
-									}
+										hotelID: hotelID,
+									},
 								})
-									.then(res => {
+									.then((res) => {
+										removeItem(hotelID);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -51,7 +57,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								<Button
 									icon={accessoryItemIcon}
@@ -86,8 +92,8 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 			/>
 		);
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -98,7 +104,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('EditHotelScreen', {
-						hotelID: item.key
+						hotelID: item.key,
 					});
 				}}
 			/>
@@ -112,24 +118,24 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
-							if (hotelList.length > 0) {
-								if (hotelList.every(item => item.key != dat.hotelID)) {
+						data.Hotel.map((dat) => {
+							if (hotelList.length > 0 && !removeItemBool) {
+								if (hotelList.every((item) => item.key != dat.hotelID)) {
 									hotelList.push({
 										key: dat.hotelID,
 										title: dat.name,
 										description: dat.description == null ? '' : dat.description,
 										star: dat.star,
-										companyName: dat.Company.name
+										companyName: dat.Company.name,
 									});
 								}
-							} else {
+							} else if (!removeItemBool) {
 								hotelList.push({
 									key: dat.hotelID,
 									title: dat.name,
 									description: dat.description == null ? '' : dat.description,
 									star: dat.star,
-									companyName: dat.Company.name
+									companyName: dat.Company.name,
 								});
 							}
 						});
@@ -144,7 +150,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default GetUserHotelList;
