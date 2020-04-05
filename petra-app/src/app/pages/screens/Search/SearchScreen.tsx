@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Text, Layout, TabView, Tab } from '@ui-kitten/components';
-import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
-import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
-import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
-import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationComponent';
 import { SearchMapComponent } from '../../../components/Search/SearchMapComponent';
 /**
  * Home props
  */
-export interface SearchProps {}
+export interface SearchProps {
+	navigation: any;
+	route: any;
+}
 /**
  * Home state
  */
@@ -39,21 +38,7 @@ export class SearchScreen extends React.Component<SearchProps, SearchState> {
 	render() {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<SearchMapComponent
-					marker={(value) => {
-						/*this.setState({
-																latitude: value
-															});*/
-						let item = {
-							id: value.id,
-							title: value.title,
-							description: value.description,
-							coordinates: value.coordinates,
-							type: value.type,
-						};
-						//this.addItem(item);
-					}}
-				/>
+				<SearchMapComponent navigation={this.props.navigation} route={this.props.route} />
 			</Layout>
 		);
 	}

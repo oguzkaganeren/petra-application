@@ -19,6 +19,8 @@ export interface HomeProps {
 const HomeScreen: React.FC<HomeProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+	const shouldLoadComponent = (index) => index === selectedIndex;
 	const SearchIcon = (style) => <Icon {...style} name="search-outline" />;
 
 	const FlagIcon = (style) => <Icon {...style} name="flag-outline" />;
@@ -42,7 +44,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		);
 	} else {
 		return (
-			<TabView selectedIndex={selectedIndex} onSelect={setSelectedIndex}>
+			<TabView selectedIndex={selectedIndex} shouldLoadComponent={shouldLoadComponent} onSelect={setSelectedIndex}>
 				<BottomNavigationTab title="Explore" icon={FlagIcon}>
 					<Layout style={styles.tabContainer}>
 						<GetArticleList />
@@ -50,7 +52,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 				</BottomNavigationTab>
 				<BottomNavigationTab title="Search" icon={SearchIcon}>
 					<Layout style={styles.tabContainer}>
-						<SearchScreen />
+						<SearchScreen navigation={props.navigation} route={props.route} />
 					</Layout>
 				</BottomNavigationTab>
 				<BottomNavigationTab title="Settings" icon={SettingsIcon}>

@@ -24402,6 +24402,32 @@ export type GetArticleListQuery = (
   )> }
 );
 
+export type GetHotelByCityQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelByCityQuery = (
+  { __typename: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star' | 'companyID' | 'hotelID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & { Address: (
+        { __typename?: 'Address' }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      ) }
+    ) }
+  )> }
+);
+
 
 export const ControlUserDocument = gql`
     mutation controlUser($controlUser: [User_insert_input!]!) {
@@ -26231,3 +26257,43 @@ export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;
+export const GetHotelByCityDocument = gql`
+    query getHotelByCity($cityID: Int) {
+  __typename
+  Hotel(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+    description
+    name
+    star
+    Location {
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+      }
+    }
+    companyID
+    hotelID
+  }
+}
+    `;
+export type GetHotelByCityComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelByCityQuery, GetHotelByCityQueryVariables>, 'query'>;
+
+    export const GetHotelByCityComponent = (props: GetHotelByCityComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelByCityQuery, GetHotelByCityQueryVariables> query={GetHotelByCityDocument} {...props} />
+    );
+    
+export type GetHotelByCityProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelByCityQuery, GetHotelByCityQueryVariables> & TChildProps;
+export function withGetHotelByCity<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelByCityQuery,
+  GetHotelByCityQueryVariables,
+  GetHotelByCityProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelByCityQuery, GetHotelByCityQueryVariables, GetHotelByCityProps<TChildProps>>(GetHotelByCityDocument, {
+      alias: 'getHotelByCity',
+      ...operationOptions
+    });
+};
+export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelByCityQuery, GetHotelByCityQueryVariables>;

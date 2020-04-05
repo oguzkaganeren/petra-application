@@ -275,3 +275,24 @@ query getArticleList {
 		title
 	}
 }
+
+query getHotelByCity($cityID: Int) {
+	__typename
+	Hotel(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+		description
+		name
+		star
+		Location {
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+			}
+		}
+		companyID
+		hotelID
+	}
+}

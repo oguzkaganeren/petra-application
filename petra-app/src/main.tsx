@@ -21,6 +21,7 @@ import EditHotelScreen from './app/pages/screens/Hotel/EditHotelScreen';
 import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
 import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
+import GetHotelListByCity from './app/components/Hotel/GetHotelListByCity';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
 import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
@@ -158,7 +159,11 @@ const DrawerContent = ({ navigation, state }) => {
 };
 function DrawerNavigator() {
 	return (
-		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={(props) => <DrawerContent {...props} />}>
+		<Drawer.Navigator
+			screenOptions={{ gestureEnabled: false }}
+			initialRouteName="HomeScreen"
+			drawerContent={(props) => <DrawerContent {...props} />}
+		>
 			<Drawer.Screen name="LoginScreen" component={LoginStack} />
 			<Drawer.Screen name="HomeScreen" component={HomeStack} />
 			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
@@ -170,17 +175,6 @@ function DrawerNavigator() {
 			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} />
 		</Drawer.Navigator>
 	);
-	{
-		/* 	<Drawer.Screen name="LoginScreen" component={LoginStack} />
-			<Drawer.Screen name="HomeScreen" component={HomeStack} />
-			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
-			<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
-			<Drawer.Screen name="HotelScreen" component={HotelStack} />
-			<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
-			<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
-			<Drawer.Screen name="ArticleScreen" component={ArticleStack} />
-			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} /> */
-	}
 }
 
 const Stack = createStackNavigator();
@@ -244,6 +238,24 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="GetHotelListByCity"
+				component={GetHotelListByCity}
+				options={{
+					title: 'Hotels',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
 					},
 				}}
 			/>
