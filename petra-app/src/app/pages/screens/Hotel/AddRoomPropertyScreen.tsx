@@ -33,18 +33,15 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRoomPropertyComponent>
-					{AddRoomProperyMutation => (
+					{(AddRoomProperyMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								content: ''
+								content: '',
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								content: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required')
+								content: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -54,17 +51,17 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 										variables: {
 											RoomProperty: [
 												{
-													content: values.content.toString()
-												}
-											]
-										}
+													content: values.content.toString(),
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('roomProp:' + values.content);
 										});
@@ -73,7 +70,7 @@ export class AddRoomPropertyScreen extends React.Component<AddRoomPropertyProps,
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 

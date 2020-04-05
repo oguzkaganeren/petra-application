@@ -28,12 +28,14 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { hotelID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRoomPropertyScreen', {
-							userID: userID
+							userID: userID,
+							hotelID: hotelID,
 						});
 					}}
 				>
@@ -42,7 +44,8 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRoomScreen', {
-							userID: userID
+							userID: userID,
+							hotelID: hotelID,
 						});
 					}}
 				>
@@ -51,7 +54,8 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddHotelServicePropertyScreen', {
-							userID: userID
+							userID: userID,
+							hotelID: hotelID,
 						});
 					}}
 				>
@@ -59,27 +63,14 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				</Button>
 				<Button
 					onPress={() => {
-						this.props.navigation.navigate('AddHotelCommentScreen', {
-							userID: userID,
-							hotelID: 3 //Sonra değişecek!!!!!!
-						});
-					}}
-				>
-					Add Hotel Comment
-				</Button>
-				<Button
-					onPress={() => {
 						this.props.navigation.navigate('AddHotelRoomPriceScreen', {
 							userID: userID,
-							hotelID: 3 //Sonra değişecek!!!!!!
+							hotelID: hotelID,
 						});
 					}}
 				>
 					Add Room Price
 				</Button>
-				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-					<BottomComponent></BottomComponent>
-				</Layout>
 			</Layout>
 		);
 	}
@@ -88,6 +79,6 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });

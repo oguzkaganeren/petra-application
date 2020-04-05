@@ -266,3 +266,12 @@ query getHotelByID($hotelID: Int) {
 		companyID
 	}
 }
+query getArticleList {
+	__typename
+	Article {
+		articleID
+		content
+		publishDate
+		title
+	}
+}

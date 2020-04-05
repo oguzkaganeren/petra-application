@@ -17,7 +17,6 @@ export interface AddHotelRoomPriceProps {
  * Location state
  */
 export interface AddHotelRoomPriceState {
-	hotelID: number;
 	theDate: any;
 }
 
@@ -28,14 +27,13 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	constructor(props: AddHotelRoomPriceProps) {
 		super(props);
 		this.state = {
-			hotelID: 0,
-			theDate: {}
+			theDate: {},
 		};
 		/**
 		 * {"roomPropRoom": [{"roomPropertyID": 1},{"roomPropertyID": 2}]}
 		 */
 	}
-	onSelect = value => {
+	onSelect = (value) => {
 		this.setState({ theDate: value });
 	};
 	/**
@@ -43,21 +41,22 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	 * @returns
 	 */
 	render() {
-		//const { userID } = this.props.route.params;
+		const { userID } = this.props.route.params;
+		const { hotelID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelRoomPriceComponent>
-					{AddHotelRoomPriceMutation => (
+					{(AddHotelRoomPriceMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
 								roomID: 0,
 								price: 0,
-								hotelID: 0
+								hotelID: hotelID,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								price: Yup.number().required('Required')
+								price: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -66,25 +65,22 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 									console.log(this.state.theDate.startDate);
 									AddHotelRoomPriceMutation({
 										variables: {
-											RoomPrice:[
+											RoomPrice: [
 												{
 													roomID: values.roomID,
 													finishDate: this.state.theDate.endDate,
 													startDate: this.state.theDate.startDate,
-													price: values.price
-												}
-											]
-											
-											
-											
-										}
+													price: values.price,
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											//console.log('roomProp:' + values.roomPropRoom);
 										});
@@ -93,24 +89,16 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserHotelComponent
-										label="Select Your Company"
-										parentReference={value => {
-											props.values.hotelID = value;
-											this.setState({ hotelID: value });
-										}}
-										//userID={parseInt(userID)}
-										userID={4}
-									/>
+
 									<GetAllHotelRoomComponent
 										label="Select Hotel Room"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.roomID = value;
 										}}
-										hotelID={this.state.hotelID}
+										hotelID={hotelID}
 									/>
 									<Input
 										label="Price"
