@@ -73,7 +73,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://192.168.43.239:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.1.108:8080/v1/graphql' });
 const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
 const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
 const userTypeTwoMenus = [
@@ -82,7 +82,7 @@ const userTypeTwoMenus = [
 	{ title: 'Restaurant' },
 	{ title: 'Hotel' },
 	{ title: 'Museum' },
-	{ title: 'Archaeological Site' }
+	{ title: 'Archaeological Site' },
 ];
 const userTypeThreeMenus = [{ title: 'Home' }, { title: 'Article' }];
 const userTypeFiveMenus = [
@@ -93,7 +93,7 @@ const userTypeFiveMenus = [
 	{ title: 'Museum' },
 	{ title: 'Archaeological Site' },
 	{ title: 'Article' },
-	{ title: 'Travel Guide' }
+	{ title: 'Travel Guide' },
 ];
 const Drawer = createDrawerNavigator();
 
@@ -116,7 +116,7 @@ const DrawerContent = ({ navigation, state }) => {
 		: global.userTypeID == 5
 		? (index = index - 1)
 		: index;
-	const onSelect = indexvalue => {
+	const onSelect = (indexvalue) => {
 		global.userTypeID == 1 && indexvalue == 0
 			? (indexvalue = 1)
 			: global.userTypeID == 1
@@ -158,7 +158,7 @@ const DrawerContent = ({ navigation, state }) => {
 };
 function DrawerNavigator() {
 	return (
-		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
+		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={(props) => <DrawerContent {...props} />}>
 			<Drawer.Screen name="LoginScreen" component={LoginStack} />
 			<Drawer.Screen name="HomeScreen" component={HomeStack} />
 			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
@@ -202,7 +202,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -226,7 +226,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -250,7 +250,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -274,7 +274,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -298,7 +298,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -316,7 +316,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -334,7 +334,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -358,7 +358,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -382,7 +382,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -406,7 +406,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -430,7 +430,7 @@ function TravelGuideStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
