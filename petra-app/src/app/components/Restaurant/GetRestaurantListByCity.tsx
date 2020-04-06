@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
-import { GetHotelByCityComponent } from '../../generated/components';
+import { GetRestaurantByCityComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 /**
  * Home props
  */
-export interface GetHotelListByCityProps {
+export interface GetRestaurantListByCityProps {
 	navigation: any;
 	route: any;
 }
@@ -14,8 +14,8 @@ export interface GetHotelListByCityProps {
 /**
  * Home
  */
-const GetHotelListByCity: React.FC<GetHotelListByCityProps> = (props) => {
-	const [hotelList, setHotelList] = React.useState([]);
+const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) => {
+	const [restaurantList, setRestaurantList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const { cityID } = props.route.params;
 	function renderItemAccessory(item) {
@@ -44,12 +44,11 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = (props) => {
 			<ListItem
 				key={item.key}
 				title={`${item.title}`}
-				description={`${item.description}`}
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
-					props.navigation.navigate('HotelInfoScreen', {
-						hotelID: item.key,
+					props.navigation.navigate('RestaurantInfoScreen', {
+						restaurantID: item.key,
 					});
 				}}
 			/>
@@ -57,39 +56,37 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = (props) => {
 	};
 	return (
 		<Layout style={{ flex: 1 }}>
-			<GetHotelByCityComponent variables={{ cityID: cityID }}>
+			<GetRestaurantByCityComponent variables={{ cityID: cityID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map((dat) => {
-							if (hotelList.length > 0 && !removeItemBool) {
-								if (hotelList.every((item) => item.key != dat.hotelID)) {
-									hotelList.push({
-										key: dat.hotelID,
+						data.Restaurant.map((dat) => {
+							if (restaurantList.length > 0 && !removeItemBool) {
+								if (restaurantList.every((item) => item.key != dat.restaurantID)) {
+									restaurantList.push({
+										key: dat.restaurantID,
 										title: dat.name,
 										city: dat.Location.Address.City.city,
 										district: dat.Location.Address.District.district,
-										description: dat.description == null ? '' : dat.description,
 										star: dat.star,
 									});
 								}
 							} else if (!removeItemBool) {
-								hotelList.push({
-									key: dat.hotelID,
+								restaurantList.push({
+									key: dat.restaurantID,
 									title: dat.name,
 									city: dat.Location.Address.City.city,
 									district: dat.Location.Address.District.district,
-									description: dat.description == null ? '' : dat.description,
 									star: dat.star,
 								});
 							}
 						});
 					}
-					return <List data={hotelList} renderItem={renderItem} />;
+					return <List data={restaurantList} renderItem={renderItem} />;
 				}}
-			</GetHotelByCityComponent>
+			</GetRestaurantByCityComponent>
 		</Layout>
 	);
 };
@@ -100,4 +97,4 @@ const styles: any = StyleSheet.create({
 		height: Dimensions.get('window').height / 2,
 	},
 });
-export default GetHotelListByCity;
+export default GetRestaurantListByCity;

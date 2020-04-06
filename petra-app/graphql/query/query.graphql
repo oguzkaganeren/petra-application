@@ -335,3 +335,58 @@ query getHotelRooms($hotelID: Int) {
 		}
 	}
 }
+query getRestaurantByCity($cityID: Int) {
+	__typename
+	Restaurant(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+		name
+		star
+		Location {
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+			}
+		}
+		companyID
+		RestaurantType {
+			type
+		}
+		restaurantID
+	}
+}
+query getRestaurantByID($restaurantID: Int) {
+	__typename
+	Restaurant(where: { restaurantID: { _eq: $restaurantID } }) {
+		name
+		star
+		taxNumber
+		locationID
+		Location {
+			addressID
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
+	}
+}
