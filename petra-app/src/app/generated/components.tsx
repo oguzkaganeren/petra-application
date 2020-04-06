@@ -24014,6 +24014,55 @@ export type DeleteHotelMutation = (
   )> }
 );
 
+export type DeleteCompanyMutationVariables = {
+  companyID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteCompanyMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Company: Maybe<(
+    { __typename?: 'Company_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Company' }
+      & Pick<Company, 'companyID'>
+    )> }
+  )> }
+);
+
+export type UpdateCompanyMutationVariables = {
+  companyID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  addressID?: Maybe<Scalars['Int']>,
+  company: Company_Set_Input,
+  companyLocation: Location_Set_Input,
+  companyAddress: Address_Set_Input
+};
+
+
+export type UpdateCompanyMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Company: Maybe<(
+    { __typename?: 'Company_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Company' }
+      & Pick<Company, 'companyID'>
+    )> }
+  )>, update_Location: Maybe<(
+    { __typename?: 'Location_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'locationID'>
+    )> }
+  )>, update_Address: Maybe<(
+    { __typename?: 'Address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -24037,19 +24086,15 @@ export type GetRestaurantTypesQuery = (
 );
 
 export type GetUserCompanyQueryVariables = {
-  userID: Scalars['Int']
+  userID?: Maybe<Scalars['Int']>
 };
 
 
 export type GetUserCompanyQuery = (
   { __typename: 'query_root' }
-  & { CompanyUser: Array<(
-    { __typename?: 'CompanyUser' }
-    & Pick<CompanyUser, 'companyID'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
+  & { Company: Array<(
+    { __typename?: 'Company' }
+    & Pick<Company, 'companyID' | 'name' | 'description' | 'faxNumber' | 'taxNumber' | 'mail' | 'registerDate'>
   )> }
 );
 
@@ -24380,6 +24425,27 @@ export type GetHotelByIdQuery = (
   & { Hotel: Array<(
     { __typename?: 'Hotel' }
     & Pick<Hotel, 'description' | 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+      ) }
+    ) }
+  )> }
+);
+
+export type GetCompanyByIdQueryVariables = {
+  companyID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetCompanyByIdQuery = (
+  { __typename: 'query_root' }
+  & { Company: Array<(
+    { __typename?: 'Company' }
+    & Pick<Company, 'name' | 'taxNumber' | 'mail' | 'registerDate' | 'logoUrl' | 'description' | 'locationID' | 'companyID'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
@@ -25436,6 +25502,76 @@ export function withDeleteHotel<TProps, TChildProps = {}>(operationOptions?: Apo
 };
 export type DeleteHotelMutationResult = ApolloReactCommon.MutationResult<DeleteHotelMutation>;
 export type DeleteHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteHotelMutation, DeleteHotelMutationVariables>;
+export const DeleteCompanyDocument = gql`
+    mutation deleteCompany($companyID: Int) {
+  __typename
+  update_Company(where: {companyID: {_eq: $companyID}}, _set: {isDeleted: true}) {
+    returning {
+      companyID
+    }
+  }
+}
+    `;
+export type DeleteCompanyMutationFn = ApolloReactCommon.MutationFunction<DeleteCompanyMutation, DeleteCompanyMutationVariables>;
+export type DeleteCompanyComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteCompanyMutation, DeleteCompanyMutationVariables>, 'mutation'>;
+
+    export const DeleteCompanyComponent = (props: DeleteCompanyComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> mutation={DeleteCompanyDocument} {...props} />
+    );
+    
+export type DeleteCompanyProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteCompanyMutation, DeleteCompanyMutationVariables> & TChildProps;
+export function withDeleteCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteCompanyMutation,
+  DeleteCompanyMutationVariables,
+  DeleteCompanyProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteCompanyMutation, DeleteCompanyMutationVariables, DeleteCompanyProps<TChildProps>>(DeleteCompanyDocument, {
+      alias: 'deleteCompany',
+      ...operationOptions
+    });
+};
+export type DeleteCompanyMutationResult = ApolloReactCommon.MutationResult<DeleteCompanyMutation>;
+export type DeleteCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteCompanyMutation, DeleteCompanyMutationVariables>;
+export const UpdateCompanyDocument = gql`
+    mutation updateCompany($companyID: Int, $locationID: Int, $addressID: Int, $company: Company_set_input!, $companyLocation: Location_set_input!, $companyAddress: Address_set_input!) {
+  __typename
+  update_Company(where: {companyID: {_eq: $companyID}}, _set: $company) {
+    returning {
+      companyID
+    }
+  }
+  update_Location(where: {locationID: {_eq: $locationID}}, _set: $companyLocation) {
+    returning {
+      locationID
+    }
+  }
+  update_Address(where: {addressID: {_eq: $addressID}}, _set: $companyAddress) {
+    returning {
+      addressID
+    }
+  }
+}
+    `;
+export type UpdateCompanyMutationFn = ApolloReactCommon.MutationFunction<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
+export type UpdateCompanyComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>, 'mutation'>;
+
+    export const UpdateCompanyComponent = (props: UpdateCompanyComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> mutation={UpdateCompanyDocument} {...props} />
+    );
+    
+export type UpdateCompanyProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateCompanyMutation, UpdateCompanyMutationVariables> & TChildProps;
+export function withUpdateCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateCompanyMutation,
+  UpdateCompanyMutationVariables,
+  UpdateCompanyProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateCompanyMutation, UpdateCompanyMutationVariables, UpdateCompanyProps<TChildProps>>(UpdateCompanyDocument, {
+      alias: 'updateCompany',
+      ...operationOptions
+    });
+};
+export type UpdateCompanyMutationResult = ApolloReactCommon.MutationResult<UpdateCompanyMutation>;
+export type UpdateCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -25491,17 +25627,20 @@ export function withGetRestaurantTypes<TProps, TChildProps = {}>(operationOption
 };
 export type GetRestaurantTypesQueryResult = ApolloReactCommon.QueryResult<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>;
 export const GetUserCompanyDocument = gql`
-    query getUserCompany($userID: Int!) {
+    query getUserCompany($userID: Int) {
   __typename
-  CompanyUser(where: {User: {userID: {_eq: $userID}}}) {
-    Company {
-      name
-    }
+  Company(where: {isDeleted: {_eq: false}, CompanyUsers: {userID: {_eq: $userID}}}) {
     companyID
+    name
+    description
+    faxNumber
+    taxNumber
+    mail
+    registerDate
   }
 }
     `;
-export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserCompanyQuery, GetUserCompanyQueryVariables>, 'query'> & ({ variables: GetUserCompanyQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserCompanyQuery, GetUserCompanyQueryVariables>, 'query'>;
 
     export const GetUserCompanyComponent = (props: GetUserCompanyComponentProps) => (
       <ApolloReactComponents.Query<GetUserCompanyQuery, GetUserCompanyQueryVariables> query={GetUserCompanyDocument} {...props} />
@@ -26202,6 +26341,49 @@ export function withGetHotelById<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelByIdQuery, GetHotelByIdQueryVariables>;
+export const GetCompanyByIdDocument = gql`
+    query getCompanyByID($companyID: Int) {
+  __typename
+  Company(where: {companyID: {_eq: $companyID}}) {
+    name
+    taxNumber
+    mail
+    registerDate
+    logoUrl
+    description
+    locationID
+    Location {
+      addressID
+      Address {
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+  }
+}
+    `;
+export type GetCompanyByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCompanyByIdQuery, GetCompanyByIdQueryVariables>, 'query'>;
+
+    export const GetCompanyByIdComponent = (props: GetCompanyByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> query={GetCompanyByIdDocument} {...props} />
+    );
+    
+export type GetCompanyByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> & TChildProps;
+export function withGetCompanyById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCompanyByIdQuery,
+  GetCompanyByIdQueryVariables,
+  GetCompanyByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCompanyByIdQuery, GetCompanyByIdQueryVariables, GetCompanyByIdProps<TChildProps>>(GetCompanyByIdDocument, {
+      alias: 'getCompanyById',
+      ...operationOptions
+    });
+};
+export type GetCompanyByIdQueryResult = ApolloReactCommon.QueryResult<GetCompanyByIdQuery, GetCompanyByIdQueryVariables>;
 export const GetArticleListDocument = gql`
     query getArticleList {
   __typename

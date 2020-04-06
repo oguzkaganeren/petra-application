@@ -328,3 +328,36 @@ mutation deleteHotel($hotelID: Int) {
 		}
 	}
 }
+mutation deleteCompany($companyID: Int) {
+	__typename
+	update_Company(where: { companyID: { _eq: $companyID } }, _set: { isDeleted: true }) {
+		returning {
+			companyID
+		}
+	}
+}
+mutation updateCompany(
+	$companyID: Int
+	$locationID: Int
+	$addressID: Int
+	$company: Company_set_input!
+	$companyLocation: Location_set_input!
+	$companyAddress: Address_set_input!
+) {
+	__typename
+	update_Company(where: { companyID: { _eq: $companyID } }, _set: $company) {
+		returning {
+			companyID
+		}
+	}
+	update_Location(where: { locationID: { _eq: $locationID } }, _set: $companyLocation) {
+		returning {
+			locationID
+		}
+	}
+	update_Address(where: { addressID: { _eq: $addressID } }, _set: $companyAddress) {
+		returning {
+			addressID
+		}
+	}
+}

@@ -12,15 +12,19 @@ query getRestaurantTypes {
 		restaurantTypeID
 	}
 }
-query getUserCompany($userID: Int!) {
+query getUserCompany($userID: Int) {
 	__typename
-	CompanyUser(where: { User: { userID: { _eq: $userID } } }) {
-		Company {
-			name
-		}
+	Company(where: { isDeleted: { _eq: false }, CompanyUsers: { userID: { _eq: $userID } } }) {
 		companyID
+		name
+		description
+		faxNumber
+		taxNumber
+		mail
+		registerDate
 	}
 }
+
 query getRoomProperty {
 	RoomProperty {
 		content
@@ -266,6 +270,30 @@ query getHotelByID($hotelID: Int) {
 		companyID
 	}
 }
+query getCompanyByID($companyID: Int) {
+	__typename
+	Company(where: { companyID: { _eq: $companyID } }) {
+		name
+		taxNumber
+		mail
+		registerDate
+		logoUrl
+		description
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+	}
+}
+
 query getArticleList {
 	__typename
 	Article {

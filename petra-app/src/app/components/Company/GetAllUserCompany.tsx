@@ -15,7 +15,7 @@ export interface GetAllUserCompanyProps {
 /**
  * Location component
  */
-const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
+const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = (props) => {
 	const [selectedOption, setSelectedOption] = React.useState(null);
 	const [localData, setLocalData] = React.useState([]);
 	/**
@@ -36,14 +36,14 @@ const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.CompanyUser.map(dat => {
+						data.Company.map((dat) => {
 							if (localData.length > 0) {
-								if (localData.every(item => item.id !== dat.companyID)) {
-									localData.push({ id: dat.companyID, text: dat.Company.name });
+								if (localData.every((item) => item.id !== dat.companyID)) {
+									localData.push({ id: dat.companyID, text: dat.name });
 									console.log(dat.companyID);
 								}
 							} else {
-								localData.push({ id: dat.companyID, text: dat.Company.name });
+								localData.push({ id: dat.companyID, text: dat.name });
 							}
 						});
 						return (
@@ -51,7 +51,7 @@ const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
 								data={localData}
 								placeholder={props.label}
 								selectedOption={selectedOption}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

@@ -29,7 +29,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 	constructor(props: AddCompanyProps) {
 		super(props);
 		this.state = {
-			cityID: 0
+			cityID: 0,
 		};
 	}
 	convertDateFormatForQuery = (date: Date) => {
@@ -53,12 +53,12 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 	 * @returns
 	 */
 	render() {
-		//const { userID } = global.userID;
+		const { userID } = global.userID;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView>
 					<AddCompanyComponent>
-						{AddCompanyMutation => (
+						{(AddCompanyMutation) => (
 							<Formik
 								//değişkenlerin başlangıç değerleri
 								initialValues={{
@@ -71,30 +71,17 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 									address: '',
 									phone: '',
 									districtID: 0,
-									cityID: 0
+									cityID: 0,
 								}}
 								//Burada girilen değerlerin controlleri sağlanır
 								validationSchema={Yup.object({
-									name: Yup.string()
-										.min(2, 'Too Short!')
-										.max(50, 'Too Long!')
-										.required('Required'),
-									taxNumber: Yup.string()
-										.min(2, 'Too Short!')
-										.max(50, 'Too Long!')
-										.required('Required'),
-									phone: Yup.string()
-										.min(2, 'Too Short!')
-										.max(50, 'Too Long!')
-										.required('Required'),
-									mail: Yup.string()
-										.email('Invalid email')
-										.required('Required'),
-									address: Yup.string()
-										.min(5, 'Too Short!')
-										.required('Required'),
+									name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+									taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+									phone: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+									mail: Yup.string().email('Invalid email').required('Required'),
+									address: Yup.string().min(5, 'Too Short!').required('Required'),
 									//sadece longtitude kontrol etsem yeterli
-									longtitude: Yup.number().required('Required')
+									longtitude: Yup.number().required('Required'),
 								})}
 								//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 								onSubmit={(values, formikActions) => {
@@ -108,7 +95,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 														registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
 														mail: values.mail.toString(),
 														CompanyPhones: { data: [{ Phone: { data: { phone: values.phone.toString() } } }] },
-														CompanyUsers: { data: [{ userID: 75 }] },
+														CompanyUsers: { data: [{ userID: 4 }] },
 														Location: {
 															data: {
 																longtitude: values.longtitude,
@@ -117,13 +104,13 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 																	data: {
 																		address: values.address.toString(),
 																		districtID: values.districtID,
-																		cityID: values.cityID
-																	}
-																}
-															}
-														}
-													}
-												]
+																		cityID: values.cityID,
+																	},
+																},
+															},
+														},
+													},
+												],
 												/* name: values.name.toString(),
 											taxNumber: values.taxNumber.toString(),
 											registerDate: this.convertDateFormatForQuery(new Date()), //sonra utc ayarına bak!
@@ -133,14 +120,14 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 											latitude: values.latitude,
 											address: values.address.toString(),
 											userID: userID */
-											}
+											},
 										})
-											.then(res => {
+											.then((res) => {
 												alert(JSON.stringify(res));
 
 												//this.props.navigation.navigate('Home');
 											})
-											.catch(err => {
+											.catch((err) => {
 												alert(err);
 												console.log('name:' + values.name);
 												console.log('tax:' + values.taxNumber);
@@ -156,7 +143,7 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 								}}
 							>
 								{/* Bu kısımda görsel parçalar eklenir */}
-								{props => (
+								{(props) => (
 									<Layout>
 										{props.isSubmitting && <Spinner />}
 
@@ -199,14 +186,14 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 										/>
 										<GetAllCitiesComponent
 											label="Select City"
-											parentReference={value => {
+											parentReference={(value) => {
 												props.values.cityID = value;
 												this.setState({ cityID: value });
 											}}
 										/>
 										<GetAllCityDistrictsComponent
 											label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
-											parentReference={value => {
+											parentReference={(value) => {
 												props.values.districtID = value;
 											}}
 											cityID={this.state.cityID}
@@ -221,10 +208,10 @@ export class AddCompanyScreen extends React.Component<AddCompanyProps, AddCompan
 											value={props.values.address}
 										/>
 										<LocationComponent
-											latitude={value => {
+											latitude={(value) => {
 												props.values.latitude = value;
 											}}
-											longitude={value => {
+											longitude={(value) => {
 												props.values.longtitude = value;
 											}}
 										/>

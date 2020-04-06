@@ -34,10 +34,10 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 		super(props);
 		this.state = {
 			cityID: 0,
-			star: 1
+			star: 1,
 		};
 	}
-	accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
+	accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate =
@@ -62,7 +62,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelComponent>
-					{AddHotelMutation => (
+					{(AddHotelMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -75,23 +75,15 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 								name: '',
 								taxNumber: '',
 								companyID: 0,
-								hotelServiceProperty: []
+								hotelServiceProperty: [],
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								name: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required'),
-								taxNumber: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required'),
-								address: Yup.string()
-									.min(5, 'Too Short!')
-									.required('Required'),
+								name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+								taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+								address: Yup.string().min(5, 'Too Short!').required('Required'),
 								//sadece longtitude kontrol etsem yeterli
-								longtitude: Yup.number().required('Required')
+								longtitude: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -112,30 +104,30 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 																data: {
 																	address: values.address.toString(),
 																	districtID: values.districtID,
-																	cityID: values.cityID
-																}
-															}
-														}
+																	cityID: values.cityID,
+																},
+															},
+														},
 													},
 													companyID: values.companyID,
 													HotelServices: {
-														data: values.hotelServiceProperty
-													}
-												}
-											]
-										}
+														data: values.hotelServiceProperty,
+													},
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('tax:' + values.taxNumber);
-											console.log('registerDate:' + values.registerDate);
-											console.log('mail:' + values.mail);
+											//console.log('registerDate:' + values.registerDate);
+											//console.log('mail:' + values.mail);
 											console.log('long:' + values.longtitude);
 											console.log('lat:' + values.latitude);
 											console.log('address:' + values.address);
@@ -145,7 +137,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 									<Button
@@ -180,7 +172,7 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 										rating={this.state.star}
 										starSize={25}
 										fullStarColor={'orange'}
-										selectedStar={rating => this.setState({ star: rating })}
+										selectedStar={(rating) => this.setState({ star: rating })}
 									/>
 									<Input
 										label="Tax Number"
@@ -193,21 +185,21 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 									/>
 									<GetAllUserCompanyComponent
 										label="Select Your Company"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.companyID = value;
 										}}
 										userID={parseInt(global.userID)}
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cityID = value;
 											this.setState({ cityID: value });
 										}}
 									/>
 									<GetAllCityDistrictsComponent
 										label={this.state.cityID != 0 ? 'Select District' : 'Please Select a City First'}
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.districtID = value;
 										}}
 										cityID={this.state.cityID}
@@ -238,15 +230,15 @@ export class AddHotelScreen extends React.Component<AddHotelProps, AddHotelState
 
 									<GetAllHotelServicePropertyComponent
 										label="Select Hotel Properties"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.hotelServiceProperty = value;
 										}}
 									/>
 									<LocationComponent
-										latitude={value => {
+										latitude={(value) => {
 											props.values.latitude = value;
 										}}
-										longitude={value => {
+										longitude={(value) => {
 											props.values.longtitude = value;
 										}}
 									/>
