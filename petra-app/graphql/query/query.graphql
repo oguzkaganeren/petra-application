@@ -256,6 +256,12 @@ query getHotelByID($hotelID: Int) {
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -264,8 +270,16 @@ query getHotelByID($hotelID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 	}
 }
+
 query getArticleList {
 	__typename
 	Article {
@@ -294,5 +308,30 @@ query getHotelByCity($cityID: Int) {
 		}
 		companyID
 		hotelID
+	}
+}
+query getHotelServices($hotelID: Int) {
+	__typename
+	HotelService(where: { hotelID: { _eq: $hotelID } }) {
+		HotelServiceProperty {
+			content
+		}
+	}
+}
+query getHotelRooms($hotelID: Int) {
+	__typename
+	HotelRoom(where: { hotelID: { _eq: $hotelID } }) {
+		Room {
+			roomNo
+			RoomPrices {
+				price
+			}
+			RoomPropertyRooms {
+				RoomProperty {
+					content
+				}
+			}
+			roomID
+		}
 	}
 }

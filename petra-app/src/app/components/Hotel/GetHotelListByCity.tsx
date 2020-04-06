@@ -20,17 +20,22 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	const { cityID } = props.route.params;
 	function renderItemAccessory(item) {
 		return (
-			<StarRating
-				disabled={false}
-				emptyStar={'ios-star-outline'}
-				fullStar={'ios-star'}
-				halfStar={'ios-star-half'}
-				iconSet={'Ionicons'}
-				maxStars={5}
-				rating={item.star}
-				starSize={25}
-				fullStarColor={'orange'}
-			/>
+			<Layout>
+				<Text appearance="hint">
+					{item.district}/{item.city}
+				</Text>
+				<StarRating
+					disabled={false}
+					emptyStar={'ios-star-outline'}
+					fullStar={'ios-star'}
+					halfStar={'ios-star-half'}
+					iconSet={'Ionicons'}
+					maxStars={5}
+					rating={item.star}
+					starSize={25}
+					fullStarColor={'orange'}
+				/>
+			</Layout>
 		);
 	}
 	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
@@ -43,7 +48,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
-					props.navigation.navigate('HotelDetailScreen', {
+					props.navigation.navigate('HotelInfoScreen', {
 						hotelID: item.key,
 					});
 				}}
@@ -64,6 +69,8 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 									hotelList.push({
 										key: dat.hotelID,
 										title: dat.name,
+										city: dat.Location.Address.City.city,
+										district: dat.Location.Address.District.district,
 										description: dat.description == null ? '' : dat.description,
 										star: dat.star,
 									});
@@ -72,6 +79,8 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 								hotelList.push({
 									key: dat.hotelID,
 									title: dat.name,
+									city: dat.Location.Address.City.city,
+									district: dat.Location.Address.District.district,
 									description: dat.description == null ? '' : dat.description,
 									star: dat.star,
 								});

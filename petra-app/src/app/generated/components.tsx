@@ -24386,7 +24386,23 @@ export type GetHotelByIdQuery = (
       & { Address: (
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
       ) }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -24424,6 +24440,48 @@ export type GetHotelByCityQuery = (
           & Pick<District, 'district'>
         ) }
       ) }
+    ) }
+  )> }
+);
+
+export type GetHotelServicesQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelServicesQuery = (
+  { __typename: 'query_root' }
+  & { HotelService: Array<(
+    { __typename?: 'HotelService' }
+    & { HotelServiceProperty: (
+      { __typename?: 'HotelServiceProperty' }
+      & Pick<HotelServiceProperty, 'content'>
+    ) }
+  )> }
+);
+
+export type GetHotelRoomsQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelRoomsQuery = (
+  { __typename: 'query_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo' | 'roomID'>
+      & { RoomPrices: Array<(
+        { __typename?: 'RoomPrice' }
+        & Pick<RoomPrice, 'price'>
+      )>, RoomPropertyRooms: Array<(
+        { __typename?: 'RoomPropertyRoom' }
+        & { RoomProperty: (
+          { __typename?: 'RoomProperty' }
+          & Pick<RoomProperty, 'content'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -26199,6 +26257,12 @@ export const GetHotelByIdDocument = gql`
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -26207,6 +26271,13 @@ export const GetHotelByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
   }
 }
     `;
@@ -26297,3 +26368,68 @@ export function withGetHotelByCity<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelByCityQuery, GetHotelByCityQueryVariables>;
+export const GetHotelServicesDocument = gql`
+    query getHotelServices($hotelID: Int) {
+  __typename
+  HotelService(where: {hotelID: {_eq: $hotelID}}) {
+    HotelServiceProperty {
+      content
+    }
+  }
+}
+    `;
+export type GetHotelServicesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelServicesQuery, GetHotelServicesQueryVariables>, 'query'>;
+
+    export const GetHotelServicesComponent = (props: GetHotelServicesComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelServicesQuery, GetHotelServicesQueryVariables> query={GetHotelServicesDocument} {...props} />
+    );
+    
+export type GetHotelServicesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicesQuery, GetHotelServicesQueryVariables> & TChildProps;
+export function withGetHotelServices<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelServicesQuery,
+  GetHotelServicesQueryVariables,
+  GetHotelServicesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelServicesQuery, GetHotelServicesQueryVariables, GetHotelServicesProps<TChildProps>>(GetHotelServicesDocument, {
+      alias: 'getHotelServices',
+      ...operationOptions
+    });
+};
+export type GetHotelServicesQueryResult = ApolloReactCommon.QueryResult<GetHotelServicesQuery, GetHotelServicesQueryVariables>;
+export const GetHotelRoomsDocument = gql`
+    query getHotelRooms($hotelID: Int) {
+  __typename
+  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+    Room {
+      roomNo
+      RoomPrices {
+        price
+      }
+      RoomPropertyRooms {
+        RoomProperty {
+          content
+        }
+      }
+      roomID
+    }
+  }
+}
+    `;
+export type GetHotelRoomsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>, 'query'>;
+
+    export const GetHotelRoomsComponent = (props: GetHotelRoomsComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> query={GetHotelRoomsDocument} {...props} />
+    );
+    
+export type GetHotelRoomsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> & TChildProps;
+export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomsQuery,
+  GetHotelRoomsQueryVariables,
+  GetHotelRoomsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelRoomsQuery, GetHotelRoomsQueryVariables, GetHotelRoomsProps<TChildProps>>(GetHotelRoomsDocument, {
+      alias: 'getHotelRooms',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomsQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>;

@@ -22,6 +22,7 @@ import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
 import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
 import GetHotelListByCity from './app/components/Hotel/GetHotelListByCity';
+import HotelInfoScreen from './app/pages/screens/Hotel/HotelInfoScreen';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
 import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
@@ -246,6 +247,24 @@ function HomeStack() {
 				component={GetHotelListByCity}
 				options={{
 					title: 'Hotels',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="HotelInfoScreen"
+				component={HotelInfoScreen}
+				options={{
+					title: 'Details',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =
