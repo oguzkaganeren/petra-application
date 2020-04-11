@@ -30,21 +30,19 @@ export class AddRestaurantTypeScreen extends React.Component<AddRestaurantTypePr
 	 * @returns
 	 */
 	render() {
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantTypeComponent>
-					{AddRestaurantTypeMutation => (
+					{(AddRestaurantTypeMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								type: ''
+								type: '',
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								type: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required')
+								type: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -52,19 +50,19 @@ export class AddRestaurantTypeScreen extends React.Component<AddRestaurantTypePr
 									console.log(values.type + ' ');
 									AddRestaurantTypeMutation({
 										variables: {
-											RestaurantType:[
+											RestaurantType: [
 												{
-													type: values.type.toString()
-												}
-											]
-										}
+													type: values.type.toString(),
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('foodType:' + values.type);
 										});
@@ -73,7 +71,7 @@ export class AddRestaurantTypeScreen extends React.Component<AddRestaurantTypePr
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 

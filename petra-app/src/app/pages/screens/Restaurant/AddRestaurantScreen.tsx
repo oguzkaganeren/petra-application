@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddRestaurantComponent, GetUserCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
-import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
+import GetAllUserCompany from '../../../components/Company/GetAllUserCompany';
 import { GetAllRestaurantTypesComponent } from '../../../components/Restaurant/GetAllRestaurantTypes';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
@@ -45,7 +45,7 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 	 * @returns
 	 */
 	render() {
-		//const { userID } = global.userID;
+		const { userID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -173,13 +173,12 @@ export class AddRestaurantScreen extends React.Component<AddRestaurantProps, Add
 										>
 											Add Restaurant
 										</Button>
-										<GetAllUserCompanyComponent
+										<GetAllUserCompany
 											label="Select Your Company"
 											parentReference={value => {
 												props.values.companyID = value;
 											}}
-											//userID={parseInt(userID)}
-											userID={75}
+											userID={parseInt(userID)}
 										/>
 										<Input
 											label="Restaurant Name"

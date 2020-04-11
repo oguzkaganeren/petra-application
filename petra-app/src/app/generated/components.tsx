@@ -23998,6 +23998,122 @@ export type UpdateHotelMutation = (
   )> }
 );
 
+export type UpdateArticleMutationVariables = {
+  articleID?: Maybe<Scalars['Int']>,
+  article: Article_Set_Input
+};
+
+
+export type UpdateArticleMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Article: Maybe<(
+    { __typename?: 'Article_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Article' }
+      & Pick<Article, 'articleID'>
+    )> }
+  )> }
+);
+
+export type UpdateMuseumMutationVariables = {
+  museumID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  addressID?: Maybe<Scalars['Int']>,
+  museum: Museum_Set_Input,
+  museumLocation: Location_Set_Input,
+  museumAddress: Address_Set_Input
+};
+
+
+export type UpdateMuseumMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Museum: Maybe<(
+    { __typename?: 'Museum_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Museum' }
+      & Pick<Museum, 'museumID'>
+    )> }
+  )>, update_Location: Maybe<(
+    { __typename?: 'Location_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'locationID'>
+    )> }
+  )>, update_Address: Maybe<(
+    { __typename?: 'Address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressID'>
+    )> }
+  )> }
+);
+
+export type UpdateArchSiteMutationVariables = {
+  archSiteID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  addressID?: Maybe<Scalars['Int']>,
+  archSite: ArchSite_Set_Input,
+  archSiteLocation: Location_Set_Input,
+  archSiteAddress: Address_Set_Input
+};
+
+
+export type UpdateArchSiteMutation = (
+  { __typename: 'mutation_root' }
+  & { update_ArchSite: Maybe<(
+    { __typename?: 'ArchSite_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSite' }
+      & Pick<ArchSite, 'archSiteID'>
+    )> }
+  )>, update_Location: Maybe<(
+    { __typename?: 'Location_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'locationID'>
+    )> }
+  )>, update_Address: Maybe<(
+    { __typename?: 'Address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressID'>
+    )> }
+  )> }
+);
+
+export type UpdateRestaurantMutationVariables = {
+  restaurantID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  addressID?: Maybe<Scalars['Int']>,
+  restaurant: Restaurant_Set_Input,
+  restaurantLocation: Location_Set_Input,
+  restaurantAddress: Address_Set_Input
+};
+
+
+export type UpdateRestaurantMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Restaurant: Maybe<(
+    { __typename?: 'Restaurant_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Restaurant' }
+      & Pick<Restaurant, 'restaurantID'>
+    )> }
+  )>, update_Location: Maybe<(
+    { __typename?: 'Location_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'locationID'>
+    )> }
+  )>, update_Address: Maybe<(
+    { __typename?: 'Address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressID'>
+    )> }
+  )> }
+);
+
 export type DeleteHotelMutationVariables = {
   hotelID?: Maybe<Scalars['Int']>
 };
@@ -24010,6 +24126,70 @@ export type DeleteHotelMutation = (
     & { returning: Array<(
       { __typename?: 'Hotel' }
       & Pick<Hotel, 'hotelID'>
+    )> }
+  )> }
+);
+
+export type DeleteArticleMutationVariables = {
+  articleID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteArticleMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Article: Maybe<(
+    { __typename?: 'Article_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Article' }
+      & Pick<Article, 'articleID'>
+    )> }
+  )> }
+);
+
+export type DeleteMuseumMutationVariables = {
+  museumID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteMuseumMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Museum: Maybe<(
+    { __typename?: 'Museum_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Museum' }
+      & Pick<Museum, 'museumID'>
+    )> }
+  )> }
+);
+
+export type DeleteArchSiteMutationVariables = {
+  archSiteID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteArchSiteMutation = (
+  { __typename: 'mutation_root' }
+  & { update_ArchSite: Maybe<(
+    { __typename?: 'ArchSite_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ArchSite' }
+      & Pick<ArchSite, 'archSiteID'>
+    )> }
+  )> }
+);
+
+export type DeleteRestaurantMutationVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteRestaurantMutation = (
+  { __typename: 'mutation_root' }
+  & { update_Restaurant: Maybe<(
+    { __typename?: 'Restaurant_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Restaurant' }
+      & Pick<Restaurant, 'restaurantID'>
     )> }
   )> }
 );
@@ -24123,6 +24303,19 @@ export type GetUserHotelQuery = (
       { __typename?: 'Company' }
       & Pick<Company, 'name'>
     ) }
+  )> }
+);
+
+export type GetUserArticleQueryVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserArticleQuery = (
+  { __typename: 'query_root' }
+  & { Article: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'articleID' | 'content' | 'title'>
   )> }
 );
 
@@ -24294,41 +24487,53 @@ export type GetDayQuery = (
 );
 
 export type GetUserArchSiteQueryVariables = {
-  userID: Scalars['Int']
+  userID?: Maybe<Scalars['Int']>
 };
 
 
 export type GetUserArchSiteQuery = (
-  { __typename?: 'query_root' }
+  { __typename: 'query_root' }
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'archSiteID' | 'name'>
+    & Pick<ArchSite, 'description' | 'name' | 'archSiteID'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
   )> }
 );
 
 export type GetUserMuseumQueryVariables = {
-  userID: Scalars['Int']
+  userID?: Maybe<Scalars['Int']>
 };
 
 
 export type GetUserMuseumQuery = (
-  { __typename?: 'query_root' }
+  { __typename: 'query_root' }
   & { Museum: Array<(
     { __typename?: 'Museum' }
-    & Pick<Museum, 'museumID' | 'name'>
+    & Pick<Museum, 'description' | 'name' | 'museumID'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
   )> }
 );
 
 export type GetUserRestaurantQueryVariables = {
-  userID: Scalars['Int']
+  userID?: Maybe<Scalars['Int']>
 };
 
 
 export type GetUserRestaurantQuery = (
-  { __typename?: 'query_root' }
+  { __typename: 'query_root' }
   & { Restaurant: Array<(
     { __typename?: 'Restaurant' }
-    & Pick<Restaurant, 'restaurantID' | 'name'>
+    & Pick<Restaurant, 'restaurantID' | 'name' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
   )> }
 );
 
@@ -24425,6 +24630,82 @@ export type GetHotelByIdQuery = (
   & { Hotel: Array<(
     { __typename?: 'Hotel' }
     & Pick<Hotel, 'description' | 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+      ) }
+    ) }
+  )> }
+);
+
+export type GetArticleByIdQueryVariables = {
+  articleID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetArticleByIdQuery = (
+  { __typename: 'query_root' }
+  & { Article: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'articleID' | 'content' | 'title'>
+  )> }
+);
+
+export type GetMuseumByIdQueryVariables = {
+  museumID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetMuseumByIdQuery = (
+  { __typename: 'query_root' }
+  & { Museum: Array<(
+    { __typename?: 'Museum' }
+    & Pick<Museum, 'description' | 'name' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+      ) }
+    ) }
+  )> }
+);
+
+export type GetArchSiteByIdQueryVariables = {
+  archSiteID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetArchSiteByIdQuery = (
+  { __typename: 'query_root' }
+  & { ArchSite: Array<(
+    { __typename?: 'ArchSite' }
+    & Pick<ArchSite, 'description' | 'name' | 'locationID' | 'companyID' | 'age' | 'altitude' | 'destruction' | 'diameter' | 'period'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+      ) }
+    ) }
+  )> }
+);
+
+export type GetRestaurantByIdQueryVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantByIdQuery = (
+  { __typename: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
@@ -25472,6 +25753,156 @@ export function withUpdateHotel<TProps, TChildProps = {}>(operationOptions?: Apo
 };
 export type UpdateHotelMutationResult = ApolloReactCommon.MutationResult<UpdateHotelMutation>;
 export type UpdateHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateHotelMutation, UpdateHotelMutationVariables>;
+export const UpdateArticleDocument = gql`
+    mutation updateArticle($articleID: Int, $article: Article_set_input!) {
+  __typename
+  update_Article(where: {articleID: {_eq: $articleID}}, _set: $article) {
+    returning {
+      articleID
+    }
+  }
+}
+    `;
+export type UpdateArticleMutationFn = ApolloReactCommon.MutationFunction<UpdateArticleMutation, UpdateArticleMutationVariables>;
+export type UpdateArticleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateArticleMutation, UpdateArticleMutationVariables>, 'mutation'>;
+
+    export const UpdateArticleComponent = (props: UpdateArticleComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateArticleMutation, UpdateArticleMutationVariables> mutation={UpdateArticleDocument} {...props} />
+    );
+    
+export type UpdateArticleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateArticleMutation, UpdateArticleMutationVariables> & TChildProps;
+export function withUpdateArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateArticleMutation,
+  UpdateArticleMutationVariables,
+  UpdateArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateArticleMutation, UpdateArticleMutationVariables, UpdateArticleProps<TChildProps>>(UpdateArticleDocument, {
+      alias: 'updateArticle',
+      ...operationOptions
+    });
+};
+export type UpdateArticleMutationResult = ApolloReactCommon.MutationResult<UpdateArticleMutation>;
+export type UpdateArticleMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateArticleMutation, UpdateArticleMutationVariables>;
+export const UpdateMuseumDocument = gql`
+    mutation updateMuseum($museumID: Int, $locationID: Int, $addressID: Int, $museum: Museum_set_input!, $museumLocation: Location_set_input!, $museumAddress: Address_set_input!) {
+  __typename
+  update_Museum(where: {museumID: {_eq: $museumID}}, _set: $museum) {
+    returning {
+      museumID
+    }
+  }
+  update_Location(where: {locationID: {_eq: $locationID}}, _set: $museumLocation) {
+    returning {
+      locationID
+    }
+  }
+  update_Address(where: {addressID: {_eq: $addressID}}, _set: $museumAddress) {
+    returning {
+      addressID
+    }
+  }
+}
+    `;
+export type UpdateMuseumMutationFn = ApolloReactCommon.MutationFunction<UpdateMuseumMutation, UpdateMuseumMutationVariables>;
+export type UpdateMuseumComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateMuseumMutation, UpdateMuseumMutationVariables>, 'mutation'>;
+
+    export const UpdateMuseumComponent = (props: UpdateMuseumComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateMuseumMutation, UpdateMuseumMutationVariables> mutation={UpdateMuseumDocument} {...props} />
+    );
+    
+export type UpdateMuseumProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateMuseumMutation, UpdateMuseumMutationVariables> & TChildProps;
+export function withUpdateMuseum<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateMuseumMutation,
+  UpdateMuseumMutationVariables,
+  UpdateMuseumProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateMuseumMutation, UpdateMuseumMutationVariables, UpdateMuseumProps<TChildProps>>(UpdateMuseumDocument, {
+      alias: 'updateMuseum',
+      ...operationOptions
+    });
+};
+export type UpdateMuseumMutationResult = ApolloReactCommon.MutationResult<UpdateMuseumMutation>;
+export type UpdateMuseumMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateMuseumMutation, UpdateMuseumMutationVariables>;
+export const UpdateArchSiteDocument = gql`
+    mutation updateArchSite($archSiteID: Int, $locationID: Int, $addressID: Int, $archSite: ArchSite_set_input!, $archSiteLocation: Location_set_input!, $archSiteAddress: Address_set_input!) {
+  __typename
+  update_ArchSite(where: {archSiteID: {_eq: $archSiteID}}, _set: $archSite) {
+    returning {
+      archSiteID
+    }
+  }
+  update_Location(where: {locationID: {_eq: $locationID}}, _set: $archSiteLocation) {
+    returning {
+      locationID
+    }
+  }
+  update_Address(where: {addressID: {_eq: $addressID}}, _set: $archSiteAddress) {
+    returning {
+      addressID
+    }
+  }
+}
+    `;
+export type UpdateArchSiteMutationFn = ApolloReactCommon.MutationFunction<UpdateArchSiteMutation, UpdateArchSiteMutationVariables>;
+export type UpdateArchSiteComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateArchSiteMutation, UpdateArchSiteMutationVariables>, 'mutation'>;
+
+    export const UpdateArchSiteComponent = (props: UpdateArchSiteComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateArchSiteMutation, UpdateArchSiteMutationVariables> mutation={UpdateArchSiteDocument} {...props} />
+    );
+    
+export type UpdateArchSiteProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateArchSiteMutation, UpdateArchSiteMutationVariables> & TChildProps;
+export function withUpdateArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateArchSiteMutation,
+  UpdateArchSiteMutationVariables,
+  UpdateArchSiteProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateArchSiteMutation, UpdateArchSiteMutationVariables, UpdateArchSiteProps<TChildProps>>(UpdateArchSiteDocument, {
+      alias: 'updateArchSite',
+      ...operationOptions
+    });
+};
+export type UpdateArchSiteMutationResult = ApolloReactCommon.MutationResult<UpdateArchSiteMutation>;
+export type UpdateArchSiteMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateArchSiteMutation, UpdateArchSiteMutationVariables>;
+export const UpdateRestaurantDocument = gql`
+    mutation updateRestaurant($restaurantID: Int, $locationID: Int, $addressID: Int, $restaurant: Restaurant_set_input!, $restaurantLocation: Location_set_input!, $restaurantAddress: Address_set_input!) {
+  __typename
+  update_Restaurant(where: {restaurantID: {_eq: $restaurantID}}, _set: $restaurant) {
+    returning {
+      restaurantID
+    }
+  }
+  update_Location(where: {locationID: {_eq: $locationID}}, _set: $restaurantLocation) {
+    returning {
+      locationID
+    }
+  }
+  update_Address(where: {addressID: {_eq: $addressID}}, _set: $restaurantAddress) {
+    returning {
+      addressID
+    }
+  }
+}
+    `;
+export type UpdateRestaurantMutationFn = ApolloReactCommon.MutationFunction<UpdateRestaurantMutation, UpdateRestaurantMutationVariables>;
+export type UpdateRestaurantComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateRestaurantMutation, UpdateRestaurantMutationVariables>, 'mutation'>;
+
+    export const UpdateRestaurantComponent = (props: UpdateRestaurantComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateRestaurantMutation, UpdateRestaurantMutationVariables> mutation={UpdateRestaurantDocument} {...props} />
+    );
+    
+export type UpdateRestaurantProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateRestaurantMutation, UpdateRestaurantMutationVariables> & TChildProps;
+export function withUpdateRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateRestaurantMutation,
+  UpdateRestaurantMutationVariables,
+  UpdateRestaurantProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateRestaurantMutation, UpdateRestaurantMutationVariables, UpdateRestaurantProps<TChildProps>>(UpdateRestaurantDocument, {
+      alias: 'updateRestaurant',
+      ...operationOptions
+    });
+};
+export type UpdateRestaurantMutationResult = ApolloReactCommon.MutationResult<UpdateRestaurantMutation>;
+export type UpdateRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateRestaurantMutation, UpdateRestaurantMutationVariables>;
 export const DeleteHotelDocument = gql`
     mutation deleteHotel($hotelID: Int) {
   __typename
@@ -25502,6 +25933,126 @@ export function withDeleteHotel<TProps, TChildProps = {}>(operationOptions?: Apo
 };
 export type DeleteHotelMutationResult = ApolloReactCommon.MutationResult<DeleteHotelMutation>;
 export type DeleteHotelMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteHotelMutation, DeleteHotelMutationVariables>;
+export const DeleteArticleDocument = gql`
+    mutation deleteArticle($articleID: Int) {
+  __typename
+  update_Article(where: {articleID: {_eq: $articleID}}, _set: {isDeleted: true}) {
+    returning {
+      articleID
+    }
+  }
+}
+    `;
+export type DeleteArticleMutationFn = ApolloReactCommon.MutationFunction<DeleteArticleMutation, DeleteArticleMutationVariables>;
+export type DeleteArticleComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteArticleMutation, DeleteArticleMutationVariables>, 'mutation'>;
+
+    export const DeleteArticleComponent = (props: DeleteArticleComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteArticleMutation, DeleteArticleMutationVariables> mutation={DeleteArticleDocument} {...props} />
+    );
+    
+export type DeleteArticleProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteArticleMutation, DeleteArticleMutationVariables> & TChildProps;
+export function withDeleteArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteArticleMutation,
+  DeleteArticleMutationVariables,
+  DeleteArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteArticleMutation, DeleteArticleMutationVariables, DeleteArticleProps<TChildProps>>(DeleteArticleDocument, {
+      alias: 'deleteArticle',
+      ...operationOptions
+    });
+};
+export type DeleteArticleMutationResult = ApolloReactCommon.MutationResult<DeleteArticleMutation>;
+export type DeleteArticleMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteArticleMutation, DeleteArticleMutationVariables>;
+export const DeleteMuseumDocument = gql`
+    mutation deleteMuseum($museumID: Int) {
+  __typename
+  update_Museum(where: {museumID: {_eq: $museumID}}, _set: {isDeleted: true}) {
+    returning {
+      museumID
+    }
+  }
+}
+    `;
+export type DeleteMuseumMutationFn = ApolloReactCommon.MutationFunction<DeleteMuseumMutation, DeleteMuseumMutationVariables>;
+export type DeleteMuseumComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteMuseumMutation, DeleteMuseumMutationVariables>, 'mutation'>;
+
+    export const DeleteMuseumComponent = (props: DeleteMuseumComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteMuseumMutation, DeleteMuseumMutationVariables> mutation={DeleteMuseumDocument} {...props} />
+    );
+    
+export type DeleteMuseumProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteMuseumMutation, DeleteMuseumMutationVariables> & TChildProps;
+export function withDeleteMuseum<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteMuseumMutation,
+  DeleteMuseumMutationVariables,
+  DeleteMuseumProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteMuseumMutation, DeleteMuseumMutationVariables, DeleteMuseumProps<TChildProps>>(DeleteMuseumDocument, {
+      alias: 'deleteMuseum',
+      ...operationOptions
+    });
+};
+export type DeleteMuseumMutationResult = ApolloReactCommon.MutationResult<DeleteMuseumMutation>;
+export type DeleteMuseumMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteMuseumMutation, DeleteMuseumMutationVariables>;
+export const DeleteArchSiteDocument = gql`
+    mutation deleteArchSite($archSiteID: Int) {
+  __typename
+  update_ArchSite(where: {archSiteID: {_eq: $archSiteID}}, _set: {isDeleted: true}) {
+    returning {
+      archSiteID
+    }
+  }
+}
+    `;
+export type DeleteArchSiteMutationFn = ApolloReactCommon.MutationFunction<DeleteArchSiteMutation, DeleteArchSiteMutationVariables>;
+export type DeleteArchSiteComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteArchSiteMutation, DeleteArchSiteMutationVariables>, 'mutation'>;
+
+    export const DeleteArchSiteComponent = (props: DeleteArchSiteComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteArchSiteMutation, DeleteArchSiteMutationVariables> mutation={DeleteArchSiteDocument} {...props} />
+    );
+    
+export type DeleteArchSiteProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteArchSiteMutation, DeleteArchSiteMutationVariables> & TChildProps;
+export function withDeleteArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteArchSiteMutation,
+  DeleteArchSiteMutationVariables,
+  DeleteArchSiteProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteArchSiteMutation, DeleteArchSiteMutationVariables, DeleteArchSiteProps<TChildProps>>(DeleteArchSiteDocument, {
+      alias: 'deleteArchSite',
+      ...operationOptions
+    });
+};
+export type DeleteArchSiteMutationResult = ApolloReactCommon.MutationResult<DeleteArchSiteMutation>;
+export type DeleteArchSiteMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteArchSiteMutation, DeleteArchSiteMutationVariables>;
+export const DeleteRestaurantDocument = gql`
+    mutation deleteRestaurant($restaurantID: Int) {
+  __typename
+  update_Restaurant(where: {restaurantID: {_eq: $restaurantID}}, _set: {isDeleted: true}) {
+    returning {
+      restaurantID
+    }
+  }
+}
+    `;
+export type DeleteRestaurantMutationFn = ApolloReactCommon.MutationFunction<DeleteRestaurantMutation, DeleteRestaurantMutationVariables>;
+export type DeleteRestaurantComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteRestaurantMutation, DeleteRestaurantMutationVariables>, 'mutation'>;
+
+    export const DeleteRestaurantComponent = (props: DeleteRestaurantComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteRestaurantMutation, DeleteRestaurantMutationVariables> mutation={DeleteRestaurantDocument} {...props} />
+    );
+    
+export type DeleteRestaurantProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteRestaurantMutation, DeleteRestaurantMutationVariables> & TChildProps;
+export function withDeleteRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteRestaurantMutation,
+  DeleteRestaurantMutationVariables,
+  DeleteRestaurantProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteRestaurantMutation, DeleteRestaurantMutationVariables, DeleteRestaurantProps<TChildProps>>(DeleteRestaurantDocument, {
+      alias: 'deleteRestaurant',
+      ...operationOptions
+    });
+};
+export type DeleteRestaurantMutationResult = ApolloReactCommon.MutationResult<DeleteRestaurantMutation>;
+export type DeleteRestaurantMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteRestaurantMutation, DeleteRestaurantMutationVariables>;
 export const DeleteCompanyDocument = gql`
     mutation deleteCompany($companyID: Int) {
   __typename
@@ -25715,6 +26266,34 @@ export function withGetUserHotel<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetUserHotelQueryResult = ApolloReactCommon.QueryResult<GetUserHotelQuery, GetUserHotelQueryVariables>;
+export const GetUserArticleDocument = gql`
+    query getUserArticle($userID: Int) {
+  __typename
+  Article(where: {isDeleted: {_eq: false}, ArticleUsers: {userID: {_eq: $userID}}}) {
+    articleID
+    content
+    title
+  }
+}
+    `;
+export type GetUserArticleComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArticleQuery, GetUserArticleQueryVariables>, 'query'>;
+
+    export const GetUserArticleComponent = (props: GetUserArticleComponentProps) => (
+      <ApolloReactComponents.Query<GetUserArticleQuery, GetUserArticleQueryVariables> query={GetUserArticleDocument} {...props} />
+    );
+    
+export type GetUserArticleProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArticleQuery, GetUserArticleQueryVariables> & TChildProps;
+export function withGetUserArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserArticleQuery,
+  GetUserArticleQueryVariables,
+  GetUserArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserArticleQuery, GetUserArticleQueryVariables, GetUserArticleProps<TChildProps>>(GetUserArticleDocument, {
+      alias: 'getUserArticle',
+      ...operationOptions
+    });
+};
+export type GetUserArticleQueryResult = ApolloReactCommon.QueryResult<GetUserArticleQuery, GetUserArticleQueryVariables>;
 export const GetHotelServicePropertyDocument = gql`
     query getHotelServiceProperty {
   __typename
@@ -26030,14 +26609,19 @@ export function withGetDay<TProps, TChildProps = {}>(operationOptions?: ApolloRe
 };
 export type GetDayQueryResult = ApolloReactCommon.QueryResult<GetDayQuery, GetDayQueryVariables>;
 export const GetUserArchSiteDocument = gql`
-    query getUserArchSite($userID: Int!) {
-  ArchSite(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    archSiteID
+    query getUserArchSite($userID: Int) {
+  __typename
+  ArchSite(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    Company {
+      name
+    }
+    description
     name
+    archSiteID
   }
 }
     `;
-export type GetUserArchSiteComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>, 'query'> & ({ variables: GetUserArchSiteQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetUserArchSiteComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>, 'query'>;
 
     export const GetUserArchSiteComponent = (props: GetUserArchSiteComponentProps) => (
       <ApolloReactComponents.Query<GetUserArchSiteQuery, GetUserArchSiteQueryVariables> query={GetUserArchSiteDocument} {...props} />
@@ -26056,14 +26640,19 @@ export function withGetUserArchSite<TProps, TChildProps = {}>(operationOptions?:
 };
 export type GetUserArchSiteQueryResult = ApolloReactCommon.QueryResult<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>;
 export const GetUserMuseumDocument = gql`
-    query getUserMuseum($userID: Int!) {
-  Museum(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    museumID
+    query getUserMuseum($userID: Int) {
+  __typename
+  Museum(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    Company {
+      name
+    }
+    description
     name
+    museumID
   }
 }
     `;
-export type GetUserMuseumComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserMuseumQuery, GetUserMuseumQueryVariables>, 'query'> & ({ variables: GetUserMuseumQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetUserMuseumComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserMuseumQuery, GetUserMuseumQueryVariables>, 'query'>;
 
     export const GetUserMuseumComponent = (props: GetUserMuseumComponentProps) => (
       <ApolloReactComponents.Query<GetUserMuseumQuery, GetUserMuseumQueryVariables> query={GetUserMuseumDocument} {...props} />
@@ -26082,14 +26671,19 @@ export function withGetUserMuseum<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type GetUserMuseumQueryResult = ApolloReactCommon.QueryResult<GetUserMuseumQuery, GetUserMuseumQueryVariables>;
 export const GetUserRestaurantDocument = gql`
-    query getUserRestaurant($userID: Int!) {
-  Restaurant(where: {Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    query getUserRestaurant($userID: Int) {
+  __typename
+  Restaurant(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
     restaurantID
     name
+    star
+    Company {
+      name
+    }
   }
 }
     `;
-export type GetUserRestaurantComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>, 'query'> & ({ variables: GetUserRestaurantQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetUserRestaurantComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>, 'query'>;
 
     export const GetUserRestaurantComponent = (props: GetUserRestaurantComponentProps) => (
       <ApolloReactComponents.Query<GetUserRestaurantQuery, GetUserRestaurantQueryVariables> query={GetUserRestaurantDocument} {...props} />
@@ -26341,6 +26935,157 @@ export function withGetHotelById<TProps, TChildProps = {}>(operationOptions?: Ap
     });
 };
 export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelByIdQuery, GetHotelByIdQueryVariables>;
+export const GetArticleByIdDocument = gql`
+    query getArticleByID($articleID: Int) {
+  __typename
+  Article(where: {articleID: {_eq: $articleID}}) {
+    articleID
+    content
+    title
+  }
+}
+    `;
+export type GetArticleByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArticleByIdQuery, GetArticleByIdQueryVariables>, 'query'>;
+
+    export const GetArticleByIdComponent = (props: GetArticleByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetArticleByIdQuery, GetArticleByIdQueryVariables> query={GetArticleByIdDocument} {...props} />
+    );
+    
+export type GetArticleByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArticleByIdQuery, GetArticleByIdQueryVariables> & TChildProps;
+export function withGetArticleById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArticleByIdQuery,
+  GetArticleByIdQueryVariables,
+  GetArticleByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArticleByIdQuery, GetArticleByIdQueryVariables, GetArticleByIdProps<TChildProps>>(GetArticleByIdDocument, {
+      alias: 'getArticleById',
+      ...operationOptions
+    });
+};
+export type GetArticleByIdQueryResult = ApolloReactCommon.QueryResult<GetArticleByIdQuery, GetArticleByIdQueryVariables>;
+export const GetMuseumByIdDocument = gql`
+    query getMuseumByID($museumID: Int) {
+  __typename
+  Museum(where: {museumID: {_eq: $museumID}}) {
+    description
+    name
+    locationID
+    Location {
+      addressID
+      Address {
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+  }
+}
+    `;
+export type GetMuseumByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumByIdQuery, GetMuseumByIdQueryVariables>, 'query'>;
+
+    export const GetMuseumByIdComponent = (props: GetMuseumByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetMuseumByIdQuery, GetMuseumByIdQueryVariables> query={GetMuseumByIdDocument} {...props} />
+    );
+    
+export type GetMuseumByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumByIdQuery, GetMuseumByIdQueryVariables> & TChildProps;
+export function withGetMuseumById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetMuseumByIdQuery,
+  GetMuseumByIdQueryVariables,
+  GetMuseumByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetMuseumByIdQuery, GetMuseumByIdQueryVariables, GetMuseumByIdProps<TChildProps>>(GetMuseumByIdDocument, {
+      alias: 'getMuseumById',
+      ...operationOptions
+    });
+};
+export type GetMuseumByIdQueryResult = ApolloReactCommon.QueryResult<GetMuseumByIdQuery, GetMuseumByIdQueryVariables>;
+export const GetArchSiteByIdDocument = gql`
+    query getArchSiteByID($archSiteID: Int) {
+  __typename
+  ArchSite(where: {archSiteID: {_eq: $archSiteID}}) {
+    description
+    name
+    locationID
+    Location {
+      addressID
+      Address {
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+    age
+    altitude
+    destruction
+    diameter
+    period
+  }
+}
+    `;
+export type GetArchSiteByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables>, 'query'>;
+
+    export const GetArchSiteByIdComponent = (props: GetArchSiteByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables> query={GetArchSiteByIdDocument} {...props} />
+    );
+    
+export type GetArchSiteByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables> & TChildProps;
+export function withGetArchSiteById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteByIdQuery,
+  GetArchSiteByIdQueryVariables,
+  GetArchSiteByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables, GetArchSiteByIdProps<TChildProps>>(GetArchSiteByIdDocument, {
+      alias: 'getArchSiteById',
+      ...operationOptions
+    });
+};
+export type GetArchSiteByIdQueryResult = ApolloReactCommon.QueryResult<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables>;
+export const GetRestaurantByIdDocument = gql`
+    query getRestaurantByID($restaurantID: Int) {
+  __typename
+  Restaurant(where: {restaurantID: {_eq: $restaurantID}}) {
+    name
+    star
+    taxNumber
+    locationID
+    Location {
+      addressID
+      Address {
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+  }
+}
+    `;
+export type GetRestaurantByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>, 'query'>;
+
+    export const GetRestaurantByIdComponent = (props: GetRestaurantByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> query={GetRestaurantByIdDocument} {...props} />
+    );
+    
+export type GetRestaurantByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> & TChildProps;
+export function withGetRestaurantById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantByIdQuery,
+  GetRestaurantByIdQueryVariables,
+  GetRestaurantByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables, GetRestaurantByIdProps<TChildProps>>(GetRestaurantByIdDocument, {
+      alias: 'getRestaurantById',
+      ...operationOptions
+    });
+};
+export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>;
 export const GetCompanyByIdDocument = gql`
     query getCompanyByID($companyID: Int) {
   __typename

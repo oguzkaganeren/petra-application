@@ -18,6 +18,10 @@ import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
 import RestaurantScreen from './app/pages/screens/Restaurant/RestaurantScreen';
 import HotelScreen from './app/pages/screens/Hotel/HotelScreen';
 import EditHotelScreen from './app/pages/screens/Hotel/EditHotelScreen';
+import EditMuseumScreen from './app/pages/screens/Museum/EditMuseumScreen';
+import EditArticleScreen from './app/pages/screens/Article/EditArticleScreen';
+import EditArchSiteScreen from './app/pages/screens/ArchSite/EditArchSiteScreen';
+import EditRestaurantScreen from './app/pages/screens/Restaurant/EditRestaurantScreen';
 import EditCompanyScreen from './app/pages/screens/Company/EditCompanyScreen';
 import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
@@ -83,7 +87,7 @@ const userTypeTwoMenus = [
 	{ title: 'Restaurant' },
 	{ title: 'Hotel' },
 	{ title: 'Museum' },
-	{ title: 'Archaeological Site' },
+	{ title: 'Archaeological Site' }
 ];
 const userTypeThreeMenus = [{ title: 'Home' }, { title: 'Article' }];
 const userTypeFiveMenus = [
@@ -94,7 +98,7 @@ const userTypeFiveMenus = [
 	{ title: 'Museum' },
 	{ title: 'Archaeological Site' },
 	{ title: 'Article' },
-	{ title: 'Travel Guide' },
+	{ title: 'Travel Guide' }
 ];
 const Drawer = createDrawerNavigator();
 
@@ -117,7 +121,7 @@ const DrawerContent = ({ navigation, state }) => {
 		: global.userTypeID == 5
 		? (index = index - 1)
 		: index;
-	const onSelect = (indexvalue) => {
+	const onSelect = indexvalue => {
 		global.userTypeID == 1 && indexvalue == 0
 			? (indexvalue = 1)
 			: global.userTypeID == 1
@@ -159,7 +163,7 @@ const DrawerContent = ({ navigation, state }) => {
 };
 function DrawerNavigator() {
 	return (
-		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={(props) => <DrawerContent {...props} />}>
+		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
 			<Drawer.Screen name="LoginScreen" component={LoginStack} />
 			<Drawer.Screen name="HomeScreen" component={HomeStack} />
 			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
@@ -203,7 +207,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -221,7 +225,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -245,7 +249,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -269,7 +273,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -287,7 +291,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -305,7 +309,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -329,7 +333,187 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddRestaurantScreen"
+				component={AddRestaurantScreen}
+				options={{
+					title: 'Add Restaurant',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="EditRestaurantScreen"
+				component={EditRestaurantScreen}
+				options={{
+					title: 'Edit Restaurant',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="RestaurantDetailScreen"
+				component={RestaurantDetailScreen}
+				options={{
+					title: 'Restaurant Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddRestaurantTypeScreen"
+				component={AddRestaurantTypeScreen}
+				options={{
+					title: 'Add Restaurant Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddFoodTypeScreen"
+				component={AddFoodTypeScreen}
+				options={{
+					title: 'Add Food Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddFoodScreen"
+				component={AddFoodScreen}
+				options={{
+					title: 'Add Food',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMenuScreen"
+				component={AddMenuScreen}
+				options={{
+					title: 'Add Menu',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddRestaurantCuisineTypeScreen"
+				component={AddRestaurantCuisineTypeScreen}
+				options={{
+					title: 'Add Restaurant Cuisine Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddRestaurantCommentScreen"
+				component={AddRestaurantCommentScreen}
+				options={{
+					title: 'Add Comment Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddRestaurantWorkingScheduleScreen"
+				component={AddRestaurantWorkingScheduleScreen}
+				options={{
+					title: 'Add Restaurant Working Schedule',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -353,7 +537,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -371,7 +555,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -389,7 +573,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -407,7 +591,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -425,7 +609,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -443,7 +627,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -461,7 +645,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -479,7 +663,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -503,7 +687,152 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
+				}}
+			/>
+
+			<Stack.Screen
+				name="AddMuseumScreen"
+				component={AddMuseumScreen}
+				options={{
+					title: 'Add Museum',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="EditMuseumScreen"
+				component={EditMuseumScreen}
+				options={{
+					title: 'Edit Museum',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="MuseumDetailScreen"
+				component={MuseumDetailScreen}
+				options={{
+					title: 'Museum Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMuseumTypeScreen"
+				component={AddMuseumTypeScreen}
+				options={{
+					title: 'Add Museum Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMuseumCommentScreen"
+				component={AddMuseumCommentScreen}
+				options={{
+					title: 'Add Museum Comment Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMuseumEntranceTypeScreen"
+				component={AddMuseumEntranceTypeScreen}
+				options={{
+					title: 'Add Museum Entrance Type Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMuseumWorkingScheduleScreen"
+				component={AddMuseumWorkingScheduleScreen}
+				options={{
+					title: 'Add Museum Working Schedule Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddMuseumPriceScreen"
+				component={AddMuseumPriceScreen}
+				options={{
+					title: 'Add Museum Price Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -527,7 +856,151 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSiteScreen"
+				component={AddArchSiteScreen}
+				options={{
+					title: 'Add ArchSite',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="EditArchSiteScreen"
+				component={EditArchSiteScreen}
+				options={{
+					title: 'Edit ArchSite',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="ArchSiteDetailScreen"
+				component={ArchSiteDetailScreen}
+				options={{
+					title: 'ArchSite Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSiteTypeScreen"
+				component={AddArchSiteTypeScreen}
+				options={{
+					title: 'Add ArchSite Type',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSiteCommentScreen"
+				component={AddArchSiteCommentScreen}
+				options={{
+					title: 'Add ArchSite Comment Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSiteEntranceTypeScreen"
+				component={AddArchSiteEntranceTypeScreen}
+				options={{
+					title: 'Add ArchSite Entrance Type Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSiteWorkingScheduleScreen"
+				component={AddArchSiteWorkingScheduleScreen}
+				options={{
+					title: 'Add ArchSite Working Schedule Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArchSitePriceScreen"
+				component={AddArchSitePriceScreen}
+				options={{
+					title: 'Add ArchSite Price Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -551,7 +1024,79 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddArticleScreen"
+				component={AddArticleScreen}
+				options={{
+					title: 'Add Article Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="EditArticleScreen"
+				component={EditArticleScreen}
+				options={{
+					title: 'Edit Article Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="ArticleDetailScreen"
+				component={ArticleDetailScreen}
+				options={{
+					title: 'Article Detail Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddTagScreen"
+				component={AddTagScreen}
+				options={{
+					title: 'Add Tag Screen',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -575,7 +1120,7 @@ function TravelGuideStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>

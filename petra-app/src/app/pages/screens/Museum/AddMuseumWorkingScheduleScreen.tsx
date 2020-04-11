@@ -50,6 +50,7 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { museumID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddMuseumWorkingScheduleComponent>
@@ -80,7 +81,7 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 										variables: {
 											MuseumWorkingSchedule: [
 												{
-													museumID: values.museumID,
+													museumID: museumID,
 													startDate: this.state.theDate.startDate,
 													finishDate: this.state.theDate.endDate,
 													MuseumWorkingDaySchedules: {
@@ -116,13 +117,7 @@ export class AddMuseumWorkingScheduleScreen extends React.Component<
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserMuseumComponent
-										label="Select Museum"
-										parentReference={value => {
-											props.values.museumID = value;
-										}}
-										userID={parseInt(userID)}
-									/>
+
 									<RangeDatepicker range={this.state.theDate} onSelect={this.onSelect} />
 									<GetAllDayComponent
 										label="Select Day"

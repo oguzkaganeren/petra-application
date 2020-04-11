@@ -29,50 +29,45 @@ export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCom
 	 * @returns
 	 */
 	render() {
-		//const { userID } = this.props.route.params;
-		//const { restaurantID } = this.props.route.params;
+		const { userID } = this.props.route.params;
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantCommentComponent>
-					{AddRestaurantCommentMutation => (
+					{(AddRestaurantCommentMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
 								content: '',
-								star: 0
+								star: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								content: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required'),
-								star: Yup.number().required('Required')
+								content: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+								star: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
 								setTimeout(() => {
 									AddRestaurantCommentMutation({
 										variables: {
-											RestaurantComment:[
+											RestaurantComment: [
 												{
 													content: values.content,
 													date: new Date(),
-													//restaurantID: restaurantID,
-													restaurantID: 1,
+													restaurantID: restaurantID,
 													star: values.star,
-													//userID: userID
-													userID: 75
-												}
-											]
-										}
+													userID: userID,
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('content:' + values.content);
 											console.log('star:' + values.star);
@@ -82,7 +77,7 @@ export class AddRestaurantCommentScreen extends React.Component<AddRestaurantCom
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 

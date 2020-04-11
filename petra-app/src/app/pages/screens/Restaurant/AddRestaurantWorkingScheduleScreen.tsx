@@ -35,13 +35,13 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 		this.state = {
 			theDate: {},
 			showCloseHour: false,
-			showOpenHour: false
+			showOpenHour: false,
 		};
 		/**
 		 * {"roomPropRoom": [{"roomPropertyID": 1},{"roomPropertyID": 2}]}
 		 */
 	}
-	onSelect = value => {
+	onSelect = (value) => {
 		this.setState({ theDate: value });
 	};
 	/**
@@ -50,23 +50,23 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantWorkingScheduleComponent>
-					{AddRestaurantWorkingScheduleMutation => (
+					{(AddRestaurantWorkingScheduleMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								restaurantID: 0,
 								dayID: 0,
 								openHour: 0,
 								openMinute: 0,
 								closeHour: 0,
-								closeMinute: 0
+								closeMinute: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								dayID: Yup.number().required('Required')
+								dayID: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -80,7 +80,7 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 										variables: {
 											RestaurantWorkingSchedule: [
 												{
-													restaurantID: values.restaurantID,
+													restaurantID: restaurantID,
 													startDate: this.state.theDate.startDate,
 													finishDate: this.state.theDate.endDate,
 													RestaurantWorkingDaySchedules: {
@@ -90,22 +90,22 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 																	data: {
 																		closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00',
 																		openHour: values.openHour + ':' + values.openMinute + ':' + '00',
-																		dayID: values.dayID
-																	}
-																}
-															}
-														]
-													}
-												}
-											]
-										}
+																		dayID: values.dayID,
+																	},
+																},
+															},
+														],
+													},
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 										});
 									formikActions.setSubmitting(false);
@@ -113,20 +113,14 @@ export class AddRestaurantWorkingScheduleScreen extends React.Component<
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserRestaurantComponent
-										label="Select Your Restaurant"
-										parentReference={value => {
-											props.values.restaurantID = value;
-										}}
-										userID={parseInt(userID)}
-									/>
+
 									<RangeDatepicker range={this.state.theDate} onSelect={this.onSelect} />
 									<GetAllDayComponent
 										label="Select Day"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.dayID = value;
 										}}
 									/>

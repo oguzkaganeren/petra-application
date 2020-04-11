@@ -29,12 +29,13 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantTypeScreen', {
-							userID: userID
+							userID: userID,
 						});
 					}}
 				>
@@ -43,7 +44,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddFoodTypeScreen', {
-							userID: userID
+							userID: userID,
 						});
 					}}
 				>
@@ -52,7 +53,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddFoodScreen', {
-							userID: userID
+							userID: userID,
 						});
 					}}
 				>
@@ -61,7 +62,8 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddMenuScreen', {
-							userID: userID
+							userID: userID,
+							restaurantID: restaurantID,
 						});
 					}}
 				>
@@ -70,7 +72,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
-							userID: userID
+							userID: userID,
 						});
 					}}
 				>
@@ -80,7 +82,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantCommentScreen', {
 							userID: userID,
-							restaurantID: 1 // Değişecek
+							restaurantID: restaurantID,
 						});
 					}}
 				>
@@ -89,7 +91,8 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
-							userID: userID
+							userID: userID,
+							restaurantID: restaurantID,
 						});
 					}}
 				>
@@ -106,6 +109,6 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });

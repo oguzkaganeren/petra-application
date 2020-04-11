@@ -29,8 +29,8 @@ export class AddMuseumCommentScreen extends React.Component<AddMuseumCommentProp
 	 * @returns
 	 */
 	render() {
-		//const { userID } = this.props.route.params;
-		//const { museumID } = this.props.route.params;
+		const { userID } = this.props.route.params;
+		const { museumID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddMuseumCommentComponent>
@@ -54,15 +54,13 @@ export class AddMuseumCommentScreen extends React.Component<AddMuseumCommentProp
 								setTimeout(() => {
 									AddMuseumCommentMutation({
 										variables: {
-											MuseumComment:[
+											MuseumComment: [
 												{
 													content: values.content,
 													date: new Date(),
-													//museumID: museumID,
-													museumID: 1,
+													museumID: museumID,
 													star: values.star,
-													//userID: userID
-													userID: 75
+													userID: userID
 												}
 											]
 										}

@@ -42,6 +42,15 @@ query getUserHotel($userID: Int!) {
 		}
 	}
 }
+query getUserArticle($userID: Int) {
+	__typename
+	Article(where: { isDeleted: { _eq: false }, ArticleUsers: { userID: { _eq: $userID } } }) {
+		articleID
+		content
+		title
+	}
+}
+
 query getHotelServiceProperty {
 	__typename
 	HotelServiceProperty {
@@ -177,24 +186,41 @@ query getDay {
 		name
 	}
 }
-query getUserArchSite($userID: Int!) {
-	ArchSite(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+query getUserArchSite($userID: Int) {
+	__typename
+	ArchSite(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		Company {
+			name
+		}
+		description
+		name
 		archSiteID
-		name
 	}
 }
-query getUserMuseum($userID: Int!) {
-	Museum(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+query getUserMuseum($userID: Int) {
+	__typename
+	Museum(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		Company {
+			name
+		}
+		description
+		name
 		museumID
-		name
 	}
 }
-query getUserRestaurant($userID: Int!) {
-	Restaurant(where: { Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+
+query getUserRestaurant($userID: Int) {
+	__typename
+	Restaurant(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
 		restaurantID
 		name
+		star
+		Company {
+			name
+		}
 	}
 }
+
 query getArchSiteEntranceTypes {
 	__typename
 	ArchSiteEntranceType {
@@ -253,6 +279,79 @@ query getHotelByID($hotelID: Int) {
 	__typename
 	Hotel(where: { hotelID: { _eq: $hotelID } }) {
 		description
+		name
+		star
+		taxNumber
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+	}
+}
+query getArticleByID($articleID: Int) {
+	__typename
+	Article(where: { articleID: { _eq: $articleID } }) {
+		articleID
+		content
+		title
+	}
+}
+
+query getMuseumByID($museumID: Int) {
+	__typename
+	Museum(where: { museumID: { _eq: $museumID } }) {
+		description
+		name
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+	}
+}
+query getArchSiteByID($archSiteID: Int) {
+	__typename
+	ArchSite(where: { archSiteID: { _eq: $archSiteID } }) {
+		description
+		name
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		age
+		altitude
+		destruction
+		diameter
+		period
+	}
+}
+
+query getRestaurantByID($restaurantID: Int) {
+	__typename
+	Restaurant(where: { restaurantID: { _eq: $restaurantID } }) {
 		name
 		star
 		taxNumber

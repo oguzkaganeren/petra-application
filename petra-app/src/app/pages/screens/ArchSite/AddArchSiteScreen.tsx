@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddArchSiteComponent, GetUserCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
-import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
+import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
 import { GetAllArchSiteTypesComponent } from '../../../components/ArchSite/GetAllArchSiteTypes';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';

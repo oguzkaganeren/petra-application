@@ -28,6 +28,7 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button
@@ -52,7 +53,7 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 					onPress={() => {
 						this.props.navigation.navigate('AddArchSiteCommentScreen', {
 							userID: userID,
-							archSiteID: 1 //Değişecek
+							archSiteID: archSiteID
 						});
 					}}
 				>
@@ -70,7 +71,8 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddArchSiteWorkingScheduleScreen', {
-							userID: userID
+							userID: userID,
+							archSiteID: archSiteID
 						});
 					}}
 				>
@@ -79,7 +81,8 @@ export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenPr
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddArchSitePriceScreen', {
-							userID: userID
+							userID: userID,
+							archSiteID: archSiteID
 						});
 					}}
 				>

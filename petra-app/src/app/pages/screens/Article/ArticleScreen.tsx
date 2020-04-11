@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
+import { Button, Layout, Text, Icon } from '@ui-kitten/components';
 import { useIsFocused } from '@react-navigation/native';
+import GetUserArticleList from '../../../components/Article/GetUserArticleList';
+
 declare var global: any;
 /**
  * Home props
@@ -16,6 +18,7 @@ export interface ArticleProps {
  */
 const ArticleScreen: React.FC<ArticleProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
+	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -35,9 +38,18 @@ const ArticleScreen: React.FC<ArticleProps> = props => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<Text>Article ile ilgili şeyler</Text>
-				</ScrollView>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						props.navigation.navigate('AddArticleScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Article
+				</Button>
+				<GetUserArticleList navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
 	}

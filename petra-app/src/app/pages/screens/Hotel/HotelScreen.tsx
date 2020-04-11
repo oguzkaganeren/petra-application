@@ -40,7 +40,9 @@ const HotelScreen: React.FC<HotelProps> = props => {
 					icon={accessoryItemIcon}
 					appearance="ghost"
 					onPress={() => {
-						props.navigation.navigate('AddHotelScreen', {});
+						props.navigation.navigate('AddHotelScreen', {
+							userID: userID
+						});
 					}}
 				>
 					Add Hotel

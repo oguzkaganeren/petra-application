@@ -55,6 +55,7 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSiteWorkingScheduleComponent>
@@ -83,7 +84,7 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 										variables: {
 											ArchSiteWorkingSchedule: [
 												{
-													archSiteID: values.archSiteID,
+													archSiteID: archSiteID,
 													startDate: this.state.theDate.startDate,
 													finishDate: this.state.theDate.endDate,
 													ArchSiteWorkingDaySchedules: {
@@ -120,13 +121,7 @@ export class AddArchSiteWorkingScheduleScreen extends React.Component<
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserArchSiteComponent
-										label="Select Your Company"
-										parentReference={value => {
-											props.values.archSiteID = value;
-										}}
-										userID={parseInt(userID)}
-									/>
+
 									<RangeDatepicker range={this.state.theDate} onSelect={this.onSelect} />
 									<GetAllDayComponent
 										label="Select Day"

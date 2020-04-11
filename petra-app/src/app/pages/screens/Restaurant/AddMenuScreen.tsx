@@ -33,25 +33,22 @@ export class AddMenuScreen extends React.Component<AddMenuProps, AddMenuState> {
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { restaurantID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddRestaurantMenuComponent>
-					{AddRestaurantMenuMutation => (
+					{(AddRestaurantMenuMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								restaurantID: 0,
 								name: '',
 								price: 0,
-								restaurantFoods: []
+								restaurantFoods: [],
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								name: Yup.string()
-									.min(2, 'Too Short!')
-									.max(50, 'Too Long!')
-									.required('Required'),
-								price: Yup.number().required('Required')
+								name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+								price: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -63,38 +60,32 @@ export class AddMenuScreen extends React.Component<AddMenuProps, AddMenuState> {
 												{
 													name: values.name,
 													price: values.price,
-													restaurantID: values.restaurantID,
-													RestaurantMenuFoods: { data: values.restaurantFoods }
-												}
-											]
-										}
+													restaurantID: restaurantID,
+													RestaurantMenuFoods: { data: values.restaurantFoods },
+												},
+											],
+										},
 									})
-										.then(res => {
+										.then((res) => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('price:' + values.price);
-											console.log('foodTypeId:' + values.foodTypeID);
+											//console.log('foodTypeId:' + values.foodTypeID);
 										});
 									formikActions.setSubmitting(false);
 								}, 500);
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserRestaurantComponent
-										label="Select Your Restaurant"
-										parentReference={value => {
-											props.values.restaurantID = value;
-										}}
-										userID={parseInt(userID)}
-									/>
+
 									<Input
 										label="Menu Name"
 										placeholder="Enter a Menu Name"
@@ -116,7 +107,7 @@ export class AddMenuScreen extends React.Component<AddMenuProps, AddMenuState> {
 									/>
 									<GetAllFoodComponent
 										label="Select Foods"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.restaurantFoods = value;
 										}}
 									/>

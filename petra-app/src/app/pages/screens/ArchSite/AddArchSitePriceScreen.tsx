@@ -45,8 +45,8 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 	 * @returns
 	 */
 	render() {
-		//const { userID } = this.props.route.params;
-		//const { archSiteID } = this.props.route.params;
+		const { userID } = this.props.route.params;
+		const { archSiteID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddArchSitePriceComponent>
@@ -69,9 +69,9 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 									console.log(this.state.theDate.startDate);
 									AddArchSitePriceMutation({
 										variables: {
-											ArchSitePrice:[
+											ArchSitePrice: [
 												{
-													archSiteID: values.archSiteID,
+													archSiteID: archSiteID,
 													finishDate: this.state.theDate.endDate,
 													startDate: this.state.theDate.startDate,
 													price: values.price,
@@ -97,15 +97,7 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
-									<GetAllUserArchSiteComponent
-										label="Select Your ArchSite"
-										parentReference={value => {
-											props.values.archSiteID = value;
-											this.setState({ archSiteID: value });
-										}}
-										//userID={parseInt(userID)}
-										userID={4}
-									/>
+
 									<GetAllArchSiteEntranceTypesComponent
 										label="Select EntranceType"
 										parentReference={value => {

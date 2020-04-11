@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/components';
 import { AddMuseumComponent, GetUserCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
-import { GetAllUserCompanyComponent } from '../../../components/Company/GetAllUserCompany';
+import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
 import { GetAllMuseumTypesComponent } from '../../../components/Museum/GetAllMuseumTypes';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';

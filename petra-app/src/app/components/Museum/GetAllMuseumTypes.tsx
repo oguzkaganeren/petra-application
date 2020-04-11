@@ -45,7 +45,7 @@ export class GetAllMuseumTypesComponent extends React.Component<GetAllMuseumType
 		}, []);
 		this.props.parentReference(filter);
 		this.setState({
-			selected: value.text
+			selected: value
 		});
 	}
 	private keyExtractor = (item, index): string => {

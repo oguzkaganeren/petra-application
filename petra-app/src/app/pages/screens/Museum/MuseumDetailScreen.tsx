@@ -28,6 +28,7 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 	 */
 	render() {
 		const { userID } = this.props.route.params;
+		const { museumID } = this.props.route.params;
 		return (
 			<Layout style={{ flex: 1 }}>
 				<Button
@@ -52,7 +53,7 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 					onPress={() => {
 						this.props.navigation.navigate('AddMuseumCommentScreen', {
 							userID: userID,
-							museumID: 1 //Değişecek
+							museumID: museumID
 						});
 					}}
 				>
@@ -70,7 +71,8 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddMuseumWorkingScheduleScreen', {
-							userID: userID
+							userID: userID,
+							museumID: museumID
 						});
 					}}
 				>
@@ -79,7 +81,8 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddMuseumPriceScreen', {
-							userID: userID
+							userID: userID,
+							museumID: museumID
 						});
 					}}
 				>

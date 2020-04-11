@@ -320,6 +320,91 @@ mutation updateHotel(
 		}
 	}
 }
+mutation updateArticle($articleID: Int, $article: Article_set_input!) {
+	__typename
+	update_Article(where: { articleID: { _eq: $articleID } }, _set: $article) {
+		returning {
+			articleID
+		}
+	}
+}
+
+mutation updateMuseum(
+	$museumID: Int
+	$locationID: Int
+	$addressID: Int
+	$museum: Museum_set_input!
+	$museumLocation: Location_set_input!
+	$museumAddress: Address_set_input!
+) {
+	__typename
+	update_Museum(where: { museumID: { _eq: $museumID } }, _set: $museum) {
+		returning {
+			museumID
+		}
+	}
+	update_Location(where: { locationID: { _eq: $locationID } }, _set: $museumLocation) {
+		returning {
+			locationID
+		}
+	}
+	update_Address(where: { addressID: { _eq: $addressID } }, _set: $museumAddress) {
+		returning {
+			addressID
+		}
+	}
+}
+mutation updateArchSite(
+	$archSiteID: Int
+	$locationID: Int
+	$addressID: Int
+	$archSite: ArchSite_set_input!
+	$archSiteLocation: Location_set_input!
+	$archSiteAddress: Address_set_input!
+) {
+	__typename
+	update_ArchSite(where: { archSiteID: { _eq: $archSiteID } }, _set: $archSite) {
+		returning {
+			archSiteID
+		}
+	}
+	update_Location(where: { locationID: { _eq: $locationID } }, _set: $archSiteLocation) {
+		returning {
+			locationID
+		}
+	}
+	update_Address(where: { addressID: { _eq: $addressID } }, _set: $archSiteAddress) {
+		returning {
+			addressID
+		}
+	}
+}
+mutation updateRestaurant(
+	$restaurantID: Int
+	$locationID: Int
+	$addressID: Int
+	$restaurant: Restaurant_set_input!
+	$restaurantLocation: Location_set_input!
+	$restaurantAddress: Address_set_input!
+) {
+	__typename
+	update_Restaurant(where: { restaurantID: { _eq: $restaurantID } }, _set: $restaurant) {
+		returning {
+			restaurantID
+		}
+	}
+	update_Location(where: { locationID: { _eq: $locationID } }, _set: $restaurantLocation) {
+		returning {
+			locationID
+		}
+	}
+	update_Address(where: { addressID: { _eq: $addressID } }, _set: $restaurantAddress) {
+		returning {
+			addressID
+		}
+	}
+}
+
 mutation deleteHotel($hotelID: Int) {
 	__typename
 	update_Hotel(where: { hotelID: { _eq: $hotelID } }, _set: { isDeleted: true }) {
@@ -328,6 +413,40 @@ mutation deleteHotel($hotelID: Int) {
 		}
 	}
 }
+mutation deleteArticle($articleID: Int) {
+	__typename
+	update_Article(where: { articleID: { _eq: $articleID } }, _set: { isDeleted: true }) {
+		returning {
+			articleID
+		}
+	}
+}
+mutation deleteMuseum($museumID: Int) {
+	__typename
+	update_Museum(where: { museumID: { _eq: $museumID } }, _set: { isDeleted: true }) {
+		returning {
+			museumID
+		}
+	}
+}
+mutation deleteArchSite($archSiteID: Int) {
+	__typename
+	update_ArchSite(where: { archSiteID: { _eq: $archSiteID } }, _set: { isDeleted: true }) {
+		returning {
+			archSiteID
+		}
+	}
+}
+
+mutation deleteRestaurant($restaurantID: Int) {
+	__typename
+	update_Restaurant(where: { restaurantID: { _eq: $restaurantID } }, _set: { isDeleted: true }) {
+		returning {
+			restaurantID
+		}
+	}
+}
+
 mutation deleteCompany($companyID: Int) {
 	__typename
 	update_Company(where: { companyID: { _eq: $companyID } }, _set: { isDeleted: true }) {
