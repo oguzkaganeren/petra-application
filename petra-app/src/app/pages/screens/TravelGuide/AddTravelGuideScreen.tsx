@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, YellowBox, ScrollView } from 'react-native';
-import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List } from '@ui-kitten/components';
+import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List, Text } from '@ui-kitten/components';
 import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
 import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
 import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationComponent';
 import { TravelGuideLocationComponent } from '../../../components/TravelGuide/TravelGuideLocationComponent';
+import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { AddTravelGuideComponent } from '../../../generated/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -14,6 +15,7 @@ import * as Yup from 'yup';
  */
 export interface AddTravelGuideProps {
 	navigation: any;
+	route: any;
 }
 /**
  * Home state
@@ -24,6 +26,7 @@ export interface AddTravelGuideState {
 	selectedIndex: number;
 	setSelectedIndex: number;
 	listData: any;
+	cityID: any;
 }
 
 /**
@@ -33,6 +36,7 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 	constructor(props: AddTravelGuideProps) {
 		super(props);
 		this.state = {
+			cityID: 0,
 			longtitude: 0,
 			latitude: 0,
 			selectedIndex: 0,
@@ -57,12 +61,13 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 	 * @returns
 	 */
 	render() {
-		const userID = this.props.navigation.getParam('userID', 'NO-ID');
+		const { userID } = this.props.route.params;
 
 		const renderItemArcIcon = style => <Icon {...style} name="globe-2-outline" />;
 		const renderItemMuseumIcon = style => <Icon {...style} name="archive-outline" />;
 		const renderItemHotelIcon = style => <Icon {...style} name="briefcase-outline" />;
 		const renderItemRestIcon = style => <Icon {...style} name="award-outline" />;
+		const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 		const renderItem = ({ item, index }) => (
 			<ListItem
 				title={
@@ -178,7 +183,16 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 								{props => (
 									<Layout>
 										{props.isSubmitting && <Spinner />}
-
+										<Button
+											icon={accessoryItemIcon}
+											appearance="ghost"
+											onPress={() => {
+												props.handleSubmit();
+											}}
+											disabled={props.isSubmitting}
+										>
+											Add Travel Guide
+										</Button>
 										<Input
 											label="Title"
 											placeholder="Enter a title for your travel guide"
@@ -199,7 +213,16 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											value={props.values.cost.toString()}
 											autoFocus
 										/>
-
+										<GetAllCitiesComponent
+											label="Select City"
+											parentReference={value => {
+												console.log(value);
+												this.setState({
+													cityID: value
+												});
+											}}
+										/>
+										<Text>Select a point</Text>
 										<TabView
 											selectedIndex={this.state.selectedIndex}
 											onSelect={value => {
@@ -226,6 +249,7 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											<Tab title="Arch. Sites">
 												<Layout style={styles.tabContainer}>
 													<ArchSiteLocationComponent
+														cityID={this.state.cityID}
 														marker={value => {
 															/*this.setState({
 																latitude: value
@@ -245,6 +269,7 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											<Tab title="Museums">
 												<Layout style={styles.tabContainer}>
 													<MuseumLocationComponent
+														cityID={this.state.cityID}
 														marker={value => {
 															/*this.setState({
 																	latitude: value
@@ -305,14 +330,6 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 										</TabView>
 
 										<List data={this.state.listData} renderItem={renderItem} />
-										<Button
-											onPress={() => {
-												props.handleSubmit();
-											}}
-											disabled={props.isSubmitting}
-										>
-											Add Travel Guide
-										</Button>
 									</Layout>
 								)}
 							</Formik>

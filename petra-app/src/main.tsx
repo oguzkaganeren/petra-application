@@ -86,7 +86,7 @@ const userTypeTwoMenus = [
 	{ title: 'Restaurant' },
 	{ title: 'Hotel' },
 	{ title: 'Museum' },
-	{ title: 'Archaeological Site' },
+	{ title: 'Archaeological Site' }
 ];
 const userTypeThreeMenus = [{ title: 'Home' }, { title: 'Article' }];
 const userTypeFiveMenus = [
@@ -97,7 +97,7 @@ const userTypeFiveMenus = [
 	{ title: 'Museum' },
 	{ title: 'Archaeological Site' },
 	{ title: 'Article' },
-	{ title: 'Travel Guide' },
+	{ title: 'Travel Guide' }
 ];
 const Drawer = createDrawerNavigator();
 
@@ -120,7 +120,7 @@ const DrawerContent = ({ navigation, state }) => {
 		: global.userTypeID == 5
 		? (index = index - 1)
 		: index;
-	const onSelect = (indexvalue) => {
+	const onSelect = indexvalue => {
 		global.userTypeID == 1 && indexvalue == 0
 			? (indexvalue = 1)
 			: global.userTypeID == 1
@@ -165,7 +165,7 @@ function DrawerNavigator() {
 		<Drawer.Navigator
 			screenOptions={{ gestureEnabled: false }}
 			initialRouteName="HomeScreen"
-			drawerContent={(props) => <DrawerContent {...props} />}
+			drawerContent={props => <DrawerContent {...props} />}
 		>
 			<Drawer.Screen name="LoginScreen" component={LoginStack} />
 			<Drawer.Screen name="HomeScreen" component={HomeStack} />
@@ -199,7 +199,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -217,7 +217,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -241,7 +241,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -259,7 +259,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -277,7 +277,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -295,7 +295,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -313,7 +313,7 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -337,7 +337,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -361,7 +361,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -385,7 +385,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -403,7 +403,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -421,7 +421,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -439,7 +439,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -457,7 +457,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -475,7 +475,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -493,7 +493,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 			<Stack.Screen
@@ -511,7 +511,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -535,7 +535,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -559,7 +559,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -583,7 +583,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
 				}}
 			/>
 		</Stack.Navigator>
@@ -607,7 +607,25 @@ function TravelGuideStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					},
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="AddTravelGuideScreen"
+				component={AddTravelGuideScreen}
+				options={{
+					title: 'Add your travel guide',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
 				}}
 			/>
 		</Stack.Navigator>

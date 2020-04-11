@@ -328,3 +328,36 @@ mutation deleteHotel($hotelID: Int) {
 		}
 	}
 }
+query getTravelGuideById($travelGuideID: Int) {
+	__typename
+	TravelGuide(where: { isDeleted: { _eq: false }, travelGuideID: { _eq: $travelGuideID } }) {
+		title
+		cost
+		TravelGuideArchSites {
+			ArchSite {
+				name
+			}
+		}
+		TravelGuideHotels {
+			Hotel {
+				name
+			}
+		}
+		TravelGuideLocations {
+			Location {
+				latitude
+				longtitude
+			}
+		}
+		TravelGuideMuseums {
+			Museum {
+				name
+			}
+		}
+		TravelGuideRestaurants {
+			Restaurant {
+				name
+			}
+		}
+	}
+}

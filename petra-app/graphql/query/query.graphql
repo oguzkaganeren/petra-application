@@ -390,3 +390,24 @@ query getRestaurantByID($restaurantID: Int) {
 		}
 	}
 }
+query getRestaurantMenuByResId($restaurantID: Int) {
+	__typename
+	RestaurantMenu(where: { restaurantID: { _eq: $restaurantID } }) {
+		name
+		price
+		RestaurantMenuFoods {
+			RestaurantFood {
+				name
+			}
+		}
+		restaurantMenuID
+	}
+}
+query getUserTravelGuide($userID: Int!) {
+	TravelGuide(where: { userID: { _eq: $userID }, isDeleted: { _eq: false } }) {
+		title
+		travelGuideID
+		cost
+		creationDate
+	}
+}
