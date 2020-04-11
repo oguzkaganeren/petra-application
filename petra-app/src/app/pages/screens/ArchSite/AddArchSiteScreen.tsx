@@ -4,7 +4,7 @@ import { Button, Layout, Input, Text, Spinner, Datepicker } from '@ui-kitten/com
 import { AddArchSiteComponent, GetUserCompanyComponent } from '../../../generated/components';
 import { LocationComponent } from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllArchSiteTypesComponent } from '../../../components/ArchSite/GetAllArchSiteTypes';
+import GetASTypesComponent from '../../../components/ArchSite/GetASTypesComponent';
 import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
 import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
@@ -238,7 +238,7 @@ export class AddArchSiteScreen extends React.Component<AddArchSiteProps, AddArch
 											onBlur={props.handleBlur('age')}
 											value={props.values.age.toString()}
 										/>
-										<GetAllArchSiteTypesComponent
+										<GetASTypesComponent
 											label="Select ArchSite Type"
 											parentReference={value => {
 												props.values.archSiteTypeID = value;

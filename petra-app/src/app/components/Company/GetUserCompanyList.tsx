@@ -7,18 +7,13 @@ import { Formik } from 'formik';
 import StarRating from 'react-native-star-rating';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserCompanyListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
+const GetUserCompanyList: React.FC<GetUserCompanyListProps> = props => {
 	const [companyList, setCompanyList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	function removeItem(key) {
@@ -30,11 +25,11 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 	function deleteCompany(item) {
 		return (
 			<DeleteCompanyComponent>
-				{(DeleteCompanyMutation) => (
+				{DeleteCompanyMutation => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: '',
+							name: ''
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -42,14 +37,14 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteCompanyMutation({
 									variables: {
-										companyID: item.key,
-									},
+										companyID: item.key
+									}
 								})
-									.then((res) => {
+									.then(res => {
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch((err) => {
+									.catch(err => {
 										alert(err);
 										console.log('Company:' + values.name);
 									});
@@ -58,13 +53,13 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{(fprops) => (
+						{fprops => (
 							<Layout>
 								<Button
 									appearance="ghost"
 									onPress={() => {
 										props.navigation.navigate('EditCompanyScreen', {
-											companyID: item.key,
+											companyID: item.key
 										});
 									}}
 									disabled={fprops.isSubmitting}
@@ -104,8 +99,8 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 			/>
 		);
 	}
-	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -130,9 +125,9 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Company.map((dat) => {
+						data.Company.map(dat => {
 							if (companyList.length > 0 && !removeItemBool) {
-								if (companyList.every((item) => item.key != dat.companyID)) {
+								if (companyList.every(item => item.key != dat.companyID)) {
 									companyList.push({
 										key: dat.companyID,
 										title: dat.name,
@@ -140,7 +135,7 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 										faxNumber: dat.faxNumber == null ? '' : dat.faxNumber,
 										taxNumber: dat.taxNumber == null ? '' : dat.taxNumber,
 										mail: dat.mail,
-										registerDate: dat.registerDate,
+										registerDate: dat.registerDate
 									});
 								}
 							} else if (!removeItemBool) {
@@ -151,7 +146,7 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 									faxNumber: dat.faxNumber == null ? '' : dat.faxNumber,
 									taxNumber: dat.taxNumber == null ? '' : dat.taxNumber,
 									mail: dat.mail,
-									registerDate: dat.registerDate,
+									registerDate: dat.registerDate
 								});
 							}
 						});
@@ -166,7 +161,7 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
-	},
+		height: Dimensions.get('window').height / 2
+	}
 });
 export default GetUserCompanyList;

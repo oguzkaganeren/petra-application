@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddArticleComponent } from '../../../generated/components';
-import { GetAllTagsComponent } from '../../../components/Article/GetAllTags';
+import GetAllTagsComponent from '../../../components/Article/GetAllTagsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**

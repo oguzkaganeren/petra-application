@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
+import ASLocationComponent from '../../../components/ArchSite/ASLocationComponent';
 /**
  * Home props
  */
@@ -37,7 +37,7 @@ export class ArchSiteMapScreen extends React.Component<ArchSiteMapProps, ArchSit
 		return (
 			<Layout style={{ flex: 1 }}>
 				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<ArchSiteLocationComponent
+					<ASLocationComponent
 						marker={value => {
 							/*this.setState({
 																latitude: value

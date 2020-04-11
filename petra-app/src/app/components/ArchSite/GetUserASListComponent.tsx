@@ -1,23 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
 import { GetUserArchSiteComponent } from '../../generated/components';
 import { DeleteArchSiteComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserArchSiteListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
+const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = props => {
 	const [archSiteList, setArchSiteList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	function removeItem(key) {
@@ -165,4 +160,4 @@ const styles: any = StyleSheet.create({
 		height: Dimensions.get('window').height / 2
 	}
 });
-export default GetUserArchSiteList;
+export default GetUserASListComponent;

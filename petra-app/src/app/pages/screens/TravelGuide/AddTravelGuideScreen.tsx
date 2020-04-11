@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, YellowBox, ScrollView } from 'react-native';
 import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List, Text } from '@ui-kitten/components';
-import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
+import ASLocationComponent from '../../../components/ArchSite/ASLocationComponent';
 import { MuseumLocationComponent } from '../../../components/Museum/MuseumLocationComponent';
 import { RestaurantLocationComponent } from '../../../components/Restaurant/RestaurantLocationComponent';
 import { HotelLocationComponent } from '../../../components/Hotel/HotelLocationComponent';
@@ -248,7 +248,7 @@ export class AddTravelGuideScreen extends React.Component<AddTravelGuideProps, A
 											</Tab>
 											<Tab title="Arch. Sites">
 												<Layout style={styles.tabContainer}>
-													<ArchSiteLocationComponent
+													<ASLocationComponent
 														cityID={this.state.cityID}
 														marker={value => {
 															/*this.setState({

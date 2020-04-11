@@ -6,17 +6,12 @@ import { DeleteArticleComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserArticleListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 	const [articleList, setArticleList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);

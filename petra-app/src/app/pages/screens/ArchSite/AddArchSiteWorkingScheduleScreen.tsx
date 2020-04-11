@@ -3,29 +3,21 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Text, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddArchSiteWorkingScheduleComponent } from '../../../generated/components';
 import { GetAllDayComponent } from '../../../components/Public/GetAllDayComponent';
-import { GetAllUserArchSiteComponent } from '../../../components/ArchSite/GetAllUserArchSite';
 import TimePicker from 'react-native-simple-time-picker';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-/**
- * AddRestaurant props
- */
+
 export interface AddArchSiteWorkingScheduleProps {
 	navigation: any;
 	route: any;
 }
-/**
- * Location state
- */
+
 export interface AddArchSiteWorkingScheduleState {
 	theDate: any;
 	showOpenHour: boolean;
 	showCloseHour: boolean;
 }
 
-/**
- * Location
- */
 export class AddArchSiteWorkingScheduleScreen extends React.Component<
 	AddArchSiteWorkingScheduleProps,
 	AddArchSiteWorkingScheduleState

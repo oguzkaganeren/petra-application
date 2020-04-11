@@ -2,8 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddArchSitePriceComponent } from '../../../generated/components';
-import { GetAllArchSiteEntranceTypesComponent } from '../../../components/ArchSite/GetAllArchSiteEntranceTypes';
-import { GetAllUserArchSiteComponent } from '../../../components/ArchSite/GetAllUserArchSite';
+import GetASEntranceTypesComponent from '../../../components/ArchSite/GetASEntranceTypesComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /**
@@ -98,7 +97,7 @@ export class AddArchSitePriceScreen extends React.Component<AddArchSitePriceProp
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
-									<GetAllArchSiteEntranceTypesComponent
+									<GetASEntranceTypesComponent
 										label="Select EntranceType"
 										parentReference={value => {
 											props.values.entranceTypeID = value;

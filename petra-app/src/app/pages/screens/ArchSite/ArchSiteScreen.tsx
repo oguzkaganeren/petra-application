@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-//import { BottomComponent } from '../../components/Public/BottomComponent';
-import { useIsFocused } from '@react-navigation/native';
-import GetUserArchSiteList from '../../../components/ArchSite/GetUserArchSiteList';
+
+import GetUserASListComponent from '../../../components/ArchSite/GetUserASListComponent';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface ArchSiteProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const ArchSiteScreen: React.FC<ArchSiteProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
@@ -50,7 +44,7 @@ const ArchSiteScreen: React.FC<ArchSiteProps> = props => {
 				>
 					Add ArchSite
 				</Button>
-				<GetUserArchSiteList navigation={props.navigation} route={props.route} />
+				<GetUserASListComponent navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
 	}

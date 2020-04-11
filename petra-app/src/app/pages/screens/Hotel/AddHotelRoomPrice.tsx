@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddHotelRoomPriceComponent } from '../../../generated/components';
-import { GetAllHotelRoomComponent } from '../../../components/Hotel/GetAllHotelRoom';
+import GetAllHotelRoomComponent from '../../../components/Hotel/GetAllHotelRoomComponent';
 import { GetAllUserHotelComponent } from '../../../components/Hotel/GetAllUserHotel';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -27,13 +27,13 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 	constructor(props: AddHotelRoomPriceProps) {
 		super(props);
 		this.state = {
-			theDate: {},
+			theDate: {}
 		};
 		/**
 		 * {"roomPropRoom": [{"roomPropertyID": 1},{"roomPropertyID": 2}]}
 		 */
 	}
-	onSelect = (value) => {
+	onSelect = value => {
 		this.setState({ theDate: value });
 	};
 	/**
@@ -46,17 +46,17 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 		return (
 			<Layout style={{ flex: 1 }}>
 				<AddHotelRoomPriceComponent>
-					{(AddHotelRoomPriceMutation) => (
+					{AddHotelRoomPriceMutation => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
 								roomID: 0,
 								price: 0,
-								hotelID: hotelID,
+								hotelID: hotelID
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
-								price: Yup.number().required('Required'),
+								price: Yup.number().required('Required')
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -70,17 +70,17 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 													roomID: values.roomID,
 													finishDate: this.state.theDate.endDate,
 													startDate: this.state.theDate.startDate,
-													price: values.price,
-												},
-											],
-										},
+													price: values.price
+												}
+											]
+										}
 									})
-										.then((res) => {
+										.then(res => {
 											alert(JSON.stringify(res));
 
 											//this.props.navigation.navigate('Home');
 										})
-										.catch((err) => {
+										.catch(err => {
 											alert(err);
 											//console.log('roomProp:' + values.roomPropRoom);
 										});
@@ -89,13 +89,13 @@ export class AddHotelRoomPriceScreen extends React.Component<AddHotelRoomPricePr
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{(props) => (
+							{props => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
 									<GetAllHotelRoomComponent
 										label="Select Hotel Room"
-										parentReference={(value) => {
+										parentReference={value => {
 											props.values.roomID = value;
 										}}
 										hotelID={hotelID}
