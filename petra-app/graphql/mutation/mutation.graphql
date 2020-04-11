@@ -328,6 +328,14 @@ mutation deleteHotel($hotelID: Int) {
 		}
 	}
 }
+mutation deleteTravelGuide($travelGuideID: Int) {
+	__typename
+	update_TravelGuide(where: { travelGuideID: { _eq: $travelGuideID } }, _set: { isDeleted: true }) {
+		returning {
+			travelGuideID
+		}
+	}
+}
 query getTravelGuideById($travelGuideID: Int) {
 	__typename
 	TravelGuide(where: { isDeleted: { _eq: false }, travelGuideID: { _eq: $travelGuideID } }) {

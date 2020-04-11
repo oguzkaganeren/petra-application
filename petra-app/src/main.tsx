@@ -25,6 +25,7 @@ import GetHotelListByCity from './app/components/Hotel/GetHotelListByCity';
 import GetRestaurantListByCity from './app/components/Restaurant/GetRestaurantListByCity';
 import HotelInfoScreen from './app/pages/screens/Hotel/HotelInfoScreen';
 import RestaurantInfoScreen from './app/pages/screens/Restaurant/RestaurantInfoScreen';
+import TravelGuideDetailScreen from './app/pages/screens/TravelGuide/TravelGuideDetail';
 import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
 import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
 import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
@@ -615,6 +616,24 @@ function TravelGuideStack() {
 				component={AddTravelGuideScreen}
 				options={{
 					title: 'Add your travel guide',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					}
+				}}
+			/>
+			<Stack.Screen
+				name="TravelGuideDetailScreen"
+				component={TravelGuideDetailScreen}
+				options={{
+					title: 'Travel guide detail',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =

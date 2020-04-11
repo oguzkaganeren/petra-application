@@ -88,8 +88,8 @@ const GetUserTravelGuideList: React.FC<GetUserTravelGuideListProps> = props => {
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
-					props.navigation.navigate('HotelDetailScreen', {
-						hotelID: item.key
+					props.navigation.navigate('TravelGuideDetailScreen', {
+						travelGuideID: item.key
 					});
 				}}
 			/>
