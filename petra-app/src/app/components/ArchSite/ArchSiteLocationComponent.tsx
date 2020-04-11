@@ -2,12 +2,14 @@ import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import { Button, Text, Icon, Layout } from '@ui-kitten/components';
 import { GetArchSiteLocationComponent } from '../../generated/components';
+
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 /**
  * Location props
  */
 export interface ArchSiteLocationProps {
 	marker: any;
+	cityID: any;
 }
 
 /**
@@ -17,6 +19,7 @@ export interface ArchSiteLocationState {
 	region: any;
 	markers: any;
 	mapStyle: any;
+	cityID: any;
 }
 
 /**
@@ -30,6 +33,7 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 	constructor(props) {
 		super(props);
 		this.state = {
+			cityID: 0,
 			region: {
 				latitude: 38.4237,
 				longitude: 27.1428,
@@ -304,7 +308,7 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 		let markers = [];
 		return (
 			<Layout>
-				<GetArchSiteLocationComponent>
+				<GetArchSiteLocationComponent variables={{ cityID: this.props.cityID }}>
 					{({ loading, error, data }) => {
 						if (loading) return <Text>Loading</Text>;
 						if (error) return <Text>error</Text>;
@@ -354,7 +358,6 @@ export class ArchSiteLocationComponent extends React.Component<ArchSiteLocationP
 													<Text>{marker.title}</Text>
 													<Text>{marker.description}</Text>
 													<Button onPress={this._onMarkerPress.bind(this, marker)}>Ekle</Button>
-													<Button status="success">Detay</Button>
 												</View>
 											</MapView.Callout>
 										</MapView.Marker>

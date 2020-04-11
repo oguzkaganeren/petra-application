@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../../components/Public/BottomComponent';
-import { SearchComponent } from '../../../components/Public/SearchComponent';
 /**
  * Home props
  */
@@ -35,7 +33,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantTypeScreen', {
-							userID: userID,
+							userID: userID
 						});
 					}}
 				>
@@ -44,7 +42,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddFoodTypeScreen', {
-							userID: userID,
+							userID: userID
 						});
 					}}
 				>
@@ -53,7 +51,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddFoodScreen', {
-							userID: userID,
+							userID: userID
 						});
 					}}
 				>
@@ -63,7 +61,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 					onPress={() => {
 						this.props.navigation.navigate('AddMenuScreen', {
 							userID: userID,
-							restaurantID: restaurantID,
+							restaurantID: restaurantID
 						});
 					}}
 				>
@@ -72,7 +70,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 				<Button
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
-							userID: userID,
+							userID: userID
 						});
 					}}
 				>
@@ -82,7 +80,7 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantCommentScreen', {
 							userID: userID,
-							restaurantID: restaurantID,
+							restaurantID: restaurantID
 						});
 					}}
 				>
@@ -92,15 +90,12 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 					onPress={() => {
 						this.props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
 							userID: userID,
-							restaurantID: restaurantID,
+							restaurantID: restaurantID
 						});
 					}}
 				>
 					Add Restaurant Working Schedule
 				</Button>
-				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-					<BottomComponent></BottomComponent>
-				</Layout>
 			</Layout>
 		);
 	}
@@ -109,6 +104,6 @@ export class RestaurantDetailScreen extends React.Component<RestaurantDetailScre
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
-	},
+		height: Dimensions.get('window').height / 2
+	}
 });

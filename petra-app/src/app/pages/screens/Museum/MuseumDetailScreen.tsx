@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../../components/Public/BottomComponent';
 /**
  * Home props
  */
@@ -88,9 +87,6 @@ export class MuseumDetailScreen extends React.Component<MuseumDetailScreenProps,
 				>
 					Add Museum Price
 				</Button>
-				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-					<BottomComponent></BottomComponent>
-				</Layout>
 			</Layout>
 		);
 	}

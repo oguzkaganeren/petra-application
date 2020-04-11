@@ -8,6 +8,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
  */
 export interface MuseumLocationProps {
 	marker: any;
+	cityID: any;
 }
 
 /**
@@ -30,6 +31,7 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 	constructor(props) {
 		super(props);
 		this.state = {
+			cityID: 0,
 			region: {
 				latitude: 38.4237,
 				longitude: 27.1428,
@@ -309,7 +311,7 @@ export class MuseumLocationComponent extends React.Component<MuseumLocationProps
 		let markers = [];
 		return (
 			<Layout>
-				<GetMuseumLocationComponent>
+				<GetMuseumLocationComponent variables={{ cityID: this.props.cityID }}>
 					{({ loading, error, data }) => {
 						if (loading) return <Text>Loading</Text>;
 						if (error) return <Text>error</Text>;

@@ -41,7 +41,7 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 					if (data) {
 						data.Article.map((dat) => {
 							if (articleList.length > 0) {
-								if (articleList.every((item) => item.key != dat.hotelID)) {
+								if (articleList.every((item) => item.key != dat.articleID)) {
 									articleList.push({
 										key: dat.articleID,
 										title: dat.title,

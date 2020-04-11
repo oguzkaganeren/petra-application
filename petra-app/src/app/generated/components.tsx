@@ -24243,6 +24243,66 @@ export type UpdateCompanyMutation = (
   )> }
 );
 
+export type DeleteTravelGuideMutationVariables = {
+  travelGuideID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteTravelGuideMutation = (
+  { __typename: 'mutation_root' }
+  & { update_TravelGuide: Maybe<(
+    { __typename?: 'TravelGuide_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'TravelGuide' }
+      & Pick<TravelGuide, 'travelGuideID'>
+    )> }
+  )> }
+);
+
+export type GetTravelGuideByIdQueryVariables = {
+  travelGuideID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetTravelGuideByIdQuery = (
+  { __typename: 'query_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'title' | 'cost'>
+    & { TravelGuideArchSites: Array<(
+      { __typename?: 'TravelGuideArchSite' }
+      & { ArchSite: (
+        { __typename?: 'ArchSite' }
+        & Pick<ArchSite, 'name'>
+      ) }
+    )>, TravelGuideHotels: Array<(
+      { __typename?: 'TravelGuideHotel' }
+      & { Hotel: (
+        { __typename?: 'Hotel' }
+        & Pick<Hotel, 'name'>
+      ) }
+    )>, TravelGuideLocations: Array<(
+      { __typename?: 'TravelGuideLocation' }
+      & { Location: (
+        { __typename?: 'Location' }
+        & Pick<Location, 'latitude' | 'longtitude'>
+      ) }
+    )>, TravelGuideMuseums: Array<(
+      { __typename?: 'TravelGuideMuseum' }
+      & { Museum: (
+        { __typename?: 'Museum' }
+        & Pick<Museum, 'name'>
+      ) }
+    )>, TravelGuideRestaurants: Array<(
+      { __typename?: 'TravelGuideRestaurant' }
+      & { Restaurant: (
+        { __typename?: 'Restaurant' }
+        & Pick<Restaurant, 'name'>
+      ) }
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -24636,7 +24696,23 @@ export type GetHotelByIdQuery = (
       & { Address: (
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
       ) }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -24696,27 +24772,6 @@ export type GetArchSiteByIdQuery = (
   )> }
 );
 
-export type GetRestaurantByIdQueryVariables = {
-  restaurantID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetRestaurantByIdQuery = (
-  { __typename: 'query_root' }
-  & { Restaurant: Array<(
-    { __typename?: 'Restaurant' }
-    & Pick<Restaurant, 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
-    & { Location: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
-        { __typename?: 'Address' }
-        & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
-    ) }
-  )> }
-);
-
 export type GetCompanyByIdQueryVariables = {
   companyID?: Maybe<Scalars['Int']>
 };
@@ -24746,6 +24801,173 @@ export type GetArticleListQuery = (
   & { Article: Array<(
     { __typename?: 'Article' }
     & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title'>
+  )> }
+);
+
+export type GetHotelByCityQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelByCityQuery = (
+  { __typename: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star' | 'companyID' | 'hotelID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & { Address: (
+        { __typename?: 'Address' }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      ) }
+    ) }
+  )> }
+);
+
+export type GetHotelServicesQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelServicesQuery = (
+  { __typename: 'query_root' }
+  & { HotelService: Array<(
+    { __typename?: 'HotelService' }
+    & { HotelServiceProperty: (
+      { __typename?: 'HotelServiceProperty' }
+      & Pick<HotelServiceProperty, 'content'>
+    ) }
+  )> }
+);
+
+export type GetHotelRoomsQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelRoomsQuery = (
+  { __typename: 'query_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo' | 'roomID'>
+      & { RoomPrices: Array<(
+        { __typename?: 'RoomPrice' }
+        & Pick<RoomPrice, 'price'>
+      )>, RoomPropertyRooms: Array<(
+        { __typename?: 'RoomPropertyRoom' }
+        & { RoomProperty: (
+          { __typename?: 'RoomProperty' }
+          & Pick<RoomProperty, 'content'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetRestaurantByCityQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantByCityQuery = (
+  { __typename: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'star' | 'companyID' | 'restaurantID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & { Address: (
+        { __typename?: 'Address' }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      ) }
+    ), RestaurantType: (
+      { __typename?: 'RestaurantType' }
+      & Pick<RestaurantType, 'type'>
+    ) }
+  )> }
+);
+
+export type GetRestaurantByIdQueryVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantByIdQuery = (
+  { __typename: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: (
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      ) }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetRestaurantMenuByResIdQueryVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantMenuByResIdQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantMenu: Array<(
+    { __typename?: 'RestaurantMenu' }
+    & Pick<RestaurantMenu, 'name' | 'price' | 'restaurantMenuID'>
+    & { RestaurantMenuFoods: Array<(
+      { __typename?: 'RestaurantMenuFood' }
+      & { RestaurantFood: (
+        { __typename?: 'RestaurantFood' }
+        & Pick<RestaurantFood, 'name'>
+      ) }
+    )> }
+  )> }
+);
+
+export type GetUserTravelGuideQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserTravelGuideQuery = (
+  { __typename?: 'query_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'title' | 'travelGuideID' | 'cost' | 'creationDate'>
   )> }
 );
 
@@ -26123,6 +26345,89 @@ export function withUpdateCompany<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type UpdateCompanyMutationResult = ApolloReactCommon.MutationResult<UpdateCompanyMutation>;
 export type UpdateCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
+export const DeleteTravelGuideDocument = gql`
+    mutation deleteTravelGuide($travelGuideID: Int) {
+  __typename
+  update_TravelGuide(where: {travelGuideID: {_eq: $travelGuideID}}, _set: {isDeleted: true}) {
+    returning {
+      travelGuideID
+    }
+  }
+}
+    `;
+export type DeleteTravelGuideMutationFn = ApolloReactCommon.MutationFunction<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
+export type DeleteTravelGuideComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>, 'mutation'>;
+
+    export const DeleteTravelGuideComponent = (props: DeleteTravelGuideComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables> mutation={DeleteTravelGuideDocument} {...props} />
+    );
+    
+export type DeleteTravelGuideProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables> & TChildProps;
+export function withDeleteTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteTravelGuideMutation,
+  DeleteTravelGuideMutationVariables,
+  DeleteTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables, DeleteTravelGuideProps<TChildProps>>(DeleteTravelGuideDocument, {
+      alias: 'deleteTravelGuide',
+      ...operationOptions
+    });
+};
+export type DeleteTravelGuideMutationResult = ApolloReactCommon.MutationResult<DeleteTravelGuideMutation>;
+export type DeleteTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
+export const GetTravelGuideByIdDocument = gql`
+    query getTravelGuideById($travelGuideID: Int) {
+  __typename
+  TravelGuide(where: {isDeleted: {_eq: false}, travelGuideID: {_eq: $travelGuideID}}) {
+    title
+    cost
+    TravelGuideArchSites {
+      ArchSite {
+        name
+      }
+    }
+    TravelGuideHotels {
+      Hotel {
+        name
+      }
+    }
+    TravelGuideLocations {
+      Location {
+        latitude
+        longtitude
+      }
+    }
+    TravelGuideMuseums {
+      Museum {
+        name
+      }
+    }
+    TravelGuideRestaurants {
+      Restaurant {
+        name
+      }
+    }
+  }
+}
+    `;
+export type GetTravelGuideByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>, 'query'>;
+
+    export const GetTravelGuideByIdComponent = (props: GetTravelGuideByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> query={GetTravelGuideByIdDocument} {...props} />
+    );
+    
+export type GetTravelGuideByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> & TChildProps;
+export function withGetTravelGuideById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTravelGuideByIdQuery,
+  GetTravelGuideByIdQueryVariables,
+  GetTravelGuideByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables, GetTravelGuideByIdProps<TChildProps>>(GetTravelGuideByIdDocument, {
+      alias: 'getTravelGuideById',
+      ...operationOptions
+    });
+};
+export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -26906,6 +27211,12 @@ export const GetHotelByIdDocument = gql`
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -26914,6 +27225,13 @@ export const GetHotelByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
   }
 }
     `;
@@ -27046,46 +27364,6 @@ export function withGetArchSiteById<TProps, TChildProps = {}>(operationOptions?:
     });
 };
 export type GetArchSiteByIdQueryResult = ApolloReactCommon.QueryResult<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables>;
-export const GetRestaurantByIdDocument = gql`
-    query getRestaurantByID($restaurantID: Int) {
-  __typename
-  Restaurant(where: {restaurantID: {_eq: $restaurantID}}) {
-    name
-    star
-    taxNumber
-    locationID
-    Location {
-      addressID
-      Address {
-        address
-        cityID
-        districtID
-      }
-      latitude
-      longtitude
-    }
-    companyID
-  }
-}
-    `;
-export type GetRestaurantByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>, 'query'>;
-
-    export const GetRestaurantByIdComponent = (props: GetRestaurantByIdComponentProps) => (
-      <ApolloReactComponents.Query<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> query={GetRestaurantByIdDocument} {...props} />
-    );
-    
-export type GetRestaurantByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> & TChildProps;
-export function withGetRestaurantById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetRestaurantByIdQuery,
-  GetRestaurantByIdQueryVariables,
-  GetRestaurantByIdProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables, GetRestaurantByIdProps<TChildProps>>(GetRestaurantByIdDocument, {
-      alias: 'getRestaurantById',
-      ...operationOptions
-    });
-};
-export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>;
 export const GetCompanyByIdDocument = gql`
     query getCompanyByID($companyID: Int) {
   __typename
@@ -27158,3 +27436,264 @@ export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;
+export const GetHotelByCityDocument = gql`
+    query getHotelByCity($cityID: Int) {
+  __typename
+  Hotel(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+    description
+    name
+    star
+    Location {
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+      }
+    }
+    companyID
+    hotelID
+  }
+}
+    `;
+export type GetHotelByCityComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelByCityQuery, GetHotelByCityQueryVariables>, 'query'>;
+
+    export const GetHotelByCityComponent = (props: GetHotelByCityComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelByCityQuery, GetHotelByCityQueryVariables> query={GetHotelByCityDocument} {...props} />
+    );
+    
+export type GetHotelByCityProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelByCityQuery, GetHotelByCityQueryVariables> & TChildProps;
+export function withGetHotelByCity<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelByCityQuery,
+  GetHotelByCityQueryVariables,
+  GetHotelByCityProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelByCityQuery, GetHotelByCityQueryVariables, GetHotelByCityProps<TChildProps>>(GetHotelByCityDocument, {
+      alias: 'getHotelByCity',
+      ...operationOptions
+    });
+};
+export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelByCityQuery, GetHotelByCityQueryVariables>;
+export const GetHotelServicesDocument = gql`
+    query getHotelServices($hotelID: Int) {
+  __typename
+  HotelService(where: {hotelID: {_eq: $hotelID}}) {
+    HotelServiceProperty {
+      content
+    }
+  }
+}
+    `;
+export type GetHotelServicesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelServicesQuery, GetHotelServicesQueryVariables>, 'query'>;
+
+    export const GetHotelServicesComponent = (props: GetHotelServicesComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelServicesQuery, GetHotelServicesQueryVariables> query={GetHotelServicesDocument} {...props} />
+    );
+    
+export type GetHotelServicesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicesQuery, GetHotelServicesQueryVariables> & TChildProps;
+export function withGetHotelServices<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelServicesQuery,
+  GetHotelServicesQueryVariables,
+  GetHotelServicesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelServicesQuery, GetHotelServicesQueryVariables, GetHotelServicesProps<TChildProps>>(GetHotelServicesDocument, {
+      alias: 'getHotelServices',
+      ...operationOptions
+    });
+};
+export type GetHotelServicesQueryResult = ApolloReactCommon.QueryResult<GetHotelServicesQuery, GetHotelServicesQueryVariables>;
+export const GetHotelRoomsDocument = gql`
+    query getHotelRooms($hotelID: Int) {
+  __typename
+  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+    Room {
+      roomNo
+      RoomPrices {
+        price
+      }
+      RoomPropertyRooms {
+        RoomProperty {
+          content
+        }
+      }
+      roomID
+    }
+  }
+}
+    `;
+export type GetHotelRoomsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>, 'query'>;
+
+    export const GetHotelRoomsComponent = (props: GetHotelRoomsComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> query={GetHotelRoomsDocument} {...props} />
+    );
+    
+export type GetHotelRoomsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> & TChildProps;
+export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomsQuery,
+  GetHotelRoomsQueryVariables,
+  GetHotelRoomsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelRoomsQuery, GetHotelRoomsQueryVariables, GetHotelRoomsProps<TChildProps>>(GetHotelRoomsDocument, {
+      alias: 'getHotelRooms',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomsQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>;
+export const GetRestaurantByCityDocument = gql`
+    query getRestaurantByCity($cityID: Int) {
+  __typename
+  Restaurant(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+    name
+    star
+    Location {
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+      }
+    }
+    companyID
+    RestaurantType {
+      type
+    }
+    restaurantID
+  }
+}
+    `;
+export type GetRestaurantByCityComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables>, 'query'>;
+
+    export const GetRestaurantByCityComponent = (props: GetRestaurantByCityComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables> query={GetRestaurantByCityDocument} {...props} />
+    );
+    
+export type GetRestaurantByCityProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables> & TChildProps;
+export function withGetRestaurantByCity<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantByCityQuery,
+  GetRestaurantByCityQueryVariables,
+  GetRestaurantByCityProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables, GetRestaurantByCityProps<TChildProps>>(GetRestaurantByCityDocument, {
+      alias: 'getRestaurantByCity',
+      ...operationOptions
+    });
+};
+export type GetRestaurantByCityQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables>;
+export const GetRestaurantByIdDocument = gql`
+    query getRestaurantByID($restaurantID: Int) {
+  __typename
+  Restaurant(where: {restaurantID: {_eq: $restaurantID}}) {
+    name
+    star
+    taxNumber
+    locationID
+    Location {
+      addressID
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
+  }
+}
+    `;
+export type GetRestaurantByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>, 'query'>;
+
+    export const GetRestaurantByIdComponent = (props: GetRestaurantByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> query={GetRestaurantByIdDocument} {...props} />
+    );
+    
+export type GetRestaurantByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> & TChildProps;
+export function withGetRestaurantById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantByIdQuery,
+  GetRestaurantByIdQueryVariables,
+  GetRestaurantByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables, GetRestaurantByIdProps<TChildProps>>(GetRestaurantByIdDocument, {
+      alias: 'getRestaurantById',
+      ...operationOptions
+    });
+};
+export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>;
+export const GetRestaurantMenuByResIdDocument = gql`
+    query getRestaurantMenuByResId($restaurantID: Int) {
+  __typename
+  RestaurantMenu(where: {restaurantID: {_eq: $restaurantID}}) {
+    name
+    price
+    RestaurantMenuFoods {
+      RestaurantFood {
+        name
+      }
+    }
+    restaurantMenuID
+  }
+}
+    `;
+export type GetRestaurantMenuByResIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables>, 'query'>;
+
+    export const GetRestaurantMenuByResIdComponent = (props: GetRestaurantMenuByResIdComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables> query={GetRestaurantMenuByResIdDocument} {...props} />
+    );
+    
+export type GetRestaurantMenuByResIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables> & TChildProps;
+export function withGetRestaurantMenuByResId<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantMenuByResIdQuery,
+  GetRestaurantMenuByResIdQueryVariables,
+  GetRestaurantMenuByResIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables, GetRestaurantMenuByResIdProps<TChildProps>>(GetRestaurantMenuByResIdDocument, {
+      alias: 'getRestaurantMenuByResId',
+      ...operationOptions
+    });
+};
+export type GetRestaurantMenuByResIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables>;
+export const GetUserTravelGuideDocument = gql`
+    query getUserTravelGuide($userID: Int!) {
+  TravelGuide(where: {userID: {_eq: $userID}, isDeleted: {_eq: false}}) {
+    title
+    travelGuideID
+    cost
+    creationDate
+  }
+}
+    `;
+export type GetUserTravelGuideComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>, 'query'> & ({ variables: GetUserTravelGuideQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserTravelGuideComponent = (props: GetUserTravelGuideComponentProps) => (
+      <ApolloReactComponents.Query<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> query={GetUserTravelGuideDocument} {...props} />
+    );
+    
+export type GetUserTravelGuideProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> & TChildProps;
+export function withGetUserTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserTravelGuideQuery,
+  GetUserTravelGuideQueryVariables,
+  GetUserTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables, GetUserTravelGuideProps<TChildProps>>(GetUserTravelGuideDocument, {
+      alias: 'getUserTravelGuide',
+      ...operationOptions
+    });
+};
+export type GetUserTravelGuideQueryResult = ApolloReactCommon.QueryResult<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>;
