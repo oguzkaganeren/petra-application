@@ -1,39 +1,39 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCityDistrictsComponent } from '../../generated/components';
+import { GetUserHotelComponent } from '../../generated/components';
 
-export interface GetAllCityDistrictsProps {
+export interface GetAllHotelUserProps {
 	label: string;
 	parentReference: any;
-	cityID: number;
+	userID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
-	const [selected, setSelected] = React.useState(null);
+const GetAllHotelUserComponent: React.FC<GetAllHotelUserProps> = props => {
+	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
 		const id = value.id;
-		props.parentReference(id);
+		this.props.parentReference(id);
 		setSelected(value);
 	}
 
 	return (
 		<Layout>
-			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
+			<GetUserHotelComponent variables={{ userID: this.props.userID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.Hotel.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
-									datam.push({ id: dat.districtID, text: dat.district });
+								if (datam.every(item => item.id !== dat.hotelID)) {
+									datam.push({ id: dat.hotelID, text: dat.name });
 								}
 							} else {
-								datam.push({ id: dat.districtID, text: dat.district });
+								datam.push({ id: dat.hotelID, text: dat.name });
 							}
 						});
 						return (
@@ -46,10 +46,10 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 						);
 					}
 				}}
-			</GetCityDistrictsComponent>
+			</GetUserHotelComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCityDistrictsComponent;
+export default GetAllHotelUserComponent;

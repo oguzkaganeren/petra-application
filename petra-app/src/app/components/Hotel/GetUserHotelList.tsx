@@ -1,23 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
 import { GetUserHotelComponent } from '../../generated/components';
 import { DeleteHotelComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserHotelListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
+const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 	const [hotelList, setHotelList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	function removeItem(key) {
@@ -29,11 +24,11 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	function deleteHotel(item) {
 		return (
 			<DeleteHotelComponent>
-				{(DeleteHotelMutation) => (
+				{DeleteHotelMutation => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: '',
+							name: ''
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -41,14 +36,14 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteHotelMutation({
 									variables: {
-										hotelID: item.key,
-									},
+										hotelID: item.key
+									}
 								})
-									.then((res) => {
+									.then(res => {
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch((err) => {
+									.catch(err => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -57,13 +52,13 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{(fprops) => (
+						{fprops => (
 							<Layout>
 								<Button
 									appearance="ghost"
 									onPress={() => {
 										props.navigation.navigate('EditHotelScreen', {
-											hotelID: item.key,
+											hotelID: item.key
 										});
 									}}
 									disabled={fprops.isSubmitting}
@@ -103,8 +98,8 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 			/>
 		);
 	}
-	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -115,7 +110,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('HotelDetailScreen', {
-						hotelID: item.key,
+						hotelID: item.key
 					});
 				}}
 			/>
@@ -129,15 +124,15 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map((dat) => {
+						data.Hotel.map(dat => {
 							if (hotelList.length > 0 && !removeItemBool) {
-								if (hotelList.every((item) => item.key != dat.hotelID)) {
+								if (hotelList.every(item => item.key != dat.hotelID)) {
 									hotelList.push({
 										key: dat.hotelID,
 										title: dat.name,
 										description: dat.description == null ? '' : dat.description,
 										star: dat.star,
-										companyName: dat.Company.name,
+										companyName: dat.Company.name
 									});
 								}
 							} else if (!removeItemBool) {
@@ -146,7 +141,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 									title: dat.name,
 									description: dat.description == null ? '' : dat.description,
 									star: dat.star,
-									companyName: dat.Company.name,
+									companyName: dat.Company.name
 								});
 							}
 						});
@@ -161,7 +156,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
-	},
+		height: Dimensions.get('window').height / 2
+	}
 });
 export default GetUserHotelList;

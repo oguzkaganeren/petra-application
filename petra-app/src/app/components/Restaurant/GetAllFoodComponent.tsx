@@ -1,39 +1,40 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Layout, Select, Text } from '@ui-kitten/components';
-import { GetRoomPropertyComponent } from '../../generated/components';
+import { StyleSheet } from 'react-native';
+import { GetFoodComponent } from '../../generated/components';
 
-export interface GetAllRoomPropertyProps {
+export interface GetAllFoodProps {
 	label: string;
 	parentReference: any;
 }
-
-const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => {
+const GetAllFoodComponent: React.FC<GetAllFoodProps> = props => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
 		setSelected(value);
+
 		const filter = Object.keys(value).reduce((result, key) => {
-			return result.concat({ roomPropertyID: value[key].roomPropertyID });
+			return result.concat({ restaurantFoodID: value[key].restaurantFoodID });
 		}, []);
 		props.parentReference(filter);
 	}
+
 	return (
 		<Layout>
-			<GetRoomPropertyComponent>
+			<GetFoodComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RoomProperty.map(dat => {
+						data.RestaurantFood.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.roomPropertyID !== dat.roomPropertyID)) {
-									datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
+								if (datam.every(item => item.restaurantFoodID !== dat.restaurantFoodID)) {
+									datam.push({ restaurantFoodID: dat.restaurantFoodID, text: dat.name });
 								}
 							} else {
-								datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
+								datam.push({ restaurantFoodID: dat.restaurantFoodID, text: dat.name });
 							}
 						});
 						return (
@@ -47,10 +48,10 @@ const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => 
 						);
 					}
 				}}
-			</GetRoomPropertyComponent>
+			</GetFoodComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllRoomPropertyComponent;
+export default GetAllFoodComponent;

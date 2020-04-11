@@ -5,18 +5,13 @@ import { GetUserTravelGuideComponent } from '../../generated/components';
 import { DeleteTravelGuideComponent } from '../../generated/components';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserTravelGuideListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserTravelGuideList: React.FC<GetUserTravelGuideListProps> = props => {
+const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = props => {
 	const [travelGuideList, setTravelGuideList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	function removeItem(key) {
@@ -136,4 +131,4 @@ const styles: any = StyleSheet.create({
 		height: Dimensions.get('window').height / 2
 	}
 });
-export default GetUserTravelGuideList;
+export default GetUserTravelGuideListComponent;

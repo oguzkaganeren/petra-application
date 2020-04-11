@@ -1,15 +1,15 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCityDistrictsComponent } from '../../generated/components';
+import { GetUserRestaurantComponent } from '../../generated/components';
 
-export interface GetAllCityDistrictsProps {
+export interface GetAllUserRestaurantProps {
 	label: string;
 	parentReference: any;
-	cityID: number;
+	userID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
+const GetAllUserRestaurantComponent: React.FC<GetAllUserRestaurantProps> = props => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -18,22 +18,21 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 		props.parentReference(id);
 		setSelected(value);
 	}
-
 	return (
 		<Layout>
-			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
+			<GetUserRestaurantComponent variables={{ userID: props.userID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.Restaurant.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
-									datam.push({ id: dat.districtID, text: dat.district });
+								if (datam.every(item => item.id !== dat.restaurantID)) {
+									datam.push({ id: dat.restaurantID, text: dat.name });
 								}
 							} else {
-								datam.push({ id: dat.districtID, text: dat.district });
+								datam.push({ id: dat.restaurantID, text: dat.name });
 							}
 						});
 						return (
@@ -46,10 +45,9 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 						);
 					}
 				}}
-			</GetCityDistrictsComponent>
+			</GetUserRestaurantComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCityDistrictsComponent;

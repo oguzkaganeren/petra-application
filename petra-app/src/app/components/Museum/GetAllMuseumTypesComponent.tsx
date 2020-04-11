@@ -1,39 +1,40 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Layout, Select, Text } from '@ui-kitten/components';
-import { GetRoomPropertyComponent } from '../../generated/components';
+import { StyleSheet } from 'react-native';
+import { GetMuseumTypesComponent } from '../../generated/components';
 
-export interface GetAllRoomPropertyProps {
+export interface GetAllMuseumTypesProps {
 	label: string;
 	parentReference: any;
 }
 
-const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => {
-	const [selected, setSelected] = React.useState([]);
+const GetAllMuseumTypesComponent: React.FC<GetAllMuseumTypesProps> = props => {
+	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
-		setSelected(value);
 		const filter = Object.keys(value).reduce((result, key) => {
-			return result.concat({ roomPropertyID: value[key].roomPropertyID });
+			return result.concat({ id: value[key].id });
 		}, []);
 		props.parentReference(filter);
+		setSelected(value);
 	}
+
 	return (
 		<Layout>
-			<GetRoomPropertyComponent>
+			<GetMuseumTypesComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RoomProperty.map(dat => {
+						data.MuseumType.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.roomPropertyID !== dat.roomPropertyID)) {
-									datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
+								if (datam.every(item => item.id !== dat.museumTypeID)) {
+									datam.push({ id: dat.museumTypeID, text: dat.type });
 								}
 							} else {
-								datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
+								datam.push({ id: dat.museumTypeID, text: dat.type });
 							}
 						});
 						return (
@@ -47,10 +48,10 @@ const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => 
 						);
 					}
 				}}
-			</GetRoomPropertyComponent>
+			</GetMuseumTypesComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllRoomPropertyComponent;
+export default GetAllMuseumTypesComponent;

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCityDistrictsComponent } from '../../generated/components';
+import { GetMuseumEntranceTypesComponent } from '../../generated/components';
 
-export interface GetAllCityDistrictsProps {
+export interface GetAllMuseumEntranceTypesProps {
 	label: string;
 	parentReference: any;
-	cityID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
+const GetAllMuseumEntranceTypesComponent: React.FC<GetAllMuseumEntranceTypesProps> = props => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -21,19 +20,19 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 
 	return (
 		<Layout>
-			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
+			<GetMuseumEntranceTypesComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.MuseumEntranceType.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
-									datam.push({ id: dat.districtID, text: dat.district });
+								if (datam.every(item => item.id !== dat.museumEntranceTypeID)) {
+									datam.push({ id: dat.museumEntranceTypeID, text: dat.content });
 								}
 							} else {
-								datam.push({ id: dat.districtID, text: dat.district });
+								datam.push({ id: dat.museumEntranceTypeID, text: dat.content });
 							}
 						});
 						return (
@@ -46,10 +45,10 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 						);
 					}
 				}}
-			</GetCityDistrictsComponent>
+			</GetMuseumEntranceTypesComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCityDistrictsComponent;
+export default GetAllMuseumEntranceTypesComponent;

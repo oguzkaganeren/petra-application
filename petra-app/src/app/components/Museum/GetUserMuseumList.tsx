@@ -6,17 +6,11 @@ import { DeleteMuseumComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserMuseumListProps {
 	navigation: any;
 	route: any;
 }
-
-/**
- * Home
- */
 const GetUserMuseumList: React.FC<GetUserMuseumListProps> = props => {
 	const [museumList, setMuseumList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);

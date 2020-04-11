@@ -1,15 +1,15 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCityDistrictsComponent } from '../../generated/components';
+import { GetUserMuseumComponent } from '../../generated/components';
 
-export interface GetAllCityDistrictsProps {
+export interface GetAllUserMuseumProps {
 	label: string;
 	parentReference: any;
-	cityID: number;
+	userID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
+const GetAllUserMuseumComponent: React.FC<GetAllUserMuseumProps> = props => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -18,22 +18,21 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 		props.parentReference(id);
 		setSelected(value);
 	}
-
 	return (
 		<Layout>
-			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
+			<GetUserMuseumComponent variables={{ userID: props.userID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.Museum.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
-									datam.push({ id: dat.districtID, text: dat.district });
+								if (datam.every(item => item.id !== dat.museumID)) {
+									datam.push({ id: dat.museumID, text: dat.name });
 								}
 							} else {
-								datam.push({ id: dat.districtID, text: dat.district });
+								datam.push({ id: dat.museumID, text: dat.name });
 							}
 						});
 						return (
@@ -46,10 +45,10 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 						);
 					}
 				}}
-			</GetCityDistrictsComponent>
+			</GetUserMuseumComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCityDistrictsComponent;
+export default GetAllUserMuseumComponent;

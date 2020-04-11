@@ -3,18 +3,13 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
 import { GetRestaurantByCityComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
-/**
- * Home props
- */
+
 export interface GetRestaurantListByCityProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) => {
+const GetRestaurantListByCityComponent: React.FC<GetRestaurantListByCityProps> = props => {
 	const [restaurantList, setRestaurantList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const { cityID } = props.route.params;
@@ -38,7 +33,7 @@ const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) 
 			</Layout>
 		);
 	}
-	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -48,7 +43,7 @@ const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) 
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('RestaurantInfoScreen', {
-						restaurantID: item.key,
+						restaurantID: item.key
 					});
 				}}
 			/>
@@ -62,15 +57,15 @@ const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) 
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Restaurant.map((dat) => {
+						data.Restaurant.map(dat => {
 							if (restaurantList.length > 0 && !removeItemBool) {
-								if (restaurantList.every((item) => item.key != dat.restaurantID)) {
+								if (restaurantList.every(item => item.key != dat.restaurantID)) {
 									restaurantList.push({
 										key: dat.restaurantID,
 										title: dat.name,
 										city: dat.Location.Address.City.city,
 										district: dat.Location.Address.District.district,
-										star: dat.star,
+										star: dat.star
 									});
 								}
 							} else if (!removeItemBool) {
@@ -79,7 +74,7 @@ const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) 
 									title: dat.name,
 									city: dat.Location.Address.City.city,
 									district: dat.Location.Address.District.district,
-									star: dat.star,
+									star: dat.star
 								});
 							}
 						});
@@ -94,7 +89,7 @@ const GetRestaurantListByCity: React.FC<GetRestaurantListByCityProps> = (props) 
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
-	},
+		height: Dimensions.get('window').height / 2
+	}
 });
-export default GetRestaurantListByCity;
+export default GetRestaurantListByCityComponent;

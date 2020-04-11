@@ -27,7 +27,7 @@ import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
 import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
 import GetHotelListByCity from './app/components/Hotel/GetHotelListByCity';
-import GetRestaurantListByCity from './app/components/Restaurant/GetRestaurantListByCity';
+import GetRestaurantListByCityComponent from './app/components/Restaurant/GetRestaurantListByCity';
 import HotelInfoScreen from './app/pages/screens/Hotel/HotelInfoScreen';
 import RestaurantInfoScreen from './app/pages/screens/Restaurant/RestaurantInfoScreen';
 import TravelGuideDetailScreen from './app/pages/screens/TravelGuide/TravelGuideDetail';
@@ -270,7 +270,7 @@ function HomeStack() {
 			/>
 			<Stack.Screen
 				name="GetRestaurantListByCity"
-				component={GetRestaurantListByCity}
+				component={GetRestaurantListByCityComponent}
 				options={{
 					title: 'Restaurants',
 					header: ({ scene, previous, navigation }) => {

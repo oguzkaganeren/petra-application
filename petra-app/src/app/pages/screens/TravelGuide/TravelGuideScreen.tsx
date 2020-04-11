@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-import GetUserTravelGuideList from '../../../components/TravelGuide/GetUserTravelGuideList';
+import GetUserTravelGuideListComponent from '../../../components/TravelGuide/GetUserTravelGuideList';
 declare var global: any;
 /**
  * Home props
@@ -47,7 +47,7 @@ const TravelGuideScreen: React.FC<TravelGuideProps> = props => {
 				>
 					Add Travel Guide
 				</Button>
-				<GetUserTravelGuideList navigation={props.navigation} route={props.route} />
+				<GetUserTravelGuideListComponent navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
 	}

@@ -1,39 +1,40 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCityDistrictsComponent } from '../../generated/components';
+import { GetFoodTypesComponent } from '../../generated/components';
 
-export interface GetAllCityDistrictsProps {
+export interface GetAllFoodTypesProps {
 	label: string;
 	parentReference: any;
-	cityID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
+const GetAllFoodTypesComponent: React.FC<GetAllFoodTypesProps> = props => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
 		const id = value.id;
-		props.parentReference(id);
-		setSelected(value);
+		this.props.parentReference(id);
+		this.setState({
+			selected: value.text
+		});
 	}
 
 	return (
 		<Layout>
-			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
+			<GetFoodTypesComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.RestaurantFoodType.map(dat => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
-									datam.push({ id: dat.districtID, text: dat.district });
+								if (datam.every(item => item.id !== dat.restaurantFoodTypeID)) {
+									datam.push({ id: dat.restaurantFoodTypeID, text: dat.type });
 								}
 							} else {
-								datam.push({ id: dat.districtID, text: dat.district });
+								datam.push({ id: dat.restaurantFoodTypeID, text: dat.type });
 							}
 						});
 						return (
@@ -46,10 +47,10 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 						);
 					}
 				}}
-			</GetCityDistrictsComponent>
+			</GetFoodTypesComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCityDistrictsComponent;
+export default GetAllFoodTypesComponent;
