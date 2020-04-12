@@ -160,4 +160,4 @@ const styles: any = StyleSheet.create({
 		height: Dimensions.get('window').height / 2
 	}
 });
-export default GetUserRestaurantList;
+export default GetUserRestaurantListComponent;

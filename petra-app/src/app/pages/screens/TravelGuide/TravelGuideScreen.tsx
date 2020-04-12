@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-import GetUserTravelGuideListComponent from '../../../components/TravelGuide/GetUserTravelGuideList';
+import GetUserTravelGuideListComponent from '../../../components/TravelGuide/GetUserTravelGuideListComponent';
 declare var global: any;
 /**
  * Home props

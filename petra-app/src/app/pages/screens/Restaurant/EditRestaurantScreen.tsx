@@ -3,37 +3,32 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateRestaurantComponent } from '../../../generated/components';
 import { GetRestaurantByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditRestaurantProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
-const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
+const EditRestaurantScreen: React.FC<EditRestaurantProps> = props => {
 	const { restaurantID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
 	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
+	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateRestaurantComponent>
-				{(UpdateRestaurantMutation) => (
+				{UpdateRestaurantMutation => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -45,16 +40,24 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 							description: '',
 							name: '',
 							taxNumber: '',
-							companyID: 0,
+							companyID: 0
 							//hotelServiceProperty: [],
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-							taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-							address: Yup.string().min(5, 'Too Short!').required('Required'),
+							name: Yup.string()
+								.min(2, 'Too Short!')
+								.max(50, 'Too Long!')
+								.required('Required'),
+							taxNumber: Yup.string()
+								.min(2, 'Too Short!')
+								.max(50, 'Too Long!')
+								.required('Required'),
+							address: Yup.string()
+								.min(5, 'Too Short!')
+								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required'),
+							longtitude: Yup.number().required('Required')
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -69,26 +72,26 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 											name: values.name.toString(),
 											taxNumber: values.taxNumber.toString(),
 											star: star,
-											companyID: values.companyID,
+											companyID: values.companyID
 											//description: values.description,
 										},
 										restaurantLocation: {
 											longtitude: values.longtitude,
-											latitude: values.latitude,
+											latitude: values.latitude
 										},
 										restaurantAddress: {
 											address: values.address.toString(),
 											districtID: values.districtID,
-											cityID: values.cityID,
-										},
-									},
+											cityID: values.cityID
+										}
+									}
 								})
-									.then((res) => {
+									.then(res => {
 										alert(JSON.stringify(res));
 
 										//this.props.navigation.navigate('Home');
 									})
-									.catch((err) => {
+									.catch(err => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -96,7 +99,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{(props) => (
+						{props => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								{oneTimeRun && (
@@ -106,7 +109,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 											if (error) return <Text>error</Text>;
 
 											if (data) {
-												data.Restaurant.map((dat) => {
+												data.Restaurant.map(dat => {
 													props.values.companyID = dat.companyID;
 													props.values.name = dat.name;
 													props.values.taxNumber = dat.taxNumber;
@@ -158,7 +161,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 									rating={star}
 									starSize={25}
 									fullStarColor={'orange'}
-									selectedStar={(rating) => setStar(rating)}
+									selectedStar={rating => setStar(rating)}
 								/>
 								<Input
 									label="Tax Number"
@@ -171,21 +174,21 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 								/>
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
-									parentReference={(value) => {
+									parentReference={value => {
 										props.values.companyID = value;
 									}}
 									userID={parseInt(global.userID)}
 								/>
 								<GetAllCitiesComponent
 									label="Select City"
-									parentReference={(value) => {
+									parentReference={value => {
 										props.values.cityID = value;
 										setCityID(value);
 									}}
 								/>
 								<GetAllCityDistrictsComponent
 									label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-									parentReference={(value) => {
+									parentReference={value => {
 										props.values.districtID = value;
 									}}
 									cityID={cityID}
@@ -214,10 +217,10 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 									value={props.values.description}
 								/>
 								<LocationComponent
-									latitude={(value) => {
+									latitude={value => {
 										props.values.latitude = value;
 									}}
-									longitude={(value) => {
+									longitude={value => {
 										props.values.longtitude = value;
 									}}
 								/>

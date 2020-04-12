@@ -3,24 +3,19 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateMuseumComponent } from '../../../generated/components';
 import { GetMuseumByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditMuseumProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
 const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 	const { museumID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);

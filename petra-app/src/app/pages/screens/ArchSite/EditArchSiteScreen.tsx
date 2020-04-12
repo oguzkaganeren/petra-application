@@ -10,25 +10,18 @@ import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllC
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditArchSiteProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
 const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 	const { archSiteID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
-	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateArchSiteComponent>

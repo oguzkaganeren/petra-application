@@ -8,7 +8,6 @@ export interface LocationComponentProps {
 	longitude: any;
 }
 
-
 const LocationComponent: React.FC<LocationComponentProps> = props => {
 	const [marker, setMarker] = React.useState(null);
 	const [region, setRegion] = React.useState({
@@ -17,8 +16,8 @@ const LocationComponent: React.FC<LocationComponentProps> = props => {
 		latitudeDelta: 0.0922,
 		longitudeDelta: 0.0421
 	});
-	
-	function onMarkerChange = event => {
+
+	const onMarkerChange = event => {
 		let longitude;
 		let latitude;
 		if (Platform.OS === 'web') {
@@ -28,24 +27,24 @@ const LocationComponent: React.FC<LocationComponentProps> = props => {
 			latitude = event.nativeEvent.coordinate.latitude;
 			longitude = event.nativeEvent.coordinate.longitude;
 		}
-		
-		setMarker({ longitude, latitude } );
+
+		setMarker({ longitude, latitude });
 		props.latitude(latitude);
 		props.longitude(longitude);
 	};
-		return (
-			<MapView
-				style={styles.mapStyle}
-				initialRegion={this.state.region}
-				onPress={e => {
-					this.onMarkerChange(e);
-				}}
-			>
-				{/* eğer marker null değilse gösterir */}
-				{this.state.marker && <MapView.Marker coordinate={this.state.marker} />}
-			</MapView>
-		);
-	}
+	return (
+		<MapView
+			style={styles.mapStyle}
+			initialRegion={this.state.region}
+			onPress={e => {
+				this.onMarkerChange(e);
+			}}
+		>
+			{/* eğer marker null değilse gösterir */}
+			{this.state.marker && <MapView.Marker coordinate={this.state.marker} />}
+		</MapView>
+	);
+};
 
 const styles: any = StyleSheet.create({
 	mapStyle: {

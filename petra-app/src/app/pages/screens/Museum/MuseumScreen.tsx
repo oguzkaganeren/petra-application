@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-//import { BottomComponent } from '../../components/Public/BottomComponent';
-import { useIsFocused } from '@react-navigation/native';
+
 import GetUserMuseumList from '../../../components/Museum/GetUserMuseumList';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface MuseumProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const MuseumScreen: React.FC<MuseumProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;

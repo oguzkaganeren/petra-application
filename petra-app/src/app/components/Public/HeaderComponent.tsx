@@ -19,7 +19,7 @@ const HeaderComponent: React.FC<HeaderProps> = props => {
 	const MenuAction = props => (
 		<TopNavigationAction
 			onPress={() => {
-				this.props.navigation.dispatch(DrawerActions.toggleDrawer());
+				props.navigation.dispatch(DrawerActions.toggleDrawer());
 			}}
 			icon={MenuIcon}
 		/>
@@ -27,7 +27,7 @@ const HeaderComponent: React.FC<HeaderProps> = props => {
 
 	const onBackPress = () => {};
 
-	const renderLeftControl = () => (this.props.previous ? <BackAction /> : <MenuAction onPress={onBackPress} />);
+	const renderLeftControl = () => (props.previous ? <BackAction /> : <MenuAction onPress={onBackPress} />);
 	return <TopNavigation style={styles.container} title={props.headerTitle} leftControl={renderLeftControl()} />;
 };
 

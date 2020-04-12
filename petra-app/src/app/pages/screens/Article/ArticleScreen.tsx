@@ -5,17 +5,12 @@ import { useIsFocused } from '@react-navigation/native';
 import GetUserArticleList from '../../../components/Article/GetUserArticleList';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface ArticleProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const ArticleScreen: React.FC<ArticleProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;

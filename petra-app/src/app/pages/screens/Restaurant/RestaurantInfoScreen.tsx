@@ -5,19 +5,12 @@ import { GetRestaurantByIdComponent } from '../../../generated/components';
 import { GetRestaurantMenuByResIdComponent } from '../../../generated/components';
 import StarRating from 'react-native-star-rating';
 declare var global: any;
-/**
- *
- */
+
 export interface RestaurantInfoScreenProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Props restaurant info screen
- * @param props
- * @returns
- */
 const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 	const { restaurantID } = props.route.params;
 	const [restaurantInfo, setHotelInfo] = React.useState([]);

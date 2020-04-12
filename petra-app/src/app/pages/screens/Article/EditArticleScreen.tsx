@@ -3,32 +3,19 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateArticleComponent } from '../../../generated/components';
 import { GetArticleByIdComponent } from '../../../generated/components';
-//import { LocationComponent } from '../../../components/Public/LocationComponent';
-//import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-//import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-//import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
-import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditArticleProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
 const EditArticleScreen: React.FC<EditArticleProps> = props => {
 	const { articleID } = props.route.params;
-	//const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
-	//const [locationID, setLocationID] = React.useState(-1);
-	//const [addressID, setAddressID] = React.useState(-1);
-	//const [star, setStar] = React.useState(1);
+
 	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
@@ -66,8 +53,6 @@ const EditArticleScreen: React.FC<EditArticleProps> = props => {
 								})
 									.then(res => {
 										alert(JSON.stringify(res));
-
-										//this.props.navigation.navigate('Home');
 									})
 									.catch(err => {
 										alert(err);

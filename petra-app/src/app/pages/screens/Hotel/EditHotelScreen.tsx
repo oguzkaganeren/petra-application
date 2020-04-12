@@ -3,25 +3,20 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateHotelComponent } from '../../../generated/components';
 import { GetHotelByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditHotelProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
 const EditHotelScreen: React.FC<EditHotelProps> = props => {
 	const { hotelID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);

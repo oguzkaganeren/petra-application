@@ -1,25 +1,18 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-//import { BottomComponent } from '../../components/Public/BottomComponent';
 import GetUserCompanyList from '../../../components/Company/GetUserCompanyList';
 
-import { useIsFocused } from '@react-navigation/native';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface CompanyProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const CompanyScreen: React.FC<CompanyProps> = (props) => {
+const CompanyScreen: React.FC<CompanyProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
-	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
+	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -57,7 +50,7 @@ const CompanyScreen: React.FC<CompanyProps> = (props) => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
-	},
+		height: Dimensions.get('window').height / 2
+	}
 });
 export default CompanyScreen;

@@ -3,17 +3,12 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
 import GetUserHotelList from '../../../components/Hotel/GetUserHotelList';
 declare var global: any;
-/**
- * props
- */
+
 export interface HotelProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- *
- */
 const HotelScreen: React.FC<HotelProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;

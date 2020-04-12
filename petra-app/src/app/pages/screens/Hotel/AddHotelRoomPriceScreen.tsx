@@ -1,36 +1,34 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
-import { AddMuseumPriceComponent } from '../../../generated/components';
-import GetAllMuseumEntranceTypesComponent from '../../../components/Museum/GetAllMuseumEntranceTypesComponent';
-import GetAllUserMuseumComponent from '../../../components/Museum/GetAllUserMuseumComponent';
+import { AddHotelRoomPriceComponent } from '../../../generated/components';
+import GetAllHotelRoomComponent from '../../../components/Hotel/GetAllHotelRoomComponent';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-export interface AddMuseumPriceProps {
+export interface AddHotelRoomPriceProps {
 	navigation: any;
 	route: any;
 }
 
-const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
+const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = props => {
 	const [theDate, setTheDate] = React.useState({});
-
 	const onSelect = value => {
 		setTheDate(value);
 	};
 
 	const { userID } = props.route.params;
-	const { museumID } = props.route.params;
+	const { hotelID } = props.route.params;
 	return (
 		<Layout style={{ flex: 1 }}>
-			<AddMuseumPriceComponent>
-				{AddMuseumPriceMutation => (
+			<AddHotelRoomPriceComponent>
+				{AddHotelRoomPriceMutation => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							museumID: 0,
+							roomID: 0,
 							price: 0,
-							entranceTypeID: 0
+							hotelID: hotelID
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -39,15 +37,14 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
 							setTimeout(() => {
-								AddMuseumPriceMutation({
+								AddHotelRoomPriceMutation({
 									variables: {
-										MuseumPrice: [
+										RoomPrice: [
 											{
-												museumID: museumID,
+												roomID: values.roomID,
 												finishDate: theDate.endDate,
 												startDate: theDate.startDate,
-												price: values.price,
-												entranceTypeID: values.entranceTypeID
+												price: values.price
 											}
 										]
 									}
@@ -57,7 +54,6 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 									})
 									.catch(err => {
 										alert(err);
-										//console.log('roomProp:' + values.roomPropRoom);
 									});
 								formikActions.setSubmitting(false);
 							}, 500);
@@ -68,11 +64,12 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
-								<GetAllMuseumEntranceTypesComponent
-									label="Select EntranceType"
+								<GetAllHotelRoomComponent
+									label="Select Hotel Room"
 									parentReference={value => {
-										props.values.entranceTypeID = value;
+										props.values.roomID = value;
 									}}
+									hotelID={hotelID}
 								/>
 								<Input
 									label="Price"
@@ -96,10 +93,10 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 						)}
 					</Formik>
 				)}
-			</AddMuseumPriceComponent>
+			</AddHotelRoomPriceComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default AddMuseumPriceScreen;
+export default AddHotelRoomPriceScreen;

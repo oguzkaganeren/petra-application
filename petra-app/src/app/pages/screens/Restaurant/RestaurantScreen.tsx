@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
-import GetUserRestaurantList from '../../../components/Restaurant/GetUserRestaurantList';
+import GetUserRestaurantList from '../../../components/Restaurant/GetUserRestaurantListComponent';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface RestaurantProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const RestaurantScreen: React.FC<RestaurantProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
