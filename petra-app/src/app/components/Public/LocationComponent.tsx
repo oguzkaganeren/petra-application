@@ -35,13 +35,13 @@ const LocationComponent: React.FC<LocationComponentProps> = props => {
 	return (
 		<MapView
 			style={styles.mapStyle}
-			initialRegion={this.state.region}
+			initialRegion={region}
 			onPress={e => {
-				this.onMarkerChange(e);
+				onMarkerChange(e);
 			}}
 		>
 			{/* eğer marker null değilse gösterir */}
-			{this.state.marker && <MapView.Marker coordinate={this.state.marker} />}
+			{marker && <MapView.Marker coordinate={marker} />}
 		</MapView>
 	);
 };

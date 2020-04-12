@@ -21,7 +21,7 @@ const GetAllHotelRoomComponent: React.FC<GetAllHotelRoomProps> = props => {
 
 	return (
 		<Layout>
-			<GetHotelRoomComponent variables={{ hotelID: this.props.hotelID }}>
+			<GetHotelRoomComponent variables={{ hotelID: props.hotelID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;

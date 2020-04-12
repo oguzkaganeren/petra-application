@@ -16,7 +16,7 @@ const HeaderComponent: React.FC<HeaderProps> = props => {
 	const MenuIcon = style => <Icon {...style} name="menu-outline" />;
 	const BackIcon = style => <Icon {...style} name="arrow-back" />;
 	const BackAction = () => <TopNavigationAction onPress={props.navigation.goBack} icon={BackIcon} />;
-	const MenuAction = props => (
+	const MenuAction = propsf => (
 		<TopNavigationAction
 			onPress={() => {
 				props.navigation.dispatch(DrawerActions.toggleDrawer());

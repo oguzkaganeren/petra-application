@@ -89,8 +89,6 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 								})
 									.then(res => {
 										alert(JSON.stringify(res));
-
-										//this.props.navigation.navigate('Home');
 									})
 									.catch(err => {
 										alert(err);
