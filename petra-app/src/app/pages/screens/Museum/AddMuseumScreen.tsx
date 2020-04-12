@@ -32,7 +32,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								MuseumTypeID: 0,
+								MuseumTypeID: [],
 								altitude: 0.0,
 								companyID: 0,
 								description: '',
@@ -85,7 +85,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 															}
 														}
 													},
-													MuseumTypeMuseums: { data: [{ museumTypeID: values.MuseumTypeID }] }
+													MuseumTypeMuseums: { data: values.MuseumTypeID }
 												}
 											]
 										}
@@ -98,7 +98,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 											console.log('name:' + values.name);
 											console.log('address:' + values.address);
 											console.log('altitude:' + values.altitude);
-											console.log('archSiteTypeID:' + values.MuseumTypeID);
+											console.log('archSiteTypeID:' + JSON.stringify(values.MuseumTypeID));
 											console.log('description:' + values.description);
 											console.log('long:' + values.longtitude);
 											console.log('lat:' + values.latitude);

@@ -14,7 +14,7 @@ const GetASTypesComponent: React.FC<GetASTypesProps> = props => {
 
 	function onValueChange(value) {
 		const filter = Object.keys(value).reduce((result, key) => {
-			return result.concat({ id: value[key].id });
+			return result.concat({ archSiteTypeID: value[key].id });
 		}, []);
 		props.parentReference(filter);
 		setSelected(value);

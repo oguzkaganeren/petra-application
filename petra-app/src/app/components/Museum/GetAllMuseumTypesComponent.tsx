@@ -9,12 +9,12 @@ export interface GetAllMuseumTypesProps {
 }
 
 const GetAllMuseumTypesComponent: React.FC<GetAllMuseumTypesProps> = props => {
-	const [selected, setSelected] = React.useState(null);
+	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
 		const filter = Object.keys(value).reduce((result, key) => {
-			return result.concat({ id: value[key].id });
+			return result.concat({ museumTypeID: value[key].id });
 		}, []);
 		props.parentReference(filter);
 		setSelected(value);

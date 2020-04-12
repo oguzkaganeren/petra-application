@@ -3,17 +3,12 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
 import GetUserTravelGuideListComponent from '../../../components/TravelGuide/GetUserTravelGuideListComponent';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface TravelGuideProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const TravelGuideScreen: React.FC<TravelGuideProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;

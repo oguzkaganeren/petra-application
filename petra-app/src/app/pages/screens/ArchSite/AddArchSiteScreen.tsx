@@ -17,12 +17,6 @@ export interface AddArchSiteProps {
 const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 	const [cityID, setCityID] = React.useState(0);
 
-	const convertDateFormatForQuery = (date: Date) => {
-		console.log('A date has been picked: ', date);
-		let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-
-		return formattedDate;
-	};
 	const { userID } = props.route.params;
 	return (
 		<Layout style={{ flex: 1 }}>
@@ -32,7 +26,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
-								archSiteTypeID: 0,
+								archSiteTypeID: [],
 								age: 0,
 								altitude: 0.0,
 								companyID: 0,
@@ -112,24 +106,12 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 														}
 													},
 													companyID: values.companyID,
-													ArchSiteTypeArchSites: { data: [{ archSiteTypeID: values.archSiteTypeID }] },
+													ArchSiteTypeArchSites: { data: values.archSiteTypeID },
 													destruction: values.destruction,
 													diameter: values.diameter,
 													period: values.period
 												}
 											]
-											/* name: values.name.toString(),
-												age: parseInt(values.age.toString()),
-												altitude: values.altitude,
-												description: values.description, //sonra utc ayarına bak!
-												longtitude: parseFloat(values.longtitude),
-												latitude: parseFloat(values.latitude),
-												address: values.address.toString(),
-												companyID: values.companyID,
-												archSiteTypeID: values.archSiteTypeID,
-												destruction: values.destruction,
-												diameter: values.diameter,
-												period: values.period */
 										}
 									})
 										.then(res => {

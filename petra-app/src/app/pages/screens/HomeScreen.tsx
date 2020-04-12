@@ -5,27 +5,22 @@ import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface HomeProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const HomeScreen: React.FC<HomeProps> = (props) => {
+const HomeScreen: React.FC<HomeProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-	const shouldLoadComponent = (index) => index === selectedIndex;
-	const SearchIcon = (style) => <Icon {...style} name="search-outline" />;
+	const shouldLoadComponent = index => index === selectedIndex;
+	const SearchIcon = style => <Icon {...style} name="search-outline" />;
 
-	const FlagIcon = (style) => <Icon {...style} name="flag-outline" />;
+	const FlagIcon = style => <Icon {...style} name="flag-outline" />;
 
-	const SettingsIcon = (style) => <Icon {...style} name="settings-outline" />;
+	const SettingsIcon = style => <Icon {...style} name="settings-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -68,7 +63,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 const styles: any = StyleSheet.create({
 	tabContainer: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height,
-	},
+		height: Dimensions.get('window').height
+	}
 });
 export default HomeScreen;

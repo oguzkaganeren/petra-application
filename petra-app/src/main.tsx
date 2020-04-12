@@ -1,6 +1,4 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-//import { createStackNavigator } from 'react-navigation-stack';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
@@ -11,7 +9,7 @@ import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import HeaderComponent from '../src/app/components/Public/HeaderComponent';
-import { LoginScreen } from './app/pages/screens/LoginScreen';
+import LoginScreen from './app/pages/screens/LoginScreen';
 import AddCompanyScreen from './app/pages/screens/Company/AddCompanyScreen';
 import ArchSiteScreen from './app/pages/screens/ArchSite/ArchSiteScreen';
 import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
@@ -42,7 +40,6 @@ import HotelDetailScreen from './app/pages/screens/Hotel/HotelDetailScreen';
 import AddRoomPropertyScreen from './app/pages/screens/Hotel/AddRoomPropertyScreen';
 import AddRoomScreen from './app/pages/screens/Hotel/AddRoomScreen';
 import AddHotelServicePropertyScreen from './app/pages/screens/Hotel/AddHotelServicePropertyScreen';
-import AddHotelCommentScreen from './app/pages/screens/Hotel/AddHotelCommentScreen';
 import AddHotelRoomPriceScreen from './app/pages/screens/Hotel/AddHotelRoomPriceScreen';
 import AddArchSiteScreen from './app/pages/screens/ArchSite/AddArchSiteScreen';
 import AddArchSiteCommentScreen from './app/pages/screens/ArchSite/AddArchSiteCommentScreen';
@@ -58,19 +55,14 @@ import AddMuseumTypeScreen from './app/pages/screens/Museum/AddMuseumTypeScreen'
 import AddMuseumScreen from './app/pages/screens/Museum/AddMuseumScreen';
 import AddMuseumCommentScreen from './app/pages/screens/Museum/AddMuseumCommentScreen';
 import AddMuseumEntranceTypeScreen from './app/pages/screens/Museum/AddMuseumEntranceTypeScreen';
-import HotelMapScreen from './app/pages/screens/Hotel/HotelMapScreen';
-import ArchSiteMapScreen from './app/pages/screens/ArchSite/ArchSiteMapScreen';
-import MuseumMapScreen from './app/pages/screens/Museum/MuseumMapScreen';
-import RestaurantMapScreen from './app/pages/screens/Restaurant/RestaurantMapScreen';
 import AddArchSiteWorkingScheduleScreen from './app/pages/screens/ArchSite/AddArchSiteWorkingScheduleScreen';
 import AddArchSitePriceScreen from './app/pages/screens/ArchSite/AddArchSitePriceScreen';
 import AddMuseumPriceScreen from './app/pages/screens/Museum/AddMuseumPriceScreen';
 import AddMuseumWorkingScheduleScreen from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
 import AddRestaurantWorkingScheduleScreen from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
-import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
+import AddTravelGuideScreen from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
 import AddArticleScreen from './app/pages/screens/Article/AddArticleScreen';
-import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
-import { RegisterScreen } from './app/pages/screens/RegisterScreen';
+import RegisterScreen from './app/pages/screens/RegisterScreen';
 declare var global: any;
 /**
  * Eğer drawer ile tıkladığın bir sayfada header gözükmesini istiyorsan her bir ekran için yeni bir stack oluşturmalısın
