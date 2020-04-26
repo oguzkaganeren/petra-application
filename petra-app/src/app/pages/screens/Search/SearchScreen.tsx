@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Text, Layout, TabView, Tab } from '@ui-kitten/components';
-import { SearchMapComponent } from '../../../components/Search/SearchMapComponent';
+import SearchMapComponent from '../../../components/Search/SearchMapComponent';
 /**
  * Home props
  */

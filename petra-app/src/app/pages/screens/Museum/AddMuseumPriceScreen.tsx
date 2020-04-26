@@ -90,7 +90,7 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add Room Price
+									Add Museum Price
 								</Button>
 							</Layout>
 						)}
