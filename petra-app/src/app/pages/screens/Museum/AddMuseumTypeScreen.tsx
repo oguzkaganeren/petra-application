@@ -52,7 +52,7 @@ export class AddMuseumTypeScreen extends React.Component<AddMuseumTypeProps, Add
 									console.log(values.typeName + ' ');
 									AddMuseumTypeMutation({
 										variables: {
-											MuseumType:[
+											MuseumType: [
 												{
 													type: values.typeName.toString()
 												}
@@ -78,8 +78,8 @@ export class AddMuseumTypeScreen extends React.Component<AddMuseumTypeProps, Add
 									{props.isSubmitting && <Spinner />}
 
 									<Input
-										label="ArchSite Type"
-										placeholder="Enter a ArchSite Type"
+										label="Museum Type"
+										placeholder="Enter a Museum Type"
 										status={props.touched.typeName && props.errors.typeName ? 'danger' : 'success'}
 										caption={props.touched.typeName && props.errors.typeName ? props.errors.typeName : ''}
 										onChangeText={props.handleChange('typeName')}

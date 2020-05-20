@@ -55,7 +55,7 @@ export class AddMuseumEntranceTypeScreen extends React.Component<
 								setTimeout(() => {
 									AddMuseumEntranceTypeMutation({
 										variables: {
-											MuseumEntranceType:[
+											MuseumEntranceType: [
 												{
 													content: values.content
 												}
@@ -82,7 +82,7 @@ export class AddMuseumEntranceTypeScreen extends React.Component<
 
 									<Input
 										label="Content"
-										placeholder="Enter your comment"
+										placeholder="Enter an Entrance Type"
 										status={props.touched.content && props.errors.content ? 'danger' : 'success'}
 										caption={props.touched.content && props.errors.content ? props.errors.content : ''}
 										onChangeText={props.handleChange('content')}
