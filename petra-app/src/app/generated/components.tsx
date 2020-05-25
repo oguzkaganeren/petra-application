@@ -7681,7 +7681,7 @@ export type Int_Comparison_Exp = {
 
 export type Location = {
    __typename?: 'Location',
-  Address: Address,
+  Address?: Maybe<Address>,
   ArchSites: Array<ArchSite>,
   ArchSites_aggregate: ArchSite_Aggregate,
   Companies: Array<Company>,
@@ -7694,7 +7694,7 @@ export type Location = {
   Restaurants_aggregate: Restaurant_Aggregate,
   TravelGuideLocations: Array<TravelGuideLocation>,
   TravelGuideLocations_aggregate: TravelGuideLocation_Aggregate,
-  addressID: Scalars['Int'],
+  addressID?: Maybe<Scalars['Int']>,
   isDeleted: Scalars['Boolean'],
   latitude: Scalars['Float'],
   locationID: Scalars['Int'],
@@ -24451,10 +24451,10 @@ export type GetHotelLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24471,14 +24471,14 @@ export type GetArchSiteLocationQuery = (
   { __typename?: 'query_root' }
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age'>
+    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age' | 'diameter'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ), ArchSitePrices: Array<(
       { __typename?: 'ArchSitePrice' }
       & Pick<ArchSitePrice, 'price' | 'finishDate' | 'archSiteEntranceTypeID'>
@@ -24505,10 +24505,10 @@ export type GetMuseumLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ), MuseumPrices: Array<(
       { __typename?: 'MuseumPrice' }
       & Pick<MuseumPrice, 'price' | 'finishDate' | 'entranceTypeID'>
@@ -24527,10 +24527,10 @@ export type GetRestaurantLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24693,7 +24693,7 @@ export type GetHotelByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
         & { City: (
@@ -24703,7 +24703,7 @@ export type GetHotelByIdQuery = (
           { __typename?: 'District' }
           & Pick<District, 'district'>
         ) }
-      ) }
+      )> }
     ), Company: (
       { __typename?: 'Company' }
       & { CompanyPhones: Array<(
@@ -24743,10 +24743,10 @@ export type GetMuseumByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24764,10 +24764,10 @@ export type GetArchSiteByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24785,10 +24785,10 @@ export type GetCompanyByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24816,7 +24816,7 @@ export type GetHotelByCityQuery = (
     & Pick<Hotel, 'description' | 'name' | 'star' | 'companyID' | 'hotelID'>
     & { Location: (
       { __typename?: 'Location' }
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & { City: (
           { __typename?: 'City' }
@@ -24825,7 +24825,7 @@ export type GetHotelByCityQuery = (
           { __typename?: 'District' }
           & Pick<District, 'district'>
         ) }
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24884,7 +24884,7 @@ export type GetRestaurantByCityQuery = (
     & Pick<Restaurant, 'name' | 'star' | 'companyID' | 'restaurantID'>
     & { Location: (
       { __typename?: 'Location' }
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & { City: (
           { __typename?: 'City' }
@@ -24893,7 +24893,7 @@ export type GetRestaurantByCityQuery = (
           { __typename?: 'District' }
           & Pick<District, 'district'>
         ) }
-      ) }
+      )> }
     ), RestaurantType: (
       { __typename?: 'RestaurantType' }
       & Pick<RestaurantType, 'type'>
@@ -24914,7 +24914,7 @@ export type GetRestaurantByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
         & { City: (
@@ -24924,7 +24924,7 @@ export type GetRestaurantByIdQuery = (
           { __typename?: 'District' }
           & Pick<District, 'district'>
         ) }
-      ) }
+      )> }
     ), Company: (
       { __typename?: 'Company' }
       & { CompanyPhones: Array<(
@@ -26792,6 +26792,7 @@ export const GetArchSiteLocationDocument = gql`
     ArchSiteTypeArchSites {
       archSiteTypeID
     }
+    diameter
   }
 }
     `;

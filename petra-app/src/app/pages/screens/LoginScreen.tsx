@@ -18,7 +18,7 @@ export interface LoginProps {
 declare var global: any;
 global.userID = -1;
 
-const LoginScreen: React.FC<LoginProps> = props => {
+const LoginScreen: React.FC<LoginProps> = (props) => {
 	const [userID, setUserID] = React.useState(0);
 	const [accessToken, setAccessToken] = React.useState('');
 	const [secureTextEntry, setSecureTextEntry] = React.useState(true);
@@ -28,7 +28,7 @@ const LoginScreen: React.FC<LoginProps> = props => {
 			const result = await Google.logInAsync({
 				iosClientId: IOS_CLIENT_ID,
 				androidClientId: ANDROID_CLIENT_ID,
-				scopes: ['profile', 'email']
+				scopes: ['profile', 'email'],
 			});
 
 			if (result.type === 'success') {
@@ -41,21 +41,21 @@ const LoginScreen: React.FC<LoginProps> = props => {
 			return { error: true };
 		}
 	};
-	const renderIcon = style => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
-	const renderMailIcon = style => <Icon {...style} name={'email'} />;
+	const renderIcon = (style) => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
+	const renderMailIcon = (style) => <Icon {...style} name={'email'} />;
 	const renderSetUserComponent = (
 		<Layout style={styles.layout}>
 			{/**sadece mobile kısmında google login gözükecek */}
 			{Platform.OS !== 'web' && (
 				<ControlUserComponent>
-					{ControlUserMutation => (
+					{(ControlUserMutation) => (
 						<Formik
 							initialValues={{}}
 							validationSchema={Yup.object({
 								mail: Yup.string()
 									.email('Invalid email')
 									.required('Required'),
-								password: Yup.string() //.min(5, 'Too Short!').required('Required'),
+								password: Yup.string(), //.min(5, 'Too Short!').required('Required'),
 							})}
 							onSubmit={async (values, formikActions) => {
 								const result = await signInWithGoogle();
@@ -72,20 +72,20 @@ const LoginScreen: React.FC<LoginProps> = props => {
 												name: result.user.givenName,
 												registerDate: new Date(),
 												password: '0',
-												accessToken: result.accessToken
-											}
+												accessToken: result.accessToken,
+											},
 										})
-											.then(res => {
+											.then((res) => {
 												const userID = res.data.insert_User.returning[0].userID;
 												const userTypeID = res.data.insert_User.returning[0].userTypeID;
 												AsyncStorage.multiSet([['userID', userID.toString()]]);
 												global.userID = userID;
 												global.userTypeID = userTypeID;
 												props.navigation.navigate('HomeScreen', {
-													userID: userID
+													userID: userID,
 												});
 											})
-											.catch(err => alert(err));
+											.catch((err) => alert(err));
 									} else {
 										console.log('Login error');
 									}
@@ -94,7 +94,7 @@ const LoginScreen: React.FC<LoginProps> = props => {
 								}, 500);
 							}}
 						>
-							{props => (
+							{(props) => (
 								<Button
 									onPress={() => {
 										props.handleSubmit();
@@ -108,18 +108,18 @@ const LoginScreen: React.FC<LoginProps> = props => {
 				</ControlUserComponent>
 			)}
 			<ControlLoginMailUserComponent>
-				{ControlLoginMailUserMutation => (
+				{(ControlLoginMailUserMutation) => (
 					<Formik
 						initialValues={{
 							secureTextEntry: true,
-							password: '',
-							mail: ''
+							password: '12345',
+							mail: 'oguz@eren.com',
 						}}
 						validationSchema={Yup.object({
 							mail: Yup.string()
 								.email('Invalid email')
 								.required('Required'),
-							password: Yup.string() //.min(5, 'Too Short!'),
+							password: Yup.string(), //.min(5, 'Too Short!'),
 							//.required('Required')
 						})}
 						onSubmit={async (values, formikActions) => {
@@ -131,28 +131,29 @@ const LoginScreen: React.FC<LoginProps> = props => {
 										loginIP: IP,
 										loginTypeID: Platform.OS === 'web' ? 2 : 1, //eğer web'den giriyorsa 2 idsi gidecektir
 										mail: values.mail,
-										password: values.password
-									}
+										password: values.password,
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										const userID = res.data.update_User.returning[0].userID;
 										const userTypeID = res.data.update_User.returning[0].userTypeID;
 										global.userID = userID;
 										global.userTypeID = userTypeID;
 										props.navigation.navigate('HomeScreen', {
-											userID: userID
+											userID: userID,
 										});
 									})
-									.catch(err => alert(err));
+									.catch((err) => alert(err));
 								formikActions.setSubmitting(false);
 							}, 500);
 						}}
 					>
-						{propsf => (
+						{(propsf) => (
 							<Layout>
 								<Input
 									value={propsf.values.mail}
 									placeholder="asd@asd.com"
+									defaultValue="oguz@eren.com"
 									label="Mail address"
 									icon={renderMailIcon}
 									status={propsf.touched.mail && propsf.errors.mail ? 'danger' : 'success'}
@@ -206,7 +207,7 @@ const LoginScreen: React.FC<LoginProps> = props => {
 		});
 	 */
 	const controlUser = () => {
-		AsyncStorage.multiGet(['userID', 'accessToken']).then(data => {
+		AsyncStorage.multiGet(['userID', 'accessToken']).then((data) => {
 			let userID = data[0][1];
 			let accessToken = data[1][1];
 
@@ -231,7 +232,7 @@ const styles: any = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		height: Dimensions.get('window').height,
-		paddingBottom: Dimensions.get('window').height / 2
-	}
+		paddingBottom: Dimensions.get('window').height / 2,
+	},
 });
 export default LoginScreen;
