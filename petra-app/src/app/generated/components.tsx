@@ -3006,6 +3006,7 @@ export type Article = {
   articleID: Scalars['Int'],
   content: Scalars['String'],
   editDate: Scalars['timestamptz'],
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted: Scalars['Boolean'],
   publishDate: Scalars['timestamptz'],
   title: Scalars['String'],
@@ -3111,6 +3112,7 @@ export type Article_Bool_Exp = {
   articleID?: Maybe<Int_Comparison_Exp>,
   content?: Maybe<String_Comparison_Exp>,
   editDate?: Maybe<Timestamptz_Comparison_Exp>,
+  imageUrl?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
   publishDate?: Maybe<Timestamptz_Comparison_Exp>,
   title?: Maybe<String_Comparison_Exp>,
@@ -3130,6 +3132,7 @@ export type Article_Insert_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
@@ -3140,6 +3143,7 @@ export type Article_Max_Fields = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -3148,6 +3152,7 @@ export type Article_Max_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
 };
@@ -3157,6 +3162,7 @@ export type Article_Min_Fields = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -3165,6 +3171,7 @@ export type Article_Min_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
 };
@@ -3192,6 +3199,7 @@ export type Article_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
@@ -3201,6 +3209,7 @@ export enum Article_Select_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
@@ -3210,6 +3219,7 @@ export type Article_Set_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
@@ -3255,6 +3265,7 @@ export enum Article_Update_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
@@ -24800,7 +24811,7 @@ export type GetArticleListQuery = (
   { __typename: 'query_root' }
   & { Article: Array<(
     { __typename?: 'Article' }
-    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title'>
+    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title' | 'imageUrl'>
   )> }
 );
 
@@ -27416,6 +27427,7 @@ export const GetArticleListDocument = gql`
     content
     publishDate
     title
+    imageUrl
   }
 }
     `;

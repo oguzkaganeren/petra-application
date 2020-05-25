@@ -394,6 +394,7 @@ query getArticleList {
 		content
 		publishDate
 		title
+		imageUrl
 	}
 }
 
