@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, Image, View } from 'react-native';
 import { Icon, Card, List, Layout, Text } from '@ui-kitten/components';
-import Carousel from 'react-native-looped-carousel';
+
 import { GetArticleListComponent } from '../../generated/components';
 
 declare var global: any;
@@ -31,17 +31,6 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 	};
 	return (
 		<Layout style={{ flex: 1 }}>
-			<Carousel delay={2000} style={styles.sliderStyle} bullet autoplay currentPage={1}>
-				<View style={[{ backgroundColor: '#BADA55' }, styles.sliderStyle]}>
-					<Text>1</Text>
-				</View>
-				<View style={[{ backgroundColor: 'red' }, styles.sliderStyle]}>
-					<Text>2</Text>
-				</View>
-				<View style={[{ backgroundColor: 'blue' }, styles.sliderStyle]}>
-					<Text>3</Text>
-				</View>
-			</Carousel>
 			<GetArticleListComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
@@ -78,10 +67,6 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 };
 
 const styles: any = StyleSheet.create({
-	sliderStyle: {
-		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 6,
-	},
 	headerText: {
 		marginHorizontal: 24,
 		marginVertical: 16,

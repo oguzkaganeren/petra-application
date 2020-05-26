@@ -256,6 +256,8 @@ query getCities {
 	City(where: { Country: { countryID: { _eq: 1 } } }) {
 		cityID
 		city
+		description
+		imageUrl
 	}
 }
 query getCityDistricts($cityID: Int!) {
@@ -518,5 +520,14 @@ query getUserTravelGuide($userID: Int!) {
 		travelGuideID
 		cost
 		creationDate
+	}
+}
+query getCityByID($cityID: Int) {
+	__typename
+	City(where: { cityID: { _eq: $cityID } }) {
+		cityID
+		city
+		description
+		imageUrl
 	}
 }

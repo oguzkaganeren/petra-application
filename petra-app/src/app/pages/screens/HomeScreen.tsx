@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, View, TouchableHighlight, ImageBackground, Platform } from 'react-native';
 import { TabView, BottomNavigationTab, Layout, Text, Icon } from '@ui-kitten/components';
 import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
+import GetAllCitiesComponentCard from '../../components/Public/GetAllCitiesComponentCard';
 
 declare var global: any;
 
@@ -11,16 +12,16 @@ export interface HomeProps {
 	route: any;
 }
 
-const HomeScreen: React.FC<HomeProps> = props => {
+const HomeScreen: React.FC<HomeProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-	const shouldLoadComponent = index => index === selectedIndex;
-	const SearchIcon = style => <Icon {...style} name="search-outline" />;
+	const shouldLoadComponent = (index) => index === selectedIndex;
+	const SearchIcon = (style) => <Icon {...style} name="search-outline" />;
 
-	const FlagIcon = style => <Icon {...style} name="flag-outline" />;
+	const FlagIcon = (style) => <Icon {...style} name="flag-outline" />;
 
-	const SettingsIcon = style => <Icon {...style} name="settings-outline" />;
+	const SettingsIcon = (style) => <Icon {...style} name="settings-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -33,15 +34,20 @@ const HomeScreen: React.FC<HomeProps> = props => {
 	}, [props.navigation]);
 	if (userID == -1) {
 		return (
-			<Layout style={{ flex: 1 }}>
+			<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
 				<GetArticleList />
 			</Layout>
 		);
 	} else {
 		return (
+			/**
+			 * FIXME:Scroll eklee
+			 */
 			<TabView selectedIndex={selectedIndex} shouldLoadComponent={shouldLoadComponent} onSelect={setSelectedIndex}>
 				<BottomNavigationTab title="Explore" icon={FlagIcon}>
-					<Layout style={styles.tabContainer}>
+					<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+						<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
 						<GetArticleList />
 					</Layout>
 				</BottomNavigationTab>
@@ -63,7 +69,7 @@ const HomeScreen: React.FC<HomeProps> = props => {
 const styles: any = StyleSheet.create({
 	tabContainer: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height
-	}
+		height: Dimensions.get('window').height,
+	},
 });
 export default HomeScreen;

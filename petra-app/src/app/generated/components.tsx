@@ -3848,6 +3848,8 @@ export type City = {
   city: Scalars['String'],
   cityID: Scalars['Int'],
   countryID: Scalars['Int'],
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted: Scalars['Boolean'],
 };
 
@@ -3954,6 +3956,8 @@ export type City_Bool_Exp = {
   city?: Maybe<String_Comparison_Exp>,
   cityID?: Maybe<Int_Comparison_Exp>,
   countryID?: Maybe<Int_Comparison_Exp>,
+  description?: Maybe<String_Comparison_Exp>,
+  imageUrl?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
@@ -3973,6 +3977,8 @@ export type City_Insert_Input = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
@@ -3981,12 +3987,16 @@ export type City_Max_Fields = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
 };
 
 export type City_Max_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
 };
 
 export type City_Min_Fields = {
@@ -3994,12 +4004,16 @@ export type City_Min_Fields = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
 };
 
 export type City_Min_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
 };
 
 export type City_Mutation_Response = {
@@ -4026,6 +4040,8 @@ export type City_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
 };
 
@@ -4033,6 +4049,8 @@ export enum City_Select_Column {
   City = 'city',
   CityId = 'cityID',
   CountryId = 'countryID',
+  Description = 'description',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted'
 }
 
@@ -4040,6 +4058,8 @@ export type City_Set_Input = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
@@ -4091,6 +4111,8 @@ export enum City_Update_Column {
   City = 'city',
   CityId = 'cityID',
   CountryId = 'countryID',
+  Description = 'description',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted'
 }
 
@@ -24659,7 +24681,7 @@ export type GetCitiesQuery = (
   { __typename: 'query_root' }
   & { City: Array<(
     { __typename?: 'City' }
-    & Pick<City, 'cityID' | 'city'>
+    & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
   )> }
 );
 
@@ -24979,6 +25001,19 @@ export type GetUserTravelGuideQuery = (
   & { TravelGuide: Array<(
     { __typename?: 'TravelGuide' }
     & Pick<TravelGuide, 'title' | 'travelGuideID' | 'cost' | 'creationDate'>
+  )> }
+);
+
+export type GetCityByIdQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetCityByIdQuery = (
+  { __typename: 'query_root' }
+  & { City: Array<(
+    { __typename?: 'City' }
+    & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
   )> }
 );
 
@@ -27132,6 +27167,8 @@ export const GetCitiesDocument = gql`
   City(where: {Country: {countryID: {_eq: 1}}}) {
     cityID
     city
+    description
+    imageUrl
   }
 }
     `;
@@ -27710,3 +27747,32 @@ export function withGetUserTravelGuide<TProps, TChildProps = {}>(operationOption
     });
 };
 export type GetUserTravelGuideQueryResult = ApolloReactCommon.QueryResult<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>;
+export const GetCityByIdDocument = gql`
+    query getCityByID($cityID: Int) {
+  __typename
+  City(where: {cityID: {_eq: $cityID}}) {
+    cityID
+    city
+    description
+    imageUrl
+  }
+}
+    `;
+export type GetCityByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCityByIdQuery, GetCityByIdQueryVariables>, 'query'>;
+
+    export const GetCityByIdComponent = (props: GetCityByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetCityByIdQuery, GetCityByIdQueryVariables> query={GetCityByIdDocument} {...props} />
+    );
+    
+export type GetCityByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCityByIdQuery, GetCityByIdQueryVariables> & TChildProps;
+export function withGetCityById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCityByIdQuery,
+  GetCityByIdQueryVariables,
+  GetCityByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCityByIdQuery, GetCityByIdQueryVariables, GetCityByIdProps<TChildProps>>(GetCityByIdDocument, {
+      alias: 'getCityById',
+      ...operationOptions
+    });
+};
+export type GetCityByIdQueryResult = ApolloReactCommon.QueryResult<GetCityByIdQuery, GetCityByIdQueryVariables>;
