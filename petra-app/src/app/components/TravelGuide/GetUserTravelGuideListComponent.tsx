@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
 import { GetUserTravelGuideComponent } from '../../generated/components';
 import { DeleteTravelGuideComponent } from '../../generated/components';
 import { Formik } from 'formik';
@@ -11,23 +11,52 @@ export interface GetUserTravelGuideListProps {
 	route: any;
 }
 
-const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = props => {
+const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (props) => {
 	const [travelGuideList, setTravelGuideList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = travelGuideList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setTravelGuideList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteTravelGuide(item) {
 		return (
 			<DeleteTravelGuideComponent>
-				{DeleteTravelGuideMutation => (
+				{(DeleteTravelGuideMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -35,14 +64,14 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 								console.log(values.name + ' ');
 								DeleteTravelGuideMutation({
 									variables: {
-										travelGuideID: item.key
-									}
+										travelGuideID: item.key,
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -51,16 +80,12 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{fprops => (
+						{(fprops) => (
 							<Layout>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -72,8 +97,8 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 		console.log(item.star);
 		return global.userTypeID != 0 ? deleteTravelGuide(item) : null;
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -84,7 +109,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('TravelGuideDetailScreen', {
-						travelGuideID: item.key
+						travelGuideID: item.key,
 					});
 				}}
 			/>
@@ -98,14 +123,14 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.TravelGuide.map(dat => {
+						data.TravelGuide.map((dat) => {
 							if (travelGuideList.length > 0 && !removeItemBool) {
-								if (travelGuideList.every(item => item.key != dat.travelGuideID)) {
+								if (travelGuideList.every((item) => item.key != dat.travelGuideID)) {
 									travelGuideList.push({
 										key: dat.travelGuideID,
 										title: dat.title,
 										description: dat.creationDate,
-										cost: dat.cost
+										cost: dat.cost,
 									});
 								}
 							} else if (!removeItemBool) {
@@ -113,7 +138,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 									key: dat.travelGuideID,
 									title: dat.title,
 									description: dat.creationDate,
-									cost: dat.cost
+									cost: dat.cost,
 								});
 							}
 						});
@@ -128,7 +153,17 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = p
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
 });
 export default GetUserTravelGuideListComponent;

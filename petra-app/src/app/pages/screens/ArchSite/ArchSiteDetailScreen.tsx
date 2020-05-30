@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, ButtonGroup, Icon } from '@ui-kitten/components';
-
+import ArchSiteInfoScreen from '../ArchSite/ArchSiteInfoScreen';
 export interface ArchSiteDetailProps {
 	navigation: any;
 	route: any;
@@ -46,6 +46,7 @@ const ArchSiteDetailScreen: React.FC<ArchSiteDetailProps> = (props) => {
 					Add ArchSite Price
 				</Button>
 			</ButtonGroup>
+			<ArchSiteInfoScreen navigation={props.navigation} route={props.route} archSiteID={archSiteID} />
 		</Layout>
 	);
 };

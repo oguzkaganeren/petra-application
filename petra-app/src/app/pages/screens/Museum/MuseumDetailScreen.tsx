@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Button, Layout, ButtonGroup, Icon } from '@ui-kitten/components';
-
+import MuseumInfoScreen from '../Museum/MuseumInfoScreen';
 export interface MuseumDetailProps {
 	navigation: any;
 	route: any;
@@ -37,16 +37,7 @@ const MuseumDetailScreen: React.FC<MuseumDetailProps> = (props) => {
 					Add Museum Price
 				</Button>
 			</ButtonGroup>
-			{/* <Button
-				onPress={() => {
-					props.navigation.navigate('AddMuseumCommentScreen', {
-						userID: userID,
-						museumID: museumID
-					});
-				}}
-			>
-				Add Museum Comment
-			</Button> */}
+			<MuseumInfoScreen navigation={props.navigation} route={props.route} museumID={museumID} />
 		</Layout>
 	);
 };

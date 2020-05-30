@@ -24779,6 +24779,22 @@ export type GetMuseumByIdQuery = (
       & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
       )> }
     ) }
   )> }
@@ -24800,6 +24816,22 @@ export type GetArchSiteByIdQuery = (
       & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
       )> }
     ) }
   )> }
@@ -27340,6 +27372,12 @@ export const GetMuseumByIdDocument = gql`
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -27348,6 +27386,13 @@ export const GetMuseumByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
   }
 }
     `;
@@ -27379,6 +27424,12 @@ export const GetArchSiteByIdDocument = gql`
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -27387,6 +27438,13 @@ export const GetArchSiteByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
     age
     altitude
     destruction

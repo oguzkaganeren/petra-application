@@ -330,6 +330,12 @@ query getMuseumByID($museumID: Int) {
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -338,8 +344,16 @@ query getMuseumByID($museumID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 	}
 }
+
 query getArchSiteByID($archSiteID: Int) {
 	__typename
 	ArchSite(where: { archSiteID: { _eq: $archSiteID } }) {
@@ -349,6 +363,12 @@ query getArchSiteByID($archSiteID: Int) {
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -357,6 +377,13 @@ query getArchSiteByID($archSiteID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 		age
 		altitude
 		destruction

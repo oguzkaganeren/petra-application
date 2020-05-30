@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
 import { GetUserHotelComponent } from '../../generated/components';
 import { DeleteHotelComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
@@ -12,23 +12,52 @@ export interface GetUserHotelListProps {
 	route: any;
 }
 
-const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
+const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	const [hotelList, setHotelList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = hotelList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setHotelList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteHotel(item) {
 		return (
 			<DeleteHotelComponent>
-				{DeleteHotelMutation => (
+				{(DeleteHotelMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -36,14 +65,14 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 								console.log(values.name + ' ');
 								DeleteHotelMutation({
 									variables: {
-										hotelID: item.key
-									}
+										hotelID: item.key,
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -52,27 +81,23 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{fprops => (
+						{(fprops) => (
 							<Layout>
 								<Button
 									appearance="ghost"
 									onPress={() => {
 										props.navigation.navigate('EditHotelScreen', {
-											hotelID: item.key
+											hotelID: item.key,
 										});
 									}}
 									disabled={fprops.isSubmitting}
 								>
 									Edit
 								</Button>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -98,8 +123,8 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 			/>
 		);
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -110,7 +135,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('HotelDetailScreen', {
-						hotelID: item.key
+						hotelID: item.key,
 					});
 				}}
 			/>
@@ -124,15 +149,15 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
+						data.Hotel.map((dat) => {
 							if (hotelList.length > 0 && !removeItemBool) {
-								if (hotelList.every(item => item.key != dat.hotelID)) {
+								if (hotelList.every((item) => item.key != dat.hotelID)) {
 									hotelList.push({
 										key: dat.hotelID,
 										title: dat.name,
 										description: dat.description == null ? '' : dat.description,
 										star: dat.star,
-										companyName: dat.Company.name
+										companyName: dat.Company.name,
 									});
 								}
 							} else if (!removeItemBool) {
@@ -141,7 +166,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 									title: dat.name,
 									description: dat.description == null ? '' : dat.description,
 									star: dat.star,
-									companyName: dat.Company.name
+									companyName: dat.Company.name,
 								});
 							}
 						});
@@ -156,7 +181,17 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
 });
 export default GetUserHotelList;
