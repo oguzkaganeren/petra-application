@@ -4,6 +4,7 @@ import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddRoomComponent, GetUserHotelComponent } from '../../../generated/components';
 import GetAllRoomPropertyComponent from '../../../components/Hotel/GetAllRoomProperty';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddRoomProps {
@@ -11,25 +12,26 @@ export interface AddRoomProps {
 	route: any;
 }
 
-const AddRoomScreen: React.FC<AddRoomProps> = props => {
+const AddRoomScreen: React.FC<AddRoomProps> = (props) => {
 	const { userID } = props.route.params;
 	const { hotelID } = props.route.params;
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddRoomComponent>
-				{AddRoomMutation => (
+				{(AddRoomMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							roomNo: '',
-							roomPropRoom: []
+							roomPropRoom: [],
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							roomNo: Yup.string()
 								.min(1, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -38,15 +40,17 @@ const AddRoomScreen: React.FC<AddRoomProps> = props => {
 									variables: {
 										roomNo: values.roomNo,
 										roomPropRoom: values.roomPropRoom,
-										hotelID: hotelID
-									}
+										hotelID: hotelID,
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.roomNo + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('roomProp:' + values.roomPropRoom);
 									});
@@ -55,7 +59,7 @@ const AddRoomScreen: React.FC<AddRoomProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -71,10 +75,11 @@ const AddRoomScreen: React.FC<AddRoomProps> = props => {
 								/>
 								<GetAllRoomPropertyComponent
 									label="Select Room Properties"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.roomPropRoom = value;
 									}}
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

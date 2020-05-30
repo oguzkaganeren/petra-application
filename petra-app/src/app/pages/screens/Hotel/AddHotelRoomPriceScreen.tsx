@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddHotelRoomPriceComponent } from '../../../generated/components';
 import GetAllHotelRoomComponent from '../../../components/Hotel/GetAllHotelRoomComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -11,28 +12,28 @@ export interface AddHotelRoomPriceProps {
 	route: any;
 }
 
-const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = props => {
+const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = (props) => {
 	const [theDate, setTheDate] = React.useState({});
-	const onSelect = value => {
-		setTheDate(value);
-	};
-
+	const toastRef = React.useRef();
 	const { userID } = props.route.params;
 	const { hotelID } = props.route.params;
+	const onSelect = (value) => {
+		setTheDate(value);
+	};
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddHotelRoomPriceComponent>
-				{AddHotelRoomPriceMutation => (
+				{(AddHotelRoomPriceMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							roomID: 0,
 							price: 0,
-							hotelID: hotelID
+							hotelID: hotelID,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							price: Yup.number().required('Required')
+							price: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -44,15 +45,18 @@ const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = props => {
 												roomID: values.roomID,
 												finishDate: theDate.endDate,
 												startDate: theDate.startDate,
-												price: values.price
-											}
-										]
-									}
+												price: values.price,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show('Price added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -60,13 +64,13 @@ const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
 								<GetAllHotelRoomComponent
 									label="Select Hotel Room"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.roomID = value;
 									}}
 									hotelID={hotelID}
@@ -80,7 +84,8 @@ const AddHotelRoomPriceScreen: React.FC<AddHotelRoomPriceProps> = props => {
 									onBlur={props.handleBlur('price')}
 									value={props.values.price.toString()}
 								/>
-								<RangeDatepicker range={theDate} onSelect={value => onSelect(value)} />
+								<RangeDatepicker range={theDate} onSelect={(value) => onSelect(value)} />
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

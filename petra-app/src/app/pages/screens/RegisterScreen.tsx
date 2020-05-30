@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, ScrollView, Platform } from 'react-native';
 import { Button, Layout, Input, Icon, Spinner } from '@ui-kitten/components';
 import { ControlUserComponent } from '../../generated/components';
 import * as Network from 'expo-network';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,9 +11,9 @@ export interface RegisterProps {
 	navigation: any;
 }
 
-const RegisterScreen: React.FC<RegisterProps> = props => {
+const RegisterScreen: React.FC<RegisterProps> = (props) => {
 	const [secureTextEntry, setSecureTextEntry] = React.useState(true);
-
+	const toastRef = React.useRef();
 	const convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate =
@@ -29,17 +30,17 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 			date.getSeconds();
 		return formattedDate;
 	};
-	const renderIcon = style => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
-	const renderMailIcon = style => <Icon {...style} name={'email'} />;
-	const renderEditIcon = style => <Icon {...style} name={'edit-2-outline'} />;
-	const renderPhoneIcon = style => <Icon {...style} name={'phone-outline'} />;
+	const renderIcon = (style) => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
+	const renderMailIcon = (style) => <Icon {...style} name={'email'} />;
+	const renderEditIcon = (style) => <Icon {...style} name={'edit-2-outline'} />;
+	const renderPhoneIcon = (style) => <Icon {...style} name={'phone-outline'} />;
 
 	const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<ScrollView>
 				<ControlUserComponent>
-					{controlUserMutation => (
+					{(controlUserMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -52,7 +53,7 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 								surname: '',
 								password: '',
 								registerDate: new Date(),
-								accessToken: ''
+								accessToken: '',
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -72,7 +73,7 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 									.required('Required'),
 								password: Yup.string()
 									.min(5, 'Too Short!')
-									.required('Required')
+									.required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={async (values, formikActions) => {
@@ -90,15 +91,18 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 													loginDate: values.loginDate,
 													loginIP: IP,
 													loginTypeID: values.loginTypeID,
-													registerDate: values.registerDate
-												}
-											]
-										}
+													registerDate: values.registerDate,
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(values.name + ' welcome. Redirecting to the previous page...', 500, () => {
+												props.navigation.goBack();
+											});
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('tax:' + values.surname);
@@ -112,7 +116,7 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{propsf => (
+							{(propsf) => (
 								<Layout style={styles.layout}>
 									{propsf.isSubmitting && <Spinner />}
 									<Input
@@ -141,6 +145,7 @@ const RegisterScreen: React.FC<RegisterProps> = props => {
 										onChangeText={propsf.handleChange('password')}
 										onBlur={propsf.handleBlur('password')}
 									/>
+									<Toast ref={toastRef} />
 									<Input
 										label="Name"
 										placeholder="Please Enter your Name"
@@ -196,7 +201,7 @@ const styles: any = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		height: Dimensions.get('window').height,
-		paddingBottom: Dimensions.get('window').height / 2
-	}
+		paddingBottom: Dimensions.get('window').height / 2,
+	},
 });
 export default RegisterScreen;

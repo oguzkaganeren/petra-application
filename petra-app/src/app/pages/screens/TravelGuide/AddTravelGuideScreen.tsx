@@ -8,6 +8,7 @@ import HotelLocationComponent from '../../../components/Hotel/HotelLocationCompo
 import { TravelGuideLocationComponent } from '../../../components/TravelGuide/TravelGuideLocationComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import { AddTravelGuideComponent } from '../../../generated/components';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -16,29 +17,30 @@ export interface AddTravelGuideProps {
 	route: any;
 }
 
-const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
+const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 	const [listData, setListData] = React.useState([]);
+	const toastRef = React.useRef();
 	YellowBox.ignoreWarnings([
-		'VirtualizedLists should never be nested' // TODO: Remove when fixed
+		'VirtualizedLists should never be nested', // TODO: Remove when fixed
 	]);
 
 	function addItem(item) {
 		// only add if the item doesn't exist in the list
 		//console.log(this.state.listData.filter(e => e.type === 'hotel').map(value => value.id));
-		if (!(listData.filter(e => e.id === item.id).length > 0) || item.title == null) {
+		if (!(listData.filter((e) => e.id === item.id).length > 0) || item.title == null) {
 			setListData(listData.concat([item]));
 		}
 	}
 
 	const { userID } = props.route.params;
 
-	const renderItemArcIcon = style => <Icon {...style} name="globe-2-outline" />;
-	const renderItemMuseumIcon = style => <Icon {...style} name="archive-outline" />;
-	const renderItemHotelIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const renderItemRestIcon = style => <Icon {...style} name="award-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
+	const renderItemArcIcon = (style) => <Icon {...style} name="globe-2-outline" />;
+	const renderItemMuseumIcon = (style) => <Icon {...style} name="archive-outline" />;
+	const renderItemHotelIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const renderItemRestIcon = (style) => <Icon {...style} name="award-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	const renderItem = ({ item, index }) => (
 		<ListItem
 			title={
@@ -65,13 +67,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 		<Layout style={{ flex: 1 }}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<AddTravelGuideComponent>
-					{AddTravelGuideMutation => (
+					{(AddTravelGuideMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
 								foodTypeID: 0, //Sonra düzeltilecek
 								title: '',
-								cost: 0
+								cost: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -79,7 +81,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 									.min(2, 'Too Short!')
 									.max(50, 'Too Long!')
 									.required('Required'),
-								cost: Yup.number().required('Required')
+								cost: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -89,21 +91,21 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 									let restaurantValues = [];
 									let archSiteValues = [];
 									let travelGuideValues = [];
-									listData.filter(e => e.type === 'hotel').map(value => hotelValues.push({ hotelID: value.id }));
-									listData.filter(e => e.type === 'museum').map(value => museumValues.push({ museumID: value.id }));
+									listData.filter((e) => e.type === 'hotel').map((value) => hotelValues.push({ hotelID: value.id }));
+									listData.filter((e) => e.type === 'museum').map((value) => museumValues.push({ museumID: value.id }));
 									listData
-										.filter(e => e.type === 'restaurant')
-										.map(value => restaurantValues.push({ restaurantID: value.id }));
+										.filter((e) => e.type === 'restaurant')
+										.map((value) => restaurantValues.push({ restaurantID: value.id }));
 									listData
-										.filter(e => e.type === 'archsite')
-										.map(value => archSiteValues.push({ archSiteID: value.id }));
+										.filter((e) => e.type === 'archsite')
+										.map((value) => archSiteValues.push({ archSiteID: value.id }));
 									listData
-										.filter(e => e.type === 'travelguide')
-										.map(value =>
+										.filter((e) => e.type === 'travelguide')
+										.map((value) =>
 											travelGuideValues.push({
 												Location: {
-													data: { latitude: value.coordinates.latitude, longtitude: value.coordinates.longitude }
-												}
+													data: { latitude: value.coordinates.latitude, longtitude: value.coordinates.longitude },
+												},
 											})
 										);
 									//console.log(hotelValues);
@@ -116,28 +118,31 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 													creationDate: new Date(),
 													cost: values.cost,
 													TravelGuideHotels: {
-														data: hotelValues
+														data: hotelValues,
 													},
 													TravelGuideMuseums: {
-														data: museumValues
+														data: museumValues,
 													},
 													TravelGuideRestaurants: {
-														data: restaurantValues
+														data: restaurantValues,
 													},
 													TravelGuideArchSites: {
-														data: archSiteValues
+														data: archSiteValues,
 													},
 													TravelGuideLocations: {
-														data: travelGuideValues
-													}
-												}
-											]
-										}
+														data: travelGuideValues,
+													},
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(values.title + ' added. Redirecting to the previous page...', 500, () => {
+												props.navigation.goBack();
+											});
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 										});
 									formikActions.setSubmitting(false);
@@ -145,7 +150,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 									<Button
@@ -158,6 +163,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 									>
 										Add Travel Guide
 									</Button>
+									<Toast ref={toastRef} />
 									<Input
 										label="Title"
 										placeholder="Enter a title for your travel guide"
@@ -180,23 +186,23 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											console.log(value);
 											setCityID(value);
 										}}
 									/>
 									<Text>Select a point</Text>
-									<TabView selectedIndex={selectedIndex} onSelect={value => setSelectedIndex(value)}>
+									<TabView selectedIndex={selectedIndex} onSelect={(value) => setSelectedIndex(value)}>
 										<Tab title="Add yours">
 											<Layout style={styles.tabContainer}>
 												<TravelGuideLocationComponent
-													marker={value => {
+													marker={(value) => {
 														let item = {
 															id: value.id,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
-															type: value.type
+															type: value.type,
 														};
 														addItem(item);
 													}}
@@ -207,7 +213,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 											<Layout style={styles.tabContainer}>
 												<ASLocationComponent
 													cityID={cityID}
-													marker={value => {
+													marker={(value) => {
 														/*this.setState({
 																latitude: value
 															});*/
@@ -216,7 +222,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
-															type: value.type
+															type: value.type,
 														};
 														addItem(item);
 													}}
@@ -227,13 +233,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 											<Layout style={styles.tabContainer}>
 												<MuseumLocationComponent
 													cityID={cityID}
-													marker={value => {
+													marker={(value) => {
 														let item = {
 															id: value.id,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
-															type: value.type
+															type: value.type,
 														};
 														addItem(item);
 													}}
@@ -243,13 +249,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 										<Tab title="Restaurants">
 											<Layout style={styles.tabContainer}>
 												<RestaurantLocationComponent
-													marker={value => {
+													marker={(value) => {
 														let item = {
 															id: value.id,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
-															type: value.type
+															type: value.type,
 														};
 														addItem(item);
 													}}
@@ -259,13 +265,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 										<Tab title="Hotels">
 											<Layout style={styles.tabContainer}>
 												<HotelLocationComponent
-													marker={value => {
+													marker={(value) => {
 														let item = {
 															id: value.id,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
-															type: value.type
+															type: value.type,
 														};
 														addItem(item);
 													}}
@@ -288,7 +294,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default AddTravelGuideScreen;

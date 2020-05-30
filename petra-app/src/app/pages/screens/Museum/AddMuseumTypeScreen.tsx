@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddMuseumTypeComponent } from '../../../generated/components';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -11,6 +12,7 @@ export interface AddMuseumTypeProps {
 }
 
 const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddMuseumTypeComponent>
@@ -41,7 +43,10 @@ const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = (props) => {
 									},
 								})
 									.then((res) => {
-										alert(JSON.stringify(res));
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.typeName + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
 									.catch((err) => {
 										alert(err);
@@ -66,6 +71,7 @@ const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = (props) => {
 									value={props.values.typeName}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

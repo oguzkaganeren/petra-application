@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddFoodTypeComponent } from '../../../generated/components';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddFoodTypeProps {
@@ -10,22 +11,23 @@ export interface AddFoodTypeProps {
 	route: any;
 }
 
-const AddFoodTypeScreen: React.FC<AddFoodTypeProps> = props => {
+const AddFoodTypeScreen: React.FC<AddFoodTypeProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddFoodTypeComponent>
-				{AddFoodTypeMutation => (
+				{(AddFoodTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							foodType: ''
+							foodType: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							foodType: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -33,13 +35,16 @@ const AddFoodTypeScreen: React.FC<AddFoodTypeProps> = props => {
 								console.log(values.foodType + ' ');
 								AddFoodTypeMutation({
 									variables: {
-										foodType: [{ type: values.foodType.toString() }]
-									}
+										foodType: [{ type: values.foodType.toString() }],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.foodType + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('foodType:' + values.foodType);
 									});
@@ -48,7 +53,7 @@ const AddFoodTypeScreen: React.FC<AddFoodTypeProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -62,6 +67,7 @@ const AddFoodTypeScreen: React.FC<AddFoodTypeProps> = props => {
 									value={props.values.foodType}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

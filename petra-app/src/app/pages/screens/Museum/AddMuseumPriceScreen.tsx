@@ -4,6 +4,7 @@ import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/comp
 import { AddMuseumPriceComponent } from '../../../generated/components';
 import GetAllMuseumEntranceTypesComponent from '../../../components/Museum/GetAllMuseumEntranceTypesComponent';
 import GetAllUserMuseumComponent from '../../../components/Museum/GetAllUserMuseumComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -12,29 +13,28 @@ export interface AddMuseumPriceProps {
 	route: any;
 }
 
-const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
+const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = (props) => {
 	const [theDate, setTheDate] = React.useState({});
-
-	const onSelect = value => {
-		setTheDate(value);
-	};
-
+	const toastRef = React.useRef();
 	const { userID } = props.route.params;
 	const { museumID } = props.route.params;
+	const onSelect = (value) => {
+		setTheDate(value);
+	};
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddMuseumPriceComponent>
-				{AddMuseumPriceMutation => (
+				{(AddMuseumPriceMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							museumID: 0,
 							price: 0,
-							entranceTypeID: 0
+							entranceTypeID: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							price: Yup.number().required('Required')
+							price: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -47,15 +47,18 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 												finishDate: theDate.endDate,
 												startDate: theDate.startDate,
 												price: values.price,
-												entranceTypeID: values.entranceTypeID
-											}
-										]
-									}
+												entranceTypeID: values.entranceTypeID,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show('Price added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										//console.log('roomProp:' + values.roomPropRoom);
 									});
@@ -64,13 +67,13 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
 								<GetAllMuseumEntranceTypesComponent
 									label="Select EntranceType"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.entranceTypeID = value;
 									}}
 								/>
@@ -83,7 +86,8 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = props => {
 									onBlur={props.handleBlur('price')}
 									value={props.values.price.toString()}
 								/>
-								<RangeDatepicker range={theDate} onSelect={value => onSelect(value)} />
+								<Toast ref={toastRef} />
+								<RangeDatepicker range={theDate} onSelect={(value) => onSelect(value)} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

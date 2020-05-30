@@ -8,6 +8,7 @@ import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCo
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
@@ -24,6 +25,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
 	const [star, setStar] = React.useState(1);
+	const toastRef = React.useRef();
 	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
@@ -87,8 +89,10 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 									},
 								})
 									.then((res) => {
-										alert(JSON.stringify(res));
-
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -139,6 +143,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 								>
 									Edit Restaurant
 								</Button>
+								<Toast ref={toastRef} />
 								<Input
 									label="Name"
 									placeholder="Restaurant Name"

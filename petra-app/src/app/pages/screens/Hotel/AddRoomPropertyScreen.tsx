@@ -3,28 +3,30 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddRoomPropertyComponent } from '../../../generated/components';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddRoomPropertyProps {
 	navigation: any;
 	route: any;
 }
-const AddRoomPropertyScreen: React.FC<AddRoomPropertyProps> = props => {
+const AddRoomPropertyScreen: React.FC<AddRoomPropertyProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddRoomPropertyComponent>
-				{AddRoomProperyMutation => (
+				{(AddRoomProperyMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							content: ''
+							content: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							content: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -34,15 +36,18 @@ const AddRoomPropertyScreen: React.FC<AddRoomPropertyProps> = props => {
 									variables: {
 										RoomProperty: [
 											{
-												content: values.content.toString()
-											}
-										]
-									}
+												content: values.content.toString(),
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.content + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('roomProp:' + values.content);
 									});
@@ -51,7 +56,7 @@ const AddRoomPropertyScreen: React.FC<AddRoomPropertyProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -65,6 +70,7 @@ const AddRoomPropertyScreen: React.FC<AddRoomPropertyProps> = props => {
 									value={props.values.content}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddFoodComponent } from '../../../generated/components';
 import GetAllFoodTypesComponent from '../../../components/Restaurant/GetAllFoodTypesComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -11,17 +12,17 @@ export interface AddFoodProps {
 	route: any;
 }
 
-const AddFoodScreen: React.FC<AddFoodProps> = props => {
+const AddFoodScreen: React.FC<AddFoodProps> = (props) => {
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddFoodComponent>
-				{AddFoodMutation => (
+				{(AddFoodMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							foodTypeID: 0, //Sonra düzeltilecek
 							name: '',
-							price: 0
+							price: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -29,7 +30,7 @@ const AddFoodScreen: React.FC<AddFoodProps> = props => {
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
 								.required('Required'),
-							price: Yup.number().required('Required')
+							price: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -41,15 +42,18 @@ const AddFoodScreen: React.FC<AddFoodProps> = props => {
 											{
 												name: values.name,
 												price: values.price,
-												restaurantFoodTypeID: values.foodTypeID
-											}
-										]
-									}
+												restaurantFoodTypeID: values.foodTypeID,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('name:' + values.name);
 										console.log('price:' + values.price);
@@ -60,7 +64,7 @@ const AddFoodScreen: React.FC<AddFoodProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -74,6 +78,7 @@ const AddFoodScreen: React.FC<AddFoodProps> = props => {
 									value={props.values.name}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Input
 									label="Price"
 									placeholder="Enter a Food Price"
@@ -85,7 +90,7 @@ const AddFoodScreen: React.FC<AddFoodProps> = props => {
 								/>
 								<GetAllFoodTypesComponent
 									label="Select Food Type"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.foodTypeID = value;
 									}}
 								/>

@@ -8,6 +8,7 @@ import GetAllHotelServicePropertyComponent from '../../../components/Hotel/GetAl
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
@@ -17,11 +18,11 @@ export interface AddHotelProps {
 	route: any;
 }
 
-const AddHotelScreen: React.FC<AddHotelProps> = props => {
+const AddHotelScreen: React.FC<AddHotelProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [star, setStar] = React.useState(1);
-
-	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
+	const toastRef = React.useRef();
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	const convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate =
@@ -41,7 +42,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddHotelComponent>
-				{AddHotelMutation => (
+				{(AddHotelMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -54,7 +55,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 							name: '',
 							taxNumber: '',
 							companyID: 0,
-							hotelServiceProperty: []
+							hotelServiceProperty: [],
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -70,7 +71,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 								.min(5, 'Too Short!')
 								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required')
+							longtitude: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -91,23 +92,26 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 															data: {
 																address: values.address.toString(),
 																districtID: values.districtID,
-																cityID: values.cityID
-															}
-														}
-													}
+																cityID: values.cityID,
+															},
+														},
+													},
 												},
 												companyID: values.companyID,
 												HotelServices: {
-													data: values.hotelServiceProperty
-												}
-											}
-										]
-									}
+													data: values.hotelServiceProperty,
+												},
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('name:' + values.name);
 										console.log('tax:' + values.taxNumber);
@@ -122,7 +126,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								<Button
@@ -146,6 +150,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 									autoFocus
 								/>
 								<Text style={{ color: 'gray' }}>Select your hotel star</Text>
+								<Toast ref={toastRef} />
 								<StarRating
 									containerStyle={{ width: Dimensions.get('window').width / 8 }}
 									disabled={false}
@@ -157,7 +162,7 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 									rating={star}
 									starSize={25}
 									fullStarColor={'orange'}
-									selectedStar={rating => setStar(rating)}
+									selectedStar={(rating) => setStar(rating)}
 								/>
 								<Input
 									label="Tax Number"
@@ -170,21 +175,21 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 								/>
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.companyID = value;
 									}}
 									userID={parseInt(global.userID)}
 								/>
 								<GetAllCitiesComponent
 									label="Select City"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.cityID = value;
 										setCityID(value);
 									}}
 								/>
 								<GetAllCityDistrictsComponent
 									label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.districtID = value;
 									}}
 									cityID={cityID}
@@ -215,15 +220,15 @@ const AddHotelScreen: React.FC<AddHotelProps> = props => {
 
 								<GetAllHotelServicePropertyComponent
 									label="Select Hotel Properties"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.hotelServiceProperty = value;
 									}}
 								/>
 								<LocationComponent
-									latitude={value => {
+									latitude={(value) => {
 										props.values.latitude = value;
 									}}
-									longitude={value => {
+									longitude={(value) => {
 										props.values.longtitude = value;
 									}}
 								/>

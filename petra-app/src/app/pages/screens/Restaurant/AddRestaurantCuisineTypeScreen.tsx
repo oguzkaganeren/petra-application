@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddRestaurantCuisineTypeComponent } from '../../../generated/components';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddRestaurantCuisineTypeProps {
@@ -10,22 +11,23 @@ export interface AddRestaurantCuisineTypeProps {
 	route: any;
 }
 
-const AddRestaurantCuisineTypeScreen: React.FC<AddRestaurantCuisineTypeProps> = props => {
+const AddRestaurantCuisineTypeScreen: React.FC<AddRestaurantCuisineTypeProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddRestaurantCuisineTypeComponent>
-				{AddRestaurantCuisineTypeMutation => (
+				{(AddRestaurantCuisineTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							name: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -34,17 +36,19 @@ const AddRestaurantCuisineTypeScreen: React.FC<AddRestaurantCuisineTypeProps> = 
 									variables: {
 										RestaurantCuisineType: [
 											{
-												name: values.name
-											}
-										]
-									}
+												name: values.name,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('name:' + values.name);
 									});
@@ -53,7 +57,7 @@ const AddRestaurantCuisineTypeScreen: React.FC<AddRestaurantCuisineTypeProps> = 
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -67,7 +71,7 @@ const AddRestaurantCuisineTypeScreen: React.FC<AddRestaurantCuisineTypeProps> = 
 									value={props.values.name}
 									autoFocus
 								/>
-
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

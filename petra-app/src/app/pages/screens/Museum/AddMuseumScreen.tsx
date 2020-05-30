@@ -7,6 +7,7 @@ import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCo
 import GetAllMuseumTypesComponent from '../../../components/Museum/GetAllMuseumTypesComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -15,8 +16,9 @@ export interface AddMuseumProps {
 	route: any;
 }
 
-const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
+const AddMuseumScreen: React.FC<AddMuseumProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
+	const toastRef = React.useRef();
 	const convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
@@ -28,7 +30,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 		<Layout style={{ flex: 1 }}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<AddMuseumComponent>
-					{AddMuseumMutation => (
+					{(AddMuseumMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -41,7 +43,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 								latitude: 0,
 								districtID: 0,
 								cityID: 0,
-								longtitude: 0
+								longtitude: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -57,7 +59,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 									.min(5, 'Too Short!')
 									.required('Required'),
 								//sadece longtitude kontrol etsem yeterli
-								longtitude: Yup.number().required('Required')
+								longtitude: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -80,20 +82,23 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 																data: {
 																	address: values.address.toString(),
 																	districtID: values.districtID,
-																	cityID: values.cityID
-																}
-															}
-														}
+																	cityID: values.cityID,
+																},
+															},
+														},
 													},
-													MuseumTypeMuseums: { data: values.MuseumTypeID }
-												}
-											]
-										}
+													MuseumTypeMuseums: { data: values.MuseumTypeID },
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+												props.navigation.goBack();
+											});
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('address:' + values.address);
@@ -109,7 +114,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
@@ -123,11 +128,12 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 									</Button>
 									<GetAllUserCompanyComponent
 										label="Select Your Company"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.companyID = value;
 										}}
 										userID={parseInt(userID)}
 									/>
+									<Toast ref={toastRef} />
 									<Input
 										label="Museum Name"
 										placeholder="Enter Your Museum Name"
@@ -140,14 +146,14 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cityID = value;
 											setCityID(value);
 										}}
 									/>
 									<GetAllCityDistrictsComponent
 										label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.districtID = value;
 										}}
 										cityID={cityID}
@@ -164,7 +170,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 
 									<GetAllMuseumTypesComponent
 										label="Select Museum Type"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.MuseumTypeID = value;
 										}}
 									/>
@@ -179,10 +185,10 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = props => {
 									/>
 
 									<LocationComponent
-										latitude={value => {
+										latitude={(value) => {
 											props.values.latitude = value;
 										}}
-										longitude={value => {
+										longitude={(value) => {
 											props.values.longtitude = value;
 										}}
 									/>

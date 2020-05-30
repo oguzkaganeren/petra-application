@@ -5,6 +5,7 @@ import { AddMuseumWorkingScheduleComponent } from '../../../generated/components
 import GetAllDayComponent from '../../../components/Public/GetAllDayComponent';
 import GetAllUserMuseumComponent from '../../../components/Museum/GetAllUserMuseumComponent';
 import TimePicker from 'react-native-simple-time-picker';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -13,18 +14,19 @@ export interface AddMuseumWorkingScheduleProps {
 	route: any;
 }
 
-const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = props => {
+const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = (props) => {
 	const [theDate, setTheDate] = React.useState({});
+	const toastRef = React.useRef();
 
-	const onSelect = value => {
-		setTheDate(value);
-	};
 	const { userID } = props.route.params;
 	const { museumID } = props.route.params;
+	const onSelect = (value) => {
+		setTheDate(value);
+	};
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddMuseumWorkingScheduleComponent>
-				{AddMuseumWorkingScheduleMutation => (
+				{(AddMuseumWorkingScheduleMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -33,11 +35,11 @@ const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = 
 							openHour: 0,
 							openMinute: 0,
 							closeHour: 0,
-							closeMinute: 0
+							closeMinute: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							dayID: Yup.number().required('Required')
+							dayID: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -56,20 +58,23 @@ const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = 
 																data: {
 																	closeHour: values.closeHour + ':' + values.closeMinute + ':' + '00',
 																	openHour: values.openHour + ':' + values.openMinute + ':' + '00',
-																	dayID: values.dayID
-																}
-															}
-														}
-													]
-												}
-											}
-										]
-									}
+																	dayID: values.dayID,
+																},
+															},
+														},
+													],
+												},
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show('Working Schedule added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -77,14 +82,14 @@ const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = 
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
-								<RangeDatepicker range={theDate} onSelect={value => onSelect(value)} />
+								<RangeDatepicker range={theDate} onSelect={(value) => onSelect(value)} />
 								<GetAllDayComponent
 									label="Select Day"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.dayID = value;
 									}}
 								/>
@@ -106,6 +111,7 @@ const AddMuseumWorkingScheduleScreen: React.FC<AddMuseumWorkingScheduleProps> = 
 										props.values.closeMinute = minutes;
 									}}
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

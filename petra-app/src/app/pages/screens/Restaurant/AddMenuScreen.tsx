@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddRestaurantMenuComponent } from '../../../generated/components';
 import GetAllFoodComponent from '../../../components/Restaurant/GetAllFoodComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -11,19 +12,20 @@ export interface AddMenuProps {
 	route: any;
 }
 
-const AddMenuScreen: React.FC<AddMenuProps> = props => {
+const AddMenuScreen: React.FC<AddMenuProps> = (props) => {
 	const { userID } = props.route.params;
 	const { restaurantID } = props.route.params;
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddRestaurantMenuComponent>
-				{AddRestaurantMenuMutation => (
+				{(AddRestaurantMenuMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							name: '',
 							price: 0,
-							restaurantFoods: []
+							restaurantFoods: [],
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -31,7 +33,7 @@ const AddMenuScreen: React.FC<AddMenuProps> = props => {
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
 								.required('Required'),
-							price: Yup.number().required('Required')
+							price: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -44,15 +46,18 @@ const AddMenuScreen: React.FC<AddMenuProps> = props => {
 												name: values.name,
 												price: values.price,
 												restaurantID: restaurantID,
-												RestaurantMenuFoods: { data: values.restaurantFoods }
-											}
-										]
-									}
+												RestaurantMenuFoods: { data: values.restaurantFoods },
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('name:' + values.name);
 										console.log('price:' + values.price);
@@ -63,7 +68,7 @@ const AddMenuScreen: React.FC<AddMenuProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -86,9 +91,10 @@ const AddMenuScreen: React.FC<AddMenuProps> = props => {
 									onBlur={props.handleBlur('price')}
 									value={props.values.price.toString()}
 								/>
+								<Toast ref={toastRef} />
 								<GetAllFoodComponent
 									label="Select Foods"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.restaurantFoods = value;
 									}}
 								/>

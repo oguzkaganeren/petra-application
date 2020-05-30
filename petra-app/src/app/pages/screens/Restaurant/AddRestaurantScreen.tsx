@@ -7,6 +7,7 @@ import GetAllUserCompany from '../../../components/Company/GetAllUserCompany';
 import GetAllRestaurantTypesComponent from '../../../components/Restaurant/GetAllRestaurantTypesComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import GetAllCuisineTypesComponent from '../../../components/Restaurant/GetAllCuisineTypesComponent';
@@ -16,8 +17,9 @@ export interface AddRestaurantProps {
 	route: any;
 }
 
-const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
+const AddRestaurantScreen: React.FC<AddRestaurantProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
+	const toastRef = React.useRef();
 	const convertDateFormatForQuery = (date: Date) => {
 		console.log('A date has been picked: ', date);
 		let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
@@ -30,7 +32,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 		<Layout style={{ flex: 1 }}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<AddRestaurantComponent>
-					{AddRestaurantMutation => (
+					{(AddRestaurantMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -45,7 +47,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 								companyID: 0,
 								cuisineTypes: [],
 								districtID: 0,
-								cityID: 0
+								cityID: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -63,7 +65,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 									.min(5, 'Too Short!')
 									.required('Required'),
 								//sadece longtitude kontrol etsem yeterli
-								longtitude: Yup.number().required('Required')
+								longtitude: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -98,22 +100,25 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 																data: {
 																	address: values.address.toString(),
 																	districtID: values.districtID,
-																	cityID: values.cityID
-																}
-															}
-														}
+																	cityID: values.cityID,
+																},
+															},
+														},
 													},
 													restaurantTypeID: values.restaurantTypeID,
 													companyID: values.companyID,
-													taxNumber: values.taxNumber.toString()
-												}
-											]
-										}
+													taxNumber: values.taxNumber.toString(),
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+												props.navigation.goBack();
+											});
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('ISO:' + values.ISO);
@@ -129,7 +134,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
@@ -143,7 +148,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 									</Button>
 									<GetAllUserCompany
 										label="Select Your Company"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.companyID = value;
 										}}
 										userID={parseInt(userID)}
@@ -160,14 +165,15 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cityID = value;
 											setCityID(value);
 										}}
 									/>
+									<Toast ref={toastRef} />
 									<GetAllCityDistrictsComponent
 										label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.districtID = value;
 										}}
 										cityID={cityID}
@@ -183,7 +189,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 									/>
 									<GetAllRestaurantTypesComponent
 										label="Select Restaurant Type"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.restaurantTypeID = value;
 										}}
 									/>
@@ -199,7 +205,7 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 									/>
 									<GetAllCuisineTypesComponent
 										label="Select Restaurant Cuisine Types"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cuisineTypes = value;
 										}}
 									/>
@@ -212,12 +218,12 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = props => {
 										onBlur={props.handleBlur('taxNumber')}
 										value={props.values.taxNumber}
 									/>
-									<Datepicker date={props.values.since} onSelect={e => props.setFieldValue('since', e)} />
+									<Datepicker date={props.values.since} onSelect={(e) => props.setFieldValue('since', e)} />
 									<LocationComponent
-										latitude={value => {
+										latitude={(value) => {
 											props.values.latitude = value;
 										}}
-										longitude={value => {
+										longitude={(value) => {
 											props.values.longtitude = value;
 										}}
 									/>

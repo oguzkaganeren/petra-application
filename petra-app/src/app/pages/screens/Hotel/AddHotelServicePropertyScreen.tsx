@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddHotelServicePropertyComponent } from '../../../generated/components';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddHotelServicePropertyProps {
@@ -10,22 +11,23 @@ export interface AddHotelServicePropertyProps {
 	route: any;
 }
 
-const AddHotelServicePropertyScreen: React.FC<AddHotelServicePropertyProps> = props => {
+const AddHotelServicePropertyScreen: React.FC<AddHotelServicePropertyProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddHotelServicePropertyComponent>
-				{AddHotelServicePropertyMutation => (
+				{(AddHotelServicePropertyMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							content: ''
+							content: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							content: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -34,15 +36,18 @@ const AddHotelServicePropertyScreen: React.FC<AddHotelServicePropertyProps> = pr
 									variables: {
 										HotelServiceProperty: [
 											{
-												content: values.content.toString()
-											}
-										]
-									}
+												content: values.content.toString(),
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.content + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('foodType:' + values.content);
 									});
@@ -51,7 +56,7 @@ const AddHotelServicePropertyScreen: React.FC<AddHotelServicePropertyProps> = pr
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -65,6 +70,7 @@ const AddHotelServicePropertyScreen: React.FC<AddHotelServicePropertyProps> = pr
 									value={props.values.content}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

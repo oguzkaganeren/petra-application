@@ -7,6 +7,7 @@ import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
@@ -16,18 +17,18 @@ export interface EditMuseumProps {
 	route: any;
 }
 
-const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
+const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 	const { museumID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
-	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
+	const toastRef = React.useRef();
+	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateMuseumComponent>
-				{UpdateMuseumMutation => (
+				{(UpdateMuseumMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -39,7 +40,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 							latitude: 0,
 							districtID: 0,
 							cityID: 0,
-							longtitude: 0
+							longtitude: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -55,7 +56,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 								.min(5, 'Too Short!')
 								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required')
+							longtitude: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -69,25 +70,27 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 										museum: {
 											name: values.name.toString(),
 											companyID: values.companyID,
-											description: values.description
+											description: values.description,
 										},
 										museumLocation: {
 											longtitude: values.longtitude,
-											latitude: values.latitude
+											latitude: values.latitude,
 										},
 										museumAddress: {
 											address: values.address.toString(),
 											districtID: values.districtID,
-											cityID: values.cityID
-										}
-									}
+											cityID: values.cityID,
+										},
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -95,7 +98,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								{oneTimeRun && (
@@ -105,7 +108,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 											if (error) return <Text>error</Text>;
 
 											if (data) {
-												data.Museum.map(dat => {
+												data.Museum.map((dat) => {
 													props.values.companyID = dat.companyID;
 													props.values.name = dat.name;
 													props.values.address = dat.Location.Address.address;
@@ -146,26 +149,26 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.companyID = value;
 									}}
 									userID={parseInt(global.userID)}
 								/>
 								<GetAllCitiesComponent
 									label="Select City"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.cityID = value;
 										setCityID(value);
 									}}
 								/>
 								<GetAllCityDistrictsComponent
 									label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.districtID = value;
 									}}
 									cityID={cityID}
 								/>
-
+								<Toast ref={toastRef} />
 								<Input
 									label="Address"
 									status={props.touched.address && props.errors.address ? 'danger' : 'success'}
@@ -189,10 +192,10 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = props => {
 									value={props.values.description}
 								/>
 								<LocationComponent
-									latitude={value => {
+									latitude={(value) => {
 										props.values.latitude = value;
 									}}
-									longitude={value => {
+									longitude={(value) => {
 										props.values.longtitude = value;
 									}}
 								/>
