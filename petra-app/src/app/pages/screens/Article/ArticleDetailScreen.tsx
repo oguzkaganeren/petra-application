@@ -6,27 +6,15 @@ export interface ArticleDetailScreenProps {
 	navigation: any;
 	route: any;
 }
-const ArticleDetailScreen: React.FC<ArticleDetailScreenProps> = props => {
+const ArticleDetailScreen: React.FC<ArticleDetailScreenProps> = (props) => {
 	const { userID } = props.route.params;
-	return (
-		<Layout style={{ flex: 1 }}>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddTagScreen', {
-						userID: userID
-					});
-				}}
-			>
-				Add Tag
-			</Button>
-		</Layout>
-	);
+	return <Layout style={{ flex: 1 }}></Layout>;
 };
 
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default ArticleDetailScreen;

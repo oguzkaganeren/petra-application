@@ -10,16 +10,16 @@ export interface AddMuseumEntranceTypeProps {
 	route: any;
 }
 
-const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = props => {
+const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = (props) => {
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddMuseumEntranceTypeComponent>
-				{AddMuseumEntranceTypeMutation => (
+				{(AddMuseumEntranceTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							content: '',
-							star: 0
+							star: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -27,7 +27,7 @@ const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = props 
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
 								.required('Required'),
-							star: Yup.number().required('Required')
+							star: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -36,15 +36,15 @@ const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = props 
 									variables: {
 										MuseumEntranceType: [
 											{
-												content: values.content
-											}
-										]
-									}
+												content: values.content,
+											},
+										],
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										alert(JSON.stringify(res));
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('content:' + values.content);
 									});
@@ -53,7 +53,7 @@ const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = props 
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -74,7 +74,7 @@ const AddMuseumEntranceTypeScreen: React.FC<AddMuseumEntranceTypeProps> = props 
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add ArchSite Entrance Type
+									Add Museum Entrance Type
 								</Button>
 							</Layout>
 						)}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text, Icon } from '@ui-kitten/components';
+import { Button, Layout, Text, Icon, ButtonGroup } from '@ui-kitten/components';
 import { useIsFocused } from '@react-navigation/native';
 import GetUserArticleList from '../../../components/Article/GetUserArticleList';
 
@@ -11,9 +11,9 @@ export interface ArticleProps {
 	route: any;
 }
 
-const ArticleScreen: React.FC<ArticleProps> = props => {
+const ArticleScreen: React.FC<ArticleProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
-	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -33,17 +33,30 @@ const ArticleScreen: React.FC<ArticleProps> = props => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<Button
-					icon={accessoryItemIcon}
-					appearance="ghost"
-					onPress={() => {
-						props.navigation.navigate('AddArticleScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add Article
-				</Button>
+				<ButtonGroup style={{ justifyContent: 'center' }}>
+					<Button
+						icon={accessoryItemIcon}
+						appearance="ghost"
+						onPress={() => {
+							props.navigation.navigate('AddArticleScreen', {
+								userID: userID,
+							});
+						}}
+					>
+						Add Article
+					</Button>
+					<Button
+						icon={accessoryItemIcon}
+						onPress={() => {
+							props.navigation.navigate('AddTagScreen', {
+								userID: userID,
+							});
+						}}
+					>
+						Add Tag
+					</Button>
+				</ButtonGroup>
+
 				<GetUserArticleList navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
@@ -53,7 +66,7 @@ const ArticleScreen: React.FC<ArticleProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default ArticleScreen;

@@ -1,64 +1,32 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-
+import { Button, Layout, Icon, ButtonGroup } from '@ui-kitten/components';
+import RestaurantInfoScreen from '../../screens/Restaurant/RestaurantInfoScreen';
 export interface RestaurantDetailScreenProps {
 	navigation: any;
 	route: any;
 }
 
-const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = props => {
+const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = (props) => {
 	const { userID } = props.route.params;
 	const { restaurantID } = props.route.params;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddRestaurantTypeScreen', {
-						userID: userID
-					});
-				}}
-			>
-				Add Restaurant Type
-			</Button>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddFoodTypeScreen', {
-						userID: userID
-					});
-				}}
-			>
-				Add Food Type
-			</Button>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddFoodScreen', {
-						userID: userID
-					});
-				}}
-			>
-				Add Food
-			</Button>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddMenuScreen', {
-						userID: userID,
-						restaurantID: restaurantID
-					});
-				}}
-			>
-				Add Menu
-			</Button>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
-						userID: userID
-					});
-				}}
-			>
-				Add Cuisine Type
-			</Button>
-			<Button
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					onPress={() => {
+						props.navigation.navigate('AddMenuScreen', {
+							userID: userID,
+							restaurantID: restaurantID,
+						});
+					}}
+				>
+					Add Menu
+				</Button>
+
+				{/* 	<Button
 				onPress={() => {
 					props.navigation.navigate('AddRestaurantCommentScreen', {
 						userID: userID,
@@ -67,17 +35,20 @@ const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = props => {
 				}}
 			>
 				Add Restaurant Comment
-			</Button>
-			<Button
-				onPress={() => {
-					props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
-						userID: userID,
-						restaurantID: restaurantID
-					});
-				}}
-			>
-				Add Restaurant Working Schedule
-			</Button>
+			</Button> */}
+				<Button
+					icon={accessoryItemIcon}
+					onPress={() => {
+						props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
+							userID: userID,
+							restaurantID: restaurantID,
+						});
+					}}
+				>
+					Add Restaurant Working Schedule
+				</Button>
+			</ButtonGroup>
+			<RestaurantInfoScreen navigation={props.navigation} route={props.route} restaurantID={restaurantID} />
 		</Layout>
 	);
 };
@@ -85,7 +56,7 @@ const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default RestaurantDetailScreen;

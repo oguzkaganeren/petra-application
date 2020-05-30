@@ -11,9 +11,10 @@ declare var global: any;
 export interface HotelInfoScreenProps {
 	navigation: any;
 	route: any;
+	hotelID: any;
 }
 
-const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
+const HotelInfoScreen: React.FC<HotelInfoScreenProps> = (props) => {
 	const { hotelID } = props.route.params;
 	const [hotelInfo, setHotelInfo] = React.useState([]);
 	const [hotelService, setHotelService] = React.useState([]);
@@ -22,20 +23,20 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 	const renderItem = ({ item, index }) => (
 		<ListItem
 			title={item.roomNo + ' ' + (item.roomPrices.length > 0 ? '(' + item.roomPrices[0].price + ' TL' + ')' : '')}
-			description={item.roomProperties.map(dat => {
+			description={item.roomProperties.map((dat) => {
 				return dat.RoomProperty.content + ', ';
 			})}
 		/>
 	);
 	return (
-		<Layout style={{ flex: 1 }}>
+		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetHotelByIdComponent variables={{ hotelID: hotelID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
+						data.Hotel.map((dat) => {
 							hotelInfo.push({
 								title: dat.name,
 								city: dat.Location.Address.City.city,
@@ -44,7 +45,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 								district: dat.Location.Address.District.district,
 								description: dat.description == null ? '' : dat.description,
 								star: dat.star,
-								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : ''
+								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : '',
 							});
 						});
 					}
@@ -87,16 +88,16 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.HotelService.map(dat => {
+						data.HotelService.map((dat) => {
 							if (hotelService.length > 0) {
-								if (hotelService.every(item => item.content != dat.HotelServiceProperty.content)) {
+								if (hotelService.every((item) => item.content != dat.HotelServiceProperty.content)) {
 									hotelService.push({
-										content: dat.HotelServiceProperty.content
+										content: dat.HotelServiceProperty.content,
 									});
 								}
 							} else {
 								hotelService.push({
-									content: dat.HotelServiceProperty.content
+									content: dat.HotelServiceProperty.content,
 								});
 							}
 						});
@@ -107,7 +108,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 								Services:
 							</Text>
 							<ButtonGroup style={{ marginLeft: 5 }} appearance="outline">
-								{hotelService.map(dat => {
+								{hotelService.map((dat) => {
 									return <Button>{dat.content}</Button>;
 								})}
 							</ButtonGroup>
@@ -122,14 +123,14 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.HotelRoom.map(dat => {
+						data.HotelRoom.map((dat) => {
 							if (hotelRoom.length > 0) {
-								if (hotelRoom.every(item => item.roomID != dat.Room.roomID)) {
+								if (hotelRoom.every((item) => item.roomID != dat.Room.roomID)) {
 									hotelRoom.push({
 										roomID: dat.Room.roomID,
 										roomNo: dat.Room.roomNo,
 										roomPrices: dat.Room.RoomPrices,
-										roomProperties: dat.Room.RoomPropertyRooms
+										roomProperties: dat.Room.RoomPropertyRooms,
 									});
 								}
 							} else {
@@ -137,7 +138,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 									roomID: dat.Room.roomID,
 									roomNo: dat.Room.roomNo,
 									roomPrices: dat.Room.RoomPrices,
-									roomProperties: dat.Room.RoomPropertyRooms
+									roomProperties: dat.Room.RoomPropertyRooms,
 								});
 							}
 						});
@@ -159,7 +160,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = props => {
 const styles: any = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		flexWrap: 'wrap'
-	}
+		flexWrap: 'wrap',
+	},
 });
 export default HotelInfoScreen;

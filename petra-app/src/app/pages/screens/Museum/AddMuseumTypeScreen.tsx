@@ -10,22 +10,22 @@ export interface AddMuseumTypeProps {
 	route: any;
 }
 
-const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = props => {
+const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = (props) => {
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddMuseumTypeComponent>
-				{AddMuseumTypeMutation => (
+				{(AddMuseumTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							typeName: ''
+							typeName: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							typeName: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -35,15 +35,15 @@ const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = props => {
 									variables: {
 										MuseumType: [
 											{
-												type: values.typeName.toString()
-											}
-										]
-									}
+												type: values.typeName.toString(),
+											},
+										],
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										alert(JSON.stringify(res));
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.typeName);
 									});
@@ -52,13 +52,13 @@ const AddMuseumTypeScreen: React.FC<AddMuseumTypeProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
 								<Input
-									label="ArchSite Type"
-									placeholder="Enter a ArchSite Type"
+									label="Museum Type"
+									placeholder="Enter a Museum Type"
 									status={props.touched.typeName && props.errors.typeName ? 'danger' : 'success'}
 									caption={props.touched.typeName && props.errors.typeName ? props.errors.typeName : ''}
 									onChangeText={props.handleChange('typeName')}

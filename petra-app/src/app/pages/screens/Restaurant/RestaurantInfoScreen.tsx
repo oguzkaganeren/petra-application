@@ -9,9 +9,10 @@ declare var global: any;
 export interface RestaurantInfoScreenProps {
 	navigation: any;
 	route: any;
+	restaurantID: any;
 }
 
-const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
+const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 	const { restaurantID } = props.route.params;
 	const [restaurantInfo, setHotelInfo] = React.useState([]);
 	const [restaurantMenu, setRestaurantMenu] = React.useState([]);
@@ -19,20 +20,20 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 	const renderItem = ({ item, index }) => (
 		<ListItem
 			title={item.name + ' ' + (item.price > 0 ? '(' + item.price + ' TL' + ')' : '')}
-			description={item.menuFoods.map(dat => {
+			description={item.menuFoods.map((dat) => {
 				return dat.RestaurantFood.name + ', ';
 			})}
 		/>
 	);
 	return (
-		<Layout style={{ flex: 1 }}>
+		<Layout style={{ flex: 1, padding: 40 }}>
 			<GetRestaurantByIdComponent variables={{ restaurantID: restaurantID }}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Restaurant.map(dat => {
+						data.Restaurant.map((dat) => {
 							restaurantInfo.push({
 								title: dat.name,
 								city: dat.Location.Address.City.city,
@@ -40,7 +41,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 								taxNumber: dat.taxNumber,
 								district: dat.Location.Address.District.district,
 								star: dat.star,
-								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : ''
+								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : '',
 							});
 						});
 					}
@@ -59,6 +60,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 							<Text style={styles.text} category="p1">
 								Phone:{restaurantInfo[0].phone}
 							</Text>
+
 							<StarRating
 								containerStyle={{ width: Dimensions.get('window').width / 8 }}
 								disabled={false}
@@ -81,14 +83,14 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RestaurantMenu.map(dat => {
+						data.RestaurantMenu.map((dat) => {
 							if (restaurantMenu.length > 0) {
-								if (restaurantMenu.every(item => item.restaurantMenuID != dat.restaurantMenuID)) {
+								if (restaurantMenu.every((item) => item.restaurantMenuID != dat.restaurantMenuID)) {
 									restaurantMenu.push({
 										restaurantMenuID: dat.restaurantMenuID,
 										name: dat.name,
 										price: dat.price,
-										menuFoods: dat.RestaurantMenuFoods
+										menuFoods: dat.RestaurantMenuFoods,
 									});
 								}
 							} else {
@@ -96,7 +98,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 									restaurantMenuID: dat.restaurantMenuID,
 									name: dat.name,
 									price: dat.price,
-									menuFoods: dat.RestaurantMenuFoods
+									menuFoods: dat.RestaurantMenuFoods,
 								});
 							}
 						});
@@ -118,7 +120,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = props => {
 const styles: any = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		flexWrap: 'wrap'
-	}
+		flexWrap: 'wrap',
+	},
 });
 export default RestaurantInfoScreen;

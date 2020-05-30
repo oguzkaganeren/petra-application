@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text, Icon } from '@ui-kitten/components';
+import { Button, Layout, Text, Icon, ButtonGroup } from '@ui-kitten/components';
 import GetUserHotelList from '../../../components/Hotel/GetUserHotelList';
 declare var global: any;
 
@@ -9,9 +9,9 @@ export interface HotelProps {
 	route: any;
 }
 
-const HotelScreen: React.FC<HotelProps> = props => {
+const HotelScreen: React.FC<HotelProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
-	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -31,17 +31,40 @@ const HotelScreen: React.FC<HotelProps> = props => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<Button
-					icon={accessoryItemIcon}
-					appearance="ghost"
-					onPress={() => {
-						props.navigation.navigate('AddHotelScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add Hotel
-				</Button>
+				<ButtonGroup style={{ justifyContent: 'center' }}>
+					<Button
+						icon={accessoryItemIcon}
+						appearance="ghost"
+						onPress={() => {
+							props.navigation.navigate('AddHotelScreen', {
+								userID: userID,
+							});
+						}}
+					>
+						Add Hotel
+					</Button>
+					<Button
+						icon={accessoryItemIcon}
+						onPress={() => {
+							props.navigation.navigate('AddRoomPropertyScreen', {
+								userID: userID,
+							});
+						}}
+					>
+						Add Room Property
+					</Button>
+					<Button
+						icon={accessoryItemIcon}
+						onPress={() => {
+							props.navigation.navigate('AddHotelServicePropertyScreen', {
+								userID: userID,
+							});
+						}}
+					>
+						Add Hotel Service
+					</Button>
+				</ButtonGroup>
+
 				<GetUserHotelList navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
@@ -51,7 +74,7 @@ const HotelScreen: React.FC<HotelProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default HotelScreen;
