@@ -5,6 +5,7 @@ import { AddCompanyComponent } from '../../../generated/components';
 import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
@@ -13,8 +14,9 @@ export interface AddCompanyProps {
 	navigation: any;
 	route: any;
 }
-const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
+const AddCompanyScreen: React.FC<AddCompanyProps> = (props) => {
 	const [cityID, setCityID] = React.useState(-1);
+	const toastRef = React.useRef();
 	const convertDateFormatForQuery = (date: Date) => {
 		let formattedDate =
 			date.getFullYear() +
@@ -35,7 +37,7 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 		<Layout style={{ flex: 1 }}>
 			<ScrollView>
 				<AddCompanyComponent>
-					{AddCompanyMutation => (
+					{(AddCompanyMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -48,7 +50,7 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 								address: '',
 								phone: '',
 								districtID: 0,
-								cityID: 0
+								cityID: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -71,7 +73,7 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 									.min(5, 'Too Short!')
 									.required('Required'),
 								//sadece longtitude kontrol etsem yeterli
-								longtitude: Yup.number().required('Required')
+								longtitude: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -94,19 +96,22 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 																data: {
 																	address: values.address.toString(),
 																	districtID: values.districtID,
-																	cityID: values.cityID
-																}
-															}
-														}
-													}
-												}
-											]
-										}
+																	cityID: values.cityID,
+																},
+															},
+														},
+													},
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+												props.navigation.goBack();
+											});
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('tax:' + values.taxNumber);
@@ -122,7 +127,7 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
@@ -145,6 +150,7 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 										onBlur={props.handleBlur('taxNumber')}
 										value={props.values.taxNumber}
 									/>
+									<Toast ref={toastRef} />
 									<Input
 										label="Email"
 										status={props.touched.mail && props.errors.mail ? 'danger' : 'success'}
@@ -165,14 +171,14 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cityID = value;
 											setCityID(value);
 										}}
 									/>
 									<GetAllCityDistrictsComponent
 										label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.districtID = value;
 										}}
 										cityID={cityID}
@@ -187,10 +193,10 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = props => {
 										value={props.values.address}
 									/>
 									<LocationComponent
-										latitude={value => {
+										latitude={(value) => {
 											props.values.latitude = value;
 										}}
-										longitude={value => {
+										longitude={(value) => {
 											props.values.longtitude = value;
 										}}
 									/>

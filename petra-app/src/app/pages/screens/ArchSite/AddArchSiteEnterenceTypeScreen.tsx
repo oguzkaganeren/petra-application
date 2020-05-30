@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddArchSiteEntranceTypeComponent } from '../../../generated/components';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -9,18 +10,19 @@ export interface AddArchSiteEntranceTypeProps {
 	navigation: any;
 	route: any;
 }
-const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = props => {
+const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = (props) => {
 	const { userID } = props.route.params;
 	const { archSiteID } = props.route.params;
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddArchSiteEntranceTypeComponent>
-				{AddArchSiteEntranceTypeMutation => (
+				{(AddArchSiteEntranceTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							content: '',
-							star: 0
+							star: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -28,7 +30,7 @@ const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = pr
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
 								.required('Required'),
-							star: Yup.number().required('Required')
+							star: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -37,15 +39,18 @@ const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = pr
 									variables: {
 										ArchSiteEntranceType: [
 											{
-												content: values.content
-											}
-										]
-									}
+												content: values.content,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.content + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('content:' + values.content);
 									});
@@ -54,7 +59,7 @@ const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = pr
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -68,7 +73,7 @@ const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = pr
 									value={props.values.content}
 									autoFocus
 								/>
-
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

@@ -7,6 +7,7 @@ import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCo
 import GetASTypesComponent from '../../../components/ArchSite/GetASTypesComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -14,15 +15,15 @@ export interface AddArchSiteProps {
 	navigation: any;
 	route: any;
 }
-const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
+const AddArchSiteScreen: React.FC<AddArchSiteProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
-
+	const toastRef = React.useRef();
 	const { userID } = props.route.params;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<AddArchSiteComponent>
-					{AddArchSiteMutation => (
+					{(AddArchSiteMutation) => (
 						<Formik
 							//değişkenlerin başlangıç değerleri
 							initialValues={{
@@ -39,7 +40,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 								latitude: 0,
 								longtitude: 0,
 								districtID: 0,
-								cityID: 0
+								cityID: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -63,7 +64,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 									.min(5, 'Too Short!')
 									.required('Required'),
 								//sadece longtitude kontrol etsem yeterli
-								longtitude: Yup.number().required('Required')
+								longtitude: Yup.number().required('Required'),
 							})}
 							//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 							onSubmit={(values, formikActions) => {
@@ -100,24 +101,31 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 																data: {
 																	address: values.address.toString(),
 																	districtID: values.districtID,
-																	cityID: values.cityID
-																}
-															}
-														}
+																	cityID: values.cityID,
+																},
+															},
+														},
 													},
 													companyID: values.companyID,
 													ArchSiteTypeArchSites: { data: values.archSiteTypeID },
 													destruction: values.destruction,
 													diameter: values.diameter,
-													period: values.period
-												}
-											]
-										}
+													period: values.period,
+												},
+											],
+										},
 									})
-										.then(res => {
-											alert(JSON.stringify(res));
+										.then((res) => {
+											//alert(JSON.stringify(res));
+											toastRef.current.show(
+												values.name.toString() + ' added. Redirecting to the previous page...',
+												500,
+												() => {
+													props.navigation.goBack();
+												}
+											);
 										})
-										.catch(err => {
+										.catch((err) => {
 											alert(err);
 											console.log('name:' + values.name);
 											console.log('address:' + values.address);
@@ -136,7 +144,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 							}}
 						>
 							{/* Bu kısımda görsel parçalar eklenir */}
-							{props => (
+							{(props) => (
 								<Layout>
 									{props.isSubmitting && <Spinner />}
 
@@ -148,9 +156,10 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 									>
 										Add ArchSite
 									</Button>
+									<Toast ref={toastRef} />
 									<GetAllUserCompanyComponent
 										label="Select Your Company"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.companyID = value;
 										}}
 										userID={parseInt(userID)}
@@ -167,14 +176,14 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 									/>
 									<GetAllCitiesComponent
 										label="Select City"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.cityID = value;
 											setCityID(value);
 										}}
 									/>
 									<GetAllCityDistrictsComponent
 										label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.districtID = value;
 										}}
 										cityID={cityID}
@@ -199,7 +208,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 									/>
 									<GetASTypesComponent
 										label="Select ArchSite Type"
-										parentReference={value => {
+										parentReference={(value) => {
 											props.values.archSiteTypeID = value;
 										}}
 									/>
@@ -250,10 +259,10 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = props => {
 									/>
 
 									<LocationComponent
-										latitude={value => {
+										latitude={(value) => {
 											props.values.latitude = value;
 										}}
-										longitude={value => {
+										longitude={(value) => {
 											props.values.longtitude = value;
 										}}
 									/>

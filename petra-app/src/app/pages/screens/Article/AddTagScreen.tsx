@@ -3,28 +3,30 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddTagComponent } from '../../../generated/components';
 import { Formik } from 'formik';
+import Toast from 'react-native-easy-toast';
 import * as Yup from 'yup';
 
 export interface AddTagScreenProps {
 	navigation: any;
 	route: any;
 }
-const AddTagScreen: React.FC<AddTagScreenProps> = props => {
+const AddTagScreen: React.FC<AddTagScreenProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddTagComponent>
-				{AddTagMutation => (
+				{(AddTagMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							name: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -34,15 +36,18 @@ const AddTagScreen: React.FC<AddTagScreenProps> = props => {
 									variables: {
 										Tag: [
 											{
-												name: values.name.toString()
-											}
-										]
-									}
+												name: values.name.toString(),
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -51,7 +56,7 @@ const AddTagScreen: React.FC<AddTagScreenProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -65,6 +70,7 @@ const AddTagScreen: React.FC<AddTagScreenProps> = props => {
 									value={props.values.name}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

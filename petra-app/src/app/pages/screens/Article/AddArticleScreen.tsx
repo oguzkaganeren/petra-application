@@ -3,6 +3,7 @@ import { StyleSheet, View, ToastAndroid } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddArticleComponent } from '../../../generated/components';
 import GetAllTagsComponent from '../../../components/Article/GetAllTagsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,26 +11,27 @@ export interface AddArticleProps {
 	navigation: any;
 	route: any;
 }
-const AddArticleScreen: React.FC<AddArticleProps> = props => {
+const AddArticleScreen: React.FC<AddArticleProps> = (props) => {
 	const { userID } = props.route.params;
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddArticleComponent>
-				{AddArticleMutation => (
+				{(AddArticleMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							userID: '',
 							tags: [],
 							content: '',
-							title: ''
+							title: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							title: Yup.string()
 								.min(1, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -42,25 +44,27 @@ const AddArticleScreen: React.FC<AddArticleProps> = props => {
 												ArticleUsers: {
 													data: [
 														{
-															userID: userID
-														}
-													]
+															userID: userID,
+														},
+													],
 												},
 												ArticleTags: {
-													data: values.tags
+													data: values.tags,
 												},
 												editDate: new Date(),
 												publishDate: new Date(),
-												title: values.title
-											}
-										]
-									}
+												title: values.title,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-										ToastAndroid.show('Article has been added successfully', ToastAndroid.SHORT);
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.title + ' added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('Tags:' + values.tags);
 									});
@@ -69,7 +73,7 @@ const AddArticleScreen: React.FC<AddArticleProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								<Input
@@ -92,10 +96,11 @@ const AddArticleScreen: React.FC<AddArticleProps> = props => {
 								/>
 								<GetAllTagsComponent
 									label="Select Tags"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.tags = value;
 									}}
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

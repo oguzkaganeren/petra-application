@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateCompanyComponent } from '../../../generated/components';
 import { GetCompanyByIdComponent } from '../../../generated/components';
+import Toast from 'react-native-easy-toast';
 import LocationComponent from '../../../components/Public/LocationComponent';
 
 import { Formik } from 'formik';
@@ -14,17 +15,18 @@ export interface EditCompanyProps {
 	route: any;
 }
 
-const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
+const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 	const { companyID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
+	const toastRef = React.useRef();
+	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateCompanyComponent>
-				{UpdateCompanyMutation => (
+				{(UpdateCompanyMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -37,7 +39,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 							address: '',
 							phone: '',
 							districtID: 0,
-							cityID: 0
+							cityID: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -60,7 +62,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 								.min(5, 'Too Short!')
 								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required')
+							longtitude: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -74,23 +76,26 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 										company: {
 											name: values.name.toString(),
 											taxNumber: values.taxNumber.toString(),
-											mail: values.mail
+											mail: values.mail,
 										},
 										companyLocation: {
 											longtitude: values.longtitude,
-											latitude: values.latitude
+											latitude: values.latitude,
 										},
 										companyAddress: {
 											address: values.address.toString(),
 											districtID: values.districtID,
-											cityID: values.cityID
-										}
-									}
+											cityID: values.cityID,
+										},
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -98,7 +103,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								{oneTimeRun && (
@@ -108,7 +113,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 											if (error) return <Text>error</Text>;
 
 											if (data) {
-												data.Company.map(dat => {
+												data.Company.map((dat) => {
 													props.values.name = dat.name;
 													props.values.taxNumber = dat.taxNumber;
 													props.values.address = dat.Location.Address.address;
@@ -135,6 +140,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 								>
 									Edit Company
 								</Button>
+								<Toast ref={toastRef} />
 								<Input
 									label="Name"
 									placeholder="Hotel Name"
@@ -184,10 +190,10 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = props => {
 									value={props.values.phone}
 								/>
 								<LocationComponent
-									latitude={value => {
+									latitude={(value) => {
 										props.values.latitude = value;
 									}}
-									longitude={value => {
+									longitude={(value) => {
 										props.values.longtitude = value;
 									}}
 								/>

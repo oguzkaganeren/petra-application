@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, Text, Spinner } from '@ui-kitten/components';
 import { AddArchSiteTypeComponent } from '../../../generated/components';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,22 +11,23 @@ export interface AddArchSiteTypeProps {
 	route: any;
 }
 
-const AddArchSiteTypeScreen: React.FC<AddArchSiteTypeProps> = props => {
+const AddArchSiteTypeScreen: React.FC<AddArchSiteTypeProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddArchSiteTypeComponent>
-				{AddArchSiteTypeMutation => (
+				{(AddArchSiteTypeMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							typeName: ''
+							typeName: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
 							typeName: Yup.string()
 								.min(2, 'Too Short!')
 								.max(50, 'Too Long!')
-								.required('Required')
+								.required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -35,15 +37,22 @@ const AddArchSiteTypeScreen: React.FC<AddArchSiteTypeProps> = props => {
 									variables: {
 										archSiteType: [
 											{
-												name: values.typeName
-											}
-										]
-									}
+												name: values.typeName,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(
+											values.typeName.toString() + ' added. Redirecting to the previous page...',
+											500,
+											() => {
+												props.navigation.goBack();
+											}
+										);
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.typeName);
 									});
@@ -52,7 +61,7 @@ const AddArchSiteTypeScreen: React.FC<AddArchSiteTypeProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
@@ -66,6 +75,7 @@ const AddArchSiteTypeScreen: React.FC<AddArchSiteTypeProps> = props => {
 									value={props.values.typeName}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();

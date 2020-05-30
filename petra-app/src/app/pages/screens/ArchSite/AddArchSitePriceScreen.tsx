@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Layout, Input, RangeDatepicker, Spinner } from '@ui-kitten/components';
 import { AddArchSitePriceComponent } from '../../../generated/components';
 import GetASEntranceTypesComponent from '../../../components/ArchSite/GetASEntranceTypesComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,27 +11,27 @@ export interface AddArchSitePriceProps {
 	navigation: any;
 	route: any;
 }
-const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = props => {
+const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = (props) => {
 	const [theDate, setTheDate] = React.useState(0);
-
-	const onSelect = value => {
+	const toastRef = React.useRef();
+	const onSelect = (value) => {
 		setTheDate(value);
 	};
 	const { archSiteID } = props.route.params;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddArchSitePriceComponent>
-				{AddArchSitePriceMutation => (
+				{(AddArchSitePriceMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
 							archSiteID: 0,
 							price: 0,
-							entranceTypeID: 0
+							entranceTypeID: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							price: Yup.number().required('Required')
+							price: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -43,15 +44,18 @@ const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = props => {
 												finishDate: theDate.endDate,
 												startDate: theDate.startDate,
 												price: values.price,
-												archSiteEntranceTypeID: values.entranceTypeID
-											}
-										]
-									}
+												archSiteEntranceTypeID: values.entranceTypeID,
+											},
+										],
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show('Price added. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										//console.log('roomProp:' + values.roomPropRoom);
 									});
@@ -60,16 +64,17 @@ const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 
 								<GetASEntranceTypesComponent
 									label="Select EntranceType"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.entranceTypeID = value;
 									}}
 								/>
+								<Toast ref={toastRef} />
 								<Input
 									label="Price"
 									placeholder="Enter price"
@@ -79,7 +84,7 @@ const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = props => {
 									onBlur={props.handleBlur('price')}
 									value={props.values.price.toString()}
 								/>
-								<RangeDatepicker range={theDate} onSelect={value => onSelect(value)} />
+								<RangeDatepicker range={theDate} onSelect={(value) => onSelect(value)} />
 								<Button
 									onPress={() => {
 										props.handleSubmit();
