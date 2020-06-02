@@ -45,7 +45,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = (props) => {
 								district: dat.Location.Address.District.district,
 								description: dat.description == null ? '' : dat.description,
 								star: dat.star,
-								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : '',
+								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
 						});
 					}

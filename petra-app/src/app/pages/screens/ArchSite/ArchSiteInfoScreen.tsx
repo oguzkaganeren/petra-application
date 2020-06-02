@@ -35,7 +35,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 								period: dat.period,
 								district: dat.Location.Address.District.district,
 								description: dat.description == null ? '' : dat.description,
-								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : '',
+								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
 						});
 					}

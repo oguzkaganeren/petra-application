@@ -8,16 +8,14 @@ export interface GetAllFoodTypesProps {
 	parentReference: any;
 }
 
-const GetAllFoodTypesComponent: React.FC<GetAllFoodTypesProps> = props => {
+const GetAllFoodTypesComponent: React.FC<GetAllFoodTypesProps> = (props) => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
 		const id = value.id;
-		this.props.parentReference(id);
-		this.setState({
-			selected: value.text
-		});
+		props.parentReference(id);
+		setSelected(value);
 	}
 
 	return (
@@ -28,9 +26,9 @@ const GetAllFoodTypesComponent: React.FC<GetAllFoodTypesProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RestaurantFoodType.map(dat => {
+						data.RestaurantFoodType.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.restaurantFoodTypeID)) {
+								if (datam.every((item) => item.id !== dat.restaurantFoodTypeID)) {
 									datam.push({ id: dat.restaurantFoodTypeID, text: dat.type });
 								}
 							} else {
@@ -42,7 +40,7 @@ const GetAllFoodTypesComponent: React.FC<GetAllFoodTypesProps> = props => {
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

@@ -13,6 +13,7 @@ export interface AddFoodProps {
 }
 
 const AddFoodScreen: React.FC<AddFoodProps> = (props) => {
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddFoodComponent>

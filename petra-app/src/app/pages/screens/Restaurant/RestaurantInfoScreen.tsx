@@ -41,7 +41,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 								taxNumber: dat.taxNumber,
 								district: dat.Location.Address.District.district,
 								star: dat.star,
-								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone : '',
+								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
 						});
 					}
