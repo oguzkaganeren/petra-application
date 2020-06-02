@@ -69,6 +69,7 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 									},
 								})
 									.then((res) => {
+										console.log(item);
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})

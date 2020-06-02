@@ -26509,7 +26509,7 @@ export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTra
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
-  RestaurantFoodType {
+  RestaurantFoodType(where: {isDeleted: {_eq: false}}) {
     type
     restaurantFoodTypeID
   }
@@ -26536,7 +26536,7 @@ export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypes
 export const GetRestaurantTypesDocument = gql`
     query getRestaurantTypes {
   __typename
-  RestaurantType {
+  RestaurantType(where: {isDeleted: {_eq: false}}) {
     type
     restaurantTypeID
   }
@@ -26594,7 +26594,7 @@ export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: 
 export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
 export const GetRoomPropertyDocument = gql`
     query getRoomProperty {
-  RoomProperty {
+  RoomProperty(where: {isDeleted: {_eq: false}}) {
     content
     roomPropertyID
   }
@@ -26680,7 +26680,7 @@ export type GetUserArticleQueryResult = ApolloReactCommon.QueryResult<GetUserArt
 export const GetHotelServicePropertyDocument = gql`
     query getHotelServiceProperty {
   __typename
-  HotelServiceProperty {
+  HotelServiceProperty(where: {isDeleted: {_eq: false}}) {
     content
     hotelServicePropertyID
   }
@@ -26707,7 +26707,7 @@ export type GetHotelServicePropertyQueryResult = ApolloReactCommon.QueryResult<G
 export const GetHotelRoomDocument = gql`
     query getHotelRoom($hotelID: Int!) {
   __typename
-  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     roomID
     Room {
       roomNo
@@ -26736,7 +26736,7 @@ export type GetHotelRoomQueryResult = ApolloReactCommon.QueryResult<GetHotelRoom
 export const GetArchSiteTypesDocument = gql`
     query GetArchSiteTypes {
   __typename
-  ArchSiteType {
+  ArchSiteType(where: {isDeleted: {_eq: false}}) {
     name
     archSiteTypeID
   }
@@ -26763,7 +26763,7 @@ export type GetArchSiteTypesQueryResult = ApolloReactCommon.QueryResult<GetArchS
 export const GetCuisineTypesDocument = gql`
     query getCuisineTypes {
   __typename
-  RestaurantCuisineType {
+  RestaurantCuisineType(where: {isDeleted: {_eq: false}}) {
     name
     restaurantCuisineTypeID
   }
@@ -26790,7 +26790,7 @@ export type GetCuisineTypesQueryResult = ApolloReactCommon.QueryResult<GetCuisin
 export const GetMuseumTypesDocument = gql`
     query getMuseumTypes {
   __typename
-  MuseumType {
+  MuseumType(where: {isDeleted: {_eq: false}}) {
     museumTypeID
     type
   }
@@ -26816,7 +26816,7 @@ export function withGetMuseumTypes<TProps, TChildProps = {}>(operationOptions?: 
 export type GetMuseumTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumTypesQuery, GetMuseumTypesQueryVariables>;
 export const GetHotelLocationDocument = gql`
     query getHotelLocation {
-  Hotel {
+  Hotel(where: {isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26850,7 +26850,7 @@ export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?
 export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
 export const GetArchSiteLocationDocument = gql`
     query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int, $priceDate: timestamptz, $archSiteTypeIDs: [Int!]) {
-  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}}) {
+  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26894,7 +26894,7 @@ export function withGetArchSiteLocation<TProps, TChildProps = {}>(operationOptio
 export type GetArchSiteLocationQueryResult = ApolloReactCommon.QueryResult<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>;
 export const GetMuseumLocationDocument = gql`
     query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
-  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}}) {
+  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26933,7 +26933,7 @@ export function withGetMuseumLocation<TProps, TChildProps = {}>(operationOptions
 export type GetMuseumLocationQueryResult = ApolloReactCommon.QueryResult<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>;
 export const GetRestaurantLocationDocument = gql`
     query getRestaurantLocation {
-  Restaurant {
+  Restaurant(where: {isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -27088,7 +27088,7 @@ export type GetUserRestaurantQueryResult = ApolloReactCommon.QueryResult<GetUser
 export const GetArchSiteEntranceTypesDocument = gql`
     query getArchSiteEntranceTypes {
   __typename
-  ArchSiteEntranceType {
+  ArchSiteEntranceType(where: {isDeleted: {_eq: false}}) {
     archSiteEntranceTypeID
     content
   }
@@ -27115,7 +27115,7 @@ export type GetArchSiteEntranceTypesQueryResult = ApolloReactCommon.QueryResult<
 export const GetMuseumEntranceTypesDocument = gql`
     query getMuseumEntranceTypes {
   __typename
-  MuseumEntranceType {
+  MuseumEntranceType(where: {isDeleted: {_eq: false}}) {
     content
     museumEntranceTypeID
   }
@@ -27142,7 +27142,7 @@ export type GetMuseumEntranceTypesQueryResult = ApolloReactCommon.QueryResult<Ge
 export const GetFoodDocument = gql`
     query getFood {
   __typename
-  RestaurantFood {
+  RestaurantFood(where: {isDeleted: {_eq: false}}) {
     name
     restaurantFoodID
   }
@@ -27283,7 +27283,7 @@ export type GetHotelListInfoQueryResult = ApolloReactCommon.QueryResult<GetHotel
 export const GetHotelByIdDocument = gql`
     query getHotelByID($hotelID: Int) {
   __typename
-  Hotel(where: {hotelID: {_eq: $hotelID}}) {
+  Hotel(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     description
     name
     star
@@ -27337,7 +27337,7 @@ export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelById
 export const GetArticleByIdDocument = gql`
     query getArticleByID($articleID: Int) {
   __typename
-  Article(where: {articleID: {_eq: $articleID}}) {
+  Article(where: {articleID: {_eq: $articleID}, isDeleted: {_eq: false}}) {
     articleID
     content
     title
@@ -27365,7 +27365,7 @@ export type GetArticleByIdQueryResult = ApolloReactCommon.QueryResult<GetArticle
 export const GetMuseumByIdDocument = gql`
     query getMuseumByID($museumID: Int) {
   __typename
-  Museum(where: {museumID: {_eq: $museumID}}) {
+  Museum(where: {museumID: {_eq: $museumID}, isDeleted: {_eq: false}}) {
     description
     name
     locationID
@@ -27417,7 +27417,7 @@ export type GetMuseumByIdQueryResult = ApolloReactCommon.QueryResult<GetMuseumBy
 export const GetArchSiteByIdDocument = gql`
     query getArchSiteByID($archSiteID: Int) {
   __typename
-  ArchSite(where: {archSiteID: {_eq: $archSiteID}}) {
+  ArchSite(where: {archSiteID: {_eq: $archSiteID}, isDeleted: {_eq: false}}) {
     description
     name
     locationID
@@ -27474,7 +27474,7 @@ export type GetArchSiteByIdQueryResult = ApolloReactCommon.QueryResult<GetArchSi
 export const GetCompanyByIdDocument = gql`
     query getCompanyByID($companyID: Int) {
   __typename
-  Company(where: {companyID: {_eq: $companyID}}) {
+  Company(where: {companyID: {_eq: $companyID}, isDeleted: {_eq: false}}) {
     name
     taxNumber
     mail
@@ -27587,7 +27587,7 @@ export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelBy
 export const GetHotelServicesDocument = gql`
     query getHotelServices($hotelID: Int) {
   __typename
-  HotelService(where: {hotelID: {_eq: $hotelID}}) {
+  HotelService(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     HotelServiceProperty {
       content
     }
@@ -27615,7 +27615,7 @@ export type GetHotelServicesQueryResult = ApolloReactCommon.QueryResult<GetHotel
 export const GetHotelRoomsDocument = gql`
     query getHotelRooms($hotelID: Int) {
   __typename
-  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     Room {
       roomNo
       RoomPrices {
@@ -27694,7 +27694,7 @@ export type GetRestaurantByCityQueryResult = ApolloReactCommon.QueryResult<GetRe
 export const GetRestaurantByIdDocument = gql`
     query getRestaurantByID($restaurantID: Int) {
   __typename
-  Restaurant(where: {restaurantID: {_eq: $restaurantID}}) {
+  Restaurant(where: {restaurantID: {_eq: $restaurantID}, isDeleted: {_eq: false}}) {
     name
     star
     taxNumber
@@ -27747,7 +27747,7 @@ export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRest
 export const GetRestaurantMenuByResIdDocument = gql`
     query getRestaurantMenuByResId($restaurantID: Int) {
   __typename
-  RestaurantMenu(where: {restaurantID: {_eq: $restaurantID}}) {
+  RestaurantMenu(where: {restaurantID: {_eq: $restaurantID}, isDeleted: {_eq: false}}) {
     name
     price
     RestaurantMenuFoods {
