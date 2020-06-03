@@ -1,62 +1,39 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { ArchSiteLocationComponent } from '../../../components/ArchSite/ArchSiteLocationComponent';
-/**
- * Home props
- */
+import ASLocationComponent from '../../../components/ArchSite/ASLocationComponent';
+
 export interface ArchSiteMapProps {
 	navigation: any;
 	route: any;
 }
-/**
- * Home state
- */
-export interface ArchSiteMapState {
-	latitude: number;
-	longtitude: number;
-}
+const ArchSiteMapScreen: React.FC<ArchSiteMapProps> = props => {
+	const [longtitude, setLongtitude] = React.useState(0);
+	const [latitude, setLatitude] = React.useState(0);
 
-/**
- * Home
- */
-export class ArchSiteMapScreen extends React.Component<ArchSiteMapProps, ArchSiteMapState> {
-	constructor(props: ArchSiteMapProps) {
-		super(props);
-		this.state = {
-			longtitude: 0,
-			latitude: 0
-		};
-	}
-	/**
-	 * Renders home
-	 * @returns
-	 */
-	render() {
-		const { userID } = this.props.route.params;
-		return (
-			<Layout style={{ flex: 1 }}>
-				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<ArchSiteLocationComponent
-						marker={value => {
-							/*this.setState({
+	const { userID } = props.route.params;
+	return (
+		<Layout style={{ flex: 1 }}>
+			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+				<ASLocationComponent
+					marker={value => {
+						/*this.setState({
 																latitude: value
 															});*/
-							let item = {
-								id: value.id,
-								title: value.title,
-								description: value.description,
-								coordinates: value.coordinates,
-								type: value.type
-							};
-							//this.addItem(item);
-						}}
-					/>
-				</ScrollView>
-			</Layout>
-		);
-	}
-}
+						let item = {
+							id: value.id,
+							title: value.title,
+							description: value.description,
+							coordinates: value.coordinates,
+							type: value.type
+						};
+						//this.addItem(item);
+					}}
+				/>
+			</ScrollView>
+		</Layout>
+	);
+};
 
 const styles: any = StyleSheet.create({
 	mapStyle: {
@@ -64,3 +41,4 @@ const styles: any = StyleSheet.create({
 		height: Dimensions.get('window').height / 2
 	}
 });
+export default ArchSiteMapScreen;

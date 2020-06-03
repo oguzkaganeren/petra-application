@@ -1,104 +1,60 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../../components/Public/BottomComponent';
-/**
- * Home props
- */
-export interface ArchSiteDetailScreenProps {
+import { Button, Layout, ButtonGroup, Icon } from '@ui-kitten/components';
+import ArchSiteInfoScreen from '../ArchSite/ArchSiteInfoScreen';
+export interface ArchSiteDetailProps {
 	navigation: any;
 	route: any;
 }
-/**
- * Home state
- */
-export interface ArchSiteDetailScreenState {}
-
-/**
- * Home
- */
-export class ArchSiteDetailScreen extends React.Component<ArchSiteDetailScreenProps, ArchSiteDetailScreenState> {
-	constructor(props: ArchSiteDetailScreenProps) {
-		super(props);
-		this.state = {};
-	}
-	/**
-	 * Renders ArchSite Detail Screen
-	 * @returns
-	 */
-	render() {
-		const { userID } = this.props.route.params;
-		const { archSiteID } = this.props.route.params;
-		return (
-			<Layout style={{ flex: 1 }}>
+const ArchSiteDetailScreen: React.FC<ArchSiteDetailProps> = (props) => {
+	const { userID } = props.route.params;
+	const { archSiteID } = props.route.params;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
+	return (
+		<Layout style={{ flex: 1 }}>
+			{/* 	<Button
+				onPress={() => {
+					props.navigation.navigate('AddArchSiteCommentScreen', {
+						userID: userID,
+						archSiteID: archSiteID
+					});
+				}}
+			>
+				Add ArchSite Comment
+			</Button> */}
+			<ButtonGroup style={{ justifyContent: 'center' }}>
 				<Button
+					icon={accessoryItemIcon}
 					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteTypeScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add ArchSite Type
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add ArchSite
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteCommentScreen', {
+						props.navigation.navigate('AddArchSiteWorkingScheduleScreen', {
 							userID: userID,
-							archSiteID: archSiteID
-						});
-					}}
-				>
-					Add ArchSite Comment
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteEntranceTypeScreen', {
-							userID: userID
-						});
-					}}
-				>
-					Add ArchSite Entrance Type
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddArchSiteWorkingScheduleScreen', {
-							userID: userID,
-							archSiteID: archSiteID
+							archSiteID: archSiteID,
 						});
 					}}
 				>
 					Add ArchSite Working Schedule
 				</Button>
 				<Button
+					icon={accessoryItemIcon}
 					onPress={() => {
-						this.props.navigation.navigate('AddArchSitePriceScreen', {
+						props.navigation.navigate('AddArchSitePriceScreen', {
 							userID: userID,
-							archSiteID: archSiteID
+							archSiteID: archSiteID,
 						});
 					}}
 				>
 					Add ArchSite Price
 				</Button>
-				<Layout style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
-					<BottomComponent></BottomComponent>
-				</Layout>
-			</Layout>
-		);
-	}
-}
+			</ButtonGroup>
+			<ArchSiteInfoScreen navigation={props.navigation} route={props.route} archSiteID={archSiteID} />
+		</Layout>
+	);
+};
 
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
+export default ArchSiteDetailScreen;

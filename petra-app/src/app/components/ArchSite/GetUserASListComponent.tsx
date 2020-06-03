@@ -1,39 +1,63 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, Dimensions } from 'react-native';
+import { Button, Icon, List, ListItem, Layout, Text, Modal, ButtonGroup } from '@ui-kitten/components';
 import { GetUserArchSiteComponent } from '../../generated/components';
 import { DeleteArchSiteComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserArchSiteListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
+const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 	const [archSiteList, setArchSiteList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = archSiteList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setArchSiteList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteArchSite(item) {
 		return (
 			<DeleteArchSiteComponent>
-				{DeleteArchSiteMutation => (
+				{(DeleteArchSiteMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -41,14 +65,15 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 								console.log(values.name + ' ');
 								DeleteArchSiteMutation({
 									variables: {
-										archSiteID: item.key
-									}
+										archSiteID: item.key,
+									},
 								})
-									.then(res => {
+									.then((res) => {
+										console.log(item);
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSite:' + values.name);
 									});
@@ -57,27 +82,23 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{fprops => (
+						{(fprops) => (
 							<Layout>
 								<Button
 									appearance="ghost"
 									onPress={() => {
 										props.navigation.navigate('EditArchSiteScreen', {
-											archSiteID: item.key
+											archSiteID: item.key,
 										});
 									}}
 									disabled={fprops.isSubmitting}
 								>
 									Edit
 								</Button>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -103,8 +124,8 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 			/>
 		);
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -116,7 +137,7 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 				onPress={() => {
 					props.navigation.navigate('ArchSiteDetailScreen', {
 						archSiteID: item.key,
-						userID: global.userID
+						userID: global.userID,
 					});
 				}}
 			/>
@@ -130,15 +151,15 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.ArchSite.map(dat => {
+						data.ArchSite.map((dat) => {
 							if (archSiteList.length > 0 && !removeItemBool) {
-								if (archSiteList.every(item => item.key != dat.archSiteID)) {
+								if (archSiteList.every((item) => item.key != dat.archSiteID)) {
 									archSiteList.push({
 										key: dat.archSiteID,
 										title: dat.name,
 										description: dat.description == null ? '' : dat.description,
 										//star: dat.star,
-										companyName: dat.Company.name
+										companyName: dat.Company.name,
 									});
 								}
 							} else if (!removeItemBool) {
@@ -147,7 +168,7 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 									title: dat.name,
 									description: dat.description == null ? '' : dat.description,
 									//star: dat.star,
-									companyName: dat.Company.name
+									companyName: dat.Company.name,
 								});
 							}
 						});
@@ -162,7 +183,17 @@ const GetUserArchSiteList: React.FC<GetUserArchSiteListProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
 });
-export default GetUserArchSiteList;
+export default GetUserASListComponent;

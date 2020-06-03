@@ -1,32 +1,56 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
 import { GetUserCompanyComponent } from '../../generated/components';
 import { DeleteCompanyComponent } from '../../generated/components';
 import { Formik } from 'formik';
 import StarRating from 'react-native-star-rating';
 
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserCompanyListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 	const [companyList, setCompanyList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = companyList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setCompanyList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteCompany(item) {
 		return (
 			<DeleteCompanyComponent>
@@ -71,14 +95,10 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -167,6 +187,16 @@ const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height / 2,
+	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 	},
 });
 export default GetUserCompanyList;

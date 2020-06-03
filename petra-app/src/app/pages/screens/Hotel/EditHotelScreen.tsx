@@ -3,37 +3,34 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateHotelComponent } from '../../../generated/components';
 import { GetHotelByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditHotelProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
-const EditHotelScreen: React.FC<EditHotelProps> = props => {
+const EditHotelScreen: React.FC<EditHotelProps> = (props) => {
 	const { hotelID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
 	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
+	const toastRef = React.useRef();
+	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateHotelComponent>
-				{UpdateHotelMutation => (
+				{(UpdateHotelMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -46,7 +43,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 							name: '',
 							taxNumber: '',
 							companyID: 0,
-							hotelServiceProperty: []
+							hotelServiceProperty: [],
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -62,7 +59,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 								.min(5, 'Too Short!')
 								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required')
+							longtitude: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -78,25 +75,27 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 											taxNumber: values.taxNumber.toString(),
 											star: star,
 											companyID: values.companyID,
-											description: values.description
+											description: values.description,
 										},
 										hotelLocation: {
 											longtitude: values.longtitude,
-											latitude: values.latitude
+											latitude: values.latitude,
 										},
 										hotelAddress: {
 											address: values.address.toString(),
 											districtID: values.districtID,
-											cityID: values.cityID
-										}
-									}
+											cityID: values.cityID,
+										},
+									},
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -104,7 +103,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								{oneTimeRun && (
@@ -114,7 +113,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 											if (error) return <Text>error</Text>;
 
 											if (data) {
-												data.Hotel.map(dat => {
+												data.Hotel.map((dat) => {
 													props.values.companyID = dat.companyID;
 													props.values.name = dat.name;
 													props.values.taxNumber = dat.taxNumber;
@@ -144,6 +143,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 								>
 									Edit Hotel
 								</Button>
+								<Toast ref={toastRef} />
 								<Input
 									label="Name"
 									placeholder="Hotel Name"
@@ -166,7 +166,7 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 									rating={star}
 									starSize={25}
 									fullStarColor={'orange'}
-									selectedStar={rating => setStar(rating)}
+									selectedStar={(rating) => setStar(rating)}
 								/>
 								<Input
 									label="Tax Number"
@@ -179,21 +179,21 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 								/>
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.companyID = value;
 									}}
 									userID={parseInt(global.userID)}
 								/>
 								<GetAllCitiesComponent
 									label="Select City"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.cityID = value;
 										setCityID(value);
 									}}
 								/>
 								<GetAllCityDistrictsComponent
 									label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.districtID = value;
 									}}
 									cityID={cityID}
@@ -222,10 +222,10 @@ const EditHotelScreen: React.FC<EditHotelProps> = props => {
 									value={props.values.description}
 								/>
 								<LocationComponent
-									latitude={value => {
+									latitude={(value) => {
 										props.values.latitude = value;
 									}}
-									longitude={value => {
+									longitude={(value) => {
 										props.values.longtitude = value;
 									}}
 								/>

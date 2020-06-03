@@ -1,6 +1,4 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-//import { createStackNavigator } from 'react-navigation-stack';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
@@ -10,9 +8,9 @@ import HomeScreen from './app/pages/screens/HomeScreen';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
-import { HeaderComponent } from '../src/app/components/Public/HeaderComponent';
-import { LoginScreen } from './app/pages/screens/LoginScreen';
-import { AddCompanyScreen } from './app/pages/screens/Company/AddCompanyScreen';
+import HeaderComponent from '../src/app/components/Public/HeaderComponent';
+import LoginScreen from './app/pages/screens/LoginScreen';
+import AddCompanyScreen from './app/pages/screens/Company/AddCompanyScreen';
 import ArchSiteScreen from './app/pages/screens/ArchSite/ArchSiteScreen';
 import MuseumScreen from './app/pages/screens/Museum/MuseumScreen';
 import RestaurantScreen from './app/pages/screens/Restaurant/RestaurantScreen';
@@ -26,47 +24,46 @@ import EditCompanyScreen from './app/pages/screens/Company/EditCompanyScreen';
 import CompanyScreen from './app/pages/screens/Company/CompanyScreen';
 import ArticleScreen from './app/pages/screens/Article/ArticleScreen';
 import TravelGuideScreen from './app/pages/screens/TravelGuide/TravelGuideScreen';
-import { AddRestaurantScreen } from './app/pages/screens/Restaurant/AddRestaurantScreen';
-import { RestaurantDetailScreen } from './app/pages/screens/Restaurant/RestaurantDetailScreen';
-import { AddFoodTypeScreen } from './app/pages/screens/Restaurant/AddFoodTypeScreen';
-import { AddFoodScreen } from './app/pages/screens/Restaurant/AddFoodScreen';
-import { AddHotelScreen } from './app/pages/screens/Hotel/AddHotelScreen';
-import { ArchSiteDetailScreen } from './app/pages/screens/ArchSite/ArchSiteDetailScreen';
-import { AddArchSiteTypeScreen } from './app/pages/screens/ArchSite/AddArchSiteTypeScreen';
-import { HotelDetailScreen } from './app/pages/screens/Hotel/HotelDetailScreen';
-import { AddRoomPropertyScreen } from './app/pages/screens/Hotel/AddRoomPropertyScreen';
-import { AddRoomScreen } from './app/pages/screens/Hotel/AddRoomScreen';
-import { AddHotelServicePropertyScreen } from './app/pages/screens/Hotel/AddHotelServicePropertyScreen';
-import { AddHotelCommentScreen } from './app/pages/screens/Hotel/AddHotelCommentScreen';
-import { AddHotelRoomPriceScreen } from './app/pages/screens/Hotel/AddHotelRoomPrice';
-import { AddArchSiteScreen } from './app/pages/screens/ArchSite/AddArchSiteScreen';
-import { AddArchSiteCommentScreen } from './app/pages/screens/ArchSite/AddArchSiteCommentScreen';
-import { AddArchSiteEntranceTypeScreen } from './app/pages/screens/ArchSite/AddArchSiteEnterenceTypeScreen';
-import { AddRestaurantCuisineTypeScreen } from './app/pages/screens/Restaurant/AddRestaurantCuisineTypeScreen';
-import { ArticleDetailScreen } from './app/pages/screens/Article/ArticleDetailScreen';
-import { AddTagScreen } from './app/pages/screens/Article/AddTagScreen';
-import { AddRestaurantTypeScreen } from './app/pages/screens/Restaurant/AddRestaurantTypeScreen';
-import { AddMenuScreen } from './app/pages/screens/Restaurant/AddMenuScreen';
-import { AddRestaurantCommentScreen } from './app/pages/screens/Restaurant/AddRestaurantCommentScreen';
-import { MuseumDetailScreen } from './app/pages/screens/Museum/MuseumDetailScreen';
-import { AddMuseumTypeScreen } from './app/pages/screens/Museum/AddMuseumTypeScreen';
-import { AddMuseumScreen } from './app/pages/screens/Museum/AddMuseumScreen';
-import { AddMuseumCommentScreen } from './app/pages/screens/Museum/AddMuseumCommentScreen';
-import { AddMuseumEntranceTypeScreen } from './app/pages/screens/Museum/AddMuseumEntranceTypeScreen';
-import { MapScreen } from './app/pages/screens/MapScreen';
-import { HotelMapScreen } from './app/pages/screens/Hotel/HotelMapScreen';
-import { ArchSiteMapScreen } from './app/pages/screens/ArchSite/ArchSiteMapScreen';
-import { MuseumMapScreen } from './app/pages/screens/Museum/MuseumMapScreen';
-import { RestaurantMapScreen } from './app/pages/screens/Restaurant/RestaurantMapScreen';
-import { AddArchSiteWorkingScheduleScreen } from './app/pages/screens/ArchSite/AddArchSiteWorkingScheduleScreen';
-import { AddArchSitePriceScreen } from './app/pages/screens/ArchSite/AddArchSitePriceScreen';
-import { AddMuseumPriceScreen } from './app/pages/screens/Museum/AddMuseumPriceScreen';
-import { AddMuseumWorkingScheduleScreen } from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
-import { AddRestaurantWorkingScheduleScreen } from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
-import { AddTravelGuideScreen } from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
-import { AddArticleScreen } from './app/pages/screens/Article/AddArticleScreen';
-import { SearchScreen } from './app/pages/screens/Search/SearchScreen';
-import { RegisterScreen } from './app/pages/screens/RegisterScreen';
+import GetHotelListByCity from './app/components/Hotel/GetHotelListByCity';
+import GetRestaurantListByCityComponent from './app/components/Restaurant/GetRestaurantListByCityComponent';
+import HotelInfoScreen from './app/pages/screens/Hotel/HotelInfoScreen';
+import RestaurantInfoScreen from './app/pages/screens/Restaurant/RestaurantInfoScreen';
+import TravelGuideDetailScreen from './app/pages/screens/TravelGuide/TravelGuideDetail';
+import AddRestaurantScreen from './app/pages/screens/Restaurant/AddRestaurantScreen';
+import RestaurantDetailScreen from './app/pages/screens/Restaurant/RestaurantDetailScreen';
+import AddFoodTypeScreen from './app/pages/screens/Restaurant/AddFoodTypeScreen';
+import AddFoodScreen from './app/pages/screens/Restaurant/AddFoodScreen';
+import AddHotelScreen from './app/pages/screens/Hotel/AddHotelScreen';
+import ArchSiteDetailScreen from './app/pages/screens/ArchSite/ArchSiteDetailScreen';
+import AddArchSiteTypeScreen from './app/pages/screens/ArchSite/AddArchSiteTypeScreen';
+import HotelDetailScreen from './app/pages/screens/Hotel/HotelDetailScreen';
+import AddRoomPropertyScreen from './app/pages/screens/Hotel/AddRoomPropertyScreen';
+import AddRoomScreen from './app/pages/screens/Hotel/AddRoomScreen';
+import AddHotelServicePropertyScreen from './app/pages/screens/Hotel/AddHotelServicePropertyScreen';
+import AddHotelRoomPriceScreen from './app/pages/screens/Hotel/AddHotelRoomPriceScreen';
+import AddArchSiteScreen from './app/pages/screens/ArchSite/AddArchSiteScreen';
+import AddArchSiteCommentScreen from './app/pages/screens/ArchSite/AddArchSiteCommentScreen';
+import AddArchSiteEntranceTypeScreen from './app/pages/screens/ArchSite/AddArchSiteEnterenceTypeScreen';
+import AddRestaurantCuisineTypeScreen from './app/pages/screens/Restaurant/AddRestaurantCuisineTypeScreen';
+import ArticleDetailScreen from './app/pages/screens/Article/ArticleDetailScreen';
+import AddTagScreen from './app/pages/screens/Article/AddTagScreen';
+import AddRestaurantTypeScreen from './app/pages/screens/Restaurant/AddRestaurantTypeScreen';
+import AddMenuScreen from './app/pages/screens/Restaurant/AddMenuScreen';
+import AddRestaurantCommentScreen from './app/pages/screens/Restaurant/AddRestaurantCommentScreen';
+import MuseumDetailScreen from './app/pages/screens/Museum/MuseumDetailScreen';
+import AddMuseumTypeScreen from './app/pages/screens/Museum/AddMuseumTypeScreen';
+import AddMuseumScreen from './app/pages/screens/Museum/AddMuseumScreen';
+import AddMuseumCommentScreen from './app/pages/screens/Museum/AddMuseumCommentScreen';
+import AddMuseumEntranceTypeScreen from './app/pages/screens/Museum/AddMuseumEntranceTypeScreen';
+import AddArchSiteWorkingScheduleScreen from './app/pages/screens/ArchSite/AddArchSiteWorkingScheduleScreen';
+import AddArchSitePriceScreen from './app/pages/screens/ArchSite/AddArchSitePriceScreen';
+import AddMuseumPriceScreen from './app/pages/screens/Museum/AddMuseumPriceScreen';
+import AddMuseumWorkingScheduleScreen from './app/pages/screens/Museum/AddMuseumWorkingScheduleScreen';
+import AddRestaurantWorkingScheduleScreen from './app/pages/screens/Restaurant/AddRestaurantWorkingScheduleScreen';
+import AddTravelGuideScreen from './app/pages/screens/TravelGuide/AddTravelGuideScreen';
+import AddArticleScreen from './app/pages/screens/Article/AddArticleScreen';
+import RegisterScreen from './app/pages/screens/RegisterScreen';
+import CityInfoScreen from './app/pages/screens/CityInfoScreen';
 declare var global: any;
 /**
  * Eğer drawer ile tıkladığın bir sayfada header gözükmesini istiyorsan her bir ekran için yeni bir stack oluşturmalısın
@@ -87,7 +84,7 @@ const userTypeTwoMenus = [
 	{ title: 'Restaurant' },
 	{ title: 'Hotel' },
 	{ title: 'Museum' },
-	{ title: 'Archaeological Site' }
+	{ title: 'Archaeological Site' },
 ];
 const userTypeThreeMenus = [{ title: 'Home' }, { title: 'Article' }];
 const userTypeFiveMenus = [
@@ -98,7 +95,7 @@ const userTypeFiveMenus = [
 	{ title: 'Museum' },
 	{ title: 'Archaeological Site' },
 	{ title: 'Article' },
-	{ title: 'Travel Guide' }
+	{ title: 'Travel Guide' },
 ];
 const Drawer = createDrawerNavigator();
 
@@ -121,7 +118,7 @@ const DrawerContent = ({ navigation, state }) => {
 		: global.userTypeID == 5
 		? (index = index - 1)
 		: index;
-	const onSelect = indexvalue => {
+	const onSelect = (indexvalue) => {
 		global.userTypeID == 1 && indexvalue == 0
 			? (indexvalue = 1)
 			: global.userTypeID == 1
@@ -163,7 +160,11 @@ const DrawerContent = ({ navigation, state }) => {
 };
 function DrawerNavigator() {
 	return (
-		<Drawer.Navigator initialRouteName="HomeScreen" drawerContent={props => <DrawerContent {...props} />}>
+		<Drawer.Navigator
+			screenOptions={{ gestureEnabled: false }}
+			initialRouteName="HomeScreen"
+			drawerContent={(props) => <DrawerContent {...props} />}
+		>
 			<Drawer.Screen name="LoginScreen" component={LoginStack} />
 			<Drawer.Screen name="HomeScreen" component={HomeStack} />
 			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
@@ -175,17 +176,6 @@ function DrawerNavigator() {
 			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} />
 		</Drawer.Navigator>
 	);
-	{
-		/* 	<Drawer.Screen name="LoginScreen" component={LoginStack} />
-			<Drawer.Screen name="HomeScreen" component={HomeStack} />
-			<Drawer.Screen name="CompanyScreen" component={CompanyStack} />
-			<Drawer.Screen name="RestaurantScreen" component={RestaurantStack} />
-			<Drawer.Screen name="HotelScreen" component={HotelStack} />
-			<Drawer.Screen name="MuseumScreen" component={MuseumStack} />
-			<Drawer.Screen name="ArchSiteScreen" component={ArchSiteStack} />
-			<Drawer.Screen name="ArticleScreen" component={ArticleStack} />
-			<Drawer.Screen name="TravelGuideScreen" component={TravelGuideStack} /> */
-	}
 }
 
 const Stack = createStackNavigator();
@@ -207,7 +197,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -225,7 +215,7 @@ function LoginStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -249,7 +239,97 @@ function HomeStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
-					}
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="GetHotelListByCity"
+				component={GetHotelListByCity}
+				options={{
+					title: 'Hotels',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="GetRestaurantListByCity"
+				component={GetRestaurantListByCityComponent}
+				options={{
+					title: 'Restaurants',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="HotelInfoScreen"
+				component={HotelInfoScreen}
+				options={{
+					title: 'Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="CityInfoScreen"
+				component={CityInfoScreen}
+				options={{
+					title: 'City Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="RestaurantInfoScreen"
+				component={RestaurantInfoScreen}
+				options={{
+					title: 'Details',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -273,7 +353,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -291,7 +371,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -309,7 +389,7 @@ function CompanyStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -333,7 +413,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -351,7 +431,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -369,7 +449,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -387,7 +467,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -405,7 +485,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -423,7 +503,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -441,7 +521,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -459,7 +539,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -477,7 +557,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -495,7 +575,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -513,7 +593,7 @@ function RestaurantStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -537,7 +617,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -555,7 +635,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -573,7 +653,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -591,7 +671,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -609,7 +689,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -627,7 +707,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -645,7 +725,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -663,7 +743,7 @@ function HotelStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -687,7 +767,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 
@@ -706,7 +786,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -724,7 +804,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -742,7 +822,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -760,7 +840,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -778,7 +858,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -796,7 +876,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -814,7 +894,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -832,7 +912,7 @@ function MuseumStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -856,7 +936,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -874,7 +954,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -892,7 +972,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -910,7 +990,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -928,7 +1008,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -946,7 +1026,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -964,7 +1044,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -982,7 +1062,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -1000,7 +1080,7 @@ function ArchSiteStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -1024,7 +1104,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -1042,7 +1122,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -1060,7 +1140,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -1078,7 +1158,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 			<Stack.Screen
@@ -1096,7 +1176,7 @@ function ArticleStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
 				}}
 			/>
 		</Stack.Navigator>
@@ -1120,7 +1200,43 @@ function TravelGuideStack() {
 								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
-					}
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="AddTravelGuideScreen"
+				component={AddTravelGuideScreen}
+				options={{
+					title: 'Add your travel guide',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="TravelGuideDetailScreen"
+				component={TravelGuideDetailScreen}
+				options={{
+					title: 'Travel guide detail',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
 				}}
 			/>
 		</Stack.Navigator>

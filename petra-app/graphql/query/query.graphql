@@ -1,13 +1,14 @@
 query getFoodTypes {
 	__typename
-	RestaurantFoodType {
+	RestaurantFoodType(where: { isDeleted: { _eq: false } }) {
 		type
 		restaurantFoodTypeID
 	}
 }
+
 query getRestaurantTypes {
 	__typename
-	RestaurantType {
+	RestaurantType(where: { isDeleted: { _eq: false } }) {
 		type
 		restaurantTypeID
 	}
@@ -26,7 +27,7 @@ query getUserCompany($userID: Int) {
 }
 
 query getRoomProperty {
-	RoomProperty {
+	RoomProperty(where: { isDeleted: { _eq: false } }) {
 		content
 		roomPropertyID
 	}
@@ -53,43 +54,44 @@ query getUserArticle($userID: Int) {
 
 query getHotelServiceProperty {
 	__typename
-	HotelServiceProperty {
+	HotelServiceProperty(where: { isDeleted: { _eq: false } }) {
 		content
 		hotelServicePropertyID
 	}
 }
 query getHotelRoom($hotelID: Int!) {
 	__typename
-	HotelRoom(where: { hotelID: { _eq: $hotelID } }) {
+	HotelRoom(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
 		roomID
 		Room {
 			roomNo
 		}
 	}
 }
+
 query GetArchSiteTypes {
 	__typename
-	ArchSiteType {
+	ArchSiteType(where: { isDeleted: { _eq: false } }) {
 		name
 		archSiteTypeID
 	}
 }
 query getCuisineTypes {
 	__typename
-	RestaurantCuisineType {
+	RestaurantCuisineType(where: { isDeleted: { _eq: false } }) {
 		name
 		restaurantCuisineTypeID
 	}
 }
 query getMuseumTypes {
 	__typename
-	MuseumType {
+	MuseumType(where: { isDeleted: { _eq: false } }) {
 		museumTypeID
 		type
 	}
 }
 query getHotelLocation {
-	Hotel {
+	Hotel(where: { isDeleted: { _eq: false } }) {
 		Location {
 			latitude
 			longtitude
@@ -114,6 +116,7 @@ query getArchSiteLocation(
 			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
 			ArchSitePrices: { archSiteEntranceTypeID: { _eq: $archSiteEntranceTypeID }, finishDate: { _gte: $priceDate } }
 			ArchSiteTypeArchSites: { archSiteTypeID: { _in: $archSiteTypeIDs } }
+			isDeleted: { _eq: false }
 		}
 	) {
 		Location {
@@ -135,6 +138,7 @@ query getArchSiteLocation(
 		ArchSiteTypeArchSites {
 			archSiteTypeID
 		}
+		diameter
 	}
 }
 
@@ -144,6 +148,7 @@ query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: t
 			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
 			MuseumPrices: { entranceTypeID: { _eq: $museumEntranceTypeID }, finishDate: { _gte: $priceDate } }
 			MuseumTypeMuseums: { museumTypeID: { _in: $museumTypeIDs } }
+			isDeleted: { _eq: false }
 		}
 	) {
 		Location {
@@ -165,7 +170,7 @@ query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: t
 }
 
 query getRestaurantLocation {
-	Restaurant {
+	Restaurant(where: { isDeleted: { _eq: false } }) {
 		Location {
 			latitude
 			longtitude
@@ -223,21 +228,21 @@ query getUserRestaurant($userID: Int) {
 
 query getArchSiteEntranceTypes {
 	__typename
-	ArchSiteEntranceType {
+	ArchSiteEntranceType(where: { isDeleted: { _eq: false } }) {
 		archSiteEntranceTypeID
 		content
 	}
 }
 query getMuseumEntranceTypes {
 	__typename
-	MuseumEntranceType {
+	MuseumEntranceType(where: { isDeleted: { _eq: false } }) {
 		content
 		museumEntranceTypeID
 	}
 }
 query getFood {
 	__typename
-	RestaurantFood {
+	RestaurantFood(where: { isDeleted: { _eq: false } }) {
 		name
 		restaurantFoodID
 	}
@@ -255,6 +260,8 @@ query getCities {
 	City(where: { Country: { countryID: { _eq: 1 } } }) {
 		cityID
 		city
+		description
+		imageUrl
 	}
 }
 query getCityDistricts($cityID: Int!) {
@@ -277,7 +284,7 @@ query getHotelListInfo {
 }
 query getHotelByID($hotelID: Int) {
 	__typename
-	Hotel(where: { hotelID: { _eq: $hotelID } }) {
+	Hotel(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
 		description
 		name
 		star
@@ -286,6 +293,12 @@ query getHotelByID($hotelID: Int) {
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -294,11 +307,19 @@ query getHotelByID($hotelID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 	}
 }
+
 query getArticleByID($articleID: Int) {
 	__typename
-	Article(where: { articleID: { _eq: $articleID } }) {
+	Article(where: { articleID: { _eq: $articleID }, isDeleted: { _eq: false } }) {
 		articleID
 		content
 		title
@@ -307,13 +328,19 @@ query getArticleByID($articleID: Int) {
 
 query getMuseumByID($museumID: Int) {
 	__typename
-	Museum(where: { museumID: { _eq: $museumID } }) {
+	Museum(where: { museumID: { _eq: $museumID }, isDeleted: { _eq: false } }) {
 		description
 		name
 		locationID
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -322,17 +349,31 @@ query getMuseumByID($museumID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 	}
 }
+
 query getArchSiteByID($archSiteID: Int) {
 	__typename
-	ArchSite(where: { archSiteID: { _eq: $archSiteID } }) {
+	ArchSite(where: { archSiteID: { _eq: $archSiteID }, isDeleted: { _eq: false } }) {
 		description
 		name
 		locationID
 		Location {
 			addressID
 			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
 				address
 				cityID
 				districtID
@@ -341,6 +382,13 @@ query getArchSiteByID($archSiteID: Int) {
 			longtitude
 		}
 		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
 		age
 		altitude
 		destruction
@@ -349,29 +397,9 @@ query getArchSiteByID($archSiteID: Int) {
 	}
 }
 
-query getRestaurantByID($restaurantID: Int) {
-	__typename
-	Restaurant(where: { restaurantID: { _eq: $restaurantID } }) {
-		name
-		star
-		taxNumber
-		locationID
-		Location {
-			addressID
-			Address {
-				address
-				cityID
-				districtID
-			}
-			latitude
-			longtitude
-		}
-		companyID
-	}
-}
 query getCompanyByID($companyID: Int) {
 	__typename
-	Company(where: { companyID: { _eq: $companyID } }) {
+	Company(where: { companyID: { _eq: $companyID }, isDeleted: { _eq: false } }) {
 		name
 		taxNumber
 		mail
@@ -400,5 +428,142 @@ query getArticleList {
 		content
 		publishDate
 		title
+		imageUrl
+	}
+}
+
+query getHotelByCity($cityID: Int) {
+	__typename
+	Hotel(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+		description
+		name
+		star
+		Location {
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+			}
+		}
+		companyID
+		hotelID
+	}
+}
+query getHotelServices($hotelID: Int) {
+	__typename
+	HotelService(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
+		HotelServiceProperty {
+			content
+		}
+	}
+}
+
+query getHotelRooms($hotelID: Int) {
+	__typename
+	HotelRoom(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
+		Room {
+			roomNo
+			RoomPrices {
+				price
+			}
+			RoomPropertyRooms {
+				RoomProperty {
+					content
+				}
+			}
+			roomID
+		}
+	}
+}
+
+query getRestaurantByCity($cityID: Int) {
+	__typename
+	Restaurant(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+		name
+		star
+		Location {
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+			}
+		}
+		companyID
+		RestaurantType {
+			type
+		}
+		restaurantID
+	}
+}
+
+query getRestaurantByID($restaurantID: Int) {
+	__typename
+	Restaurant(where: { restaurantID: { _eq: $restaurantID }, isDeleted: { _eq: false } }) {
+		name
+		star
+		taxNumber
+		locationID
+		Location {
+			addressID
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
+	}
+}
+
+query getRestaurantMenuByResId($restaurantID: Int) {
+	__typename
+	RestaurantMenu(where: { restaurantID: { _eq: $restaurantID }, isDeleted: { _eq: false } }) {
+		name
+		price
+		RestaurantMenuFoods {
+			RestaurantFood {
+				name
+			}
+		}
+		restaurantMenuID
+	}
+}
+
+query getUserTravelGuide($userID: Int!) {
+	TravelGuide(where: { userID: { _eq: $userID }, isDeleted: { _eq: false } }) {
+		title
+		travelGuideID
+		cost
+		creationDate
+	}
+}
+query getCityByID($cityID: Int) {
+	__typename
+	City(where: { cityID: { _eq: $cityID } }) {
+		cityID
+		city
+		description
+		imageUrl
 	}
 }

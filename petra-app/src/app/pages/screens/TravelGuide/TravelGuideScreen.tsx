@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-import { useIsFocused } from '@react-navigation/native';
+import { Button, Layout, Text, Icon } from '@ui-kitten/components';
+import GetUserTravelGuideListComponent from '../../../components/TravelGuide/GetUserTravelGuideListComponent';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface TravelGuideProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
 const TravelGuideScreen: React.FC<TravelGuideProps> = props => {
 	const [userID, setUserID] = React.useState(-1);
+	const accessoryItemIcon = style => <Icon {...style} name="plus-circle-outline" />;
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -35,9 +31,18 @@ const TravelGuideScreen: React.FC<TravelGuideProps> = props => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-					<Text>Travel Guide ile ilgili şeyler</Text>
-				</ScrollView>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						props.navigation.navigate('AddTravelGuideScreen', {
+							userID: userID
+						});
+					}}
+				>
+					Add Travel Guide
+				</Button>
+				<GetUserTravelGuideListComponent navigation={props.navigation} route={props.route} />
 			</Layout>
 		);
 	}

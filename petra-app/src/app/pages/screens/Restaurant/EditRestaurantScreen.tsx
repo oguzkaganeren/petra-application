@@ -3,33 +3,30 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateRestaurantComponent } from '../../../generated/components';
 import { GetRestaurantByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
 import StarRating from 'react-native-star-rating';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditRestaurantProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
-const EditRestaurantScreen: React.FC<EditRestaurantProps> = props => {
+const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 	const { restaurantID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
 	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
+	const toastRef = React.useRef();
+	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateRestaurantComponent>
@@ -91,9 +88,11 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = props => {
 										}
 									}
 								})
-									.then(res => {
-										alert(JSON.stringify(res));
-
+									.then((res) => {
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 										//this.props.navigation.navigate('Home');
 									})
 									.catch(err => {
@@ -144,6 +143,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = props => {
 								>
 									Edit Restaurant
 								</Button>
+								<Toast ref={toastRef} />
 								<Input
 									label="Name"
 									placeholder="Restaurant Name"

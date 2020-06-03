@@ -3,32 +3,25 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateCompanyComponent } from '../../../generated/components';
 import { GetCompanyByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
-//import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-//import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-//import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
-//import StarRating from 'react-native-star-rating';
+import Toast from 'react-native-easy-toast';
+import LocationComponent from '../../../components/Public/LocationComponent';
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditCompanyProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
 const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 	const { companyID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
-	//const [star, setStar] = React.useState(1);
+	const toastRef = React.useRef();
 	const accessoryItemIcon = (style) => <Icon {...style} name="edit-2-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
@@ -50,11 +43,24 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-							taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-							phone: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-							mail: Yup.string().email('Invalid email').required('Required'),
-							address: Yup.string().min(5, 'Too Short!').required('Required'),
+							name: Yup.string()
+								.min(2, 'Too Short!')
+								.max(50, 'Too Long!')
+								.required('Required'),
+							taxNumber: Yup.string()
+								.min(2, 'Too Short!')
+								.max(50, 'Too Long!')
+								.required('Required'),
+							phone: Yup.string()
+								.min(2, 'Too Short!')
+								.max(50, 'Too Long!')
+								.required('Required'),
+							mail: Yup.string()
+								.email('Invalid email')
+								.required('Required'),
+							address: Yup.string()
+								.min(5, 'Too Short!')
+								.required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
 						})}
@@ -84,9 +90,10 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 									},
 								})
 									.then((res) => {
-										alert(JSON.stringify(res));
-
-										//this.props.navigation.navigate('Home');
+										//alert(JSON.stringify(res));
+										toastRef.current.show(values.name + ' updated. Redirecting to the previous page...', 500, () => {
+											props.navigation.goBack();
+										});
 									})
 									.catch((err) => {
 										alert(err);
@@ -133,6 +140,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 								>
 									Edit Company
 								</Button>
+								<Toast ref={toastRef} />
 								<Input
 									label="Name"
 									placeholder="Hotel Name"

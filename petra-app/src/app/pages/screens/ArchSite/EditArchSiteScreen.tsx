@@ -3,36 +3,31 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Input, Text, Spinner, Icon } from '@ui-kitten/components';
 import { UpdateArchSiteComponent } from '../../../generated/components';
 import { GetArchSiteByIdComponent } from '../../../generated/components';
-import { LocationComponent } from '../../../components/Public/LocationComponent';
+import LocationComponent from '../../../components/Public/LocationComponent';
 import GetAllUserCompanyComponent from '../../../components/Company/GetAllUserCompany';
-import { GetAllCitiesComponent } from '../../../components/Public/GetAllCitiesComponent';
-import { GetAllCityDistrictsComponent } from '../../../components/Public/GetAllCityDistrictsComponent';
+import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
+import GetAllCityDistrictsComponent from '../../../components/Public/GetAllCityDistrictsComponent';
+import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 declare var global: any;
-/**
- * AddHotel props
- */
+
 export interface EditArchSiteProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * AddHotel
- */
-const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
+const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 	const { archSiteID } = props.route.params;
 	const [cityID, setCityID] = React.useState(0);
 	const [oneTimeRun, setOneTimeRun] = React.useState(true);
 	const [locationID, setLocationID] = React.useState(-1);
 	const [addressID, setAddressID] = React.useState(-1);
-	const [star, setStar] = React.useState(1);
-	const accessoryItemIcon = style => <Icon {...style} name="edit-2-outline" />;
+	const toastRef = React.useRef();
 	return (
 		<Layout style={{ flex: 1 }}>
 			<UpdateArchSiteComponent>
-				{UpdateArchSiteMutation => (
+				{(UpdateArchSiteMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
@@ -49,7 +44,8 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 							latitude: 0,
 							longtitude: 0,
 							districtID: 0,
-							cityID: 0
+							cityID: 0,
+							travelTime:0
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -72,8 +68,9 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 							period: Yup.string()
 								.min(5, 'Too Short!')
 								.required('Required'),
+							travelTime: Yup.number().required('Required'),	
 							//sadece longtitude kontrol etsem yeterli
-							longtitude: Yup.number().required('Required')
+							longtitude: Yup.number().required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -87,25 +84,32 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 										archSite: {
 											name: values.name.toString(),
 											companyID: values.companyID,
-											description: values.description
+											description: values.description,
+											averageTime: values.travelTime
 										},
 										archSiteLocation: {
 											longtitude: values.longtitude,
-											latitude: values.latitude
+											latitude: values.latitude,
 										},
 										archSiteAddress: {
 											address: values.address.toString(),
 											districtID: values.districtID,
-											cityID: values.cityID
-										}
-									}
+											cityID: values.cityID,
+										},
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										alert(JSON.stringify(res));
-
+										toastRef.current.show(
+											values.name.toString() + ' edited. Redirecting to the previous page...',
+											500,
+											() => {
+												props.navigation.goBack();
+											}
+										);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 									});
 								formikActions.setSubmitting(false);
@@ -113,7 +117,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{props => (
+						{(props) => (
 							<Layout>
 								{props.isSubmitting && <Spinner />}
 								{oneTimeRun && (
@@ -123,7 +127,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 											if (error) return <Text>error</Text>;
 
 											if (data) {
-												data.ArchSite.map(dat => {
+												data.ArchSite.map((dat) => {
 													props.values.companyID = dat.companyID;
 													props.values.name = dat.name;
 													props.values.address = dat.Location.Address.address;
@@ -155,7 +159,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 								</Button>
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.companyID = value;
 									}}
 									userID={parseInt(global.userID)}
@@ -170,16 +174,17 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 									value={props.values.name}
 									autoFocus
 								/>
+								<Toast ref={toastRef} />
 								<GetAllCitiesComponent
 									label="Select City"
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.cityID = value;
 										setCityID(value);
 									}}
 								/>
 								<GetAllCityDistrictsComponent
 									label={cityID != 0 ? 'Select District' : 'Please Select a City First'}
-									parentReference={value => {
+									parentReference={(value) => {
 										props.values.districtID = value;
 									}}
 									cityID={cityID}
@@ -240,6 +245,15 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 									value={props.values.destruction}
 								/>
 								<Input
+									label="TravelTime"
+									status={props.touched.travelTime && props.errors.travelTime ? 'danger' : 'success'}
+									caption={props.touched.travelTime && props.errors.travelTime ? props.errors.travelTime : ''}
+									placeholder="Average Travel Time"
+									onChangeText={props.handleChange('travelTime')}
+									onBlur={props.handleBlur('travelTime')}
+									value={props.values.travelTime.toString()}
+								/>
+								<Input
 									label="Description"
 									status={props.touched.description && props.errors.description ? 'danger' : 'success'}
 									caption={props.touched.description && props.errors.description ? props.errors.description : ''}
@@ -250,10 +264,10 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = props => {
 								/>
 
 								<LocationComponent
-									latitude={value => {
+									latitude={(value) => {
 										props.values.latitude = value;
 									}}
-									longitude={value => {
+									longitude={(value) => {
 										props.values.longtitude = value;
 									}}
 								/>

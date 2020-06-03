@@ -1,34 +1,32 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, Dimensions, Image, View } from 'react-native';
+import { Icon, Card, List, Layout, Text } from '@ui-kitten/components';
+
 import { GetArticleListComponent } from '../../generated/components';
-import StarRating from 'react-native-star-rating';
-import { Formik } from 'formik';
+
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetArticleListProps {}
 
-/**
- * Home
- */
 const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 	const [articleList, setArticleList] = React.useState([]);
-
 	function renderItemAccessory(item) {
 		return <Text appearance="hint">{item.publishDate.split('T')[0]}</Text>;
 	}
 	const renderItemIcon = (style) => <Icon {...style} name="bulb-outline" />;
+	const CustomHeader = (item) => (
+		<React.Fragment>
+			<Image style={styles.headerImage} source={{ uri: item.imageUrl }} />
+			<Text style={styles.headerText} category="h6">
+				{`${item.title}`}
+			</Text>
+		</React.Fragment>
+	);
 	const renderItem = ({ item, index }) => {
 		return (
-			<ListItem
-				key={item.key}
-				title={`${item.title}`}
-				description={`${item.content}`}
-				icon={renderItemIcon}
-				accessory={() => renderItemAccessory(item)}
-			/>
+			<Card key={item.key} header={() => CustomHeader(item)}>
+				<Text>{`${item.content}`}</Text>
+			</Card>
 		);
 	};
 	return (
@@ -41,12 +39,13 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 					if (data) {
 						data.Article.map((dat) => {
 							if (articleList.length > 0) {
-								if (articleList.every((item) => item.key != dat.hotelID)) {
+								if (articleList.every((item) => item.key != dat.articleID)) {
 									articleList.push({
 										key: dat.articleID,
 										title: dat.title,
 										content: dat.content,
 										publishDate: dat.publishDate,
+										imageUrl: dat.imageUrl,
 									});
 								}
 							} else {
@@ -55,6 +54,7 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 									title: dat.title,
 									content: dat.content,
 									publishDate: dat.publishDate,
+									imageUrl: dat.imageUrl,
 								});
 							}
 						});
@@ -67,9 +67,13 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 };
 
 const styles: any = StyleSheet.create({
-	mapStyle: {
-		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2,
+	headerText: {
+		marginHorizontal: 24,
+		marginVertical: 16,
+	},
+	headerImage: {
+		flex: 1,
+		height: 192,
 	},
 });
 export default GetArticleList;

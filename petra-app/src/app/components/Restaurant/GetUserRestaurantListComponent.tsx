@@ -1,31 +1,55 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
 import { GetUserRestaurantComponent } from '../../generated/components';
 import { DeleteRestaurantComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserRestaurantListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserRestaurantList: React.FC<GetUserRestaurantListProps> = (props) => {
+const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (props) => {
 	const [RestaurantList, setRestaurantList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = RestaurantList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setRestaurantList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteRestaurant(item) {
 		return (
 			<DeleteRestaurantComponent>
@@ -70,14 +94,10 @@ const GetUserRestaurantList: React.FC<GetUserRestaurantListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -164,5 +184,15 @@ const styles: any = StyleSheet.create({
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height / 2,
 	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
 });
-export default GetUserRestaurantList;
+export default GetUserRestaurantListComponent;

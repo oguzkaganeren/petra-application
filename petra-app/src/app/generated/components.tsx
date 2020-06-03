@@ -333,6 +333,7 @@ export type ArchSite = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID: Scalars['Int'],
+  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -484,6 +485,7 @@ export type ArchSite_Avg_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -493,6 +495,7 @@ export type ArchSite_Avg_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -512,6 +515,7 @@ export type ArchSite_Bool_Exp = {
   age?: Maybe<Int_Comparison_Exp>,
   altitude?: Maybe<Float_Comparison_Exp>,
   archSiteID?: Maybe<Int_Comparison_Exp>,
+  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   destruction?: Maybe<String_Comparison_Exp>,
@@ -529,6 +533,7 @@ export enum ArchSite_Constraint {
 export type ArchSite_Inc_Input = {
   age?: Maybe<Scalars['Int']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
 };
@@ -544,6 +549,7 @@ export type ArchSite_Insert_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -559,6 +565,7 @@ export type ArchSite_Max_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -572,6 +579,7 @@ export type ArchSite_Max_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -586,6 +594,7 @@ export type ArchSite_Min_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -599,6 +608,7 @@ export type ArchSite_Min_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -636,6 +646,7 @@ export type ArchSite_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -650,6 +661,7 @@ export enum ArchSite_Select_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -664,6 +676,7 @@ export type ArchSite_Set_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -679,6 +692,7 @@ export type ArchSite_Stddev_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -688,6 +702,7 @@ export type ArchSite_Stddev_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -698,6 +713,7 @@ export type ArchSite_Stddev_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -707,6 +723,7 @@ export type ArchSite_Stddev_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -717,6 +734,7 @@ export type ArchSite_Stddev_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -726,6 +744,7 @@ export type ArchSite_Stddev_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -736,6 +755,7 @@ export type ArchSite_Sum_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -745,6 +765,7 @@ export type ArchSite_Sum_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -754,6 +775,7 @@ export enum ArchSite_Update_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -769,6 +791,7 @@ export type ArchSite_Var_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -778,6 +801,7 @@ export type ArchSite_Var_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -788,6 +812,7 @@ export type ArchSite_Var_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -797,6 +822,7 @@ export type ArchSite_Var_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -807,6 +833,7 @@ export type ArchSite_Variance_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -816,6 +843,7 @@ export type ArchSite_Variance_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -3006,6 +3034,7 @@ export type Article = {
   articleID: Scalars['Int'],
   content: Scalars['String'],
   editDate: Scalars['timestamptz'],
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted: Scalars['Boolean'],
   publishDate: Scalars['timestamptz'],
   title: Scalars['String'],
@@ -3111,6 +3140,7 @@ export type Article_Bool_Exp = {
   articleID?: Maybe<Int_Comparison_Exp>,
   content?: Maybe<String_Comparison_Exp>,
   editDate?: Maybe<Timestamptz_Comparison_Exp>,
+  imageUrl?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
   publishDate?: Maybe<Timestamptz_Comparison_Exp>,
   title?: Maybe<String_Comparison_Exp>,
@@ -3130,6 +3160,7 @@ export type Article_Insert_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
@@ -3140,6 +3171,7 @@ export type Article_Max_Fields = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -3148,6 +3180,7 @@ export type Article_Max_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
 };
@@ -3157,6 +3190,7 @@ export type Article_Min_Fields = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
 };
@@ -3165,6 +3199,7 @@ export type Article_Min_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
 };
@@ -3192,6 +3227,7 @@ export type Article_Order_By = {
   articleID?: Maybe<Order_By>,
   content?: Maybe<Order_By>,
   editDate?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
   publishDate?: Maybe<Order_By>,
   title?: Maybe<Order_By>,
@@ -3201,6 +3237,7 @@ export enum Article_Select_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
@@ -3210,6 +3247,7 @@ export type Article_Set_Input = {
   articleID?: Maybe<Scalars['Int']>,
   content?: Maybe<Scalars['String']>,
   editDate?: Maybe<Scalars['timestamptz']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
   publishDate?: Maybe<Scalars['timestamptz']>,
   title?: Maybe<Scalars['String']>,
@@ -3255,6 +3293,7 @@ export enum Article_Update_Column {
   ArticleId = 'articleID',
   Content = 'content',
   EditDate = 'editDate',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted',
   PublishDate = 'publishDate',
   Title = 'title'
@@ -3837,6 +3876,8 @@ export type City = {
   city: Scalars['String'],
   cityID: Scalars['Int'],
   countryID: Scalars['Int'],
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted: Scalars['Boolean'],
 };
 
@@ -3943,6 +3984,8 @@ export type City_Bool_Exp = {
   city?: Maybe<String_Comparison_Exp>,
   cityID?: Maybe<Int_Comparison_Exp>,
   countryID?: Maybe<Int_Comparison_Exp>,
+  description?: Maybe<String_Comparison_Exp>,
+  imageUrl?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
 };
 
@@ -3962,6 +4005,8 @@ export type City_Insert_Input = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
@@ -3970,12 +4015,16 @@ export type City_Max_Fields = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
 };
 
 export type City_Max_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
 };
 
 export type City_Min_Fields = {
@@ -3983,12 +4032,16 @@ export type City_Min_Fields = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
 };
 
 export type City_Min_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
 };
 
 export type City_Mutation_Response = {
@@ -4015,6 +4068,8 @@ export type City_Order_By = {
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  description?: Maybe<Order_By>,
+  imageUrl?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
 };
 
@@ -4022,6 +4077,8 @@ export enum City_Select_Column {
   City = 'city',
   CityId = 'cityID',
   CountryId = 'countryID',
+  Description = 'description',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted'
 }
 
@@ -4029,6 +4086,8 @@ export type City_Set_Input = {
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  description?: Maybe<Scalars['String']>,
+  imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
 };
 
@@ -4080,6 +4139,8 @@ export enum City_Update_Column {
   City = 'city',
   CityId = 'cityID',
   CountryId = 'countryID',
+  Description = 'description',
+  ImageUrl = 'imageUrl',
   IsDeleted = 'isDeleted'
 }
 
@@ -7681,7 +7742,7 @@ export type Int_Comparison_Exp = {
 
 export type Location = {
    __typename?: 'Location',
-  Address: Address,
+  Address?: Maybe<Address>,
   ArchSites: Array<ArchSite>,
   ArchSites_aggregate: ArchSite_Aggregate,
   Companies: Array<Company>,
@@ -7694,7 +7755,7 @@ export type Location = {
   Restaurants_aggregate: Restaurant_Aggregate,
   TravelGuideLocations: Array<TravelGuideLocation>,
   TravelGuideLocations_aggregate: TravelGuideLocation_Aggregate,
-  addressID: Scalars['Int'],
+  addressID?: Maybe<Scalars['Int']>,
   isDeleted: Scalars['Boolean'],
   latitude: Scalars['Float'],
   locationID: Scalars['Int'],
@@ -8351,6 +8412,7 @@ export type Museum = {
   MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
   TravelGuideMuseums: Array<TravelGuideMuseum>,
   TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description: Scalars['String'],
   isDeleted: Scalars['Boolean'],
@@ -8497,12 +8559,14 @@ export type Museum_Arr_Rel_Insert_Input = {
 
 export type Museum_Avg_Fields = {
    __typename?: 'Museum_avg_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Avg_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8519,6 +8583,7 @@ export type Museum_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
   _not?: Maybe<Museum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
+  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
@@ -8532,6 +8597,7 @@ export enum Museum_Constraint {
 }
 
 export type Museum_Inc_Input = {
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
@@ -8545,6 +8611,7 @@ export type Museum_Insert_Input = {
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8555,6 +8622,7 @@ export type Museum_Insert_Input = {
 
 export type Museum_Max_Fields = {
    __typename?: 'Museum_max_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8563,6 +8631,7 @@ export type Museum_Max_Fields = {
 };
 
 export type Museum_Max_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8572,6 +8641,7 @@ export type Museum_Max_Order_By = {
 
 export type Museum_Min_Fields = {
    __typename?: 'Museum_min_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8580,6 +8650,7 @@ export type Museum_Min_Fields = {
 };
 
 export type Museum_Min_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8612,6 +8683,7 @@ export type Museum_Order_By = {
   MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
@@ -8621,6 +8693,7 @@ export type Museum_Order_By = {
 };
 
 export enum Museum_Select_Column {
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8630,6 +8703,7 @@ export enum Museum_Select_Column {
 }
 
 export type Museum_Set_Input = {
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8640,12 +8714,14 @@ export type Museum_Set_Input = {
 
 export type Museum_Stddev_Fields = {
    __typename?: 'Museum_stddev_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8653,12 +8729,14 @@ export type Museum_Stddev_Order_By = {
 
 export type Museum_Stddev_Pop_Fields = {
    __typename?: 'Museum_stddev_pop_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Pop_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8666,12 +8744,14 @@ export type Museum_Stddev_Pop_Order_By = {
 
 export type Museum_Stddev_Samp_Fields = {
    __typename?: 'Museum_stddev_samp_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Samp_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8679,18 +8759,21 @@ export type Museum_Stddev_Samp_Order_By = {
 
 export type Museum_Sum_Fields = {
    __typename?: 'Museum_sum_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Sum_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
 };
 
 export enum Museum_Update_Column {
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8701,12 +8784,14 @@ export enum Museum_Update_Column {
 
 export type Museum_Var_Pop_Fields = {
    __typename?: 'Museum_var_pop_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Pop_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8714,12 +8799,14 @@ export type Museum_Var_Pop_Order_By = {
 
 export type Museum_Var_Samp_Fields = {
    __typename?: 'Museum_var_samp_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Samp_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8727,12 +8814,14 @@ export type Museum_Var_Samp_Order_By = {
 
 export type Museum_Variance_Fields = {
    __typename?: 'Museum_variance_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Variance_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -24243,6 +24332,66 @@ export type UpdateCompanyMutation = (
   )> }
 );
 
+export type DeleteTravelGuideMutationVariables = {
+  travelGuideID?: Maybe<Scalars['Int']>
+};
+
+
+export type DeleteTravelGuideMutation = (
+  { __typename: 'mutation_root' }
+  & { update_TravelGuide: Maybe<(
+    { __typename?: 'TravelGuide_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'TravelGuide' }
+      & Pick<TravelGuide, 'travelGuideID'>
+    )> }
+  )> }
+);
+
+export type GetTravelGuideByIdQueryVariables = {
+  travelGuideID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetTravelGuideByIdQuery = (
+  { __typename: 'query_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'title' | 'cost'>
+    & { TravelGuideArchSites: Array<(
+      { __typename?: 'TravelGuideArchSite' }
+      & { ArchSite: (
+        { __typename?: 'ArchSite' }
+        & Pick<ArchSite, 'name'>
+      ) }
+    )>, TravelGuideHotels: Array<(
+      { __typename?: 'TravelGuideHotel' }
+      & { Hotel: (
+        { __typename?: 'Hotel' }
+        & Pick<Hotel, 'name'>
+      ) }
+    )>, TravelGuideLocations: Array<(
+      { __typename?: 'TravelGuideLocation' }
+      & { Location: (
+        { __typename?: 'Location' }
+        & Pick<Location, 'latitude' | 'longtitude'>
+      ) }
+    )>, TravelGuideMuseums: Array<(
+      { __typename?: 'TravelGuideMuseum' }
+      & { Museum: (
+        { __typename?: 'Museum' }
+        & Pick<Museum, 'name'>
+      ) }
+    )>, TravelGuideRestaurants: Array<(
+      { __typename?: 'TravelGuideRestaurant' }
+      & { Restaurant: (
+        { __typename?: 'Restaurant' }
+        & Pick<Restaurant, 'name'>
+      ) }
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -24391,10 +24540,10 @@ export type GetHotelLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24411,14 +24560,14 @@ export type GetArchSiteLocationQuery = (
   { __typename?: 'query_root' }
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age'>
+    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age' | 'diameter'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ), ArchSitePrices: Array<(
       { __typename?: 'ArchSitePrice' }
       & Pick<ArchSitePrice, 'price' | 'finishDate' | 'archSiteEntranceTypeID'>
@@ -24445,10 +24594,10 @@ export type GetMuseumLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ), MuseumPrices: Array<(
       { __typename?: 'MuseumPrice' }
       & Pick<MuseumPrice, 'price' | 'finishDate' | 'entranceTypeID'>
@@ -24467,10 +24616,10 @@ export type GetRestaurantLocationQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24588,7 +24737,7 @@ export type GetCitiesQuery = (
   { __typename: 'query_root' }
   & { City: Array<(
     { __typename?: 'City' }
-    & Pick<City, 'cityID' | 'city'>
+    & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
   )> }
 );
 
@@ -24633,10 +24782,26 @@ export type GetHotelByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -24667,10 +24832,26 @@ export type GetMuseumByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -24688,31 +24869,26 @@ export type GetArchSiteByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
-    ) }
-  )> }
-);
-
-export type GetRestaurantByIdQueryVariables = {
-  restaurantID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetRestaurantByIdQuery = (
-  { __typename: 'query_root' }
-  & { Restaurant: Array<(
-    { __typename?: 'Restaurant' }
-    & Pick<Restaurant, 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
-    & { Location: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
-        { __typename?: 'Address' }
-        & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
     ) }
   )> }
 );
@@ -24730,10 +24906,10 @@ export type GetCompanyByIdQuery = (
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
-      & { Address: (
+      & { Address: Maybe<(
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
-      ) }
+      )> }
     ) }
   )> }
 );
@@ -24745,7 +24921,187 @@ export type GetArticleListQuery = (
   { __typename: 'query_root' }
   & { Article: Array<(
     { __typename?: 'Article' }
-    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title'>
+    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title' | 'imageUrl'>
+  )> }
+);
+
+export type GetHotelByCityQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelByCityQuery = (
+  { __typename: 'query_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star' | 'companyID' | 'hotelID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & { Address: Maybe<(
+        { __typename?: 'Address' }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetHotelServicesQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelServicesQuery = (
+  { __typename: 'query_root' }
+  & { HotelService: Array<(
+    { __typename?: 'HotelService' }
+    & { HotelServiceProperty: (
+      { __typename?: 'HotelServiceProperty' }
+      & Pick<HotelServiceProperty, 'content'>
+    ) }
+  )> }
+);
+
+export type GetHotelRoomsQueryVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelRoomsQuery = (
+  { __typename: 'query_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo' | 'roomID'>
+      & { RoomPrices: Array<(
+        { __typename?: 'RoomPrice' }
+        & Pick<RoomPrice, 'price'>
+      )>, RoomPropertyRooms: Array<(
+        { __typename?: 'RoomPropertyRoom' }
+        & { RoomProperty: (
+          { __typename?: 'RoomProperty' }
+          & Pick<RoomProperty, 'content'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetRestaurantByCityQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantByCityQuery = (
+  { __typename: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'star' | 'companyID' | 'restaurantID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & { Address: Maybe<(
+        { __typename?: 'Address' }
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), RestaurantType: (
+      { __typename?: 'RestaurantType' }
+      & Pick<RestaurantType, 'type'>
+    ) }
+  )> }
+);
+
+export type GetRestaurantByIdQueryVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantByIdQuery = (
+  { __typename: 'query_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'name' | 'star' | 'taxNumber' | 'locationID' | 'companyID'>
+    & { Location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'addressID' | 'latitude' | 'longtitude'>
+      & { Address: Maybe<(
+        { __typename?: 'Address' }
+        & Pick<Address, 'address' | 'cityID' | 'districtID'>
+        & { City: (
+          { __typename?: 'City' }
+          & Pick<City, 'city'>
+        ), District: (
+          { __typename?: 'District' }
+          & Pick<District, 'district'>
+        ) }
+      )> }
+    ), Company: (
+      { __typename?: 'Company' }
+      & { CompanyPhones: Array<(
+        { __typename?: 'CompanyPhone' }
+        & { Phone: (
+          { __typename?: 'Phone' }
+          & Pick<Phone, 'phone'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetRestaurantMenuByResIdQueryVariables = {
+  restaurantID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetRestaurantMenuByResIdQuery = (
+  { __typename: 'query_root' }
+  & { RestaurantMenu: Array<(
+    { __typename?: 'RestaurantMenu' }
+    & Pick<RestaurantMenu, 'name' | 'price' | 'restaurantMenuID'>
+    & { RestaurantMenuFoods: Array<(
+      { __typename?: 'RestaurantMenuFood' }
+      & { RestaurantFood: (
+        { __typename?: 'RestaurantFood' }
+        & Pick<RestaurantFood, 'name'>
+      ) }
+    )> }
+  )> }
+);
+
+export type GetUserTravelGuideQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserTravelGuideQuery = (
+  { __typename?: 'query_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'title' | 'travelGuideID' | 'cost' | 'creationDate'>
+  )> }
+);
+
+export type GetCityByIdQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetCityByIdQuery = (
+  { __typename: 'query_root' }
+  & { City: Array<(
+    { __typename?: 'City' }
+    & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
   )> }
 );
 
@@ -26123,10 +26479,93 @@ export function withUpdateCompany<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type UpdateCompanyMutationResult = ApolloReactCommon.MutationResult<UpdateCompanyMutation>;
 export type UpdateCompanyMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
+export const DeleteTravelGuideDocument = gql`
+    mutation deleteTravelGuide($travelGuideID: Int) {
+  __typename
+  update_TravelGuide(where: {travelGuideID: {_eq: $travelGuideID}}, _set: {isDeleted: true}) {
+    returning {
+      travelGuideID
+    }
+  }
+}
+    `;
+export type DeleteTravelGuideMutationFn = ApolloReactCommon.MutationFunction<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
+export type DeleteTravelGuideComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>, 'mutation'>;
+
+    export const DeleteTravelGuideComponent = (props: DeleteTravelGuideComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables> mutation={DeleteTravelGuideDocument} {...props} />
+    );
+    
+export type DeleteTravelGuideProps<TChildProps = {}> = ApolloReactHoc.MutateProps<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables> & TChildProps;
+export function withDeleteTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteTravelGuideMutation,
+  DeleteTravelGuideMutationVariables,
+  DeleteTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables, DeleteTravelGuideProps<TChildProps>>(DeleteTravelGuideDocument, {
+      alias: 'deleteTravelGuide',
+      ...operationOptions
+    });
+};
+export type DeleteTravelGuideMutationResult = ApolloReactCommon.MutationResult<DeleteTravelGuideMutation>;
+export type DeleteTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
+export const GetTravelGuideByIdDocument = gql`
+    query getTravelGuideById($travelGuideID: Int) {
+  __typename
+  TravelGuide(where: {isDeleted: {_eq: false}, travelGuideID: {_eq: $travelGuideID}}) {
+    title
+    cost
+    TravelGuideArchSites {
+      ArchSite {
+        name
+      }
+    }
+    TravelGuideHotels {
+      Hotel {
+        name
+      }
+    }
+    TravelGuideLocations {
+      Location {
+        latitude
+        longtitude
+      }
+    }
+    TravelGuideMuseums {
+      Museum {
+        name
+      }
+    }
+    TravelGuideRestaurants {
+      Restaurant {
+        name
+      }
+    }
+  }
+}
+    `;
+export type GetTravelGuideByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>, 'query'>;
+
+    export const GetTravelGuideByIdComponent = (props: GetTravelGuideByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> query={GetTravelGuideByIdDocument} {...props} />
+    );
+    
+export type GetTravelGuideByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> & TChildProps;
+export function withGetTravelGuideById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTravelGuideByIdQuery,
+  GetTravelGuideByIdQueryVariables,
+  GetTravelGuideByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables, GetTravelGuideByIdProps<TChildProps>>(GetTravelGuideByIdDocument, {
+      alias: 'getTravelGuideById',
+      ...operationOptions
+    });
+};
+export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
-  RestaurantFoodType {
+  RestaurantFoodType(where: {isDeleted: {_eq: false}}) {
     type
     restaurantFoodTypeID
   }
@@ -26153,7 +26592,7 @@ export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypes
 export const GetRestaurantTypesDocument = gql`
     query getRestaurantTypes {
   __typename
-  RestaurantType {
+  RestaurantType(where: {isDeleted: {_eq: false}}) {
     type
     restaurantTypeID
   }
@@ -26211,7 +26650,7 @@ export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: 
 export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
 export const GetRoomPropertyDocument = gql`
     query getRoomProperty {
-  RoomProperty {
+  RoomProperty(where: {isDeleted: {_eq: false}}) {
     content
     roomPropertyID
   }
@@ -26297,7 +26736,7 @@ export type GetUserArticleQueryResult = ApolloReactCommon.QueryResult<GetUserArt
 export const GetHotelServicePropertyDocument = gql`
     query getHotelServiceProperty {
   __typename
-  HotelServiceProperty {
+  HotelServiceProperty(where: {isDeleted: {_eq: false}}) {
     content
     hotelServicePropertyID
   }
@@ -26324,7 +26763,7 @@ export type GetHotelServicePropertyQueryResult = ApolloReactCommon.QueryResult<G
 export const GetHotelRoomDocument = gql`
     query getHotelRoom($hotelID: Int!) {
   __typename
-  HotelRoom(where: {hotelID: {_eq: $hotelID}}) {
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     roomID
     Room {
       roomNo
@@ -26353,7 +26792,7 @@ export type GetHotelRoomQueryResult = ApolloReactCommon.QueryResult<GetHotelRoom
 export const GetArchSiteTypesDocument = gql`
     query GetArchSiteTypes {
   __typename
-  ArchSiteType {
+  ArchSiteType(where: {isDeleted: {_eq: false}}) {
     name
     archSiteTypeID
   }
@@ -26380,7 +26819,7 @@ export type GetArchSiteTypesQueryResult = ApolloReactCommon.QueryResult<GetArchS
 export const GetCuisineTypesDocument = gql`
     query getCuisineTypes {
   __typename
-  RestaurantCuisineType {
+  RestaurantCuisineType(where: {isDeleted: {_eq: false}}) {
     name
     restaurantCuisineTypeID
   }
@@ -26407,7 +26846,7 @@ export type GetCuisineTypesQueryResult = ApolloReactCommon.QueryResult<GetCuisin
 export const GetMuseumTypesDocument = gql`
     query getMuseumTypes {
   __typename
-  MuseumType {
+  MuseumType(where: {isDeleted: {_eq: false}}) {
     museumTypeID
     type
   }
@@ -26433,7 +26872,7 @@ export function withGetMuseumTypes<TProps, TChildProps = {}>(operationOptions?: 
 export type GetMuseumTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumTypesQuery, GetMuseumTypesQueryVariables>;
 export const GetHotelLocationDocument = gql`
     query getHotelLocation {
-  Hotel {
+  Hotel(where: {isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26467,7 +26906,7 @@ export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?
 export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
 export const GetArchSiteLocationDocument = gql`
     query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int, $priceDate: timestamptz, $archSiteTypeIDs: [Int!]) {
-  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}}) {
+  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26487,6 +26926,7 @@ export const GetArchSiteLocationDocument = gql`
     ArchSiteTypeArchSites {
       archSiteTypeID
     }
+    diameter
   }
 }
     `;
@@ -26510,7 +26950,7 @@ export function withGetArchSiteLocation<TProps, TChildProps = {}>(operationOptio
 export type GetArchSiteLocationQueryResult = ApolloReactCommon.QueryResult<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>;
 export const GetMuseumLocationDocument = gql`
     query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
-  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}}) {
+  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26549,7 +26989,7 @@ export function withGetMuseumLocation<TProps, TChildProps = {}>(operationOptions
 export type GetMuseumLocationQueryResult = ApolloReactCommon.QueryResult<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>;
 export const GetRestaurantLocationDocument = gql`
     query getRestaurantLocation {
-  Restaurant {
+  Restaurant(where: {isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26704,7 +27144,7 @@ export type GetUserRestaurantQueryResult = ApolloReactCommon.QueryResult<GetUser
 export const GetArchSiteEntranceTypesDocument = gql`
     query getArchSiteEntranceTypes {
   __typename
-  ArchSiteEntranceType {
+  ArchSiteEntranceType(where: {isDeleted: {_eq: false}}) {
     archSiteEntranceTypeID
     content
   }
@@ -26731,7 +27171,7 @@ export type GetArchSiteEntranceTypesQueryResult = ApolloReactCommon.QueryResult<
 export const GetMuseumEntranceTypesDocument = gql`
     query getMuseumEntranceTypes {
   __typename
-  MuseumEntranceType {
+  MuseumEntranceType(where: {isDeleted: {_eq: false}}) {
     content
     museumEntranceTypeID
   }
@@ -26758,7 +27198,7 @@ export type GetMuseumEntranceTypesQueryResult = ApolloReactCommon.QueryResult<Ge
 export const GetFoodDocument = gql`
     query getFood {
   __typename
-  RestaurantFood {
+  RestaurantFood(where: {isDeleted: {_eq: false}}) {
     name
     restaurantFoodID
   }
@@ -26815,6 +27255,8 @@ export const GetCitiesDocument = gql`
   City(where: {Country: {countryID: {_eq: 1}}}) {
     cityID
     city
+    description
+    imageUrl
   }
 }
     `;
@@ -26897,7 +27339,7 @@ export type GetHotelListInfoQueryResult = ApolloReactCommon.QueryResult<GetHotel
 export const GetHotelByIdDocument = gql`
     query getHotelByID($hotelID: Int) {
   __typename
-  Hotel(where: {hotelID: {_eq: $hotelID}}) {
+  Hotel(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
     description
     name
     star
@@ -26906,6 +27348,12 @@ export const GetHotelByIdDocument = gql`
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -26914,6 +27362,13 @@ export const GetHotelByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
   }
 }
     `;
@@ -26938,7 +27393,7 @@ export type GetHotelByIdQueryResult = ApolloReactCommon.QueryResult<GetHotelById
 export const GetArticleByIdDocument = gql`
     query getArticleByID($articleID: Int) {
   __typename
-  Article(where: {articleID: {_eq: $articleID}}) {
+  Article(where: {articleID: {_eq: $articleID}, isDeleted: {_eq: false}}) {
     articleID
     content
     title
@@ -26966,13 +27421,19 @@ export type GetArticleByIdQueryResult = ApolloReactCommon.QueryResult<GetArticle
 export const GetMuseumByIdDocument = gql`
     query getMuseumByID($museumID: Int) {
   __typename
-  Museum(where: {museumID: {_eq: $museumID}}) {
+  Museum(where: {museumID: {_eq: $museumID}, isDeleted: {_eq: false}}) {
     description
     name
     locationID
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -26981,6 +27442,13 @@ export const GetMuseumByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
   }
 }
     `;
@@ -27005,13 +27473,19 @@ export type GetMuseumByIdQueryResult = ApolloReactCommon.QueryResult<GetMuseumBy
 export const GetArchSiteByIdDocument = gql`
     query getArchSiteByID($archSiteID: Int) {
   __typename
-  ArchSite(where: {archSiteID: {_eq: $archSiteID}}) {
+  ArchSite(where: {archSiteID: {_eq: $archSiteID}, isDeleted: {_eq: false}}) {
     description
     name
     locationID
     Location {
       addressID
       Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
         address
         cityID
         districtID
@@ -27020,6 +27494,13 @@ export const GetArchSiteByIdDocument = gql`
       longtitude
     }
     companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
     age
     altitude
     destruction
@@ -27046,50 +27527,10 @@ export function withGetArchSiteById<TProps, TChildProps = {}>(operationOptions?:
     });
 };
 export type GetArchSiteByIdQueryResult = ApolloReactCommon.QueryResult<GetArchSiteByIdQuery, GetArchSiteByIdQueryVariables>;
-export const GetRestaurantByIdDocument = gql`
-    query getRestaurantByID($restaurantID: Int) {
-  __typename
-  Restaurant(where: {restaurantID: {_eq: $restaurantID}}) {
-    name
-    star
-    taxNumber
-    locationID
-    Location {
-      addressID
-      Address {
-        address
-        cityID
-        districtID
-      }
-      latitude
-      longtitude
-    }
-    companyID
-  }
-}
-    `;
-export type GetRestaurantByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>, 'query'>;
-
-    export const GetRestaurantByIdComponent = (props: GetRestaurantByIdComponentProps) => (
-      <ApolloReactComponents.Query<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> query={GetRestaurantByIdDocument} {...props} />
-    );
-    
-export type GetRestaurantByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> & TChildProps;
-export function withGetRestaurantById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetRestaurantByIdQuery,
-  GetRestaurantByIdQueryVariables,
-  GetRestaurantByIdProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables, GetRestaurantByIdProps<TChildProps>>(GetRestaurantByIdDocument, {
-      alias: 'getRestaurantById',
-      ...operationOptions
-    });
-};
-export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>;
 export const GetCompanyByIdDocument = gql`
     query getCompanyByID($companyID: Int) {
   __typename
-  Company(where: {companyID: {_eq: $companyID}}) {
+  Company(where: {companyID: {_eq: $companyID}, isDeleted: {_eq: false}}) {
     name
     taxNumber
     mail
@@ -27137,6 +27578,7 @@ export const GetArticleListDocument = gql`
     content
     publishDate
     title
+    imageUrl
   }
 }
     `;
@@ -27158,3 +27600,293 @@ export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;
+export const GetHotelByCityDocument = gql`
+    query getHotelByCity($cityID: Int) {
+  __typename
+  Hotel(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+    description
+    name
+    star
+    Location {
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+      }
+    }
+    companyID
+    hotelID
+  }
+}
+    `;
+export type GetHotelByCityComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelByCityQuery, GetHotelByCityQueryVariables>, 'query'>;
+
+    export const GetHotelByCityComponent = (props: GetHotelByCityComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelByCityQuery, GetHotelByCityQueryVariables> query={GetHotelByCityDocument} {...props} />
+    );
+    
+export type GetHotelByCityProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelByCityQuery, GetHotelByCityQueryVariables> & TChildProps;
+export function withGetHotelByCity<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelByCityQuery,
+  GetHotelByCityQueryVariables,
+  GetHotelByCityProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelByCityQuery, GetHotelByCityQueryVariables, GetHotelByCityProps<TChildProps>>(GetHotelByCityDocument, {
+      alias: 'getHotelByCity',
+      ...operationOptions
+    });
+};
+export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelByCityQuery, GetHotelByCityQueryVariables>;
+export const GetHotelServicesDocument = gql`
+    query getHotelServices($hotelID: Int) {
+  __typename
+  HotelService(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
+    HotelServiceProperty {
+      content
+    }
+  }
+}
+    `;
+export type GetHotelServicesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelServicesQuery, GetHotelServicesQueryVariables>, 'query'>;
+
+    export const GetHotelServicesComponent = (props: GetHotelServicesComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelServicesQuery, GetHotelServicesQueryVariables> query={GetHotelServicesDocument} {...props} />
+    );
+    
+export type GetHotelServicesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicesQuery, GetHotelServicesQueryVariables> & TChildProps;
+export function withGetHotelServices<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelServicesQuery,
+  GetHotelServicesQueryVariables,
+  GetHotelServicesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelServicesQuery, GetHotelServicesQueryVariables, GetHotelServicesProps<TChildProps>>(GetHotelServicesDocument, {
+      alias: 'getHotelServices',
+      ...operationOptions
+    });
+};
+export type GetHotelServicesQueryResult = ApolloReactCommon.QueryResult<GetHotelServicesQuery, GetHotelServicesQueryVariables>;
+export const GetHotelRoomsDocument = gql`
+    query getHotelRooms($hotelID: Int) {
+  __typename
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
+    Room {
+      roomNo
+      RoomPrices {
+        price
+      }
+      RoomPropertyRooms {
+        RoomProperty {
+          content
+        }
+      }
+      roomID
+    }
+  }
+}
+    `;
+export type GetHotelRoomsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>, 'query'>;
+
+    export const GetHotelRoomsComponent = (props: GetHotelRoomsComponentProps) => (
+      <ApolloReactComponents.Query<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> query={GetHotelRoomsDocument} {...props} />
+    );
+    
+export type GetHotelRoomsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> & TChildProps;
+export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomsQuery,
+  GetHotelRoomsQueryVariables,
+  GetHotelRoomsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetHotelRoomsQuery, GetHotelRoomsQueryVariables, GetHotelRoomsProps<TChildProps>>(GetHotelRoomsDocument, {
+      alias: 'getHotelRooms',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomsQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>;
+export const GetRestaurantByCityDocument = gql`
+    query getRestaurantByCity($cityID: Int) {
+  __typename
+  Restaurant(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+    name
+    star
+    Location {
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+      }
+    }
+    companyID
+    RestaurantType {
+      type
+    }
+    restaurantID
+  }
+}
+    `;
+export type GetRestaurantByCityComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables>, 'query'>;
+
+    export const GetRestaurantByCityComponent = (props: GetRestaurantByCityComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables> query={GetRestaurantByCityDocument} {...props} />
+    );
+    
+export type GetRestaurantByCityProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables> & TChildProps;
+export function withGetRestaurantByCity<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantByCityQuery,
+  GetRestaurantByCityQueryVariables,
+  GetRestaurantByCityProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables, GetRestaurantByCityProps<TChildProps>>(GetRestaurantByCityDocument, {
+      alias: 'getRestaurantByCity',
+      ...operationOptions
+    });
+};
+export type GetRestaurantByCityQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByCityQuery, GetRestaurantByCityQueryVariables>;
+export const GetRestaurantByIdDocument = gql`
+    query getRestaurantByID($restaurantID: Int) {
+  __typename
+  Restaurant(where: {restaurantID: {_eq: $restaurantID}, isDeleted: {_eq: false}}) {
+    name
+    star
+    taxNumber
+    locationID
+    Location {
+      addressID
+      Address {
+        City {
+          city
+        }
+        District {
+          district
+        }
+        address
+        cityID
+        districtID
+      }
+      latitude
+      longtitude
+    }
+    companyID
+    Company {
+      CompanyPhones {
+        Phone {
+          phone
+        }
+      }
+    }
+  }
+}
+    `;
+export type GetRestaurantByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>, 'query'>;
+
+    export const GetRestaurantByIdComponent = (props: GetRestaurantByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> query={GetRestaurantByIdDocument} {...props} />
+    );
+    
+export type GetRestaurantByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables> & TChildProps;
+export function withGetRestaurantById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantByIdQuery,
+  GetRestaurantByIdQueryVariables,
+  GetRestaurantByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables, GetRestaurantByIdProps<TChildProps>>(GetRestaurantByIdDocument, {
+      alias: 'getRestaurantById',
+      ...operationOptions
+    });
+};
+export type GetRestaurantByIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantByIdQuery, GetRestaurantByIdQueryVariables>;
+export const GetRestaurantMenuByResIdDocument = gql`
+    query getRestaurantMenuByResId($restaurantID: Int) {
+  __typename
+  RestaurantMenu(where: {restaurantID: {_eq: $restaurantID}, isDeleted: {_eq: false}}) {
+    name
+    price
+    RestaurantMenuFoods {
+      RestaurantFood {
+        name
+      }
+    }
+    restaurantMenuID
+  }
+}
+    `;
+export type GetRestaurantMenuByResIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables>, 'query'>;
+
+    export const GetRestaurantMenuByResIdComponent = (props: GetRestaurantMenuByResIdComponentProps) => (
+      <ApolloReactComponents.Query<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables> query={GetRestaurantMenuByResIdDocument} {...props} />
+    );
+    
+export type GetRestaurantMenuByResIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables> & TChildProps;
+export function withGetRestaurantMenuByResId<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantMenuByResIdQuery,
+  GetRestaurantMenuByResIdQueryVariables,
+  GetRestaurantMenuByResIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables, GetRestaurantMenuByResIdProps<TChildProps>>(GetRestaurantMenuByResIdDocument, {
+      alias: 'getRestaurantMenuByResId',
+      ...operationOptions
+    });
+};
+export type GetRestaurantMenuByResIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables>;
+export const GetUserTravelGuideDocument = gql`
+    query getUserTravelGuide($userID: Int!) {
+  TravelGuide(where: {userID: {_eq: $userID}, isDeleted: {_eq: false}}) {
+    title
+    travelGuideID
+    cost
+    creationDate
+  }
+}
+    `;
+export type GetUserTravelGuideComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>, 'query'> & ({ variables: GetUserTravelGuideQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserTravelGuideComponent = (props: GetUserTravelGuideComponentProps) => (
+      <ApolloReactComponents.Query<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> query={GetUserTravelGuideDocument} {...props} />
+    );
+    
+export type GetUserTravelGuideProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> & TChildProps;
+export function withGetUserTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserTravelGuideQuery,
+  GetUserTravelGuideQueryVariables,
+  GetUserTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables, GetUserTravelGuideProps<TChildProps>>(GetUserTravelGuideDocument, {
+      alias: 'getUserTravelGuide',
+      ...operationOptions
+    });
+};
+export type GetUserTravelGuideQueryResult = ApolloReactCommon.QueryResult<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>;
+export const GetCityByIdDocument = gql`
+    query getCityByID($cityID: Int) {
+  __typename
+  City(where: {cityID: {_eq: $cityID}}) {
+    cityID
+    city
+    description
+    imageUrl
+  }
+}
+    `;
+export type GetCityByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCityByIdQuery, GetCityByIdQueryVariables>, 'query'>;
+
+    export const GetCityByIdComponent = (props: GetCityByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetCityByIdQuery, GetCityByIdQueryVariables> query={GetCityByIdDocument} {...props} />
+    );
+    
+export type GetCityByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCityByIdQuery, GetCityByIdQueryVariables> & TChildProps;
+export function withGetCityById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCityByIdQuery,
+  GetCityByIdQueryVariables,
+  GetCityByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCityByIdQuery, GetCityByIdQueryVariables, GetCityByIdProps<TChildProps>>(GetCityByIdDocument, {
+      alias: 'getCityById',
+      ...operationOptions
+    });
+};
+export type GetCityByIdQueryResult = ApolloReactCommon.QueryResult<GetCityByIdQuery, GetCityByIdQueryVariables>;

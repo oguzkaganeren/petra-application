@@ -1,39 +1,63 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
 import { GetUserArticleComponent } from '../../generated/components';
 import { DeleteArticleComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 import { Formik } from 'formik';
 declare var global: any;
-/**
- * Home props
- */
+
 export interface GetUserArticleListProps {
 	navigation: any;
 	route: any;
 }
 
-/**
- * Home
- */
-const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
+const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 	const [articleList, setArticleList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
 		const items = articleList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setArticleList(items);
 	}
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
+	const renderModalElement = (fprops) => (
+		<Layout level="3" style={styles.modalContainer}>
+			<Text>Are you sure delete the item?</Text>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Button
+					icon={accessoryItemIcon}
+					appearance="ghost"
+					onPress={() => {
+						fprops.handleSubmit();
+						toggleModal();
+					}}
+					disabled={fprops.isSubmitting}
+				>
+					Delete
+				</Button>
+				<Button
+					onPress={() => {
+						toggleModal();
+					}}
+				>
+					Cancel
+				</Button>
+			</ButtonGroup>
+		</Layout>
+	);
 	function deleteArticle(item) {
 		return (
 			<DeleteArticleComponent>
-				{DeleteArticleMutation => (
+				{(DeleteArticleMutation) => (
 					<Formik
 						//değişkenlerin başlangıç değerleri
 						initialValues={{
-							name: ''
+							name: '',
 						}}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -41,14 +65,14 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 								console.log(values.name + ' ');
 								DeleteArticleMutation({
 									variables: {
-										articleID: item.key
-									}
+										articleID: item.key,
+									},
 								})
-									.then(res => {
+									.then((res) => {
 										removeItem(item.key);
 										//this.props.navigation.navigate('Home');
 									})
-									.catch(err => {
+									.catch((err) => {
 										alert(err);
 										console.log('ArchSiteType:' + values.name);
 									});
@@ -57,27 +81,23 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 						}}
 					>
 						{/* Bu kısımda görsel parçalar eklenir */}
-						{fprops => (
+						{(fprops) => (
 							<Layout>
 								<Button
 									appearance="ghost"
 									onPress={() => {
 										props.navigation.navigate('EditArticleScreen', {
-											articleID: item.key
+											articleID: item.key,
 										});
 									}}
 									disabled={fprops.isSubmitting}
 								>
 									Edit
 								</Button>
-								<Button
-									icon={accessoryItemIcon}
-									appearance="ghost"
-									onPress={() => {
-										fprops.handleSubmit();
-									}}
-									disabled={fprops.isSubmitting}
-								></Button>
+								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
+									{renderModalElement(fprops)}
+								</Modal>
 							</Layout>
 						)}
 					</Formik>
@@ -103,8 +123,8 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 			/>
 		);
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
-	const accessoryItemIcon = style => <Icon {...style} name="trash-2-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
+	const accessoryItemIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -115,7 +135,7 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('ArticleDetailScreen', {
-						articleID: item.key
+						articleID: item.key,
 					});
 				}}
 			/>
@@ -129,20 +149,20 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Article.map(dat => {
+						data.Article.map((dat) => {
 							if (articleList.length > 0 && !removeItemBool) {
-								if (articleList.every(item => item.key != dat.articleID)) {
+								if (articleList.every((item) => item.key != dat.articleID)) {
 									articleList.push({
 										key: dat.articleID,
 										title: dat.title,
-										content: dat.content
+										content: dat.content,
 									});
 								}
 							} else if (!removeItemBool) {
 								articleList.push({
 									key: dat.articleID,
 									title: dat.title,
-									content: dat.content
+									content: dat.content,
 								});
 							}
 						});
@@ -157,7 +177,17 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
+	modalContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 256,
+		padding: 16,
+		borderRadius: 15,
+	},
+	backdrop: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
 });
 export default GetUserArticleList;

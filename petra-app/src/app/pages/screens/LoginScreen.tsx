@@ -11,40 +11,19 @@ import * as Network from 'expo-network';
 const IOS_CLIENT_ID = '29671483454-ca7ar2q60s28c3eab6m83n5rh0hd19b0.apps.googleusercontent.com';
 const ANDROID_CLIENT_ID = '29671483454-nqtdad5lh9qibq6q1gjgii5m4dk9sfme.apps.googleusercontent.com';
 
-//const [controlUser, { data }] = useMutation(CONTROL_USER);
-
-/**
- * Login props
- */
 export interface LoginProps {
 	navigation: any;
 }
 
-/**
- * Login state
- */
-export interface LoginState {
-	userID: number;
-	accessToken: string;
-	secureTextEntry: boolean;
-}
 declare var global: any;
 global.userID = -1;
-/**
- * Login
- */
-export class LoginScreen extends React.Component<LoginProps, LoginState> {
-	constructor(props: LoginProps) {
-		super(props);
-		this.state = {
-			userID: 0,
-			accessToken: '',
-			secureTextEntry: true,
-		};
-		this.controlUser();
-	}
 
-	signInWithGoogle = async () => {
+const LoginScreen: React.FC<LoginProps> = (props) => {
+	const [userID, setUserID] = React.useState(0);
+	const [accessToken, setAccessToken] = React.useState('');
+	const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+	const signInWithGoogle = async () => {
 		try {
 			const result = await Google.logInAsync({
 				iosClientId: IOS_CLIENT_ID,
@@ -53,10 +32,6 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			});
 
 			if (result.type === 'success') {
-				//console.log('LoginScreen.js.js 21 | ', result.user.email);
-				/* this.props.navigation.navigate('Profile', {
-					username: result.user.givenName
-				}); //after Google login redirect to Profile */
 				return result;
 			} else {
 				return { cancelled: true };
@@ -66,9 +41,9 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			return { error: true };
 		}
 	};
-	renderIcon = (style) => <Icon {...style} name={this.state.secureTextEntry ? 'eye-off' : 'eye'} />;
-	renderMailIcon = (style) => <Icon {...style} name={'email'} />;
-	renderSetUserComponent = (
+	const renderIcon = (style) => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
+	const renderMailIcon = (style) => <Icon {...style} name={'email'} />;
+	const renderSetUserComponent = (
 		<Layout style={styles.layout}>
 			{/**sadece mobile kısmında google login gözükecek */}
 			{Platform.OS !== 'web' && (
@@ -77,12 +52,13 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 						<Formik
 							initialValues={{}}
 							validationSchema={Yup.object({
-								mail: Yup.string().email('Invalid email').required('Required'),
+								mail: Yup.string()
+									.email('Invalid email')
+									.required('Required'),
 								password: Yup.string(), //.min(5, 'Too Short!').required('Required'),
 							})}
 							onSubmit={async (values, formikActions) => {
-								// this.props.requestSentHandler();
-								const result = await this.signInWithGoogle();
+								const result = await signInWithGoogle();
 								const IP = await Network.getIpAddressAsync();
 								setTimeout(() => {
 									if (result.type === 'success') {
@@ -105,7 +81,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 												AsyncStorage.multiSet([['userID', userID.toString()]]);
 												global.userID = userID;
 												global.userTypeID = userTypeID;
-												this.props.navigation.navigate('HomeScreen', {
+												props.navigation.navigate('HomeScreen', {
 													userID: userID,
 												});
 											})
@@ -136,17 +112,17 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 					<Formik
 						initialValues={{
 							secureTextEntry: true,
-							password: '',
-							mail: '',
+							password: '12345',
+							mail: 'oguz@eren.com',
 						}}
 						validationSchema={Yup.object({
-							mail: Yup.string().email('Invalid email').required('Required'),
+							mail: Yup.string()
+								.email('Invalid email')
+								.required('Required'),
 							password: Yup.string(), //.min(5, 'Too Short!'),
 							//.required('Required')
 						})}
 						onSubmit={async (values, formikActions) => {
-							// this.props.requestSentHandler();
-
 							const IP = Platform.OS === 'web' ? '127.0.0.1' : await Network.getIpAddressAsync();
 							setTimeout(() => {
 								ControlLoginMailUserMutation({
@@ -163,7 +139,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 										const userTypeID = res.data.update_User.returning[0].userTypeID;
 										global.userID = userID;
 										global.userTypeID = userTypeID;
-										this.props.navigation.navigate('HomeScreen', {
+										props.navigation.navigate('HomeScreen', {
 											userID: userID,
 										});
 									})
@@ -172,37 +148,38 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 							}, 500);
 						}}
 					>
-						{(props) => (
+						{(propsf) => (
 							<Layout>
 								<Input
-									value={props.values.mail}
+									value={propsf.values.mail}
 									placeholder="asd@asd.com"
+									defaultValue="oguz@eren.com"
 									label="Mail address"
-									icon={this.renderMailIcon}
-									status={props.touched.mail && props.errors.mail ? 'danger' : 'success'}
-									caption={props.touched.mail && props.errors.mail ? props.errors.mail : ''}
-									onChangeText={props.handleChange('mail')}
-									onBlur={props.handleBlur('mail')}
+									icon={renderMailIcon}
+									status={propsf.touched.mail && propsf.errors.mail ? 'danger' : 'success'}
+									caption={propsf.touched.mail && propsf.errors.mail ? propsf.errors.mail : ''}
+									onChangeText={propsf.handleChange('mail')}
+									onBlur={propsf.handleBlur('mail')}
 								/>
 								<Input
-									value={props.values.password}
+									value={propsf.values.password}
 									placeholder="********"
 									label="Password"
-									status={props.touched.password && props.errors.password ? 'danger' : 'success'}
-									caption={props.touched.password && props.errors.password ? props.errors.password : ''}
-									icon={this.renderIcon}
-									secureTextEntry={props.values.secureTextEntry}
+									status={propsf.touched.password && propsf.errors.password ? 'danger' : 'success'}
+									caption={propsf.touched.password && propsf.errors.password ? propsf.errors.password : ''}
+									icon={renderIcon}
+									secureTextEntry={propsf.values.secureTextEntry}
 									onIconPress={() => {
-										props.setFieldValue('secureTextEntry', !props.values.secureTextEntry);
-										this.setState({ secureTextEntry: !props.values.secureTextEntry });
+										propsf.setFieldValue('secureTextEntry', !propsf.values.secureTextEntry);
+										setSecureTextEntry(!propsf.values.secureTextEntry);
 									}}
-									onChangeText={props.handleChange('password')}
-									onBlur={props.handleBlur('password')}
+									onChangeText={propsf.handleChange('password')}
+									onBlur={propsf.handleBlur('password')}
 								/>
 								<Button
 									status="primary"
 									onPress={() => {
-										props.handleSubmit();
+										propsf.handleSubmit();
 									}}
 								>
 									Login
@@ -210,7 +187,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 								<Button
 									status="warning"
 									onPress={() => {
-										this.props.navigation.navigate('RegisterScreen');
+										props.navigation.navigate('RegisterScreen');
 									}}
 								>
 									Register
@@ -229,7 +206,7 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 			console.log('Local storage user info removed!');
 		});
 	 */
-	controlUser = () => {
+	const controlUser = () => {
 		AsyncStorage.multiGet(['userID', 'accessToken']).then((data) => {
 			let userID = data[0][1];
 			let accessToken = data[1][1];
@@ -244,16 +221,11 @@ export class LoginScreen extends React.Component<LoginProps, LoginState> {
 				return this.renderSetUserComponent;
 			}*/
 		});
-		return this.renderSetUserComponent;
+		return renderSetUserComponent;
 	};
-	/**
-	 * Renders login
-	 * @returns
-	 */
-	render() {
-		return <Layout>{this.state.accessToken.length == 0 ? this.renderSetUserComponent : null}</Layout>;
-	}
-}
+
+	return <Layout>{accessToken.length == 0 ? renderSetUserComponent : null}</Layout>;
+};
 
 const styles: any = StyleSheet.create({
 	layout: {
@@ -263,3 +235,4 @@ const styles: any = StyleSheet.create({
 		paddingBottom: Dimensions.get('window').height / 2,
 	},
 });
+export default LoginScreen;

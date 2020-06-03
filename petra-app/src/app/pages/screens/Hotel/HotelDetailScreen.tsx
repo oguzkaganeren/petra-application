@@ -1,49 +1,23 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Layout, Text } from '@ui-kitten/components';
-import { BottomComponent } from '../../../components/Public/BottomComponent';
-/**
- * Home props
- */
-export interface HotelDetailScreenProps {
+import { Button, Layout, ButtonGroup, Icon } from '@ui-kitten/components';
+import HotelInfoScreen from '../Hotel/HotelInfoScreen';
+export interface HotelDetailProps {
 	navigation: any;
 	route: any;
 }
-/**
- * Home state
- */
-export interface HotelDetailScreenState {}
 
-/**
- * Home
- */
-export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, HotelDetailScreenState> {
-	constructor(props: HotelDetailScreenProps) {
-		super(props);
-		this.state = {};
-	}
-	/**
-	 * Renders ArchSite Detail Screen
-	 * @returns
-	 */
-	render() {
-		const { userID } = this.props.route.params;
-		const { hotelID } = this.props.route.params;
-		return (
-			<Layout style={{ flex: 1 }}>
+const HotelDetailScreen: React.FC<HotelDetailProps> = (props) => {
+	const { userID } = props.route.params;
+	const { hotelID } = props.route.params;
+	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
+	return (
+		<Layout style={{ flex: 1 }}>
+			<ButtonGroup style={{ justifyContent: 'center' }}>
 				<Button
+					icon={accessoryItemIcon}
 					onPress={() => {
-						this.props.navigation.navigate('AddRoomPropertyScreen', {
-							userID: userID,
-							hotelID: hotelID,
-						});
-					}}
-				>
-					Add Hotel Room Property
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddRoomScreen', {
+						props.navigation.navigate('AddRoomScreen', {
 							userID: userID,
 							hotelID: hotelID,
 						});
@@ -51,19 +25,11 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				>
 					Add Hotel Room
 				</Button>
+
 				<Button
+					icon={accessoryItemIcon}
 					onPress={() => {
-						this.props.navigation.navigate('AddHotelServicePropertyScreen', {
-							userID: userID,
-							hotelID: hotelID,
-						});
-					}}
-				>
-					Add Hotel Service
-				</Button>
-				<Button
-					onPress={() => {
-						this.props.navigation.navigate('AddHotelRoomPriceScreen', {
+						props.navigation.navigate('AddHotelRoomPriceScreen', {
 							userID: userID,
 							hotelID: hotelID,
 						});
@@ -71,14 +37,15 @@ export class HotelDetailScreen extends React.Component<HotelDetailScreenProps, H
 				>
 					Add Room Price
 				</Button>
-			</Layout>
-		);
-	}
-}
-
+			</ButtonGroup>
+			<HotelInfoScreen navigation={props.navigation} route={props.route} hotelID={hotelID} />
+		</Layout>
+	);
+};
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height / 2,
 	},
 });
+export default HotelDetailScreen;
