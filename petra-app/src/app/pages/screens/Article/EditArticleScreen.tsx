@@ -29,6 +29,7 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 							tags: [],
 							content: '',
 							title: '',
+							imageUrl: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -49,6 +50,7 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 											editDate: new Date(),
 											publishDate: new Date(),
 											title: values.title,
+											imageUrl: values.imageUrl,
 										},
 									},
 								})
@@ -79,6 +81,7 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 												data.Article.map((dat) => {
 													props.values.title = dat.title;
 													props.values.content = dat.content;
+													props.values.imageUrl = dat.imageUrl;
 												});
 												setOneTimeRun(false);
 											}
@@ -105,14 +108,22 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 									onBlur={props.handleBlur('content')}
 									value={props.values.content}
 								/>
-
+								<Input
+									label="Image Url"
+									placeholder="Enter Image Url of Article"
+									status={props.touched.imageUrl && props.errors.imageUrl ? 'danger' : 'success'}
+									caption={props.touched.imageUrl && props.errors.imageUrl ? props.errors.imageUrl : ''}
+									onChangeText={props.handleChange('imageUrl')}
+									onBlur={props.handleBlur('imageUrl')}
+									value={props.values.imageUrl}
+								/>
 								<Button
 									onPress={() => {
 										props.handleSubmit();
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add Room
+									Edit Article
 								</Button>
 							</Layout>
 						)}
