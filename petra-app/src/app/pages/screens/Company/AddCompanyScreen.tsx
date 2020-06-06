@@ -172,8 +172,8 @@ const AddCompanyScreen: React.FC<AddCompanyProps> = (props) => {
 									<GetAllCitiesComponent
 										label="Select City"
 										parentReference={(value) => {
-											props.values.cityID = value;
-											setCityID(value);
+											props.values.cityID = value.id;
+											setCityID(value.id);
 										}}
 									/>
 									<GetAllCityDistrictsComponent

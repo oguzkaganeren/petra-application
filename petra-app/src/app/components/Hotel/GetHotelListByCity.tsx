@@ -9,10 +9,12 @@ export interface GetHotelListByCityProps {
 	route: any;
 }
 
-const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
+const GetHotelListByCity: React.FC<GetHotelListByCityProps> = (props) => {
 	const [hotelList, setHotelList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const { cityID } = props.route.params;
+	const { regionID } = props.route.params;
+	const hotelVariable = cityID != 0 ? { cityID: cityID } : { regionID: regionID };
 	function renderItemAccessory(item) {
 		return (
 			<Layout>
@@ -33,7 +35,7 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
 			</Layout>
 		);
 	}
-	const renderItemIcon = style => <Icon {...style} name="briefcase-outline" />;
+	const renderItemIcon = (style) => <Icon {...style} name="briefcase-outline" />;
 	const renderItem = ({ item, index }) => {
 		return (
 			<ListItem
@@ -44,7 +46,7 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
 					props.navigation.navigate('HotelInfoScreen', {
-						hotelID: item.key
+						hotelID: item.key,
 					});
 				}}
 			/>
@@ -52,22 +54,22 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
 	};
 	return (
 		<Layout style={{ flex: 1 }}>
-			<GetHotelByCityComponent variables={{ cityID: cityID }}>
+			<GetHotelByCityComponent variables={hotelVariable}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
+						data.Hotel.map((dat) => {
 							if (hotelList.length > 0 && !removeItemBool) {
-								if (hotelList.every(item => item.key != dat.hotelID)) {
+								if (hotelList.every((item) => item.key != dat.hotelID)) {
 									hotelList.push({
 										key: dat.hotelID,
 										title: dat.name,
 										city: dat.Location.Address.City.city,
 										district: dat.Location.Address.District.district,
 										description: dat.description == null ? '' : dat.description,
-										star: dat.star
+										star: dat.star,
 									});
 								}
 							} else if (!removeItemBool) {
@@ -77,7 +79,7 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
 									city: dat.Location.Address.City.city,
 									district: dat.Location.Address.District.district,
 									description: dat.description == null ? '' : dat.description,
-									star: dat.star
+									star: dat.star,
 								});
 							}
 						});
@@ -92,7 +94,7 @@ const GetHotelListByCity: React.FC<GetHotelListByCityProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 2
-	}
+		height: Dimensions.get('window').height / 2,
+	},
 });
 export default GetHotelListByCity;

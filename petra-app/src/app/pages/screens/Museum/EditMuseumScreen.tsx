@@ -41,7 +41,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 							districtID: 0,
 							cityID: 0,
 							longtitude: 0,
-							travelTime:0
+							travelTime: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -56,7 +56,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 							description: Yup.string()
 								.min(5, 'Too Short!')
 								.required('Required'),
-							travelTime: Yup.number().required('Required'),	
+							travelTime: Yup.number().required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
 						})}
@@ -160,8 +160,8 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 								<GetAllCitiesComponent
 									label="Select City"
 									parentReference={(value) => {
-										props.values.cityID = value;
-										setCityID(value);
+										props.values.cityID = value.id;
+										setCityID(value.id);
 									}}
 								/>
 								<GetAllCityDistrictsComponent

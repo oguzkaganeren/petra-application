@@ -333,6 +333,7 @@ export type ArchSite = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID: Scalars['Int'],
+  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -484,6 +485,7 @@ export type ArchSite_Avg_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -493,6 +495,7 @@ export type ArchSite_Avg_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -512,6 +515,7 @@ export type ArchSite_Bool_Exp = {
   age?: Maybe<Int_Comparison_Exp>,
   altitude?: Maybe<Float_Comparison_Exp>,
   archSiteID?: Maybe<Int_Comparison_Exp>,
+  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   destruction?: Maybe<String_Comparison_Exp>,
@@ -529,6 +533,7 @@ export enum ArchSite_Constraint {
 export type ArchSite_Inc_Input = {
   age?: Maybe<Scalars['Int']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
 };
@@ -544,6 +549,7 @@ export type ArchSite_Insert_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -559,6 +565,7 @@ export type ArchSite_Max_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -572,6 +579,7 @@ export type ArchSite_Max_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -586,6 +594,7 @@ export type ArchSite_Min_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -599,6 +608,7 @@ export type ArchSite_Min_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -636,6 +646,7 @@ export type ArchSite_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -650,6 +661,7 @@ export enum ArchSite_Select_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -664,6 +676,7 @@ export type ArchSite_Set_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -679,6 +692,7 @@ export type ArchSite_Stddev_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -688,6 +702,7 @@ export type ArchSite_Stddev_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -698,6 +713,7 @@ export type ArchSite_Stddev_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -707,6 +723,7 @@ export type ArchSite_Stddev_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -717,6 +734,7 @@ export type ArchSite_Stddev_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -726,6 +744,7 @@ export type ArchSite_Stddev_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -736,6 +755,7 @@ export type ArchSite_Sum_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -745,6 +765,7 @@ export type ArchSite_Sum_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -754,6 +775,7 @@ export enum ArchSite_Update_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -769,6 +791,7 @@ export type ArchSite_Var_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -778,6 +801,7 @@ export type ArchSite_Var_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -788,6 +812,7 @@ export type ArchSite_Var_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -797,6 +822,7 @@ export type ArchSite_Var_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -807,6 +833,7 @@ export type ArchSite_Variance_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -816,6 +843,7 @@ export type ArchSite_Variance_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -3845,12 +3873,15 @@ export type City = {
   Country: Country,
   Districts: Array<District>,
   Districts_aggregate: District_Aggregate,
+  Location?: Maybe<Location>,
   city: Scalars['String'],
   cityID: Scalars['Int'],
   countryID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   imageUrl?: Maybe<Scalars['String']>,
   isDeleted: Scalars['Boolean'],
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 
@@ -3939,17 +3970,22 @@ export type City_Avg_Fields = {
    __typename?: 'City_avg_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Avg_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Bool_Exp = {
   Addresses?: Maybe<Address_Bool_Exp>,
   Country?: Maybe<Country_Bool_Exp>,
   Districts?: Maybe<District_Bool_Exp>,
+  Location?: Maybe<Location_Bool_Exp>,
   _and?: Maybe<Array<Maybe<City_Bool_Exp>>>,
   _not?: Maybe<City_Bool_Exp>,
   _or?: Maybe<Array<Maybe<City_Bool_Exp>>>,
@@ -3959,6 +3995,8 @@ export type City_Bool_Exp = {
   description?: Maybe<String_Comparison_Exp>,
   imageUrl?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
+  locationID?: Maybe<Int_Comparison_Exp>,
+  regionID?: Maybe<Int_Comparison_Exp>,
 };
 
 export enum City_Constraint {
@@ -3968,18 +4006,23 @@ export enum City_Constraint {
 export type City_Inc_Input = {
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Insert_Input = {
   Addresses?: Maybe<Address_Arr_Rel_Insert_Input>,
   Country?: Maybe<Country_Obj_Rel_Insert_Input>,
   Districts?: Maybe<District_Arr_Rel_Insert_Input>,
+  Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Max_Fields = {
@@ -3989,6 +4032,8 @@ export type City_Max_Fields = {
   countryID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   imageUrl?: Maybe<Scalars['String']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Max_Order_By = {
@@ -3997,6 +4042,8 @@ export type City_Max_Order_By = {
   countryID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   imageUrl?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Min_Fields = {
@@ -4006,6 +4053,8 @@ export type City_Min_Fields = {
   countryID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   imageUrl?: Maybe<Scalars['String']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Min_Order_By = {
@@ -4014,6 +4063,8 @@ export type City_Min_Order_By = {
   countryID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   imageUrl?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Mutation_Response = {
@@ -4037,12 +4088,15 @@ export type City_Order_By = {
   Addresses_aggregate?: Maybe<Address_Aggregate_Order_By>,
   Country?: Maybe<Country_Order_By>,
   Districts_aggregate?: Maybe<District_Aggregate_Order_By>,
+  Location?: Maybe<Location_Order_By>,
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   imageUrl?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export enum City_Select_Column {
@@ -4051,7 +4105,9 @@ export enum City_Select_Column {
   CountryId = 'countryID',
   Description = 'description',
   ImageUrl = 'imageUrl',
-  IsDeleted = 'isDeleted'
+  IsDeleted = 'isDeleted',
+  LocationId = 'locationID',
+  RegionId = 'regionID'
 }
 
 export type City_Set_Input = {
@@ -4061,50 +4117,68 @@ export type City_Set_Input = {
   description?: Maybe<Scalars['String']>,
   imageUrl?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Stddev_Fields = {
    __typename?: 'City_stddev_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Stddev_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Stddev_Pop_Fields = {
    __typename?: 'City_stddev_pop_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Stddev_Pop_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Stddev_Samp_Fields = {
    __typename?: 'City_stddev_samp_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Stddev_Samp_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Sum_Fields = {
    __typename?: 'City_sum_fields',
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
+  locationID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>,
 };
 
 export type City_Sum_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export enum City_Update_Column {
@@ -4113,40 +4187,54 @@ export enum City_Update_Column {
   CountryId = 'countryID',
   Description = 'description',
   ImageUrl = 'imageUrl',
-  IsDeleted = 'isDeleted'
+  IsDeleted = 'isDeleted',
+  LocationId = 'locationID',
+  RegionId = 'regionID'
 }
 
 export type City_Var_Pop_Fields = {
    __typename?: 'City_var_pop_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Var_Pop_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Var_Samp_Fields = {
    __typename?: 'City_var_samp_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Var_Samp_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type City_Variance_Fields = {
    __typename?: 'City_variance_fields',
   cityID?: Maybe<Scalars['Float']>,
   countryID?: Maybe<Scalars['Float']>,
+  locationID?: Maybe<Scalars['Float']>,
+  regionID?: Maybe<Scalars['Float']>,
 };
 
 export type City_Variance_Order_By = {
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
+  locationID?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
 };
 
 export type Company = {
@@ -8384,6 +8472,7 @@ export type Museum = {
   MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
   TravelGuideMuseums: Array<TravelGuideMuseum>,
   TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description: Scalars['String'],
   isDeleted: Scalars['Boolean'],
@@ -8530,12 +8619,14 @@ export type Museum_Arr_Rel_Insert_Input = {
 
 export type Museum_Avg_Fields = {
    __typename?: 'Museum_avg_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Avg_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8552,6 +8643,7 @@ export type Museum_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
   _not?: Maybe<Museum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
+  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
@@ -8565,6 +8657,7 @@ export enum Museum_Constraint {
 }
 
 export type Museum_Inc_Input = {
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
@@ -8578,6 +8671,7 @@ export type Museum_Insert_Input = {
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8588,6 +8682,7 @@ export type Museum_Insert_Input = {
 
 export type Museum_Max_Fields = {
    __typename?: 'Museum_max_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8596,6 +8691,7 @@ export type Museum_Max_Fields = {
 };
 
 export type Museum_Max_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8605,6 +8701,7 @@ export type Museum_Max_Order_By = {
 
 export type Museum_Min_Fields = {
    __typename?: 'Museum_min_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8613,6 +8710,7 @@ export type Museum_Min_Fields = {
 };
 
 export type Museum_Min_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8645,6 +8743,7 @@ export type Museum_Order_By = {
   MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
@@ -8654,6 +8753,7 @@ export type Museum_Order_By = {
 };
 
 export enum Museum_Select_Column {
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8663,6 +8763,7 @@ export enum Museum_Select_Column {
 }
 
 export type Museum_Set_Input = {
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8673,12 +8774,14 @@ export type Museum_Set_Input = {
 
 export type Museum_Stddev_Fields = {
    __typename?: 'Museum_stddev_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8686,12 +8789,14 @@ export type Museum_Stddev_Order_By = {
 
 export type Museum_Stddev_Pop_Fields = {
    __typename?: 'Museum_stddev_pop_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Pop_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8699,12 +8804,14 @@ export type Museum_Stddev_Pop_Order_By = {
 
 export type Museum_Stddev_Samp_Fields = {
    __typename?: 'Museum_stddev_samp_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Samp_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8712,18 +8819,21 @@ export type Museum_Stddev_Samp_Order_By = {
 
 export type Museum_Sum_Fields = {
    __typename?: 'Museum_sum_fields',
+  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Sum_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
 };
 
 export enum Museum_Update_Column {
+  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8734,12 +8844,14 @@ export enum Museum_Update_Column {
 
 export type Museum_Var_Pop_Fields = {
    __typename?: 'Museum_var_pop_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Pop_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8747,12 +8859,14 @@ export type Museum_Var_Pop_Order_By = {
 
 export type Museum_Var_Samp_Fields = {
    __typename?: 'Museum_var_samp_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Samp_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8760,12 +8874,14 @@ export type Museum_Var_Samp_Order_By = {
 
 export type Museum_Variance_Fields = {
    __typename?: 'Museum_variance_fields',
+  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Variance_Order_By = {
+  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -10988,6 +11104,7 @@ export type Mutation_Root = {
   delete_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   delete_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
   delete_Phone?: Maybe<Phone_Mutation_Response>,
+  delete_Region?: Maybe<Region_Mutation_Response>,
   delete_Restaurant?: Maybe<Restaurant_Mutation_Response>,
   delete_RestaurantAndCuisineType?: Maybe<RestaurantAndCuisineType_Mutation_Response>,
   delete_RestaurantComment?: Maybe<RestaurantComment_Mutation_Response>,
@@ -11052,6 +11169,7 @@ export type Mutation_Root = {
   insert_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   insert_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
   insert_Phone?: Maybe<Phone_Mutation_Response>,
+  insert_Region?: Maybe<Region_Mutation_Response>,
   insert_Restaurant?: Maybe<Restaurant_Mutation_Response>,
   insert_RestaurantAndCuisineType?: Maybe<RestaurantAndCuisineType_Mutation_Response>,
   insert_RestaurantComment?: Maybe<RestaurantComment_Mutation_Response>,
@@ -11116,6 +11234,7 @@ export type Mutation_Root = {
   update_MuseumWorkingDaySchedule?: Maybe<MuseumWorkingDaySchedule_Mutation_Response>,
   update_MuseumWorkingSchedule?: Maybe<MuseumWorkingSchedule_Mutation_Response>,
   update_Phone?: Maybe<Phone_Mutation_Response>,
+  update_Region?: Maybe<Region_Mutation_Response>,
   update_Restaurant?: Maybe<Restaurant_Mutation_Response>,
   update_RestaurantAndCuisineType?: Maybe<RestaurantAndCuisineType_Mutation_Response>,
   update_RestaurantComment?: Maybe<RestaurantComment_Mutation_Response>,
@@ -11332,6 +11451,11 @@ export type Mutation_RootDelete_MuseumWorkingScheduleArgs = {
 
 export type Mutation_RootDelete_PhoneArgs = {
   where: Phone_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_RegionArgs = {
+  where: Region_Bool_Exp
 };
 
 
@@ -11690,6 +11814,12 @@ export type Mutation_RootInsert_MuseumWorkingScheduleArgs = {
 export type Mutation_RootInsert_PhoneArgs = {
   objects: Array<Phone_Insert_Input>,
   on_conflict?: Maybe<Phone_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_RegionArgs = {
+  objects: Array<Region_Insert_Input>,
+  on_conflict?: Maybe<Region_On_Conflict>
 };
 
 
@@ -12112,6 +12242,13 @@ export type Mutation_RootUpdate_PhoneArgs = {
   _inc?: Maybe<Phone_Inc_Input>,
   _set?: Maybe<Phone_Set_Input>,
   where: Phone_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_RegionArgs = {
+  _inc?: Maybe<Region_Inc_Input>,
+  _set?: Maybe<Region_Set_Input>,
+  where: Region_Bool_Exp
 };
 
 
@@ -12678,6 +12815,9 @@ export type Query_Root = {
   Phone: Array<Phone>,
   Phone_aggregate: Phone_Aggregate,
   Phone_by_pk?: Maybe<Phone>,
+  Region: Array<Region>,
+  Region_aggregate: Region_Aggregate,
+  Region_by_pk?: Maybe<Region>,
   Restaurant: Array<Restaurant>,
   RestaurantAndCuisineType: Array<RestaurantAndCuisineType>,
   RestaurantAndCuisineType_aggregate: RestaurantAndCuisineType_Aggregate,
@@ -13633,6 +13773,29 @@ export type Query_RootPhone_By_PkArgs = {
 };
 
 
+export type Query_RootRegionArgs = {
+  distinct_on?: Maybe<Array<Region_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Region_Order_By>>,
+  where?: Maybe<Region_Bool_Exp>
+};
+
+
+export type Query_RootRegion_AggregateArgs = {
+  distinct_on?: Maybe<Array<Region_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Region_Order_By>>,
+  where?: Maybe<Region_Bool_Exp>
+};
+
+
+export type Query_RootRegion_By_PkArgs = {
+  regionID: Scalars['Int']
+};
+
+
 export type Query_RootRestaurantArgs = {
   distinct_on?: Maybe<Array<Restaurant_Select_Column>>,
   limit?: Maybe<Scalars['Int']>,
@@ -14228,6 +14391,210 @@ export type Query_RootUser_AggregateArgs = {
 
 export type Query_RootUser_By_PkArgs = {
   userID: Scalars['Int']
+};
+
+export type Region = {
+   __typename?: 'Region',
+  region: Scalars['String'],
+  regionID: Scalars['Int'],
+};
+
+export type Region_Aggregate = {
+   __typename?: 'Region_aggregate',
+  aggregate?: Maybe<Region_Aggregate_Fields>,
+  nodes: Array<Region>,
+};
+
+export type Region_Aggregate_Fields = {
+   __typename?: 'Region_aggregate_fields',
+  avg?: Maybe<Region_Avg_Fields>,
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<Region_Max_Fields>,
+  min?: Maybe<Region_Min_Fields>,
+  stddev?: Maybe<Region_Stddev_Fields>,
+  stddev_pop?: Maybe<Region_Stddev_Pop_Fields>,
+  stddev_samp?: Maybe<Region_Stddev_Samp_Fields>,
+  sum?: Maybe<Region_Sum_Fields>,
+  var_pop?: Maybe<Region_Var_Pop_Fields>,
+  var_samp?: Maybe<Region_Var_Samp_Fields>,
+  variance?: Maybe<Region_Variance_Fields>,
+};
+
+
+export type Region_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Region_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type Region_Aggregate_Order_By = {
+  avg?: Maybe<Region_Avg_Order_By>,
+  count?: Maybe<Order_By>,
+  max?: Maybe<Region_Max_Order_By>,
+  min?: Maybe<Region_Min_Order_By>,
+  stddev?: Maybe<Region_Stddev_Order_By>,
+  stddev_pop?: Maybe<Region_Stddev_Pop_Order_By>,
+  stddev_samp?: Maybe<Region_Stddev_Samp_Order_By>,
+  sum?: Maybe<Region_Sum_Order_By>,
+  var_pop?: Maybe<Region_Var_Pop_Order_By>,
+  var_samp?: Maybe<Region_Var_Samp_Order_By>,
+  variance?: Maybe<Region_Variance_Order_By>,
+};
+
+export type Region_Arr_Rel_Insert_Input = {
+  data: Array<Region_Insert_Input>,
+  on_conflict?: Maybe<Region_On_Conflict>,
+};
+
+export type Region_Avg_Fields = {
+   __typename?: 'Region_avg_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Avg_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
+  _not?: Maybe<Region_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
+  region?: Maybe<String_Comparison_Exp>,
+  regionID?: Maybe<Int_Comparison_Exp>,
+};
+
+export enum Region_Constraint {
+  RegionPkey = 'Region_pkey'
+}
+
+export type Region_Inc_Input = {
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Insert_Input = {
+  region?: Maybe<Scalars['String']>,
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Max_Fields = {
+   __typename?: 'Region_max_fields',
+  region?: Maybe<Scalars['String']>,
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Max_Order_By = {
+  region?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Min_Fields = {
+   __typename?: 'Region_min_fields',
+  region?: Maybe<Scalars['String']>,
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Min_Order_By = {
+  region?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Mutation_Response = {
+   __typename?: 'Region_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<Region>,
+};
+
+export type Region_Obj_Rel_Insert_Input = {
+  data: Region_Insert_Input,
+  on_conflict?: Maybe<Region_On_Conflict>,
+};
+
+export type Region_On_Conflict = {
+  constraint: Region_Constraint,
+  update_columns: Array<Region_Update_Column>,
+  where?: Maybe<Region_Bool_Exp>,
+};
+
+export type Region_Order_By = {
+  region?: Maybe<Order_By>,
+  regionID?: Maybe<Order_By>,
+};
+
+export enum Region_Select_Column {
+  Region = 'region',
+  RegionId = 'regionID'
+}
+
+export type Region_Set_Input = {
+  region?: Maybe<Scalars['String']>,
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Stddev_Fields = {
+   __typename?: 'Region_stddev_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Stddev_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Stddev_Pop_Fields = {
+   __typename?: 'Region_stddev_pop_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Stddev_Pop_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Stddev_Samp_Fields = {
+   __typename?: 'Region_stddev_samp_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Stddev_Samp_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Sum_Fields = {
+   __typename?: 'Region_sum_fields',
+  regionID?: Maybe<Scalars['Int']>,
+};
+
+export type Region_Sum_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export enum Region_Update_Column {
+  Region = 'region',
+  RegionId = 'regionID'
+}
+
+export type Region_Var_Pop_Fields = {
+   __typename?: 'Region_var_pop_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Var_Pop_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Var_Samp_Fields = {
+   __typename?: 'Region_var_samp_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Var_Samp_Order_By = {
+  regionID?: Maybe<Order_By>,
+};
+
+export type Region_Variance_Fields = {
+   __typename?: 'Region_variance_fields',
+  regionID?: Maybe<Scalars['Float']>,
+};
+
+export type Region_Variance_Order_By = {
+  regionID?: Maybe<Order_By>,
 };
 
 export type Restaurant = {
@@ -19129,6 +19496,9 @@ export type Subscription_Root = {
   Phone: Array<Phone>,
   Phone_aggregate: Phone_Aggregate,
   Phone_by_pk?: Maybe<Phone>,
+  Region: Array<Region>,
+  Region_aggregate: Region_Aggregate,
+  Region_by_pk?: Maybe<Region>,
   Restaurant: Array<Restaurant>,
   RestaurantAndCuisineType: Array<RestaurantAndCuisineType>,
   RestaurantAndCuisineType_aggregate: RestaurantAndCuisineType_Aggregate,
@@ -20081,6 +20451,29 @@ export type Subscription_RootPhone_AggregateArgs = {
 
 export type Subscription_RootPhone_By_PkArgs = {
   phoneID: Scalars['Int']
+};
+
+
+export type Subscription_RootRegionArgs = {
+  distinct_on?: Maybe<Array<Region_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Region_Order_By>>,
+  where?: Maybe<Region_Bool_Exp>
+};
+
+
+export type Subscription_RootRegion_AggregateArgs = {
+  distinct_on?: Maybe<Array<Region_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Region_Order_By>>,
+  where?: Maybe<Region_Bool_Exp>
+};
+
+
+export type Subscription_RootRegion_By_PkArgs = {
+  regionID: Scalars['Int']
 };
 
 
@@ -24493,10 +24886,11 @@ export type GetHotelLocationQuery = (
 );
 
 export type GetArchSiteLocationQueryVariables = {
-  cityID: Scalars['Int'],
+  cityID?: Maybe<Scalars['Int']>,
   archSiteEntranceTypeID?: Maybe<Scalars['Int']>,
   priceDate?: Maybe<Scalars['timestamptz']>,
-  archSiteTypeIDs?: Maybe<Array<Scalars['Int']>>
+  archSiteTypeIDs?: Maybe<Array<Scalars['Int']>>,
+  regionID?: Maybe<Scalars['Int']>
 };
 
 
@@ -24523,10 +24917,11 @@ export type GetArchSiteLocationQuery = (
 );
 
 export type GetMuseumLocationQueryVariables = {
-  cityID: Scalars['Int'],
+  cityID?: Maybe<Scalars['Int']>,
   museumEntranceTypeID?: Maybe<Scalars['Int']>,
   priceDate?: Maybe<Scalars['timestamptz']>,
-  museumTypeIDs?: Maybe<Array<Scalars['Int']>>
+  museumTypeIDs?: Maybe<Array<Scalars['Int']>>,
+  regionID?: Maybe<Scalars['Int']>
 };
 
 
@@ -24682,6 +25077,10 @@ export type GetCitiesQuery = (
   & { City: Array<(
     { __typename?: 'City' }
     & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
+    & { Location: Maybe<(
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longtitude'>
+    )> }
   )> }
 );
 
@@ -24877,7 +25276,8 @@ export type GetArticleListQuery = (
 );
 
 export type GetHotelByCityQueryVariables = {
-  cityID?: Maybe<Scalars['Int']>
+  cityID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>
 };
 
 
@@ -24945,7 +25345,8 @@ export type GetHotelRoomsQuery = (
 );
 
 export type GetRestaurantByCityQueryVariables = {
-  cityID?: Maybe<Scalars['Int']>
+  cityID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>
 };
 
 
@@ -25053,6 +25454,17 @@ export type GetCityByIdQuery = (
   & { City: Array<(
     { __typename?: 'City' }
     & Pick<City, 'cityID' | 'city' | 'description' | 'imageUrl'>
+  )> }
+);
+
+export type GetRegionsQueryVariables = {};
+
+
+export type GetRegionsQuery = (
+  { __typename?: 'query_root' }
+  & { Region: Array<(
+    { __typename?: 'Region' }
+    & Pick<Region, 'region' | 'regionID'>
   )> }
 );
 
@@ -26856,8 +27268,8 @@ export function withGetHotelLocation<TProps, TChildProps = {}>(operationOptions?
 };
 export type GetHotelLocationQueryResult = ApolloReactCommon.QueryResult<GetHotelLocationQuery, GetHotelLocationQueryVariables>;
 export const GetArchSiteLocationDocument = gql`
-    query getArchSiteLocation($cityID: Int!, $archSiteEntranceTypeID: Int, $priceDate: timestamptz, $archSiteTypeIDs: [Int!]) {
-  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}, isDeleted: {_eq: false}}) {
+    query getArchSiteLocation($cityID: Int, $archSiteEntranceTypeID: Int, $priceDate: timestamptz, $archSiteTypeIDs: [Int!], $regionID: Int) {
+  ArchSite(where: {Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}, ArchSitePrices: {archSiteEntranceTypeID: {_eq: $archSiteEntranceTypeID}, finishDate: {_gte: $priceDate}}, ArchSiteTypeArchSites: {archSiteTypeID: {_in: $archSiteTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26881,7 +27293,7 @@ export const GetArchSiteLocationDocument = gql`
   }
 }
     `;
-export type GetArchSiteLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>, 'query'> & ({ variables: GetArchSiteLocationQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetArchSiteLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>, 'query'>;
 
     export const GetArchSiteLocationComponent = (props: GetArchSiteLocationComponentProps) => (
       <ApolloReactComponents.Query<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables> query={GetArchSiteLocationDocument} {...props} />
@@ -26900,8 +27312,8 @@ export function withGetArchSiteLocation<TProps, TChildProps = {}>(operationOptio
 };
 export type GetArchSiteLocationQueryResult = ApolloReactCommon.QueryResult<GetArchSiteLocationQuery, GetArchSiteLocationQueryVariables>;
 export const GetMuseumLocationDocument = gql`
-    query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
-  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}, isDeleted: {_eq: false}}) {
+    query getMuseumLocation($cityID: Int, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!], $regionID: Int) {
+  Museum(where: {Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}, MuseumPrices: {entranceTypeID: {_eq: $museumEntranceTypeID}, finishDate: {_gte: $priceDate}}, MuseumTypeMuseums: {museumTypeID: {_in: $museumTypeIDs}}, isDeleted: {_eq: false}}) {
     Location {
       latitude
       longtitude
@@ -26920,7 +27332,7 @@ export const GetMuseumLocationDocument = gql`
   }
 }
     `;
-export type GetMuseumLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>, 'query'> & ({ variables: GetMuseumLocationQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type GetMuseumLocationComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>, 'query'>;
 
     export const GetMuseumLocationComponent = (props: GetMuseumLocationComponentProps) => (
       <ApolloReactComponents.Query<GetMuseumLocationQuery, GetMuseumLocationQueryVariables> query={GetMuseumLocationDocument} {...props} />
@@ -27208,6 +27620,10 @@ export const GetCitiesDocument = gql`
     city
     description
     imageUrl
+    Location {
+      latitude
+      longtitude
+    }
   }
 }
     `;
@@ -27558,9 +27974,9 @@ export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: 
 };
 export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;
 export const GetHotelByCityDocument = gql`
-    query getHotelByCity($cityID: Int) {
+    query getHotelByCity($cityID: Int, $regionID: Int) {
   __typename
-  Hotel(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+  Hotel(where: {Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}, isDeleted: {_eq: false}}) {
     description
     name
     star
@@ -27663,9 +28079,9 @@ export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: A
 };
 export type GetHotelRoomsQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>;
 export const GetRestaurantByCityDocument = gql`
-    query getRestaurantByCity($cityID: Int) {
+    query getRestaurantByCity($cityID: Int, $regionID: Int) {
   __typename
-  Restaurant(where: {Location: {Address: {City: {cityID: {_eq: $cityID}}}}, isDeleted: {_eq: false}}) {
+  Restaurant(where: {Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}, isDeleted: {_eq: false}}) {
     name
     star
     Location {
@@ -27847,3 +28263,29 @@ export function withGetCityById<TProps, TChildProps = {}>(operationOptions?: Apo
     });
 };
 export type GetCityByIdQueryResult = ApolloReactCommon.QueryResult<GetCityByIdQuery, GetCityByIdQueryVariables>;
+export const GetRegionsDocument = gql`
+    query getRegions {
+  Region {
+    region
+    regionID
+  }
+}
+    `;
+export type GetRegionsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRegionsQuery, GetRegionsQueryVariables>, 'query'>;
+
+    export const GetRegionsComponent = (props: GetRegionsComponentProps) => (
+      <ApolloReactComponents.Query<GetRegionsQuery, GetRegionsQueryVariables> query={GetRegionsDocument} {...props} />
+    );
+    
+export type GetRegionsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRegionsQuery, GetRegionsQueryVariables> & TChildProps;
+export function withGetRegions<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRegionsQuery,
+  GetRegionsQueryVariables,
+  GetRegionsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRegionsQuery, GetRegionsQueryVariables, GetRegionsProps<TChildProps>>(GetRegionsDocument, {
+      alias: 'getRegions',
+      ...operationOptions
+    });
+};
+export type GetRegionsQueryResult = ApolloReactCommon.QueryResult<GetRegionsQuery, GetRegionsQueryVariables>;

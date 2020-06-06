@@ -1,18 +1,18 @@
 import React from 'react';
 import { Layout, Select, Text } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
-import { GetCitiesComponent } from '../../generated/components';
+import { GetRegionsComponent } from '../../generated/components';
 
-export interface GetAllCitiesProps {
+export interface GetAllRegionsProps {
 	label: string;
 	disable?: boolean;
 	style?: any;
 	parentReference: any;
 }
 
-const GetAllCitiesComponent: React.FC<GetAllCitiesProps> = (props) => {
-	const [selected, setSelected] = React.useState({ id: 0, text: props.label, location: '' });
-	const [datam, setDatam] = React.useState([{ id: 0, text: props.label, location: '' }]);
+const GetAllRegionsComponent: React.FC<GetAllRegionsProps> = (props) => {
+	const [selected, setSelected] = React.useState({ id: 0, text: 'Select a region' });
+	const [datam, setDatam] = React.useState([{ id: 0, text: 'Select a region' }]);
 
 	function onValueChange(value) {
 		props.parentReference(value);
@@ -20,19 +20,19 @@ const GetAllCitiesComponent: React.FC<GetAllCitiesProps> = (props) => {
 	}
 	return (
 		<Layout style={props.style}>
-			<GetCitiesComponent>
+			<GetRegionsComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.City.map((dat) => {
+						data.Region.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every((item) => item.id !== dat.cityID)) {
-									datam.push({ id: dat.cityID, text: dat.city, location: dat.Location });
+								if (datam.every((item) => item.id !== dat.regionID)) {
+									datam.push({ id: dat.regionID, text: dat.region });
 								}
 							} else {
-								datam.push({ id: dat.cityID, text: dat.city, location: dat.Location });
+								datam.push({ id: dat.regionID, text: dat.region });
 							}
 						});
 						return (
@@ -46,10 +46,10 @@ const GetAllCitiesComponent: React.FC<GetAllCitiesProps> = (props) => {
 						);
 					}
 				}}
-			</GetCitiesComponent>
+			</GetRegionsComponent>
 		</Layout>
 	);
 };
 
 const styles: any = StyleSheet.create({});
-export default GetAllCitiesComponent;
+export default GetAllRegionsComponent;

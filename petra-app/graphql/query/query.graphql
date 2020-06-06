@@ -106,14 +106,15 @@ query getHotelLocation {
 }
 
 query getArchSiteLocation(
-	$cityID: Int!
+	$cityID: Int
 	$archSiteEntranceTypeID: Int
 	$priceDate: timestamptz
 	$archSiteTypeIDs: [Int!]
+	$regionID: Int
 ) {
 	ArchSite(
 		where: {
-			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
 			ArchSitePrices: { archSiteEntranceTypeID: { _eq: $archSiteEntranceTypeID }, finishDate: { _gte: $priceDate } }
 			ArchSiteTypeArchSites: { archSiteTypeID: { _in: $archSiteTypeIDs } }
 			isDeleted: { _eq: false }
@@ -142,10 +143,16 @@ query getArchSiteLocation(
 	}
 }
 
-query getMuseumLocation($cityID: Int!, $museumEntranceTypeID: Int, $priceDate: timestamptz, $museumTypeIDs: [Int!]) {
+query getMuseumLocation(
+	$cityID: Int
+	$museumEntranceTypeID: Int
+	$priceDate: timestamptz
+	$museumTypeIDs: [Int!]
+	$regionID: Int
+) {
 	Museum(
 		where: {
-			Location: { Address: { City: { cityID: { _eq: $cityID } } } }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
 			MuseumPrices: { entranceTypeID: { _eq: $museumEntranceTypeID }, finishDate: { _gte: $priceDate } }
 			MuseumTypeMuseums: { museumTypeID: { _in: $museumTypeIDs } }
 			isDeleted: { _eq: false }
@@ -262,6 +269,10 @@ query getCities {
 		city
 		description
 		imageUrl
+		Location {
+			latitude
+			longtitude
+		}
 	}
 }
 query getCityDistricts($cityID: Int!) {
@@ -438,9 +449,14 @@ query getArticleList {
 	}
 }
 
-query getHotelByCity($cityID: Int) {
+query getHotelByCity($cityID: Int, $regionID: Int) {
 	__typename
-	Hotel(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+	Hotel(
+		where: {
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+			isDeleted: { _eq: false }
+		}
+	) {
 		description
 		name
 		star
@@ -485,9 +501,14 @@ query getHotelRooms($hotelID: Int) {
 	}
 }
 
-query getRestaurantByCity($cityID: Int) {
+query getRestaurantByCity($cityID: Int, $regionID: Int) {
 	__typename
-	Restaurant(where: { Location: { Address: { City: { cityID: { _eq: $cityID } } } }, isDeleted: { _eq: false } }) {
+	Restaurant(
+		where: {
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+			isDeleted: { _eq: false }
+		}
+	) {
 		name
 		star
 		Location {
@@ -571,5 +592,11 @@ query getCityByID($cityID: Int) {
 		city
 		description
 		imageUrl
+	}
+}
+query getRegions {
+	Region {
+		region
+		regionID
 	}
 }

@@ -187,8 +187,8 @@ const EditHotelScreen: React.FC<EditHotelProps> = (props) => {
 								<GetAllCitiesComponent
 									label="Select City"
 									parentReference={(value) => {
-										props.values.cityID = value;
-										setCityID(value);
+										props.values.cityID = value.id;
+										setCityID(value.id);
 									}}
 								/>
 								<GetAllCityDistrictsComponent

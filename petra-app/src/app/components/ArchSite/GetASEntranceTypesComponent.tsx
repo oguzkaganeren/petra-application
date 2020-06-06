@@ -5,12 +5,13 @@ import { GetArchSiteEntranceTypesComponent } from '../../generated/components';
 
 export interface GetASEntranceTypesProps {
 	label: string;
+	style?: any;
 	parentReference: any;
 }
 
-const GetASEntranceTypesComponent: React.FC<GetASEntranceTypesProps> = props => {
-	const [selected, setSelected] = React.useState(null);
-	const [datam, setDatam] = React.useState([]);
+const GetASEntranceTypesComponent: React.FC<GetASEntranceTypesProps> = (props) => {
+	const [selected, setSelected] = React.useState({ id: 0, text: 'Select Arch. Site Entrance Type' });
+	const [datam, setDatam] = React.useState([{ id: 0, text: 'Select Arch. Site Entrance Type' }]);
 
 	function onValueChange(value) {
 		const id = value.id;
@@ -19,16 +20,16 @@ const GetASEntranceTypesComponent: React.FC<GetASEntranceTypesProps> = props => 
 		setSelected(value);
 	}
 	return (
-		<Layout>
+		<Layout style={props.style}>
 			<GetArchSiteEntranceTypesComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.ArchSiteEntranceType.map(dat => {
+						data.ArchSiteEntranceType.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.archSiteEntranceTypeID)) {
+								if (datam.every((item) => item.id !== dat.archSiteEntranceTypeID)) {
 									datam.push({ id: dat.archSiteEntranceTypeID, text: dat.content });
 								}
 							} else {
@@ -40,7 +41,7 @@ const GetASEntranceTypesComponent: React.FC<GetASEntranceTypesProps> = props => 
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

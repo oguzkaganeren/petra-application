@@ -44,7 +44,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = (props) => {
 								districtID: 0,
 								cityID: 0,
 								longtitude: 0,
-								travelTime: 0
+								travelTime: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -151,8 +151,8 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = (props) => {
 									<GetAllCitiesComponent
 										label="Select City"
 										parentReference={(value) => {
-											props.values.cityID = value;
-											setCityID(value);
+											props.values.cityID = value.id;
+											setCityID(value.id);
 										}}
 									/>
 									<GetAllCityDistrictsComponent
@@ -196,7 +196,6 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = (props) => {
 										onBlur={props.handleBlur('description')}
 										value={props.values.description}
 									/>
-									
 
 									<LocationComponent
 										latitude={(value) => {

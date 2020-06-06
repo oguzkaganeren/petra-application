@@ -6,11 +6,12 @@ import { GetMuseumEntranceTypesComponent } from '../../generated/components';
 export interface GetAllMuseumEntranceTypesProps {
 	label: string;
 	parentReference: any;
+	style?: any;
 }
 
-const GetAllMuseumEntranceTypesComponent: React.FC<GetAllMuseumEntranceTypesProps> = props => {
-	const [selected, setSelected] = React.useState(null);
-	const [datam, setDatam] = React.useState([]);
+const GetAllMuseumEntranceTypesComponent: React.FC<GetAllMuseumEntranceTypesProps> = (props) => {
+	const [selected, setSelected] = React.useState({ id: 0, text: 'Select Museum Entrance Type' });
+	const [datam, setDatam] = React.useState([{ id: 0, text: 'Select Museum Entrance Type' }]);
 
 	function onValueChange(value) {
 		const id = value.id;
@@ -19,16 +20,16 @@ const GetAllMuseumEntranceTypesComponent: React.FC<GetAllMuseumEntranceTypesProp
 	}
 
 	return (
-		<Layout>
+		<Layout style={props.style}>
 			<GetMuseumEntranceTypesComponent>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.MuseumEntranceType.map(dat => {
+						data.MuseumEntranceType.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.museumEntranceTypeID)) {
+								if (datam.every((item) => item.id !== dat.museumEntranceTypeID)) {
 									datam.push({ id: dat.museumEntranceTypeID, text: dat.content });
 								}
 							} else {
@@ -40,7 +41,7 @@ const GetAllMuseumEntranceTypesComponent: React.FC<GetAllMuseumEntranceTypesProp
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

@@ -45,7 +45,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 							longtitude: 0,
 							districtID: 0,
 							cityID: 0,
-							travelTime:0
+							travelTime: 0,
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -68,7 +68,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 							period: Yup.string()
 								.min(5, 'Too Short!')
 								.required('Required'),
-							travelTime: Yup.number().required('Required'),	
+							travelTime: Yup.number().required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
 						})}
@@ -85,7 +85,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 											name: values.name.toString(),
 											companyID: values.companyID,
 											description: values.description,
-											averageTime: values.travelTime
+											averageTime: values.travelTime,
 										},
 										archSiteLocation: {
 											longtitude: values.longtitude,
@@ -178,8 +178,8 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 								<GetAllCitiesComponent
 									label="Select City"
 									parentReference={(value) => {
-										props.values.cityID = value;
-										setCityID(value);
+										props.values.cityID = value.id;
+										setCityID(value.id);
 									}}
 								/>
 								<GetAllCityDistrictsComponent

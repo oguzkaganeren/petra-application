@@ -188,7 +188,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										label="Select City"
 										parentReference={(value) => {
 											console.log(value);
-											setCityID(value);
+											setCityID(value.id);
 										}}
 									/>
 									<Text>Select a point</Text>

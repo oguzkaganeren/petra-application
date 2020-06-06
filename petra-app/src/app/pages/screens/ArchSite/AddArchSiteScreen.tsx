@@ -41,7 +41,7 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = (props) => {
 								longtitude: 0,
 								districtID: 0,
 								cityID: 0,
-								travelTime:0
+								travelTime: 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -85,9 +85,9 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = (props) => {
 											values.diameter +
 											' ' +
 											values.period +
-											' '+
-										    values.travelTime +
-										    ' '
+											' ' +
+											values.travelTime +
+											' '
 									);
 									AddArchSiteMutation({
 										variables: {
@@ -183,8 +183,8 @@ const AddArchSiteScreen: React.FC<AddArchSiteProps> = (props) => {
 									<GetAllCitiesComponent
 										label="Select City"
 										parentReference={(value) => {
-											props.values.cityID = value;
-											setCityID(value);
+											props.values.cityID = value.id;
+											setCityID(value.id);
 										}}
 									/>
 									<GetAllCityDistrictsComponent
