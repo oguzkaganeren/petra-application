@@ -8,8 +8,8 @@ export interface GetAllTagsProps {
 	parentReference: any;
 }
 
-const GetAllTagsComponent: React.FC<GetAllTagsProps> = props => {
-	const [selected, setSelected] = React.useState(null);
+const GetAllTagsComponent: React.FC<GetAllTagsProps> = (props) => {
+	const [selected, setSelected] = React.useState();
 	const [datam, setDatam] = React.useState([]);
 
 	function onValueChange(value) {
@@ -28,9 +28,9 @@ const GetAllTagsComponent: React.FC<GetAllTagsProps> = props => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Tag.map(dat => {
+						data.Tag.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.tagID !== dat.tagID)) {
+								if (datam.every((item) => item.tagID !== dat.tagID)) {
 									datam.push({ tagID: dat.tagID, text: dat.name });
 								}
 							} else {
@@ -43,7 +43,7 @@ const GetAllTagsComponent: React.FC<GetAllTagsProps> = props => {
 								placeholder={props.label}
 								multiSelect={true}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

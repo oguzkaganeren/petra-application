@@ -25,6 +25,7 @@ const AddArticleScreen: React.FC<AddArticleProps> = (props) => {
 							tags: [],
 							content: '',
 							title: '',
+							imageUrl: '',
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
@@ -54,6 +55,7 @@ const AddArticleScreen: React.FC<AddArticleProps> = (props) => {
 												editDate: new Date(),
 												publishDate: new Date(),
 												title: values.title,
+												imageUrl: values.imageUrl,
 											},
 										],
 									},
@@ -94,6 +96,15 @@ const AddArticleScreen: React.FC<AddArticleProps> = (props) => {
 									onBlur={props.handleBlur('content')}
 									value={props.values.content}
 								/>
+								<Input
+									label="Image Url"
+									placeholder="Enter Image Url of Article"
+									status={props.touched.imageUrl && props.errors.content ? 'danger' : 'success'}
+									caption={props.touched.imageUrl && props.errors.content ? props.errors.content : ''}
+									onChangeText={props.handleChange('imageUrl')}
+									onBlur={props.handleBlur('imageUrl')}
+									value={props.values.imageUrl}
+								/>
 								<GetAllTagsComponent
 									label="Select Tags"
 									parentReference={(value) => {
@@ -107,7 +118,7 @@ const AddArticleScreen: React.FC<AddArticleProps> = (props) => {
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add Room
+									Add Article
 								</Button>
 							</Layout>
 						)}

@@ -333,7 +333,6 @@ export type ArchSite = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID: Scalars['Int'],
-  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -485,7 +484,6 @@ export type ArchSite_Avg_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -495,7 +493,6 @@ export type ArchSite_Avg_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -515,7 +512,6 @@ export type ArchSite_Bool_Exp = {
   age?: Maybe<Int_Comparison_Exp>,
   altitude?: Maybe<Float_Comparison_Exp>,
   archSiteID?: Maybe<Int_Comparison_Exp>,
-  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   destruction?: Maybe<String_Comparison_Exp>,
@@ -533,7 +529,6 @@ export enum ArchSite_Constraint {
 export type ArchSite_Inc_Input = {
   age?: Maybe<Scalars['Int']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
 };
@@ -549,7 +544,6 @@ export type ArchSite_Insert_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -565,7 +559,6 @@ export type ArchSite_Max_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -579,7 +572,6 @@ export type ArchSite_Max_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -594,7 +586,6 @@ export type ArchSite_Min_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -608,7 +599,6 @@ export type ArchSite_Min_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -646,7 +636,6 @@ export type ArchSite_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   destruction?: Maybe<Order_By>,
@@ -661,7 +650,6 @@ export enum ArchSite_Select_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
-  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -676,7 +664,6 @@ export type ArchSite_Set_Input = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   destruction?: Maybe<Scalars['String']>,
@@ -692,7 +679,6 @@ export type ArchSite_Stddev_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -702,7 +688,6 @@ export type ArchSite_Stddev_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -713,7 +698,6 @@ export type ArchSite_Stddev_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -723,7 +707,6 @@ export type ArchSite_Stddev_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -734,7 +717,6 @@ export type ArchSite_Stddev_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -744,7 +726,6 @@ export type ArchSite_Stddev_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -755,7 +736,6 @@ export type ArchSite_Sum_Fields = {
   age?: Maybe<Scalars['Int']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Int']>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -765,7 +745,6 @@ export type ArchSite_Sum_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -775,7 +754,6 @@ export enum ArchSite_Update_Column {
   Age = 'age',
   Altitude = 'altitude',
   ArchSiteId = 'archSiteID',
-  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   Destruction = 'destruction',
@@ -791,7 +769,6 @@ export type ArchSite_Var_Pop_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -801,7 +778,6 @@ export type ArchSite_Var_Pop_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -812,7 +788,6 @@ export type ArchSite_Var_Samp_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -822,7 +797,6 @@ export type ArchSite_Var_Samp_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -833,7 +807,6 @@ export type ArchSite_Variance_Fields = {
   age?: Maybe<Scalars['Float']>,
   altitude?: Maybe<Scalars['Float']>,
   archSiteID?: Maybe<Scalars['Float']>,
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   diameter?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
@@ -843,7 +816,6 @@ export type ArchSite_Variance_Order_By = {
   age?: Maybe<Order_By>,
   altitude?: Maybe<Order_By>,
   archSiteID?: Maybe<Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   diameter?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8412,7 +8384,6 @@ export type Museum = {
   MuseumWorkingSchedules_aggregate: MuseumWorkingSchedule_Aggregate,
   TravelGuideMuseums: Array<TravelGuideMuseum>,
   TravelGuideMuseums_aggregate: TravelGuideMuseum_Aggregate,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID: Scalars['Int'],
   description: Scalars['String'],
   isDeleted: Scalars['Boolean'],
@@ -8559,14 +8530,12 @@ export type Museum_Arr_Rel_Insert_Input = {
 
 export type Museum_Avg_Fields = {
    __typename?: 'Museum_avg_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Avg_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8583,7 +8552,6 @@ export type Museum_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
   _not?: Maybe<Museum_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Museum_Bool_Exp>>>,
-  averageTime?: Maybe<Int_Comparison_Exp>,
   companyID?: Maybe<Int_Comparison_Exp>,
   description?: Maybe<String_Comparison_Exp>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
@@ -8597,7 +8565,6 @@ export enum Museum_Constraint {
 }
 
 export type Museum_Inc_Input = {
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
@@ -8611,7 +8578,6 @@ export type Museum_Insert_Input = {
   MuseumTypeMuseums?: Maybe<MuseumTypeMuseum_Arr_Rel_Insert_Input>,
   MuseumWorkingSchedules?: Maybe<MuseumWorkingSchedule_Arr_Rel_Insert_Input>,
   TravelGuideMuseums?: Maybe<TravelGuideMuseum_Arr_Rel_Insert_Input>,
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8622,7 +8588,6 @@ export type Museum_Insert_Input = {
 
 export type Museum_Max_Fields = {
    __typename?: 'Museum_max_fields',
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8631,7 +8596,6 @@ export type Museum_Max_Fields = {
 };
 
 export type Museum_Max_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8641,7 +8605,6 @@ export type Museum_Max_Order_By = {
 
 export type Museum_Min_Fields = {
    __typename?: 'Museum_min_fields',
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   locationID?: Maybe<Scalars['Int']>,
@@ -8650,7 +8613,6 @@ export type Museum_Min_Fields = {
 };
 
 export type Museum_Min_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
@@ -8683,7 +8645,6 @@ export type Museum_Order_By = {
   MuseumTypeMuseums_aggregate?: Maybe<MuseumTypeMuseum_Aggregate_Order_By>,
   MuseumWorkingSchedules_aggregate?: Maybe<MuseumWorkingSchedule_Aggregate_Order_By>,
   TravelGuideMuseums_aggregate?: Maybe<TravelGuideMuseum_Aggregate_Order_By>,
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   description?: Maybe<Order_By>,
   isDeleted?: Maybe<Order_By>,
@@ -8693,7 +8654,6 @@ export type Museum_Order_By = {
 };
 
 export enum Museum_Select_Column {
-  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8703,7 +8663,6 @@ export enum Museum_Select_Column {
 }
 
 export type Museum_Set_Input = {
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   description?: Maybe<Scalars['String']>,
   isDeleted?: Maybe<Scalars['Boolean']>,
@@ -8714,14 +8673,12 @@ export type Museum_Set_Input = {
 
 export type Museum_Stddev_Fields = {
    __typename?: 'Museum_stddev_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8729,14 +8686,12 @@ export type Museum_Stddev_Order_By = {
 
 export type Museum_Stddev_Pop_Fields = {
    __typename?: 'Museum_stddev_pop_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Pop_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8744,14 +8699,12 @@ export type Museum_Stddev_Pop_Order_By = {
 
 export type Museum_Stddev_Samp_Fields = {
    __typename?: 'Museum_stddev_samp_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Stddev_Samp_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8759,21 +8712,18 @@ export type Museum_Stddev_Samp_Order_By = {
 
 export type Museum_Sum_Fields = {
    __typename?: 'Museum_sum_fields',
-  averageTime?: Maybe<Scalars['Int']>,
   companyID?: Maybe<Scalars['Int']>,
   locationID?: Maybe<Scalars['Int']>,
   museumID?: Maybe<Scalars['Int']>,
 };
 
 export type Museum_Sum_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
 };
 
 export enum Museum_Update_Column {
-  AverageTime = 'averageTime',
   CompanyId = 'companyID',
   Description = 'description',
   IsDeleted = 'isDeleted',
@@ -8784,14 +8734,12 @@ export enum Museum_Update_Column {
 
 export type Museum_Var_Pop_Fields = {
    __typename?: 'Museum_var_pop_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Pop_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8799,14 +8747,12 @@ export type Museum_Var_Pop_Order_By = {
 
 export type Museum_Var_Samp_Fields = {
    __typename?: 'Museum_var_samp_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Var_Samp_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -8814,14 +8760,12 @@ export type Museum_Var_Samp_Order_By = {
 
 export type Museum_Variance_Fields = {
    __typename?: 'Museum_variance_fields',
-  averageTime?: Maybe<Scalars['Float']>,
   companyID?: Maybe<Scalars['Float']>,
   locationID?: Maybe<Scalars['Float']>,
   museumID?: Maybe<Scalars['Float']>,
 };
 
 export type Museum_Variance_Order_By = {
-  averageTime?: Maybe<Order_By>,
   companyID?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   museumID?: Maybe<Order_By>,
@@ -24815,7 +24759,14 @@ export type GetArticleByIdQuery = (
   { __typename: 'query_root' }
   & { Article: Array<(
     { __typename?: 'Article' }
-    & Pick<Article, 'articleID' | 'content' | 'title'>
+    & Pick<Article, 'articleID' | 'content' | 'title' | 'imageUrl'>
+    & { ArticleTags: Array<(
+      { __typename?: 'ArticleTag' }
+      & { Tag: (
+        { __typename?: 'Tag' }
+        & Pick<Tag, 'name'>
+      ) }
+    )> }
   )> }
 );
 
@@ -27397,6 +27348,12 @@ export const GetArticleByIdDocument = gql`
     articleID
     content
     title
+    imageUrl
+    ArticleTags {
+      Tag {
+        name
+      }
+    }
   }
 }
     `;

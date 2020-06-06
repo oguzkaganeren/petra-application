@@ -323,6 +323,12 @@ query getArticleByID($articleID: Int) {
 		articleID
 		content
 		title
+		imageUrl
+		ArticleTags {
+			Tag {
+				name
+			}
+		}
 	}
 }
 
