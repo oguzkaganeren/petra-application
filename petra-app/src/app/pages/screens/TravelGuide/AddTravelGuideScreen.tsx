@@ -5,6 +5,7 @@ import ASLocationComponent from '../../../components/ArchSite/ASLocationComponen
 import MuseumLocationComponent from '../../../components/Museum/MuseumLocationComponent';
 import RestaurantLocationComponent from '../../../components/Restaurant/RestaurantLocationComponent';
 import HotelLocationComponent from '../../../components/Hotel/HotelLocationComponent';
+import GetAllRegionsComponent from '../../../components/Public/GetAllRegionsComponent';
 import { TravelGuideLocationComponent } from '../../../components/TravelGuide/TravelGuideLocationComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import { AddTravelGuideComponent } from '../../../generated/components';
@@ -26,6 +27,9 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const { costFromSearch } = props.route.params;
 	const [listData, setListData] = React.useState(listDataFromSearch != null ? listDataFromSearch : []);
 	const [userID, setUserID] = React.useState();
+	const [archSiteVariables, setArchSiteVariables] = React.useState(null);
+	const [museumVariables, setMuseumVariables] = React.useState(null);
+	const [regionID, setRegionID] = React.useState(0);
 	const toastRef = React.useRef();
 
 	React.useEffect(() => {
@@ -203,13 +207,27 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										onBlur={props.handleBlur('cost')}
 										value={props.values.cost.toString()}
 									/>
-									<GetAllCitiesComponent
-										label="Select City"
-										parentReference={(value) => {
-											console.log(value);
-											setCityID(value.id);
-										}}
-									/>
+									<Layout style={styles.cityRegion}>
+										<GetAllCitiesComponent
+											label="Select City"
+											disable={regionID > 0 ? true : false}
+											parentReference={(value) => {
+												setCityID(value.id);
+												setArchSiteVariables({ cityID: value.id });
+												setMuseumVariables({ cityID: value.id });
+											}}
+										/>
+										<Text style={{ paddingTop: 10, paddingLeft: 5, paddingRight: 5 }}>or</Text>
+										<GetAllRegionsComponent
+											label="Select Region"
+											disable={cityID > 0 ? true : false}
+											parentReference={(value) => {
+												setRegionID(value.id);
+												setArchSiteVariables({ regionID: value.id });
+												setMuseumVariables({ regionID: value.id });
+											}}
+										/>
+									</Layout>
 									<Text>Select a point</Text>
 									<TabView selectedIndex={selectedIndex} onSelect={(value) => setSelectedIndex(value)}>
 										<Tab title="Add yours">
@@ -314,6 +332,9 @@ const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height / 2,
+	},
+	cityRegion: {
+		flexDirection: 'row',
 	},
 });
 export default AddTravelGuideScreen;
