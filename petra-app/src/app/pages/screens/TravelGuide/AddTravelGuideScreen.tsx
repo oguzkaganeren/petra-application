@@ -11,17 +11,34 @@ import { AddTravelGuideComponent } from '../../../generated/components';
 import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-
+declare var global: any;
 export interface AddTravelGuideProps {
 	navigation: any;
 	route: any;
+	listDataFromSearch?: any;
+	costFromSearch?: any;
 }
 
 const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
-	const [listData, setListData] = React.useState([]);
+	const { listDataFromSearch } = props.route.params;
+	const { costFromSearch } = props.route.params;
+	const [listData, setListData] = React.useState(listDataFromSearch != null ? listDataFromSearch : []);
+	const [userID, setUserID] = React.useState();
 	const toastRef = React.useRef();
+
+	React.useEffect(() => {
+		const unsubscribe = props.navigation.addListener('focus', () => {
+			if (userID != global.userID && global.userID != undefined) {
+				setUserID(global.userID);
+				console.log(listDataFromSearch);
+			}
+		});
+
+		// Return the function to unsubscribe from the event so it gets removed on unmount
+		return unsubscribe;
+	}, [props.navigation]);
 	YellowBox.ignoreWarnings([
 		'VirtualizedLists should never be nested', // TODO: Remove when fixed
 	]);
@@ -32,9 +49,8 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 		if (!(listData.filter((e) => e.id === item.id).length > 0) || item.title == null) {
 			setListData(listData.concat([item]));
 		}
+		console.log(listDataFromSearch);
 	}
-
-	const { userID } = props.route.params;
 
 	const renderItemArcIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 	const renderItemMuseumIcon = (style) => <Icon {...style} name="archive-outline" />;
@@ -73,7 +89,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 							initialValues={{
 								foodTypeID: 0, //Sonra düzeltilecek
 								title: '',
-								cost: 0,
+								cost: costFromSearch != null ? costFromSearch : 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -91,14 +107,18 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 									let restaurantValues = [];
 									let archSiteValues = [];
 									let travelGuideValues = [];
-									listData.filter((e) => e.type === 'hotel').map((value) => hotelValues.push({ hotelID: value.id }));
-									listData.filter((e) => e.type === 'museum').map((value) => museumValues.push({ museumID: value.id }));
+									listData
+										.filter((e) => e.type === 'hotel')
+										.map((value) => hotelValues.push({ hotelID: value.id.replace('hotel', '') }));
+									listData
+										.filter((e) => e.type === 'museum')
+										.map((value) => museumValues.push({ museumID: value.id.replace('museum', '') }));
 									listData
 										.filter((e) => e.type === 'restaurant')
-										.map((value) => restaurantValues.push({ restaurantID: value.id }));
+										.map((value) => restaurantValues.push({ restaurantID: value.id.replace('restaurant', '') }));
 									listData
 										.filter((e) => e.type === 'archsite')
-										.map((value) => archSiteValues.push({ archSiteID: value.id }));
+										.map((value) => archSiteValues.push({ archSiteID: value.id.replace('archsite', '') }));
 									listData
 										.filter((e) => e.type === 'travelguide')
 										.map((value) =>
@@ -182,7 +202,6 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										onChangeText={props.handleChange('cost')}
 										onBlur={props.handleBlur('cost')}
 										value={props.values.cost.toString()}
-										autoFocus
 									/>
 									<GetAllCitiesComponent
 										label="Select City"

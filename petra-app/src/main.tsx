@@ -332,6 +332,24 @@ function HomeStack() {
 					},
 				}}
 			/>
+			<Stack.Screen
+				name="AddTravelGuideScreen"
+				component={AddTravelGuideScreen}
+				options={{
+					title: 'Add your travel guide',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+								? options.title
+								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }
