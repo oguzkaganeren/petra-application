@@ -44,6 +44,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [restaurantVariables, setRestaurantVariables] = React.useState(null);
 	const [archSiteVariables, setArchSiteVariables] = React.useState(null);
 	const [museumVariables, setMuseumVariables] = React.useState(null);
+
 	const [startEndSelectData, setStartEndSelectData] = React.useState([
 		{ text: 'Select Start-End Point', disabled: false },
 		{ text: 'Start Point', disabled: false },
@@ -101,16 +102,31 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 				selectedOption={selectedOption[index]}
 				onSelect={(value) => {
 					if (value.text != 'Select Start-End Point') {
-						let tmp = selectedOption;
+						let tmp = [...selectedOption];
 
-						tmp[index] = value;
-						setSelectedOption(tmp);
-						const items = startEndSelectData.filter((item, index) => item.text !== value.text);
-						setStartEndSelectData(items);
-						const tmpListData = [...listData];
+						console.log(tmp);
+						console.log(value);
+						let tmp2 = tmp.map((data) => {
+							if (data == value) {
+								data.text = 'Select Start-End Point';
+							}
+
+							return data;
+						});
+						console.log(index);
+						tmp2[index] = value;
+						setSelectedOption(tmp2);
+						/*const tmpListData = listData.map((datam) => {
+							if (datam.title == value.text) {
+								datam.title = '';
+							}
+
+							return datam;
+						});
+
 						tmpListData[index].title = value.text;
-
-						setListData(tmpListData);
+						//console.log(tmpListData);
+						setListData(tmpListData);*/
 					}
 				}}
 			/>
