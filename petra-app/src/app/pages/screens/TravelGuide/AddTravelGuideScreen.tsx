@@ -1,18 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, YellowBox, ScrollView } from 'react-native';
-import {
-	Button,
-	Layout,
-	Input,
-	Spinner,
-	TabView,
-	Tab,
-	ListItem,
-	Icon,
-	List,
-	Text,
-	Select,
-} from '@ui-kitten/components';
+import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List, Text } from '@ui-kitten/components';
 import ASLocationComponent from '../../../components/ArchSite/ASLocationComponent';
 import MuseumLocationComponent from '../../../components/Museum/MuseumLocationComponent';
 import RestaurantLocationComponent from '../../../components/Restaurant/RestaurantLocationComponent';
@@ -35,7 +23,6 @@ export interface AddTravelGuideProps {
 const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
-	const [selectedOption, setSelectedOption] = React.useState([]);
 	const { listDataFromSearch } = props.route.params;
 	const { costFromSearch } = props.route.params;
 	const [listData, setListData] = React.useState(listDataFromSearch != null ? listDataFromSearch : []);
@@ -45,26 +32,9 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [archSiteVariables, setArchSiteVariables] = React.useState(null);
 	const [museumVariables, setMuseumVariables] = React.useState(null);
 
-	const [startEndSelectData, setStartEndSelectData] = React.useState([
-		{ text: 'Select Start-End Point', disabled: false },
-		{ text: 'Start Point', disabled: false },
-		{ text: 'End Point', disabled: false },
-	]);
 	const [regionID, setRegionID] = React.useState(0);
 	const toastRef = React.useRef();
-	React.useEffect(() => {
-		if (startEndSelectData.length == 1) {
-			let tmp = [...selectedOption];
-			let trytmp = tmp.map((data) => {
-				if (data.text != 'Start Point' || data.text != 'End Point') {
-					data.disabled = true;
-				}
 
-				return data;
-			});
-			setStartEndSelectData(trytmp);
-		}
-	}, [startEndSelectData]);
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -85,7 +55,6 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 		//console.log(this.state.listData.filter(e => e.type === 'hotel').map(value => value.id));
 		if (!(listData.filter((e) => e.id === item.id).length > 0) || item.title == null) {
 			setListData(listData.concat([item]));
-			setSelectedOption(selectedOption.concat({ text: 'Select Start-End Point', disabled: false }));
 		}
 	}
 
@@ -95,43 +64,6 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const renderItemRestIcon = (style) => <Icon {...style} name="award-outline" />;
 	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 
-	const renderItemAccessory = (style, index) => {
-		return (
-			<Select
-				data={startEndSelectData}
-				selectedOption={selectedOption[index]}
-				onSelect={(value) => {
-					if (value.text != 'Select Start-End Point') {
-						let tmp = [...selectedOption];
-
-						console.log(tmp);
-						console.log(value);
-						let tmp2 = tmp.map((data) => {
-							if (data == value) {
-								data.text = 'Select Start-End Point';
-							}
-
-							return data;
-						});
-						console.log(index);
-						tmp2[index] = value;
-						setSelectedOption(tmp2);
-						/*const tmpListData = listData.map((datam) => {
-							if (datam.title == value.text) {
-								datam.title = '';
-							}
-
-							return datam;
-						});
-
-						tmpListData[index].title = value.text;
-						//console.log(tmpListData);
-						setListData(tmpListData);*/
-					}
-				}}
-			/>
-		);
-	};
 	const renderItem = ({ item, index }) => (
 		<ListItem
 			key={item.id}
@@ -152,7 +84,6 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 					? renderItemMuseumIcon
 					: null
 			}
-			accessory={renderItemAccessory}
 		/>
 	);
 
@@ -203,8 +134,6 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												Location: {
 													data: { latitude: value.coordinates.latitude, longtitude: value.coordinates.longitude },
 												},
-												isStartPoint: value.title == 'Start Point' ? true : false,
-												isFinalPoint: value.title == 'End Point' ? true : false,
 											})
 										);
 									//console.log(hotelValues);
