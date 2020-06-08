@@ -90,8 +90,14 @@ query getMuseumTypes {
 		type
 	}
 }
-query getHotelLocation {
-	Hotel(where: { isDeleted: { _eq: false } }) {
+
+query getHotelLocation($cityID: Int, $regionID: Int) {
+	Hotel(
+		where: {
+			isDeleted: { _eq: false }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude
@@ -176,8 +182,13 @@ query getMuseumLocation(
 	}
 }
 
-query getRestaurantLocation {
-	Restaurant(where: { isDeleted: { _eq: false } }) {
+query getRestaurantLocation($cityID: Int, $regionID: Int) {
+	Restaurant(
+		where: {
+			isDeleted: { _eq: false }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude

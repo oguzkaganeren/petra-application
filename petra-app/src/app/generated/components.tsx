@@ -22286,6 +22286,8 @@ export type TravelGuideLocation = {
   Location: Location,
   TravelGuide: TravelGuide,
   isDeleted: Scalars['Boolean'],
+  isFinalPoint: Scalars['Boolean'],
+  isStartPoint: Scalars['Boolean'],
   locationID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
   travelGuideLocationID: Scalars['Int'],
@@ -22357,6 +22359,8 @@ export type TravelGuideLocation_Bool_Exp = {
   _not?: Maybe<TravelGuideLocation_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
+  isFinalPoint?: Maybe<Boolean_Comparison_Exp>,
+  isStartPoint?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
   travelGuideLocationID?: Maybe<Int_Comparison_Exp>,
@@ -22376,6 +22380,8 @@ export type TravelGuideLocation_Insert_Input = {
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   isDeleted?: Maybe<Scalars['Boolean']>,
+  isFinalPoint?: Maybe<Scalars['Boolean']>,
+  isStartPoint?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -22428,6 +22434,8 @@ export type TravelGuideLocation_Order_By = {
   Location?: Maybe<Location_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
   isDeleted?: Maybe<Order_By>,
+  isFinalPoint?: Maybe<Order_By>,
+  isStartPoint?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
   travelGuideLocationID?: Maybe<Order_By>,
@@ -22435,6 +22443,8 @@ export type TravelGuideLocation_Order_By = {
 
 export enum TravelGuideLocation_Select_Column {
   IsDeleted = 'isDeleted',
+  IsFinalPoint = 'isFinalPoint',
+  IsStartPoint = 'isStartPoint',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
@@ -22442,6 +22452,8 @@ export enum TravelGuideLocation_Select_Column {
 
 export type TravelGuideLocation_Set_Input = {
   isDeleted?: Maybe<Scalars['Boolean']>,
+  isFinalPoint?: Maybe<Scalars['Boolean']>,
+  isStartPoint?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -22501,6 +22513,8 @@ export type TravelGuideLocation_Sum_Order_By = {
 
 export enum TravelGuideLocation_Update_Column {
   IsDeleted = 'isDeleted',
+  IsFinalPoint = 'isFinalPoint',
+  IsStartPoint = 'isStartPoint',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
@@ -24866,7 +24880,10 @@ export type GetMuseumTypesQuery = (
   )> }
 );
 
-export type GetHotelLocationQueryVariables = {};
+export type GetHotelLocationQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>
+};
 
 
 export type GetHotelLocationQuery = (
@@ -24944,7 +24961,10 @@ export type GetMuseumLocationQuery = (
   )> }
 );
 
-export type GetRestaurantLocationQueryVariables = {};
+export type GetRestaurantLocationQueryVariables = {
+  cityID?: Maybe<Scalars['Int']>,
+  regionID?: Maybe<Scalars['Int']>
+};
 
 
 export type GetRestaurantLocationQuery = (
@@ -27234,8 +27254,8 @@ export function withGetMuseumTypes<TProps, TChildProps = {}>(operationOptions?: 
 };
 export type GetMuseumTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumTypesQuery, GetMuseumTypesQueryVariables>;
 export const GetHotelLocationDocument = gql`
-    query getHotelLocation {
-  Hotel(where: {isDeleted: {_eq: false}}) {
+    query getHotelLocation($cityID: Int, $regionID: Int) {
+  Hotel(where: {isDeleted: {_eq: false}, Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}}) {
     Location {
       latitude
       longtitude
@@ -27351,8 +27371,8 @@ export function withGetMuseumLocation<TProps, TChildProps = {}>(operationOptions
 };
 export type GetMuseumLocationQueryResult = ApolloReactCommon.QueryResult<GetMuseumLocationQuery, GetMuseumLocationQueryVariables>;
 export const GetRestaurantLocationDocument = gql`
-    query getRestaurantLocation {
-  Restaurant(where: {isDeleted: {_eq: false}}) {
+    query getRestaurantLocation($cityID: Int, $regionID: Int) {
+  Restaurant(where: {isDeleted: {_eq: false}, Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}}) {
     Location {
       latitude
       longtitude

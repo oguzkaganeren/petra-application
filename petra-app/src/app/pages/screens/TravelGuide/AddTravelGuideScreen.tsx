@@ -1,6 +1,18 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, YellowBox, ScrollView } from 'react-native';
-import { Button, Layout, Input, Spinner, TabView, Tab, ListItem, Icon, List, Text } from '@ui-kitten/components';
+import {
+	Button,
+	Layout,
+	Input,
+	Spinner,
+	TabView,
+	Tab,
+	ListItem,
+	Icon,
+	List,
+	Text,
+	Select,
+} from '@ui-kitten/components';
 import ASLocationComponent from '../../../components/ArchSite/ASLocationComponent';
 import MuseumLocationComponent from '../../../components/Museum/MuseumLocationComponent';
 import RestaurantLocationComponent from '../../../components/Restaurant/RestaurantLocationComponent';
@@ -23,15 +35,35 @@ export interface AddTravelGuideProps {
 const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
+	const [selectedOption, setSelectedOption] = React.useState([]);
 	const { listDataFromSearch } = props.route.params;
 	const { costFromSearch } = props.route.params;
 	const [listData, setListData] = React.useState(listDataFromSearch != null ? listDataFromSearch : []);
 	const [userID, setUserID] = React.useState();
+	const [hotelVariables, setHotelVariables] = React.useState(null);
+	const [restaurantVariables, setRestaurantVariables] = React.useState(null);
 	const [archSiteVariables, setArchSiteVariables] = React.useState(null);
 	const [museumVariables, setMuseumVariables] = React.useState(null);
+	const [startEndSelectData, setStartEndSelectData] = React.useState([
+		{ text: 'Select Start-End Point', disabled: false },
+		{ text: 'Start Point', disabled: false },
+		{ text: 'End Point', disabled: false },
+	]);
 	const [regionID, setRegionID] = React.useState(0);
 	const toastRef = React.useRef();
+	React.useEffect(() => {
+		if (startEndSelectData.length == 1) {
+			let tmp = [...selectedOption];
+			let trytmp = tmp.map((data) => {
+				if (data.text != 'Start Point' || data.text != 'End Point') {
+					data.disabled = true;
+				}
 
+				return data;
+			});
+			setStartEndSelectData(trytmp);
+		}
+	}, [startEndSelectData]);
 	React.useEffect(() => {
 		const unsubscribe = props.navigation.addListener('focus', () => {
 			if (userID != global.userID && global.userID != undefined) {
@@ -52,8 +84,8 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 		//console.log(this.state.listData.filter(e => e.type === 'hotel').map(value => value.id));
 		if (!(listData.filter((e) => e.id === item.id).length > 0) || item.title == null) {
 			setListData(listData.concat([item]));
+			setSelectedOption(selectedOption.concat({ text: 'Select Start-End Point', disabled: false }));
 		}
-		console.log(listDataFromSearch);
 	}
 
 	const renderItemArcIcon = (style) => <Icon {...style} name="globe-2-outline" />;
@@ -61,8 +93,32 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const renderItemHotelIcon = (style) => <Icon {...style} name="briefcase-outline" />;
 	const renderItemRestIcon = (style) => <Icon {...style} name="award-outline" />;
 	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
+
+	const renderItemAccessory = (style, index) => {
+		return (
+			<Select
+				data={startEndSelectData}
+				selectedOption={selectedOption[index]}
+				onSelect={(value) => {
+					if (value.text != 'Select Start-End Point') {
+						let tmp = selectedOption;
+
+						tmp[index] = value;
+						setSelectedOption(tmp);
+						const items = startEndSelectData.filter((item, index) => item.text !== value.text);
+						setStartEndSelectData(items);
+						const tmpListData = [...listData];
+						tmpListData[index].title = value.text;
+
+						setListData(tmpListData);
+					}
+				}}
+			/>
+		);
+	};
 	const renderItem = ({ item, index }) => (
 		<ListItem
+			key={item.id}
 			title={
 				item.title != null
 					? item.title
@@ -80,6 +136,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 					? renderItemMuseumIcon
 					: null
 			}
+			accessory={renderItemAccessory}
 		/>
 	);
 
@@ -130,6 +187,8 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												Location: {
 													data: { latitude: value.coordinates.latitude, longtitude: value.coordinates.longitude },
 												},
+												isStartPoint: value.title == 'Start Point' ? true : false,
+												isFinalPoint: value.title == 'End Point' ? true : false,
 											})
 										);
 									//console.log(hotelValues);
@@ -215,6 +274,8 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												setCityID(value.id);
 												setArchSiteVariables({ cityID: value.id });
 												setMuseumVariables({ cityID: value.id });
+												setRestaurantVariables({ cityID: value.id });
+												setHotelVariables({ cityID: value.id });
 											}}
 										/>
 										<Text style={{ paddingTop: 10, paddingLeft: 5, paddingRight: 5 }}>or</Text>
@@ -225,6 +286,8 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												setRegionID(value.id);
 												setArchSiteVariables({ regionID: value.id });
 												setMuseumVariables({ regionID: value.id });
+												setRestaurantVariables({ regionID: value.id });
+												setHotelVariables({ regionID: value.id });
 											}}
 										/>
 									</Layout>
@@ -235,7 +298,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												<TravelGuideLocationComponent
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -249,13 +312,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Arch. Sites">
 											<Layout style={styles.tabContainer}>
 												<ASLocationComponent
-													cityID={cityID}
+													variables={archSiteVariables}
 													marker={(value) => {
 														/*this.setState({
 																latitude: value
 															});*/
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -269,10 +332,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Museums">
 											<Layout style={styles.tabContainer}>
 												<MuseumLocationComponent
-													cityID={cityID}
+													variables={museumVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -286,9 +349,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Restaurants">
 											<Layout style={styles.tabContainer}>
 												<RestaurantLocationComponent
+													variables={restaurantVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -302,9 +366,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Hotels">
 											<Layout style={styles.tabContainer}>
 												<HotelLocationComponent
+													variables={hotelVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
