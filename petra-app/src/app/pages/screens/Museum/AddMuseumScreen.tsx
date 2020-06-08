@@ -179,7 +179,7 @@ const AddMuseumScreen: React.FC<AddMuseumProps> = (props) => {
 										}}
 									/>
 									<Input
-										label="TravelTime"
+										label="TravelTime(m)"
 										status={props.touched.travelTime && props.errors.travelTime ? 'danger' : 'success'}
 										caption={props.touched.travelTime && props.errors.travelTime ? props.errors.travelTime : ''}
 										placeholder="Average Travel Time"

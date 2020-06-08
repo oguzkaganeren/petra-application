@@ -78,7 +78,7 @@ const AddMuseumPriceScreen: React.FC<AddMuseumPriceProps> = (props) => {
 									}}
 								/>
 								<Input
-									label="Price"
+									label="Price(₺)"
 									placeholder="Enter price"
 									status={props.touched.price && props.errors.price ? 'danger' : 'success'}
 									caption={props.touched.price && props.errors.price ? props.errors.price : ''}

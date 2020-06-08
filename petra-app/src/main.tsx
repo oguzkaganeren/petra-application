@@ -75,7 +75,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://127.0.0.1:8080/v1/graphql' });
+const client = new ApolloClient({ uri: 'http://192.168.99.100:8080/v1/graphql' });
 const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
 const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
 const userTypeTwoMenus = [
@@ -378,7 +378,7 @@ function CompanyStack() {
 				name="AddCompanyScreen"
 				component={AddCompanyScreen}
 				options={{
-					title: 'Add Hotel',
+					title: 'Add Company',
 					header: ({ scene, previous, navigation }) => {
 						const { options } = scene.descriptor;
 						const title =

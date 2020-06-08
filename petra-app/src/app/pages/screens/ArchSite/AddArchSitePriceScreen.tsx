@@ -76,7 +76,7 @@ const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = (props) => {
 								/>
 								<Toast ref={toastRef} />
 								<Input
-									label="Price"
+									label="Price(₺)"
 									placeholder="Enter price"
 									status={props.touched.price && props.errors.price ? 'danger' : 'success'}
 									caption={props.touched.price && props.errors.price ? props.errors.price : ''}

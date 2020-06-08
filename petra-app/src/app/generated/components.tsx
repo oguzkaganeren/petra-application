@@ -3874,6 +3874,7 @@ export type City = {
   Districts: Array<District>,
   Districts_aggregate: District_Aggregate,
   Location?: Maybe<Location>,
+  Region?: Maybe<Region>,
   city: Scalars['String'],
   cityID: Scalars['Int'],
   countryID: Scalars['Int'],
@@ -3986,6 +3987,7 @@ export type City_Bool_Exp = {
   Country?: Maybe<Country_Bool_Exp>,
   Districts?: Maybe<District_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
+  Region?: Maybe<Region_Bool_Exp>,
   _and?: Maybe<Array<Maybe<City_Bool_Exp>>>,
   _not?: Maybe<City_Bool_Exp>,
   _or?: Maybe<Array<Maybe<City_Bool_Exp>>>,
@@ -4015,6 +4017,7 @@ export type City_Insert_Input = {
   Country?: Maybe<Country_Obj_Rel_Insert_Input>,
   Districts?: Maybe<District_Arr_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  Region?: Maybe<Region_Obj_Rel_Insert_Input>,
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
@@ -4089,6 +4092,7 @@ export type City_Order_By = {
   Country?: Maybe<Country_Order_By>,
   Districts_aggregate?: Maybe<District_Aggregate_Order_By>,
   Location?: Maybe<Location_Order_By>,
+  Region?: Maybe<Region_Order_By>,
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
@@ -7805,6 +7809,8 @@ export type Location = {
   Address?: Maybe<Address>,
   ArchSites: Array<ArchSite>,
   ArchSites_aggregate: ArchSite_Aggregate,
+  Cities: Array<City>,
+  Cities_aggregate: City_Aggregate,
   Companies: Array<Company>,
   Companies_aggregate: Company_Aggregate,
   Hotels: Array<Hotel>,
@@ -7838,6 +7844,24 @@ export type LocationArchSites_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<ArchSite_Order_By>>,
   where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type LocationCitiesArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type LocationCities_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
 };
 
 
@@ -7994,6 +8018,7 @@ export type Location_Avg_Order_By = {
 export type Location_Bool_Exp = {
   Address?: Maybe<Address_Bool_Exp>,
   ArchSites?: Maybe<ArchSite_Bool_Exp>,
+  Cities?: Maybe<City_Bool_Exp>,
   Companies?: Maybe<Company_Bool_Exp>,
   Hotels?: Maybe<Hotel_Bool_Exp>,
   Museums?: Maybe<Museum_Bool_Exp>,
@@ -8021,6 +8046,7 @@ export type Location_Inc_Input = {
 export type Location_Insert_Input = {
   Address?: Maybe<Address_Obj_Rel_Insert_Input>,
   ArchSites?: Maybe<ArchSite_Arr_Rel_Insert_Input>,
+  Cities?: Maybe<City_Arr_Rel_Insert_Input>,
   Companies?: Maybe<Company_Arr_Rel_Insert_Input>,
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
@@ -8083,6 +8109,7 @@ export type Location_On_Conflict = {
 export type Location_Order_By = {
   Address?: Maybe<Address_Order_By>,
   ArchSites_aggregate?: Maybe<ArchSite_Aggregate_Order_By>,
+  Cities_aggregate?: Maybe<City_Aggregate_Order_By>,
   Companies_aggregate?: Maybe<Company_Aggregate_Order_By>,
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
@@ -14395,8 +14422,28 @@ export type Query_RootUser_By_PkArgs = {
 
 export type Region = {
    __typename?: 'Region',
+  Cities: Array<City>,
+  Cities_aggregate: City_Aggregate,
   region: Scalars['String'],
   regionID: Scalars['Int'],
+};
+
+
+export type RegionCitiesArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type RegionCities_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
 };
 
 export type Region_Aggregate = {
@@ -14455,6 +14502,7 @@ export type Region_Avg_Order_By = {
 };
 
 export type Region_Bool_Exp = {
+  Cities?: Maybe<City_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
   _not?: Maybe<Region_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
@@ -14471,6 +14519,7 @@ export type Region_Inc_Input = {
 };
 
 export type Region_Insert_Input = {
+  Cities?: Maybe<City_Arr_Rel_Insert_Input>,
   region?: Maybe<Scalars['String']>,
   regionID?: Maybe<Scalars['Int']>,
 };
@@ -14515,6 +14564,7 @@ export type Region_On_Conflict = {
 };
 
 export type Region_Order_By = {
+  Cities_aggregate?: Maybe<City_Aggregate_Order_By>,
   region?: Maybe<Order_By>,
   regionID?: Maybe<Order_By>,
 };

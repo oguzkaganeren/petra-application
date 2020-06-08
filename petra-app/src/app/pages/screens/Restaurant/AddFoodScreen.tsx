@@ -81,7 +81,7 @@ const AddFoodScreen: React.FC<AddFoodProps> = (props) => {
 								/>
 								<Toast ref={toastRef} />
 								<Input
-									label="Price"
+									label="Price(₺)"
 									placeholder="Enter a Food Price"
 									status={props.touched.price && props.errors.price ? 'danger' : 'success'}
 									caption={props.touched.price && props.errors.price ? props.errors.price : ''}

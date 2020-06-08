@@ -143,7 +143,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 								<Toast ref={toastRef} />
 								<Input
 									label="Name"
-									placeholder="Hotel Name"
+									placeholder="Company Name"
 									status={props.touched.name && props.errors.name ? 'danger' : 'success'}
 									caption={props.touched.name && props.errors.name ? props.errors.name : ''}
 									onChangeText={props.handleChange('name')}

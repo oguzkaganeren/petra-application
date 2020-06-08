@@ -64,8 +64,8 @@ const AddArchSiteEntranceTypeScreen: React.FC<AddArchSiteEntranceTypeProps> = (p
 								{props.isSubmitting && <Spinner />}
 
 								<Input
-									label="Content"
-									placeholder="Enter your comment"
+									label="Entrance Type"
+									placeholder="Enter an Entrance Type"
 									status={props.touched.content && props.errors.content ? 'danger' : 'success'}
 									caption={props.touched.content && props.errors.content ? props.errors.content : ''}
 									onChangeText={props.handleChange('content')}

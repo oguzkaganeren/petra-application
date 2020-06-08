@@ -83,8 +83,8 @@ const AddMenuScreen: React.FC<AddMenuProps> = (props) => {
 									autoFocus
 								/>
 								<Input
-									label="Price"
-									placeholder="Enter a Food Price"
+									label="Price(₺)"
+									placeholder="Enter a Menu Price"
 									status={props.touched.price && props.errors.price ? 'danger' : 'success'}
 									caption={props.touched.price && props.errors.price ? props.errors.price : ''}
 									onChangeText={props.handleChange('price')}

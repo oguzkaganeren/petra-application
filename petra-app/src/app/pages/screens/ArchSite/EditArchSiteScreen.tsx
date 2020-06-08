@@ -155,7 +155,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add ArchSite
+									Edit ArchSite
 								</Button>
 								<GetAllUserCompanyComponent
 									label="Select Your Company"
@@ -209,7 +209,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 								/>
 
 								<Input
-									label="Altitude"
+									label="Altitude(M)"
 									status={props.touched.altitude && props.errors.altitude ? 'danger' : 'success'}
 									caption={props.touched.altitude && props.errors.altitude ? props.errors.altitude : ''}
 									placeholder="Enter the altitude of the ArchSite"
@@ -218,7 +218,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 									value={props.values.altitude.toString()}
 								/>
 								<Input
-									label="Diameter"
+									label="Diameter(M)"
 									status={props.touched.diameter && props.errors.diameter ? 'danger' : 'success'}
 									caption={props.touched.diameter && props.errors.diameter ? props.errors.diameter : ''}
 									placeholder="Enter the diameter of the ArchSite"
@@ -245,7 +245,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 									value={props.values.destruction}
 								/>
 								<Input
-									label="TravelTime"
+									label="TravelTime(m)"
 									status={props.touched.travelTime && props.errors.travelTime ? 'danger' : 'success'}
 									caption={props.touched.travelTime && props.errors.travelTime ? props.errors.travelTime : ''}
 									placeholder="Average Travel Time"
