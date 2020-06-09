@@ -7,17 +7,18 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export interface ArchSiteLocationProps {
 	marker: any;
-	cityID: any;
+	cityID?: any;
+	variables?: any;
 }
 
-const ASLocationComponent: React.FC<ArchSiteLocationProps> = props => {
+const ASLocationComponent: React.FC<ArchSiteLocationProps> = (props) => {
 	const [markers, setMarkers] = React.useState([]);
 	const [markerRef, setMarkerRef] = React.useState([]);
 	const [region, setRegion] = React.useState({
 		latitude: 38.4237,
 		longitude: 27.1428,
 		latitudeDelta: 0.0922,
-		longitudeDelta: 0.0421
+		longitudeDelta: 0.0421,
 	});
 	function _onMarkerPress(markerData) {
 		console.log(markerData);
@@ -25,21 +26,21 @@ const ASLocationComponent: React.FC<ArchSiteLocationProps> = props => {
 	}
 	return (
 		<Layout>
-			<GetArchSiteLocationComponent variables={{ cityID: props.cityID }}>
+			<GetArchSiteLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.ArchSite.map(dat => {
+						data.ArchSite.map((dat) => {
 							if (markers.length > 0) {
-								if (markers.every(item => item.id !== dat.archSiteID)) {
+								if (markers.every((item) => item.id !== dat.archSiteID)) {
 									markers.push({
 										id: dat.archSiteID,
 										title: dat.name,
 										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-										type: 'archsite'
+										type: 'archsite',
 									});
 								}
 							} else {
@@ -48,7 +49,7 @@ const ASLocationComponent: React.FC<ArchSiteLocationProps> = props => {
 									title: dat.name,
 									description: dat.Location.Address.address,
 									coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-									type: 'archsite'
+									type: 'archsite',
 								});
 							}
 						});
@@ -59,9 +60,9 @@ const ASLocationComponent: React.FC<ArchSiteLocationProps> = props => {
 										key={marker.id}
 										coordinate={marker.coordinates}
 										description={marker.description}
-										ref={marker => (markerRef[index] = marker)}
+										ref={(marker) => (markerRef[index] = marker)}
 										title={marker.title}
-										onPress={event => {
+										onPress={(event) => {
 											markerRef[index].showCallout();
 										}}
 									>
@@ -86,7 +87,7 @@ const ASLocationComponent: React.FC<ArchSiteLocationProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 3
-	}
+		height: Dimensions.get('window').height / 3,
+	},
 });
 export default ASLocationComponent;

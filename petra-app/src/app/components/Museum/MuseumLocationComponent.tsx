@@ -6,17 +6,18 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export interface MuseumLocationProps {
 	marker: any;
-	cityID: any;
+	cityID?: any;
+	variables?: any;
 }
 
-const MuseumLocationComponent: React.FC<MuseumLocationProps> = props => {
+const MuseumLocationComponent: React.FC<MuseumLocationProps> = (props) => {
 	const [markers, setMarkers] = React.useState([]);
 	const [markerRefs, setMarkerRefs] = React.useState([]);
 	const [region, setRegion] = React.useState({
 		latitude: 38.4237,
 		longitude: 27.1428,
 		latitudeDelta: 0.0922,
-		longitudeDelta: 0.0421
+		longitudeDelta: 0.0421,
 	});
 
 	function _onMarkerPress(markerData) {
@@ -24,21 +25,21 @@ const MuseumLocationComponent: React.FC<MuseumLocationProps> = props => {
 	}
 	return (
 		<Layout>
-			<GetMuseumLocationComponent variables={{ cityID: props.cityID }}>
+			<GetMuseumLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Museum.map(dat => {
+						data.Museum.map((dat) => {
 							if (markers.length > 0) {
-								if (markers.every(item => item.id !== dat.museumID)) {
+								if (markers.every((item) => item.id !== dat.museumID)) {
 									markers.push({
 										id: dat.museumID,
 										title: dat.name,
 										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-										type: 'museum'
+										type: 'museum',
 									});
 								}
 							} else {
@@ -47,7 +48,7 @@ const MuseumLocationComponent: React.FC<MuseumLocationProps> = props => {
 									title: dat.name,
 									description: dat.Location.Address.address,
 									coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-									type: 'museum'
+									type: 'museum',
 								});
 							}
 						});
@@ -58,9 +59,9 @@ const MuseumLocationComponent: React.FC<MuseumLocationProps> = props => {
 										key={marker.id}
 										coordinate={marker.coordinates}
 										description={marker.description}
-										ref={marker => (markerRefs[index] = marker)}
+										ref={(marker) => (markerRefs[index] = marker)}
 										title={marker.title}
-										onPress={event => {
+										onPress={(event) => {
 											markerRefs[index].showCallout();
 										}}
 									>
@@ -85,7 +86,7 @@ const MuseumLocationComponent: React.FC<MuseumLocationProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 3
-	}
+		height: Dimensions.get('window').height / 3,
+	},
 });
 export default MuseumLocationComponent;

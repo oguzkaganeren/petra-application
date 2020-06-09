@@ -90,8 +90,14 @@ query getMuseumTypes {
 		type
 	}
 }
-query getHotelLocation {
-	Hotel(where: { isDeleted: { _eq: false } }) {
+
+query getHotelLocation($cityID: Int, $regionID: Int) {
+	Hotel(
+		where: {
+			isDeleted: { _eq: false }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude
@@ -176,8 +182,13 @@ query getMuseumLocation(
 	}
 }
 
-query getRestaurantLocation {
-	Restaurant(where: { isDeleted: { _eq: false } }) {
+query getRestaurantLocation($cityID: Int, $regionID: Int) {
+	Restaurant(
+		where: {
+			isDeleted: { _eq: false }
+			Location: { Address: { City: { cityID: { _eq: $cityID }, regionID: { _eq: $regionID } } } }
+		}
+	) {
 		Location {
 			latitude
 			longtitude
@@ -598,5 +609,60 @@ query getRegions {
 	Region {
 		region
 		regionID
+	}
+}
+query getTravelGuideByID($travelGuideID: Int) {
+	TravelGuide(where: { travelGuideID: { _eq: $travelGuideID }, isDeleted: { _eq: false } }) {
+		cost
+		title
+		TravelGuideArchSites(where: { isDeleted: { _eq: false } }) {
+			ArchSite {
+				archSiteID
+				name
+				description
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
+		TravelGuideHotels(where: { isDeleted: { _eq: false } }) {
+			Hotel {
+				hotelID
+				name
+				description
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
+		TravelGuideLocations {
+			travelGuideID
+			Location {
+				longtitude
+				latitude
+			}
+		}
+		TravelGuideMuseums(where: { isDeleted: { _eq: false } }) {
+			Museum {
+				museumID
+				name
+				Location {
+					latitude
+					longtitude
+				}
+			}
+		}
+		TravelGuideRestaurants(where: { isDeleted: { _eq: false } }) {
+			Restaurant {
+				restaurantID
+				name
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
 	}
 }

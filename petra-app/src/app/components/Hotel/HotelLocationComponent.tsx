@@ -6,16 +6,17 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export interface HotelLocationProps {
 	marker: any;
+	variables?: any;
 }
 
-const HotelLocationComponent: React.FC<HotelLocationProps> = props => {
+const HotelLocationComponent: React.FC<HotelLocationProps> = (props) => {
 	const [markers, setMarkers] = React.useState([]);
 	const [markerRefs, setMarkerRefs] = React.useState([]);
 	const [region, setRegion] = React.useState({
 		latitude: 38.4237,
 		longitude: 27.1428,
 		latitudeDelta: 0.0922,
-		longitudeDelta: 0.0421
+		longitudeDelta: 0.0421,
 	});
 	function _onMarkerPress(markerData) {
 		props.marker(markerData);
@@ -23,21 +24,21 @@ const HotelLocationComponent: React.FC<HotelLocationProps> = props => {
 
 	return (
 		<Layout>
-			<GetHotelLocationComponent>
+			<GetHotelLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading</Text>;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
+						data.Hotel.map((dat) => {
 							if (markers.length > 0) {
-								if (markers.every(item => item.id !== dat.hotelID)) {
+								if (markers.every((item) => item.id !== dat.hotelID)) {
 									markers.push({
 										id: dat.hotelID,
 										title: dat.name,
 										description: dat.Location.Address.address,
 										coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-										type: 'hotel'
+										type: 'hotel',
 									});
 								}
 							} else {
@@ -46,7 +47,7 @@ const HotelLocationComponent: React.FC<HotelLocationProps> = props => {
 									title: dat.name,
 									description: dat.Location.Address.address,
 									coordinates: { latitude: dat.Location.latitude, longitude: dat.Location.longtitude },
-									type: 'hotel'
+									type: 'hotel',
 								});
 							}
 						});
@@ -57,9 +58,9 @@ const HotelLocationComponent: React.FC<HotelLocationProps> = props => {
 										key={marker.id}
 										coordinate={marker.coordinates}
 										description={marker.description}
-										ref={marker => (markerRefs[index] = marker)}
+										ref={(marker) => (markerRefs[index] = marker)}
 										title={marker.title}
-										onPress={event => {
+										onPress={(event) => {
 											markerRefs[index].showCallout();
 										}}
 									>
@@ -84,7 +85,7 @@ const HotelLocationComponent: React.FC<HotelLocationProps> = props => {
 const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height / 3
-	}
+		height: Dimensions.get('window').height / 3,
+	},
 });
 export default HotelLocationComponent;

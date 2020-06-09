@@ -4,6 +4,7 @@ import { TabView, BottomNavigationTab, Layout, Text, Icon } from '@ui-kitten/com
 import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
 import GetAllCitiesComponentCard from '../../components/Public/GetAllCitiesComponentCard';
+import * as Linking from 'expo-linking';
 
 declare var global: any;
 
@@ -32,6 +33,24 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		// Return the function to unsubscribe from the event so it gets removed on unmount
 		return unsubscribe;
 	}, [props.navigation]);
+	React.useEffect(() => {
+		Linking.getInitialURL()
+			.then((url) => {
+				Linking.addEventListener('url', _handleUrl);
+			})
+			.catch((error) => console.error(error));
+	});
+	const _handleUrl = (url) => {
+		let linking = Linking.parse(url.url);
+		if (linking.path == 'travelguide') {
+			let getTravelGuideID = linking.queryParams.id;
+			props.navigation.navigate('TravelGuideDetailScreen', {
+				travelGuideID: getTravelGuideID,
+			});
+			console.log('ok');
+		}
+		Linking.removeEventListener('url', _handleUrl);
+	};
 	if (userID == -1) {
 		return (
 			<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

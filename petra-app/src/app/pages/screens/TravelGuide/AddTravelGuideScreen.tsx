@@ -5,23 +5,47 @@ import ASLocationComponent from '../../../components/ArchSite/ASLocationComponen
 import MuseumLocationComponent from '../../../components/Museum/MuseumLocationComponent';
 import RestaurantLocationComponent from '../../../components/Restaurant/RestaurantLocationComponent';
 import HotelLocationComponent from '../../../components/Hotel/HotelLocationComponent';
+import GetAllRegionsComponent from '../../../components/Public/GetAllRegionsComponent';
 import { TravelGuideLocationComponent } from '../../../components/TravelGuide/TravelGuideLocationComponent';
 import GetAllCitiesComponent from '../../../components/Public/GetAllCitiesComponent';
 import { AddTravelGuideComponent } from '../../../generated/components';
 import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-
+declare var global: any;
 export interface AddTravelGuideProps {
 	navigation: any;
 	route: any;
+	listDataFromSearch?: any;
+	costFromSearch?: any;
 }
 
 const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 	const [cityID, setCityID] = React.useState(0);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
-	const [listData, setListData] = React.useState([]);
+	const { listDataFromSearch } = props.route.params;
+	const { costFromSearch } = props.route.params;
+	const [listData, setListData] = React.useState(listDataFromSearch != null ? listDataFromSearch : []);
+	const [userID, setUserID] = React.useState();
+	const [hotelVariables, setHotelVariables] = React.useState(null);
+	const [restaurantVariables, setRestaurantVariables] = React.useState(null);
+	const [archSiteVariables, setArchSiteVariables] = React.useState(null);
+	const [museumVariables, setMuseumVariables] = React.useState(null);
+
+	const [regionID, setRegionID] = React.useState(0);
 	const toastRef = React.useRef();
+
+	React.useEffect(() => {
+		const unsubscribe = props.navigation.addListener('focus', () => {
+			if (userID != global.userID && global.userID != undefined) {
+				setUserID(global.userID);
+				console.log(listDataFromSearch);
+			}
+		});
+
+		// Return the function to unsubscribe from the event so it gets removed on unmount
+		return unsubscribe;
+	}, [props.navigation]);
 	YellowBox.ignoreWarnings([
 		'VirtualizedLists should never be nested', // TODO: Remove when fixed
 	]);
@@ -34,15 +58,15 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 		}
 	}
 
-	const { userID } = props.route.params;
-
 	const renderItemArcIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 	const renderItemMuseumIcon = (style) => <Icon {...style} name="archive-outline" />;
 	const renderItemHotelIcon = (style) => <Icon {...style} name="briefcase-outline" />;
 	const renderItemRestIcon = (style) => <Icon {...style} name="award-outline" />;
 	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
+
 	const renderItem = ({ item, index }) => (
 		<ListItem
+			key={item.id}
 			title={
 				item.title != null
 					? item.title
@@ -73,7 +97,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 							initialValues={{
 								foodTypeID: 0, //Sonra düzeltilecek
 								title: '',
-								cost: 0,
+								cost: costFromSearch != null ? costFromSearch : 0,
 							}}
 							//Burada girilen değerlerin controlleri sağlanır
 							validationSchema={Yup.object({
@@ -91,14 +115,18 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 									let restaurantValues = [];
 									let archSiteValues = [];
 									let travelGuideValues = [];
-									listData.filter((e) => e.type === 'hotel').map((value) => hotelValues.push({ hotelID: value.id }));
-									listData.filter((e) => e.type === 'museum').map((value) => museumValues.push({ museumID: value.id }));
+									listData
+										.filter((e) => e.type === 'hotel')
+										.map((value) => hotelValues.push({ hotelID: value.id.replace('hotel', '') }));
+									listData
+										.filter((e) => e.type === 'museum')
+										.map((value) => museumValues.push({ museumID: value.id.replace('museum', '') }));
 									listData
 										.filter((e) => e.type === 'restaurant')
-										.map((value) => restaurantValues.push({ restaurantID: value.id }));
+										.map((value) => restaurantValues.push({ restaurantID: value.id.replace('restaurant', '') }));
 									listData
 										.filter((e) => e.type === 'archsite')
-										.map((value) => archSiteValues.push({ archSiteID: value.id }));
+										.map((value) => archSiteValues.push({ archSiteID: value.id.replace('archsite', '') }));
 									listData
 										.filter((e) => e.type === 'travelguide')
 										.map((value) =>
@@ -182,15 +210,32 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										onChangeText={props.handleChange('cost')}
 										onBlur={props.handleBlur('cost')}
 										value={props.values.cost.toString()}
-										autoFocus
 									/>
-									<GetAllCitiesComponent
-										label="Select City"
-										parentReference={(value) => {
-											console.log(value);
-											setCityID(value.id);
-										}}
-									/>
+									<Layout style={styles.cityRegion}>
+										<GetAllCitiesComponent
+											label="Select City"
+											disable={regionID > 0 ? true : false}
+											parentReference={(value) => {
+												setCityID(value.id);
+												setArchSiteVariables({ cityID: value.id });
+												setMuseumVariables({ cityID: value.id });
+												setRestaurantVariables({ cityID: value.id });
+												setHotelVariables({ cityID: value.id });
+											}}
+										/>
+										<Text style={{ paddingTop: 10, paddingLeft: 5, paddingRight: 5 }}>or</Text>
+										<GetAllRegionsComponent
+											label="Select Region"
+											disable={cityID > 0 ? true : false}
+											parentReference={(value) => {
+												setRegionID(value.id);
+												setArchSiteVariables({ regionID: value.id });
+												setMuseumVariables({ regionID: value.id });
+												setRestaurantVariables({ regionID: value.id });
+												setHotelVariables({ regionID: value.id });
+											}}
+										/>
+									</Layout>
 									<Text>Select a point</Text>
 									<TabView selectedIndex={selectedIndex} onSelect={(value) => setSelectedIndex(value)}>
 										<Tab title="Add yours">
@@ -198,7 +243,7 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 												<TravelGuideLocationComponent
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -212,13 +257,13 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Arch. Sites">
 											<Layout style={styles.tabContainer}>
 												<ASLocationComponent
-													cityID={cityID}
+													variables={archSiteVariables}
 													marker={(value) => {
 														/*this.setState({
 																latitude: value
 															});*/
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -232,10 +277,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Museums">
 											<Layout style={styles.tabContainer}>
 												<MuseumLocationComponent
-													cityID={cityID}
+													variables={museumVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -249,9 +294,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Restaurants">
 											<Layout style={styles.tabContainer}>
 												<RestaurantLocationComponent
+													variables={restaurantVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -265,9 +311,10 @@ const AddTravelGuideScreen: React.FC<AddTravelGuideProps> = (props) => {
 										<Tab title="Hotels">
 											<Layout style={styles.tabContainer}>
 												<HotelLocationComponent
+													variables={hotelVariables}
 													marker={(value) => {
 														let item = {
-															id: value.id,
+															id: value.id + value.type,
 															title: value.title,
 															description: value.description,
 															coordinates: value.coordinates,
@@ -295,6 +342,9 @@ const styles: any = StyleSheet.create({
 	mapStyle: {
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height / 2,
+	},
+	cityRegion: {
+		flexDirection: 'row',
 	},
 });
 export default AddTravelGuideScreen;
