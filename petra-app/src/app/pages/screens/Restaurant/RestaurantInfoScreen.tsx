@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, Calendar, Text, ListItem, List } from '@ui-kitten/components';
 import { GetRestaurantByIdComponent } from '../../../generated/components';
 import { GetRestaurantMenuByResIdComponent } from '../../../generated/components';
 import StarRating from 'react-native-star-rating';
@@ -16,7 +16,8 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 	const { restaurantID } = props.route.params;
 	const [restaurantInfo, setHotelInfo] = React.useState([]);
 	const [restaurantMenu, setRestaurantMenu] = React.useState([]);
-
+	const [selectedDateWorking, setSelectedDateWorking] = React.useState(null);
+	const [workingDetails, setWorkingDetails] = React.useState([]);
 	const renderItem = ({ item, index }) => (
 		<ListItem
 			title={item.name + ' ' + (item.price > 0 ? '(' + item.price + ' TL' + ')' : '')}
@@ -25,6 +26,43 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 			})}
 		/>
 	);
+
+	const DayCellWorking = ({ date }, style) => {
+		return (
+			<View style={[styles.dayContainer, style.container]}>
+				<Text style={style.text}>{`${date.getDate()}`}</Text>
+				{workingDetails.length > 0
+					? workingDetails[0].map((data) => {
+							let startDate = new Date(data.startDate);
+							let finishDate = new Date(data.finishDate);
+							if (date >= startDate && date <= finishDate) {
+								let workingSchedule = data.RestaurantWorkingDaySchedules;
+								let dayID;
+								let openHour;
+								let closeHour;
+								workingSchedule.map((wsData) => {
+									if (date.getDay() == wsData.RestaurantWorkingDay.dayID) {
+										console.log(wsData.RestaurantWorkingDay.openHour);
+										dayID = wsData.RestaurantWorkingDay.dayID;
+										openHour = wsData.RestaurantWorkingDay.openHour;
+										closeHour = wsData.RestaurantWorkingDay.closeHour;
+									}
+								});
+								if (date.getDay() == dayID) {
+									return (
+										<View>
+											<Text style={[style.text, styles.value]}>{`${openHour.substring(0, 5)}`}</Text>
+											<Text style={[style.text, styles.value]}>{`${''}`}</Text>
+											<Text style={[style.text, styles.value]}>{`${closeHour.substring(0, 5)}`}</Text>
+										</View>
+									);
+								}
+							}
+					  })
+					: null}
+			</View>
+		);
+	};
 	return (
 		<Layout style={{ flex: 1, padding: 40 }}>
 			<GetRestaurantByIdComponent variables={{ restaurantID: restaurantID }}>
@@ -43,6 +81,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 								star: dat.star,
 								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
+							workingDetails.push(dat.RestaurantWorkingSchedules);
 						});
 					}
 					return (
@@ -73,6 +112,10 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 								starSize={25}
 								fullStarColor={'orange'}
 							/>
+							<View style={{ marginLeft: 40 }}>
+								<Text category="h6">Working Schedule Details</Text>
+								<Calendar date={selectedDateWorking} onSelect={setSelectedDateWorking} renderDay={DayCellWorking} />
+							</View>
 						</Layout>
 					);
 				}}
@@ -121,6 +164,21 @@ const styles: any = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
+	},
+	dayContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		aspectRatio: 1,
+	},
+	value: {
+		fontSize: 12,
+		fontWeight: '400',
+	},
+	priceWork: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
 export default RestaurantInfoScreen;

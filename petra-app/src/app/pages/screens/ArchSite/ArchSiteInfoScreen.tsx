@@ -15,13 +15,76 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 	const { archSiteID } = props.route.params;
 	const [archSiteInfo, setArchSiteInfo] = React.useState([]);
 	const [selectedDate, setSelectedDate] = React.useState(null);
+	const [selectedDateWorking, setSelectedDateWorking] = React.useState(null);
 	const [priceDetails, setPriceDetails] = React.useState([]);
-	const DayCell = ({ date }, style) => (
-		<View style={[styles.dayContainer, style.container]}>
-			<Text style={style.text}>{`${date.getDate()}`}</Text>
-			<Text style={[style.text, styles.value]}>{`${100 * date.getDate() + Math.pow(date.getDate(), 2)}$`}</Text>
-		</View>
-	);
+	const [workingDetails, setWorkingDetails] = React.useState([]);
+	const DayCellPrice = ({ date }, style) => {
+		let price = -1;
+		let entranceType = '';
+
+		return (
+			<View style={[styles.dayContainer, style.container]}>
+				<Text style={style.text}>{`${date.getDate()}`}</Text>
+				{priceDetails[0].map((data) => {
+					let startDate = new Date(data.startDate);
+					let finishDate = new Date(data.finishDate);
+					if (date >= startDate && date <= finishDate) {
+						//console.log(date + '|||' + startDate + '|||' + finishDate);
+						price = data.price;
+						entranceType = data.ArchSiteEntranceType.content;
+						return (
+							<View>
+								<Text style={[style.text, styles.value]}>{`${
+									price == -1
+										? ''
+										: entranceType.length > 0
+										? entranceType.length > 3
+											? entranceType.substring(0, 3) + '.'
+											: entranceType + '.'
+										: ''
+								}`}</Text>
+								<Text style={[style.text, styles.value]}>{`${price == -1 ? '' : price + '₺'}`}</Text>
+							</View>
+						);
+					}
+				})}
+			</View>
+		);
+	};
+	const DayCellWorking = ({ date }, style) => {
+		return (
+			<View style={[styles.dayContainer, style.container]}>
+				<Text style={style.text}>{`${date.getDate()}`}</Text>
+				{workingDetails[0].map((data) => {
+					let startDate = new Date(data.startDate);
+					let finishDate = new Date(data.finishDate);
+					if (date >= startDate && date <= finishDate) {
+						let workingSchedule = data.ArchSiteWorkingDaySchedules;
+						let dayID;
+						let openHour;
+						let closeHour;
+						workingSchedule.map((wsData) => {
+							if (date.getDay() == wsData.ArchSiteWorkingDay.dayID) {
+								console.log(wsData.ArchSiteWorkingDay.openHour);
+								dayID = wsData.ArchSiteWorkingDay.dayID;
+								openHour = wsData.ArchSiteWorkingDay.openHour;
+								closeHour = wsData.ArchSiteWorkingDay.closeHour;
+							}
+						});
+						if (date.getDay() == dayID) {
+							return (
+								<View>
+									<Text style={[style.text, styles.value]}>{`${openHour.substring(0, 5)}`}</Text>
+									<Text style={[style.text, styles.value]}>{`${''}`}</Text>
+									<Text style={[style.text, styles.value]}>{`${closeHour.substring(0, 5)}`}</Text>
+								</View>
+							);
+						}
+					}
+				})}
+			</View>
+		);
+	};
 	return (
 		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetArchSiteByIdComponent variables={{ archSiteID: archSiteID }}>
@@ -45,7 +108,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
 							priceDetails.push(dat.ArchSitePrices);
-							console.log(priceDetails);
+							workingDetails.push(dat.ArchSiteWorkingSchedules);
 						});
 					}
 					return (
@@ -76,7 +139,16 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 							<Text style={styles.text} category="p1">
 								Phone:{archSiteInfo[0].phone}
 							</Text>
-							<Calendar date={selectedDate} onSelect={setSelectedDate} renderDay={DayCell} />
+							<Layout style={styles.priceWork}>
+								<View>
+									<Text category="h6">Price Details</Text>
+									<Calendar date={selectedDate} onSelect={setSelectedDate} renderDay={DayCellPrice} />
+								</View>
+								<View style={{ marginLeft: 40 }}>
+									<Text category="h6">Working Schedule Details</Text>
+									<Calendar date={selectedDateWorking} onSelect={setSelectedDateWorking} renderDay={DayCellWorking} />
+								</View>
+							</Layout>
 						</Layout>
 					);
 				}}
@@ -99,6 +171,11 @@ const styles: any = StyleSheet.create({
 	value: {
 		fontSize: 12,
 		fontWeight: '400',
+	},
+	priceWork: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
 export default ArchSiteInfoScreen;

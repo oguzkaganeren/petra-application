@@ -384,6 +384,25 @@ query getMuseumByID($museumID: Int) {
 				}
 			}
 		}
+		MuseumPrices {
+			startDate
+			price
+			finishDate
+			MuseumEntranceType {
+				content
+			}
+		}
+		MuseumWorkingSchedules {
+			startDate
+			finishDate
+			MuseumWorkingDaySchedules {
+				MuseumWorkingDay {
+					dayID
+					openHour
+					closeHour
+				}
+			}
+		}
 	}
 }
 
@@ -428,6 +447,17 @@ query getArchSiteByID($archSiteID: Int) {
 			finishDate
 			ArchSiteEntranceType {
 				content
+			}
+		}
+		ArchSiteWorkingSchedules {
+			startDate
+			finishDate
+			ArchSiteWorkingDaySchedules {
+				ArchSiteWorkingDay {
+					dayID
+					openHour
+					closeHour
+				}
 			}
 		}
 	}
@@ -576,6 +606,17 @@ query getRestaurantByID($restaurantID: Int) {
 			CompanyPhones {
 				Phone {
 					phone
+				}
+			}
+		}
+		RestaurantWorkingSchedules {
+			startDate
+			finishDate
+			RestaurantWorkingDaySchedules {
+				RestaurantWorkingDay {
+					dayID
+					openHour
+					closeHour
 				}
 			}
 		}

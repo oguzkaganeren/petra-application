@@ -25214,7 +25214,24 @@ export type GetMuseumByIdQuery = (
           & Pick<Phone, 'phone'>
         ) }
       )> }
-    ) }
+    ), MuseumPrices: Array<(
+      { __typename?: 'MuseumPrice' }
+      & Pick<MuseumPrice, 'startDate' | 'price' | 'finishDate'>
+      & { MuseumEntranceType: (
+        { __typename?: 'MuseumEntranceType' }
+        & Pick<MuseumEntranceType, 'content'>
+      ) }
+    )>, MuseumWorkingSchedules: Array<(
+      { __typename?: 'MuseumWorkingSchedule' }
+      & Pick<MuseumWorkingSchedule, 'startDate' | 'finishDate'>
+      & { MuseumWorkingDaySchedules: Array<(
+        { __typename?: 'MuseumWorkingDaySchedule' }
+        & { MuseumWorkingDay: (
+          { __typename?: 'MuseumWorkingDay' }
+          & Pick<MuseumWorkingDay, 'dayID' | 'openHour' | 'closeHour'>
+        ) }
+      )> }
+    )> }
   )> }
 );
 
@@ -25258,6 +25275,16 @@ export type GetArchSiteByIdQuery = (
         { __typename?: 'ArchSiteEntranceType' }
         & Pick<ArchSiteEntranceType, 'content'>
       ) }
+    )>, ArchSiteWorkingSchedules: Array<(
+      { __typename?: 'ArchSiteWorkingSchedule' }
+      & Pick<ArchSiteWorkingSchedule, 'startDate' | 'finishDate'>
+      & { ArchSiteWorkingDaySchedules: Array<(
+        { __typename?: 'ArchSiteWorkingDaySchedule' }
+        & { ArchSiteWorkingDay: (
+          { __typename?: 'ArchSiteWorkingDay' }
+          & Pick<ArchSiteWorkingDay, 'dayID' | 'openHour' | 'closeHour'>
+        ) }
+      )> }
     )> }
   )> }
 );
@@ -25426,7 +25453,17 @@ export type GetRestaurantByIdQuery = (
           & Pick<Phone, 'phone'>
         ) }
       )> }
-    ) }
+    ), RestaurantWorkingSchedules: Array<(
+      { __typename?: 'RestaurantWorkingSchedule' }
+      & Pick<RestaurantWorkingSchedule, 'startDate' | 'finishDate'>
+      & { RestaurantWorkingDaySchedules: Array<(
+        { __typename?: 'RestaurantWorkingDaySchedule' }
+        & { RestaurantWorkingDay: (
+          { __typename?: 'RestaurantWorkingDay' }
+          & Pick<RestaurantWorkingDay, 'dayID' | 'openHour' | 'closeHour'>
+        ) }
+      )> }
+    )> }
   )> }
 );
 
@@ -27849,6 +27886,25 @@ export const GetMuseumByIdDocument = gql`
         }
       }
     }
+    MuseumPrices {
+      startDate
+      price
+      finishDate
+      MuseumEntranceType {
+        content
+      }
+    }
+    MuseumWorkingSchedules {
+      startDate
+      finishDate
+      MuseumWorkingDaySchedules {
+        MuseumWorkingDay {
+          dayID
+          openHour
+          closeHour
+        }
+      }
+    }
   }
 }
     `;
@@ -27912,6 +27968,17 @@ export const GetArchSiteByIdDocument = gql`
       finishDate
       ArchSiteEntranceType {
         content
+      }
+    }
+    ArchSiteWorkingSchedules {
+      startDate
+      finishDate
+      ArchSiteWorkingDaySchedules {
+        ArchSiteWorkingDay {
+          dayID
+          openHour
+          closeHour
+        }
       }
     }
   }
@@ -28184,6 +28251,17 @@ export const GetRestaurantByIdDocument = gql`
       CompanyPhones {
         Phone {
           phone
+        }
+      }
+    }
+    RestaurantWorkingSchedules {
+      startDate
+      finishDate
+      RestaurantWorkingDaySchedules {
+        RestaurantWorkingDay {
+          dayID
+          openHour
+          closeHour
         }
       }
     }

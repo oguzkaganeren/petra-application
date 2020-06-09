@@ -3944,7 +3944,7 @@ public	Region	Cities	array	{"foreign_key_constraint_on": {"table": "City", "colu
 --
 
 COPY hdb_catalog.hdb_schema_update_event (instance_id, occurred_at) FROM stdin;
-6c3d1d80-fb92-448c-af70-5b2b74ddb2d5	2020-06-09 10:01:44.40636+00
+6b891b8f-cda5-48d8-9e5d-a164e3acdef4	2020-06-09 15:03:38.347027+00
 \.
 
 
@@ -4136,6 +4136,7 @@ COPY public."ArchSiteComment" ("archSiteCommentID", "archSiteID", "userID", cont
 
 COPY public."ArchSiteEntranceType" ("archSiteEntranceTypeID", content, "isDeleted") FROM stdin;
 1	Öğrenci	f
+10	Yetişkin	f
 \.
 
 
@@ -4147,9 +4148,9 @@ COPY public."ArchSitePrice" ("archSitePriceID", price, "startDate", "finishDate"
 4	10	2020-04-11 21:00:00+00	2020-04-23 21:00:00+00	5	1	f
 5	20	2020-05-24 21:00:00+00	2020-05-30 21:00:00+00	5	1	f
 6	20	2020-05-22 21:00:00+00	2020-06-05 21:00:00+00	7	1	f
-7	12	2020-06-01 21:00:00+00	2020-06-29 21:00:00+00	10	1	f
 8	15	2020-06-01 21:00:00+00	2020-06-29 21:00:00+00	11	1	f
-9	10	2020-06-01 21:00:00+00	2020-06-29 21:00:00+00	10	1	f
+9	10	2020-06-01 00:00:00+00	2020-06-29 00:00:00+00	10	1	f
+10	25	2020-06-08 21:00:00+00	2020-06-19 21:00:00+00	10	10	f
 \.
 
 
@@ -4184,6 +4185,8 @@ COPY public."ArchSiteTypeArchSite" ("archSiteTypeArchSiteID", "archSiteTypeID", 
 --
 
 COPY public."ArchSiteWorkingDay" ("archSiteWorkingDayID", "openHour", "closeHour", "dayID", "isDeleted") FROM stdin;
+3	08:00:00+00	20:00:00+00	1	f
+4	03:00:00+00	16:00:00+00	2	f
 \.
 
 
@@ -4192,6 +4195,8 @@ COPY public."ArchSiteWorkingDay" ("archSiteWorkingDayID", "openHour", "closeHour
 --
 
 COPY public."ArchSiteWorkingDaySchedule" ("archSiteWorkingDayScheduleID", "archSiteWorkingDayID", "archSiteWorkingScheduleID", "isDeleted") FROM stdin;
+3	3	4	f
+4	4	5	f
 \.
 
 
@@ -4200,6 +4205,8 @@ COPY public."ArchSiteWorkingDaySchedule" ("archSiteWorkingDayScheduleID", "archS
 --
 
 COPY public."ArchSiteWorkingSchedule" ("archSiteWorkingScheduleID", "startDate", "finishDate", "archSiteID", "isDeleted") FROM stdin;
+4	2020-06-08 21:00:00+00	2020-06-29 21:00:00+00	10	f
+5	2020-06-08 21:00:00+00	2020-06-22 21:00:00+00	10	f
 \.
 
 
@@ -4328,7 +4335,13 @@ COPY public."Country" ("countryID", country, "isDeleted") FROM stdin;
 --
 
 COPY public."Day" ("dayID", name, "isDeleted") FROM stdin;
-1	Pazartesi	f
+1	Monday	f
+2	Tuesday	f
+3	Wednesday	f
+4	Thursday	f
+5	Friday	f
+6	Saturday	f
+0	Sunday	f
 \.
 
 
@@ -4567,6 +4580,7 @@ COPY public."MuseumTypeMuseum" ("museumTypeMuseumID", "museumID", "museumTypeID"
 --
 
 COPY public."MuseumWorkingDay" ("museumWorkingDayID", "openHour", "closeHour", "dayID", "isDeleted") FROM stdin;
+1	08:00:00+00	14:00:00+00	1	f
 \.
 
 
@@ -4575,6 +4589,7 @@ COPY public."MuseumWorkingDay" ("museumWorkingDayID", "openHour", "closeHour", "
 --
 
 COPY public."MuseumWorkingDaySchedule" ("museumWorkingDayScheduleID", "museumWorkingDayID", "museumWorkingScheduleID", "isDeleted") FROM stdin;
+1	1	1	f
 \.
 
 
@@ -4583,6 +4598,7 @@ COPY public."MuseumWorkingDaySchedule" ("museumWorkingDayScheduleID", "museumWor
 --
 
 COPY public."MuseumWorkingSchedule" ("museumWorkingScheduleID", "startDate", "finishDate", "museumID", "isDeleted") FROM stdin;
+1	2020-06-08 21:00:00+00	2020-06-16 21:00:00+00	5	f
 \.
 
 
@@ -4737,6 +4753,7 @@ COPY public."RestaurantType" ("restaurantTypeID", type, "isDeleted") FROM stdin;
 
 COPY public."RestaurantWorkingDay" ("restaurantWorkingDayID", "openHour", "closeHour", "dayID", "isDeleted") FROM stdin;
 1	10:55:41+00	11:55:44+00	1	f
+2	08:00:00+00	18:00:00+00	5	f
 \.
 
 
@@ -4746,6 +4763,7 @@ COPY public."RestaurantWorkingDay" ("restaurantWorkingDayID", "openHour", "close
 
 COPY public."RestaurantWorkingDaySchedule" ("restaurantWorkingDaySchedule", "restaurantWorkingDayID", "restaurantWorkingScheduleID", "isDeleted") FROM stdin;
 1	1	1	f
+2	2	2	f
 \.
 
 
@@ -4755,6 +4773,7 @@ COPY public."RestaurantWorkingDaySchedule" ("restaurantWorkingDaySchedule", "res
 
 COPY public."RestaurantWorkingSchedule" ("restaurantWorkingScheduleID", "startDate", "finishDate", "restaurantID", "isDeleted") FROM stdin;
 1	2020-02-23 21:00:00+00	2020-02-28 21:00:00+00	1	f
+2	2020-06-08 21:00:00+00	2020-06-19 21:00:00+00	5	f
 \.
 
 
@@ -4922,7 +4941,7 @@ COPY public."User" ("userID", name, surname, mail, "birthDate", "registerDate", 
 75	MUHAMMET SEFA	\N	muhammet.durmus@ceng.deu.edu.tr	\N	2020-02-08 09:20:43.678+00	2020-02-08 09:20:43.678+00	192.168.1.100	1	\N	1	f	\N	ya29.Il-9Bxbe7RJj7-02n1f7y01xPBrEmANV9D1YZX9WQu9UubJDYzkmWa0i2D9-KQqoeLE4tOVUp4Tk5pGc5JvfUAgJOTG0jWwk6KgLSYxHPNTeq8nZYo-9JVq-EoJnhW1PuQ	f	0
 76	KÜBRA	\N	kubra.ozturk@ceng.deu.edu.tr	\N	2020-02-08 09:47:17.645+00	2020-02-08 09:47:17.645+00	192.168.1.104	1	\N	1	f	\N	ya29.Il-9B51Cjv2eANoXzbWsWNGFRv0UURHy9a7YnEQ_5R2p1-43YsyJzGAbV1rfE2PBnaqKtWeVqT5BOYndBKObtTUPBBcBJPhIRtd3ZNR61cS-GAVLrjUikbUlAe5Ztk7fSw	f	0
 79	asda	asda	asd@asd.com	\N	2020-03-21 12:08:55.716+00	2020-03-21 12:08:55.716+00	127.0.0.1	1	\N	1	f	\N	\N	f	asdaqwe
-4	OĞUZ	\N	oguz@eren.com	\N	2020-01-24 17:48:59.328+00	2020-06-09 12:54:22.458+00	127.0.0.1	2	\N	5	f	\N	ya29.Il-7B4QOklpVuY-vVSM8G9FA7PGy5J5IaUixP3rcVGOzK7fO4GhDuZ6Rc4dTCi9Wb5h3Sdy3hKH4Y2r5hUioE6_Ibv1ZoGcP_bLqadC3WSA3isBeDF-Rrh-fly0yQEv51w	f	12345
+4	OĞUZ	\N	oguz@eren.com	\N	2020-01-24 17:48:59.328+00	2020-06-09 15:30:18.565+00	127.0.0.1	2	\N	5	f	\N	ya29.Il-7B4QOklpVuY-vVSM8G9FA7PGy5J5IaUixP3rcVGOzK7fO4GhDuZ6Rc4dTCi9Wb5h3Sdy3hKH4Y2r5hUioE6_Ibv1ZoGcP_bLqadC3WSA3isBeDF-Rrh-fly0yQEv51w	f	12345
 80	oguz	eren	oguz@oguz.com	\N	2020-03-21 12:10:47.581+00	2020-04-11 10:26:49.759+00	127.0.0.1	2	\N	1	f	\N	\N	f	12345
 \.
 
@@ -4961,14 +4980,14 @@ SELECT pg_catalog.setval('public."ArchSiteComment_archSiteCommentID_seq"', 1, fa
 -- Name: ArchSiteEntranceType_archSiteEntranceTypeID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."ArchSiteEntranceType_archSiteEntranceTypeID_seq"', 9, true);
+SELECT pg_catalog.setval('public."ArchSiteEntranceType_archSiteEntranceTypeID_seq"', 10, true);
 
 
 --
 -- Name: ArchSitePrice_archSitePriceID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."ArchSitePrice_archSitePriceID_seq"', 9, true);
+SELECT pg_catalog.setval('public."ArchSitePrice_archSitePriceID_seq"', 10, true);
 
 
 --
@@ -4989,21 +5008,21 @@ SELECT pg_catalog.setval('public."ArchSiteType_archSiteTypeID_seq"', 4, true);
 -- Name: ArchSiteWorkingDaySchedule_archSiteWorkingDayScheduleID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."ArchSiteWorkingDaySchedule_archSiteWorkingDayScheduleID_seq"', 2, true);
+SELECT pg_catalog.setval('public."ArchSiteWorkingDaySchedule_archSiteWorkingDayScheduleID_seq"', 4, true);
 
 
 --
 -- Name: ArchSiteWorkingDay_archSiteWorkingDayID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."ArchSiteWorkingDay_archSiteWorkingDayID_seq"', 2, true);
+SELECT pg_catalog.setval('public."ArchSiteWorkingDay_archSiteWorkingDayID_seq"', 4, true);
 
 
 --
 -- Name: ArchSiteWorkingSchedule_archSiteWorkingScheduleID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."ArchSiteWorkingSchedule_archSiteWorkingScheduleID_seq"', 3, true);
+SELECT pg_catalog.setval('public."ArchSiteWorkingSchedule_archSiteWorkingScheduleID_seq"', 5, true);
 
 
 --
@@ -5080,7 +5099,7 @@ SELECT pg_catalog.setval('public."Country_countryID_seq"', 1, true);
 -- Name: Day_dayID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Day_dayID_seq"', 1, true);
+SELECT pg_catalog.setval('public."Day_dayID_seq"', 6, true);
 
 
 --
@@ -5178,21 +5197,21 @@ SELECT pg_catalog.setval('public."MuseumType_museumTypeID_seq"', 2, true);
 -- Name: MuseumWorkingDaySchedule_museumWorkingDayScheduleID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."MuseumWorkingDaySchedule_museumWorkingDayScheduleID_seq"', 1, false);
+SELECT pg_catalog.setval('public."MuseumWorkingDaySchedule_museumWorkingDayScheduleID_seq"', 1, true);
 
 
 --
 -- Name: MuseumWorkingDay_museumWorkingDayID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."MuseumWorkingDay_museumWorkingDayID_seq"', 1, false);
+SELECT pg_catalog.setval('public."MuseumWorkingDay_museumWorkingDayID_seq"', 1, true);
 
 
 --
 -- Name: MuseumWorkingSchedule_museumWorkingScheduleID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."MuseumWorkingSchedule_museumWorkingScheduleID_seq"', 1, false);
+SELECT pg_catalog.setval('public."MuseumWorkingSchedule_museumWorkingScheduleID_seq"', 1, true);
 
 
 --
@@ -5276,21 +5295,21 @@ SELECT pg_catalog.setval('public."RestaurantType_restaurantTypeID_seq"', 5, true
 -- Name: RestaurantWorkingDaySchedule_restaurantWorkingDaySchedule_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."RestaurantWorkingDaySchedule_restaurantWorkingDaySchedule_seq"', 1, true);
+SELECT pg_catalog.setval('public."RestaurantWorkingDaySchedule_restaurantWorkingDaySchedule_seq"', 2, true);
 
 
 --
 -- Name: RestaurantWorkingDay_restaurantWorkingDayID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."RestaurantWorkingDay_restaurantWorkingDayID_seq"', 1, true);
+SELECT pg_catalog.setval('public."RestaurantWorkingDay_restaurantWorkingDayID_seq"', 2, true);
 
 
 --
 -- Name: RestaurantWorkingSchedule_restaurantWorkingScheduleID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."RestaurantWorkingSchedule_restaurantWorkingScheduleID_seq"', 1, true);
+SELECT pg_catalog.setval('public."RestaurantWorkingSchedule_restaurantWorkingScheduleID_seq"', 2, true);
 
 
 --
