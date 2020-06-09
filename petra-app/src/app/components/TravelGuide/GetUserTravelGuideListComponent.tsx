@@ -15,6 +15,7 @@ export interface GetUserTravelGuideListProps {
 const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (props) => {
 	const [travelGuideList, setTravelGuideList] = React.useState([]);
 	const [redirectUrl, setRedirectUrl] = React.useState('');
+	const [tmpTitle, setTmpTitle] = React.useState('');
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	const [shareModalVisible, setShareModalVisible] = React.useState(false);
@@ -62,6 +63,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 					onPress={() => {
 						let redirectUrl = Linking.makeUrl('travelguide', { id: item.key });
 						setRedirectUrl(redirectUrl);
+						setTmpTitle(item.title);
 						shareToggleModal();
 					}}
 					icon={shareIcon}
@@ -69,7 +71,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 				></Button>
 				<Modal backdropStyle={styles.backdrop} onBackdropPress={shareToggleModal} visible={shareModalVisible}>
 					<Layout level="3" style={styles.modalContainer}>
-						<Text category="h6">Share with your friends</Text>
+						<Text category="h6">Share {tmpTitle} guide</Text>
 						<View style={styles.alternativeContainer}>
 							<Text style={{ margin: 8 }} appearance="alternative">
 								{redirectUrl}
@@ -191,7 +193,7 @@ const styles: any = StyleSheet.create({
 		borderRadius: 15,
 	},
 	backdrop: {
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		backgroundColor: 'rgba(0, 0, 0, 0.2)',
 	},
 	accessory: {
 		flexDirection: 'row',
