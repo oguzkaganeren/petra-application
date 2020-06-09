@@ -611,3 +611,58 @@ query getRegions {
 		regionID
 	}
 }
+query getTravelGuideByID($travelGuideID: Int) {
+	TravelGuide(where: { travelGuideID: { _eq: $travelGuideID }, isDeleted: { _eq: false } }) {
+		cost
+		title
+		TravelGuideArchSites(where: { isDeleted: { _eq: false } }) {
+			ArchSite {
+				archSiteID
+				name
+				description
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
+		TravelGuideHotels(where: { isDeleted: { _eq: false } }) {
+			Hotel {
+				hotelID
+				name
+				description
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
+		TravelGuideLocations {
+			travelGuideID
+			Location {
+				longtitude
+				latitude
+			}
+		}
+		TravelGuideMuseums(where: { isDeleted: { _eq: false } }) {
+			Museum {
+				museumID
+				name
+				Location {
+					latitude
+					longtitude
+				}
+			}
+		}
+		TravelGuideRestaurants(where: { isDeleted: { _eq: false } }) {
+			Restaurant {
+				restaurantID
+				name
+				Location {
+					longtitude
+					latitude
+				}
+			}
+		}
+	}
+}

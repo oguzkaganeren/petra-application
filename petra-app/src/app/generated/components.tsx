@@ -3874,6 +3874,7 @@ export type City = {
   Districts: Array<District>,
   Districts_aggregate: District_Aggregate,
   Location?: Maybe<Location>,
+  Region?: Maybe<Region>,
   city: Scalars['String'],
   cityID: Scalars['Int'],
   countryID: Scalars['Int'],
@@ -3986,6 +3987,7 @@ export type City_Bool_Exp = {
   Country?: Maybe<Country_Bool_Exp>,
   Districts?: Maybe<District_Bool_Exp>,
   Location?: Maybe<Location_Bool_Exp>,
+  Region?: Maybe<Region_Bool_Exp>,
   _and?: Maybe<Array<Maybe<City_Bool_Exp>>>,
   _not?: Maybe<City_Bool_Exp>,
   _or?: Maybe<Array<Maybe<City_Bool_Exp>>>,
@@ -4015,6 +4017,7 @@ export type City_Insert_Input = {
   Country?: Maybe<Country_Obj_Rel_Insert_Input>,
   Districts?: Maybe<District_Arr_Rel_Insert_Input>,
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
+  Region?: Maybe<Region_Obj_Rel_Insert_Input>,
   city?: Maybe<Scalars['String']>,
   cityID?: Maybe<Scalars['Int']>,
   countryID?: Maybe<Scalars['Int']>,
@@ -4089,6 +4092,7 @@ export type City_Order_By = {
   Country?: Maybe<Country_Order_By>,
   Districts_aggregate?: Maybe<District_Aggregate_Order_By>,
   Location?: Maybe<Location_Order_By>,
+  Region?: Maybe<Region_Order_By>,
   city?: Maybe<Order_By>,
   cityID?: Maybe<Order_By>,
   countryID?: Maybe<Order_By>,
@@ -7805,6 +7809,8 @@ export type Location = {
   Address?: Maybe<Address>,
   ArchSites: Array<ArchSite>,
   ArchSites_aggregate: ArchSite_Aggregate,
+  Cities: Array<City>,
+  Cities_aggregate: City_Aggregate,
   Companies: Array<Company>,
   Companies_aggregate: Company_Aggregate,
   Hotels: Array<Hotel>,
@@ -7838,6 +7844,24 @@ export type LocationArchSites_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>,
   order_by?: Maybe<Array<ArchSite_Order_By>>,
   where?: Maybe<ArchSite_Bool_Exp>
+};
+
+
+export type LocationCitiesArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type LocationCities_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
 };
 
 
@@ -7994,6 +8018,7 @@ export type Location_Avg_Order_By = {
 export type Location_Bool_Exp = {
   Address?: Maybe<Address_Bool_Exp>,
   ArchSites?: Maybe<ArchSite_Bool_Exp>,
+  Cities?: Maybe<City_Bool_Exp>,
   Companies?: Maybe<Company_Bool_Exp>,
   Hotels?: Maybe<Hotel_Bool_Exp>,
   Museums?: Maybe<Museum_Bool_Exp>,
@@ -8021,6 +8046,7 @@ export type Location_Inc_Input = {
 export type Location_Insert_Input = {
   Address?: Maybe<Address_Obj_Rel_Insert_Input>,
   ArchSites?: Maybe<ArchSite_Arr_Rel_Insert_Input>,
+  Cities?: Maybe<City_Arr_Rel_Insert_Input>,
   Companies?: Maybe<Company_Arr_Rel_Insert_Input>,
   Hotels?: Maybe<Hotel_Arr_Rel_Insert_Input>,
   Museums?: Maybe<Museum_Arr_Rel_Insert_Input>,
@@ -8083,6 +8109,7 @@ export type Location_On_Conflict = {
 export type Location_Order_By = {
   Address?: Maybe<Address_Order_By>,
   ArchSites_aggregate?: Maybe<ArchSite_Aggregate_Order_By>,
+  Cities_aggregate?: Maybe<City_Aggregate_Order_By>,
   Companies_aggregate?: Maybe<Company_Aggregate_Order_By>,
   Hotels_aggregate?: Maybe<Hotel_Aggregate_Order_By>,
   Museums_aggregate?: Maybe<Museum_Aggregate_Order_By>,
@@ -14395,8 +14422,28 @@ export type Query_RootUser_By_PkArgs = {
 
 export type Region = {
    __typename?: 'Region',
+  Cities: Array<City>,
+  Cities_aggregate: City_Aggregate,
   region: Scalars['String'],
   regionID: Scalars['Int'],
+};
+
+
+export type RegionCitiesArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
+};
+
+
+export type RegionCities_AggregateArgs = {
+  distinct_on?: Maybe<Array<City_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<City_Order_By>>,
+  where?: Maybe<City_Bool_Exp>
 };
 
 export type Region_Aggregate = {
@@ -14455,6 +14502,7 @@ export type Region_Avg_Order_By = {
 };
 
 export type Region_Bool_Exp = {
+  Cities?: Maybe<City_Bool_Exp>,
   _and?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
   _not?: Maybe<Region_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Region_Bool_Exp>>>,
@@ -14471,6 +14519,7 @@ export type Region_Inc_Input = {
 };
 
 export type Region_Insert_Input = {
+  Cities?: Maybe<City_Arr_Rel_Insert_Input>,
   region?: Maybe<Scalars['String']>,
   regionID?: Maybe<Scalars['Int']>,
 };
@@ -14515,6 +14564,7 @@ export type Region_On_Conflict = {
 };
 
 export type Region_Order_By = {
+  Cities_aggregate?: Maybe<City_Aggregate_Order_By>,
   region?: Maybe<Order_By>,
   regionID?: Maybe<Order_By>,
 };
@@ -22286,8 +22336,6 @@ export type TravelGuideLocation = {
   Location: Location,
   TravelGuide: TravelGuide,
   isDeleted: Scalars['Boolean'],
-  isFinalPoint: Scalars['Boolean'],
-  isStartPoint: Scalars['Boolean'],
   locationID: Scalars['Int'],
   travelGuideID: Scalars['Int'],
   travelGuideLocationID: Scalars['Int'],
@@ -22359,8 +22407,6 @@ export type TravelGuideLocation_Bool_Exp = {
   _not?: Maybe<TravelGuideLocation_Bool_Exp>,
   _or?: Maybe<Array<Maybe<TravelGuideLocation_Bool_Exp>>>,
   isDeleted?: Maybe<Boolean_Comparison_Exp>,
-  isFinalPoint?: Maybe<Boolean_Comparison_Exp>,
-  isStartPoint?: Maybe<Boolean_Comparison_Exp>,
   locationID?: Maybe<Int_Comparison_Exp>,
   travelGuideID?: Maybe<Int_Comparison_Exp>,
   travelGuideLocationID?: Maybe<Int_Comparison_Exp>,
@@ -22380,8 +22426,6 @@ export type TravelGuideLocation_Insert_Input = {
   Location?: Maybe<Location_Obj_Rel_Insert_Input>,
   TravelGuide?: Maybe<TravelGuide_Obj_Rel_Insert_Input>,
   isDeleted?: Maybe<Scalars['Boolean']>,
-  isFinalPoint?: Maybe<Scalars['Boolean']>,
-  isStartPoint?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -22434,8 +22478,6 @@ export type TravelGuideLocation_Order_By = {
   Location?: Maybe<Location_Order_By>,
   TravelGuide?: Maybe<TravelGuide_Order_By>,
   isDeleted?: Maybe<Order_By>,
-  isFinalPoint?: Maybe<Order_By>,
-  isStartPoint?: Maybe<Order_By>,
   locationID?: Maybe<Order_By>,
   travelGuideID?: Maybe<Order_By>,
   travelGuideLocationID?: Maybe<Order_By>,
@@ -22443,8 +22485,6 @@ export type TravelGuideLocation_Order_By = {
 
 export enum TravelGuideLocation_Select_Column {
   IsDeleted = 'isDeleted',
-  IsFinalPoint = 'isFinalPoint',
-  IsStartPoint = 'isStartPoint',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
@@ -22452,8 +22492,6 @@ export enum TravelGuideLocation_Select_Column {
 
 export type TravelGuideLocation_Set_Input = {
   isDeleted?: Maybe<Scalars['Boolean']>,
-  isFinalPoint?: Maybe<Scalars['Boolean']>,
-  isStartPoint?: Maybe<Scalars['Boolean']>,
   locationID?: Maybe<Scalars['Int']>,
   travelGuideID?: Maybe<Scalars['Int']>,
   travelGuideLocationID?: Maybe<Scalars['Int']>,
@@ -22513,8 +22551,6 @@ export type TravelGuideLocation_Sum_Order_By = {
 
 export enum TravelGuideLocation_Update_Column {
   IsDeleted = 'isDeleted',
-  IsFinalPoint = 'isFinalPoint',
-  IsStartPoint = 'isStartPoint',
   LocationId = 'locationID',
   TravelGuideId = 'travelGuideID',
   TravelGuideLocationId = 'travelGuideLocationID'
@@ -24699,50 +24735,6 @@ export type DeleteTravelGuideMutation = (
   )> }
 );
 
-export type GetTravelGuideByIdQueryVariables = {
-  travelGuideID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetTravelGuideByIdQuery = (
-  { __typename: 'query_root' }
-  & { TravelGuide: Array<(
-    { __typename?: 'TravelGuide' }
-    & Pick<TravelGuide, 'title' | 'cost'>
-    & { TravelGuideArchSites: Array<(
-      { __typename?: 'TravelGuideArchSite' }
-      & { ArchSite: (
-        { __typename?: 'ArchSite' }
-        & Pick<ArchSite, 'name'>
-      ) }
-    )>, TravelGuideHotels: Array<(
-      { __typename?: 'TravelGuideHotel' }
-      & { Hotel: (
-        { __typename?: 'Hotel' }
-        & Pick<Hotel, 'name'>
-      ) }
-    )>, TravelGuideLocations: Array<(
-      { __typename?: 'TravelGuideLocation' }
-      & { Location: (
-        { __typename?: 'Location' }
-        & Pick<Location, 'latitude' | 'longtitude'>
-      ) }
-    )>, TravelGuideMuseums: Array<(
-      { __typename?: 'TravelGuideMuseum' }
-      & { Museum: (
-        { __typename?: 'Museum' }
-        & Pick<Museum, 'name'>
-      ) }
-    )>, TravelGuideRestaurants: Array<(
-      { __typename?: 'TravelGuideRestaurant' }
-      & { Restaurant: (
-        { __typename?: 'Restaurant' }
-        & Pick<Restaurant, 'name'>
-      ) }
-    )> }
-  )> }
-);
-
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -25485,6 +25477,67 @@ export type GetRegionsQuery = (
   & { Region: Array<(
     { __typename?: 'Region' }
     & Pick<Region, 'region' | 'regionID'>
+  )> }
+);
+
+export type GetTravelGuideByIdQueryVariables = {
+  travelGuideID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetTravelGuideByIdQuery = (
+  { __typename?: 'query_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'cost' | 'title'>
+    & { TravelGuideArchSites: Array<(
+      { __typename?: 'TravelGuideArchSite' }
+      & { ArchSite: (
+        { __typename?: 'ArchSite' }
+        & Pick<ArchSite, 'archSiteID' | 'name' | 'description'>
+        & { Location: (
+          { __typename?: 'Location' }
+          & Pick<Location, 'longtitude' | 'latitude'>
+        ) }
+      ) }
+    )>, TravelGuideHotels: Array<(
+      { __typename?: 'TravelGuideHotel' }
+      & { Hotel: (
+        { __typename?: 'Hotel' }
+        & Pick<Hotel, 'hotelID' | 'name' | 'description'>
+        & { Location: (
+          { __typename?: 'Location' }
+          & Pick<Location, 'longtitude' | 'latitude'>
+        ) }
+      ) }
+    )>, TravelGuideLocations: Array<(
+      { __typename?: 'TravelGuideLocation' }
+      & Pick<TravelGuideLocation, 'travelGuideID'>
+      & { Location: (
+        { __typename?: 'Location' }
+        & Pick<Location, 'longtitude' | 'latitude'>
+      ) }
+    )>, TravelGuideMuseums: Array<(
+      { __typename?: 'TravelGuideMuseum' }
+      & { Museum: (
+        { __typename?: 'Museum' }
+        & Pick<Museum, 'museumID' | 'name'>
+        & { Location: (
+          { __typename?: 'Location' }
+          & Pick<Location, 'latitude' | 'longtitude'>
+        ) }
+      ) }
+    )>, TravelGuideRestaurants: Array<(
+      { __typename?: 'TravelGuideRestaurant' }
+      & { Restaurant: (
+        { __typename?: 'Restaurant' }
+        & Pick<Restaurant, 'restaurantID' | 'name'>
+        & { Location: (
+          { __typename?: 'Location' }
+          & Pick<Location, 'longtitude' | 'latitude'>
+        ) }
+      ) }
+    )> }
   )> }
 );
 
@@ -26892,59 +26945,6 @@ export function withDeleteTravelGuide<TProps, TChildProps = {}>(operationOptions
 };
 export type DeleteTravelGuideMutationResult = ApolloReactCommon.MutationResult<DeleteTravelGuideMutation>;
 export type DeleteTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
-export const GetTravelGuideByIdDocument = gql`
-    query getTravelGuideById($travelGuideID: Int) {
-  __typename
-  TravelGuide(where: {isDeleted: {_eq: false}, travelGuideID: {_eq: $travelGuideID}}) {
-    title
-    cost
-    TravelGuideArchSites {
-      ArchSite {
-        name
-      }
-    }
-    TravelGuideHotels {
-      Hotel {
-        name
-      }
-    }
-    TravelGuideLocations {
-      Location {
-        latitude
-        longtitude
-      }
-    }
-    TravelGuideMuseums {
-      Museum {
-        name
-      }
-    }
-    TravelGuideRestaurants {
-      Restaurant {
-        name
-      }
-    }
-  }
-}
-    `;
-export type GetTravelGuideByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>, 'query'>;
-
-    export const GetTravelGuideByIdComponent = (props: GetTravelGuideByIdComponentProps) => (
-      <ApolloReactComponents.Query<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> query={GetTravelGuideByIdDocument} {...props} />
-    );
-    
-export type GetTravelGuideByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> & TChildProps;
-export function withGetTravelGuideById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetTravelGuideByIdQuery,
-  GetTravelGuideByIdQueryVariables,
-  GetTravelGuideByIdProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables, GetTravelGuideByIdProps<TChildProps>>(GetTravelGuideByIdDocument, {
-      alias: 'getTravelGuideById',
-      ...operationOptions
-    });
-};
-export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -28309,3 +28309,78 @@ export function withGetRegions<TProps, TChildProps = {}>(operationOptions?: Apol
     });
 };
 export type GetRegionsQueryResult = ApolloReactCommon.QueryResult<GetRegionsQuery, GetRegionsQueryVariables>;
+export const GetTravelGuideByIdDocument = gql`
+    query getTravelGuideByID($travelGuideID: Int) {
+  TravelGuide(where: {travelGuideID: {_eq: $travelGuideID}, isDeleted: {_eq: false}}) {
+    cost
+    title
+    TravelGuideArchSites(where: {isDeleted: {_eq: false}}) {
+      ArchSite {
+        archSiteID
+        name
+        description
+        Location {
+          longtitude
+          latitude
+        }
+      }
+    }
+    TravelGuideHotels(where: {isDeleted: {_eq: false}}) {
+      Hotel {
+        hotelID
+        name
+        description
+        Location {
+          longtitude
+          latitude
+        }
+      }
+    }
+    TravelGuideLocations {
+      travelGuideID
+      Location {
+        longtitude
+        latitude
+      }
+    }
+    TravelGuideMuseums(where: {isDeleted: {_eq: false}}) {
+      Museum {
+        museumID
+        name
+        Location {
+          latitude
+          longtitude
+        }
+      }
+    }
+    TravelGuideRestaurants(where: {isDeleted: {_eq: false}}) {
+      Restaurant {
+        restaurantID
+        name
+        Location {
+          longtitude
+          latitude
+        }
+      }
+    }
+  }
+}
+    `;
+export type GetTravelGuideByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>, 'query'>;
+
+    export const GetTravelGuideByIdComponent = (props: GetTravelGuideByIdComponentProps) => (
+      <ApolloReactComponents.Query<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> query={GetTravelGuideByIdDocument} {...props} />
+    );
+    
+export type GetTravelGuideByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables> & TChildProps;
+export function withGetTravelGuideById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTravelGuideByIdQuery,
+  GetTravelGuideByIdQueryVariables,
+  GetTravelGuideByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables, GetTravelGuideByIdProps<TChildProps>>(GetTravelGuideByIdDocument, {
+      alias: 'getTravelGuideById',
+      ...operationOptions
+    });
+};
+export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
