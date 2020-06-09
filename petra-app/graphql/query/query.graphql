@@ -422,6 +422,14 @@ query getArchSiteByID($archSiteID: Int) {
 		destruction
 		diameter
 		period
+		ArchSitePrices {
+			startDate
+			price
+			finishDate
+			ArchSiteEntranceType {
+				content
+			}
+		}
 	}
 }
 

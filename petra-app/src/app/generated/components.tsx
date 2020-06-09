@@ -25251,7 +25251,14 @@ export type GetArchSiteByIdQuery = (
           & Pick<Phone, 'phone'>
         ) }
       )> }
-    ) }
+    ), ArchSitePrices: Array<(
+      { __typename?: 'ArchSitePrice' }
+      & Pick<ArchSitePrice, 'startDate' | 'price' | 'finishDate'>
+      & { ArchSiteEntranceType: (
+        { __typename?: 'ArchSiteEntranceType' }
+        & Pick<ArchSiteEntranceType, 'content'>
+      ) }
+    )> }
   )> }
 );
 
@@ -27899,6 +27906,14 @@ export const GetArchSiteByIdDocument = gql`
     destruction
     diameter
     period
+    ArchSitePrices {
+      startDate
+      price
+      finishDate
+      ArchSiteEntranceType {
+        content
+      }
+    }
   }
 }
     `;

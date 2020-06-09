@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, Calendar, Text, ListItem, List } from '@ui-kitten/components';
 import { GetArchSiteByIdComponent } from '../../../generated/components';
 
 declare var global: any;
@@ -14,7 +14,14 @@ export interface ArchSiteInfoScreenProps {
 const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 	const { archSiteID } = props.route.params;
 	const [archSiteInfo, setArchSiteInfo] = React.useState([]);
-
+	const [selectedDate, setSelectedDate] = React.useState(null);
+	const [priceDetails, setPriceDetails] = React.useState([]);
+	const DayCell = ({ date }, style) => (
+		<View style={[styles.dayContainer, style.container]}>
+			<Text style={style.text}>{`${date.getDate()}`}</Text>
+			<Text style={[style.text, styles.value]}>{`${100 * date.getDate() + Math.pow(date.getDate(), 2)}$`}</Text>
+		</View>
+	);
 	return (
 		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetArchSiteByIdComponent variables={{ archSiteID: archSiteID }}>
@@ -37,6 +44,8 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 								description: dat.description == null ? '' : dat.description,
 								phone: dat.Company.CompanyPhones.length > 0 ? dat.Company.CompanyPhones[0].Phone.phone : '',
 							});
+							priceDetails.push(dat.ArchSitePrices);
+							console.log(priceDetails);
 						});
 					}
 					return (
@@ -67,6 +76,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 							<Text style={styles.text} category="p1">
 								Phone:{archSiteInfo[0].phone}
 							</Text>
+							<Calendar date={selectedDate} onSelect={setSelectedDate} renderDay={DayCell} />
 						</Layout>
 					);
 				}}
@@ -79,6 +89,16 @@ const styles: any = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
+	},
+	dayContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		aspectRatio: 1,
+	},
+	value: {
+		fontSize: 12,
+		fontWeight: '400',
 	},
 });
 export default ArchSiteInfoScreen;
