@@ -177,7 +177,6 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
 									onBlur={propsf.handleBlur('password')}
 								/>
 								<Button
-									status="primary"
 									onPress={() => {
 										propsf.handleSubmit();
 									}}
@@ -186,6 +185,8 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
 								</Button>
 								<Button
 									status="warning"
+									appearance="ghost"
+									style={{ marginTop: 10 }}
 									onPress={() => {
 										props.navigation.navigate('RegisterScreen');
 									}}

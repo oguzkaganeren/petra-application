@@ -5,7 +5,7 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import { createStackNavigator } from '@react-navigation/stack';
 import { Drawer as UIKittenDrawer, Layout, Text } from '@ui-kitten/components';
 import HomeScreen from './app/pages/screens/HomeScreen';
-import { mapping, light as lightTheme } from '@eva-design/eva';
+import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import HeaderComponent from '../src/app/components/Public/HeaderComponent';
@@ -65,6 +65,7 @@ import AddTravelGuideScreen from './app/pages/screens/TravelGuide/AddTravelGuide
 import AddArticleScreen from './app/pages/screens/Article/AddArticleScreen';
 import RegisterScreen from './app/pages/screens/RegisterScreen';
 import CityInfoScreen from './app/pages/screens/CityInfoScreen';
+import { ThemeContext } from './ThemeContext';
 declare var global: any;
 /**
  * Eğer drawer ile tıkladığın bir sayfada header gözükmesini istiyorsan her bir ekran için yeni bir stack oluşturmalısın
@@ -1297,17 +1298,28 @@ function TravelGuideStack() {
 		</Stack.Navigator>
 	);
 }
-/**View or Fragment??? */
-export default () => (
-	<React.Fragment>
-		<IconRegistry icons={EvaIconsPack} />
 
-		<ApolloProvider client={client}>
-			<ApplicationProvider mapping={mapping} theme={lightTheme}>
-				<NavigationContainer>
-					<DrawerNavigator />
-				</NavigationContainer>
-			</ApplicationProvider>
-		</ApolloProvider>
-	</React.Fragment>
-);
+/**View or Fragment??? */
+export default () => {
+	const [theme, setTheme] = React.useState('light');
+
+	const toggleTheme = () => {
+		const nextTheme = theme === 'light' ? 'dark' : 'light';
+		setTheme(nextTheme);
+	};
+	return (
+		<React.Fragment>
+			<IconRegistry icons={EvaIconsPack} />
+
+			<ApolloProvider client={client}>
+				<ThemeContext.Provider value={{ theme, toggleTheme }}>
+					<ApplicationProvider {...eva} theme={eva[theme]}>
+						<NavigationContainer>
+							<DrawerNavigator />
+						</NavigationContainer>
+					</ApplicationProvider>
+				</ThemeContext.Provider>
+			</ApolloProvider>
+		</React.Fragment>
+	);
+};
