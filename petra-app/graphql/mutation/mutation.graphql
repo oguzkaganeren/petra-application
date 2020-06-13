@@ -488,3 +488,11 @@ mutation deleteTravelGuide($travelGuideID: Int) {
 		}
 	}
 }
+mutation updateUser($updateUser: User_set_input, $mail: String) {
+	__typename
+	update_User(where: { mail: { _eq: $mail } }, _set: $updateUser) {
+		returning {
+			userID
+		}
+	}
+}

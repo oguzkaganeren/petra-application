@@ -24735,6 +24735,23 @@ export type DeleteTravelGuideMutation = (
   )> }
 );
 
+export type UpdateUserMutationVariables = {
+  updateUser?: Maybe<User_Set_Input>,
+  mail?: Maybe<Scalars['String']>
+};
+
+
+export type UpdateUserMutation = (
+  { __typename: 'mutation_root' }
+  & { update_User: Maybe<(
+    { __typename?: 'User_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'userID'>
+    )> }
+  )> }
+);
+
 export type GetFoodTypesQueryVariables = {};
 
 
@@ -25581,6 +25598,23 @@ export type GetTravelGuideByIdQuery = (
           & Pick<Location, 'longtitude' | 'latitude'>
         ) }
       ) }
+    )> }
+  )> }
+);
+
+export type GetUserInfoQueryVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserInfoQuery = (
+  { __typename?: 'query_root' }
+  & { User: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'name' | 'mail' | 'surname' | 'birthDate' | 'profileImageUrl'>
+    & { Phone: Maybe<(
+      { __typename?: 'Phone' }
+      & Pick<Phone, 'phone'>
     )> }
   )> }
 );
@@ -26989,6 +27023,36 @@ export function withDeleteTravelGuide<TProps, TChildProps = {}>(operationOptions
 };
 export type DeleteTravelGuideMutationResult = ApolloReactCommon.MutationResult<DeleteTravelGuideMutation>;
 export type DeleteTravelGuideMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteTravelGuideMutation, DeleteTravelGuideMutationVariables>;
+export const UpdateUserDocument = gql`
+    mutation updateUser($updateUser: User_set_input, $mail: String) {
+  __typename
+  update_User(where: {mail: {_eq: $mail}}, _set: $updateUser) {
+    returning {
+      userID
+    }
+  }
+}
+    `;
+export type UpdateUserMutationFn = ApolloReactCommon.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+export type UpdateUserComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateUserMutation, UpdateUserMutationVariables>, 'mutation'>;
+
+    export const UpdateUserComponent = (props: UpdateUserComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateUserMutation, UpdateUserMutationVariables> mutation={UpdateUserDocument} {...props} />
+    );
+    
+export type UpdateUserProps<TChildProps = {}> = ApolloReactHoc.MutateProps<UpdateUserMutation, UpdateUserMutationVariables> & TChildProps;
+export function withUpdateUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateUserMutation,
+  UpdateUserMutationVariables,
+  UpdateUserProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateUserMutation, UpdateUserMutationVariables, UpdateUserProps<TChildProps>>(UpdateUserDocument, {
+      alias: 'updateUser',
+      ...operationOptions
+    });
+};
+export type UpdateUserMutationResult = ApolloReactCommon.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
 export const GetFoodTypesDocument = gql`
     query getFoodTypes {
   __typename
@@ -28481,3 +28545,35 @@ export function withGetTravelGuideById<TProps, TChildProps = {}>(operationOption
     });
 };
 export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
+export const GetUserInfoDocument = gql`
+    query getUserInfo($userID: Int!) {
+  User(where: {userID: {_eq: $userID}}) {
+    name
+    mail
+    surname
+    birthDate
+    profileImageUrl
+    Phone {
+      phone
+    }
+  }
+}
+    `;
+export type GetUserInfoComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserInfoQuery, GetUserInfoQueryVariables>, 'query'> & ({ variables: GetUserInfoQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetUserInfoComponent = (props: GetUserInfoComponentProps) => (
+      <ApolloReactComponents.Query<GetUserInfoQuery, GetUserInfoQueryVariables> query={GetUserInfoDocument} {...props} />
+    );
+    
+export type GetUserInfoProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserInfoQuery, GetUserInfoQueryVariables> & TChildProps;
+export function withGetUserInfo<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserInfoQuery,
+  GetUserInfoQueryVariables,
+  GetUserInfoProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserInfoQuery, GetUserInfoQueryVariables, GetUserInfoProps<TChildProps>>(GetUserInfoDocument, {
+      alias: 'getUserInfo',
+      ...operationOptions
+    });
+};
+export type GetUserInfoQueryResult = ApolloReactCommon.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;

@@ -725,5 +725,9 @@ query getUserInfo($userID: Int!) {
 		mail
 		surname
 		birthDate
+		profileImageUrl
+		Phone {
+			phone
+		}
 	}
 }

@@ -4,6 +4,7 @@ import { TabView, BottomNavigationTab, Layout, Text, Icon } from '@ui-kitten/com
 import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
 import GetAllCitiesComponentCard from '../../components/Public/GetAllCitiesComponentCard';
+import SettingScreen from '../screens/SettingScreen';
 import * as Linking from 'expo-linking';
 
 declare var global: any;
@@ -77,7 +78,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 				</BottomNavigationTab>
 				<BottomNavigationTab title="Settings" icon={SettingsIcon}>
 					<Layout style={styles.tabContainer}>
-						<Text>List of transactions.</Text>
+						<SettingScreen navigation={props.navigation} />
 					</Layout>
 				</BottomNavigationTab>
 			</TabView>

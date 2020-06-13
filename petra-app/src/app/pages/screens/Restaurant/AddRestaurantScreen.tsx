@@ -218,7 +218,12 @@ const AddRestaurantScreen: React.FC<AddRestaurantProps> = (props) => {
 										onBlur={props.handleBlur('taxNumber')}
 										value={props.values.taxNumber}
 									/>
-									<Datepicker date={props.values.since} onSelect={(e) => props.setFieldValue('since', e)} />
+									<Datepicker
+										min={new Date(1800, 1, 1)}
+										placeholder={'Since'}
+										date={props.values.since}
+										onSelect={(e) => props.setFieldValue('since', e)}
+									/>
 									<LocationComponent
 										latitude={(value) => {
 											props.values.latitude = value;
