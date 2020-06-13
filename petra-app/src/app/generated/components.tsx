@@ -24907,7 +24907,7 @@ export type GetArchSiteLocationQuery = (
   { __typename?: 'query_root' }
   & { ArchSite: Array<(
     { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age' | 'diameter'>
+    & Pick<ArchSite, 'name' | 'locationID' | 'archSiteID' | 'age' | 'diameter' | 'averageTime'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
@@ -24938,7 +24938,7 @@ export type GetMuseumLocationQuery = (
   { __typename?: 'query_root' }
   & { Museum: Array<(
     { __typename?: 'Museum' }
-    & Pick<Museum, 'name' | 'locationID' | 'museumID'>
+    & Pick<Museum, 'name' | 'locationID' | 'museumID' | 'averageTime'>
     & { Location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longtitude'>
@@ -25538,7 +25538,7 @@ export type GetTravelGuideByIdQuery = (
       { __typename?: 'TravelGuideArchSite' }
       & { ArchSite: (
         { __typename?: 'ArchSite' }
-        & Pick<ArchSite, 'archSiteID' | 'name' | 'description'>
+        & Pick<ArchSite, 'archSiteID' | 'name' | 'description' | 'averageTime'>
         & { Location: (
           { __typename?: 'Location' }
           & Pick<Location, 'longtitude' | 'latitude'>
@@ -25565,7 +25565,7 @@ export type GetTravelGuideByIdQuery = (
       { __typename?: 'TravelGuideMuseum' }
       & { Museum: (
         { __typename?: 'Museum' }
-        & Pick<Museum, 'museumID' | 'name'>
+        & Pick<Museum, 'museumID' | 'name' | 'averageTime'>
         & { Location: (
           { __typename?: 'Location' }
           & Pick<Location, 'latitude' | 'longtitude'>
@@ -27354,6 +27354,7 @@ export const GetArchSiteLocationDocument = gql`
       archSiteTypeID
     }
     diameter
+    averageTime
   }
 }
     `;
@@ -27393,6 +27394,7 @@ export const GetMuseumLocationDocument = gql`
     name
     locationID
     museumID
+    averageTime
   }
 }
     `;
@@ -28416,6 +28418,7 @@ export const GetTravelGuideByIdDocument = gql`
           longtitude
           latitude
         }
+        averageTime
       }
     }
     TravelGuideHotels(where: {isDeleted: {_eq: false}}) {
@@ -28444,6 +28447,7 @@ export const GetTravelGuideByIdDocument = gql`
           latitude
           longtitude
         }
+        averageTime
       }
     }
     TravelGuideRestaurants(where: {isDeleted: {_eq: false}}) {

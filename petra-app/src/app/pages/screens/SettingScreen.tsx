@@ -7,29 +7,14 @@ import Toast from 'react-native-easy-toast';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-export interface RegisterProps {
+export interface SettingProps {
 	navigation: any;
 }
 
-const RegisterScreen: React.FC<RegisterProps> = (props) => {
+const SettingScreen: React.FC<SettingProps> = (props) => {
 	const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 	const toastRef = React.useRef();
-	const convertDateFormatForQuery = (date: Date) => {
-		console.log('A date has been picked: ', date);
-		let formattedDate =
-			date.getFullYear() +
-			'-' +
-			(date.getMonth() + 1) +
-			'-' +
-			date.getDate() +
-			'T' +
-			date.getHours() +
-			':' +
-			date.getMinutes() +
-			':' +
-			date.getSeconds();
-		return formattedDate;
-	};
+
 	const renderIcon = (style) => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
 	const renderMailIcon = (style) => <Icon {...style} name={'email'} />;
 	const renderEditIcon = (style) => <Icon {...style} name={'edit-2-outline'} />;
@@ -205,4 +190,4 @@ const styles: any = StyleSheet.create({
 		paddingBottom: Dimensions.get('window').height / 2,
 	},
 });
-export default RegisterScreen;
+export default SettingScreen;

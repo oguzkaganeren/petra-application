@@ -146,6 +146,7 @@ query getArchSiteLocation(
 			archSiteTypeID
 		}
 		diameter
+		averageTime
 	}
 }
 
@@ -179,6 +180,7 @@ query getMuseumLocation(
 		name
 		locationID
 		museumID
+		averageTime
 	}
 }
 
@@ -673,6 +675,7 @@ query getTravelGuideByID($travelGuideID: Int) {
 					longtitude
 					latitude
 				}
+				averageTime
 			}
 		}
 		TravelGuideHotels(where: { isDeleted: { _eq: false } }) {
@@ -701,6 +704,7 @@ query getTravelGuideByID($travelGuideID: Int) {
 					latitude
 					longtitude
 				}
+				averageTime
 			}
 		}
 		TravelGuideRestaurants(where: { isDeleted: { _eq: false } }) {
@@ -713,5 +717,13 @@ query getTravelGuideByID($travelGuideID: Int) {
 				}
 			}
 		}
+	}
+}
+query getUserInfo($userID: Int!) {
+	User(where: { userID: { _eq: $userID } }) {
+		name
+		mail
+		surname
+		birthDate
 	}
 }
