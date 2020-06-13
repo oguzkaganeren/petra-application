@@ -67,17 +67,45 @@ import RegisterScreen from './app/pages/screens/RegisterScreen';
 import CityInfoScreen from './app/pages/screens/CityInfoScreen';
 import { ThemeContext } from './ThemeContext';
 declare var global: any;
+
+// Graphql modules
+import { ApolloProvider } from 'react-apollo';
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { split } from 'apollo-link';
+
+// Pass your GraphQL endpoint to uri
+//const client = new ApolloClient({ uri: 'http://127.0.0.1:8080/v1/graphql' });
+const wsLink = new WebSocketLink({
+	uri: `ws://127.0.0.1:8080/v1/graphql`,
+	options: {
+		reconnect: true,
+	},
+});
+const httpLink = new HttpLink({
+	uri: 'http://127.0.0.1:8080/v1/graphql',
+});
+const link = split(
+	// split based on operation type
+	({ query }) => {
+		const definition = getMainDefinition(query);
+		return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+	},
+	wsLink,
+	httpLink
+);
+const client = new ApolloClient({
+	link,
+	cache: new InMemoryCache(),
+});
+
 /**
  * Eğer drawer ile tıkladığın bir sayfada header gözükmesini istiyorsan her bir ekran için yeni bir stack oluşturmalısın
  * by oguz
  */
-
-// Graphql modules
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-
-// Pass your GraphQL endpoint to uri
-const client = new ApolloClient({ uri: 'http://127.0.0.1:8080/v1/graphql' });
 const unregisteredMenu = [{ title: 'Login' }, { title: 'Home' }];
 const userTypeOneMenus = [{ title: 'Home' }, { title: 'TravelGuide' }];
 const userTypeTwoMenus = [

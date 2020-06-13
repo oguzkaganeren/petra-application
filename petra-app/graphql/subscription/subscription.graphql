@@ -1,0 +1,188 @@
+subscription getArticleList {
+	Article(where: { isDeleted: { _eq: false } }) {
+		articleID
+		content
+		publishDate
+		title
+		imageUrl
+	}
+}
+subscription getUserArchSite($userID: Int) {
+	ArchSite(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		Company {
+			name
+		}
+		description
+		name
+		archSiteID
+	}
+}
+subscription getFoodTypes {
+	RestaurantFoodType(where: { isDeleted: { _eq: false } }) {
+		type
+		restaurantFoodTypeID
+	}
+}
+subscription getRestaurantTypes {
+	RestaurantType(where: { isDeleted: { _eq: false } }) {
+		type
+		restaurantTypeID
+	}
+}
+subscription getUserCompany($userID: Int) {
+	Company(where: { isDeleted: { _eq: false }, CompanyUsers: { userID: { _eq: $userID } } }) {
+		companyID
+		name
+		description
+		faxNumber
+		taxNumber
+		mail
+		registerDate
+	}
+}
+subscription getRoomProperty {
+	RoomProperty(where: { isDeleted: { _eq: false } }) {
+		content
+		roomPropertyID
+	}
+}
+subscription getUserHotel($userID: Int!) {
+	Hotel(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		hotelID
+		name
+		description
+		star
+		Company {
+			name
+		}
+	}
+}
+subscription getUserArticle($userID: Int) {
+	Article(where: { isDeleted: { _eq: false }, ArticleUsers: { userID: { _eq: $userID } } }) {
+		articleID
+		content
+		title
+	}
+}
+
+subscription getHotelServiceProperty {
+	HotelServiceProperty(where: { isDeleted: { _eq: false } }) {
+		content
+		hotelServicePropertyID
+	}
+}
+subscription getHotelRoom($hotelID: Int!) {
+	HotelRoom(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
+		roomID
+		Room {
+			roomNo
+		}
+	}
+}
+
+subscription GetArchSiteTypes {
+	ArchSiteType(where: { isDeleted: { _eq: false } }) {
+		name
+		archSiteTypeID
+	}
+}
+subscription getCuisineTypes {
+	RestaurantCuisineType(where: { isDeleted: { _eq: false } }) {
+		name
+		restaurantCuisineTypeID
+	}
+}
+subscription getMuseumTypes {
+	MuseumType(where: { isDeleted: { _eq: false } }) {
+		museumTypeID
+		type
+	}
+}
+subscription getUserMuseum($userID: Int) {
+	Museum(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		Company {
+			name
+		}
+		description
+		name
+		museumID
+	}
+}
+
+subscription getUserRestaurant($userID: Int) {
+	Restaurant(where: { isDeleted: { _eq: false }, Company: { CompanyUsers: { userID: { _eq: $userID } } } }) {
+		restaurantID
+		name
+		star
+		Company {
+			name
+		}
+	}
+}
+
+subscription getArchSiteEntranceTypes {
+	ArchSiteEntranceType(where: { isDeleted: { _eq: false } }) {
+		archSiteEntranceTypeID
+		content
+	}
+}
+subscription getMuseumEntranceTypes {
+	MuseumEntranceType(where: { isDeleted: { _eq: false } }) {
+		content
+		museumEntranceTypeID
+	}
+}
+subscription getFood {
+	RestaurantFood(where: { isDeleted: { _eq: false } }) {
+		name
+		restaurantFoodID
+	}
+}
+subscription getTags {
+	Tag {
+		name
+		tagID
+	}
+}
+subscription getHotelListInfo {
+	Hotel(where: { isDeleted: { _eq: false } }) {
+		description
+		name
+		star
+		Company {
+			name
+		}
+	}
+}
+subscription getHotelServices($hotelID: Int) {
+	HotelService(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
+		HotelServiceProperty {
+			content
+		}
+	}
+}
+
+subscription getHotelRooms($hotelID: Int) {
+	HotelRoom(where: { hotelID: { _eq: $hotelID }, isDeleted: { _eq: false } }) {
+		Room {
+			roomNo
+			RoomPrices {
+				price
+			}
+			RoomPropertyRooms {
+				RoomProperty {
+					content
+				}
+			}
+			roomID
+		}
+	}
+}
+subscription getUserTravelGuide($userID: Int!) {
+	TravelGuide(where: { userID: { _eq: $userID }, isDeleted: { _eq: false } }) {
+		title
+		travelGuideID
+		cost
+		creationDate
+	}
+}

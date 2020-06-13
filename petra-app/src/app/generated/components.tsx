@@ -24752,143 +24752,6 @@ export type UpdateUserMutation = (
   )> }
 );
 
-export type GetFoodTypesQueryVariables = {};
-
-
-export type GetFoodTypesQuery = (
-  { __typename: 'query_root' }
-  & { RestaurantFoodType: Array<(
-    { __typename?: 'RestaurantFoodType' }
-    & Pick<RestaurantFoodType, 'type' | 'restaurantFoodTypeID'>
-  )> }
-);
-
-export type GetRestaurantTypesQueryVariables = {};
-
-
-export type GetRestaurantTypesQuery = (
-  { __typename: 'query_root' }
-  & { RestaurantType: Array<(
-    { __typename?: 'RestaurantType' }
-    & Pick<RestaurantType, 'type' | 'restaurantTypeID'>
-  )> }
-);
-
-export type GetUserCompanyQueryVariables = {
-  userID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetUserCompanyQuery = (
-  { __typename: 'query_root' }
-  & { Company: Array<(
-    { __typename?: 'Company' }
-    & Pick<Company, 'companyID' | 'name' | 'description' | 'faxNumber' | 'taxNumber' | 'mail' | 'registerDate'>
-  )> }
-);
-
-export type GetRoomPropertyQueryVariables = {};
-
-
-export type GetRoomPropertyQuery = (
-  { __typename?: 'query_root' }
-  & { RoomProperty: Array<(
-    { __typename?: 'RoomProperty' }
-    & Pick<RoomProperty, 'content' | 'roomPropertyID'>
-  )> }
-);
-
-export type GetUserHotelQueryVariables = {
-  userID: Scalars['Int']
-};
-
-
-export type GetUserHotelQuery = (
-  { __typename?: 'query_root' }
-  & { Hotel: Array<(
-    { __typename?: 'Hotel' }
-    & Pick<Hotel, 'hotelID' | 'name' | 'description' | 'star'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
-  )> }
-);
-
-export type GetUserArticleQueryVariables = {
-  userID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetUserArticleQuery = (
-  { __typename: 'query_root' }
-  & { Article: Array<(
-    { __typename?: 'Article' }
-    & Pick<Article, 'articleID' | 'content' | 'title'>
-  )> }
-);
-
-export type GetHotelServicePropertyQueryVariables = {};
-
-
-export type GetHotelServicePropertyQuery = (
-  { __typename: 'query_root' }
-  & { HotelServiceProperty: Array<(
-    { __typename?: 'HotelServiceProperty' }
-    & Pick<HotelServiceProperty, 'content' | 'hotelServicePropertyID'>
-  )> }
-);
-
-export type GetHotelRoomQueryVariables = {
-  hotelID: Scalars['Int']
-};
-
-
-export type GetHotelRoomQuery = (
-  { __typename: 'query_root' }
-  & { HotelRoom: Array<(
-    { __typename?: 'HotelRoom' }
-    & Pick<HotelRoom, 'roomID'>
-    & { Room: (
-      { __typename?: 'Room' }
-      & Pick<Room, 'roomNo'>
-    ) }
-  )> }
-);
-
-export type GetArchSiteTypesQueryVariables = {};
-
-
-export type GetArchSiteTypesQuery = (
-  { __typename: 'query_root' }
-  & { ArchSiteType: Array<(
-    { __typename?: 'ArchSiteType' }
-    & Pick<ArchSiteType, 'name' | 'archSiteTypeID'>
-  )> }
-);
-
-export type GetCuisineTypesQueryVariables = {};
-
-
-export type GetCuisineTypesQuery = (
-  { __typename: 'query_root' }
-  & { RestaurantCuisineType: Array<(
-    { __typename?: 'RestaurantCuisineType' }
-    & Pick<RestaurantCuisineType, 'name' | 'restaurantCuisineTypeID'>
-  )> }
-);
-
-export type GetMuseumTypesQueryVariables = {};
-
-
-export type GetMuseumTypesQuery = (
-  { __typename: 'query_root' }
-  & { MuseumType: Array<(
-    { __typename?: 'MuseumType' }
-    & Pick<MuseumType, 'museumTypeID' | 'type'>
-  )> }
-);
-
 export type GetHotelLocationQueryVariables = {
   cityID?: Maybe<Scalars['Int']>,
   regionID?: Maybe<Scalars['Int']>
@@ -25003,101 +24866,6 @@ export type GetDayQuery = (
   )> }
 );
 
-export type GetUserArchSiteQueryVariables = {
-  userID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetUserArchSiteQuery = (
-  { __typename: 'query_root' }
-  & { ArchSite: Array<(
-    { __typename?: 'ArchSite' }
-    & Pick<ArchSite, 'description' | 'name' | 'archSiteID'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
-  )> }
-);
-
-export type GetUserMuseumQueryVariables = {
-  userID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetUserMuseumQuery = (
-  { __typename: 'query_root' }
-  & { Museum: Array<(
-    { __typename?: 'Museum' }
-    & Pick<Museum, 'description' | 'name' | 'museumID'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
-  )> }
-);
-
-export type GetUserRestaurantQueryVariables = {
-  userID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetUserRestaurantQuery = (
-  { __typename: 'query_root' }
-  & { Restaurant: Array<(
-    { __typename?: 'Restaurant' }
-    & Pick<Restaurant, 'restaurantID' | 'name' | 'star'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
-  )> }
-);
-
-export type GetArchSiteEntranceTypesQueryVariables = {};
-
-
-export type GetArchSiteEntranceTypesQuery = (
-  { __typename: 'query_root' }
-  & { ArchSiteEntranceType: Array<(
-    { __typename?: 'ArchSiteEntranceType' }
-    & Pick<ArchSiteEntranceType, 'archSiteEntranceTypeID' | 'content'>
-  )> }
-);
-
-export type GetMuseumEntranceTypesQueryVariables = {};
-
-
-export type GetMuseumEntranceTypesQuery = (
-  { __typename: 'query_root' }
-  & { MuseumEntranceType: Array<(
-    { __typename?: 'MuseumEntranceType' }
-    & Pick<MuseumEntranceType, 'content' | 'museumEntranceTypeID'>
-  )> }
-);
-
-export type GetFoodQueryVariables = {};
-
-
-export type GetFoodQuery = (
-  { __typename: 'query_root' }
-  & { RestaurantFood: Array<(
-    { __typename?: 'RestaurantFood' }
-    & Pick<RestaurantFood, 'name' | 'restaurantFoodID'>
-  )> }
-);
-
-export type GetTagsQueryVariables = {};
-
-
-export type GetTagsQuery = (
-  { __typename: 'query_root' }
-  & { Tag: Array<(
-    { __typename?: 'Tag' }
-    & Pick<Tag, 'name' | 'tagID'>
-  )> }
-);
-
 export type GetCitiesQueryVariables = {};
 
 
@@ -25123,21 +24891,6 @@ export type GetCityDistrictsQuery = (
   & { District: Array<(
     { __typename?: 'District' }
     & Pick<District, 'district' | 'districtID'>
-  )> }
-);
-
-export type GetHotelListInfoQueryVariables = {};
-
-
-export type GetHotelListInfoQuery = (
-  { __typename: 'query_root' }
-  & { Hotel: Array<(
-    { __typename?: 'Hotel' }
-    & Pick<Hotel, 'description' | 'name' | 'star'>
-    & { Company: (
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    ) }
   )> }
 );
 
@@ -25327,17 +25080,6 @@ export type GetCompanyByIdQuery = (
   )> }
 );
 
-export type GetArticleListQueryVariables = {};
-
-
-export type GetArticleListQuery = (
-  { __typename: 'query_root' }
-  & { Article: Array<(
-    { __typename?: 'Article' }
-    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title' | 'imageUrl'>
-  )> }
-);
-
 export type GetHotelByCityQueryVariables = {
   cityID?: Maybe<Scalars['Int']>,
   regionID?: Maybe<Scalars['Int']>
@@ -25359,48 +25101,6 @@ export type GetHotelByCityQuery = (
         ), District: (
           { __typename?: 'District' }
           & Pick<District, 'district'>
-        ) }
-      )> }
-    ) }
-  )> }
-);
-
-export type GetHotelServicesQueryVariables = {
-  hotelID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetHotelServicesQuery = (
-  { __typename: 'query_root' }
-  & { HotelService: Array<(
-    { __typename?: 'HotelService' }
-    & { HotelServiceProperty: (
-      { __typename?: 'HotelServiceProperty' }
-      & Pick<HotelServiceProperty, 'content'>
-    ) }
-  )> }
-);
-
-export type GetHotelRoomsQueryVariables = {
-  hotelID?: Maybe<Scalars['Int']>
-};
-
-
-export type GetHotelRoomsQuery = (
-  { __typename: 'query_root' }
-  & { HotelRoom: Array<(
-    { __typename?: 'HotelRoom' }
-    & { Room: (
-      { __typename?: 'Room' }
-      & Pick<Room, 'roomNo' | 'roomID'>
-      & { RoomPrices: Array<(
-        { __typename?: 'RoomPrice' }
-        & Pick<RoomPrice, 'price'>
-      )>, RoomPropertyRooms: Array<(
-        { __typename?: 'RoomPropertyRoom' }
-        & { RoomProperty: (
-          { __typename?: 'RoomProperty' }
-          & Pick<RoomProperty, 'content'>
         ) }
       )> }
     ) }
@@ -25504,19 +25204,6 @@ export type GetRestaurantMenuByResIdQuery = (
   )> }
 );
 
-export type GetUserTravelGuideQueryVariables = {
-  userID: Scalars['Int']
-};
-
-
-export type GetUserTravelGuideQuery = (
-  { __typename?: 'query_root' }
-  & { TravelGuide: Array<(
-    { __typename?: 'TravelGuide' }
-    & Pick<TravelGuide, 'title' | 'travelGuideID' | 'cost' | 'creationDate'>
-  )> }
-);
-
 export type GetCityByIdQueryVariables = {
   cityID?: Maybe<Scalars['Int']>
 };
@@ -25616,6 +25303,319 @@ export type GetUserInfoQuery = (
       { __typename?: 'Phone' }
       & Pick<Phone, 'phone'>
     )> }
+  )> }
+);
+
+export type GetArticleListSubscriptionVariables = {};
+
+
+export type GetArticleListSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Article: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'articleID' | 'content' | 'publishDate' | 'title' | 'imageUrl'>
+  )> }
+);
+
+export type GetUserArchSiteSubscriptionVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserArchSiteSubscription = (
+  { __typename?: 'subscription_root' }
+  & { ArchSite: Array<(
+    { __typename?: 'ArchSite' }
+    & Pick<ArchSite, 'description' | 'name' | 'archSiteID'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetFoodTypesSubscriptionVariables = {};
+
+
+export type GetFoodTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { RestaurantFoodType: Array<(
+    { __typename?: 'RestaurantFoodType' }
+    & Pick<RestaurantFoodType, 'type' | 'restaurantFoodTypeID'>
+  )> }
+);
+
+export type GetRestaurantTypesSubscriptionVariables = {};
+
+
+export type GetRestaurantTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { RestaurantType: Array<(
+    { __typename?: 'RestaurantType' }
+    & Pick<RestaurantType, 'type' | 'restaurantTypeID'>
+  )> }
+);
+
+export type GetUserCompanySubscriptionVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserCompanySubscription = (
+  { __typename?: 'subscription_root' }
+  & { Company: Array<(
+    { __typename?: 'Company' }
+    & Pick<Company, 'companyID' | 'name' | 'description' | 'faxNumber' | 'taxNumber' | 'mail' | 'registerDate'>
+  )> }
+);
+
+export type GetRoomPropertySubscriptionVariables = {};
+
+
+export type GetRoomPropertySubscription = (
+  { __typename?: 'subscription_root' }
+  & { RoomProperty: Array<(
+    { __typename?: 'RoomProperty' }
+    & Pick<RoomProperty, 'content' | 'roomPropertyID'>
+  )> }
+);
+
+export type GetUserHotelSubscriptionVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserHotelSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'hotelID' | 'name' | 'description' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetUserArticleSubscriptionVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserArticleSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Article: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'articleID' | 'content' | 'title'>
+  )> }
+);
+
+export type GetHotelServicePropertySubscriptionVariables = {};
+
+
+export type GetHotelServicePropertySubscription = (
+  { __typename?: 'subscription_root' }
+  & { HotelServiceProperty: Array<(
+    { __typename?: 'HotelServiceProperty' }
+    & Pick<HotelServiceProperty, 'content' | 'hotelServicePropertyID'>
+  )> }
+);
+
+export type GetHotelRoomSubscriptionVariables = {
+  hotelID: Scalars['Int']
+};
+
+
+export type GetHotelRoomSubscription = (
+  { __typename?: 'subscription_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & Pick<HotelRoom, 'roomID'>
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo'>
+    ) }
+  )> }
+);
+
+export type GetArchSiteTypesSubscriptionVariables = {};
+
+
+export type GetArchSiteTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { ArchSiteType: Array<(
+    { __typename?: 'ArchSiteType' }
+    & Pick<ArchSiteType, 'name' | 'archSiteTypeID'>
+  )> }
+);
+
+export type GetCuisineTypesSubscriptionVariables = {};
+
+
+export type GetCuisineTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { RestaurantCuisineType: Array<(
+    { __typename?: 'RestaurantCuisineType' }
+    & Pick<RestaurantCuisineType, 'name' | 'restaurantCuisineTypeID'>
+  )> }
+);
+
+export type GetMuseumTypesSubscriptionVariables = {};
+
+
+export type GetMuseumTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { MuseumType: Array<(
+    { __typename?: 'MuseumType' }
+    & Pick<MuseumType, 'museumTypeID' | 'type'>
+  )> }
+);
+
+export type GetUserMuseumSubscriptionVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserMuseumSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Museum: Array<(
+    { __typename?: 'Museum' }
+    & Pick<Museum, 'description' | 'name' | 'museumID'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetUserRestaurantSubscriptionVariables = {
+  userID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetUserRestaurantSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Restaurant: Array<(
+    { __typename?: 'Restaurant' }
+    & Pick<Restaurant, 'restaurantID' | 'name' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetArchSiteEntranceTypesSubscriptionVariables = {};
+
+
+export type GetArchSiteEntranceTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { ArchSiteEntranceType: Array<(
+    { __typename?: 'ArchSiteEntranceType' }
+    & Pick<ArchSiteEntranceType, 'archSiteEntranceTypeID' | 'content'>
+  )> }
+);
+
+export type GetMuseumEntranceTypesSubscriptionVariables = {};
+
+
+export type GetMuseumEntranceTypesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { MuseumEntranceType: Array<(
+    { __typename?: 'MuseumEntranceType' }
+    & Pick<MuseumEntranceType, 'content' | 'museumEntranceTypeID'>
+  )> }
+);
+
+export type GetFoodSubscriptionVariables = {};
+
+
+export type GetFoodSubscription = (
+  { __typename?: 'subscription_root' }
+  & { RestaurantFood: Array<(
+    { __typename?: 'RestaurantFood' }
+    & Pick<RestaurantFood, 'name' | 'restaurantFoodID'>
+  )> }
+);
+
+export type GetTagsSubscriptionVariables = {};
+
+
+export type GetTagsSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Tag: Array<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'name' | 'tagID'>
+  )> }
+);
+
+export type GetHotelListInfoSubscriptionVariables = {};
+
+
+export type GetHotelListInfoSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Hotel: Array<(
+    { __typename?: 'Hotel' }
+    & Pick<Hotel, 'description' | 'name' | 'star'>
+    & { Company: (
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    ) }
+  )> }
+);
+
+export type GetHotelServicesSubscriptionVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelServicesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { HotelService: Array<(
+    { __typename?: 'HotelService' }
+    & { HotelServiceProperty: (
+      { __typename?: 'HotelServiceProperty' }
+      & Pick<HotelServiceProperty, 'content'>
+    ) }
+  )> }
+);
+
+export type GetHotelRoomsSubscriptionVariables = {
+  hotelID?: Maybe<Scalars['Int']>
+};
+
+
+export type GetHotelRoomsSubscription = (
+  { __typename?: 'subscription_root' }
+  & { HotelRoom: Array<(
+    { __typename?: 'HotelRoom' }
+    & { Room: (
+      { __typename?: 'Room' }
+      & Pick<Room, 'roomNo' | 'roomID'>
+      & { RoomPrices: Array<(
+        { __typename?: 'RoomPrice' }
+        & Pick<RoomPrice, 'price'>
+      )>, RoomPropertyRooms: Array<(
+        { __typename?: 'RoomPropertyRoom' }
+        & { RoomProperty: (
+          { __typename?: 'RoomProperty' }
+          & Pick<RoomProperty, 'content'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+export type GetUserTravelGuideSubscriptionVariables = {
+  userID: Scalars['Int']
+};
+
+
+export type GetUserTravelGuideSubscription = (
+  { __typename?: 'subscription_root' }
+  & { TravelGuide: Array<(
+    { __typename?: 'TravelGuide' }
+    & Pick<TravelGuide, 'title' | 'travelGuideID' | 'cost' | 'creationDate'>
   )> }
 );
 
@@ -27053,314 +27053,6 @@ export function withUpdateUser<TProps, TChildProps = {}>(operationOptions?: Apol
 };
 export type UpdateUserMutationResult = ApolloReactCommon.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
-export const GetFoodTypesDocument = gql`
-    query getFoodTypes {
-  __typename
-  RestaurantFoodType(where: {isDeleted: {_eq: false}}) {
-    type
-    restaurantFoodTypeID
-  }
-}
-    `;
-export type GetFoodTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetFoodTypesQuery, GetFoodTypesQueryVariables>, 'query'>;
-
-    export const GetFoodTypesComponent = (props: GetFoodTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetFoodTypesQuery, GetFoodTypesQueryVariables> query={GetFoodTypesDocument} {...props} />
-    );
-    
-export type GetFoodTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodTypesQuery, GetFoodTypesQueryVariables> & TChildProps;
-export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetFoodTypesQuery,
-  GetFoodTypesQueryVariables,
-  GetFoodTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetFoodTypesQuery, GetFoodTypesQueryVariables, GetFoodTypesProps<TChildProps>>(GetFoodTypesDocument, {
-      alias: 'getFoodTypes',
-      ...operationOptions
-    });
-};
-export type GetFoodTypesQueryResult = ApolloReactCommon.QueryResult<GetFoodTypesQuery, GetFoodTypesQueryVariables>;
-export const GetRestaurantTypesDocument = gql`
-    query getRestaurantTypes {
-  __typename
-  RestaurantType(where: {isDeleted: {_eq: false}}) {
-    type
-    restaurantTypeID
-  }
-}
-    `;
-export type GetRestaurantTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>, 'query'>;
-
-    export const GetRestaurantTypesComponent = (props: GetRestaurantTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> query={GetRestaurantTypesDocument} {...props} />
-    );
-    
-export type GetRestaurantTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables> & TChildProps;
-export function withGetRestaurantTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetRestaurantTypesQuery,
-  GetRestaurantTypesQueryVariables,
-  GetRestaurantTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables, GetRestaurantTypesProps<TChildProps>>(GetRestaurantTypesDocument, {
-      alias: 'getRestaurantTypes',
-      ...operationOptions
-    });
-};
-export type GetRestaurantTypesQueryResult = ApolloReactCommon.QueryResult<GetRestaurantTypesQuery, GetRestaurantTypesQueryVariables>;
-export const GetUserCompanyDocument = gql`
-    query getUserCompany($userID: Int) {
-  __typename
-  Company(where: {isDeleted: {_eq: false}, CompanyUsers: {userID: {_eq: $userID}}}) {
-    companyID
-    name
-    description
-    faxNumber
-    taxNumber
-    mail
-    registerDate
-  }
-}
-    `;
-export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserCompanyQuery, GetUserCompanyQueryVariables>, 'query'>;
-
-    export const GetUserCompanyComponent = (props: GetUserCompanyComponentProps) => (
-      <ApolloReactComponents.Query<GetUserCompanyQuery, GetUserCompanyQueryVariables> query={GetUserCompanyDocument} {...props} />
-    );
-    
-export type GetUserCompanyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserCompanyQuery, GetUserCompanyQueryVariables> & TChildProps;
-export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserCompanyQuery,
-  GetUserCompanyQueryVariables,
-  GetUserCompanyProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserCompanyQuery, GetUserCompanyQueryVariables, GetUserCompanyProps<TChildProps>>(GetUserCompanyDocument, {
-      alias: 'getUserCompany',
-      ...operationOptions
-    });
-};
-export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
-export const GetRoomPropertyDocument = gql`
-    query getRoomProperty {
-  RoomProperty(where: {isDeleted: {_eq: false}}) {
-    content
-    roomPropertyID
-  }
-}
-    `;
-export type GetRoomPropertyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetRoomPropertyQuery, GetRoomPropertyQueryVariables>, 'query'>;
-
-    export const GetRoomPropertyComponent = (props: GetRoomPropertyComponentProps) => (
-      <ApolloReactComponents.Query<GetRoomPropertyQuery, GetRoomPropertyQueryVariables> query={GetRoomPropertyDocument} {...props} />
-    );
-    
-export type GetRoomPropertyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRoomPropertyQuery, GetRoomPropertyQueryVariables> & TChildProps;
-export function withGetRoomProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetRoomPropertyQuery,
-  GetRoomPropertyQueryVariables,
-  GetRoomPropertyProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetRoomPropertyQuery, GetRoomPropertyQueryVariables, GetRoomPropertyProps<TChildProps>>(GetRoomPropertyDocument, {
-      alias: 'getRoomProperty',
-      ...operationOptions
-    });
-};
-export type GetRoomPropertyQueryResult = ApolloReactCommon.QueryResult<GetRoomPropertyQuery, GetRoomPropertyQueryVariables>;
-export const GetUserHotelDocument = gql`
-    query getUserHotel($userID: Int!) {
-  Hotel(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    hotelID
-    name
-    description
-    star
-    Company {
-      name
-    }
-  }
-}
-    `;
-export type GetUserHotelComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserHotelQuery, GetUserHotelQueryVariables>, 'query'> & ({ variables: GetUserHotelQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const GetUserHotelComponent = (props: GetUserHotelComponentProps) => (
-      <ApolloReactComponents.Query<GetUserHotelQuery, GetUserHotelQueryVariables> query={GetUserHotelDocument} {...props} />
-    );
-    
-export type GetUserHotelProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserHotelQuery, GetUserHotelQueryVariables> & TChildProps;
-export function withGetUserHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserHotelQuery,
-  GetUserHotelQueryVariables,
-  GetUserHotelProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserHotelQuery, GetUserHotelQueryVariables, GetUserHotelProps<TChildProps>>(GetUserHotelDocument, {
-      alias: 'getUserHotel',
-      ...operationOptions
-    });
-};
-export type GetUserHotelQueryResult = ApolloReactCommon.QueryResult<GetUserHotelQuery, GetUserHotelQueryVariables>;
-export const GetUserArticleDocument = gql`
-    query getUserArticle($userID: Int) {
-  __typename
-  Article(where: {isDeleted: {_eq: false}, ArticleUsers: {userID: {_eq: $userID}}}) {
-    articleID
-    content
-    title
-  }
-}
-    `;
-export type GetUserArticleComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArticleQuery, GetUserArticleQueryVariables>, 'query'>;
-
-    export const GetUserArticleComponent = (props: GetUserArticleComponentProps) => (
-      <ApolloReactComponents.Query<GetUserArticleQuery, GetUserArticleQueryVariables> query={GetUserArticleDocument} {...props} />
-    );
-    
-export type GetUserArticleProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArticleQuery, GetUserArticleQueryVariables> & TChildProps;
-export function withGetUserArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserArticleQuery,
-  GetUserArticleQueryVariables,
-  GetUserArticleProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserArticleQuery, GetUserArticleQueryVariables, GetUserArticleProps<TChildProps>>(GetUserArticleDocument, {
-      alias: 'getUserArticle',
-      ...operationOptions
-    });
-};
-export type GetUserArticleQueryResult = ApolloReactCommon.QueryResult<GetUserArticleQuery, GetUserArticleQueryVariables>;
-export const GetHotelServicePropertyDocument = gql`
-    query getHotelServiceProperty {
-  __typename
-  HotelServiceProperty(where: {isDeleted: {_eq: false}}) {
-    content
-    hotelServicePropertyID
-  }
-}
-    `;
-export type GetHotelServicePropertyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables>, 'query'>;
-
-    export const GetHotelServicePropertyComponent = (props: GetHotelServicePropertyComponentProps) => (
-      <ApolloReactComponents.Query<GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables> query={GetHotelServicePropertyDocument} {...props} />
-    );
-    
-export type GetHotelServicePropertyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables> & TChildProps;
-export function withGetHotelServiceProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetHotelServicePropertyQuery,
-  GetHotelServicePropertyQueryVariables,
-  GetHotelServicePropertyProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables, GetHotelServicePropertyProps<TChildProps>>(GetHotelServicePropertyDocument, {
-      alias: 'getHotelServiceProperty',
-      ...operationOptions
-    });
-};
-export type GetHotelServicePropertyQueryResult = ApolloReactCommon.QueryResult<GetHotelServicePropertyQuery, GetHotelServicePropertyQueryVariables>;
-export const GetHotelRoomDocument = gql`
-    query getHotelRoom($hotelID: Int!) {
-  __typename
-  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
-    roomID
-    Room {
-      roomNo
-    }
-  }
-}
-    `;
-export type GetHotelRoomComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomQuery, GetHotelRoomQueryVariables>, 'query'> & ({ variables: GetHotelRoomQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const GetHotelRoomComponent = (props: GetHotelRoomComponentProps) => (
-      <ApolloReactComponents.Query<GetHotelRoomQuery, GetHotelRoomQueryVariables> query={GetHotelRoomDocument} {...props} />
-    );
-    
-export type GetHotelRoomProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomQuery, GetHotelRoomQueryVariables> & TChildProps;
-export function withGetHotelRoom<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetHotelRoomQuery,
-  GetHotelRoomQueryVariables,
-  GetHotelRoomProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetHotelRoomQuery, GetHotelRoomQueryVariables, GetHotelRoomProps<TChildProps>>(GetHotelRoomDocument, {
-      alias: 'getHotelRoom',
-      ...operationOptions
-    });
-};
-export type GetHotelRoomQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomQuery, GetHotelRoomQueryVariables>;
-export const GetArchSiteTypesDocument = gql`
-    query GetArchSiteTypes {
-  __typename
-  ArchSiteType(where: {isDeleted: {_eq: false}}) {
-    name
-    archSiteTypeID
-  }
-}
-    `;
-export type GetArchSiteTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables>, 'query'>;
-
-    export const GetArchSiteTypesComponent = (props: GetArchSiteTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables> query={GetArchSiteTypesDocument} {...props} />
-    );
-    
-export type GetArchSiteTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables> & TChildProps;
-export function withGetArchSiteTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetArchSiteTypesQuery,
-  GetArchSiteTypesQueryVariables,
-  GetArchSiteTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables, GetArchSiteTypesProps<TChildProps>>(GetArchSiteTypesDocument, {
-      alias: 'getArchSiteTypes',
-      ...operationOptions
-    });
-};
-export type GetArchSiteTypesQueryResult = ApolloReactCommon.QueryResult<GetArchSiteTypesQuery, GetArchSiteTypesQueryVariables>;
-export const GetCuisineTypesDocument = gql`
-    query getCuisineTypes {
-  __typename
-  RestaurantCuisineType(where: {isDeleted: {_eq: false}}) {
-    name
-    restaurantCuisineTypeID
-  }
-}
-    `;
-export type GetCuisineTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCuisineTypesQuery, GetCuisineTypesQueryVariables>, 'query'>;
-
-    export const GetCuisineTypesComponent = (props: GetCuisineTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetCuisineTypesQuery, GetCuisineTypesQueryVariables> query={GetCuisineTypesDocument} {...props} />
-    );
-    
-export type GetCuisineTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCuisineTypesQuery, GetCuisineTypesQueryVariables> & TChildProps;
-export function withGetCuisineTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetCuisineTypesQuery,
-  GetCuisineTypesQueryVariables,
-  GetCuisineTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetCuisineTypesQuery, GetCuisineTypesQueryVariables, GetCuisineTypesProps<TChildProps>>(GetCuisineTypesDocument, {
-      alias: 'getCuisineTypes',
-      ...operationOptions
-    });
-};
-export type GetCuisineTypesQueryResult = ApolloReactCommon.QueryResult<GetCuisineTypesQuery, GetCuisineTypesQueryVariables>;
-export const GetMuseumTypesDocument = gql`
-    query getMuseumTypes {
-  __typename
-  MuseumType(where: {isDeleted: {_eq: false}}) {
-    museumTypeID
-    type
-  }
-}
-    `;
-export type GetMuseumTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumTypesQuery, GetMuseumTypesQueryVariables>, 'query'>;
-
-    export const GetMuseumTypesComponent = (props: GetMuseumTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetMuseumTypesQuery, GetMuseumTypesQueryVariables> query={GetMuseumTypesDocument} {...props} />
-    );
-    
-export type GetMuseumTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumTypesQuery, GetMuseumTypesQueryVariables> & TChildProps;
-export function withGetMuseumTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetMuseumTypesQuery,
-  GetMuseumTypesQueryVariables,
-  GetMuseumTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetMuseumTypesQuery, GetMuseumTypesQueryVariables, GetMuseumTypesProps<TChildProps>>(GetMuseumTypesDocument, {
-      alias: 'getMuseumTypes',
-      ...operationOptions
-    });
-};
-export type GetMuseumTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumTypesQuery, GetMuseumTypesQueryVariables>;
 export const GetHotelLocationDocument = gql`
     query getHotelLocation($cityID: Int, $regionID: Int) {
   Hotel(where: {isDeleted: {_eq: false}, Location: {Address: {City: {cityID: {_eq: $cityID}, regionID: {_eq: $regionID}}}}}) {
@@ -27541,207 +27233,6 @@ export function withGetDay<TProps, TChildProps = {}>(operationOptions?: ApolloRe
     });
 };
 export type GetDayQueryResult = ApolloReactCommon.QueryResult<GetDayQuery, GetDayQueryVariables>;
-export const GetUserArchSiteDocument = gql`
-    query getUserArchSite($userID: Int) {
-  __typename
-  ArchSite(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    Company {
-      name
-    }
-    description
-    name
-    archSiteID
-  }
-}
-    `;
-export type GetUserArchSiteComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>, 'query'>;
-
-    export const GetUserArchSiteComponent = (props: GetUserArchSiteComponentProps) => (
-      <ApolloReactComponents.Query<GetUserArchSiteQuery, GetUserArchSiteQueryVariables> query={GetUserArchSiteDocument} {...props} />
-    );
-    
-export type GetUserArchSiteProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArchSiteQuery, GetUserArchSiteQueryVariables> & TChildProps;
-export function withGetUserArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserArchSiteQuery,
-  GetUserArchSiteQueryVariables,
-  GetUserArchSiteProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserArchSiteQuery, GetUserArchSiteQueryVariables, GetUserArchSiteProps<TChildProps>>(GetUserArchSiteDocument, {
-      alias: 'getUserArchSite',
-      ...operationOptions
-    });
-};
-export type GetUserArchSiteQueryResult = ApolloReactCommon.QueryResult<GetUserArchSiteQuery, GetUserArchSiteQueryVariables>;
-export const GetUserMuseumDocument = gql`
-    query getUserMuseum($userID: Int) {
-  __typename
-  Museum(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    Company {
-      name
-    }
-    description
-    name
-    museumID
-  }
-}
-    `;
-export type GetUserMuseumComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserMuseumQuery, GetUserMuseumQueryVariables>, 'query'>;
-
-    export const GetUserMuseumComponent = (props: GetUserMuseumComponentProps) => (
-      <ApolloReactComponents.Query<GetUserMuseumQuery, GetUserMuseumQueryVariables> query={GetUserMuseumDocument} {...props} />
-    );
-    
-export type GetUserMuseumProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserMuseumQuery, GetUserMuseumQueryVariables> & TChildProps;
-export function withGetUserMuseum<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserMuseumQuery,
-  GetUserMuseumQueryVariables,
-  GetUserMuseumProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserMuseumQuery, GetUserMuseumQueryVariables, GetUserMuseumProps<TChildProps>>(GetUserMuseumDocument, {
-      alias: 'getUserMuseum',
-      ...operationOptions
-    });
-};
-export type GetUserMuseumQueryResult = ApolloReactCommon.QueryResult<GetUserMuseumQuery, GetUserMuseumQueryVariables>;
-export const GetUserRestaurantDocument = gql`
-    query getUserRestaurant($userID: Int) {
-  __typename
-  Restaurant(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
-    restaurantID
-    name
-    star
-    Company {
-      name
-    }
-  }
-}
-    `;
-export type GetUserRestaurantComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>, 'query'>;
-
-    export const GetUserRestaurantComponent = (props: GetUserRestaurantComponentProps) => (
-      <ApolloReactComponents.Query<GetUserRestaurantQuery, GetUserRestaurantQueryVariables> query={GetUserRestaurantDocument} {...props} />
-    );
-    
-export type GetUserRestaurantProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserRestaurantQuery, GetUserRestaurantQueryVariables> & TChildProps;
-export function withGetUserRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserRestaurantQuery,
-  GetUserRestaurantQueryVariables,
-  GetUserRestaurantProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserRestaurantQuery, GetUserRestaurantQueryVariables, GetUserRestaurantProps<TChildProps>>(GetUserRestaurantDocument, {
-      alias: 'getUserRestaurant',
-      ...operationOptions
-    });
-};
-export type GetUserRestaurantQueryResult = ApolloReactCommon.QueryResult<GetUserRestaurantQuery, GetUserRestaurantQueryVariables>;
-export const GetArchSiteEntranceTypesDocument = gql`
-    query getArchSiteEntranceTypes {
-  __typename
-  ArchSiteEntranceType(where: {isDeleted: {_eq: false}}) {
-    archSiteEntranceTypeID
-    content
-  }
-}
-    `;
-export type GetArchSiteEntranceTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables>, 'query'>;
-
-    export const GetArchSiteEntranceTypesComponent = (props: GetArchSiteEntranceTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables> query={GetArchSiteEntranceTypesDocument} {...props} />
-    );
-    
-export type GetArchSiteEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables> & TChildProps;
-export function withGetArchSiteEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetArchSiteEntranceTypesQuery,
-  GetArchSiteEntranceTypesQueryVariables,
-  GetArchSiteEntranceTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables, GetArchSiteEntranceTypesProps<TChildProps>>(GetArchSiteEntranceTypesDocument, {
-      alias: 'getArchSiteEntranceTypes',
-      ...operationOptions
-    });
-};
-export type GetArchSiteEntranceTypesQueryResult = ApolloReactCommon.QueryResult<GetArchSiteEntranceTypesQuery, GetArchSiteEntranceTypesQueryVariables>;
-export const GetMuseumEntranceTypesDocument = gql`
-    query getMuseumEntranceTypes {
-  __typename
-  MuseumEntranceType(where: {isDeleted: {_eq: false}}) {
-    content
-    museumEntranceTypeID
-  }
-}
-    `;
-export type GetMuseumEntranceTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables>, 'query'>;
-
-    export const GetMuseumEntranceTypesComponent = (props: GetMuseumEntranceTypesComponentProps) => (
-      <ApolloReactComponents.Query<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables> query={GetMuseumEntranceTypesDocument} {...props} />
-    );
-    
-export type GetMuseumEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables> & TChildProps;
-export function withGetMuseumEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetMuseumEntranceTypesQuery,
-  GetMuseumEntranceTypesQueryVariables,
-  GetMuseumEntranceTypesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables, GetMuseumEntranceTypesProps<TChildProps>>(GetMuseumEntranceTypesDocument, {
-      alias: 'getMuseumEntranceTypes',
-      ...operationOptions
-    });
-};
-export type GetMuseumEntranceTypesQueryResult = ApolloReactCommon.QueryResult<GetMuseumEntranceTypesQuery, GetMuseumEntranceTypesQueryVariables>;
-export const GetFoodDocument = gql`
-    query getFood {
-  __typename
-  RestaurantFood(where: {isDeleted: {_eq: false}}) {
-    name
-    restaurantFoodID
-  }
-}
-    `;
-export type GetFoodComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetFoodQuery, GetFoodQueryVariables>, 'query'>;
-
-    export const GetFoodComponent = (props: GetFoodComponentProps) => (
-      <ApolloReactComponents.Query<GetFoodQuery, GetFoodQueryVariables> query={GetFoodDocument} {...props} />
-    );
-    
-export type GetFoodProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodQuery, GetFoodQueryVariables> & TChildProps;
-export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetFoodQuery,
-  GetFoodQueryVariables,
-  GetFoodProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetFoodQuery, GetFoodQueryVariables, GetFoodProps<TChildProps>>(GetFoodDocument, {
-      alias: 'getFood',
-      ...operationOptions
-    });
-};
-export type GetFoodQueryResult = ApolloReactCommon.QueryResult<GetFoodQuery, GetFoodQueryVariables>;
-export const GetTagsDocument = gql`
-    query getTags {
-  __typename
-  Tag {
-    name
-    tagID
-  }
-}
-    `;
-export type GetTagsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetTagsQuery, GetTagsQueryVariables>, 'query'>;
-
-    export const GetTagsComponent = (props: GetTagsComponentProps) => (
-      <ApolloReactComponents.Query<GetTagsQuery, GetTagsQueryVariables> query={GetTagsDocument} {...props} />
-    );
-    
-export type GetTagsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTagsQuery, GetTagsQueryVariables> & TChildProps;
-export function withGetTags<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetTagsQuery,
-  GetTagsQueryVariables,
-  GetTagsProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetTagsQuery, GetTagsQueryVariables, GetTagsProps<TChildProps>>(GetTagsDocument, {
-      alias: 'getTags',
-      ...operationOptions
-    });
-};
-export type GetTagsQueryResult = ApolloReactCommon.QueryResult<GetTagsQuery, GetTagsQueryVariables>;
 export const GetCitiesDocument = gql`
     query getCities {
   __typename
@@ -27802,37 +27293,6 @@ export function withGetCityDistricts<TProps, TChildProps = {}>(operationOptions?
     });
 };
 export type GetCityDistrictsQueryResult = ApolloReactCommon.QueryResult<GetCityDistrictsQuery, GetCityDistrictsQueryVariables>;
-export const GetHotelListInfoDocument = gql`
-    query getHotelListInfo {
-  __typename
-  Hotel(where: {isDeleted: {_eq: false}}) {
-    description
-    name
-    star
-    Company {
-      name
-    }
-  }
-}
-    `;
-export type GetHotelListInfoComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelListInfoQuery, GetHotelListInfoQueryVariables>, 'query'>;
-
-    export const GetHotelListInfoComponent = (props: GetHotelListInfoComponentProps) => (
-      <ApolloReactComponents.Query<GetHotelListInfoQuery, GetHotelListInfoQueryVariables> query={GetHotelListInfoDocument} {...props} />
-    );
-    
-export type GetHotelListInfoProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelListInfoQuery, GetHotelListInfoQueryVariables> & TChildProps;
-export function withGetHotelListInfo<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetHotelListInfoQuery,
-  GetHotelListInfoQueryVariables,
-  GetHotelListInfoProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetHotelListInfoQuery, GetHotelListInfoQueryVariables, GetHotelListInfoProps<TChildProps>>(GetHotelListInfoDocument, {
-      alias: 'getHotelListInfo',
-      ...operationOptions
-    });
-};
-export type GetHotelListInfoQueryResult = ApolloReactCommon.QueryResult<GetHotelListInfoQuery, GetHotelListInfoQueryVariables>;
 export const GetHotelByIdDocument = gql`
     query getHotelByID($hotelID: Int) {
   __typename
@@ -28111,36 +27571,6 @@ export function withGetCompanyById<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetCompanyByIdQueryResult = ApolloReactCommon.QueryResult<GetCompanyByIdQuery, GetCompanyByIdQueryVariables>;
-export const GetArticleListDocument = gql`
-    query getArticleList {
-  __typename
-  Article {
-    articleID
-    content
-    publishDate
-    title
-    imageUrl
-  }
-}
-    `;
-export type GetArticleListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetArticleListQuery, GetArticleListQueryVariables>, 'query'>;
-
-    export const GetArticleListComponent = (props: GetArticleListComponentProps) => (
-      <ApolloReactComponents.Query<GetArticleListQuery, GetArticleListQueryVariables> query={GetArticleListDocument} {...props} />
-    );
-    
-export type GetArticleListProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArticleListQuery, GetArticleListQueryVariables> & TChildProps;
-export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetArticleListQuery,
-  GetArticleListQueryVariables,
-  GetArticleListProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetArticleListQuery, GetArticleListQueryVariables, GetArticleListProps<TChildProps>>(GetArticleListDocument, {
-      alias: 'getArticleList',
-      ...operationOptions
-    });
-};
-export type GetArticleListQueryResult = ApolloReactCommon.QueryResult<GetArticleListQuery, GetArticleListQueryVariables>;
 export const GetHotelByCityDocument = gql`
     query getHotelByCity($cityID: Int, $regionID: Int) {
   __typename
@@ -28181,71 +27611,6 @@ export function withGetHotelByCity<TProps, TChildProps = {}>(operationOptions?: 
     });
 };
 export type GetHotelByCityQueryResult = ApolloReactCommon.QueryResult<GetHotelByCityQuery, GetHotelByCityQueryVariables>;
-export const GetHotelServicesDocument = gql`
-    query getHotelServices($hotelID: Int) {
-  __typename
-  HotelService(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
-    HotelServiceProperty {
-      content
-    }
-  }
-}
-    `;
-export type GetHotelServicesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelServicesQuery, GetHotelServicesQueryVariables>, 'query'>;
-
-    export const GetHotelServicesComponent = (props: GetHotelServicesComponentProps) => (
-      <ApolloReactComponents.Query<GetHotelServicesQuery, GetHotelServicesQueryVariables> query={GetHotelServicesDocument} {...props} />
-    );
-    
-export type GetHotelServicesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicesQuery, GetHotelServicesQueryVariables> & TChildProps;
-export function withGetHotelServices<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetHotelServicesQuery,
-  GetHotelServicesQueryVariables,
-  GetHotelServicesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetHotelServicesQuery, GetHotelServicesQueryVariables, GetHotelServicesProps<TChildProps>>(GetHotelServicesDocument, {
-      alias: 'getHotelServices',
-      ...operationOptions
-    });
-};
-export type GetHotelServicesQueryResult = ApolloReactCommon.QueryResult<GetHotelServicesQuery, GetHotelServicesQueryVariables>;
-export const GetHotelRoomsDocument = gql`
-    query getHotelRooms($hotelID: Int) {
-  __typename
-  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
-    Room {
-      roomNo
-      RoomPrices {
-        price
-      }
-      RoomPropertyRooms {
-        RoomProperty {
-          content
-        }
-      }
-      roomID
-    }
-  }
-}
-    `;
-export type GetHotelRoomsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>, 'query'>;
-
-    export const GetHotelRoomsComponent = (props: GetHotelRoomsComponentProps) => (
-      <ApolloReactComponents.Query<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> query={GetHotelRoomsDocument} {...props} />
-    );
-    
-export type GetHotelRoomsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomsQuery, GetHotelRoomsQueryVariables> & TChildProps;
-export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetHotelRoomsQuery,
-  GetHotelRoomsQueryVariables,
-  GetHotelRoomsProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetHotelRoomsQuery, GetHotelRoomsQueryVariables, GetHotelRoomsProps<TChildProps>>(GetHotelRoomsDocument, {
-      alias: 'getHotelRooms',
-      ...operationOptions
-    });
-};
-export type GetHotelRoomsQueryResult = ApolloReactCommon.QueryResult<GetHotelRoomsQuery, GetHotelRoomsQueryVariables>;
 export const GetRestaurantByCityDocument = gql`
     query getRestaurantByCity($cityID: Int, $regionID: Int) {
   __typename
@@ -28385,34 +27750,6 @@ export function withGetRestaurantMenuByResId<TProps, TChildProps = {}>(operation
     });
 };
 export type GetRestaurantMenuByResIdQueryResult = ApolloReactCommon.QueryResult<GetRestaurantMenuByResIdQuery, GetRestaurantMenuByResIdQueryVariables>;
-export const GetUserTravelGuideDocument = gql`
-    query getUserTravelGuide($userID: Int!) {
-  TravelGuide(where: {userID: {_eq: $userID}, isDeleted: {_eq: false}}) {
-    title
-    travelGuideID
-    cost
-    creationDate
-  }
-}
-    `;
-export type GetUserTravelGuideComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>, 'query'> & ({ variables: GetUserTravelGuideQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const GetUserTravelGuideComponent = (props: GetUserTravelGuideComponentProps) => (
-      <ApolloReactComponents.Query<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> query={GetUserTravelGuideDocument} {...props} />
-    );
-    
-export type GetUserTravelGuideProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables> & TChildProps;
-export function withGetUserTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserTravelGuideQuery,
-  GetUserTravelGuideQueryVariables,
-  GetUserTravelGuideProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables, GetUserTravelGuideProps<TChildProps>>(GetUserTravelGuideDocument, {
-      alias: 'getUserTravelGuide',
-      ...operationOptions
-    });
-};
-export type GetUserTravelGuideQueryResult = ApolloReactCommon.QueryResult<GetUserTravelGuideQuery, GetUserTravelGuideQueryVariables>;
 export const GetCityByIdDocument = gql`
     query getCityByID($cityID: Int) {
   __typename
@@ -28577,3 +27914,646 @@ export function withGetUserInfo<TProps, TChildProps = {}>(operationOptions?: Apo
     });
 };
 export type GetUserInfoQueryResult = ApolloReactCommon.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;
+export const GetArticleListDocument = gql`
+    subscription getArticleList {
+  Article(where: {isDeleted: {_eq: false}}) {
+    articleID
+    content
+    publishDate
+    title
+    imageUrl
+  }
+}
+    `;
+export type GetArticleListComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetArticleListSubscription, GetArticleListSubscriptionVariables>, 'subscription'>;
+
+    export const GetArticleListComponent = (props: GetArticleListComponentProps) => (
+      <ApolloReactComponents.Subscription<GetArticleListSubscription, GetArticleListSubscriptionVariables> subscription={GetArticleListDocument} {...props} />
+    );
+    
+export type GetArticleListProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArticleListSubscription, GetArticleListSubscriptionVariables> & TChildProps;
+export function withGetArticleList<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArticleListSubscription,
+  GetArticleListSubscriptionVariables,
+  GetArticleListProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetArticleListSubscription, GetArticleListSubscriptionVariables, GetArticleListProps<TChildProps>>(GetArticleListDocument, {
+      alias: 'getArticleList',
+      ...operationOptions
+    });
+};
+export type GetArticleListSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetArticleListSubscription>;
+export const GetUserArchSiteDocument = gql`
+    subscription getUserArchSite($userID: Int) {
+  ArchSite(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    Company {
+      name
+    }
+    description
+    name
+    archSiteID
+  }
+}
+    `;
+export type GetUserArchSiteComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserArchSiteSubscription, GetUserArchSiteSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserArchSiteComponent = (props: GetUserArchSiteComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserArchSiteSubscription, GetUserArchSiteSubscriptionVariables> subscription={GetUserArchSiteDocument} {...props} />
+    );
+    
+export type GetUserArchSiteProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArchSiteSubscription, GetUserArchSiteSubscriptionVariables> & TChildProps;
+export function withGetUserArchSite<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserArchSiteSubscription,
+  GetUserArchSiteSubscriptionVariables,
+  GetUserArchSiteProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserArchSiteSubscription, GetUserArchSiteSubscriptionVariables, GetUserArchSiteProps<TChildProps>>(GetUserArchSiteDocument, {
+      alias: 'getUserArchSite',
+      ...operationOptions
+    });
+};
+export type GetUserArchSiteSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserArchSiteSubscription>;
+export const GetFoodTypesDocument = gql`
+    subscription getFoodTypes {
+  RestaurantFoodType(where: {isDeleted: {_eq: false}}) {
+    type
+    restaurantFoodTypeID
+  }
+}
+    `;
+export type GetFoodTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetFoodTypesSubscription, GetFoodTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetFoodTypesComponent = (props: GetFoodTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetFoodTypesSubscription, GetFoodTypesSubscriptionVariables> subscription={GetFoodTypesDocument} {...props} />
+    );
+    
+export type GetFoodTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodTypesSubscription, GetFoodTypesSubscriptionVariables> & TChildProps;
+export function withGetFoodTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetFoodTypesSubscription,
+  GetFoodTypesSubscriptionVariables,
+  GetFoodTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetFoodTypesSubscription, GetFoodTypesSubscriptionVariables, GetFoodTypesProps<TChildProps>>(GetFoodTypesDocument, {
+      alias: 'getFoodTypes',
+      ...operationOptions
+    });
+};
+export type GetFoodTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetFoodTypesSubscription>;
+export const GetRestaurantTypesDocument = gql`
+    subscription getRestaurantTypes {
+  RestaurantType(where: {isDeleted: {_eq: false}}) {
+    type
+    restaurantTypeID
+  }
+}
+    `;
+export type GetRestaurantTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetRestaurantTypesSubscription, GetRestaurantTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetRestaurantTypesComponent = (props: GetRestaurantTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetRestaurantTypesSubscription, GetRestaurantTypesSubscriptionVariables> subscription={GetRestaurantTypesDocument} {...props} />
+    );
+    
+export type GetRestaurantTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRestaurantTypesSubscription, GetRestaurantTypesSubscriptionVariables> & TChildProps;
+export function withGetRestaurantTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRestaurantTypesSubscription,
+  GetRestaurantTypesSubscriptionVariables,
+  GetRestaurantTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetRestaurantTypesSubscription, GetRestaurantTypesSubscriptionVariables, GetRestaurantTypesProps<TChildProps>>(GetRestaurantTypesDocument, {
+      alias: 'getRestaurantTypes',
+      ...operationOptions
+    });
+};
+export type GetRestaurantTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetRestaurantTypesSubscription>;
+export const GetUserCompanyDocument = gql`
+    subscription getUserCompany($userID: Int) {
+  Company(where: {isDeleted: {_eq: false}, CompanyUsers: {userID: {_eq: $userID}}}) {
+    companyID
+    name
+    description
+    faxNumber
+    taxNumber
+    mail
+    registerDate
+  }
+}
+    `;
+export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserCompanySubscription, GetUserCompanySubscriptionVariables>, 'subscription'>;
+
+    export const GetUserCompanyComponent = (props: GetUserCompanyComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserCompanySubscription, GetUserCompanySubscriptionVariables> subscription={GetUserCompanyDocument} {...props} />
+    );
+    
+export type GetUserCompanyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserCompanySubscription, GetUserCompanySubscriptionVariables> & TChildProps;
+export function withGetUserCompany<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserCompanySubscription,
+  GetUserCompanySubscriptionVariables,
+  GetUserCompanyProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserCompanySubscription, GetUserCompanySubscriptionVariables, GetUserCompanyProps<TChildProps>>(GetUserCompanyDocument, {
+      alias: 'getUserCompany',
+      ...operationOptions
+    });
+};
+export type GetUserCompanySubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserCompanySubscription>;
+export const GetRoomPropertyDocument = gql`
+    subscription getRoomProperty {
+  RoomProperty(where: {isDeleted: {_eq: false}}) {
+    content
+    roomPropertyID
+  }
+}
+    `;
+export type GetRoomPropertyComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetRoomPropertySubscription, GetRoomPropertySubscriptionVariables>, 'subscription'>;
+
+    export const GetRoomPropertyComponent = (props: GetRoomPropertyComponentProps) => (
+      <ApolloReactComponents.Subscription<GetRoomPropertySubscription, GetRoomPropertySubscriptionVariables> subscription={GetRoomPropertyDocument} {...props} />
+    );
+    
+export type GetRoomPropertyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetRoomPropertySubscription, GetRoomPropertySubscriptionVariables> & TChildProps;
+export function withGetRoomProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRoomPropertySubscription,
+  GetRoomPropertySubscriptionVariables,
+  GetRoomPropertyProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetRoomPropertySubscription, GetRoomPropertySubscriptionVariables, GetRoomPropertyProps<TChildProps>>(GetRoomPropertyDocument, {
+      alias: 'getRoomProperty',
+      ...operationOptions
+    });
+};
+export type GetRoomPropertySubscriptionResult = ApolloReactCommon.SubscriptionResult<GetRoomPropertySubscription>;
+export const GetUserHotelDocument = gql`
+    subscription getUserHotel($userID: Int!) {
+  Hotel(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    hotelID
+    name
+    description
+    star
+    Company {
+      name
+    }
+  }
+}
+    `;
+export type GetUserHotelComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserHotelSubscription, GetUserHotelSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserHotelComponent = (props: GetUserHotelComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserHotelSubscription, GetUserHotelSubscriptionVariables> subscription={GetUserHotelDocument} {...props} />
+    );
+    
+export type GetUserHotelProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserHotelSubscription, GetUserHotelSubscriptionVariables> & TChildProps;
+export function withGetUserHotel<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserHotelSubscription,
+  GetUserHotelSubscriptionVariables,
+  GetUserHotelProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserHotelSubscription, GetUserHotelSubscriptionVariables, GetUserHotelProps<TChildProps>>(GetUserHotelDocument, {
+      alias: 'getUserHotel',
+      ...operationOptions
+    });
+};
+export type GetUserHotelSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserHotelSubscription>;
+export const GetUserArticleDocument = gql`
+    subscription getUserArticle($userID: Int) {
+  Article(where: {isDeleted: {_eq: false}, ArticleUsers: {userID: {_eq: $userID}}}) {
+    articleID
+    content
+    title
+  }
+}
+    `;
+export type GetUserArticleComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserArticleSubscription, GetUserArticleSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserArticleComponent = (props: GetUserArticleComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserArticleSubscription, GetUserArticleSubscriptionVariables> subscription={GetUserArticleDocument} {...props} />
+    );
+    
+export type GetUserArticleProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserArticleSubscription, GetUserArticleSubscriptionVariables> & TChildProps;
+export function withGetUserArticle<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserArticleSubscription,
+  GetUserArticleSubscriptionVariables,
+  GetUserArticleProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserArticleSubscription, GetUserArticleSubscriptionVariables, GetUserArticleProps<TChildProps>>(GetUserArticleDocument, {
+      alias: 'getUserArticle',
+      ...operationOptions
+    });
+};
+export type GetUserArticleSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserArticleSubscription>;
+export const GetHotelServicePropertyDocument = gql`
+    subscription getHotelServiceProperty {
+  HotelServiceProperty(where: {isDeleted: {_eq: false}}) {
+    content
+    hotelServicePropertyID
+  }
+}
+    `;
+export type GetHotelServicePropertyComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetHotelServicePropertySubscription, GetHotelServicePropertySubscriptionVariables>, 'subscription'>;
+
+    export const GetHotelServicePropertyComponent = (props: GetHotelServicePropertyComponentProps) => (
+      <ApolloReactComponents.Subscription<GetHotelServicePropertySubscription, GetHotelServicePropertySubscriptionVariables> subscription={GetHotelServicePropertyDocument} {...props} />
+    );
+    
+export type GetHotelServicePropertyProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicePropertySubscription, GetHotelServicePropertySubscriptionVariables> & TChildProps;
+export function withGetHotelServiceProperty<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelServicePropertySubscription,
+  GetHotelServicePropertySubscriptionVariables,
+  GetHotelServicePropertyProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetHotelServicePropertySubscription, GetHotelServicePropertySubscriptionVariables, GetHotelServicePropertyProps<TChildProps>>(GetHotelServicePropertyDocument, {
+      alias: 'getHotelServiceProperty',
+      ...operationOptions
+    });
+};
+export type GetHotelServicePropertySubscriptionResult = ApolloReactCommon.SubscriptionResult<GetHotelServicePropertySubscription>;
+export const GetHotelRoomDocument = gql`
+    subscription getHotelRoom($hotelID: Int!) {
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
+    roomID
+    Room {
+      roomNo
+    }
+  }
+}
+    `;
+export type GetHotelRoomComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetHotelRoomSubscription, GetHotelRoomSubscriptionVariables>, 'subscription'>;
+
+    export const GetHotelRoomComponent = (props: GetHotelRoomComponentProps) => (
+      <ApolloReactComponents.Subscription<GetHotelRoomSubscription, GetHotelRoomSubscriptionVariables> subscription={GetHotelRoomDocument} {...props} />
+    );
+    
+export type GetHotelRoomProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomSubscription, GetHotelRoomSubscriptionVariables> & TChildProps;
+export function withGetHotelRoom<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomSubscription,
+  GetHotelRoomSubscriptionVariables,
+  GetHotelRoomProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetHotelRoomSubscription, GetHotelRoomSubscriptionVariables, GetHotelRoomProps<TChildProps>>(GetHotelRoomDocument, {
+      alias: 'getHotelRoom',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetHotelRoomSubscription>;
+export const GetArchSiteTypesDocument = gql`
+    subscription GetArchSiteTypes {
+  ArchSiteType(where: {isDeleted: {_eq: false}}) {
+    name
+    archSiteTypeID
+  }
+}
+    `;
+export type GetArchSiteTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetArchSiteTypesSubscription, GetArchSiteTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetArchSiteTypesComponent = (props: GetArchSiteTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetArchSiteTypesSubscription, GetArchSiteTypesSubscriptionVariables> subscription={GetArchSiteTypesDocument} {...props} />
+    );
+    
+export type GetArchSiteTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteTypesSubscription, GetArchSiteTypesSubscriptionVariables> & TChildProps;
+export function withGetArchSiteTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteTypesSubscription,
+  GetArchSiteTypesSubscriptionVariables,
+  GetArchSiteTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetArchSiteTypesSubscription, GetArchSiteTypesSubscriptionVariables, GetArchSiteTypesProps<TChildProps>>(GetArchSiteTypesDocument, {
+      alias: 'getArchSiteTypes',
+      ...operationOptions
+    });
+};
+export type GetArchSiteTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetArchSiteTypesSubscription>;
+export const GetCuisineTypesDocument = gql`
+    subscription getCuisineTypes {
+  RestaurantCuisineType(where: {isDeleted: {_eq: false}}) {
+    name
+    restaurantCuisineTypeID
+  }
+}
+    `;
+export type GetCuisineTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetCuisineTypesSubscription, GetCuisineTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetCuisineTypesComponent = (props: GetCuisineTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetCuisineTypesSubscription, GetCuisineTypesSubscriptionVariables> subscription={GetCuisineTypesDocument} {...props} />
+    );
+    
+export type GetCuisineTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetCuisineTypesSubscription, GetCuisineTypesSubscriptionVariables> & TChildProps;
+export function withGetCuisineTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCuisineTypesSubscription,
+  GetCuisineTypesSubscriptionVariables,
+  GetCuisineTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetCuisineTypesSubscription, GetCuisineTypesSubscriptionVariables, GetCuisineTypesProps<TChildProps>>(GetCuisineTypesDocument, {
+      alias: 'getCuisineTypes',
+      ...operationOptions
+    });
+};
+export type GetCuisineTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetCuisineTypesSubscription>;
+export const GetMuseumTypesDocument = gql`
+    subscription getMuseumTypes {
+  MuseumType(where: {isDeleted: {_eq: false}}) {
+    museumTypeID
+    type
+  }
+}
+    `;
+export type GetMuseumTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetMuseumTypesSubscription, GetMuseumTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetMuseumTypesComponent = (props: GetMuseumTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetMuseumTypesSubscription, GetMuseumTypesSubscriptionVariables> subscription={GetMuseumTypesDocument} {...props} />
+    );
+    
+export type GetMuseumTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumTypesSubscription, GetMuseumTypesSubscriptionVariables> & TChildProps;
+export function withGetMuseumTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetMuseumTypesSubscription,
+  GetMuseumTypesSubscriptionVariables,
+  GetMuseumTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetMuseumTypesSubscription, GetMuseumTypesSubscriptionVariables, GetMuseumTypesProps<TChildProps>>(GetMuseumTypesDocument, {
+      alias: 'getMuseumTypes',
+      ...operationOptions
+    });
+};
+export type GetMuseumTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetMuseumTypesSubscription>;
+export const GetUserMuseumDocument = gql`
+    subscription getUserMuseum($userID: Int) {
+  Museum(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    Company {
+      name
+    }
+    description
+    name
+    museumID
+  }
+}
+    `;
+export type GetUserMuseumComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserMuseumSubscription, GetUserMuseumSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserMuseumComponent = (props: GetUserMuseumComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserMuseumSubscription, GetUserMuseumSubscriptionVariables> subscription={GetUserMuseumDocument} {...props} />
+    );
+    
+export type GetUserMuseumProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserMuseumSubscription, GetUserMuseumSubscriptionVariables> & TChildProps;
+export function withGetUserMuseum<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserMuseumSubscription,
+  GetUserMuseumSubscriptionVariables,
+  GetUserMuseumProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserMuseumSubscription, GetUserMuseumSubscriptionVariables, GetUserMuseumProps<TChildProps>>(GetUserMuseumDocument, {
+      alias: 'getUserMuseum',
+      ...operationOptions
+    });
+};
+export type GetUserMuseumSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserMuseumSubscription>;
+export const GetUserRestaurantDocument = gql`
+    subscription getUserRestaurant($userID: Int) {
+  Restaurant(where: {isDeleted: {_eq: false}, Company: {CompanyUsers: {userID: {_eq: $userID}}}}) {
+    restaurantID
+    name
+    star
+    Company {
+      name
+    }
+  }
+}
+    `;
+export type GetUserRestaurantComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserRestaurantSubscription, GetUserRestaurantSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserRestaurantComponent = (props: GetUserRestaurantComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserRestaurantSubscription, GetUserRestaurantSubscriptionVariables> subscription={GetUserRestaurantDocument} {...props} />
+    );
+    
+export type GetUserRestaurantProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserRestaurantSubscription, GetUserRestaurantSubscriptionVariables> & TChildProps;
+export function withGetUserRestaurant<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserRestaurantSubscription,
+  GetUserRestaurantSubscriptionVariables,
+  GetUserRestaurantProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserRestaurantSubscription, GetUserRestaurantSubscriptionVariables, GetUserRestaurantProps<TChildProps>>(GetUserRestaurantDocument, {
+      alias: 'getUserRestaurant',
+      ...operationOptions
+    });
+};
+export type GetUserRestaurantSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserRestaurantSubscription>;
+export const GetArchSiteEntranceTypesDocument = gql`
+    subscription getArchSiteEntranceTypes {
+  ArchSiteEntranceType(where: {isDeleted: {_eq: false}}) {
+    archSiteEntranceTypeID
+    content
+  }
+}
+    `;
+export type GetArchSiteEntranceTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetArchSiteEntranceTypesSubscription, GetArchSiteEntranceTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetArchSiteEntranceTypesComponent = (props: GetArchSiteEntranceTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetArchSiteEntranceTypesSubscription, GetArchSiteEntranceTypesSubscriptionVariables> subscription={GetArchSiteEntranceTypesDocument} {...props} />
+    );
+    
+export type GetArchSiteEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetArchSiteEntranceTypesSubscription, GetArchSiteEntranceTypesSubscriptionVariables> & TChildProps;
+export function withGetArchSiteEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetArchSiteEntranceTypesSubscription,
+  GetArchSiteEntranceTypesSubscriptionVariables,
+  GetArchSiteEntranceTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetArchSiteEntranceTypesSubscription, GetArchSiteEntranceTypesSubscriptionVariables, GetArchSiteEntranceTypesProps<TChildProps>>(GetArchSiteEntranceTypesDocument, {
+      alias: 'getArchSiteEntranceTypes',
+      ...operationOptions
+    });
+};
+export type GetArchSiteEntranceTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetArchSiteEntranceTypesSubscription>;
+export const GetMuseumEntranceTypesDocument = gql`
+    subscription getMuseumEntranceTypes {
+  MuseumEntranceType(where: {isDeleted: {_eq: false}}) {
+    content
+    museumEntranceTypeID
+  }
+}
+    `;
+export type GetMuseumEntranceTypesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetMuseumEntranceTypesSubscription, GetMuseumEntranceTypesSubscriptionVariables>, 'subscription'>;
+
+    export const GetMuseumEntranceTypesComponent = (props: GetMuseumEntranceTypesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetMuseumEntranceTypesSubscription, GetMuseumEntranceTypesSubscriptionVariables> subscription={GetMuseumEntranceTypesDocument} {...props} />
+    );
+    
+export type GetMuseumEntranceTypesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetMuseumEntranceTypesSubscription, GetMuseumEntranceTypesSubscriptionVariables> & TChildProps;
+export function withGetMuseumEntranceTypes<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetMuseumEntranceTypesSubscription,
+  GetMuseumEntranceTypesSubscriptionVariables,
+  GetMuseumEntranceTypesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetMuseumEntranceTypesSubscription, GetMuseumEntranceTypesSubscriptionVariables, GetMuseumEntranceTypesProps<TChildProps>>(GetMuseumEntranceTypesDocument, {
+      alias: 'getMuseumEntranceTypes',
+      ...operationOptions
+    });
+};
+export type GetMuseumEntranceTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetMuseumEntranceTypesSubscription>;
+export const GetFoodDocument = gql`
+    subscription getFood {
+  RestaurantFood(where: {isDeleted: {_eq: false}}) {
+    name
+    restaurantFoodID
+  }
+}
+    `;
+export type GetFoodComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetFoodSubscription, GetFoodSubscriptionVariables>, 'subscription'>;
+
+    export const GetFoodComponent = (props: GetFoodComponentProps) => (
+      <ApolloReactComponents.Subscription<GetFoodSubscription, GetFoodSubscriptionVariables> subscription={GetFoodDocument} {...props} />
+    );
+    
+export type GetFoodProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetFoodSubscription, GetFoodSubscriptionVariables> & TChildProps;
+export function withGetFood<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetFoodSubscription,
+  GetFoodSubscriptionVariables,
+  GetFoodProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetFoodSubscription, GetFoodSubscriptionVariables, GetFoodProps<TChildProps>>(GetFoodDocument, {
+      alias: 'getFood',
+      ...operationOptions
+    });
+};
+export type GetFoodSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetFoodSubscription>;
+export const GetTagsDocument = gql`
+    subscription getTags {
+  Tag {
+    name
+    tagID
+  }
+}
+    `;
+export type GetTagsComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetTagsSubscription, GetTagsSubscriptionVariables>, 'subscription'>;
+
+    export const GetTagsComponent = (props: GetTagsComponentProps) => (
+      <ApolloReactComponents.Subscription<GetTagsSubscription, GetTagsSubscriptionVariables> subscription={GetTagsDocument} {...props} />
+    );
+    
+export type GetTagsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetTagsSubscription, GetTagsSubscriptionVariables> & TChildProps;
+export function withGetTags<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetTagsSubscription,
+  GetTagsSubscriptionVariables,
+  GetTagsProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetTagsSubscription, GetTagsSubscriptionVariables, GetTagsProps<TChildProps>>(GetTagsDocument, {
+      alias: 'getTags',
+      ...operationOptions
+    });
+};
+export type GetTagsSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetTagsSubscription>;
+export const GetHotelListInfoDocument = gql`
+    subscription getHotelListInfo {
+  Hotel(where: {isDeleted: {_eq: false}}) {
+    description
+    name
+    star
+    Company {
+      name
+    }
+  }
+}
+    `;
+export type GetHotelListInfoComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetHotelListInfoSubscription, GetHotelListInfoSubscriptionVariables>, 'subscription'>;
+
+    export const GetHotelListInfoComponent = (props: GetHotelListInfoComponentProps) => (
+      <ApolloReactComponents.Subscription<GetHotelListInfoSubscription, GetHotelListInfoSubscriptionVariables> subscription={GetHotelListInfoDocument} {...props} />
+    );
+    
+export type GetHotelListInfoProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelListInfoSubscription, GetHotelListInfoSubscriptionVariables> & TChildProps;
+export function withGetHotelListInfo<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelListInfoSubscription,
+  GetHotelListInfoSubscriptionVariables,
+  GetHotelListInfoProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetHotelListInfoSubscription, GetHotelListInfoSubscriptionVariables, GetHotelListInfoProps<TChildProps>>(GetHotelListInfoDocument, {
+      alias: 'getHotelListInfo',
+      ...operationOptions
+    });
+};
+export type GetHotelListInfoSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetHotelListInfoSubscription>;
+export const GetHotelServicesDocument = gql`
+    subscription getHotelServices($hotelID: Int) {
+  HotelService(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
+    HotelServiceProperty {
+      content
+    }
+  }
+}
+    `;
+export type GetHotelServicesComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetHotelServicesSubscription, GetHotelServicesSubscriptionVariables>, 'subscription'>;
+
+    export const GetHotelServicesComponent = (props: GetHotelServicesComponentProps) => (
+      <ApolloReactComponents.Subscription<GetHotelServicesSubscription, GetHotelServicesSubscriptionVariables> subscription={GetHotelServicesDocument} {...props} />
+    );
+    
+export type GetHotelServicesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelServicesSubscription, GetHotelServicesSubscriptionVariables> & TChildProps;
+export function withGetHotelServices<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelServicesSubscription,
+  GetHotelServicesSubscriptionVariables,
+  GetHotelServicesProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetHotelServicesSubscription, GetHotelServicesSubscriptionVariables, GetHotelServicesProps<TChildProps>>(GetHotelServicesDocument, {
+      alias: 'getHotelServices',
+      ...operationOptions
+    });
+};
+export type GetHotelServicesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetHotelServicesSubscription>;
+export const GetHotelRoomsDocument = gql`
+    subscription getHotelRooms($hotelID: Int) {
+  HotelRoom(where: {hotelID: {_eq: $hotelID}, isDeleted: {_eq: false}}) {
+    Room {
+      roomNo
+      RoomPrices {
+        price
+      }
+      RoomPropertyRooms {
+        RoomProperty {
+          content
+        }
+      }
+      roomID
+    }
+  }
+}
+    `;
+export type GetHotelRoomsComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetHotelRoomsSubscription, GetHotelRoomsSubscriptionVariables>, 'subscription'>;
+
+    export const GetHotelRoomsComponent = (props: GetHotelRoomsComponentProps) => (
+      <ApolloReactComponents.Subscription<GetHotelRoomsSubscription, GetHotelRoomsSubscriptionVariables> subscription={GetHotelRoomsDocument} {...props} />
+    );
+    
+export type GetHotelRoomsProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetHotelRoomsSubscription, GetHotelRoomsSubscriptionVariables> & TChildProps;
+export function withGetHotelRooms<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetHotelRoomsSubscription,
+  GetHotelRoomsSubscriptionVariables,
+  GetHotelRoomsProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetHotelRoomsSubscription, GetHotelRoomsSubscriptionVariables, GetHotelRoomsProps<TChildProps>>(GetHotelRoomsDocument, {
+      alias: 'getHotelRooms',
+      ...operationOptions
+    });
+};
+export type GetHotelRoomsSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetHotelRoomsSubscription>;
+export const GetUserTravelGuideDocument = gql`
+    subscription getUserTravelGuide($userID: Int!) {
+  TravelGuide(where: {userID: {_eq: $userID}, isDeleted: {_eq: false}}) {
+    title
+    travelGuideID
+    cost
+    creationDate
+  }
+}
+    `;
+export type GetUserTravelGuideComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserTravelGuideSubscription, GetUserTravelGuideSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserTravelGuideComponent = (props: GetUserTravelGuideComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserTravelGuideSubscription, GetUserTravelGuideSubscriptionVariables> subscription={GetUserTravelGuideDocument} {...props} />
+    );
+    
+export type GetUserTravelGuideProps<TChildProps = {}> = ApolloReactHoc.DataProps<GetUserTravelGuideSubscription, GetUserTravelGuideSubscriptionVariables> & TChildProps;
+export function withGetUserTravelGuide<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserTravelGuideSubscription,
+  GetUserTravelGuideSubscriptionVariables,
+  GetUserTravelGuideProps<TChildProps>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserTravelGuideSubscription, GetUserTravelGuideSubscriptionVariables, GetUserTravelGuideProps<TChildProps>>(GetUserTravelGuideDocument, {
+      alias: 'getUserTravelGuide',
+      ...operationOptions
+    });
+};
+export type GetUserTravelGuideSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserTravelGuideSubscription>;
