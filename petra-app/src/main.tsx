@@ -188,6 +188,7 @@ const DrawerContent = ({ navigation, state }) => {
 function DrawerNavigator() {
 	return (
 		<Drawer.Navigator
+			drawerStyle={{ paddingTop: 25 }}
 			screenOptions={{ gestureEnabled: false }}
 			initialRouteName="HomeScreen"
 			drawerContent={(props) => <DrawerContent {...props} />}
