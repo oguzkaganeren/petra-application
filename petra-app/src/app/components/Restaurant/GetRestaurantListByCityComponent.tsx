@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, Spinner } from '@ui-kitten/components';
 import { GetRestaurantByCityComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
 
@@ -55,7 +55,7 @@ const GetRestaurantListByCityComponent: React.FC<GetRestaurantListByCityProps> =
 		<Layout style={{ flex: 1 }}>
 			<GetRestaurantByCityComponent variables={restaurantVariable}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

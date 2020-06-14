@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetArchSiteTypesComponent } from '../../generated/components';
 
@@ -8,7 +8,7 @@ export interface GetASTypesProps {
 	parentReference: any;
 }
 
-const GetASTypesComponent: React.FC<GetASTypesProps> = props => {
+const GetASTypesComponent: React.FC<GetASTypesProps> = (props) => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
@@ -23,13 +23,13 @@ const GetASTypesComponent: React.FC<GetASTypesProps> = props => {
 		<Layout>
 			<GetArchSiteTypesComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.ArchSiteType.map(dat => {
+						data.ArchSiteType.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.archSiteTypeID)) {
+								if (datam.every((item) => item.id !== dat.archSiteTypeID)) {
 									datam.push({ id: dat.archSiteTypeID, text: dat.name });
 								}
 							} else {
@@ -43,7 +43,7 @@ const GetASTypesComponent: React.FC<GetASTypesProps> = props => {
 								placeholder={props.label}
 								multiSelect={true}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

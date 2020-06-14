@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, Calendar, List } from '@ui-kitten/components';
+import { Button, Layout, ButtonGroup, Text, Calendar, Spinner } from '@ui-kitten/components';
 import { GetMuseumByIdComponent } from '../../../generated/components';
 
 declare var global: any;
@@ -91,7 +91,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetMuseumByIdComponent variables={{ museumID: museumID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { Button, Text, Icon, Layout } from '@ui-kitten/components';
+import { Button, Text, Spinner, Layout } from '@ui-kitten/components';
 import { GetArchSiteLocationComponent } from '../../generated/components';
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -28,7 +28,7 @@ const ASLocationComponent: React.FC<ArchSiteLocationProps> = (props) => {
 		<Layout>
 			<GetArchSiteLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

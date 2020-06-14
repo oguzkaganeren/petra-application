@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetArchSiteEntranceTypesComponent } from '../../generated/components';
 
@@ -23,7 +23,7 @@ const GetASEntranceTypesComponent: React.FC<GetASEntranceTypesProps> = (props) =
 		<Layout style={props.style}>
 			<GetArchSiteEntranceTypesComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

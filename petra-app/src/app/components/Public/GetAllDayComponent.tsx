@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetDayComponent } from '../../generated/components';
 
@@ -8,7 +8,7 @@ export interface GetAllDayProps {
 	parentReference: any;
 }
 
-const GetAllDayComponent: React.FC<GetAllDayProps> = props => {
+const GetAllDayComponent: React.FC<GetAllDayProps> = (props) => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -22,13 +22,13 @@ const GetAllDayComponent: React.FC<GetAllDayProps> = props => {
 		<Layout>
 			<GetDayComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Day.map(dat => {
+						data.Day.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.dayID)) {
+								if (datam.every((item) => item.id !== dat.dayID)) {
 									datam.push({ id: dat.dayID, text: dat.name });
 								}
 							} else {
@@ -41,7 +41,7 @@ const GetAllDayComponent: React.FC<GetAllDayProps> = props => {
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

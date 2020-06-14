@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetFoodComponent } from '../../generated/components';
 
@@ -7,7 +7,7 @@ export interface GetAllFoodProps {
 	label: string;
 	parentReference: any;
 }
-const GetAllFoodComponent: React.FC<GetAllFoodProps> = props => {
+const GetAllFoodComponent: React.FC<GetAllFoodProps> = (props) => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
@@ -24,13 +24,13 @@ const GetAllFoodComponent: React.FC<GetAllFoodProps> = props => {
 		<Layout>
 			<GetFoodComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RestaurantFood.map(dat => {
+						data.RestaurantFood.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.restaurantFoodID !== dat.restaurantFoodID)) {
+								if (datam.every((item) => item.restaurantFoodID !== dat.restaurantFoodID)) {
 									datam.push({ restaurantFoodID: dat.restaurantFoodID, text: dat.name });
 								}
 							} else {
@@ -43,7 +43,7 @@ const GetAllFoodComponent: React.FC<GetAllFoodProps> = props => {
 								placeholder={props.label}
 								multiSelect={true}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

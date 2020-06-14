@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, Calendar, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, Calendar, Text, ListItem, List, Spinner } from '@ui-kitten/components';
 import { GetRestaurantByIdComponent } from '../../../generated/components';
 import { GetRestaurantMenuByResIdComponent } from '../../../generated/components';
 import StarRating from 'react-native-star-rating';
@@ -67,7 +67,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1, padding: 40 }}>
 			<GetRestaurantByIdComponent variables={{ restaurantID: restaurantID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
@@ -122,7 +122,7 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 			</GetRestaurantByIdComponent>
 			<GetRestaurantMenuByResIdComponent variables={{ restaurantID: restaurantID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

@@ -45,17 +45,10 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							address: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							address: Yup.string().min(5, 'Too Short!').required('Required'),
 							altitude: Yup.number().required('Required'),
-							description: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							description: Yup.string().min(5, 'Too Short!').required('Required'),
 							travelTime: Yup.number().required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
@@ -107,7 +100,7 @@ const EditMuseumScreen: React.FC<EditMuseumProps> = (props) => {
 								{oneTimeRun && (
 									<GetMuseumByIdComponent variables={{ museumID: museumID }}>
 										{({ loading, error, data }) => {
-											if (loading) return <Text>Loading</Text>;
+											if (loading) return <Spinner size="giant" />;
 											if (error) return <Text>error</Text>;
 
 											if (data) {

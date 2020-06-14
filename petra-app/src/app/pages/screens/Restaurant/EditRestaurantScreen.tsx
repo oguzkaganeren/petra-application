@@ -47,17 +47,9 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							taxNumber: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							address: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							address: Yup.string().min(5, 'Too Short!').required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
 						})}
@@ -109,7 +101,7 @@ const EditRestaurantScreen: React.FC<EditRestaurantProps> = (props) => {
 								{oneTimeRun && (
 									<GetRestaurantByIdComponent variables={{ restaurantID: restaurantID }}>
 										{({ loading, error, data }) => {
-											if (loading) return <Text>Loading</Text>;
+											if (loading) return <Spinner size="giant" />;
 											if (error) return <Text>error</Text>;
 
 											if (data) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetRestaurantTypesComponent } from '../../generated/components';
 
@@ -8,7 +8,7 @@ export interface GetAllRestaurantTypesProps {
 	parentReference: any;
 }
 
-const GetAllRestaurantTypesComponent: React.FC<GetAllRestaurantTypesProps> = props => {
+const GetAllRestaurantTypesComponent: React.FC<GetAllRestaurantTypesProps> = (props) => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -22,13 +22,13 @@ const GetAllRestaurantTypesComponent: React.FC<GetAllRestaurantTypesProps> = pro
 		<Layout>
 			<GetRestaurantTypesComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RestaurantType.map(dat => {
+						data.RestaurantType.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.restaurantTypeID)) {
+								if (datam.every((item) => item.id !== dat.restaurantTypeID)) {
 									datam.push({ id: dat.restaurantTypeID, text: dat.type });
 								}
 							} else {
@@ -40,7 +40,7 @@ const GetAllRestaurantTypesComponent: React.FC<GetAllRestaurantTypesProps> = pro
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

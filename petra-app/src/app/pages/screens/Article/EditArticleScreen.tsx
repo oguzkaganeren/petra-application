@@ -33,10 +33,7 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							title: Yup.string()
-								.min(1, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
+							title: Yup.string().min(1, 'Too Short!').max(50, 'Too Long!').required('Required'),
 						})}
 						//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 						onSubmit={(values, formikActions) => {
@@ -74,7 +71,7 @@ const EditArticleScreen: React.FC<EditArticleProps> = (props) => {
 								{oneTimeRun && (
 									<GetArticleByIdComponent variables={{ articleID: articleID }}>
 										{({ loading, error, data }) => {
-											if (loading) return <Text>Loading</Text>;
+											if (loading) return <Spinner size="giant" />;
 											if (error) return <Text>error</Text>;
 
 											if (data) {

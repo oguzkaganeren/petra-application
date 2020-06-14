@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { GetRoomPropertyComponent } from '../../generated/components';
 
 export interface GetAllRoomPropertyProps {
@@ -8,7 +8,7 @@ export interface GetAllRoomPropertyProps {
 	parentReference: any;
 }
 
-const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => {
+const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = (props) => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
@@ -23,13 +23,13 @@ const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => 
 		<Layout>
 			<GetRoomPropertyComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.RoomProperty.map(dat => {
+						data.RoomProperty.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.roomPropertyID !== dat.roomPropertyID)) {
+								if (datam.every((item) => item.roomPropertyID !== dat.roomPropertyID)) {
 									datam.push({ roomPropertyID: dat.roomPropertyID, text: dat.content });
 								}
 							} else {
@@ -42,7 +42,7 @@ const GetAllRoomPropertyComponent: React.FC<GetAllRoomPropertyProps> = props => 
 								placeholder={props.label}
 								multiSelect={true}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

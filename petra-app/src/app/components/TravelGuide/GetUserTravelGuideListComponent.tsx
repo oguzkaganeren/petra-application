@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, View } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal, Spinner } from '@ui-kitten/components';
 import { GetUserTravelGuideComponent } from '../../generated/components';
 import { DeleteTravelGuideComponent } from '../../generated/components';
 import * as Linking from 'expo-linking';
@@ -157,7 +157,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 		<Layout style={{ flex: 1 }}>
 			<GetUserTravelGuideComponent variables={{ userID: global.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

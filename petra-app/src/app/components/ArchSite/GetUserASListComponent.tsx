@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text, Modal, ButtonGroup } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, Modal, ButtonGroup, Spinner } from '@ui-kitten/components';
 import { GetUserArchSiteComponent } from '../../generated/components';
 import { DeleteArchSiteComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
@@ -155,7 +155,7 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 		<Layout style={{ flex: 1 }}>
 			<GetUserArchSiteComponent variables={{ userID: global.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

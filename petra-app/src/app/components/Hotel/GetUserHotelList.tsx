@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal, Spinner } from '@ui-kitten/components';
 import { GetUserHotelComponent } from '../../generated/components';
 import { DeleteHotelComponent } from '../../generated/components';
 import StarRating from 'react-native-star-rating';
@@ -153,7 +153,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 		<Layout style={{ flex: 1 }}>
 			<GetUserHotelComponent variables={{ userID: global.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

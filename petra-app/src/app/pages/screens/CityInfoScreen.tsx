@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, ButtonGroup, Text, ListItem, Spinner } from '@ui-kitten/components';
 import { GetCityByIdComponent } from '../../generated/components';
 declare var global: any;
 
@@ -17,7 +17,7 @@ const CityInfoScreen: React.FC<CityInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1 }}>
 			<GetCityByIdComponent variables={{ cityID: cityID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

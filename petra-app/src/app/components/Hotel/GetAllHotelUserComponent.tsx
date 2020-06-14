@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetUserHotelComponent } from '../../generated/components';
 
@@ -9,7 +9,7 @@ export interface GetAllHotelUserProps {
 	userID: number;
 }
 
-const GetAllHotelUserComponent: React.FC<GetAllHotelUserProps> = props => {
+const GetAllHotelUserComponent: React.FC<GetAllHotelUserProps> = (props) => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
@@ -23,13 +23,13 @@ const GetAllHotelUserComponent: React.FC<GetAllHotelUserProps> = props => {
 		<Layout>
 			<GetUserHotelComponent variables={{ userID: this.props.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Hotel.map(dat => {
+						data.Hotel.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.hotelID)) {
+								if (datam.every((item) => item.id !== dat.hotelID)) {
 									datam.push({ id: dat.hotelID, text: dat.name });
 								}
 							} else {
@@ -41,7 +41,7 @@ const GetAllHotelUserComponent: React.FC<GetAllHotelUserProps> = props => {
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

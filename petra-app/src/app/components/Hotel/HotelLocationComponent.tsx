@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { Button, Text, Icon, Layout } from '@ui-kitten/components';
+import { Button, Text, Icon, Layout, Spinner } from '@ui-kitten/components';
 import { GetHotelLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
@@ -26,7 +26,7 @@ const HotelLocationComponent: React.FC<HotelLocationProps> = (props) => {
 		<Layout>
 			<GetHotelLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

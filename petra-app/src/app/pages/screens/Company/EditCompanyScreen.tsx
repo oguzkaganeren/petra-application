@@ -43,24 +43,11 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							taxNumber: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							phone: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
-							mail: Yup.string()
-								.email('Invalid email')
-								.required('Required'),
-							address: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							taxNumber: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							phone: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+							mail: Yup.string().email('Invalid email').required('Required'),
+							address: Yup.string().min(5, 'Too Short!').required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
 						})}
@@ -109,7 +96,7 @@ const EditCompanyScreen: React.FC<EditCompanyProps> = (props) => {
 								{oneTimeRun && (
 									<GetCompanyByIdComponent variables={{ companyID: companyID }}>
 										{({ loading, error, data }) => {
-											if (loading) return <Text>Loading</Text>;
+											if (loading) return <Spinner size="giant" />;
 											if (error) return <Text>error</Text>;
 
 											if (data) {

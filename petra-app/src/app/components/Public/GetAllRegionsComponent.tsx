@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetRegionsComponent } from '../../generated/components';
 
@@ -22,7 +22,7 @@ const GetAllRegionsComponent: React.FC<GetAllRegionsProps> = (props) => {
 		<Layout style={props.style}>
 			<GetRegionsComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

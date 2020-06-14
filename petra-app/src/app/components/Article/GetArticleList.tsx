@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, Image, View } from 'react-native';
-import { Icon, Card, List, Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, Dimensions, Image } from 'react-native';
+import { Icon, Card, List, Layout, Text, Spinner } from '@ui-kitten/components';
 
 import { GetArticleListComponent } from '../../generated/components';
 
@@ -30,7 +30,7 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 		<Layout style={{ flex: 1 }}>
 			<GetArticleListComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

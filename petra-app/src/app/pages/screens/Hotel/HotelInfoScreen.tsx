@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, ButtonGroup, Text, ListItem, List, Spinner } from '@ui-kitten/components';
 import { GetHotelByIdComponent } from '../../../generated/components';
 import { GetHotelServicesComponent } from '../../../generated/components';
 import { GetHotelRoomsComponent } from '../../../generated/components';
@@ -32,7 +32,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetHotelByIdComponent variables={{ hotelID: hotelID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
@@ -84,7 +84,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = (props) => {
 
 			<GetHotelServicesComponent variables={{ hotelID: hotelID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
@@ -119,7 +119,7 @@ const HotelInfoScreen: React.FC<HotelInfoScreenProps> = (props) => {
 
 			<GetHotelRoomsComponent variables={{ hotelID: hotelID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

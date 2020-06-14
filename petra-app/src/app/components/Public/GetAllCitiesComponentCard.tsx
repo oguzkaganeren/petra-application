@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet, Dimensions, View, TouchableHighlight, ImageBackground, Platform } from 'react-native';
 import { GetCitiesComponent } from '../../generated/components';
 import Carousel from 'react-native-looped-carousel';
@@ -15,7 +15,7 @@ const GetAllCitiesComponentCard: React.FC<GetAllCitiesCardProps> = (props) => {
 		<Layout>
 			<GetCitiesComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

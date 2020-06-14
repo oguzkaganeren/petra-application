@@ -29,7 +29,7 @@ const SettingScreen: React.FC<SettingProps> = (props) => {
 			<ScrollView>
 				<GetUserInfoComponent variables={{ userID: userID }}>
 					{({ loading, error, data }) => {
-						if (loading) return <Text>Loading</Text>;
+						if (loading) return <Spinner size="giant" />;
 						if (error) return <Text>error</Text>;
 
 						if (data) {
@@ -58,10 +58,7 @@ const SettingScreen: React.FC<SettingProps> = (props) => {
 										}}
 										//Burada girilen değerlerin controlleri sağlanır
 										validationSchema={Yup.object({
-											name: Yup.string()
-												.min(2, 'Too Short!')
-												.max(50, 'Too Long!')
-												.required('Required'),
+											name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
 										})}
 										//Kaydet butonuna tıklandığında bu fonksiyon çalışır
 										onSubmit={async (values, formikActions) => {

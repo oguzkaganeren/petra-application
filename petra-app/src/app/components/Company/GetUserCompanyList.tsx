@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem, Layout, Text, ButtonGroup, Modal, Spinner } from '@ui-kitten/components';
 import { GetUserCompanyComponent } from '../../generated/components';
 import { DeleteCompanyComponent } from '../../generated/components';
 import { Formik } from 'formik';
@@ -154,7 +154,7 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 		<Layout style={{ flex: 1 }}>
 			<GetUserCompanyComponent variables={{ userID: global.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

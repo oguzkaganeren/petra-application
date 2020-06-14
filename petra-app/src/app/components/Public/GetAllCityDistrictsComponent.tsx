@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetCityDistrictsComponent } from '../../generated/components';
 
@@ -9,7 +9,7 @@ export interface GetAllCityDistrictsProps {
 	cityID: number;
 }
 
-const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props => {
+const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = (props) => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -23,13 +23,13 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 		<Layout>
 			<GetCityDistrictsComponent variables={{ cityID: props.cityID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.District.map(dat => {
+						data.District.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.districtID)) {
+								if (datam.every((item) => item.id !== dat.districtID)) {
 									datam.push({ id: dat.districtID, text: dat.district });
 								}
 							} else {
@@ -41,7 +41,7 @@ const GetAllCityDistrictsComponent: React.FC<GetAllCityDistrictsProps> = props =
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

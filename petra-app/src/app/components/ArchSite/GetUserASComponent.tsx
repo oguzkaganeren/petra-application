@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetUserArchSiteComponent } from '../../generated/components';
 
@@ -9,7 +9,7 @@ export interface GetAllUserArchSiteProps {
 	userID: number;
 }
 
-const GetUserASComponent: React.FC<GetAllUserArchSiteProps> = props => {
+const GetUserASComponent: React.FC<GetAllUserArchSiteProps> = (props) => {
 	const [selected, setSelected] = React.useState(null);
 	const [datam, setDatam] = React.useState([]);
 
@@ -22,13 +22,13 @@ const GetUserASComponent: React.FC<GetAllUserArchSiteProps> = props => {
 		<Layout>
 			<GetUserArchSiteComponent variables={{ userID: this.props.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.ArchSite.map(dat => {
+						data.ArchSite.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.id !== dat.archSiteID)) {
+								if (datam.every((item) => item.id !== dat.archSiteID)) {
 									datam.push({ id: dat.archSiteID, text: dat.name });
 								}
 							} else {
@@ -40,7 +40,7 @@ const GetUserASComponent: React.FC<GetAllUserArchSiteProps> = props => {
 								data={datam}
 								placeholder={props.label}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

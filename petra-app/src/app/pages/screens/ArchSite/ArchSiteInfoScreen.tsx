@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Button, Layout, Calendar, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, Calendar, Text, ListItem, List, Spinner } from '@ui-kitten/components';
 import { GetArchSiteByIdComponent } from '../../../generated/components';
 
 declare var global: any;
@@ -89,7 +89,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1, margin: 40 }}>
 			<GetArchSiteByIdComponent variables={{ archSiteID: archSiteID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

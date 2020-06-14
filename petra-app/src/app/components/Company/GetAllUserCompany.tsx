@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetUserCompanyComponent } from '../../generated/components';
 declare var global: any;
@@ -10,7 +10,7 @@ export interface GetAllUserCompanyProps {
 	userID: number;
 }
 
-const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
+const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = (props) => {
 	const [selectedOption, setSelectedOption] = React.useState(null);
 	const [localData, setLocalData] = React.useState([]);
 
@@ -24,13 +24,13 @@ const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
 		<Layout>
 			<GetUserCompanyComponent variables={{ userID: global.userID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.Company.map(dat => {
+						data.Company.map((dat) => {
 							if (localData.length > 0) {
-								if (localData.every(item => item.id !== dat.companyID)) {
+								if (localData.every((item) => item.id !== dat.companyID)) {
 									localData.push({ id: dat.companyID, text: dat.name });
 									console.log(dat.companyID);
 								}
@@ -43,7 +43,7 @@ const GetAllUserCompany: React.FC<GetAllUserCompanyProps> = props => {
 								data={localData}
 								placeholder={props.label}
 								selectedOption={selectedOption}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

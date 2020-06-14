@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Select, Text } from '@ui-kitten/components';
+import { Layout, Select, Text, Spinner } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
 import { GetHotelServicePropertyComponent } from '../../generated/components';
 
@@ -8,7 +8,7 @@ export interface GetAllHotelServicePropertyProps {
 	parentReference: any;
 }
 
-const GetAllHotelServicePropertyComponent: React.FC<GetAllHotelServicePropertyProps> = props => {
+const GetAllHotelServicePropertyComponent: React.FC<GetAllHotelServicePropertyProps> = (props) => {
 	const [selected, setSelected] = React.useState([]);
 	const [datam, setDatam] = React.useState([]);
 
@@ -23,13 +23,13 @@ const GetAllHotelServicePropertyComponent: React.FC<GetAllHotelServicePropertyPr
 		<Layout>
 			<GetHotelServicePropertyComponent>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
-						data.HotelServiceProperty.map(dat => {
+						data.HotelServiceProperty.map((dat) => {
 							if (datam.length > 0) {
-								if (datam.every(item => item.hotelServicePropertyID !== dat.hotelServicePropertyID)) {
+								if (datam.every((item) => item.hotelServicePropertyID !== dat.hotelServicePropertyID)) {
 									datam.push({ hotelServicePropertyID: dat.hotelServicePropertyID, text: dat.content });
 								}
 							} else {
@@ -42,7 +42,7 @@ const GetAllHotelServicePropertyComponent: React.FC<GetAllHotelServicePropertyPr
 								placeholder={props.label}
 								multiSelect={true}
 								selectedOption={selected}
-								onSelect={value => onValueChange(value)}
+								onSelect={(value) => onValueChange(value)}
 							/>
 						);
 					}

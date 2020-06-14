@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { BottomNavigation, Text, Icon, Layout, Button } from '@ui-kitten/components';
+import { BottomNavigation, Text, Icon, Layout, Button, Spinner } from '@ui-kitten/components';
 import { GetRestaurantLocationComponent } from '../../generated/components';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
@@ -26,7 +26,7 @@ const RestaurantLocationComponent: React.FC<RestaurantLocationProps> = (props) =
 		<Layout>
 			<GetRestaurantLocationComponent variables={props.variables}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {

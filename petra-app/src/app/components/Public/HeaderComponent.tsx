@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Platform, View } from 'react-native';
-import { Icon, TopNavigation, TopNavigationAction, Toggle, Button } from '@ui-kitten/components';
+import { Icon, TopNavigation, TopNavigationAction, Toggle, Avatar, Text } from '@ui-kitten/components';
 import { DrawerActions } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import { ThemeContext } from '../../../ThemeContext';
@@ -43,7 +43,7 @@ const HeaderComponent: React.FC<HeaderProps> = (props) => {
 
 	const renderLeftControl = () => (props.previous ? <BackAction /> : <MenuAction onPress={onBackPress} />);
 	const renderRightControl = () => (
-		<View>
+		<View style={styles.avatarContainer}>
 			<Toggle style={styles.toggle} text="Night Mode" checked={checked} onChange={onCheckedChange} />
 		</View>
 	);
@@ -58,13 +58,14 @@ const HeaderComponent: React.FC<HeaderProps> = (props) => {
 };
 
 const styles: any = StyleSheet.create({
-	header: {
-		//paddingTop: 20,
-		// borderWidth: 0,
-		//flex: 1,
+	avatarContainer: {
+		flexDirection: 'row',
 	},
 	container: {
 		marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
+	},
+	avatar: {
+		margin: 16,
 	},
 });
 export default HeaderComponent;

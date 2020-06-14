@@ -49,25 +49,14 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 						}}
 						//Burada girilen değerlerin controlleri sağlanır
 						validationSchema={Yup.object({
-							name: Yup.string()
-								.min(2, 'Too Short!')
-								.max(50, 'Too Long!')
-								.required('Required'),
+							name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
 							age: Yup.number().required('Required'),
-							address: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							address: Yup.string().min(5, 'Too Short!').required('Required'),
 							altitude: Yup.number().required('Required'),
-							description: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
-							destruction: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							description: Yup.string().min(5, 'Too Short!').required('Required'),
+							destruction: Yup.string().min(5, 'Too Short!').required('Required'),
 							diameter: Yup.number().required('Required'),
-							period: Yup.string()
-								.min(5, 'Too Short!')
-								.required('Required'),
+							period: Yup.string().min(5, 'Too Short!').required('Required'),
 							travelTime: Yup.number().required('Required'),
 							//sadece longtitude kontrol etsem yeterli
 							longtitude: Yup.number().required('Required'),
@@ -123,7 +112,7 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 								{oneTimeRun && (
 									<GetArchSiteByIdComponent variables={{ archSiteID: archSiteID }}>
 										{({ loading, error, data }) => {
-											if (loading) return <Text>Loading</Text>;
+											if (loading) return <Spinner size="giant" />;
 											if (error) return <Text>error</Text>;
 
 											if (data) {

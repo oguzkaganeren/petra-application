@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Button, Layout, ButtonGroup, Text, ListItem, List } from '@ui-kitten/components';
+import { Button, Layout, ButtonGroup, Text, ListItem, Spinner } from '@ui-kitten/components';
 import { GetArticleByIdComponent } from '../../../generated/components';
 
 declare var global: any;
@@ -19,7 +19,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 		<Layout style={{ flex: 1, padding: 40 }}>
 			<GetArticleByIdComponent variables={{ articleID: articleID }}>
 				{({ loading, error, data }) => {
-					if (loading) return <Text>Loading</Text>;
+					if (loading) return <Spinner size="giant" />;
 					if (error) return <Text>error</Text>;
 
 					if (data) {
