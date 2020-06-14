@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, View, TouchableHighlight, ImageBackground, SafeAreaView } from 'react-native';
+import {
+	StyleSheet,
+	Dimensions,
+	View,
+	TouchableHighlight,
+	ImageBackground,
+	SafeAreaView,
+	ScrollView,
+} from 'react-native';
 import { BottomNavigation, BottomNavigationTab, TabBar, Layout, Tab, Icon } from '@ui-kitten/components';
 import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
@@ -55,7 +63,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		Linking.removeEventListener('url', _handleUrl);
 	};
 	const HomeScreenCon = () => (
-		<Layout style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' }, styles.tabContainer]}>
+		<Layout style={[{ justifyContent: 'center', alignItems: 'center' }, styles.tabContainer]}>
 			<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
 			<GetArticleList />
 		</Layout>
@@ -75,50 +83,61 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		const onSelect = (index) => {
 			navigation.navigate(state.routeNames[index]);
 		};
-
-		return (
-			<SafeAreaView>
-				<BottomNavigation
-					style={{ backgroundColor: '#222B45', height: Dimensions.get('window').height / 9 }}
-					selectedIndex={state.index}
-					indicatorStyle={{ backgroundColor: '#ffaa00' }}
-					onSelect={onSelect}
-				>
-					<BottomNavigationTab title="Explore" icon={FlagIcon} />
-					<BottomNavigationTab title="Search" icon={SearchIcon} />
-					<BottomNavigationTab title="Settings" icon={SettingsIcon} />
-				</BottomNavigation>
-			</SafeAreaView>
-		);
+		if (userID == -1) {
+			return (
+				<SafeAreaView>
+					<BottomNavigation
+						style={{ backgroundColor: '#222B45', height: Dimensions.get('window').height / 9 }}
+						selectedIndex={state.index}
+						indicatorStyle={{ backgroundColor: '#ffaa00' }}
+						onSelect={onSelect}
+					>
+						<BottomNavigationTab title="Explore" icon={FlagIcon} />
+					</BottomNavigation>
+				</SafeAreaView>
+			);
+		} else {
+			return (
+				<SafeAreaView>
+					<BottomNavigation
+						style={{ backgroundColor: '#222B45', height: Dimensions.get('window').height / 9 }}
+						selectedIndex={state.index}
+						indicatorStyle={{ backgroundColor: '#ffaa00' }}
+						onSelect={onSelect}
+					>
+						<BottomNavigationTab title="Explore" icon={FlagIcon} />
+						<BottomNavigationTab title="Search" icon={SearchIcon} />
+						<BottomNavigationTab title="Settings" icon={SettingsIcon} />
+					</BottomNavigation>
+				</SafeAreaView>
+			);
+		}
 	};
-	const TabNavigator = () => (
-		<BottomTab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
-			<BottomTab.Screen name="Explore" component={HomeScreenCon} />
-			<BottomTab.Screen name="Search" component={SearchScreenCon} />
-			<BottomTab.Screen name="Settings" component={SettingScreenCon} />
-		</BottomTab.Navigator>
-	);
-	if (userID == -1) {
-		return (
-			<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
-				<GetArticleList />
-			</Layout>
-		);
-	} else {
-		return (
-			/**
-			 * FIXME:Scroll eklee
-			 */
-			<TabNavigator />
-		);
-	}
+	const TabNavigator = () => {
+		if (userID == -1) {
+			return (
+				<BottomTab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+					<BottomTab.Screen name="Explore" component={HomeScreenCon} />
+				</BottomTab.Navigator>
+			);
+		} else {
+			return (
+				<BottomTab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+					<BottomTab.Screen name="Explore" component={HomeScreenCon} />
+					<BottomTab.Screen name="Search" component={SearchScreenCon} />
+					<BottomTab.Screen name="Settings" component={SettingScreenCon} />
+				</BottomTab.Navigator>
+			);
+		}
+	};
+
+	return <TabNavigator />;
 };
 
 const styles: any = StyleSheet.create({
 	tabContainer: {
 		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height,
+		height: Dimensions.get('window').height - Dimensions.get('window').height / 6,
 	},
 });
 export default HomeScreen;

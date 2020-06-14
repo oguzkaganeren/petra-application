@@ -10,10 +10,7 @@ export interface GetArticleListProps {}
 
 const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 	const [articleList, setArticleList] = React.useState([]);
-	function renderItemAccessory(item) {
-		return <Text appearance="hint">{item.publishDate.split('T')[0]}</Text>;
-	}
-	const renderItemIcon = (style) => <Icon {...style} name="bulb-outline" />;
+
 	const CustomHeader = (item) => (
 		<React.Fragment>
 			<Image style={styles.headerImage} source={{ uri: item.imageUrl }} />
@@ -37,6 +34,7 @@ const GetArticleList: React.FC<GetArticleListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						articleList.splice(0);
 						data.Article.map((dat) => {
 							if (articleList.length > 0) {
 								if (articleList.every((item) => item.key != dat.articleID)) {
