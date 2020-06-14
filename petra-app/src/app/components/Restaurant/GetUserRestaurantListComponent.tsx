@@ -13,12 +13,13 @@ export interface GetUserRestaurantListProps {
 }
 
 const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (props) => {
-	const [RestaurantList, setRestaurantList] = React.useState([]);
+	const [restaurantList, setRestaurantList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
-		const items = RestaurantList.filter((item, index) => Object.values(item)[0] !== key);
+		const items = restaurantList.filter((item, index) => Object.values(item)[0] !== key);
 		console.log(items);
 		setRestaurantList(items);
 	}
@@ -65,11 +66,11 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 								console.log(values.name + ' ');
 								DeleteRestaurantMutation({
 									variables: {
-										restaurantID: item.key,
+										restaurantID: deleteItem.key,
 									},
 								})
 									.then((res) => {
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -94,7 +95,14 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -149,10 +157,11 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						restaurantList.splice(0);
 						data.Restaurant.map((dat) => {
-							if (RestaurantList.length > 0 && !removeItemBool) {
-								if (RestaurantList.every((item) => item.key != dat.restaurantID)) {
-									RestaurantList.push({
+							if (restaurantList.length > 0) {
+								if (restaurantList.every((item) => item.key != dat.restaurantID)) {
+									restaurantList.push({
 										key: dat.restaurantID,
 										title: dat.name,
 										//description: dat.description == null ? '' : dat.description,
@@ -160,8 +169,8 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 										companyName: dat.Company.name,
 									});
 								}
-							} else if (!removeItemBool) {
-								RestaurantList.push({
+							} else {
+								restaurantList.push({
 									key: dat.restaurantID,
 									title: dat.name,
 									//description: dat.description == null ? '' : dat.description,
@@ -171,7 +180,7 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 							}
 						});
 					}
-					return <List data={RestaurantList} renderItem={renderItem} />;
+					return <List data={restaurantList} renderItem={renderItem} />;
 				}}
 			</GetUserRestaurantComponent>
 		</Layout>

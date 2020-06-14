@@ -16,6 +16,7 @@ export interface GetUserCompanyListProps {
 const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 	const [companyList, setCompanyList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
@@ -66,11 +67,11 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteCompanyMutation({
 									variables: {
-										companyID: item.key,
+										companyID: deleteItem.key,
 									},
 								})
 									.then((res) => {
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -95,7 +96,14 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -150,8 +158,9 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						companyList.splice(0);
 						data.Company.map((dat) => {
-							if (companyList.length > 0 && !removeItemBool) {
+							if (companyList.length > 0) {
 								if (companyList.every((item) => item.key != dat.companyID)) {
 									companyList.push({
 										key: dat.companyID,
@@ -163,7 +172,7 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 										registerDate: dat.registerDate,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								companyList.push({
 									key: dat.companyID,
 									title: dat.name,

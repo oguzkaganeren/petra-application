@@ -16,6 +16,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 	const [travelGuideList, setTravelGuideList] = React.useState([]);
 	const [redirectUrl, setRedirectUrl] = React.useState('');
 	const [tmpTitle, setTmpTitle] = React.useState('');
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	const [shareModalVisible, setShareModalVisible] = React.useState(false);
@@ -92,11 +93,11 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 									console.log(values.name + ' ');
 									DeleteTravelGuideMutation({
 										variables: {
-											travelGuideID: item.key,
+											travelGuideID: deleteItem.key,
 										},
 									})
 										.then((res) => {
-											removeItem(item.key);
+											removeItem(deleteItem.key);
 											//this.props.navigation.navigate('Home');
 										})
 										.catch((err) => {
@@ -110,7 +111,14 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 							{/* Bu kısımda görsel parçalar eklenir */}
 							{(fprops) => (
 								<Layout>
-									<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+									<Button
+										onPress={() => {
+											toggleModal();
+											setDeleteItem(item);
+										}}
+										icon={accessoryItemIcon}
+										appearance="ghost"
+									></Button>
 									<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 										{renderModalElement(fprops)}
 									</Modal>
@@ -153,8 +161,9 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						travelGuideList.splice(0);
 						data.TravelGuide.map((dat) => {
-							if (travelGuideList.length > 0 && !removeItemBool) {
+							if (travelGuideList.length > 0) {
 								if (travelGuideList.every((item) => item.key != dat.travelGuideID)) {
 									travelGuideList.push({
 										key: dat.travelGuideID,
@@ -163,7 +172,7 @@ const GetUserTravelGuideListComponent: React.FC<GetUserTravelGuideListProps> = (
 										cost: dat.cost,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								travelGuideList.push({
 									key: dat.travelGuideID,
 									title: dat.title,

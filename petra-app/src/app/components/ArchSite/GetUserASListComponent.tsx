@@ -14,6 +14,7 @@ export interface GetUserArchSiteListProps {
 
 const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 	const [archSiteList, setArchSiteList] = React.useState([]);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
@@ -27,7 +28,7 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 	};
 	const renderModalElement = (fprops) => (
 		<Layout level="3" style={styles.modalContainer}>
-			<Text>Are you sure delete the item?</Text>
+			<Text>Are you sure delete the item? </Text>
 			<ButtonGroup style={{ justifyContent: 'center' }}>
 				<Button
 					icon={accessoryItemIcon}
@@ -65,12 +66,12 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteArchSiteMutation({
 									variables: {
-										archSiteID: item.key,
+										archSiteID: deleteItem.key,
 									},
 								})
 									.then((res) => {
 										console.log(item);
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -95,7 +96,14 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -151,8 +159,9 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						archSiteList.splice(0);
 						data.ArchSite.map((dat) => {
-							if (archSiteList.length > 0 && !removeItemBool) {
+							if (archSiteList.length > 0) {
 								if (archSiteList.every((item) => item.key != dat.archSiteID)) {
 									archSiteList.push({
 										key: dat.archSiteID,
@@ -162,7 +171,7 @@ const GetUserASListComponent: React.FC<GetUserArchSiteListProps> = (props) => {
 										companyName: dat.Company.name,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								archSiteList.push({
 									key: dat.archSiteID,
 									title: dat.name,

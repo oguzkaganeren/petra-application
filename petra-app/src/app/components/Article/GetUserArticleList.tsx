@@ -15,6 +15,7 @@ export interface GetUserArticleListProps {
 const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 	const [articleList, setArticleList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
@@ -65,11 +66,11 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteArticleMutation({
 									variables: {
-										articleID: item.key,
+										articleID: deleteItem.key,
 									},
 								})
 									.then((res) => {
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -94,7 +95,14 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -148,8 +156,9 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						articleList.splice(0);
 						data.Article.map((dat) => {
-							if (articleList.length > 0 && !removeItemBool) {
+							if (articleList.length > 0) {
 								if (articleList.every((item) => item.key != dat.articleID)) {
 									articleList.push({
 										key: dat.articleID,
@@ -157,7 +166,7 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 										content: dat.content,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								articleList.push({
 									key: dat.articleID,
 									title: dat.title,

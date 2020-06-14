@@ -15,6 +15,7 @@ export interface GetUserHotelListProps {
 const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 	const [hotelList, setHotelList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
@@ -65,11 +66,11 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteHotelMutation({
 									variables: {
-										hotelID: item.key,
+										hotelID: deleteItem.key,
 									},
 								})
 									.then((res) => {
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -94,7 +95,14 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -149,8 +157,9 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						hotelList.splice(0);
 						data.Hotel.map((dat) => {
-							if (hotelList.length > 0 && !removeItemBool) {
+							if (hotelList.length > 0) {
 								if (hotelList.every((item) => item.key != dat.hotelID)) {
 									hotelList.push({
 										key: dat.hotelID,
@@ -160,7 +169,7 @@ const GetUserHotelList: React.FC<GetUserHotelListProps> = (props) => {
 										companyName: dat.Company.name,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								hotelList.push({
 									key: dat.hotelID,
 									title: dat.name,

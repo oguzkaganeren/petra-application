@@ -14,6 +14,7 @@ export interface GetUserMuseumListProps {
 const GetUserMuseumList: React.FC<GetUserMuseumListProps> = (props) => {
 	const [museumList, setMuseumList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
+	const [deleteItem, setDeleteItem] = React.useState(null);
 	const [modalVisible, setModalVisible] = React.useState(false);
 	function removeItem(key) {
 		setRemoveItemBool(true);
@@ -64,11 +65,11 @@ const GetUserMuseumList: React.FC<GetUserMuseumListProps> = (props) => {
 								console.log(values.name + ' ');
 								DeleteMuseumMutation({
 									variables: {
-										museumID: item.key,
+										museumID: deleteItem.key,
 									},
 								})
 									.then((res) => {
-										removeItem(item.key);
+										removeItem(deleteItem.key);
 										//this.props.navigation.navigate('Home');
 									})
 									.catch((err) => {
@@ -93,7 +94,14 @@ const GetUserMuseumList: React.FC<GetUserMuseumListProps> = (props) => {
 								>
 									Edit
 								</Button>
-								<Button onPress={toggleModal} icon={accessoryItemIcon} appearance="ghost"></Button>
+								<Button
+									onPress={() => {
+										toggleModal();
+										setDeleteItem(item);
+									}}
+									icon={accessoryItemIcon}
+									appearance="ghost"
+								></Button>
 								<Modal backdropStyle={styles.backdrop} onBackdropPress={toggleModal} visible={modalVisible}>
 									{renderModalElement(fprops)}
 								</Modal>
@@ -149,8 +157,9 @@ const GetUserMuseumList: React.FC<GetUserMuseumListProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						museumList.splice(0);
 						data.Museum.map((dat) => {
-							if (museumList.length > 0 && !removeItemBool) {
+							if (museumList.length > 0) {
 								if (museumList.every((item) => item.key != dat.museumID)) {
 									museumList.push({
 										key: dat.museumID,
@@ -160,7 +169,7 @@ const GetUserMuseumList: React.FC<GetUserMuseumListProps> = (props) => {
 										companyName: dat.Company.name,
 									});
 								}
-							} else if (!removeItemBool) {
+							} else {
 								museumList.push({
 									key: dat.museumID,
 									title: dat.name,
