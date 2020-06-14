@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions, View, TouchableHighlight, ImageBackground, Platform } from 'react-native';
-import { TabView, BottomNavigationTab, Layout, Text, Icon } from '@ui-kitten/components';
+import { StyleSheet, Dimensions, View, TouchableHighlight, ImageBackground, SafeAreaView } from 'react-native';
+import { BottomNavigation, BottomNavigationTab, TabBar, Layout, Tab, Icon } from '@ui-kitten/components';
 import { SearchScreen } from '../screens/Search/SearchScreen';
 import GetArticleList from '../../components/Article/GetArticleList';
+import { NavigationContainer } from '@react-navigation/native';
 import GetAllCitiesComponentCard from '../../components/Public/GetAllCitiesComponentCard';
 import SettingScreen from '../screens/SettingScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Linking from 'expo-linking';
 
 declare var global: any;
@@ -17,7 +19,7 @@ export interface HomeProps {
 const HomeScreen: React.FC<HomeProps> = (props) => {
 	const [userID, setUserID] = React.useState(-1);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+	const BottomTab = createBottomTabNavigator();
 	const shouldLoadComponent = (index) => index === selectedIndex;
 	const SearchIcon = (style) => <Icon {...style} name="search-outline" />;
 
@@ -52,6 +54,50 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 		}
 		Linking.removeEventListener('url', _handleUrl);
 	};
+	const HomeScreenCon = () => (
+		<Layout style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' }, styles.tabContainer]}>
+			<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
+			<GetArticleList />
+		</Layout>
+	);
+
+	const SearchScreenCon = () => (
+		<Layout style={styles.tabContainer}>
+			<SearchScreen navigation={props.navigation} route={props.route} />
+		</Layout>
+	);
+	const SettingScreenCon = () => (
+		<Layout style={styles.tabContainer}>
+			<SettingScreen navigation={props.navigation} />
+		</Layout>
+	);
+	const BottomTabBar = ({ navigation, state }) => {
+		const onSelect = (index) => {
+			navigation.navigate(state.routeNames[index]);
+		};
+
+		return (
+			<SafeAreaView>
+				<BottomNavigation
+					style={{ backgroundColor: '#222B45', height: Dimensions.get('window').height / 9 }}
+					selectedIndex={state.index}
+					indicatorStyle={{ backgroundColor: '#ffaa00' }}
+					onSelect={onSelect}
+				>
+					<BottomNavigationTab title="Explore" icon={FlagIcon} />
+					<BottomNavigationTab title="Search" icon={SearchIcon} />
+					<BottomNavigationTab title="Settings" icon={SettingsIcon} />
+				</BottomNavigation>
+			</SafeAreaView>
+		);
+	};
+	const TabNavigator = () => (
+		<BottomTab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+			<BottomTab.Screen name="Explore" component={HomeScreenCon} />
+			<BottomTab.Screen name="Search" component={SearchScreenCon} />
+			<BottomTab.Screen name="Settings" component={SettingScreenCon} />
+		</BottomTab.Navigator>
+	);
 	if (userID == -1) {
 		return (
 			<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -64,24 +110,7 @@ const HomeScreen: React.FC<HomeProps> = (props) => {
 			/**
 			 * FIXME:Scroll eklee
 			 */
-			<TabView selectedIndex={selectedIndex} shouldLoadComponent={shouldLoadComponent} onSelect={setSelectedIndex}>
-				<BottomNavigationTab title="Explore" icon={FlagIcon}>
-					<Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-						<GetAllCitiesComponentCard navigation={props.navigation} route={props.route} />
-						<GetArticleList />
-					</Layout>
-				</BottomNavigationTab>
-				<BottomNavigationTab title="Search" icon={SearchIcon}>
-					<Layout style={styles.tabContainer}>
-						<SearchScreen navigation={props.navigation} route={props.route} />
-					</Layout>
-				</BottomNavigationTab>
-				<BottomNavigationTab title="Settings" icon={SettingsIcon}>
-					<Layout style={styles.tabContainer}>
-						<SettingScreen navigation={props.navigation} />
-					</Layout>
-				</BottomNavigationTab>
-			</TabView>
+			<TabNavigator />
 		);
 	}
 };

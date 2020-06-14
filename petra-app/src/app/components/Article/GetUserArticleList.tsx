@@ -130,7 +130,6 @@ const GetUserArticleList: React.FC<GetUserArticleListProps> = (props) => {
 			<ListItem
 				key={item.key}
 				title={`${item.title}`}
-				description={`${item.description}`}
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {

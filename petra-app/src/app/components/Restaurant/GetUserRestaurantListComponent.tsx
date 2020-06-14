@@ -130,7 +130,6 @@ const GetUserRestaurantListComponent: React.FC<GetUserRestaurantListProps> = (pr
 			<ListItem
 				key={item.key}
 				title={`${item.title}`}
-				description={`${item.description}`}
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
