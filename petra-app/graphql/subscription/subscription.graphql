@@ -187,3 +187,179 @@ subscription getUserTravelGuide($userID: Int!) {
 		creationDate
 	}
 }
+subscription getRestaurantWorkingScheduleList($restaurantID: Int) {
+	RestaurantWorkingSchedule(where: { isDeleted: { _eq: false }, restaurantID: { _eq: $restaurantID } }) {
+		startDate
+		finishDate
+		RestaurantWorkingDaySchedules {
+			RestaurantWorkingDay {
+				Day {
+					name
+				}
+				openHour
+				closeHour
+			}
+		}
+		restaurantWorkingScheduleID
+	}
+}
+subscription getMuseumWorkingScheduleList($museumID: Int) {
+	MuseumWorkingSchedule(where: { isDeleted: { _eq: false }, museumID: { _eq: $museumID } }) {
+		startDate
+		finishDate
+		MuseumWorkingDaySchedules {
+			MuseumWorkingDay {
+				Day {
+					name
+				}
+				openHour
+				closeHour
+			}
+		}
+		museumWorkingScheduleID
+	}
+}
+subscription getArchSiteWorkingScheduleList($archSiteID: Int) {
+	ArchSiteWorkingSchedule(where: { isDeleted: { _eq: false }, archSiteID: { _eq: $archSiteID } }) {
+		startDate
+		finishDate
+		ArchSiteWorkingDaySchedules {
+			ArchSiteWorkingDay {
+				Day {
+					name
+				}
+				openHour
+				closeHour
+			}
+		}
+		archSiteWorkingScheduleID
+	}
+}
+subscription getArchSitePriceList($archSiteID: Int) {
+	ArchSitePrice(where: { isDeleted: { _eq: false }, archSiteID: { _eq: $archSiteID } }) {
+		startDate
+		finishDate
+		price
+		ArchSiteEntranceType {
+			content
+		}
+		archSitePriceID
+	}
+}
+subscription getMuseumPriceList($museumID: Int) {
+	MuseumPrice(where: { isDeleted: { _eq: false }, museumID: { _eq: $museumID } }) {
+		startDate
+		finishDate
+		price
+		MuseumEntranceType {
+			content
+		}
+		museumPriceID
+	}
+}
+subscription getMuseumByID($museumID: Int) {
+	Museum(where: { museumID: { _eq: $museumID }, isDeleted: { _eq: false } }) {
+		description
+		name
+		locationID
+		Location {
+			addressID
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
+		MuseumPrices(where: { isDeleted: { _eq: false } }) {
+			startDate
+			price
+			finishDate
+			MuseumEntranceType {
+				content
+			}
+		}
+		MuseumWorkingSchedules(where: { isDeleted: { _eq: false } }) {
+			startDate
+			finishDate
+			MuseumWorkingDaySchedules {
+				MuseumWorkingDay {
+					dayID
+					openHour
+					closeHour
+				}
+			}
+		}
+	}
+}
+
+subscription getArchSiteByID($archSiteID: Int) {
+	ArchSite(where: { archSiteID: { _eq: $archSiteID }, isDeleted: { _eq: false } }) {
+		description
+		name
+		locationID
+		Location {
+			addressID
+			Address {
+				City {
+					city
+				}
+				District {
+					district
+				}
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		Company {
+			CompanyPhones {
+				Phone {
+					phone
+				}
+			}
+		}
+		age
+		altitude
+		destruction
+		diameter
+		period
+		ArchSitePrices(where: { isDeleted: { _eq: false } }) {
+			startDate
+			price
+			finishDate
+			ArchSiteEntranceType {
+				content
+			}
+		}
+		ArchSiteWorkingSchedules(where: { isDeleted: { _eq: false } }) {
+			startDate
+			finishDate
+			ArchSiteWorkingDaySchedules {
+				ArchSiteWorkingDay {
+					dayID
+					openHour
+					closeHour
+				}
+			}
+		}
+	}
+}

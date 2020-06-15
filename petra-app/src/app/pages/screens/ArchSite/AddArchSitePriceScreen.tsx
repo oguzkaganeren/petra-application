@@ -91,7 +91,7 @@ const AddArchSitePriceScreen: React.FC<AddArchSitePriceProps> = (props) => {
 									}}
 									disabled={props.isSubmitting}
 								>
-									Add Room Price
+									Add Price
 								</Button>
 							</Layout>
 						)}

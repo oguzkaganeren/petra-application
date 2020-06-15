@@ -496,3 +496,47 @@ mutation updateUser($updateUser: User_set_input, $mail: String) {
 		}
 	}
 }
+mutation deleteRestaurantWorkingSc($restaurantWorkingScID: Int) {
+	update_RestaurantWorkingSchedule(
+		where: { restaurantWorkingScheduleID: { _eq: $restaurantWorkingScID } }
+		_set: { isDeleted: true }
+	) {
+		returning {
+			restaurantWorkingScheduleID
+		}
+	}
+}
+mutation deleteMuseumWorkingSc($museumWorkingScID: Int) {
+	update_MuseumWorkingSchedule(
+		where: { museumWorkingScheduleID: { _eq: $museumWorkingScID } }
+		_set: { isDeleted: true }
+	) {
+		returning {
+			museumWorkingScheduleID
+		}
+	}
+}
+mutation deleteArchSiteWorkingSc($archSiteWorkingScID: Int) {
+	update_ArchSiteWorkingSchedule(
+		where: { archSiteWorkingScheduleID: { _eq: $archSiteWorkingScID } }
+		_set: { isDeleted: true }
+	) {
+		returning {
+			archSiteWorkingScheduleID
+		}
+	}
+}
+mutation deleteMuseumPrice($museumPriceID: Int) {
+	update_MuseumPrice(where: { museumPriceID: { _eq: $museumPriceID } }, _set: { isDeleted: true }) {
+		returning {
+			museumPriceID
+		}
+	}
+}
+mutation deleteArchSitePrice($archSitePriceID: Int) {
+	update_ArchSitePrice(where: { archSitePriceID: { _eq: $archSitePriceID } }, _set: { isDeleted: true }) {
+		returning {
+			archSitePriceID
+		}
+	}
+}

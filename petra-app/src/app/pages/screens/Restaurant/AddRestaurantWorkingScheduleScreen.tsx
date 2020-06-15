@@ -20,6 +20,7 @@ const AddRestaurantWorkingScheduleScreen: React.FC<AddRestaurantWorkingScheduleP
 	};
 	const { userID } = props.route.params;
 	const { restaurantID } = props.route.params;
+
 	return (
 		<Layout style={{ flex: 1 }}>
 			<AddRestaurantWorkingScheduleComponent>

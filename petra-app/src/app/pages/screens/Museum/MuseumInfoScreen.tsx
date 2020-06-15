@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, ButtonGroup, Text, Calendar, Spinner } from '@ui-kitten/components';
+import GetMuseumWorkingScListComponent from '../../../components/Museum/GetMuseumWorkingScList';
+import GetMuseumPriceListComponent from '../../../components/Museum/GetMuseumPricesList';
 import { GetMuseumByIdComponent } from '../../../generated/components';
 
 declare var global: any;
@@ -95,6 +97,9 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 					if (error) return <Text>error</Text>;
 
 					if (data) {
+						museumInfo.splice(0);
+						priceDetails.splice(0);
+						workingDetails.splice(0);
 						data.Museum.map((dat) => {
 							museumInfo.push({
 								title: dat.name,
@@ -106,6 +111,7 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 							});
 							priceDetails.push(dat.MuseumPrices);
 							workingDetails.push(dat.MuseumWorkingSchedules);
+							console.log(workingDetails);
 						});
 					}
 					return (
@@ -125,17 +131,47 @@ const ArchSiteInfoScreen: React.FC<ArchSiteInfoScreenProps> = (props) => {
 							<Layout style={styles.priceWork}>
 								<View>
 									<Text category="h6">Price Details</Text>
-									<Calendar date={selectedDate} onSelect={setSelectedDate} renderDay={DayCellPrice} />
+									{priceDetails[0].length > 0 ? (
+										<Calendar
+											key={(((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)}
+											date={selectedDate}
+											onSelect={setSelectedDate}
+											renderDay={DayCellPrice}
+										/>
+									) : (
+										<Calendar
+											key={(((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)}
+											date={selectedDate}
+											onSelect={setSelectedDate}
+											renderDay={DayCellPrice}
+										/>
+									)}
 								</View>
 								<View style={{ marginLeft: 40 }}>
 									<Text category="h6">Working Schedule Details</Text>
-									<Calendar date={selectedDateWorking} onSelect={setSelectedDateWorking} renderDay={DayCellWorking} />
+									{workingDetails[0].length > 0 ? (
+										<Calendar
+											key={(((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)}
+											date={selectedDateWorking}
+											onSelect={setSelectedDateWorking}
+											renderDay={DayCellWorking}
+										/>
+									) : (
+										<Calendar
+											key={(((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)}
+											date={selectedDateWorking}
+											onSelect={setSelectedDateWorking}
+											renderDay={DayCellWorking}
+										/>
+									)}
 								</View>
 							</Layout>
 						</Layout>
 					);
 				}}
 			</GetMuseumByIdComponent>
+			<GetMuseumWorkingScListComponent navigation={props.navigation} route={props.route} museumID={museumID} />
+			<GetMuseumPriceListComponent navigation={props.navigation} route={props.route} museumID={museumID} />
 		</Layout>
 	);
 };

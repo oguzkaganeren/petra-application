@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Button, Layout, Calendar, Text, ListItem, List, Spinner } from '@ui-kitten/components';
 import { GetRestaurantByIdComponent } from '../../../generated/components';
 import { GetRestaurantMenuByResIdComponent } from '../../../generated/components';
+import GetRestaurantWorkingScListComponent from '../../../components/Restaurant/GetRestaurantWorkingScList';
 import StarRating from 'react-native-star-rating';
 declare var global: any;
 
@@ -156,6 +157,12 @@ const RestaurantInfoScreen: React.FC<RestaurantInfoScreenProps> = (props) => {
 					);
 				}}
 			</GetRestaurantMenuByResIdComponent>
+			<Text category={'h5'}>Working Schedules</Text>
+			<GetRestaurantWorkingScListComponent
+				navigation={props.navigation}
+				route={props.route}
+				restaurantID={restaurantID}
+			/>
 		</Layout>
 	);
 };
