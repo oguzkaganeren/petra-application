@@ -88,7 +88,6 @@ const EditArchSiteScreen: React.FC<EditArchSiteProps> = (props) => {
 									},
 								})
 									.then((res) => {
-										alert(JSON.stringify(res));
 										toastRef.current.show(
 											values.name.toString() + ' edited. Redirecting to the previous page...',
 											500,
