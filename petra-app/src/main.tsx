@@ -82,13 +82,13 @@ import { split } from 'apollo-link';
 
 // Pass your GraphQL endpoint to uri
 const wsLink = new WebSocketLink({
-	uri: `ws://192.168.99.100:8080/v1/graphql`,
+	uri: `ws://192.168.1.108:8080/v1/graphql`,
 	options: {
 		reconnect: true,
 	},
 });
 const httpLink = new HttpLink({
-	uri: 'http://192.168.99.100:8080/v1/graphql',
+	uri: 'http://192.168.1.108:8080/v1/graphql',
 });
 const link = split(
 	// split based on operation type
@@ -488,8 +488,8 @@ function CompanyStack() {
 							options.headerTitle !== undefined
 								? options.headerTitle
 								: options.title !== undefined
-									? options.title
-									: scene.route.name;
+								? options.title
+								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
 					},
@@ -506,8 +506,8 @@ function CompanyStack() {
 							options.headerTitle !== undefined
 								? options.headerTitle
 								: options.title !== undefined
-									? options.title
-									: scene.route.name;
+								? options.title
+								: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
 					},

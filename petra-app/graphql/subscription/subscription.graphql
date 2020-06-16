@@ -30,7 +30,7 @@ subscription getRestaurantTypes {
 		restaurantTypeID
 	}
 }
-query getUserCompany($userID: Int) {
+subscription getUserCompany($userID: Int) {
 	Company(where: { isDeleted: { _eq: false }, CompanyUsers: { userID: { _eq: $userID } } }) {
 		companyID
 		name
