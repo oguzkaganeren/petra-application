@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Layout, Text, Icon } from '@ui-kitten/components';
 import GetUserCompanyList from '../../../components/Company/GetUserCompanyList';
+import CompanyInfoScreen from '../Company/CompanyInfoScreen';
 
 declare var global: any;
 

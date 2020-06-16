@@ -65,6 +65,9 @@ import AddTravelGuideScreen from './app/pages/screens/TravelGuide/AddTravelGuide
 import AddArticleScreen from './app/pages/screens/Article/AddArticleScreen';
 import RegisterScreen from './app/pages/screens/RegisterScreen';
 import CityInfoScreen from './app/pages/screens/CityInfoScreen';
+import CompanyInfoScreen from './app/pages/screens/Company/CompanyInfoScreen';
+import CompanyDetailScreen from './app/pages/screens/Company/CompanyDetailScreen';
+
 import { ThemeContext } from './ThemeContext';
 declare var global: any;
 
@@ -79,13 +82,13 @@ import { split } from 'apollo-link';
 
 // Pass your GraphQL endpoint to uri
 const wsLink = new WebSocketLink({
-	uri: `ws://192.168.1.108:8080/v1/graphql`,
+	uri: `ws://192.168.99.100:8080/v1/graphql`,
 	options: {
 		reconnect: true,
 	},
 });
 const httpLink = new HttpLink({
-	uri: 'http://192.168.1.108:8080/v1/graphql',
+	uri: 'http://192.168.99.100:8080/v1/graphql',
 });
 const link = split(
 	// split based on operation type
@@ -469,6 +472,42 @@ function CompanyStack() {
 								: options.title !== undefined
 								? options.title
 								: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="CompanyDetailScreen"
+				component={CompanyDetailScreen}
+				options={{
+					title: 'Company Detail',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+									? options.title
+									: scene.route.name;
+
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="CompanyInfoScreen"
+				component={CompanyInfoScreen}
+				options={{
+					title: 'Company Info',
+					header: ({ scene, previous, navigation }) => {
+						const { options } = scene.descriptor;
+						const title =
+							options.headerTitle !== undefined
+								? options.headerTitle
+								: options.title !== undefined
+									? options.title
+									: scene.route.name;
 
 						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
 					},

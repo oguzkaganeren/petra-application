@@ -29899,7 +29899,13 @@ export type GetCompanyByIdQuery = (
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
       )> }
-    ) }
+    ), CompanyPhones: Array<(
+      { __typename?: 'CompanyPhone' }
+      & { Phone: (
+        { __typename?: 'Phone' }
+        & Pick<Phone, 'phone'>
+      ) }
+    )> }
   )> }
 );
 
@@ -30179,13 +30185,13 @@ export type GetRestaurantTypesSubscription = (
   )> }
 );
 
-export type GetUserCompanySubscriptionVariables = Exact<{
+export type GetUserCompanyQueryVariables = Exact<{
   userID?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type GetUserCompanySubscription = (
-  { __typename?: 'subscription_root' }
+export type GetUserCompanyQuery = (
+  { __typename?: 'query_root' }
   & { Company: Array<(
     { __typename?: 'Company' }
     & Pick<Company, 'companyID' | 'name' | 'description' | 'faxNumber' | 'taxNumber' | 'mail' | 'registerDate'>
@@ -32705,6 +32711,11 @@ export const GetCompanyByIdDocument = gql`
       longtitude
     }
     companyID
+    CompanyPhones {
+      Phone {
+        phone
+      }
+    }
   }
 }
     `;
@@ -33207,7 +33218,7 @@ export function withGetRestaurantTypes<TProps, TChildProps = {}, TDataName exten
 };
 export type GetRestaurantTypesSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetRestaurantTypesSubscription>;
 export const GetUserCompanyDocument = gql`
-    subscription getUserCompany($userID: Int) {
+    query getUserCompany($userID: Int) {
   Company(where: {isDeleted: {_eq: false}, CompanyUsers: {userID: {_eq: $userID}}}) {
     companyID
     name
@@ -33219,26 +33230,26 @@ export const GetUserCompanyDocument = gql`
   }
 }
     `;
-export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserCompanySubscription, GetUserCompanySubscriptionVariables>, 'subscription'>;
+export type GetUserCompanyComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserCompanyQuery, GetUserCompanyQueryVariables>, 'query'>;
 
     export const GetUserCompanyComponent = (props: GetUserCompanyComponentProps) => (
-      <ApolloReactComponents.Subscription<GetUserCompanySubscription, GetUserCompanySubscriptionVariables> subscription={GetUserCompanyDocument} {...props} />
+      <ApolloReactComponents.Query<GetUserCompanyQuery, GetUserCompanyQueryVariables> query={GetUserCompanyDocument} {...props} />
     );
     
 export type GetUserCompanyProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetUserCompanySubscription, GetUserCompanySubscriptionVariables>
+      [key in TDataName]: ApolloReactHoc.DataValue<GetUserCompanyQuery, GetUserCompanyQueryVariables>
     } & TChildProps;
 export function withGetUserCompany<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  GetUserCompanySubscription,
-  GetUserCompanySubscriptionVariables,
+  GetUserCompanyQuery,
+  GetUserCompanyQueryVariables,
   GetUserCompanyProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withSubscription<TProps, GetUserCompanySubscription, GetUserCompanySubscriptionVariables, GetUserCompanyProps<TChildProps, TDataName>>(GetUserCompanyDocument, {
+    return ApolloReactHoc.withQuery<TProps, GetUserCompanyQuery, GetUserCompanyQueryVariables, GetUserCompanyProps<TChildProps, TDataName>>(GetUserCompanyDocument, {
       alias: 'getUserCompany',
       ...operationOptions
     });
 };
-export type GetUserCompanySubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserCompanySubscription>;
+export type GetUserCompanyQueryResult = ApolloReactCommon.QueryResult<GetUserCompanyQuery, GetUserCompanyQueryVariables>;
 export const GetRoomPropertyDocument = gql`
     subscription getRoomProperty {
   RoomProperty(where: {isDeleted: {_eq: false}}) {
