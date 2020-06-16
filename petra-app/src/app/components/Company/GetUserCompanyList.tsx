@@ -143,8 +143,8 @@ const GetUserCompanyList: React.FC<GetUserCompanyListProps> = (props) => {
 				icon={renderItemIcon}
 				accessory={() => renderItemAccessory(item)}
 				onPress={() => {
-					props.navigation.navigate('', {
-						//hotelID: item.key,
+					props.navigation.navigate('CompanyDetailScreen', {
+						companyID: item.key,
 					});
 				}}
 			/>

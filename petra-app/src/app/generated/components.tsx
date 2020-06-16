@@ -29899,7 +29899,13 @@ export type GetCompanyByIdQuery = (
         { __typename?: 'Address' }
         & Pick<Address, 'address' | 'cityID' | 'districtID'>
       )> }
-    ) }
+    ), CompanyPhones: Array<(
+      { __typename?: 'CompanyPhone' }
+      & { Phone: (
+        { __typename?: 'Phone' }
+        & Pick<Phone, 'phone'>
+      ) }
+    )> }
   )> }
 );
 
@@ -32705,6 +32711,11 @@ export const GetCompanyByIdDocument = gql`
       longtitude
     }
     companyID
+    CompanyPhones {
+      Phone {
+        phone
+      }
+    }
   }
 }
     `;
