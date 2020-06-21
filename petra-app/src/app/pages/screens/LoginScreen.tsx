@@ -22,7 +22,7 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
 	const renderIcon = (style) => <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'} />;
 	const renderMailIcon = (style) => <Icon {...style} name={'email'} />;
 	const renderSetUserComponent = (
-		<Layout style={styles.layout}>
+		<Layout style={Platform.OS === 'web' ? styles.layout : { height: Dimensions.get('window').height }}>
 			<ControlLoginMailUserComponent>
 				{(ControlLoginMailUserMutation) => (
 					<Formik

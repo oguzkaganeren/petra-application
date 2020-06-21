@@ -12,9 +12,10 @@ export interface GetHotelListByCityProps {
 const GetHotelListByCity: React.FC<GetHotelListByCityProps> = (props) => {
 	const [hotelList, setHotelList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
-	const { cityID } = props.route.params;
-	const { regionID } = props.route.params;
-	const hotelVariable = cityID != 0 ? { cityID: cityID } : { regionID: regionID };
+	const cityID = props.route.params != undefined ? props.route.params : undefined;
+	const regionID = props.route.params != undefined ? props.route.params : undefined;
+	const hotelVariable =
+		cityID != undefined ? { cityID: cityID } : regionID != undefined ? { regionID: regionID } : null;
 	function renderItemAccessory(item) {
 		return (
 			<Layout>

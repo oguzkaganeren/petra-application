@@ -12,9 +12,10 @@ export interface GetRestaurantListByCityProps {
 const GetRestaurantListByCityComponent: React.FC<GetRestaurantListByCityProps> = (props) => {
 	const [restaurantList, setRestaurantList] = React.useState([]);
 	const [removeItemBool, setRemoveItemBool] = React.useState(false);
-	const { cityID } = props.route.params;
-	const { regionID } = props.route.params;
-	const restaurantVariable = cityID != 0 ? { cityID: cityID } : { regionID: regionID };
+	const cityID = props.route.params != undefined ? props.route.params : undefined;
+	const regionID = props.route.params != undefined ? props.route.params : undefined;
+	const restaurantVariable =
+		cityID != undefined ? { cityID: cityID } : regionID != undefined ? { regionID: regionID } : null;
 	function renderItemAccessory(item) {
 		return (
 			<Layout>
