@@ -363,3 +363,15 @@ subscription getArchSiteByID($archSiteID: Int) {
 		}
 	}
 }
+subscription getUserInfo($userID: Int!) {
+	User(where: { userID: { _eq: $userID } }) {
+		name
+		mail
+		surname
+		birthDate
+		profileImageUrl
+		Phone {
+			phone
+		}
+	}
+}

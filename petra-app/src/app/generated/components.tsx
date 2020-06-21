@@ -30118,23 +30118,6 @@ export type GetTravelGuideByIdQuery = (
   )> }
 );
 
-export type GetUserInfoQueryVariables = Exact<{
-  userID: Scalars['Int'];
-}>;
-
-
-export type GetUserInfoQuery = (
-  { __typename?: 'query_root' }
-  & { User: Array<(
-    { __typename?: 'User' }
-    & Pick<User, 'name' | 'mail' | 'surname' | 'birthDate' | 'profileImageUrl'>
-    & { Phone?: Maybe<(
-      { __typename?: 'Phone' }
-      & Pick<Phone, 'phone'>
-    )> }
-  )> }
-);
-
 export type GetArticleListSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -30658,6 +30641,23 @@ export type GetArchSiteByIdSubscription = (
           & Pick<ArchSiteWorkingDay, 'dayID' | 'openHour' | 'closeHour'>
         ) }
       )> }
+    )> }
+  )> }
+);
+
+export type GetUserInfoSubscriptionVariables = Exact<{
+  userID: Scalars['Int'];
+}>;
+
+
+export type GetUserInfoSubscription = (
+  { __typename?: 'subscription_root' }
+  & { User: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'name' | 'mail' | 'surname' | 'birthDate' | 'profileImageUrl'>
+    & { Phone?: Maybe<(
+      { __typename?: 'Phone' }
+      & Pick<Phone, 'phone'>
     )> }
   )> }
 );
@@ -33064,40 +33064,6 @@ export function withGetTravelGuideById<TProps, TChildProps = {}, TDataName exten
     });
 };
 export type GetTravelGuideByIdQueryResult = ApolloReactCommon.QueryResult<GetTravelGuideByIdQuery, GetTravelGuideByIdQueryVariables>;
-export const GetUserInfoDocument = gql`
-    query getUserInfo($userID: Int!) {
-  User(where: {userID: {_eq: $userID}}) {
-    name
-    mail
-    surname
-    birthDate
-    profileImageUrl
-    Phone {
-      phone
-    }
-  }
-}
-    `;
-export type GetUserInfoComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserInfoQuery, GetUserInfoQueryVariables>, 'query'> & ({ variables: GetUserInfoQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const GetUserInfoComponent = (props: GetUserInfoComponentProps) => (
-      <ApolloReactComponents.Query<GetUserInfoQuery, GetUserInfoQueryVariables> query={GetUserInfoDocument} {...props} />
-    );
-    
-export type GetUserInfoProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetUserInfoQuery, GetUserInfoQueryVariables>
-    } & TChildProps;
-export function withGetUserInfo<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUserInfoQuery,
-  GetUserInfoQueryVariables,
-  GetUserInfoProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUserInfoQuery, GetUserInfoQueryVariables, GetUserInfoProps<TChildProps, TDataName>>(GetUserInfoDocument, {
-      alias: 'getUserInfo',
-      ...operationOptions
-    });
-};
-export type GetUserInfoQueryResult = ApolloReactCommon.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;
 export const GetArticleListDocument = gql`
     subscription getArticleList {
   Article(where: {isDeleted: {_eq: false}}) {
@@ -34116,3 +34082,37 @@ export function withGetArchSiteById<TProps, TChildProps = {}, TDataName extends 
     });
 };
 export type GetArchSiteByIdSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetArchSiteByIdSubscription>;
+export const GetUserInfoDocument = gql`
+    subscription getUserInfo($userID: Int!) {
+  User(where: {userID: {_eq: $userID}}) {
+    name
+    mail
+    surname
+    birthDate
+    profileImageUrl
+    Phone {
+      phone
+    }
+  }
+}
+    `;
+export type GetUserInfoComponentProps = Omit<ApolloReactComponents.SubscriptionComponentOptions<GetUserInfoSubscription, GetUserInfoSubscriptionVariables>, 'subscription'>;
+
+    export const GetUserInfoComponent = (props: GetUserInfoComponentProps) => (
+      <ApolloReactComponents.Subscription<GetUserInfoSubscription, GetUserInfoSubscriptionVariables> subscription={GetUserInfoDocument} {...props} />
+    );
+    
+export type GetUserInfoProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetUserInfoSubscription, GetUserInfoSubscriptionVariables>
+    } & TChildProps;
+export function withGetUserInfo<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserInfoSubscription,
+  GetUserInfoSubscriptionVariables,
+  GetUserInfoProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withSubscription<TProps, GetUserInfoSubscription, GetUserInfoSubscriptionVariables, GetUserInfoProps<TChildProps, TDataName>>(GetUserInfoDocument, {
+      alias: 'getUserInfo',
+      ...operationOptions
+    });
+};
+export type GetUserInfoSubscriptionResult = ApolloReactCommon.SubscriptionResult<GetUserInfoSubscription>;

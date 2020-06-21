@@ -191,36 +191,33 @@ query getArticleByID($articleID: Int) {
 }
 
 query getCompanyByID($companyID: Int) {
-  __typename
-  Company(
-    where: { companyID: { _eq: $companyID }, isDeleted: { _eq: false } }
-  ) {
-    name
-    taxNumber
-    mail
-    registerDate
-    logoUrl
-    description
-    locationID
-    Location {
-      addressID
-      Address {
-        address
-        cityID
-        districtID
-      }
-      latitude
-      longtitude
-    }
-    companyID
-    CompanyPhones {
-      Phone {
-        phone
-      }
-    }
-  }
+	__typename
+	Company(where: { companyID: { _eq: $companyID }, isDeleted: { _eq: false } }) {
+		name
+		taxNumber
+		mail
+		registerDate
+		logoUrl
+		description
+		locationID
+		Location {
+			addressID
+			Address {
+				address
+				cityID
+				districtID
+			}
+			latitude
+			longtitude
+		}
+		companyID
+		CompanyPhones {
+			Phone {
+				phone
+			}
+		}
+	}
 }
-
 
 query getHotelByCity($cityID: Int, $regionID: Int) {
 	__typename
@@ -404,18 +401,6 @@ query getTravelGuideByID($travelGuideID: Int) {
 					latitude
 				}
 			}
-		}
-	}
-}
-query getUserInfo($userID: Int!) {
-	User(where: { userID: { _eq: $userID } }) {
-		name
-		mail
-		surname
-		birthDate
-		profileImageUrl
-		Phone {
-			phone
 		}
 	}
 }

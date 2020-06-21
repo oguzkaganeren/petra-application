@@ -413,7 +413,7 @@ function HomeStack() {
 								? options.title
 								: scene.route.name;
 
-						return <HeaderComponent navigation={navigation} headerTitle={title} previous={false} />;
+						return <HeaderComponent navigation={navigation} headerTitle={title} previous={previous} />;
 					},
 				}}
 			/>
