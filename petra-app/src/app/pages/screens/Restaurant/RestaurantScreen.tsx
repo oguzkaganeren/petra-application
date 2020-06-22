@@ -32,10 +32,11 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Layout style={{ flexDirection: 'row' }}>
 					<Button
 						icon={accessoryItemIcon}
 						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddRestaurantScreen', {
 								userID: userID,
@@ -46,6 +47,7 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						style={{ flex: 1 }}
 						appearance="ghost"
 						onPress={() => {
 							props.navigation.navigate('AddRestaurantTypeScreen', {
@@ -57,6 +59,7 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						style={{ flex: 1 }}
 						appearance="ghost"
 						onPress={() => {
 							props.navigation.navigate('AddFoodTypeScreen', {
@@ -68,6 +71,7 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						style={{ flex: 1 }}
 						appearance="ghost"
 						onPress={() => {
 							props.navigation.navigate('AddFoodScreen', {
@@ -79,6 +83,7 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						style={{ flex: 1 }}
 						appearance="ghost"
 						onPress={() => {
 							props.navigation.navigate('AddRestaurantCuisineTypeScreen', {
@@ -88,7 +93,7 @@ const RestaurantScreen: React.FC<RestaurantProps> = (props) => {
 					>
 						Add Cuisine Type
 					</Button>
-				</ButtonGroup>
+				</Layout>
 
 				<GetUserRestaurantList navigation={props.navigation} route={props.route} />
 			</Layout>

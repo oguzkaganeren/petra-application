@@ -22,9 +22,11 @@ const ArchSiteDetailScreen: React.FC<ArchSiteDetailProps> = (props) => {
 			>
 				Add ArchSite Comment
 			</Button> */}
-			<ButtonGroup style={{ justifyContent: 'center' }}>
+			<Layout style={{ flexDirection: 'row' }}>
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddArchSiteWorkingScheduleScreen', {
 							userID: userID,
@@ -36,6 +38,8 @@ const ArchSiteDetailScreen: React.FC<ArchSiteDetailProps> = (props) => {
 				</Button>
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddArchSitePriceScreen', {
 							userID: userID,
@@ -45,7 +49,8 @@ const ArchSiteDetailScreen: React.FC<ArchSiteDetailProps> = (props) => {
 				>
 					Add ArchSite Price
 				</Button>
-			</ButtonGroup>
+			</Layout>
+
 			<ArchSiteInfoScreen navigation={props.navigation} route={props.route} archSiteID={archSiteID} />
 		</Layout>
 	);

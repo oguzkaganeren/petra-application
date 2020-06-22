@@ -13,9 +13,11 @@ const MuseumDetailScreen: React.FC<MuseumDetailProps> = (props) => {
 	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
-			<ButtonGroup style={{ justifyContent: 'center' }}>
+			<Layout style={{ flexDirection: 'row' }}>
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddMuseumWorkingScheduleScreen', {
 							userID: userID,
@@ -27,6 +29,8 @@ const MuseumDetailScreen: React.FC<MuseumDetailProps> = (props) => {
 				</Button>
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddMuseumPriceScreen', {
 							userID: userID,
@@ -36,7 +40,7 @@ const MuseumDetailScreen: React.FC<MuseumDetailProps> = (props) => {
 				>
 					Add Museum Price
 				</Button>
-			</ButtonGroup>
+			</Layout>
 			<MuseumInfoScreen navigation={props.navigation} route={props.route} museumID={museumID} />
 		</Layout>
 	);

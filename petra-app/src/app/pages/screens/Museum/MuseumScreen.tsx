@@ -33,9 +33,10 @@ const MuseumScreen: React.FC<MuseumProps> = (props) => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Layout style={{ flexDirection: 'row' }}>
 					<Button
 						icon={accessoryItemIcon}
+						style={{ flex: 1 }}
 						appearance="ghost"
 						onPress={() => {
 							props.navigation.navigate('AddMuseumScreen', {
@@ -47,6 +48,8 @@ const MuseumScreen: React.FC<MuseumProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddMuseumEntranceTypeScreen', {
 								userID: userID,
@@ -57,6 +60,8 @@ const MuseumScreen: React.FC<MuseumProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddMuseumTypeScreen', {
 								userID: userID,
@@ -65,7 +70,7 @@ const MuseumScreen: React.FC<MuseumProps> = (props) => {
 					>
 						Add Museum Type
 					</Button>
-				</ButtonGroup>
+				</Layout>
 
 				<GetUserMuseumList navigation={props.navigation} route={props.route} />
 			</Layout>

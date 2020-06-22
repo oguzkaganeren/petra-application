@@ -33,10 +33,11 @@ const ArticleScreen: React.FC<ArticleProps> = (props) => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Layout style={{ flexDirection: 'row' }}>
 					<Button
 						icon={accessoryItemIcon}
 						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddArticleScreen', {
 								userID: userID,
@@ -47,6 +48,8 @@ const ArticleScreen: React.FC<ArticleProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddTagScreen', {
 								userID: userID,
@@ -55,7 +58,7 @@ const ArticleScreen: React.FC<ArticleProps> = (props) => {
 					>
 						Add Tag
 					</Button>
-				</ButtonGroup>
+				</Layout>
 
 				<GetUserArticleList navigation={props.navigation} route={props.route} />
 			</Layout>

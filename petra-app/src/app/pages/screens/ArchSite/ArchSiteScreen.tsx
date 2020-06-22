@@ -33,10 +33,11 @@ const ArchSiteScreen: React.FC<ArchSiteProps> = (props) => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Layout style={{ flexDirection: 'row' }}>
 					<Button
 						icon={accessoryItemIcon}
 						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddArchSiteScreen', {
 								userID: userID,
@@ -47,6 +48,8 @@ const ArchSiteScreen: React.FC<ArchSiteProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddArchSiteTypeScreen', {
 								userID: userID,
@@ -57,6 +60,8 @@ const ArchSiteScreen: React.FC<ArchSiteProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddArchSiteEntranceTypeScreen', {
 								userID: userID,
@@ -65,7 +70,7 @@ const ArchSiteScreen: React.FC<ArchSiteProps> = (props) => {
 					>
 						Add ArchSite Entrance Type
 					</Button>
-				</ButtonGroup>
+				</Layout>
 
 				<GetUserASListComponent navigation={props.navigation} route={props.route} />
 			</Layout>

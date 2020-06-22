@@ -31,10 +31,11 @@ const HotelScreen: React.FC<HotelProps> = (props) => {
 	} else {
 		return (
 			<Layout style={{ flex: 1 }}>
-				<ButtonGroup style={{ justifyContent: 'center' }}>
+				<Layout style={{ flexDirection: 'row' }}>
 					<Button
 						icon={accessoryItemIcon}
 						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddHotelScreen', {
 								userID: userID,
@@ -45,6 +46,8 @@ const HotelScreen: React.FC<HotelProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddRoomPropertyScreen', {
 								userID: userID,
@@ -55,6 +58,8 @@ const HotelScreen: React.FC<HotelProps> = (props) => {
 					</Button>
 					<Button
 						icon={accessoryItemIcon}
+						appearance="ghost"
+						style={{ flex: 1 }}
 						onPress={() => {
 							props.navigation.navigate('AddHotelServicePropertyScreen', {
 								userID: userID,
@@ -63,7 +68,7 @@ const HotelScreen: React.FC<HotelProps> = (props) => {
 					>
 						Add Hotel Service
 					</Button>
-				</ButtonGroup>
+				</Layout>
 
 				<GetUserHotelList navigation={props.navigation} route={props.route} />
 			</Layout>

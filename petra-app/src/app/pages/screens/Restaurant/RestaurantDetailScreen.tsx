@@ -13,9 +13,11 @@ const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = (props) =>
 	const accessoryItemIcon = (style) => <Icon {...style} name="plus-circle-outline" />;
 	return (
 		<Layout style={{ flex: 1 }}>
-			<ButtonGroup style={{ justifyContent: 'center' }}>
+			<Layout style={{ flexDirection: 'row' }}>
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddMenuScreen', {
 							userID: userID,
@@ -38,6 +40,8 @@ const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = (props) =>
 			</Button> */}
 				<Button
 					icon={accessoryItemIcon}
+					appearance="ghost"
+					style={{ flex: 1 }}
 					onPress={() => {
 						props.navigation.navigate('AddRestaurantWorkingScheduleScreen', {
 							userID: userID,
@@ -47,7 +51,7 @@ const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = (props) =>
 				>
 					Add Restaurant Working Schedule
 				</Button>
-			</ButtonGroup>
+			</Layout>
 			<RestaurantInfoScreen navigation={props.navigation} route={props.route} restaurantID={restaurantID} />
 		</Layout>
 	);

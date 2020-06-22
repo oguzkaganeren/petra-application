@@ -107,9 +107,11 @@ const HeaderComponent: React.FC<HeaderProps> = (props) => {
 												: require('../../assets/person.png')
 										}
 									/>
-									<Text style={styles.text} category="s1">
-										{userInfo[0].name}
-									</Text>
+									{Platform.OS === 'web' ? (
+										<Text style={styles.text} category="s1">
+											{userInfo[0].name}
+										</Text>
+									) : null}
 								</Layout>
 							);
 						}}

@@ -82,13 +82,13 @@ import { split } from 'apollo-link';
 
 // Pass your GraphQL endpoint to uri
 const wsLink = new WebSocketLink({
-	uri: `ws://127.0.0.1:8080/v1/graphql`,
+	uri: `ws://192.168.1.108:8080/v1/graphql`,
 	options: {
 		reconnect: true,
 	},
 });
 const httpLink = new HttpLink({
-	uri: 'http://127.0.0.1:8080/v1/graphql',
+	uri: 'http://192.168.1.108:8080/v1/graphql',
 });
 const link = split(
 	// split based on operation type
