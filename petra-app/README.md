@@ -1,5 +1,7 @@
 # Petra Application
 
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts 'JavaScript The Good Parts')
+
 This readme is a work in progress if anything is missing let us know.
 
 ## Built With
@@ -22,17 +24,7 @@ This readme is a work in progress if anything is missing let us know.
 
 - `yarn generate`
 
-### Testing in a diferent language
-
-- (TODO)
-
-### libraries used, get familiar with them. ( needs update )
-
-- (TODO)
-
-### Adding pages
-
-(TODO)
+## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ## License
 

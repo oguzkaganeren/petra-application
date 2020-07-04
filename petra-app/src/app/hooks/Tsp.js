@@ -1,18 +1,18 @@
 /*
  * Class defining a naive travelling salesman problem solver.
  * This solver models this problem using the graph representation.
- * 
+ *
  * In the specfic it will make use of:
  * - an array of nodes
  * - a list containing the weights of the edges
  * - a starting node
- * 
+ *
  * notice: this solver makes the non restrictive assumption that
  * the graph is complete.
- * 
+ *
  * For more info on the travelling salesman problem
  * see: {@link https://en.wikipedia.org/wiki/Travelling_salesman_problem}
- * 
+ *
  */
 class Tsp {
     /*
@@ -56,12 +56,12 @@ class Tsp {
                 return {
                     exists: true,
                     path: el,
-                    length: sum
+                    length: sum,
                 };
             }
         }
         return {
-            exists: false
+            exists: false,
         };
     }
 
@@ -77,7 +77,7 @@ class Tsp {
         // iterate permutations and calculate path length
         let pathLength = Number.MAX_VALUE;
         let path = [];
-        permuts.forEach(el => {
+        permuts.forEach((el) => {
             let sum = 0;
             for (let i = 0; i < el.length - 1; i++) {
                 let key = el[i] + el[i + 1];
@@ -91,7 +91,7 @@ class Tsp {
         });
         return {
             path: path,
-            length: pathLength
+            length: pathLength,
         };
     }
 
@@ -141,7 +141,6 @@ class Tsp {
         array[from] = array[to];
         array[to] = tmp;
     }
-
 }
 
 exports.Tsp = Tsp;
